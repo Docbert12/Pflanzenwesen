@@ -1,0 +1,465 @@
+Entwickle unser bestehendes Godot-Projekt weiter. Dies ist Prompt 7: Lebensbaum, Fortpflanzung, Vererbung, Mutationen und Gründung weiterer Bäume.
+
+Arbeite direkt im vorhandenen Projekt. Erhalte Physik, Materialsystem, Körpergenerator, Lebenssimulation, Lernen, Ollama, Werkzeuge und Spielstände.
+
+## 1. Tatsächlichen Ausgangsstand prüfen
+
+Lies:
+- README.md
+- docs/architecture.md
+- docs/implementation_status.md
+- docs/progress_audit.md
+- docs/physics_model.md
+- docs/life_simulation.md
+- docs/save_format.md
+- docs/mind_and_learning.md
+- Die Dokumentation zu Experimenten und Werkzeugen.
+- Die relevanten importierten Excel-Definitionen.
+
+Prüfe den Code für:
+- Lebensbaum und Wurzelbeet.
+- Körperbaupläne und Körpergenerator.
+- Körperfähigkeiten und Prothesen.
+- Stoffwechsel und Ressourcen.
+- Entitäts-IDs und Tod.
+- Handlungssystem.
+- Weltplatzierung.
+- Speichern und Laden.
+
+Dokumentiere vorhandene, fehlende und ungeprüfte Voraussetzungen. Behebe notwendige Lücken gezielt.
+
+Keine zweite Körper-, Material- oder Ressourcenverwaltung aufbauen.
+
+## 2. Ziel dieser Version
+
+Der Lebensbaum wird zu einem funktionalen biologischen Ursprung.
+
+Implementiere:
+- Ressourcenaufnahme über das Wurzelbeet.
+- Nachwuchs mit vererbbaren Merkmalen.
+- Entwicklung vom Keimling zum handlungsfähigen Wesen.
+- Aufnahme kompatibler biologischer Merkmale.
+- Mutationen mit tatsächlichen Vor- und Nachteilen.
+- Sichtbare Abstammungsunterschiede.
+- Die Gründung eines weiteren Lebensbaums nach 50 gezählten Opfern.
+
+Die Ausgangspopulation bleibt bei einem neuen Spiel 50.
+
+Noch nicht Bestandteil:
+- Vollständige Tierzucht.
+- Ein vollständiges Ökosystem.
+- Organisierte Religionen und Staaten.
+- Vollständige Strahlungsphysik.
+- Beliebige neue Körperformen ohne passende Animation und Fähigkeiten.
+
+## 3. Verbindliche biologische Spielregeln
+
+Es handelt sich um ein dokumentiertes Spielmodell, nicht um reale Genetik.
+
+Trenne:
+1. Den vererbbaren Bauplan.
+2. Die individuelle Entwicklung.
+3. Den aktuellen Körperzustand.
+4. Erworbene Verletzungen.
+5. Künstliche Prothesen.
+6. Erlerntes Wissen.
+
+Beispiele:
+- Ein verlorener Arm verändert nicht automatisch den vererbbaren Bauplan.
+- Eine Kupferprothese wird nicht automatisch biologisch vererbt.
+- Die Aufnahme eines biologischen Körperteils im Beet kann ein kompatibles Merkmal verfügbar machen.
+- Wissen und Erinnerungen werden nicht durch das Beet übertragen.
+- Ein neues Wesen besitzt nicht automatisch die Erfahrungen seines biologischen Ursprungs.
+
+Körperliche Veränderungen müssen mit den bestehenden Material-, Energie- und Funktionsregeln vereinbar sein.
+
+## 4. Module
+
+Erstelle oder erweitere:
+- scripts/biology/life_tree.gd
+- scripts/biology/root_bed.gd
+- scripts/biology/genome.gd
+- scripts/biology/trait_definition.gd
+- scripts/biology/inheritance_system.gd
+- scripts/biology/mutation_system.gd
+- scripts/biology/reproduction_system.gd
+- scripts/biology/development_system.gd
+- scripts/biology/lineage_registry.gd
+- scripts/biology/tree_founding.gd
+- scripts/ui/tree_inspector.gd
+- scripts/ui/lineage_viewer.gd
+
+Nutze gleichwertige vorhandene Module weiter.
+
+## 5. Merkmalsdefinitionen und Excel
+
+Prüfe meine Excel auf:
+- Körpermerkmale.
+- Mutationen.
+- Pflanzenarten.
+- Körperteile.
+- Kosten.
+- Kompatibilitäten.
+- Entwicklungsstufen.
+
+Erweitere den bestehenden Importer.
+
+Ein Merkmal benötigt:
+- Stabile ID.
+- Anzeigename.
+- Betroffene Körperstruktur.
+- Zulässigen Wertebereich.
+- Voraussetzungen.
+- Unverträglichkeiten.
+- Ressourcen- und Erhaltungskosten.
+- Einfluss auf Fähigkeiten.
+- Darstellungsvorgaben.
+- Vererbungsregel.
+- Implementierungsstatus.
+
+Nicht unterstützte Merkmale dürfen nicht stillschweigend aktiviert werden.
+
+Die frühere Angabe „20+ / 20−“ ist nicht eindeutig definiert. Erfinde daraus keine verbindliche Mutationsregel. Verwende bis zur Klärung eine klar dokumentierte, konfigurierbare Standardverteilung.
+
+## 6. Ressourcen des Lebensbaums
+
+Der Baum benötigt reale Ressourcen, um neues Gewebe aufzubauen.
+
+Definiere ein begrenztes Modell mit:
+- Verfügbarer Biomasse.
+- Wasser.
+- Nährstoffreserven.
+- Verfügbarer Energie.
+- Erhaltungsbedarf.
+- Kapazität des Wurzelbeets.
+- Verfügbaren Entwicklungsplätzen.
+
+Nutze vorhandene Ressourcenmodelle und Einheiten.
+
+Der Baum darf Energie aus einem definierten Lichtmodell gewinnen. Materieller Körperaufbau benötigt zusätzlich Stoffe.
+
+Aufgenommene Gegenstände werden:
+- Tatsächlich aus ihrem vorherigen Bestand entfernt.
+- Auf Material und Eignung geprüft.
+- Mit nachvollziehbarer Verarbeitungsdauer umgewandelt.
+- Mit Verlusten, Abfällen oder unbrauchbaren Resten bilanziert.
+
+Nicht jedes Material ist Nahrung.
+
+Kupfer, Stein oder eine Prothese dürfen nicht ungeprüft in biologische Biomasse verwandelt werden.
+
+Falls Ressourcen aus dem Boden aufgenommen werden, benötigen diese einen definierten Bestand. Keine unbegrenzte versteckte Versorgung.
+
+## 7. Wurzelbeet und biologische Aufnahme
+
+Implementiere kontrollierte Aufnahmevorgänge:
+- Geeignete Pflanzenbiomasse.
+- Geeignete abgetrennte biologische Körperteile.
+- Tote biologische Körper.
+- Lebende Wesen nur über einen gesonderten, expliziten Vorgang.
+
+Eine einfache Ressourcenaufnahme und eine Aufnahme zur Merkmalsgewinnung sind unterschiedliche Prozesse.
+
+Für Merkmalsaufnahme prüfe:
+- Biologische Herkunft.
+- Vorhandene Merkmale des eingebrachten Teils.
+- Kompatibilität mit dem Baum.
+- Unterstützte Körperstruktur.
+- Verarbeitungskosten.
+- Bereits verfügbare Merkmale.
+
+Ein einzelner Arm darf nicht automatisch alle Merkmale des ursprünglichen Wesens übertragen.
+
+Bereite eine Herkunftsstruktur für spätere tierische Bestandteile vor. Noch nicht implementierte Tierarten müssen dafür nicht vorzeitig entwickelt werden.
+
+Dokumentiere die abstrakten Spielregeln für die Auswahl übertragbarer Merkmale.
+
+## 8. Nachwuchs
+
+Implementiere einen nachvollziehbaren Ablauf:
+1. Voraussetzungen und Ressourcen prüfen.
+2. Entwicklungsplatz reservieren.
+3. Nachwuchsbauplan bestimmen.
+4. Ressourcen für die jeweilige Entwicklungsphase einsetzen.
+5. Keimling sichtbar erzeugen.
+6. Wachstum fortsetzen.
+7. Handlungsfähiges Jungwesen freigeben.
+
+Keine sofortige Erzeugung eines vollständigen Körpers ohne Ressourcenverbrauch.
+
+Bei Ressourcenmangel:
+- Entwicklung nach definierten Regeln verlangsamen oder pausieren.
+- Keine negativen Bestände.
+- Bereits aufgebautes Gewebe erhalten.
+- Längeren Mangel nachvollziehbar behandeln.
+
+Anfangs dürfen Größenwachstum und Reifung vereinfacht sein. Masse und Ressourcenverbrauch müssen trotzdem zusammenpassen.
+
+Ein neues Wesen erhält:
+- Neue eindeutige ID.
+- Geburtszeit.
+- Ursprungsbaum.
+- Abstammungsreferenzen.
+- Eigenen Körperbauplan.
+- Eigene Persönlichkeit nach den vorhandenen Regeln.
+- Einen zunächst leeren Erfahrungsspeicher.
+- Altersabhängige Fähigkeiten.
+
+## 9. Vererbung
+
+Implementiere eine begrenzte, datengetriebene Merkmalskombination.
+
+Der Baum besitzt:
+- Einen Grundbauplan.
+- Verfügbare aufgenommene Merkmale.
+- Dokumentierte Auswahlgewichte.
+- Kompatibilitätsregeln.
+
+Die Nachkommen können Merkmale kombinieren, aber nicht beliebig alle Vorteile gleichzeitig erhalten.
+
+Prüfe:
+- Funktionierende Körperhierarchie.
+- Unterstützte Anschlüsse.
+- Körperproportionen.
+- Masse und Energiebedarf.
+- Verfügbare Animationen.
+- Bewegung und Nahrungsaufnahme.
+- Unverträgliche Kombinationen.
+
+Ungültige Baupläne werden vor der Geburt abgefangen. Dokumentiere, ob eine Kombination verworfen, neu ausgewählt oder als nicht lebensfähig behandelt wird.
+
+Keine unsichtbare automatische Verbesserung aller Nachkommen.
+
+## 10. Mutationen
+
+Mutationen verändern definierte Merkmale innerhalb unterstützter Grenzen.
+
+Beispiele:
+- Blattgröße.
+- Körperproportionen.
+- Pigmentierung.
+- Gewebeeigenschaften innerhalb des Spielmodells.
+- Energiebedarf.
+- Wachstumsgeschwindigkeit.
+
+Mögliche Vorteile müssen passende Kosten oder Grenzen besitzen. Nicht jede Mutation muss vorteilhaft sein.
+
+Trenne:
+- Mutation beim Erzeugen eines Nachwuchsbauplans.
+- Veränderung eines bereits lebenden Körpers.
+- Tatsächliche Vererbbarkeit einer Veränderung.
+
+Implementiere zunächst:
+- Eine konfigurierbare spontane Mutationsrate.
+- Kontrollierte Mutationsauslösung im Entwicklermodus.
+
+Strahlung ist als spätere Ursache vorgesehen. Implementiere noch kein scheinbar vollständiges Strahlungssystem.
+
+Ein Debug-Schalter für Mutation darf nicht als vorhandene Radioaktivitätsphysik dargestellt werden.
+
+## 11. Sichtbare Körperveränderungen
+
+Nutze den bestehenden Generator.
+
+Eine Mutation muss:
+- Den Körperbauplan verändern.
+- Die entsprechende Geometrie aktualisieren.
+- Masse und Fähigkeiten neu berechnen.
+- Die Animation berücksichtigen.
+- Im Inspektor nachvollziehbar sein.
+
+Starte mit sicher unterstützten Varianten des vorhandenen Zweibeiners.
+
+Zusätzliche Arme, neue Fortbewegungsarten oder grundsätzlich andere Körperformen dürfen erst aktiviert werden, wenn Darstellung, Fähigkeiten und Animation implementiert sind.
+
+Körperfarbe und Form dürfen individuell unterschiedlich sein. Soziale Bewertungen entstehen aus Wahrnehmung und Erfahrung, nicht aus einer fest kodierten moralischen Bewertung des Merkmals.
+
+## 12. Weitere Lebensbäume und 50 Opfer
+
+Implementiere ein getrenntes Gründungsprojekt für einen zweiten oder weiteren Lebensbaum.
+
+Verbindliche Regeln:
+- Ein Gründungsprojekt benötigt genau 50 gültig registrierte Opfer.
+- Jedes Wesen kann nur einmal zählen.
+- Opfer werden einem konkreten Projekt zugeordnet.
+- Dieselben Opfer können nicht mehrere Bäume finanzieren.
+- Normale Todesfälle zählen nicht automatisch.
+- Die Aufnahme einer Leiche als Biomasse zählt nicht automatisch.
+- Ein gültiger Standort und notwendige Ressourcen werden separat geprüft.
+
+Die Opferzahl ist eine ausdrücklich definierte Spielregel. Sie ersetzt nicht die materielle Bilanz des neuen Baums.
+
+Wenn 50 Opfer erreicht sind, aber Ressourcen oder Standort fehlen:
+- Der Baum entsteht noch nicht.
+- Das Projekt zeigt die fehlenden Voraussetzungen.
+- Opfer werden nicht erneut verlangt.
+
+Für diesen Entwicklungsstand:
+- Ermögliche eine klar gekennzeichnete Testausführung.
+- Unterstütze bei einer Aufnahme eines lebenden Wesens einen expliziten Ablauf.
+- Implementiere noch keine organisierte Jagd oder erzwungene Opferung als Gesellschaftssystem.
+- Normales Verhalten darf nicht ohne implementierte Motive plötzlich die gesamte Bevölkerung opfern.
+
+Ein Gründungsprojekt benötigt:
+- Projekt-ID.
+- Standort.
+- Zugeordnete Baum- beziehungsweise Initiatorreferenz.
+- Liste gezählter Opfer-IDs.
+- Ressourcenstand.
+- Fortschritt.
+- Status.
+- Ergebnisbaum-ID.
+
+Der Übergang zur Baumgründung muss atomar sein: einmaliger Ressourcenverbrauch und genau ein neuer Baum.
+
+## 13. Abstammung und Identität
+
+Erstelle eine Abstammungsverwaltung für:
+- Ursprungsbaum.
+- Geburtsgeneration.
+- Übertragene Merkmale.
+- Biologische Quellen, soweit nachvollziehbar.
+- Spätere eigene Körperänderungen.
+
+Speichere historische Referenzen auch dann sinnvoll, wenn eine Quelle nicht mehr als aktiver Node existiert.
+
+Trenne Spielerwissen von Wissen der Wesen:
+- Der Spieler darf vollständige Abstammung sehen.
+- Wesen kennen nur wahrgenommene oder später mitgeteilte Herkunft.
+- Kein automatischer Zugriff auf verborgene genetische Eigenschaften.
+
+## 14. Neue Handlungen
+
+Erweitere das Handlungssystem, soweit für diese Version erforderlich:
+- bring_biomass_to_bed
+- deposit_biological_part
+- tend_seedling
+- inspect_tree
+- contribute_to_founding
+
+Verwende bestehende Bewegungs-, Trage- und Übergabehandlungen.
+
+Prüfe:
+- Gegenstand und Ziel.
+- Reichweite.
+- Körperfähigkeiten.
+- Reservierungen.
+- Mengen.
+- Kompatibilität.
+- Aktuellen Projektstatus.
+- Unterbrechungen.
+
+Wenn Wesen den Baum versorgen können, benötigt das eine nachvollziehbare lokale Motivation. Definiere eine begrenzte Versorgungstendenz, ohne allen Wesen automatisch umfassendes Wissen über Fortpflanzung oder Genetik zu geben.
+
+## 15. Bevölkerung und Leistung
+
+50 ist die Startzahl, nicht eine unbemerkte harte Obergrenze.
+
+Implementiere ein konfigurierbares Entwicklungslimit für aktive Wesen.
+
+Wenn dieses technische Limit erreicht ist:
+- Neue Entwicklungsstarts pausieren.
+- Bestehende Wesen bleiben erhalten.
+- Keine Wesen löschen.
+- Keine Ressourcen für einen nicht begonnenen Nachwuchs verbrauchen.
+- Den technischen Grund in der Oberfläche anzeigen.
+
+Nutze zunächst eine konservative Testgrenze und dokumentiere sie. Größere Populationen werden später gezielt optimiert.
+
+## 16. Oberfläche
+
+Erweitere die Baumansicht um:
+- Ressourcen.
+- Erhaltungsbedarf.
+- Entwicklungsplätze.
+- Aktuelle Keimlinge.
+- Grundbauplan.
+- Verfügbare Merkmale.
+- Laufende Aufnahmevorgänge.
+- Nachwuchsbedingungen.
+- Gründungsprojekte.
+
+Ergänze eine Vergleichsansicht:
+- Ausgangsmerkmal.
+- Aufgenommenes Merkmal.
+- Nachkomme.
+- Sichtbare Veränderung.
+- Tatsächliche funktionale Folgen.
+
+Zeige bei Mutationen und Vererbung Herkunft und Unsicherheit der Spielinformationen verständlich an.
+
+## 17. Speichern und Laden
+
+Speichere:
+- Baumressourcen.
+- Verfügbare Merkmale.
+- Entwicklungsplätze.
+- Keimlinge und Wachstumszustände.
+- Nachwuchsbaupläne.
+- Abstammungsdaten.
+- Mutationszustände und Zufallszustände.
+- Aufnahmevorgänge.
+- Gründungsprojekte.
+- Bereits gezählte Opfer-IDs.
+
+Implementiere die Migration aus der tatsächlich vorhandenen Speicherversion.
+
+Ein Laden darf:
+- Keine zusätzlichen Nachkommen erzeugen.
+- Keine Opfer doppelt zählen.
+- Keine Ressourcen erneut abbuchen.
+- Keine Mutationen neu würfeln.
+- Keine zweite Instanz eines bereits gegründeten Baums erzeugen.
+
+## 18. Tests
+
+Prüfe mindestens:
+1. Neues Spiel startet weiterhin mit genau 50 Wesen.
+2. Nachwuchs verbraucht reale Ressourcen.
+3. Ressourcenmangel verhindert ungültiges Wachstum.
+4. Ein Körperteil wird bei Aufnahme nicht dupliziert.
+5. Ungeeignete Materialien werden nicht zu Biomasse.
+6. Ein verlorener Arm wird nicht automatisch vererbt.
+7. Eine Prothese wird nicht als biologischer Arm vererbt.
+8. Kompatible Merkmale verändern Nachkommen sichtbar und funktional.
+9. Ungültige Körperkombinationen werden kontrolliert behandelt.
+10. Nachkommen erhalten keine fremden Erinnerungen.
+11. Normale Todesfälle zählen nicht als Opfer.
+12. Ein Opfer zählt höchstens einmal und nur für ein Projekt.
+13. 49 Opfer erzeugen keinen Baum.
+14. 50 Opfer plus erfüllte Voraussetzungen erzeugen genau einen Baum.
+15. Fehlende Ressourcen verhindern die Gründung trotz erfüllter Opferzahl.
+16. Speichern und Laden erhalten alle Zwischenzustände.
+17. Das Bevölkerungslimit pausiert neue Entwicklung ohne Löschung.
+18. Bisherige Physik-, Lern-, Werkzeug- und KI-Funktionen bleiben nutzbar.
+
+Nutze getrennte Testszenarien. Für den 50-Opfer-Test dürfen zusätzliche Testwesen erzeugt werden, klar getrennt vom normalen Spielstand.
+
+## 19. Dokumentation und Abschluss
+
+Aktualisiere die bestehende Dokumentation.
+
+Ergänze:
+- docs/reproduction_and_trees.md
+- docs/inheritance_and_mutations.md
+- docs/lineage.md
+
+Dokumentiere:
+- Spielbiologische Annahmen.
+- Ressourcenbilanz.
+- Vererbung und Kompatibilitäten.
+- Unterstützte Körpervarianten.
+- Opferzählung.
+- Technisches Bevölkerungslimit.
+- Speicherformatänderungen.
+- Tatsächlich ausgeführte Prüfungen.
+
+Berichte am Ende:
+- Was jetzt spielbar ist.
+- Wie ich den Baum versorge.
+- Wie ich einen Nachkommen beobachte.
+- Wie ich eine Merkmalsübertragung teste.
+- Wie ich den zweiten Baum in einer separaten Testszene prüfe.
+- Welche Funktionen noch vereinfacht oder ungeprüft sind.
+
+Beginne mit der Bestandsprüfung und implementiere anschließend diese Version vollständig.

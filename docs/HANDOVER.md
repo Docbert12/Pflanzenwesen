@@ -22,7 +22,9 @@ Godot-4-Spiel „Pflanzenwesen“: 3D-Voxelwelt mit 50 individuellen Pflanzenwes
 | v0.6.0 | 50bc72c (+ Nachtrag Commit-Hash) – altes Repository |
 | v0.6.0 (Übernahme) | 2e60241 – neues Repository `Docbert12/Pflanzenwesen`, inhaltlich identisch |
 
-**Neuer Chat:** Der Nutzer schreibt „Pflanzenwesen, Repository Docbert12/Pflanzenwesen, hier ist Prompt N“. Dann: Repository anbinden, klonen, diese Datei lesen. Für den Versionsvergleich die letzte Version holen: `git fetch --depth=1 origin version/vX.Y.Z` und `python3 tools/compare_versions.py git:FETCH_HEAD .` (oder `git:origin/version/vX.Y.Z`).
+**Arbeitszweige:** `wip/prompt-06b` = laufende Arbeit an Prompt 6B (Pause am 2026-11-24; **kompiliert noch nicht vollständig**, nicht ausgeliefert). Fortsetzung: `docs/plan_prompt_06b.md` lesen (Stand, Entscheidungen, Reihenfolge der offenen Schritte).
+
+**Neuer Chat:** Der Nutzer schreibt „Pflanzenwesen, Repository Docbert12/Pflanzenwesen, hier ist Prompt N“ bzw. „… weiter mit Prompt 6B (Zweig wip/prompt-06b)“. Dann: Repository anbinden, klonen, diese Datei lesen. Für den Versionsvergleich die letzte Version holen: `git fetch --depth=1 origin version/vX.Y.Z` und `python3 tools/compare_versions.py git:FETCH_HEAD .` (oder `git:origin/version/vX.Y.Z`).
 
 ## 2. Stand
 | Prompt | Inhalt | Version | Status |
@@ -34,10 +36,15 @@ Godot-4-Spiel „Pflanzenwesen“: 3D-Voxelwelt mit 50 individuellen Pflanzenwes
 | 5 | Ollama-Anbindung, Pläne, Gespräche, Hörensagen | v0.5.0 | fertig – **echte Ollama-Verbindung noch nicht verifiziert** |
 | – | HANDOVER, Versionsvergleich, Git-Verlauf | v0.5.1 | fertig |
 | 6 | Experimente, Werkzeugherstellung, praktisches Wissen, Testwerkstatt | v0.6.0 | fertig – Modellvorschläge für Versuche **mit echtem Ollama nicht verifiziert** |
-| 6B | Durchgängige Werkzeug- und Materialkette (Hammer bauen → schlagen → Bruchstücke sammeln → lagern / verbauen / schmelzen) | – | offen – verbindlicher Zusatz liegt in `design/prompts/prompt_06b_zusatz_werkzeug_materialkette.txt`, Haupttext folgt vom Nutzer |
-| 7–10 | folgen (Texte liefert der Nutzer) | – | offen |
-| 11 | Schrift, Bücher, Wissen – Text liegt in `design/prompts/prompt_11_schrift_buecher_wissen.txt` | – | **nach 6–10** (Entscheidung des Nutzers) |
-| 12–13 | folgen | – | offen |
+| 6B | Excel-Abgleich, Arbeitsanimationen, eigenständige Herstellung + verbindlicher Zusatz Werkzeug- und Materialkette (Hammer bauen → schlagen → Bruchstücke sammeln → lagern / verbauen / schmelzen) | (v0.6.1 geplant) | **in Arbeit** – Zweig `wip/prompt-06b`, Plan und Zwischenstand: `docs/plan_prompt_06b.md`; Texte: `design/prompts/prompt_06b_*.txt` |
+| Zusatz | Weltarchitektur: 20-fache Fläche, 0,25-m-Blöcke, Abbau und Bau mit Massenbilanz – `design/prompts/prompt_zusatz_weltarchitektur_abbau_bauen.txt` | – | offen, **Einordnung entscheidet der Nutzer** (Vorschlag: direkt nach 6B) |
+| 7 | Lebensbaum, Fortpflanzung, Vererbung, Mutationen, weitere Bäume – `prompt_07_…` | – | offen (Text liegt vor) |
+| 8 | Ökosystem, Wildtiere, Zähmung, Zucht, Landwirtschaft – `prompt_08_…` | – | offen (Text liegt vor) |
+| 9 | Siedlungen, gemeinsames Bauen, Vorräte, Arbeitsteilung, Besitz, Handel – `prompt_09_…` | – | offen (Text liegt vor) |
+| 10 | Gemeinschaften, Religion, Regeln, Führung, Konflikte, Gefangenschaft – `prompt_10_…` | – | offen (Text liegt vor) |
+| 11 | Schrift, Bücher, Wissen – `prompt_11_schrift_buecher_wissen.txt` | – | **nach 6–10** (Entscheidung des Nutzers) |
+| 12 | Materialphysik, Reaktionen/Verbrennung, Strahlung, Mechanik, Elektrik – `prompt_12_…` | – | offen (Text liegt vor) |
+| 13 | Gesamtaudit, Balance, Leistung, Windows-Export – `prompt_13_…` | – | offen (Text liegt vor) |
 
 Alle Prompt-Texte werden in `design/prompts/prompt_NN_*.txt` abgelegt, sobald sie kommen.
 
@@ -129,7 +136,10 @@ Benutzerdaten von Godot (Linux): `~/.local/share/godot/app_userdata/Pflanzenwese
 - Testläufe auf 4.7.2 und 4.5 **nacheinander**, nie parallel: beide nutzen denselben `user://`-Ordner (Spielstände, Bericht).
 - Neue Materialien/Konfigurationsdateien ändern den Definitionsfingerabdruck → `V*_SHIPPED_DEFINITIONS` neu setzen, und die vorige Migrationsstufe darf dann nicht mehr gegen die aktuellen Definitionen prüfen.
 
-## 10. Offene Punkte (Stand v0.6.0)
+## 10. Offene Punkte (Stand v0.6.0, ergänzt 2026-11-24)
+- **Prompt 6B in Arbeit** (Zweig `wip/prompt-06b`): Fortsetzung nach `docs/plan_prompt_06b.md` Abschnitt 5. Ausgangsbasis v0.6.0 am 2026-11-24 bestätigt: 432/432 auf 4.7.2 und 4.5; Prüflinge Format 4 liegen in `tests/fixtures/save_v4_prompt06*.json` (vor jeder Codeänderung erzeugt).
+- **Leitlinie Steinzeit → Zukunft (Wunsch des Nutzers):** Die Wesen sollen sich selbst entwickeln (Steinhammer → Schmelzen → Legieren → Abbauwerkzeuge). Abgleich aller Prompts in `docs/plan_prompt_06b.md` Abschnitt 8: **Feuer erst in Prompt 12; Holzkohle/Luftzufuhr, Ton brennen/eigener Ofen, Erz im Gelände, Zinn/Legierungen fehlen in allen Prompts.** Vorschlag an den Nutzer: Zwischenschritte „Feuer, Ton und eigener Ofen“ sowie „Erz und Legierungen“. Leitlinien-Excel (physikalische Ketten statt Bonus-Effekte) nach 6B bauen.
+- Neue Erfindungs-Excel `Erfindungen_Echt_nach_Kategorien.xlsx` des Nutzers ist noch **nicht** im Repository (beim nächsten Schritt nach `design/` legen; Befund in `docs/plan_prompt_06b.md` Abschnitt 3).
 - **Echte Ollama-Tests** (Plan, Gespräch, 50 Wesen, Ausfall, Wiederkehr, **Versuchsvorschläge**) beim Nutzer ausstehend → danach Rate/Zeitlimit/Modellempfehlung anpassen und hier eintragen.
 - Prompt 6, Grenzen: nur Schlagwerkzeuge, nur Umwickeln, Gießen nur Tiegel → offene Form, keine Schmelzströmung, eine Temperatur je Teil, Zusammentragen nur vor dem Verbinden, Fasern nur Werkstatt/Göttermenü. Versuchsgewicht 0,6 ist kalibriert an 2 Werkstattwesen; im 50-Wesen-Spiel mit Göttermaterial beobachten.
 - Strategische Täuschung bewusst nicht implementiert.

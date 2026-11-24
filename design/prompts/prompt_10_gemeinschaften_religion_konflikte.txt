@@ -1,0 +1,485 @@
+Entwickle unser bestehendes Godot-Projekt weiter. Dies ist Prompt 10: Gemeinschaften, Religionen, soziale Regeln, Führung, Konflikte, Gefangenschaft und Abspaltungen.
+
+Implementiere die Funktionen direkt im Projekt. Erhalte alle bisherigen Systeme und Spielstände.
+
+## 1. Ausgangsstand prüfen
+
+Lies die vorhandene Dokumentation und prüfe die zugehörigen Implementierungen für:
+- Individuelle Persönlichkeit, Erinnerungen und Überzeugungen.
+- Beziehungen und Wissensquellen.
+- Kommunikation und Ollama.
+- Göttliche Eingriffe und Belohnungslernen.
+- Siedlungen, Projekte und Arbeitsteilung.
+- Besitzansprüche und Handel.
+- Körper, Verletzungen und Tod.
+- Navigation und physikalische Hindernisse.
+- Lebensbäume, Abstammung und Baumgründung.
+- Speichern und Laden.
+
+Dokumentiere getestete, ungeprüfte, teilweise vorhandene und fehlende Funktionen.
+
+Behebe erforderliche Lücken gezielt. Erstelle keine zweite Verwaltung für Beziehungen, Wissen, Handlungen oder Besitzansprüche.
+
+## 2. Ziel und Grundprinzip
+
+Die Wesen können Gemeinschaften bilden, gemeinsame Regeln entwickeln, religiöse Vorstellungen teilen, Führung anerkennen oder ablehnen und auf Konflikte unterschiedlich reagieren.
+
+Es gibt:
+- Keine verpflichtende Staatsform.
+- Keine feste Religion.
+- Keine angeborenen guten oder bösen Arten.
+- Keine automatische Feindschaft aufgrund von Mutation.
+- Keine Garantie für Fortschritt oder friedliches Zusammenleben.
+
+Soziale Entwicklungen entstehen aus tatsächlichen Interaktionen, Ressourcenlagen, Beziehungen, Persönlichkeiten und Erfahrungen.
+
+Das System stellt mögliche Handlungen und soziale Mechanismen bereit. Es spielt keine vorgegebene Geschichte ab.
+
+## 3. Module und Zuständigkeiten
+
+Erstelle oder erweitere:
+- scripts/social/group_system.gd
+- scripts/social/group_membership.gd
+- scripts/social/norm_system.gd
+- scripts/social/reputation_system.gd
+- scripts/social/leadership_system.gd
+- scripts/social/conflict_system.gd
+- scripts/social/confinement_system.gd
+- scripts/social/coercion_system.gd
+- scripts/culture/religion_system.gd
+- scripts/culture/ritual_system.gd
+- scripts/culture/cultural_transmission.gd
+- scripts/ui/group_inspector.gd
+- scripts/ui/belief_comparison.gd
+- scripts/ui/social_event_viewer.gd
+
+Verwende vorhandene gleichwertige Komponenten.
+
+Implementiere zuerst einen funktionsfähigen Kern für Gruppen, Regeln und Rituale. Ergänze darauf aufbauend Konflikte und Zwang. Liefere keine Sammlung unverbundener leerer Module.
+
+## 4. Gemeinschaften
+
+Eine Gemeinschaft besitzt:
+- Eindeutige ID.
+- Entstehungsereignis.
+- Beteiligte.
+- Gemeinsame Interessen oder Praktiken.
+- Bekannte Zugehörigkeitsregeln.
+- Anerkannte Rollen.
+- Gemeinsame Projekte.
+- Beziehungen zu anderen Gemeinschaften.
+
+Mitgliedschaft ist nicht dasselbe wie:
+- Aufenthalt in einer Siedlung.
+- Abstammung von einem Baum.
+- Körperliche Ähnlichkeit.
+- Religiöse Überzeugung.
+
+Ein Wesen kann mehreren Gemeinschaften mit unterschiedlichen Funktionen angehören.
+
+Implementiere:
+- Einladung.
+- Beitritt.
+- Ablehnung.
+- Austritt.
+- Ausschlussversuch.
+- Streit über Zugehörigkeit.
+
+Ein Ausschluss verändert soziale Anerkennung. Er teleportiert niemanden und erzeugt keine unsichtbare physikalische Sperre.
+
+## 5. Individuelles Wissen und soziale Verbreitung
+
+Gemeinschaften besitzen kein allwissendes gemeinsames Gedächtnis.
+
+Informationen verbreiten sich durch:
+- Eigene Beobachtung.
+- Gespräche.
+- Gemeinsame Aktivitäten.
+- Unterricht und Vorführung.
+
+Behalte Herkunft und Unsicherheit bei.
+
+Ein Gerücht wird durch Wiederholung nicht zu mehreren unabhängigen Beweisen. Informationen können veralten oder widersprüchlich sein.
+
+Die Spielerübersicht darf aggregierte Informationen anzeigen, muss sie aber vom Wissen einzelner Wesen unterscheiden.
+
+## 6. Gemeinsame Regeln
+
+Eine soziale Regel enthält:
+- Gegenstand.
+- Erwartete oder untersagte Handlung.
+- Geltungsbereich.
+- Ursprung.
+- Befürworter.
+- Gegner.
+- Bekanntheit.
+- Vorgeschlagene Reaktion auf Verstöße.
+
+Beginne mit wenigen unterstützten Regeltypen:
+- Nahrung teilen.
+- Gemeinschaftsvorräte schonen.
+- Anerkannte Besitzansprüche berücksichtigen.
+- Bei vereinbarten Projekten helfen.
+- Bestimmte Orte oder Gegenstände besonders behandeln.
+
+Regeln sind soziale Erwartungen, keine Naturgesetze.
+
+Wesen können:
+- Regeln befolgen.
+- Nicht kennen.
+- Missverstehen.
+- Bestreiten.
+- Bewusst verletzen.
+
+Reaktionen benötigen tatsächliche Beobachtung oder eine entsprechend unsichere Aussage darüber. Keine automatische globale Erkennung von Regelverstößen.
+
+## 7. Führung und Macht
+
+Führung kann durch wahrgenommene Eigenschaften entstehen:
+- Erfahrung.
+- Erfolgreiche Koordination.
+- Vertrauen.
+- Zugang zu Ressourcen.
+- Unterstützung anderer.
+- Bedrohung oder Zwang, wenn diese tatsächlich ausgeführt werden können.
+
+Ein Führungstitel gibt keine direkte Kontrolle über andere Wesen.
+
+Ein Vorschlag oder Befehl wird von Empfängern individuell bewertet. Sie können zustimmen, verhandeln, verweigern, ausweichen oder Widerstand leisten.
+
+Rollen und Anerkennung können verloren gehen.
+
+Erstelle keine zwingende Abfolge von Anführer zu König oder Staat.
+
+## 8. Religion und Deutung göttlicher Eingriffe
+
+Nutze die vorhandenen persönlichen Überzeugungen.
+
+Gemeinsame religiöse Vorstellungen können entstehen, wenn Wesen:
+- Ähnliche außergewöhnliche Ereignisse beobachten.
+- Erfahrungen darüber austauschen.
+- Bestimmte Erklärungen übernehmen.
+- Praktiken wiederholen.
+
+Eine religiöse Vorstellung benötigt:
+- Eine strukturierte Behauptung oder Deutung.
+- Erfahrungsquellen.
+- Unsicherheit.
+- Befürworter.
+- Abweichende Interpretationen.
+- Zugehörige Praktiken.
+
+Die Wesen kennen nicht automatisch:
+- Dass der Spieler existiert.
+- Warum ein Geschenk erschien.
+- Welches Ereignis im Göttermenü ausgewählt wurde.
+- Ob eine vermeintliche Ursache tatsächlich relevant war.
+
+Ollama kann Deutungen vorschlagen. Es darf keine objektive göttliche Wahrheit in die Wissensverwaltung schreiben.
+
+## 9. Rituale und Opfergaben
+
+Rituale bestehen aus tatsächlich verfügbaren Handlungen, beispielsweise:
+- An einem bestimmten Ort zusammenkommen.
+- Gegenstände ablegen.
+- Eine Körperbewegung wiederholen.
+- Nahrung spenden.
+- Ein gemeinsames Zeichen verwenden.
+
+Eine Ritualdefinition besitzt:
+- Ursprung.
+- Teilnehmer.
+- Handlungsschritte.
+- Ressourcenbedarf.
+- Erwartete Folgen.
+- Beobachtete Ergebnisse.
+
+Ein Ritual kann scheitern, verändert oder aufgegeben werden.
+
+Trenne:
+1. Eine soziale oder religiöse Opfergabe.
+2. Biomasseaufnahme im Lebensbaum.
+3. Die mechanische Bedingung von 50 gültigen Opfern für eine Baumgründung.
+
+Nicht jede Opfergabe zählt zur Baumgründung. Nicht jede Leiche ist eine Opfergabe.
+
+Keine automatische göttliche Belohnung erzeugen.
+
+## 10. Unterschiede, Vorurteile und Solidarität
+
+Nutze sichtbare Merkmale, bekannte Herkunft und tatsächliche Beziehungen.
+
+Wesen können Ähnlichkeit bemerken. Einstellungen dazu entstehen durch Erfahrungen und soziale Einflüsse.
+
+Implementiere:
+- Individuelle Einschätzungen.
+- Begrenzte Verallgemeinerung von Erfahrungen.
+- Korrektur durch widersprechende Erfahrungen.
+- Unterschied zwischen persönlichem Vertrauen und Gruppenerwartung.
+
+Kein einzelnes Ereignis darf automatisch alle Mitglieder einer Art als gefährlich markieren.
+
+Wenn der Spieler Gewalt gegen eine bestimmte Gruppe belohnt:
+- Lernen nur geeignete Beobachter unmittelbar daraus.
+- Sind verschiedene Interpretationen möglich.
+- Können Freunde der Betroffenen widersprechen.
+- Können Betroffene ausweichen, Schutz suchen oder sich abspalten.
+- Bleibt das Verhalten von Persönlichkeit, Beziehung und Situation abhängig.
+
+Verfolgung darf eine mögliche Entwicklung sein, aber kein zwingendes Ergebnis.
+
+## 11. Ehrlichkeit, Irrtum und Täuschung
+
+Erweitere die bestehende Aussagenbewertung.
+
+Trenne:
+- Objektiv falsche Aussage.
+- Veraltete Information.
+- Irrtum des Sprechers.
+- Bewusste Täuschungsabsicht.
+
+Der Empfänger erkennt Täuschungsabsicht nicht automatisch.
+
+Wenn bewusste Täuschung implementiert wird:
+- Muss der Sprecher eine abweichende eigene Überzeugung besitzen.
+- Wird die Aussage als eigener Handlungsvorgang erzeugt.
+- Können Empfänger nur anhand verfügbarer Evidenz reagieren.
+- Darf Ollama keine unbegrenzten erfundenen Ereignisse als Weltfakten einführen.
+
+Für den ersten Funktionsumfang genügen begrenzte strukturierte Aussagen über Ressourcen, Besitz oder beobachtete Ereignisse.
+
+Ehrlichkeit beeinflusst Vertrauen über nachvollziehbare Erfahrungen, nicht über einen magischen Wahrheitsdetektor.
+
+## 12. Konflikte und Deeskalation
+
+Implementiere abgestufte Möglichkeiten:
+- Widersprechen.
+- Verhandeln.
+- Abstand nehmen.
+- Hilfe suchen.
+- Ressourcen zurückfordern.
+- Vermitteln.
+- Drohen.
+- Angreifen.
+- Fliehen.
+- Aufgeben.
+
+Verwende vorhandene Körper-, Werkzeug-, Schadens- und Handlungssysteme.
+
+Gewalt benötigt:
+- Wahrnehmbares Ziel.
+- Reichweite.
+- Geeignete Körperfähigkeiten.
+- Tatsächlich ausgeführte Handlung.
+- Energie und Zeit.
+- Berechnete Folgen.
+
+Eine Modellantwort wie „Ich besiege alle“ darf keine direkte Wirkung haben.
+
+Verhindere endlose Eskalationsschleifen ohne neue Bewertung. Hunger, Verletzung, Kräfteverhältnis, Beziehungen und Fluchtmöglichkeiten beeinflussen Entscheidungen.
+
+## 13. Gefangenschaft
+
+Gefangenschaft muss auf realen Bedingungen beruhen:
+- Hindernissen.
+- Verschlossenen Zugängen.
+- Unterstützten Fesseln.
+- Bewachung.
+- Tatsächlicher Bewegungseinschränkung.
+
+Ein Statusfeld allein darf ein Wesen nicht bewegungsunfähig machen.
+
+Implementiere zunächst einen begrenzten Testfall:
+- Eine baulich abgegrenzte Fläche.
+- Einen tatsächlich funktionierenden Zugang.
+- Ein bewachendes Wesen.
+- Ein eingeschlossenes Wesen.
+- Öffnen, Freilassen und mögliche Flucht.
+
+Prüfe weiterhin Nahrung, Verletzungen und Energiebedarf.
+
+Wenn Fesseln unterstützt werden, benötigen sie reale Materialien, Befestigungen und ein definiertes Versagensmodell. Andernfalls kennzeichne Fesseln als nicht implementiert.
+
+## 14. Zwangsarbeit und Versklavung als mögliche Spielzustände
+
+Diese Systeme betreffen ausschließlich die fiktiven Spielwesen.
+
+Trenne:
+- Freiwillige Mitarbeit.
+- Abhängigkeit von Ressourcen.
+- Bedrohung.
+- Gefangenschaft.
+- Erzwungene Arbeit.
+- Behaupteten Besitz eines anderen Wesens.
+
+Ein Herrschaftsanspruch verleiht kein absolutes Kontrollrecht.
+
+Erzwungene Mitarbeit benötigt nachvollziehbare:
+- Anweisungen.
+- Wahrgenommene Drohungen.
+- Durchsetzungsmöglichkeiten.
+- Entscheidungen des Betroffenen.
+- Möglichkeiten zur Verweigerung, Flucht oder Befreiung.
+
+Betroffene bleiben Individuen mit eigenen Zielen, Erinnerungen und Beziehungen.
+
+Implementiere zunächst einen begrenzten, überprüfbaren Ablauf auf Basis vorhandener Arbeitsaufgaben. Kein abstrakter Knopf, der Wesen dauerhaft in gehorsame Einheiten verwandelt.
+
+## 15. Abspaltungen und neue Gemeinschaften
+
+Wesen können eine Gemeinschaft verlassen und eine neue bilden.
+
+Mögliche Gründe:
+- Konflikt über Regeln.
+- Andere religiöse Interpretation.
+- Ressourcenknappheit.
+- Persönliche Beziehungen.
+- Widerstand gegen Führung oder Zwang.
+
+Eine Abspaltung benötigt tatsächliche:
+- Kommunikation.
+- Beteiligung.
+- Ortswechsel oder organisatorische Trennung.
+- Mitgeführte Gegenstände.
+- Ressourcen.
+
+Ein neuer Name erzeugt keine neue Siedlung aus dem Nichts.
+
+Eine neue Gemeinschaft benötigt nicht zwingend sofort einen eigenen Lebensbaum. Die Baumgründung bleibt ein getrenntes Projekt mit ihren vorhandenen Voraussetzungen.
+
+## 16. Verbindung zur Baumgründung
+
+Prüfe die vorhandene Mechanik aus Prompt 7.
+
+Ergänze soziale Entscheidungsmöglichkeiten:
+- Vorschlag einer Baumgründung.
+- Zustimmung oder Ablehnung.
+- Streit über die erforderlichen Opfer.
+- Freiwillige Teilnahme.
+- Widerstand gegen erzwungene Teilnahme.
+
+Die Opferzählung bleibt zentral im bestehenden System.
+
+Keine doppelte Zählung durch Ritual-, Konflikt- und Baumgründungssystem.
+
+Auch bei Gewalt darf nur ein tatsächlich ausgeführter, gültiger Vorgang die Opferzahl verändern.
+
+Beginne mit kontrollierten Tests. Behaupte keine spontan organisierte Massenhandlung, wenn nur die technischen Einzelaktionen getestet wurden.
+
+## 17. Ollama und lokale Regeln
+
+Ollama unterstützt gelegentlich:
+- Vorschläge für gemeinsame Regeln.
+- Deutungen.
+- Verhandlungen.
+- Gruppenentscheidungen aus Sicht eines einzelnen Wesens.
+- Begrenzte Konfliktpläne.
+
+Ollama darf nicht:
+- Für alle Teilnehmer gleichzeitig Zustimmung erfinden.
+- Gruppenzugehörigkeit ohne Vorgang ändern.
+- Verletzungen oder Gefangenschaft direkt setzen.
+- Einen Konsens behaupten, der nicht entstanden ist.
+- Verborgene Erinnerungen verwenden.
+
+Jeder Teilnehmer entscheidet über seine vorhandene Entscheidungsinstanz.
+
+Alltägliches Verhalten und unmittelbare Reaktionen bleiben lokal ausführbar. Die Welt muss bei Ollama-Ausfall weiterlaufen.
+
+## 18. Oberfläche
+
+Ergänze:
+- Gemeinschaftsübersicht.
+- Mitgliedschaften und Anerkennung.
+- Regeln mit Befürwortern und Gegnern.
+- Religiöse Deutungen und ihre Quellen.
+- Rituale mit tatsächlichen Ausführungen.
+- Führung und Unterstützer.
+- Konfliktverlauf.
+- Gefangenschaft mit konkreter Ursache.
+- Abspaltungen.
+
+Zeige getrennt:
+- Weltfakten.
+- Individuelle Überzeugungen.
+- Gerüchte.
+- Spielerdiagnose.
+
+Verwende Namen und kurze Texte zur Lesbarkeit. Der strukturierte Zustand muss die tatsächliche Grundlage bleiben.
+
+## 19. Speichern und Laden
+
+Speichere:
+- Gemeinschaften und Mitgliedschaften.
+- Regeln und deren Bekanntheit.
+- Führung und Anerkennung.
+- Religiöse Vorstellungen.
+- Ritualdefinitionen.
+- Konflikte und Vereinbarungen.
+- Gefangenschaft und physische Voraussetzungen.
+- Zwangsverhältnisse.
+- Abspaltungen.
+- Relevante historische Quellen.
+
+Erweitere das vorhandene Speicherformat mit Migration.
+
+Beim Laden:
+- Keine erneute Sanktion allein wegen des Ladens.
+- Keine doppelte Opferzählung.
+- Keine automatisch gelösten Hindernisse.
+- Keine erfundene Zustimmung.
+- Keine verloren gegangenen persönlichen Beziehungen.
+
+Ungültige Referenzen werden kontrolliert behandelt, ohne Geschichte zu erfinden.
+
+## 20. Abnahmetests
+
+Prüfe mindestens:
+1. Ein Wesen kann eine Gruppe ablehnen oder verlassen.
+2. Eine Gruppenregel ist unbekannten Wesen nicht automatisch bekannt.
+3. Ein unbeobachteter Regelverstoß wird nicht global erkannt.
+4. Führung verändert nicht direkt die Entscheidungsgewalt über andere.
+5. Unterschiedliche Beobachter können einen Eingriff verschieden deuten.
+6. Rituale verbrauchen tatsächliche Ressourcen.
+7. Opfergaben zählen nicht automatisch als Baumgründungsopfer.
+8. Persönliche positive Erfahrungen können Vorurteile abschwächen.
+9. Eine falsche Aussage wird nicht automatisch als bewusste Lüge erkannt.
+10. Konflikte können ohne Gewalt enden.
+11. Angriffe verwenden reale Reichweite und Schadensberechnung.
+12. Gefangenschaft benötigt reale Einschränkungen.
+13. Ein offener Fluchtweg ermöglicht grundsätzlich Flucht.
+14. Zwang hebt die eigenen Bedürfnisse und Ziele nicht auf.
+15. Eine Abspaltung erzeugt keine kostenlosen Ressourcen.
+16. Baumgründung behält ihre vorhandenen Prüfungen.
+17. Speichern und Laden erhalten soziale und physische Zustände.
+18. Vorherige Lebens-, Handels-, Ökosystem- und KI-Funktionen bleiben nutzbar.
+
+Teste Regeln deterministisch in separaten Szenarien. Ergänze Beobachtungsläufe mit mehreren Startwerten.
+
+Trenne nachgewiesene Mechanik von spontan beobachtetem Verhalten. Keine bestimmte Gesellschaftsform als garantiertes Ergebnis behaupten.
+
+## 21. Dokumentation und Abschluss
+
+Aktualisiere:
+- README.md
+- docs/architecture.md
+- docs/implementation_status.md
+- docs/progress_audit.md
+- docs/save_format.md
+- docs/test_results.md
+
+Ergänze:
+- docs/groups_and_norms.md
+- docs/religion_and_rituals.md
+- docs/power_and_conflict.md
+- docs/confinement_and_coercion.md
+
+Berichte:
+- Was tatsächlich implementiert ist.
+- Welche sozialen Vorgänge autonom möglich sind.
+- Welche bisher nur kontrolliert getestet wurden.
+- Wie ich unterschiedliche Gruppen und Deutungen vergleiche.
+- Wie ich Ursachen eines Konflikts nachvollziehe.
+- Welche Einschränkungen und offenen Probleme bestehen.
+
+Beginne mit der Bestandsprüfung und implementiere anschließend diese Version vollständig.

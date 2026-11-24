@@ -1,0 +1,382 @@
+Erweitere unser bestehendes Godot-Spiel um eine deutlich größere, vollständig veränderbare Blockwelt.
+
+Dies ist ein Zusatzauftrag zur Weltarchitektur. Integriere ihn in das vorhandene Projekt und erhalte funktionierende Spielsysteme.
+
+## 1. Ziel
+
+Die Welt soll aus echten, materiell definierten Blöcken bestehen.
+
+Wesen können:
+- Erde ausgraben.
+- Geeigneten Boden und Stein abbauen.
+- Gewonnenes Material aufnehmen.
+- Es transportieren und lagern.
+- Daraus Geländeformen und Bauwerke errichten.
+- Gruben, Gräben, Terrassen und einfache Tunnel anlegen.
+
+Abbau und Bau müssen die tatsächliche Weltgeometrie, Kollision, Navigation und Materialbilanz verändern.
+
+Ein sichtbares Loch darf keine unveränderte Kollisionsfläche besitzen. Ein errichteter Wall muss tatsächlich ein Hindernis sein.
+
+## 2. Bestehende Welt zuerst vermessen
+
+Prüfe:
+- Aktuelle Kartengröße in Metern.
+- Tatsächliche Grundfläche.
+- Vertikale Ausdehnung.
+- Blockgröße.
+- Chunkstruktur.
+- Weltgenerierung.
+- Mesh- und Kollisionsaufbau.
+- Navigation.
+- Wasser.
+- Abstützung.
+- Speicherung von Terrainänderungen.
+
+Dokumentiere diese Ausgangswerte vor jeder Änderung in docs/world_expansion.md.
+
+Vergrößere die Karte anhand der tatsächlich vorhandenen Welt, nicht anhand einer angenommenen Größe aus früheren Prompts.
+
+## 3. Bedeutung von „20-mal größer“
+
+Die neue Standardkarte soll ungefähr die 20-fache horizontale Grundfläche besitzen.
+
+Bei unverändertem Seitenverhältnis:
+- Neue Breite = alte Breite × Quadratwurzel aus 20.
+- Neue Länge = alte Länge × Quadratwurzel aus 20.
+
+Runde auf sinnvolle Chunkgrenzen und dokumentiere die resultierende tatsächliche Fläche.
+
+Die vertikale Ausdehnung wird separat festgelegt. Sie muss Gruben, Hügel und einen begrenzten unterirdischen Bereich ermöglichen.
+
+Vergrößere nicht versehentlich beide horizontalen Seiten um Faktor 20. Das würde die Fläche um Faktor 400 vergrößern.
+
+Die Startpopulation bleibt 50. Sie wird nicht automatisch mit der Kartenfläche multipliziert.
+
+## 4. Blockgröße
+
+Prüfe 0,25 Meter Kantenlänge als Zielgröße für Terrain und platzierbare Baublöcke.
+
+Vergleiche im Leistungstest:
+- 0,50 Meter.
+- 0,25 Meter.
+
+Bewerte dieselbe physische Weltgröße, damit der Vergleich aussagekräftig ist.
+
+Die Zielgröße ist 0,25 Meter. Falls diese auf der getesteten Hardware nicht tragfähig ist:
+- Dokumentiere den gemessenen Engpass.
+- Liefere ein funktionierendes gröberes Profil.
+- Kennzeichne das feinere Profil als experimentell.
+- Behaupte nicht, dass das Zielprofil bereits ausreichend schnell läuft.
+
+Körper und kleine Gegenstände dürfen eine feinere eigene Voxelauflösung verwenden. Diese wird nicht auf das gesamte Gelände übertragen.
+
+Die Terrainauflösung ist pro Welt festgelegt. Sie darf nicht während eines laufenden Spiels ohne Migration geändert werden.
+
+## 5. Weltarchitektur
+
+Verwende eine in Chunks unterteilte Welt.
+
+Anforderungen:
+- Keine eigene Node pro Terrainblock.
+- Keine eigene Starrkörperinstanz pro Terrainblock.
+- Nur sichtbare Flächen darstellen.
+- Geometrie sinnvoll zusammenfassen.
+- Nur geänderte Chunks und betroffene Nachbarn aktualisieren.
+- Mesh- und Kollisionsaufträge begrenzen und priorisieren.
+- Leere beziehungsweise homogene Bereiche kompakt speichern.
+- Weltabschnitte nach Bedarf generieren und laden.
+- Ungeladene Bereiche nicht als leere Luft behandeln.
+
+Verwende vorhandene Systeme weiter. Prüfe zunächst den Engpass, bevor zusätzliche Bibliotheken oder native Erweiterungen eingeführt werden.
+
+Rechenintensive Vorbereitungen dürfen im Hintergrund laufen, soweit dies mit der verwendeten Godot-Version sicher möglich ist. Änderungen am Szenenbaum und an Physikobjekten müssen über geeignete sichere Übergaben erfolgen.
+
+## 6. Materialdaten der Blöcke
+
+Jeder Terrainbereich benötigt eine nachvollziehbare Materialzuordnung.
+
+Unterstütze zunächst:
+- Erde.
+- Sand oder vergleichbares loses Material.
+- Stein.
+- Geeignetes biologisches Baumaterial, soweit vorhanden.
+
+Unterscheide, soweit implementiert:
+- Lockeres Material.
+- Verdichtetes Material.
+- Feste verbundene Struktur.
+
+Definiere:
+- Dichte beziehungsweise Schüttdichte.
+- Abbaubarkeit.
+- Benötigtes Werkzeug.
+- Aufwand.
+- Vereinfachte Stabilität.
+- Feuchtigkeit, soweit relevant und unterstützt.
+
+Kennzeichne Spielparameter und Näherungen.
+
+Ein Kubikmeter Erde und ein Kubikmeter Stein dürfen nicht automatisch dieselbe Masse besitzen.
+
+## 7. Abbau als reale Handlung
+
+Erweitere das vorhandene Handlungssystem um geeignete Abbauvorgänge.
+
+Ein Abbau benötigt:
+- Wahrnehmbares und erreichbares Ziel.
+- Geeignete Körperfähigkeiten.
+- Unterstütztes Werkzeug, falls erforderlich.
+- Arbeitszeit.
+- Energie.
+- Sicheren Abschluss der Mengenänderung.
+
+Bei erfolgreichem Abbau:
+1. Wird das Material aus dem Terrain entfernt.
+2. Entsteht die entsprechende gewonnene Materialmenge.
+3. Werden Geometrie und Kollision aktualisiert.
+4. Wird die betroffene Navigation ungültig beziehungsweise neu berechnet.
+5. Wird die Abstützung betroffener Bereiche geprüft.
+6. Werden mögliche Wasserfolgen ausgelöst.
+
+Die Materialmenge darf nur einmal entstehen, auch wenn mehrere Wesen denselben Block bearbeiten.
+
+Bei Abbruch bleibt geleisteter Arbeitsfortschritt nach einer dokumentierten Regel erhalten oder verfällt. Material darf dabei nicht dupliziert werden.
+
+## 8. Tragen und Lagern
+
+Ein abgebauter Terrainblock muss nicht als riesiger Würfel getragen werden.
+
+Gewonnenes Material kann als:
+- Haufen.
+- Behälterinhalt.
+- Begrenzter Materialstapel.
+
+repräsentiert werden.
+
+Verwende reale Mengen, Masse und Volumen.
+
+Tragfähigkeit hängt ab von:
+- Körperzustand.
+- Masse.
+- Greiffähigkeit.
+- Verfügbarem Behälter beziehungsweise Transportmittel.
+
+Ein Wesen darf einen schweren Steinblock nicht allein deshalb tragen, weil er nur eine Rasterzelle belegt.
+
+Nutze bestehende Lager und Lastentiere, soweit funktionsfähig.
+
+Keine globalen Inventare und keine Materialteleportation.
+
+## 9. Bauen mit Erde und anderen Blöcken
+
+Implementiere:
+- Material an eine Baustelle bringen.
+- Eine geeignete Rasterzelle auffüllen.
+- Erde bei Bedarf verdichten.
+- Geeignete feste Blöcke platzieren.
+- Gebautes Terrain erneut abbauen.
+
+Beim Platzieren:
+- Vorhandene Materialmenge prüfen.
+- Zielposition und Belegung prüfen.
+- Überlappung mit Körpern verhindern.
+- Abstützung prüfen.
+- Material tatsächlich verbrauchen.
+- Kollision und Navigation aktualisieren.
+
+Wenn Verdichtung das Volumen verändert, bleibt die Masse erhalten. Verwende dafür ein dokumentiertes Modell.
+
+Ein Erdwall ist zunächst eine Erdstruktur. Er besitzt nicht automatisch die Festigkeit von Stein oder Beton.
+
+## 10. Stabilität und Einsturz
+
+Erweitere das vorhandene Abstützungsmodell.
+
+Beginne mit klar begrenzten Regeln:
+- Loses Material kann nicht beliebig frei schweben.
+- Geeignete feste Materialien dürfen begrenzte Überhänge bilden.
+- Tragende Verbindungen und Stützen beeinflussen die Stabilität.
+- Entfernen einer Stütze kann einen Einsturz auslösen.
+
+Simuliere keine vollständige reale Bodenmechanik, wenn diese nicht implementiert ist.
+
+Einstürzende Bereiche:
+- Erhalten ihre Masse.
+- Erzeugen eine begrenzte Anzahl sinnvoller Bruchstücke oder Materialhaufen.
+- Kollidieren entsprechend dem unterstützten Modell.
+- Können vorhandene Schäden verursachen.
+
+Vermeide tausende einzelne Starrkörper bei einem großen Einsturz.
+
+Falls ein Vorgang das berechenbare Budget überschreitet, verwende eine dokumentierte konsistente Vereinfachung. Erhalte Masse und tatsächliche Hindernisse.
+
+## 11. Gruben, Tunnel und Wasser
+
+Graben muss mögliche Verbindungen zu Wasser berücksichtigen.
+
+Prüfe insbesondere die Grenzen des bisherigen Wasser-Höhenmodells:
+- Unterstützt es unterirdische Hohlräume?
+- Unterstützt es mehrere vertikale Wasserbereiche?
+- Was passiert bei einem geöffneten Damm?
+
+Behaupte keine funktionierende Tunnelflutung, wenn das Modell sie nicht darstellen kann.
+
+Erweitere Wasser bei Bedarf auf ein begrenztes, mengenbasiertes Voxelmodell für aktive Bereiche. Falls das im aktuellen Umfang nicht zuverlässig möglich ist:
+- Dokumentiere die verbleibende Grenze.
+- Verhindere stille Wasservernichtung und unendliche Wassererzeugung.
+- Kennzeichne betroffene Szenarien als noch nicht unterstützt.
+
+## 12. Navigation und Körpergröße
+
+Die Wegfindung muss auf reale Körperabmessungen reagieren.
+
+Prüfe:
+- Durchgangsbreite.
+- Kopffreiheit.
+- Unterstützte Stufenhöhe.
+- Steigung.
+- Traglast.
+- Verletzungen.
+- Tiergröße.
+
+Eine kleine Rasterzelle ist nicht automatisch ein begehbarer Durchgang.
+
+Terrainänderungen müssen:
+- Betroffene Wege invalidieren.
+- Lokale Neuberechnung auslösen.
+- Blockierte Handlungen kontrolliert behandeln.
+
+Verhindere weltweite Navigationsneuberechnungen bei jedem einzelnen Block.
+
+## 13. Große Welt und Simulationsaktivität
+
+Trenne:
+- Sichtbare Darstellung.
+- Geladene Geometrie.
+- Aktive physikalische Bereiche.
+- Gespeicherten Weltzustand.
+
+Außerhalb der Kamera verschwinden Wesen, Nahrung oder laufende Vorgänge nicht.
+
+Für entfernte Bereiche darf eine vereinfachte Simulation verwendet werden, wenn:
+- Zeit und Ressourcen konsistent bleiben.
+- Annahmen dokumentiert sind.
+- Kritische Interaktionen weiterhin korrekt behandelt werden.
+
+Wesen sollen nicht automatisch die gesamte größere Karte kennen.
+
+Die Anfangsgruppe startet in einem zusammenhängenden geeigneten Bereich. Weitere Regionen werden durch Erkundung bekannt.
+
+## 14. Autonome Verwendung
+
+Erweitere die vorhandenen Projekt- und Planungssysteme.
+
+Mögliche Ziele:
+- Einen Weg freimachen.
+- Einen Vorratsplatz ebnen.
+- Einen Erdwall errichten.
+- Einen Graben anlegen.
+- Einen Zugang schaffen.
+- Baumaterial gewinnen.
+
+Wesen nutzen vorhandenes individuelles Wissen und tatsächlich verfügbare Werkzeuge.
+
+Ollama darf geeignete Handlungsschritte vorschlagen. Es darf keine Terrainänderung direkt ausführen oder Materialmengen erfinden.
+
+Das normale Spiel bleibt indirekt steuerbar. Direkte Blockbearbeitung durch den Spieler wird, falls vorhanden, als göttlicher Eingriff beziehungsweise Entwicklermodus gekennzeichnet.
+
+## 15. Speichern und bestehende Welten
+
+Bestehende Spielstände bleiben erhalten.
+
+Für neue Welten:
+- Neue Größe und gewählte Blockauflösung speichern.
+- Startwert und Generatorversion speichern.
+- Änderungen gegenüber der Grundgenerierung speichern.
+
+Für alte Welten:
+- Alte Größe und Blockauflösung zunächst beibehalten.
+- Keine automatische räumliche Skalierung von Wesen oder Gebäuden.
+- Erweiterung nur über einen geprüften, ausdrücklich ausgeführten Vorgang.
+- Originalspielstand sichern.
+
+Unveränderte Chunks müssen reproduzierbar bleiben. Eine geänderte Generatorversion darf alte Regionen nicht unbemerkt neu gestalten.
+
+Teste insbesondere Änderungen an Chunkgrenzen und das erneute Laden entfernter Regionen.
+
+## 16. Oberfläche
+
+Zeige:
+- Weltgröße in Metern.
+- Grundfläche.
+- Blockgröße.
+- Geladene und aktive Chunks.
+- Ausgewähltes Material.
+- Abbaufortschritt.
+- Gewonnene beziehungsweise benötigte Menge.
+- Fehlendes Werkzeug.
+- Fehlende Tragfähigkeit.
+- Instabile Bereiche im Diagnosemodus.
+
+Die Blockauswahl soll eindeutig zeigen, welche Zelle bearbeitet wird.
+
+Normalen Spielmodus und Entwicklerwerkzeuge klar unterscheiden.
+
+## 17. Abnahmetests
+
+Prüfe:
+1. Neue Grundfläche ist ungefähr 20-mal so groß wie die dokumentierte Ausgangsfläche.
+2. Blockgröße und physische Weltgröße stimmen überein.
+3. Abbau verändert sichtbare Geometrie und Kollision.
+4. Zwei Wesen erzeugen aus einem Block nicht doppelte Materialmengen.
+5. Transport benötigt Zeit und Tragfähigkeit.
+6. Platzieren verbraucht reale Mengen.
+7. Abbau, Transport und Wiederaufbau erhalten Masse.
+8. Verdichtung erhält Masse bei veränderlichem Volumen.
+9. Instabile Bereiche reagieren nach dem dokumentierten Modell.
+10. Terrainänderungen aktualisieren Wege.
+11. Kleine Tunnel bleiben für große Körper unpassierbar.
+12. Wasser verhält sich innerhalb seines dokumentierten Modells konsistent.
+13. Chunkwechsel verlieren keine Änderungen.
+14. Speichern und Laden erhalten abgebaute und errichtete Bereiche.
+15. Alte Spielstände bleiben unverändert ladbar.
+16. 50 Wesen funktionieren auf der größeren Karte.
+17. Grafik- und Simulationskosten werden getrennt gemessen.
+
+Vergleiche die Blockgrößen 0,50 und 0,25 Meter bei gleicher physischer Kartengröße.
+
+Berichte:
+- Hardware und Umgebung.
+- Weltgröße.
+- Sichtweite.
+- Anzahl aktiver Chunks.
+- Bildzeiten.
+- Simulationszeiten.
+- Speicherbedarf.
+- Dauer von Mesh- und Kollisionsaktualisierungen.
+
+## 18. Lieferung
+
+Aktualisiere:
+- Architektur.
+- Physikdokumentation.
+- Speicherformat.
+- Testbericht.
+- Implementierungsstatus.
+
+Ergänze:
+- docs/world_expansion.md
+- docs/terrain_excavation_and_building.md
+
+Liefere:
+- Eine startbare größere Welt.
+- Ein reproduzierbares Szenario „Erde ausgraben, transportieren und als Wall aufbauen“.
+- Ein Szenario für eine Grube und einen unterstützten Tunnel.
+- Eine Übersicht tatsächlich funktionierender Wasser- und Einsturzfälle.
+- Gemessene Leistung.
+- Offene Grenzen.
+
+Wenn bereits ein Export existiert, führe nach erfolgreicher Integration die betroffenen Export- und Speicherprüfungen erneut aus.
+
+Beginne mit der Vermessung des bestehenden Projekts und implementiere anschließend die Erweiterung.

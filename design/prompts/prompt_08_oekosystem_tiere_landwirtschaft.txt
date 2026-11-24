@@ -1,0 +1,541 @@
+Entwickle unser bestehendes Godot-Projekt weiter. Dies ist Prompt 8: Ökosystem, Wildtiere, Zähmung, Zucht und Landwirtschaft.
+
+Arbeite direkt im vorhandenen Projekt. Integriere die neuen Funktionen in Physik, Körpergenerator, Stoffwechsel, Verhalten, Lernen, Handlungssystem, Lebensbaum und Spielstände.
+
+## 1. Ausgangsstand prüfen
+
+Lies die vorhandene Architektur-, Status-, Physik-, Lebens-, Lern-, Vererbungs- und Speicherdokumentation.
+
+Prüfe insbesondere:
+- Pflanzen- und Pilzmodelle.
+- Bisherige Nahrungsquellen.
+- Boden- und Wasserzustände.
+- Körperbaupläne und Animation.
+- Stoffwechsel und Gesundheit.
+- Wahrnehmung und Navigation.
+- Handlungssystem.
+- Individuelles Lernen und Verfahrenswissen.
+- Lebensbaum und biologische Aufnahme.
+- Excel-Import.
+- Speichern und Laden.
+
+Dokumentiere fehlende und ungeprüfte Voraussetzungen. Behebe notwendige Lücken gezielt.
+
+Erhalte bestehende Funktionen. Erstelle keine zweite Ressourcen-, Körper-, Navigations- oder Vererbungsverwaltung.
+
+## 2. Ziel
+
+Die Welt erhält ein funktionierendes, begrenztes Ökosystem.
+
+Implementiere:
+- Pflanzenwachstum.
+- Pilzwachstum auf geeigneten Substraten.
+- Pflanzenvermehrung.
+- Tiere mit eigenem Körperzustand und Verhalten.
+- Nahrungskonkurrenz und einfache Nahrungsketten.
+- Wachstum, Fortpflanzung und Tod.
+- Gewöhnung und Zähmung.
+- Zucht über Generationen.
+- Landwirtschaft durch tatsächliche Handlungen.
+- Eine erste praktische Nutzung eines geeigneten gezähmten Tieres.
+
+Die Pflanzenwesen können diese Möglichkeiten durch Erfahrung und Unterricht erschließen. Es gibt keinen automatisch freigeschalteten Technologiebaum.
+
+Die Welt darf bei ungünstigen Bedingungen verarmen oder Populationen verlieren. Verhindere solche Ergebnisse nicht durch versteckte Nahrungserzeugung.
+
+## 3. Arten aus meiner Excel übernehmen
+
+Prüfe die vorhandenen Artdefinitionen.
+
+Erstelle eine Übersicht:
+- Definierte Art.
+- Körperplan.
+- Ernährung.
+- Lebensraum.
+- Wachstum.
+- Fortpflanzung.
+- Entwicklungsstufen.
+- Benötigte Animationen.
+- Implementierungsstatus.
+
+Die tatsächlich vorhandene Excel ist für Namen und ausdrücklich definierte Merkmale maßgeblich.
+
+Frühere unklare Angaben zu einer zusätzlichen Artengruppe dürfen nicht frei interpretiert werden. Kennzeichne fehlende Definitionen und arbeite an den eindeutig beschriebenen Arten weiter.
+
+Trenne:
+- Eine importierte Artdefinition.
+- Eine darstellbare Art.
+- Eine vollständig spielbare und getestete Art.
+
+Implementiere zunächst einen vollständigen Beispielkreislauf mit wenigen Arten. Übertrage die funktionsfähigen Systeme anschließend auf alle vorhandenen kompatiblen Definitionen.
+
+Nicht unterstützte Körperformen müssen ausdrücklich als offen erscheinen.
+
+## 4. Module
+
+Erstelle oder erweitere:
+- scripts/ecology/species_definition.gd
+- scripts/ecology/ecosystem_manager.gd
+- scripts/ecology/soil_state.gd
+- scripts/ecology/plant_growth.gd
+- scripts/ecology/fungal_growth.gd
+- scripts/ecology/seed_system.gd
+- scripts/ecology/animal_controller.gd
+- scripts/ecology/animal_behavior.gd
+- scripts/ecology/feeding_system.gd
+- scripts/ecology/decomposition_system.gd
+- scripts/ecology/taming_system.gd
+- scripts/ecology/breeding_system.gd
+- scripts/ecology/farming_system.gd
+- scripts/ecology/animal_work_system.gd
+- scripts/ui/ecosystem_inspector.gd
+
+Nutze vorhandene gleichwertige Komponenten.
+
+## 5. Ressourcen und Bilanz
+
+Definiere ein vereinfachtes, dokumentiertes Ressourcenmodell.
+
+Unterscheide:
+- Energie.
+- Wasser.
+- Organische Biomasse.
+- Verfügbare Bodennährstoffe.
+- Gespeicherte Nährstoffe in Organismen.
+- Abfälle und tote Biomasse.
+- Explizite Austauschflüsse mit der Umgebung.
+
+Wachstum benötigt reale Ressourcen.
+
+Sonnenlicht ist ein Energieeintrag, keine direkte Erzeugung beliebiger Materie. Falls atmosphärische Stoffaufnahme vereinfacht wird, dokumentiere sie als externen Stofffluss.
+
+Verhindere:
+- Unbegrenztes Pflanzenwachstum ohne Ressourcen.
+- Doppelte Ernten.
+- Erzeugen von Tiermasse allein durch einen Levelanstieg.
+- Gleichzeitige Nutzung derselben Biomasse als Nahrung und Baumressource.
+
+## 6. Pflanzen und Pilze
+
+### Pflanzen
+
+Implementiere:
+- Samen.
+- Keimung.
+- Wachstum.
+- Reife.
+- Fortpflanzungsfähigkeit.
+- Schädigung.
+- Tod.
+
+Wachstum hängt ab von:
+- Art.
+- Licht.
+- Wasser.
+- Temperatur innerhalb definierter Toleranzen.
+- Bodennährstoffen.
+- Verfügbarem Raum.
+
+Geerntete Teile werden tatsächlich entfernt. Ob die Pflanze weiterlebt, hängt vom entnommenen Teil und ihrer Definition ab.
+
+### Pilze
+
+Pilze verwenden ein eigenes Ernährungsmodell:
+- Geeignetes organisches Substrat.
+- Feuchtigkeit.
+- Temperatur.
+- Wachstum und Fruchtkörperbildung.
+- Verbrauch des Substrats.
+
+Pilze betreiben keine Photosynthese.
+
+Fruchtkörper können nachwachsen, wenn genügend Substrat und geeignete Bedingungen vorhanden sind. Kein unbegrenztes Nachfüllen.
+
+### Darstellung
+
+Nutze prozedurale Modelle für:
+- Keimlinge.
+- Wachstumszustände.
+- Reife.
+- Beschädigte Pflanzen.
+- Geerntete Zustände.
+- Tote Biomasse.
+
+Aktualisiere Darstellung und Kollision nur bei relevanten Zustandsänderungen.
+
+## 7. Tiere
+
+Tiere verwenden gemeinsame Körper-, Gesundheits- und Ressourcenkomponenten, soweit fachlich passend.
+
+Jedes Tier besitzt:
+- Eindeutige ID.
+- Art und Körperbauplan.
+- Alter und Entwicklungszustand.
+- Energie und Nährstoffreserven.
+- Gesundheit.
+- Eigene Wahrnehmung.
+- Begrenzte Erinnerungen an Futterplätze und relevante Individuen.
+- Individuelle Verhaltenstendenzen.
+- Fortpflanzungszustand.
+
+Implementiere zunächst:
+- Nahrung suchen.
+- Essen.
+- Trinken, soweit das Artenmodell dies benötigt.
+- Ruhen, wenn für die Art vorgesehen.
+- Gefahren meiden.
+- Fliehen.
+- Sich bei geeigneten Voraussetzungen fortpflanzen.
+- Auf Verletzungen reagieren.
+- Sterben.
+
+Der fehlende Schlafzwang der Pflanzenwesen gilt nicht automatisch für alle Tierarten.
+
+Tiere benötigen keine Ollama-Anfrage für ihre alltäglichen Handlungen.
+
+## 8. Nahrungsketten und Interaktionen
+
+Ernährung wird über kompatible Nahrungsquellen definiert.
+
+Unterstütze:
+- Pflanzenfressen.
+- Pilzfressen.
+- Omnivorie.
+- Aasverwertung bei geeigneten Arten.
+- Einfache Jagd bei ausdrücklich dafür definierten Arten.
+
+Eine Jagd besteht aus tatsächlicher Wahrnehmung, Verfolgung, Reichweite, Angriff und Verletzung. Nahrung entsteht erst aus vorhandener Biomasse.
+
+Verwende das bestehende Schadensmodell. Implementiere keine detaillierte Kampfsimulation außerhalb des benötigten Umfangs.
+
+Verhindere:
+- Fressen durch Wände.
+- Globales Wissen über Beute.
+- Unbegrenzte Verfolgung.
+- Doppelverbrauch eines Kadavers.
+
+## 9. Zehn Entwicklungsstufen
+
+Unterstütze für entsprechend definierte Arten bis zu zehn datengetriebene Entwicklungsstufen.
+
+Trenne:
+- Individuelles Wachstum.
+- Erfahrung.
+- Vererbbare Veränderungen über Generationen.
+
+Wenn die Definition einen Fortschritt durch gefressene Kreaturen vorsieht:
+- Erfasse die tatsächlich verzehrte Menge.
+- Zähle nicht mehrfach denselben Bissen als ganze Kreatur.
+- Verhindere unbegrenzten Fortschritt durch winzige Teilmengen.
+- Halte körperliches Wachstum zusätzlich an Ressourcen gebunden.
+
+Ein Stufenwechsel darf:
+- Unterstützte Körperproportionen verändern.
+- Sichtbare Merkmale entwickeln.
+- Fähigkeiten innerhalb definierter Grenzen beeinflussen.
+
+Er darf keine Masse, Energie oder beliebigen neuen Organe ohne entsprechendes Modell erzeugen.
+
+Dokumentiere Schwellenwerte und vorläufige Annahmen.
+
+## 10. Fortpflanzung und Zucht
+
+Verwende die vorhandenen Vererbungsbausteine, aber trenne die Lebenszyklen von Tieren, Pflanzen und Lebensbäumen.
+
+Artabhängige Fortpflanzung benötigt:
+- Reife.
+- Geeigneten Gesundheits- und Ressourcenstatus.
+- Die definierte Fortpflanzungsart.
+- Bei Bedarf kompatible Partner.
+- Entwicklungszeit.
+- Platz für Nachwuchs.
+
+Nachkommen erhalten:
+- Neue IDs.
+- Eigene Körper.
+- Individuelle Eigenschaften.
+- Nachvollziehbare Abstammung.
+
+Zucht bedeutet:
+- Geeignete Individuen zusammenbringen.
+- Ihre Fortpflanzung ermöglichen.
+- Nachkommen beobachten.
+- Über Generationen auswählen.
+
+Keine sofortige Veränderung eines erwachsenen Tieres durch einen Zuchtknopf.
+
+## 11. Gewöhnung und Zähmung
+
+Zähmung ist eine Beziehung und ein Lernprozess.
+
+Speichere pro Tier und relevantem Wesen:
+- Vertrautheit.
+- Erwartete Sicherheit.
+- Positive Kontakte.
+- Bedrohliche Kontakte.
+- Gelernte Reaktionen auf unterstützte Signale.
+
+Füttern kann Vertrauen fördern, garantiert aber keine Zähmung.
+
+Berücksichtige:
+- Art.
+- Individuelles Temperament.
+- Hunger.
+- Verletzung.
+- Kontaktgeschichte.
+- Aktuelle Bedrohung.
+
+Ein gezähmtes Tier:
+- Kann weiterhin fliehen.
+- Kann bei schlechter Behandlung Vertrauen verlieren.
+- Muss nicht jedem Pflanzenwesen gleichermaßen vertrauen.
+- Wird nicht automatisch Eigentum.
+- Überträgt seine erlernte Beziehung nicht als fertige Erinnerung an Nachkommen.
+
+Domestikation über Generationen und Zähmung eines Individuums bleiben getrennt.
+
+## 12. Erste praktische Tiernutzung
+
+Implementiere zunächst nur eine vollständig funktionierende Nutzung: Lastentragen durch eine geeignete Art.
+
+Voraussetzungen:
+- Unterstützter Körperbau.
+- Ausreichende Tragfähigkeit.
+- Geeignete Beziehung und erlerntes Folgen.
+- Ein tatsächlich vorhandenes Tragegeschirr.
+- Sichere Befestigungspunkte.
+
+Nutze das Herstellungs- und Verbindungssystem für das Geschirr. Ein vorgegebenes Geschirr darf in der Testszene bereitliegen, muss aber als Testausrüstung gekennzeichnet sein.
+
+Zusätzliche Last:
+- Erhöht die tatsächlich transportierte Masse.
+- Beeinflusst Bewegung und Energieverbrauch.
+- Darf Grenzen überschreiten und dann abgewiesen werden.
+- Bleibt beim Tod oder Ablegen als Gegenstand erhalten.
+
+Keine Teleportation von Ladung zwischen Tier und Besitzer.
+
+Reiten, Pflügen und komplexe Schutzaufgaben folgen erst, wenn passende Körper- und Handlungsregeln existieren.
+
+## 13. Landwirtschaft
+
+Erweitere das Handlungssystem um die notwendigen Vorgänge:
+- collect_seed
+- prepare_soil
+- sow_seed
+- water_plant
+- harvest_part
+- transport_harvest
+- feed_animal
+- approach_animal
+- attach_carrying_gear
+- load_animal
+- unload_animal
+
+Verwende vorhandene Bewegungs-, Trage-, Werkzeug- und Übergabehandlungen.
+
+Aussäen verbraucht reale Samen. Bewässern benötigt Wasser und ein unterstütztes Transportmittel. Ernten benötigt erreichbare, tatsächlich vorhandene Pflanzenteile.
+
+Landwirtschaft entsteht nicht automatisch durch einen globalen Freischalter.
+
+Die Wesen können:
+- Wachstum beobachten.
+- Ein geeignetes Verfahren ausprobieren.
+- Aus Erfolgen lernen.
+- Verfahren durch Unterricht weitergeben.
+
+Nutze bestehendes Wissen und Ollama ausschließlich über validierte Handlungen.
+
+## 14. Begrenzte Planung und Wissen
+
+Ein Wesen darf nur mit individuell bekannten Informationen planen.
+
+Unterscheide:
+- Eine Pflanze gesehen.
+- Einen essbaren Teil gefunden.
+- Keimung beobachtet.
+- Selbst ausgesät.
+- Erfolgreich gepflegt.
+- Erfolgreich geerntet.
+
+Ein Sprachmodell kann eine Vermutung vorschlagen, aber keine bestätigte landwirtschaftliche Fähigkeit erzeugen.
+
+Vortrainiertes Wissen darf die tatsächlichen Versuche nicht ersetzen.
+
+Nutze begrenzte Such- und Experimentbudgets, damit Versorgung und Überleben weiter funktionieren.
+
+## 15. Tote Biomasse und Zersetzung
+
+Implementiere einen vereinfachten Zersetzungsprozess:
+- Tote Biomasse bleibt zunächst vorhanden.
+- Zeit und Umwelt beeinflussen die Verarbeitung.
+- Ein Teil wird in definierte Bodenressourcen überführt.
+- Andere Anteile werden als dokumentierte Austauschflüsse bilanziert.
+
+Ein Kadaver darf nicht gleichzeitig vollständig:
+- Gefressen.
+- Zersetzt.
+- Im Lebensbaum aufgenommen.
+
+werden.
+
+Verwende gemeinsame Mengenänderungen und Reservierungen.
+
+## 16. Verbindung zum Lebensbaum
+
+Erweitere die vorhandene biologische Aufnahme um unterstützte Tier- und Pflanzenteile.
+
+Prüfe:
+- Tatsächlichen eingebrachten Körperteil.
+- Herkunft.
+- Material.
+- Enthaltene übertragbare Merkmale.
+- Kompatibilität mit dem Pflanzenwesen.
+- Unterstützte Darstellung und Fähigkeiten.
+
+Ein Tierbein darf nicht automatisch Flugfähigkeit oder sämtliche Eigenschaften der Art übertragen.
+
+Nicht unterstützte Merkmale werden angezeigt, aber nicht teilweise oder unsichtbar aktiviert.
+
+Die Aufnahme eines Tieres oder Körperteils ist nicht dasselbe wie Zähmung oder Zucht.
+
+## 17. Ökologisches Verhalten und Grenzen
+
+Implementiere:
+- Begrenzte lokale Ressourcen.
+- Konkurrenz um Nahrung.
+- Einfluss der Populationsdichte.
+- Rückgang bei Ressourcenmangel.
+- Veränderungen durch Ernte und Jagd.
+
+Keine versteckte Wiederherstellung ausgestorbener Populationen.
+
+Ein optionaler Sandbox-Modus darf Ressourcen oder Arten ergänzen, muss dies aber klar anzeigen und protokollieren.
+
+Technische Populationsgrenzen:
+- Konfigurierbar und pro System nachvollziehbar.
+- Keine heimliche Löschung vorhandener Tiere.
+- Neue Fortpflanzung kontrolliert begrenzen.
+- Technische Begrenzung von ökologischer Begrenzung unterscheiden.
+
+## 18. Darstellung und Oberfläche
+
+Ergänze:
+- Artenübersicht.
+- Populationszahlen.
+- Geburten und Todesfälle.
+- Nahrungsbestände.
+- Bodenfeuchte und Nährstoffe.
+- Pflanzenzustände.
+- Tierbeziehungen.
+- Entwicklungsstufen.
+- Herkunft und Zuchtlinien.
+- Landwirtschaftliche Aktivitäten.
+
+Zeige im Tierinspektor den tatsächlichen Grund für:
+- Annäherung.
+- Flucht.
+- Futterannahme.
+- Verweigerung.
+- Überlastung.
+
+Keine erfundenen Gedanken als Tatsachen anzeigen.
+
+Neue Tiermodelle und Animationen werden durch die Entwicklungs-KI erstellt. Beschränke aktivierte Arten auf tatsächlich unterstützte Körperpläne.
+
+## 19. Speichern und Laden
+
+Speichere:
+- Pflanzen und Pilze.
+- Samen.
+- Substrat- und Bodenressourcen.
+- Tierkörper und Zustände.
+- Beziehungen zu Wesen.
+- Entwicklungsstufen.
+- Fortpflanzungszustände.
+- Abstammung.
+- Zähmungsfortschritt.
+- Tragegeschirre und Ladung.
+- Landwirtschaftliche Ziele.
+- Zersetzungszustände.
+
+Erweitere die Migration aus der vorhandenen Speicherversion.
+
+Laden darf:
+- Keine Nahrung auffüllen.
+- Keine Geburt doppelt auslösen.
+- Keine Ladung duplizieren.
+- Keine Entwicklungsstufe erneut belohnen.
+- Keine Zähmungsbeziehungen verlieren.
+- Keine Ressourcen erneut verbrauchen.
+
+## 20. Implementierungsreihenfolge
+
+Arbeite in überprüfbaren Abschnitten:
+1. Eine Pflanze vollständig.
+2. Ein Pilz mit Substratverbrauch.
+3. Ein Tier mit Nahrungssuche und Stoffwechsel.
+4. Fortpflanzung und Wachstum.
+5. Zähmung.
+6. Lastentragen.
+7. Landwirtschaft.
+8. Verbindung zum Lebensbaum.
+9. Weitere kompatible Excel-Arten.
+10. Gesamttests und Optimierung.
+
+Jeder Abschnitt muss funktionieren, bevor seine Voraussetzungen in den nächsten übernommen werden.
+
+## 21. Abnahmetests
+
+Prüfe mindestens:
+1. Wachstum verbraucht die definierten Ressourcen.
+2. Pilze benötigen geeignetes Substrat.
+3. Ernten dupliziert keine Nahrung.
+4. Nahrungsknappheit beeinflusst Tiere tatsächlich.
+5. Jagd und Fressen verwenden reale Körper und Mengen.
+6. Entwicklungsstufen erzeugen keine kostenlose Masse.
+7. Fortpflanzung benötigt die definierten Voraussetzungen.
+8. Zähmung entsteht durch wiederholte geeignete Kontakte.
+9. Ein gezähmtes Tier vertraut nicht automatisch allen Wesen.
+10. Belastende Kontakte können Vertrauen verändern.
+11. Zucht verändert Nachkommen, nicht rückwirkend die Eltern.
+12. Tierlast beeinflusst Masse, Bewegung und Energiebedarf.
+13. Aussäen und Bewässern benötigen reale Ressourcen.
+14. Wissen über Anbau bleibt individuell.
+15. Biologische Aufnahme im Baum erhält Mengen- und Herkunftskonsistenz.
+16. Speichern und Laden erhalten Zwischenzustände.
+17. Bisherige Spielsysteme funktionieren weiterhin.
+
+Führe längere Tests mit mehreren festen Startwerten durch.
+
+Berichte:
+- Simulierte Dauer.
+- Tatsächliche Laufzeit.
+- Populationsverläufe.
+- Ressourcenentwicklung.
+- Fehler.
+- Leistungswerte.
+
+Ein kurzer stabiler Lauf beweist kein dauerhaft ausgeglichenes Ökosystem. Keine garantierte ökologische Stabilität behaupten.
+
+## 22. Dokumentation und Lieferung
+
+Aktualisiere die bestehende Projekt-, Status-, Speicher- und Testdokumentation.
+
+Ergänze:
+- docs/ecosystem.md
+- docs/species_status.md
+- docs/taming_and_breeding.md
+- docs/agriculture.md
+
+Liefere am Ende:
+- Tatsächlich spielbare Arten.
+- Noch nicht unterstützte Excel-Einträge.
+- Bedienung der neuen Ansichten.
+- Ein reproduzierbares Testszenario für Zähmung.
+- Ein Testszenario für Landwirtschaft.
+- Ein Testszenario für Lastentragen.
+- Ergebnisse der Prüfungen.
+- Bekannte Vereinfachungen und offene Probleme.
+
+Beginne mit der Bestandsprüfung und implementiere anschließend diesen Umfang direkt im Projekt.

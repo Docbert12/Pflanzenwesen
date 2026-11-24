@@ -1,5 +1,12 @@
 # Changelog
 
+## Arbeitsstand Prompt 6B (nicht ausgeliefert, Zweig `wip/prompt-06b`)
+- Alle Prompt-Texte (6B, Zusatz Weltarchitektur, 7–10, 12, 13) in `design/prompts/` abgelegt.
+- Ausgangsbasis v0.6.0 bestätigt: 432/432 Tests auf Godot 4.7.2 und 4.5.
+- Prüflinge Format 4 aus unverändertem v0.6.0-Code: `tests/fixtures/save_v4_prompt06.json`, `tests/fixtures/save_v4_prompt06_werkstatt.json`; neues Werkzeug `tools/make_workshop_fixture.gd`.
+- Zwischenstand, Entscheidungen und offene Schritte: `docs/plan_prompt_06b.md`. Der Code von 6B liegt nur auf dem Arbeitszweig und kompiliert dort noch nicht vollständig.
+- Entfernt/Geändert: nichts am Spiel auf `main`.
+
 ## Repository-Umzug (keine neue Version, Stand 0.6.0)
 - Projekt ins neue Repository **Docbert12/Pflanzenwesen** übernommen (Zweige `main` und `version/v0.6.0`). Der ältere Verlauf bleibt im alten Repository `Robert-JosepSubiranaSlotos/pflanzenwesen`.
 - `docs/HANDOVER.md`: Repository-Adresse, Umzugshinweis, Zeile für Prompt 6B.

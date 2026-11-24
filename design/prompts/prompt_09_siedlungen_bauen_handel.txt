@@ -1,0 +1,488 @@
+Entwickle unser bestehendes Godot-Projekt weiter. Dies ist Prompt 9: Siedlungen, gemeinsames Bauen, Vorratshaltung, Arbeitsteilung, Besitz und Handel.
+
+Implementiere die Funktionen direkt im vorhandenen Projekt. Erhalte alle bisherigen Systeme und Spielstände.
+
+## 1. Tatsächlichen Ausgangsstand prüfen
+
+Lies die vorhandenen Architektur-, Status-, Physik-, Lern-, Werkzeug-, Ökosystem- und Speicherdokumente.
+
+Prüfe im Code:
+- Veränderbare Voxelwelt und Abstützung.
+- Materialverarbeitung und zusammengesetzte Gegenstände.
+- Körperfähigkeiten und Werkzeuge.
+- Ressourcen und Reservierungen.
+- Handlungssystem und Navigation.
+- Individuelles Wissen, Beziehungen und Gespräche.
+- Landwirtschaft und Lastentiere.
+- Lebensbäume und Abstammung.
+- Ollama-Planung und Validierung.
+- Speichern und Laden.
+
+Ergänze die Statusübersicht mit getesteten, ungeprüften, teilweise vorhandenen und fehlenden Funktionen.
+
+Behebe blockierende Lücken gezielt. Erstelle keine parallele Bau-, Inventar-, Wissens- oder Ressourcenverwaltung.
+
+## 2. Ziel
+
+Die Wesen können:
+- Vorräte an geeigneten Orten sammeln.
+- Einfache Lager und Bauwerke errichten.
+- Gemeinsame Projekte vorschlagen.
+- Freiwillig Aufgaben übernehmen.
+- Materialien transportieren und verbauen.
+- Kenntnisse und Fähigkeiten bei der Aufgabenwahl berücksichtigen.
+- Besitzansprüche entwickeln und kommunizieren.
+- Gegenstände und Leistungen im begrenzten Umfang tauschen.
+
+Siedlungen entstehen aus tatsächlichen Aktivitäten, Gebäuden und Beziehungen.
+
+Es gibt keinen automatischen Fortschritt von „Dorf“ zu „Stadt“ und keine vorgeschriebenen Berufe.
+
+Noch nicht Bestandteil:
+- Vollständige Staaten, Gesetze oder Religionen.
+- Organisierte Kriege.
+- Gefängnis- und Versklavungssysteme.
+- Währung, Banken oder Kredite.
+- Bücher und Schrift.
+- Noch nicht implementierte Energie- oder Materialtechnologien.
+
+## 3. Zuständigkeiten
+
+Erstelle oder erweitere:
+- scripts/settlement/settlement_registry.gd
+- scripts/settlement/site_evaluator.gd
+- scripts/settlement/storage_system.gd
+- scripts/settlement/project_system.gd
+- scripts/settlement/project_task.gd
+- scripts/settlement/work_assignment.gd
+- scripts/settlement/construction_planner.gd
+- scripts/settlement/building_evaluator.gd
+- scripts/social/ownership_claims.gd
+- scripts/social/trade_system.gd
+- scripts/social/trade_offer.gd
+- scripts/ui/settlement_inspector.gd
+- scripts/ui/project_inspector.gd
+- scripts/ui/trade_viewer.gd
+
+Erweitere vorhandene gleichwertige Module.
+
+Eine Siedlung ist zunächst ein Ort mit Aktivitäten und beteiligten Wesen. Politische Mitgliedschaft und Regierung werden später ergänzt.
+
+## 4. Orte und Siedlungsbildung
+
+Wesen können einen Ort als geeignet für wiederkehrende Tätigkeiten bewerten.
+
+Verwende tatsächlich verfügbare Informationen:
+- Erreichbarkeit.
+- Beobachtete Nahrung und Wasser.
+- Nähe zu einem bekannten Lebensbaum.
+- Platz.
+- Boden und Abstützung.
+- Bekannte Gefahren.
+- Transportentfernungen.
+
+Keine allwissende Bewertung der ganzen Karte.
+
+Ein Ort kann durch wiederholte Nutzung zum gemeinsamen Treffpunkt, Lager oder Bauplatz werden.
+
+Die Spielerübersicht darf solche Orte räumlich zusammenfassen. Diese Zusammenfassung darf den Wesen kein zusätzliches Wissen oder eine automatische Gruppenzugehörigkeit verleihen.
+
+## 5. Vorratshaltung
+
+Implementiere Lagerorte und einfache Behälter.
+
+Ein Lager besitzt:
+- ID und Position.
+- Physische Ausdehnung.
+- Kapazität nach einem dokumentierten Volumen- und Gewichtsmodell.
+- Enthaltene Gegenstände oder Materialmengen.
+- Zugänglichkeit.
+- Wahrnehmbare Eigenschaften.
+- Eventuelle Besitzansprüche.
+
+Material wird durch tatsächliches Tragen ein- und ausgelagert.
+
+Verhindere:
+- Globale, überall verfügbare Inventare.
+- Teleportation zwischen Lagern.
+- Doppelte Bestände.
+- Unbegrenztes Stapeln.
+- Verwendung bereits reservierter Mengen.
+
+Gestapelte Mengen benötigen nachvollziehbare Einheiten und Rückverfolgbarkeit.
+
+Temperatur oder Zustand dürfen beim Einlagern nicht einfach verloren gehen. Unterschiedlich warme oder unterschiedlich beschädigte Gegenstände nicht ungeprüft zu einem identischen Stapel zusammenführen.
+
+Nahrung kann nach einem einfachen dokumentierten Modell verderben. Falls Verderb neu implementiert wird, müssen Temperatur, Dauer und resultierende unbrauchbare Biomasse konsistent behandelt werden.
+
+## 6. Bauen aus echten Materialien
+
+Verwende das bestehende Konstruktions-, Verbindungs- und Materialsystem.
+
+Jeder Bauabschnitt benötigt:
+- Vorhandene Materialien.
+- Erreichbare Arbeitsstelle.
+- Geeignete Körperfähigkeiten.
+- Falls erforderlich Werkzeuge.
+- Arbeitszeit.
+- Unterstützte Verbindungen.
+- Tragfähige Platzierung innerhalb des vorhandenen Abstützungsmodells.
+
+Kein Gebäude entsteht allein durch Zahlung einer abstrakten Ressourcenanzahl.
+
+Bauteile werden sichtbar transportiert, platziert und verbunden.
+
+Beginne mit:
+- Einem markierten Lagerplatz.
+- Einem einfachen Regal oder Lagergestell.
+- Einem kleinen Unterstand.
+- Einem niedrigen Zaun mit einer passierbaren Öffnung.
+
+Die konkrete Geometrie muss aus Bauteilen entstehen. Diese Beispiele sind Testziele, keine verpflichtende Reihenfolge für die gesamte Zivilisation.
+
+## 7. Nutzen von Gebäuden
+
+Ein Gebäudename allein verleiht keine Funktion.
+
+Bewerte tatsächliche Eigenschaften:
+- Nutzbares Lagervolumen.
+- Zugängliche Abstellflächen.
+- Abschattung.
+- Sichtschutz.
+- Passierbarkeit.
+- Abstützung.
+- Belastung durch eingelagerte Materialien.
+
+Ein Unterstand kann zunächst Schatten und einen überdachten Bereich bereitstellen. Wetterschutz darf nur behauptet werden, wenn Niederschlag und dessen Auswirkungen tatsächlich simuliert werden.
+
+Ein Zaun wirkt nur, wenn Geometrie und Kollision das betreffende Tier tatsächlich am Durchqueren hindern.
+
+Ein offener oder beschädigter Zaun hält Tiere nicht durch eine unsichtbare Regel im Gehege.
+
+## 8. Bauplanung
+
+Ein Bauplan beschreibt:
+- Beabsichtigte Funktion.
+- Position und Orientierung.
+- Benötigte Bauteiltypen.
+- Verbindungen.
+- Arbeitsschritte.
+- Voraussetzungen.
+- Abhängigkeiten zwischen Aufgaben.
+- Offene Unsicherheiten.
+
+Trenne:
+- Vorgeschlagenen Plan.
+- Geprüften ausführbaren Teil.
+- Tatsächlich errichteten Zustand.
+
+Ein Plan darf unvollständig sein und angepasst werden.
+
+Für den Anfang sind parametrisierte, im Code unterstützte Bauverfahren erlaubt. Kennzeichne sie als vorhandene Konstruktionsmöglichkeiten. Nicht behaupten, dass beliebige Architektur allein durch Ollama entsteht.
+
+Wesen müssen ein Verfahren kennen, beobachtet oder selbst erprobt haben, um es zuverlässig anzuwenden.
+
+## 9. Gemeinsame Projekte
+
+Ein Wesen kann ein Projekt vorschlagen.
+
+Ein Projekt besitzt:
+- ID.
+- Initiator.
+- Ziel.
+- Ort.
+- Beteiligte.
+- Benötigte Materialien.
+- Teilaufgaben.
+- Fortschritt.
+- Abhängigkeiten.
+- Status.
+- Abbruch- beziehungsweise Pausengrund.
+
+Andere Wesen können:
+- Den Vorschlag wahrnehmen.
+- Interesse entwickeln.
+- Eine Aufgabe annehmen.
+- Ablehnen.
+- Eine Aufgabe später aufgeben.
+
+Gemeinsame Projekte sind zunächst freiwillig.
+
+Entscheidungen hängen ab von:
+- Eigenem Bedarf.
+- Vertrauen.
+- Erwartetem Nutzen.
+- Fähigkeiten.
+- Entfernung.
+- Aufwand.
+- Laufenden Verpflichtungen.
+
+Kein globaler Arbeitsverteiler darf allen Wesen ungefragt Ziele zuweisen.
+
+## 10. Aufgabenkoordination
+
+Implementiere:
+- Material beschaffen.
+- Material transportieren.
+- Bauteile herstellen.
+- Bauteile platzieren.
+- Verbindungen herstellen.
+- Bauzustand prüfen.
+- Schäden reparieren.
+
+Aufgaben verwenden eindeutige Reservierungen und Zustände.
+
+Verhindere:
+- Mehrfaches Verbauen desselben Gegenstands.
+- Unbegrenztes Reservieren ohne Fortschritt.
+- Aufgabenübernahme durch tote oder nicht mehr beteiligte Wesen.
+- Dauerhafte Blockade durch einen fehlenden Arbeiter.
+
+Nutze Ablaufzeiten und erneute Prüfung.
+
+Wenn ein Wesen stirbt oder seine Aufgabe aufgibt:
+- Persönliche Reservierungen freigeben.
+- Tatsächlichen Baufortschritt erhalten.
+- Den offenen Aufgabenstatus kommunizierbar machen.
+
+Wissen über offene Aufgaben wird durch Wahrnehmung und Kommunikation übertragen, nicht automatisch an die gesamte Bevölkerung.
+
+## 11. Arbeitsteilung und Fähigkeiten
+
+Wiederholte Praxis kann die Ausführung bekannter Tätigkeiten verbessern.
+
+Verwende vorhandenes Verfahrenswissen und ergänze begrenzte praktische Fertigkeit:
+- Etwas geringerer Zeitbedarf.
+- Weniger Fehler.
+- Bessere Materialausnutzung innerhalb physikalischer Grenzen.
+
+Keine Fähigkeit darf Masse oder Energie erzeugen oder ungeeignete Werkzeuge magisch ersetzen.
+
+Berufe sind zunächst beobachtbare Tätigkeitsschwerpunkte:
+- Häufiger Transport.
+- Häufige Herstellung.
+- Häufige Pflanzenpflege.
+- Häufige Bauarbeit.
+
+Ein angezeigter Schwerpunkt ist keine starre Klasse und sperrt andere Tätigkeiten nicht.
+
+## 12. Besitzansprüche
+
+Trenne:
+- Physischer Besitz beziehungsweise tatsächliches Tragen.
+- Zugriff auf einen Ort.
+- Behaupteter Besitzanspruch.
+- Anerkennung dieses Anspruchs durch andere.
+
+Ein Anspruch enthält:
+- Beanspruchendes Wesen.
+- Gegenstand oder begrenzten Ort.
+- Entstehungsgrund.
+- Zeitpunkt.
+- Bekannte Beteiligte.
+- Anerkennungen oder Widersprüche.
+
+Eine Anspruchsbehauptung darf keinen globalen unsichtbaren Schutz erzeugen.
+
+Mögliche Anfangsgründe:
+- Selbst hergestellt.
+- Selbst gesammelt.
+- Durch akzeptierten Tausch erhalten.
+- Gemeinsam für ein Projekt bereitgestellt.
+
+Diese Gründe sind konfigurierbare soziale Regeln, keine universell bekannten Naturgesetze.
+
+Andere Wesen können einen Anspruch nicht kennen, anerkennen oder bestreiten.
+
+In dieser Version:
+- Implementiere Nachfragen, Zustimmung und verbalen Widerspruch.
+- Nutze vorhandene soziale Reaktionen.
+- Kein vollständiges Straf- oder Gewaltrecht.
+
+## 13. Handel
+
+Implementiere direkten Tausch vorhandener Gegenstände.
+
+Ein Angebot enthält:
+- Anbieter und Empfänger.
+- Angebotene Gegenstände oder Mengen.
+- Gewünschte Gegenstände oder Mengen.
+- Ort.
+- Gültigkeitsdauer.
+- Status.
+- Erforderliche Zustimmung.
+
+Verwende subjektive Bewertung anhand von:
+- Eigenem Bedarf.
+- Bekannter Verfügbarkeit.
+- Aufwand.
+- Vertrauen.
+- Erwartetem praktischem Nutzen.
+
+Es gibt keinen allwissenden festen Marktpreis.
+
+Beginne mit Gegenstand gegen Gegenstand. Aufgeschobene Dienstleistungen, Schulden und Kredite gehören noch nicht zum vollständigen Funktionsumfang.
+
+Ein angenommener Tausch benötigt:
+- Tatsächliche Verfügbarkeit.
+- Erreichbaren Übergabeort.
+- Physische Übergabe.
+- Konsistente Übertragung der Mengen und Ansprüche.
+
+Verhindere halbe abgeschlossene Transaktionen bei Fehlern oder Abbruch. Definiere einen klaren Übergabezustand und eine sichere Rückabwicklung, soweit noch keine endgültige Übergabe erfolgt ist.
+
+## 14. Kommunikation und Ollama
+
+Erweitere strukturierte Gesprächsinhalte um:
+- Projekt vorschlagen.
+- Aufgabe anbieten.
+- Aufgabe annehmen oder ablehnen.
+- Materialbedarf mitteilen.
+- Besitzanspruch äußern.
+- Tauschangebot machen.
+- Tauschangebot annehmen, ablehnen oder ändern.
+
+Alle Inhalte verwenden gültige IDs und überprüfte Mengen.
+
+Ollama darf Pläne und Angebote vorschlagen. Es darf:
+- Keine Materialien erzeugen.
+- Keine Zustimmung anderer Wesen behaupten.
+- Keine Aufgaben ohne deren Entscheidung verbindlich zuweisen.
+- Keine Besitzrechte direkt in den Weltzustand schreiben.
+
+Freier Text ist Darstellung. Strukturierte und validierte Vorgänge steuern die Simulation.
+
+## 15. Lastentiere integrieren
+
+Wenn Lastentragen aus Prompt 8 funktioniert:
+- Ermögliche Transportaufgaben mit geeigneten Tieren.
+- Prüfe Beziehung, Ausrüstung, Tragfähigkeit und Route.
+- Berücksichtige erhöhten Energiebedarf.
+- Erhalte Ladung bei Abbruch.
+
+Wenn das System noch fehlt, kennzeichne diese Integration als blockiert und implementiere zunächst den Transport durch Wesen. Behaupte keine vorhandene Tiertransportfunktion ohne Nachweis.
+
+## 16. Neue Handlungen
+
+Erweitere das gemeinsame Handlungssystem, soweit erforderlich:
+- propose_project
+- accept_project_task
+- collect_for_project
+- deposit_in_storage
+- withdraw_from_storage
+- place_building_part
+- connect_building_parts
+- inspect_structure
+- repair_connection
+- assert_claim
+- propose_trade
+- accept_trade
+- exchange_items
+
+Verwende vorhandene Handlungen weiter, wenn sie dieselbe Aufgabe erfüllen.
+
+Jede Aktion benötigt:
+- Voraussetzungen.
+- Reichweite.
+- Ressourcenprüfung.
+- Reservierungen.
+- Dauer.
+- Abbruchverhalten.
+- Tatsächliches Ergebnis.
+
+## 17. Oberfläche
+
+Ergänze:
+- Übersicht räumlicher Siedlungsbereiche.
+- Lageransicht mit tatsächlichen Beständen.
+- Projektansicht mit Teilaufgaben.
+- Beteiligte und freiwillig angenommene Aufgaben.
+- Fehlende Materialien.
+- Baufortschritt.
+- Besitzansprüche mit Anerkennung oder Widerspruch.
+- Laufende und abgeschlossene Tauschangebote.
+
+Zeige unterscheidbar:
+- Globalen Spielerüberblick.
+- Wissen eines ausgewählten Wesens.
+
+Das Göttermenü bleibt ein System indirekter Eingriffe. Projekt- und Aufgabenansichten dürfen keine ungefragte direkte Befehlssteuerung der Wesen einführen.
+
+Gezielte Befehle sind ausschließlich im gekennzeichneten Entwicklermodus für Tests zulässig.
+
+## 18. Speichern und Laden
+
+Speichere:
+- Lager und Bestände.
+- Bauwerke und Verbindungen.
+- Laufende Projekte.
+- Aufgabenfortschritt.
+- Beteiligte.
+- Ansprüche und deren Bekanntheit.
+- Tauschangebote und Übergabestatus.
+- Transportladungen.
+- Relevante Reservierungen.
+
+Implementiere eine Migration aus der tatsächlichen Vorversion.
+
+Beim Laden:
+- Reservierungen prüfen.
+- Ungültige Beteiligte entfernen.
+- Fortschritt erhalten.
+- Keine Materialien erneut verbrauchen.
+- Keine Transaktionen doppelt ausführen.
+- Keine Gebäude erneut erzeugen.
+
+## 19. Tests
+
+Erstelle getrennte reproduzierbare Tests für:
+
+1. Lagerkapazität und reale Transporte.
+2. Zwei Wesen greifen gleichzeitig auf denselben Bestand zu.
+3. Ein Bauprojekt mit mehreren freiwilligen Beteiligten.
+4. Abbruch einer Transportaufgabe.
+5. Tod eines Beteiligten während eines Projekts.
+6. Fehlendes Material pausiert den Bau.
+7. Unzureichende Verbindung verursacht einen nachvollziehbaren Fehlschlag.
+8. Ein Bauwerk besitzt nur tatsächlich implementierte Funktionen.
+9. Ein Besitzanspruch bleibt unbekannt, wenn er nicht wahrgenommen wurde.
+10. Ein abgelehntes Tauschangebot verändert keine Bestände.
+11. Ein erfolgreicher Tausch erhält Mengen.
+12. Abbruch einer Übergabe dupliziert keine Gegenstände.
+13. Speichern und Laden während Bau und Handel.
+14. Nahrungssuche und Überleben bleiben neben Projekten funktionsfähig.
+15. Bestehende Physik-, Ökosystem-, Lebensbaum- und KI-Tests bestehen weiterhin.
+
+Ergänze Beobachtungsläufe:
+- Entstehen freiwillige Kooperationen?
+- Werden Projekte bei Ressourcenmangel aufgegeben?
+- Bleiben Wesen in Aufgaben hängen?
+- Werden Grundbedürfnisse vernachlässigt?
+
+Ein geskripteter Test beweist die Funktion, nicht die spontane Entstehung einer Siedlung. Dokumentiere beides getrennt.
+
+## 20. Lieferung
+
+Aktualisiere:
+- README.md
+- docs/architecture.md
+- docs/implementation_status.md
+- docs/progress_audit.md
+- docs/save_format.md
+- docs/test_results.md
+
+Ergänze:
+- docs/settlements_and_projects.md
+- docs/storage_and_construction.md
+- docs/ownership_and_trade.md
+
+Berichte abschließend:
+- Den geprüften Ausgangsstand.
+- Neu spielbare Funktionen.
+- Wie ich Lager und Bauprojekte beobachte.
+- Wie ich einen Tausch prüfe.
+- Welche Vorgänge autonom auftreten können.
+- Welche nur in Testfällen nachgewiesen wurden.
+- Offene Grenzen und nicht ausgeführte Prüfungen.
+
+Beginne mit der Bestandsprüfung und implementiere anschließend diesen Umfang vollständig.

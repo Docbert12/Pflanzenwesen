@@ -1,0 +1,492 @@
+Du bist für die abschließende Integration und Qualitätssicherung unseres Godot-Spiels verantwortlich.
+
+Dies ist Prompt 13: Gesamtaudit, Fehlerkorrekturen, Spielbalance, Leistungsoptimierung, Bedienbarkeit und exportierbare Spielversion.
+
+Arbeite direkt im bestehenden Projekt. Liefere eine tatsächlich startbare, überprüfte Version. Ein Export allein bedeutet nicht, dass alle geplanten Funktionen fertig sind.
+
+## 1. Ziel
+
+Erstelle eine zusammenhängende spielbare Version unseres Voxel-Zivilisationsspiels.
+
+Der Spieler soll:
+- Ein neues Spiel mit 50 Pflanzenwesen beginnen.
+- Eine funktionierende Welt beobachten.
+- Einzelne Wesen und ihre Entscheidungen untersuchen.
+- Über das Göttermenü eingreifen.
+- Entwicklungen von Körpern, Wissen und Gemeinschaften nachvollziehen.
+- Speichern, beenden und später fortsetzen.
+- Das Spiel mit oder ohne erreichbares Ollama verwenden können.
+
+Die abgeschlossene Version muss ihren tatsächlichen Funktionsumfang ehrlich zeigen.
+
+Erfinde keine Testergebnisse und kennzeichne ungeprüfte Bereiche.
+
+## 2. Projekt sichern und Umgebung prüfen
+
+Prüfe:
+- Vorhandene Entwicklungsanweisungen.
+- Godot-Version.
+- Betriebssystem.
+- Projektstruktur.
+- Versionsverwaltung.
+- Exportkonfiguration.
+- Verfügbare Exportvorlagen.
+- Ollama-Version und installierte Modelle, soweit erreichbar.
+
+Arbeite nachvollziehbar mit Versionsverwaltung, falls vorhanden. Verändere oder entferne keine fremden Änderungen ungeprüft.
+
+Sichere insbesondere:
+- Spielstände vor Migrationen.
+- Bestehende Konfigurationen.
+- Die Original-Excel.
+- Bereits vorhandene Exportdateien vor einem Ersatz.
+
+Installiere keine neue Engine-Version und führe keine großen Downloads ohne notwendigen, ausdrücklich abgestimmten Grund aus.
+
+## 3. Vollständiges Funktionsaudit
+
+Prüfe Dokumentation, Code und tatsächliches Verhalten für alle bisherigen Entwicklungsbereiche:
+
+1. Projektgrundlage und Simulationszeit.
+2. Materialien, Masse, Wärme und Phasenwechsel.
+3. Voxelwelt, Wasser, Kollisionen und Abstützung.
+4. Körpergenerator, Modelle und Animation.
+5. Lebenssimulation und Handlungssystem.
+6. Persönlichkeit, Wahrnehmung, Erinnerungen und Lernen.
+7. Göttermenü und Belohnungszuordnung.
+8. Ollama, validierte Pläne und Gespräche.
+9. Experimente, Werkzeuge und praktisches Wissen.
+10. Lebensbäume, Nachwuchs, Vererbung und Mutationen.
+11. Ökosystem, Tiere, Zähmung und Landwirtschaft.
+12. Bauen, Lager, Arbeitsteilung, Besitz und Handel.
+13. Gemeinschaften, Religionen, Konflikte und Abspaltungen.
+14. Schrift, Bücher, Unterricht und Wissenssammlungen.
+15. Reaktionen, Strahlung, Mechanik und Elektrizität.
+16. Speichern, Laden und Migrationen.
+
+Erstelle docs/final_feature_matrix.md.
+
+Verwende Statuswerte:
+- Implementiert und getestet.
+- Implementiert, aber ungeprüft.
+- Teilweise implementiert.
+- Nicht implementiert.
+- Bewusst außerhalb des begrenzten Funktionsumfangs.
+
+Ordne jeder Funktion zu:
+- Zuständige Dateien.
+- Test oder Nachweis.
+- Bekannte Grenzen.
+- Erforderliche Korrekturen.
+
+Leere Module, alleinige Menüeinträge oder Beschreibungen zählen nicht als Implementierung.
+
+## 4. Prioritäten für Korrekturen
+
+Bearbeite Fehler in dieser Reihenfolge:
+
+A. Datenverlust und beschädigte Spielstände.
+B. Abstürze und nicht startende Szenen.
+C. Doppelte Ressourcen, IDs oder Weltobjekte.
+D. Widersprüchliche Simulationszustände.
+E. Blockierte Grundfunktionen.
+F. Fehlende Verbindungen zwischen vorhandenen Systemen.
+G. Leistung und Bedienbarkeit.
+H. Grafische Fehler.
+
+Schließe fehlende Kernfunktionen innerhalb des bereits vereinbarten begrenzten Umfangs.
+
+Erweitere den Umfang nicht um zusätzliche große Systeme.
+
+Wenn eine Funktion nicht zuverlässig fertiggestellt werden kann:
+- Kennzeichne sie ausdrücklich.
+- Verhindere irreführende Bedienmöglichkeiten.
+- Erhalte vorhandene Arbeit.
+- Dokumentiere den konkreten Blocker.
+
+## 5. Eine zusammenhängende Hauptspielszene
+
+Die Hauptspielszene muss alle tatsächlich spielbaren Systeme verbinden.
+
+Ein neues Spiel enthält:
+- Genau 50 lebende Pflanzenwesen.
+- Einen Lebensbaum mit Wurzelbeet.
+- Eine gültige kleine Voxelwelt.
+- Geeignete Startressourcen.
+- Unterstützte Pflanzen und Tiere.
+- Eine reproduzierbare Weltgenerierung.
+- Funktionierende Kamera und Auswahl.
+- Ein erreichbares Göttermenü.
+
+Vermeide doppelte Initialisierung beim Szenenwechsel.
+
+Die Startbedingungen dürfen Überleben ermöglichen, aber keine gesellschaftliche Entwicklung erzwingen.
+
+Keine versteckten Ressourcenauffüllungen im normalen Spiel.
+
+## 6. Spielstart und Oberfläche
+
+Erstelle beziehungsweise vervollständige:
+
+Hauptmenü:
+- Neues Spiel.
+- Spiel laden.
+- Einstellungen.
+- Hilfe.
+- Beenden.
+
+Im Spiel:
+- Pause.
+- Speichern.
+- Laden.
+- Rückkehr zum Hauptmenü.
+- Kamera- und Auswahlhinweise.
+- Zustand der Simulation.
+- Zustand der KI-Verbindung.
+- Bevölkerung und wichtige Warnmeldungen.
+
+Einstellungen:
+- Grafikqualität.
+- Unterstützte Auflösung und Fenstermodus.
+- Lautstärke, sofern Audio vorhanden ist.
+- Ollama aktivieren oder deaktivieren.
+- Tatsächlich verfügbare Modellauswahl.
+- Zugängliche Diagnoseoptionen.
+
+Die normale Oberfläche soll ohne Kenntnis des Quellcodes verständlich sein.
+
+Entwicklerwerkzeuge müssen klar getrennt und standardmäßig verborgen sein.
+
+## 7. Spielerrolle beibehalten
+
+Der Spieler beeinflusst die Wesen über sichtbare Eingriffe.
+
+Keine unbeabsichtigte direkte Befehlssteuerung durch Diagnosefenster.
+
+Ein Spieler kann:
+- Beobachten.
+- Gegenstände und Materialien über unterstützte Eingriffe einbringen.
+- Geschenke geben.
+- Unterstützte Heilung auslösen.
+- Auf beobachtete Handlungen reagieren.
+
+Wesen kennen die private Absicht hinter einem Eingriff nicht automatisch.
+
+Testbefehle und direkt ausgelöste Handlungen bleiben auf den Entwicklermodus beschränkt.
+
+## 8. Integrationsszenarien
+
+Erstelle reproduzierbare Szenarien, die mehrere Systeme verbinden.
+
+### Szenario A: Überleben und Speichern
+
+- Neues Spiel mit 50 Wesen.
+- Nahrungssuche und tatsächliche Nahrungsaufnahme.
+- Pause.
+- Speichern.
+- Vollständiges Beenden.
+- Neustart und Laden.
+- Prüfung von Ressourcen, IDs und Körperzuständen.
+
+### Szenario B: Individuelles Lernen
+
+- Zwei Wesen erleben unterschiedliche Eingriffe.
+- Nur geeignete Beobachter erhalten Erinnerungen.
+- Erwartungen verändern sich nachvollziehbar.
+- Verhalten und Anzeige stimmen überein.
+
+### Szenario C: Körper und Vererbung
+
+- Eine vorhandene Verletzung verändert Fähigkeiten.
+- Eine Prothese verändert Darstellung und Masse.
+- Ein kompatibles Merkmal wird im Beet aufgenommen.
+- Ein Nachkomme erhält einen gültigen Körperbauplan.
+- Keine fremden Erinnerungen werden vererbt.
+
+### Szenario D: Werkzeuge und Wissen
+
+- Ein Wesen stellt einen unterstützten Gegenstand her.
+- Der Gegenstand wird praktisch getestet.
+- Ein anderes Wesen lernt das Verfahren.
+- Eine Aufzeichnung bewahrt es.
+- Lesen ersetzt nicht die praktische Prüfung.
+
+### Szenario E: Ökosystem
+
+- Nahrung wird verbraucht.
+- Pflanzen wachsen unter passenden Bedingungen.
+- Tiere reagieren auf Ressourcen.
+- Zähmung und Landwirtschaft verwenden reale Handlungen.
+- Kein verdecktes Auffüllen.
+
+### Szenario F: Gemeinschaft
+
+- Ein Projekt wird vorgeschlagen.
+- Beteiligte entscheiden individuell.
+- Materialien werden transportiert und verbaut.
+- Ein Tausch erhält Mengen.
+- Regeln und Überzeugungen verbreiten sich nur über vorhandene Informationswege.
+
+### Szenario G: Physik
+
+- Wärme und Phasenwechsel.
+- Eine unterstützte Reaktion.
+- Ein mechanischer Aufbau.
+- Ein elektrischer Aufbau.
+- Strahlungsexposition im dokumentierten Modell.
+
+### Szenario H: Fehlerfälle
+
+- Ollama fällt aus.
+- Ein Zielobjekt wird entfernt.
+- Ein Wesen stirbt während einer Handlung.
+- Ein Spielstand wird während laufender Vorgänge geladen.
+- Eine reservierte Ressource wird ungültig.
+- Eine Datei ist beschädigt.
+
+Prüfe kontrolliertes Verhalten statt Absturz oder stiller Datenkorruption.
+
+Geskriptete Szenarien beweisen Funktionsfähigkeit. Behaupte daraus keine spontane Entstehung komplexer Zivilisationen.
+
+## 9. Langzeitsimulation und Balance
+
+Führe mehrere Beobachtungsläufe mit festen Startwerten durch.
+
+Erfasse:
+- Lebende und tote Wesen.
+- Geburten.
+- Todesursachen.
+- Nahrungs- und Ressourcenentwicklung.
+- Feststeckende Handlungen.
+- Ungültige Reservierungen.
+- Projektfortschritt.
+- Baumzustände.
+- Speicherbedarf.
+- Laufzeiten der Systeme.
+- Ollama-Anfragen und Antwortzeiten.
+
+Unterscheide:
+- Simulierte Zeit.
+- Reale Laufzeit.
+- Verwendete Beschleunigung.
+
+Nutze Zeitbeschleunigung nur, wenn Physik, Stoffwechsel und Aktionen dafür geprüft sind.
+
+Führe nach Möglichkeit mindestens einen zusammenhängenden einstündigen Lauf mit 50 Wesen durch. Wenn das nicht möglich ist, dokumentiere die tatsächlich erreichte Dauer und den Grund.
+
+Behaupte keine Stabilität über Wochen oder Monate aufgrund kurzer Tests.
+
+Balanciere klar erkennbare Fehlverhältnisse, ohne Ressourcenverbrauch oder Risiken heimlich abzuschalten.
+
+## 10. Leistung schrittweise prüfen
+
+Die Standardversion startet mit 50 Wesen.
+
+Teste größere Populationen in getrennten Profilen:
+- 100.
+- 250.
+- 500.
+- 1.000.
+
+Gehe nur zur nächsten Stufe über, wenn die vorherige sinnvoll messbar läuft.
+
+Erfasse:
+- Hardware und Betriebssystem.
+- Godot-Version.
+- Grafikprofil und Auflösung.
+- Weltgröße.
+- Anzahl von Tieren und Gegenständen.
+- Bildzeiten.
+- Simulationszeiten.
+- Speicherverbrauch.
+- KI-Konfiguration.
+
+Optimiere anhand gemessener Engpässe:
+- Räumliche Suche.
+- Navigation.
+- Aktualisierungsfrequenzen.
+- Mesh-Neuaufbau.
+- Ereignis- und Erinnerungsspeicher.
+- Sichtbarkeit und Detailstufen.
+- Ollama-Warteschlange.
+
+Keine physikalischen Ereignisse allein deshalb ignorieren, weil sie außerhalb der Kamera stattfinden.
+
+Nicht erreichte Populationsstufen bleiben experimentell oder deaktiviert. Versprich keine Unterstützung für 1.000 Wesen ohne Testnachweis.
+
+## 11. Ollama-Abschlussprüfung
+
+Prüfe:
+- Erkennung vorhandener Modelle.
+- Verbindungstest.
+- Zeitlimits.
+- Begrenzte Warteschlange.
+- Fairness zwischen Wesen.
+- Antwortvalidierung.
+- Veraltete Antworten nach Laden oder Reset.
+- Verhalten bei Ausfall und Wiederverbindung.
+
+Das Spiel muss ohne Ollama startbar sein.
+
+Zeige ehrlich:
+- Lokales regelbasiertes Verhalten.
+- Echte Modellantwort.
+- Testantwort, ausschließlich im Entwicklermodus.
+
+Keine erfundenen Modellantworten als echte KI-Verbindung anzeigen.
+
+Bündele keine Modellgewichte ungeprüft mit dem Spiel. Dokumentiere Ollama als gesonderte Voraussetzung für die modellgestützten Funktionen.
+
+## 12. Spielstände und Wiederherstellung
+
+Prüfe die aktuelle Speicherstruktur und alle tatsächlich vorhandenen Migrationen.
+
+Anforderungen:
+- Konsistenter Snapshot.
+- Temporäres Schreiben vor dem Ersetzen.
+- Erhalt einer vorherigen gültigen Sicherung.
+- Erkennung beschädigter Dateien.
+- Erkennung inkompatibler Inhaltsversionen.
+- Keine doppelte Wiederaufnahme laufender Vorgänge.
+- Keine verlorenen historischen Referenzen.
+
+Teste Laden in einen frischen Prozess, nicht nur innerhalb derselben laufenden Sitzung.
+
+Speichere Nutzerdaten im vorgesehenen Benutzerdatenbereich und nicht im installierten Spielverzeichnis.
+
+Veröffentliche keine persönlichen Testspielstände unbeabsichtigt mit dem Export.
+
+## 13. Grafische und funktionale Kontrolle
+
+Prüfe:
+- Auswahl und Kamera.
+- Lesbare Oberfläche bei unterstützten Fenstergrößen.
+- Körperteile und Prothesen.
+- Geburt und Wachstum.
+- Getragene Werkzeuge.
+- Tierlasten.
+- Bauwerke und Verbindungen.
+- Zeichen und Dokumente.
+- Flüssige beziehungsweise feste Materialdarstellung.
+- Defekte und abgetrennte Teile.
+
+Darstellung und Simulation müssen denselben Zustand abbilden.
+
+Markiere Diagnosefarben und unsichtbare Größen als Überlagerungen. Sie dürfen nicht als Wissen der Wesen behandelt werden.
+
+Wenn visuelle Prüfungen in deiner Umgebung nicht möglich sind, dokumentiere dies und liefere konkrete manuelle Prüfschritte.
+
+## 14. Export für Windows
+
+Erstelle ein passendes Exportprofil für Windows entsprechend der tatsächlichen Zielarchitektur.
+
+Prüfe:
+- Passende Exportvorlagen zur verwendeten Godot-Version.
+- Hauptszene.
+- Benötigte Ressourcen.
+- JSON-Dateien und weitere Nicht-Szenen-Dateien.
+- Schriftarten.
+- Modell- und Materialdaten.
+- Schreibrechte im Benutzerdatenbereich.
+- Verhalten ohne Python und Excel.
+
+Der Excel-Importer ist ein Entwicklungswerkzeug. Das exportierte Spiel lädt bereits erzeugte Definitionen.
+
+Schließe unnötige Inhalte aus:
+- Temporäre Dateien.
+- Persönliche Daten.
+- Zugangsdaten.
+- Große Diagnoseprotokolle.
+- Nicht benötigte Originaldateien.
+- Ollama-Modellgewichte.
+
+Verwende einen nachvollziehbaren Buildnamen mit Version.
+
+## 15. Export prüfen
+
+Ein erfolgreich erzeugter Export reicht nicht aus.
+
+Teste, soweit die Umgebung dies erlaubt:
+1. Start der exportierten Anwendung.
+2. Neues Spiel.
+3. Bedienung und Kamera.
+4. Speichern.
+5. Vollständiges Beenden.
+6. Neustart und Laden.
+7. Betrieb ohne Ollama.
+8. Betrieb mit Ollama, sofern verfügbar.
+9. Fehlende oder ungültige Konfiguration.
+10. Beenden ohne beschädigten Spielstand.
+
+Wenn die aktuelle Umgebung keinen Windows-Start erlaubt:
+- Prüfe den Export technisch, soweit möglich.
+- Kennzeichne den Windows-Laufzeittest als offen.
+- Liefere eine kurze manuelle Prüfanleitung.
+- Behaupte nicht, dass die exportierte Anwendung bereits unter Windows getestet wurde.
+
+## 16. Version und Freigabestatus
+
+Wähle die Versionsbezeichnung anhand der Evidenz.
+
+Beispiele:
+- Prototyp: wesentliche Systeme fehlen oder sind ungeprüft.
+- Alpha: zusammenhängend spielbar, aber mit wesentlichen Grenzen.
+- Beta: vereinbarter Umfang überwiegend vollständig und systematisch getestet.
+
+Verwende nicht automatisch „1.0“ oder „vollständig fertig“.
+
+Die große Spielidee mit freier Zivilisationsentwicklung wird nicht allein dadurch vollständig, dass alle Prompts bearbeitet wurden.
+
+## 17. Abschlussdateien
+
+Erstelle beziehungsweise aktualisiere:
+- README.md
+- CHANGELOG.md
+- docs/final_feature_matrix.md
+- docs/final_test_report.md
+- docs/performance_report.md
+- docs/known_issues.md
+- docs/player_quickstart.md
+- docs/ollama_setup.md
+- docs/save_format.md
+- docs/release_checklist.md
+
+Die Kurzanleitung erklärt:
+- Spiel starten.
+- Neues Spiel und Laden.
+- Kamera.
+- Wesen untersuchen.
+- Göttermenü.
+- Speichern.
+- Ollama aktivieren.
+- Diagnose bei Problemen.
+
+## 18. Definition der Fertigstellung
+
+Dieser Auftrag ist abgeschlossen, wenn:
+- Das Projekt konsistent importiert und startet.
+- Ein neues Spiel mit 50 Wesen funktioniert.
+- Vorhandene Kernsysteme zusammenarbeiten.
+- Bekannte kritische Datenverlust- und Absturzfehler behoben sind.
+- Speichern und Laden geprüft sind.
+- Ollama-Ausfall kontrolliert behandelt wird.
+- Ein Export erstellt wurde oder ein konkreter technischer Blocker dokumentiert ist.
+- Tests und offene Grenzen nachvollziehbar dokumentiert sind.
+- Die Versionsbezeichnung zum nachgewiesenen Stand passt.
+
+Keine grünen Häkchen ohne tatsächlich ausgeführte Prüfung.
+
+## 19. Abschlussbericht
+
+Berichte knapp und konkret:
+- Was jetzt spielbar ist.
+- Welche Fehler behoben wurden.
+- Welche Funktionen fehlen oder ungeprüft bleiben.
+- Welche Tests bestanden haben.
+- Welche Population auf welcher Hardware geprüft wurde.
+- Wo der Export liegt.
+- Wie ich ihn starte.
+- Ob der Export selbst tatsächlich ausgeführt wurde.
+- Welche verbleibenden Schritte nötig sind.
+
+Beginne mit dem Gesamtaudit, behebe anschließend die gefundenen Probleme und liefere die bestmöglich geprüfte, zusammenhängende Spielversion.

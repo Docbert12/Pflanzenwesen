@@ -1,0 +1,524 @@
+Entwickle unser bestehendes Godot-Projekt weiter. Dies ist Prompt 12: erweiterte Materialphysik, begrenzte Stoffreaktionen, Radioaktivität, mechanische Vorrichtungen und elektrische Systeme.
+
+Implementiere die Erweiterungen direkt im vorhandenen Projekt. Erhalte bestehende Funktionen und Spielstände.
+
+## 1. Ausgangsstand prüfen
+
+Lies die vorhandene Architektur-, Physik-, Material-, Werkzeug-, Biologie-, Wissens- und Speicherdokumentation.
+
+Prüfe im Code:
+- Materialdefinitionen und Excel-Import.
+- Einheiten, Masse, Wärme und Phasenwechsel.
+- Energiequellen und Ressourcenbilanzen.
+- Schäden und Körperfähigkeiten.
+- Zusammengesetzte Gegenstände und Verbindungen.
+- Werkzeuge und Experimente.
+- Konstruktion und Abstützung.
+- Vererbung und Mutationen.
+- Individuelles Verfahrenswissen.
+- Ollama und Handlungsschnittstellen.
+- Speichern und Laden.
+
+Erstelle eine Statusübersicht mit:
+- Vorhandenen Funktionen.
+- Tatsächlich ausgeführten Prüfungen.
+- Fehlenden Grundlagen.
+- Widersprüchlichen Annahmen.
+- Notwendigen Änderungen.
+
+Behebe erforderliche Lücken gezielt. Erstelle keine parallelen Physik- oder Energiesysteme.
+
+## 2. Ziel und Umfang
+
+Implementiere einen begrenzten, funktionierenden Satz physikalischer Systeme:
+
+1. Erweiterbare Material- und Reaktionsdefinitionen.
+2. Verbrennung und Oxidation im vereinfachten Spielmodell.
+3. Strahlungsquellen, Abschirmung und biologische Exposition.
+4. Einfache mechanische Vorrichtungen.
+5. Einfache elektrische Gleichstromkreise.
+6. Verbindung dieser Systeme mit Experimenten und individuellem Wissen.
+
+Es wird keine vollständige Chemie-, Strahlungs- oder Mehrkörperphysik entwickelt.
+
+Unterstützte Vorgänge müssen tatsächlich funktionieren. Andere Vorgänge bleiben ausdrücklich nicht unterstützt.
+
+Ein in Excel eingetragener Stoff erhält nicht automatisch alle denkbaren realen Anwendungsmöglichkeiten.
+
+## 3. Verbindliche Regeln
+
+- Verwende einheitliche interne Einheiten.
+- Halte Masse und Energie nachvollziehbar bilanziert.
+- Kennzeichne externe Quellen und Senken.
+- Vermeide doppelt berechnete Energieflüsse.
+- Physikalische Zustände sind unabhängig von der Darstellung.
+- Numerische Verfahren müssen stabile, dokumentierte Grenzen haben.
+- Fehlende Werte werden nicht als null interpretiert.
+- Reale Referenzwerte, Näherungen und Spielparameter werden getrennt.
+- Unbekannte Kombinationen erzeugen keinen frei erfundenen Effekt.
+
+Recherchiere benötigte reale Referenzwerte anhand geeigneter Quellen, soweit Zugriff besteht. Dokumentiere Quellen und Annahmen. Erfinde keine Quellen.
+
+## 4. Module
+
+Erstelle oder erweitere:
+- scripts/physics/reaction_definition.gd
+- scripts/physics/reaction_system.gd
+- scripts/physics/combustion_system.gd
+- scripts/physics/atmosphere_reservoir.gd
+- scripts/physics/radiation_source.gd
+- scripts/physics/radiation_system.gd
+- scripts/physics/mechanism_system.gd
+- scripts/physics/mechanical_connection.gd
+- scripts/physics/electrical_component.gd
+- scripts/physics/electrical_network.gd
+- scripts/physics/electrical_solver.gd
+- scripts/physics/energy_ledger.gd
+- scripts/ui/physics_inspector.gd
+
+Erweitere vorhandene gleichwertige Komponenten. Die Dateistruktur darf angepasst werden, wenn Zuständigkeiten klar bleiben.
+
+## 5. Materialien und Excel
+
+Prüfe alle vorhandenen Stoffdefinitionen auf:
+- Dichte.
+- Wärmeleitfähigkeit.
+- Wärmekapazität.
+- Phasenmodell.
+- Mechanische Eigenschaften.
+- Elektrische Leitfähigkeit.
+- Reaktivität im unterstützten Modell.
+- Strahlungseigenschaften, falls anwendbar.
+- Darstellungsmerkmale.
+- Quellen und Unsicherheit.
+
+Ergänze insbesondere Kupfer, Titan und Schwefel, soweit diese noch fehlen.
+
+Trenne:
+- Reines Element.
+- Konkretes Material beziehungsweise Gemisch.
+- Gegenstand aus einem Material.
+- Chemischen oder physikalischen Zustand.
+
+„Radioaktiv“ ist keine allgemeine Eigenschaft aller schweren Metalle. Strahlungsquellen benötigen eine eigene konkrete Definition.
+
+Ein vorhandener Titanblock ist kein automatisch nutzbares Titanwerkzeug. Die tatsächlichen Verarbeitungsvoraussetzungen gelten weiterhin.
+
+## 6. Begrenztes Reaktionssystem
+
+Eine Reaktionsdefinition enthält:
+- Stabile ID.
+- Unterstützte Ausgangsstoffe.
+- Erforderliche Mengenverhältnisse.
+- Bedingungen.
+- Reaktionsgeschwindigkeit beziehungsweise begrenztes Ablaufmodell.
+- Produkte.
+- Energieänderung.
+- Nebenprodukte.
+- Implementierungsstatus.
+
+Implementiere zunächst:
+- Eine einfache dokumentierte Verbrennung eines Modellbrennstoffs.
+- Eine einfache Oxidationsreaktion.
+- Eine kontrollierte nicht explosive Demonstrationsreaktion, falls die vorhandenen Materialien dies sinnvoll erlauben.
+
+Die Reaktion benötigt tatsächliche Ausgangsstoffe und passende Bedingungen.
+
+Prüfe:
+- Limitierenden Ausgangsstoff.
+- Verfügbare Mengen.
+- Temperatur.
+- Kontakt beziehungsweise Mischzustand.
+- Zeit.
+- Produktmengen.
+- Energieübertragung.
+
+Keine universelle Chemie durch Sprachmodellantworten.
+
+Keine realen Explosivstoffrezepte in Projektbeispielen oder Dokumentation. Explosive Spielreaktionen können später als abstrakte, eindeutig fiktive Prozesse ergänzt werden.
+
+## 7. Atmosphäre und Verbrennung
+
+Wenn Sauerstoff und Abgase nicht räumlich vollständig simuliert werden, nutze ein ausdrücklich definiertes Atmosphärenreservoir.
+
+Dokumentiere:
+- Welche Stoffe daraus aufgenommen werden.
+- Welche Stoffe dorthin abgegeben werden.
+- Ob das Reservoir endlich oder als externe Umgebung modelliert ist.
+- Welche Effekte damit nicht simuliert werden.
+
+Behaupte keine realistische Erstickung, Rauchverteilung oder Raumlüftung ohne entsprechende Systeme.
+
+Verbrennung:
+- Verbraucht Brennstoff.
+- Benötigt die definierten Voraussetzungen.
+- Erzeugt Wärme und Produkte.
+- Kann bei fehlenden Voraussetzungen enden.
+- Beschädigt benachbarte Objekte nur über unterstützte Wärme- oder Schadenswege.
+
+Flammen und Rauchdarstellung dürfen nicht unabhängig von einem tatsächlichen Prozess weiterlaufen.
+
+## 8. Energieverwaltung
+
+Erweitere die bestehende Bilanz um:
+- Thermische Energie.
+- Elektrische Energie.
+- Unterstützte mechanische Arbeit.
+- Chemische Energie im vereinfachten Modell.
+- Explizite externe Einträge.
+- Verluste und Umgebungsaustausch.
+
+Definiere für jeden Übergang genau eine zuständige Berechnung.
+
+Beispiele:
+- Elektrischer Widerstand erzeugt Wärme.
+- Mechanische Reibung kann Wärme erzeugen.
+- Eine Energiequelle verliert den entsprechenden gespeicherten Vorrat.
+- Ein blockierter Antrieb erzeugt keine kostenlose Bewegung.
+
+Es darf keinen geschlossenen Aufbau geben, der ohne externe Quelle dauerhaft Energie gewinnt.
+
+## 9. Radioaktivität und Exposition
+
+Implementiere zunächst ein begrenztes Modell für eine klar definierte Strahlungsart und dokumentierte Geometrie.
+
+Eine Quelle besitzt:
+- ID.
+- Quelltyp.
+- Stärke mit eindeutigem Einheitenbezug.
+- Position und räumliche Ausdehnung.
+- Optionalen Zerfall.
+- Herkunft und Zustand.
+
+Definiere getrennt:
+- Quellstärke.
+- Lokale Expositionsrate.
+- Absorbierte Dosis im verwendeten Modell.
+
+Falls diese Größen nicht realistisch ineinander umgerechnet werden können, verwende klar benannte Spielgrößen. Beschrifte willkürliche Werte nicht als reale Sievert- oder Gray-Werte.
+
+Berücksichtige:
+- Abstand.
+- Verstrichene Simulationszeit.
+- Unterstützte Abschirmmaterialien.
+- Abschirmdicke.
+- Schutz gegen Singularitäten direkt an einer Quelle.
+
+Keine pauschale Behauptung, dass jedes Material alle Strahlungsarten gleich abschirmt.
+
+Quellen dürfen über eine gekennzeichnete Testszene oder das Göttermenü eingebracht werden.
+
+## 10. Biologische Strahlungsfolgen
+
+Exposition kann im Spielmodell:
+- Gesundheit beeinträchtigen.
+- Gewebe schädigen.
+- Fortpflanzungsfähigkeit beeinflussen.
+- Mutationswahrscheinlichkeiten verändern.
+
+Verwende das vorhandene Gesundheits- und Mutationssystem.
+
+Trenne:
+- Schaden am lebenden Körper.
+- Veränderung einzelner Körpermerkmale.
+- Vererbbare Veränderung.
+
+Eine hohe Exposition ist keine garantierte Verbesserung.
+
+Mutationen müssen:
+- Unterstützte Merkmale betreffen.
+- Kosten und Unverträglichkeiten beachten.
+- Sichtbar sein, soweit das betroffene Merkmal sichtbar ist.
+- Den bestehenden Vererbungsregeln folgen.
+
+Die Aufnahme eines bestrahlten Körpers ins Beet überträgt nicht automatisch sämtliche denkbaren Mutationen.
+
+Ollama darf Dosis, Gesundheit oder Genom nicht direkt verändern.
+
+## 11. Mechanische Vorrichtungen
+
+Implementiere zunächst:
+- Hebel mit definiertem Drehpunkt.
+- Rad und Achse.
+- Ein einfaches gekoppeltes Drehsystem.
+- Eine manuell angetriebene Winde oder vergleichbare Hebevorrichtung.
+
+Verwende vorhandene Körperphysik und passende Verbindungen.
+
+Jede Vorrichtung benötigt:
+- Tatsächliche Bauteile.
+- Masse und Geometrie.
+- Verbindungen.
+- Belastungsgrenzen.
+- Reibung beziehungsweise Verluste.
+- Unterstützte Antriebseinträge.
+
+Mechanische Übersetzung darf Kraft oder Drehmoment verändern, aber keine Energie erzeugen.
+
+Prüfe:
+- Bewegungsfreiheit.
+- Kollisionen.
+- Tragfähigkeit.
+- Blockade.
+- Verbindungsbruch.
+- Lastwechsel.
+
+Ein „Rad“ ohne passende Lagerung und Verbindung ist kein automatisch funktionierendes Fahrzeug.
+
+## 12. Elektrische Komponenten
+
+Beginne mit einem begrenzten Gleichstrommodell.
+
+Unterstütze:
+- Leiter.
+- Isolierende Unterbrechungen.
+- Schalter.
+- Widerstand.
+- Energiequelle mit endlichem Vorrat oder expliziter externer Versorgung.
+- Einfachen elektrischen Heizer.
+- Messbare Spannung und Stromstärke.
+
+Optional erst nach funktionierendem Grundmodell:
+- Einen begrenzten Motor als elektrische-mechanische Umwandlung.
+
+Keine vollständige Halbleiter- oder Wechselstromsimulation.
+
+Jede Komponente besitzt:
+- ID.
+- Physische Position.
+- Anschlüsse.
+- Elektrische Parameter.
+- Thermischen Zustand.
+- Belastungsgrenzen.
+- Zustand.
+
+Kupfer leitet nicht automatisch zwischen räumlich getrennten Gegenständen. Eine elektrische Verbindung benötigt tatsächlich unterstützten Kontakt oder einen Leiter.
+
+## 13. Stromkreisberechnung
+
+Erstelle den elektrischen Graphen aus gültigen Komponenten und Verbindungen.
+
+Berechne nur unterstützte Netzwerke.
+
+Behandle:
+- Offene Stromkreise.
+- Geschlossene Stromkreise.
+- Kurzschlüsse.
+- Unterbrochene Leiter.
+- Leere Energiequellen.
+- Unzulässige oder numerisch problematische Netze.
+
+Prüfe Lösungen anhand von Strom- und Leistungsbilanzen.
+
+Bei nicht unterstützten Konfigurationen:
+- Verständliche Diagnose.
+- Keine erfundene Spannung.
+- Keine instabilen unendlichen Werte.
+- Keine stillschweigende Energieerzeugung.
+
+Elektrische Erwärmung wird an das bestehende Wärmesystem übergeben.
+
+## 14. Körper und elektrische Gefahren
+
+Wenn elektrische Kontakte zu Wesen unterstützt werden:
+- Verwende ein ausdrücklich vereinfachtes Kontaktmodell.
+- Prüfe tatsächlichen Kontakt.
+- Berücksichtige unterstützte Isolierung.
+- Leite Folgen über das Gesundheitsmodell weiter.
+
+Keine scheinbar medizinisch exakte Verletzungsberechnung aus unzureichenden Parametern.
+
+Falls dieser Teil noch nicht belastbar implementiert ist, kennzeichne ihn als nicht unterstützt und verhindere widersprüchliche Demonstrationen.
+
+## 15. Herstellung und Entdeckung
+
+Neue Komponenten müssen über vorhandene Herstellungs- und Konstruktionssysteme zugänglich sein.
+
+Trenne:
+- Physikalisch implementierte Möglichkeit.
+- Als Testausrüstung vorhandenes Bauteil.
+- Von einem Wesen verstandenes Verfahren.
+- Von einem Wesen tatsächlich herstellbares Bauteil.
+
+Ein extern versorgter Testheizer beweist nicht, dass eine Gemeinschaft bereits Stromerzeugung beherrscht.
+
+Erweitere Experimente und Verfahrenswissen um die unterstützten Vorgänge.
+
+Wesen können:
+- Beobachten.
+- Vermuten.
+- Ausprobieren.
+- Ergebnisse vergleichen.
+- Verfahren dokumentieren.
+- Andere unterrichten.
+
+Keine globalen Technologie-Freischaltungen durch einen einzelnen Versuch.
+
+## 16. Ollama
+
+Erweitere die validierten Planungsschemas nur um tatsächlich implementierte Handlungen.
+
+Ollama kann:
+- Bekannte Bauteile kombinieren.
+- Ein begrenztes Experiment vorschlagen.
+- Ergebnisse aus der Perspektive des Wesens interpretieren.
+
+Ollama kann nicht:
+- Reaktionsdefinitionen zur Laufzeit beliebig erfinden.
+- Materialwerte überschreiben.
+- Energie erzeugen.
+- Neue elektrische Komponenten ohne Implementierung aktivieren.
+- Verborgene Messwerte kennen.
+- Mutationen direkt vergeben.
+
+Physikalische Wahrheit entsteht aus den Simulationssystemen.
+
+## 17. Sichtbare Darstellung
+
+Erzeuge oder erweitere prozedurale Modelle für:
+- Leiter und Verbindungen.
+- Schalter.
+- Widerstand beziehungsweise Heizer.
+- Räder, Achsen und Hebel.
+- Unterstützte Energiequelle.
+- Strahlungsquelle als klar definierten Gegenstand.
+- Messgeräte in der Testumgebung.
+
+Die Darstellung muss den Zustand widerspiegeln:
+- Getrennte Verbindung.
+- Bewegte Achse.
+- Beschädigtes Bauteil.
+- Erwärmter Gegenstand.
+- Leere Energiequelle.
+
+Unsichtbare Strahlung darf im Spiel unsichtbar bleiben. Eine Diagnoseüberlagerung wird ausdrücklich als Spielerwerkzeug gekennzeichnet und gibt Wesen kein zusätzliches Wissen.
+
+## 18. Physiklabor erweitern
+
+Erhalte alle bisherigen Testbereiche.
+
+Ergänze getrennte Stationen:
+
+A. Reaktion
+- Definierte Ausgangsstoffe.
+- Sichtbare Mengen.
+- Produkte.
+- Energieänderung.
+
+B. Strahlung
+- Definierte Quelle.
+- Mehrere Abstände.
+- Unterstützte Abschirmungen.
+- Gemessene beziehungsweise berechnete Exposition.
+
+C. Mechanik
+- Hebel und Last.
+- Rad-Achsen-Aufbau.
+- Begrenzter Antrieb.
+- Blockade und Belastungsgrenze.
+
+D. Elektrizität
+- Quelle.
+- Schalter.
+- Widerstand oder Heizer.
+- Offener und geschlossener Kreis.
+- Kurzschlussbehandlung.
+- Energieverbrauch.
+
+Testressourcen dürfen explizit erzeugt werden. Halte sie vom normalen Spielzustand getrennt.
+
+## 19. Speichern und Laden
+
+Speichere:
+- Reaktionsfortschritt.
+- Stoffmengen und Produkte.
+- Wärme- und Energiezustände.
+- Strahlungsquellen und akkumulierte Exposition.
+- Mechanische Komponenten und Verbindungen.
+- Elektrische Komponenten und Energiequellen.
+- Schadenszustände.
+- Laufende Experimente.
+
+Abgeleitete Graphen und Caches können nach dem Laden neu aufgebaut werden.
+
+Laden darf:
+- Keine Energie auffüllen.
+- Keine Reaktion doppelt ausführen.
+- Keine Dosis zurücksetzen.
+- Keine Quelle duplizieren.
+- Keine Mutationen neu würfeln.
+- Keine Verbindung unbegründet reparieren.
+
+Erweitere das Speicherformat mit Migration und Sicherung.
+
+## 20. Implementierungsreihenfolge
+
+Arbeite in folgenden überprüfbaren Abschnitten:
+1. Materialdaten und Einheiten prüfen.
+2. Gemeinsame Energie- und Stoffbilanzen ergänzen.
+3. Begrenzte Reaktionen.
+4. Strahlung und Exposition.
+5. Biologische Anbindung.
+6. Mechanische Vorrichtungen.
+7. Elektrische Grundkomponenten.
+8. Stromkreisberechnung.
+9. Experimente, Wissen und Darstellung verbinden.
+10. Speichern, Regressionstests und Dokumentation.
+
+Keine zusätzlichen Systeme beginnen, solange grundlegende Bilanz- oder Stabilitätsfehler im vorherigen Abschnitt offen sind.
+
+## 21. Abnahmetests
+
+Prüfe mindestens:
+1. Reaktionen verbrauchen reale Ausgangsstoffe.
+2. Limitierende Stoffe begrenzen die Umsetzung.
+3. Produkte und Energie werden bilanziert.
+4. Ohne unterstützte Bedingungen findet keine Reaktion statt.
+5. Exposition wächst konsistent mit Zeit.
+6. Abstand und Abschirmung wirken entsprechend dem dokumentierten Modell.
+7. Keine unendlichen Werte an einer Strahlungsquelle.
+8. Biologische Folgen laufen über Gesundheit und Mutation.
+9. Ein Hebel erzeugt keine kostenlose Arbeit.
+10. Mechanische Blockade wird kontrolliert behandelt.
+11. Ein offener Stromkreis führt keinen geschlossenen Laststrom.
+12. Ein geschlossener Stromkreis erfüllt die unterstützten Bilanzregeln.
+13. Widerstandswärme entspricht der berechneten elektrischen Leistung über die Zeit.
+14. Energiequellen werden entsprechend entladen.
+15. Kurzschlüsse erzeugen keine unendlichen numerischen Werte.
+16. Nicht unterstützte Netze werden verständlich abgewiesen.
+17. Speichern und Laden erhalten physikalische Zustände.
+18. Bestehende Spielsysteme funktionieren weiterhin.
+
+Prüfe geeignete Szenarien mit unterschiedlichen zulässigen Zeitschritten.
+
+Dokumentiere numerische Toleranzen, Stabilitätsgrenzen und tatsächlich ausgeführte Tests.
+
+## 22. Dokumentation und Abschluss
+
+Aktualisiere:
+- README.md
+- docs/architecture.md
+- docs/physics_model.md
+- docs/implementation_status.md
+- docs/progress_audit.md
+- docs/save_format.md
+- docs/test_results.md
+
+Ergänze:
+- docs/reactions.md
+- docs/radiation.md
+- docs/mechanisms.md
+- docs/electrical_systems.md
+- docs/energy_and_mass_balance.md
+
+Liefere am Ende:
+- Tatsächlich unterstützte Vorgänge.
+- Nicht unterstützte Stoffe oder Konfigurationen.
+- Bedienung der neuen Laborstationen.
+- Voraussetzungen für Herstellung durch die Wesen.
+- Verwendete Vereinfachungen.
+- Quellen der Referenzwerte.
+- Ergebnisse der Prüfungen.
+- Noch offene Blocker für die abschließende Integration.
+
+Beginne mit der Bestandsprüfung und implementiere anschließend diesen begrenzten Funktionsumfang vollständig.

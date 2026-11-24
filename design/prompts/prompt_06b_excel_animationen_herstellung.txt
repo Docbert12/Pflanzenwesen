@@ -1,0 +1,198 @@
+Wir haben Prompt 6 bearbeitet. Implementiere jetzt den Ergänzungsschritt 6B: Excel-Abgleich, sichtbare Arbeitsanimationen und eigenständige einfache Herstellung.
+
+Prüfe den tatsächlichen Code. Behaupte keine fertigen Funktionen allein aufgrund früherer Prompts oder Dokumentation.
+
+Verwende diese beigefügten Dateien:
+- Pflanzenwesen_Voxel_Datenbasis (1).xlsx
+- Erfindungen_Echt_nach_Kategorien.xlsx
+
+## 1. Originaldateien prüfen und erhalten
+
+Lies beide Arbeitsmappen vollständig und verwende den vorhandenen Importer.
+
+Verändere die Originaldateien nicht. Halte notwendige Zuordnungen und Korrekturen in einer dokumentierten Importkonfiguration fest.
+
+Prüfe insbesondere:
+- Eindeutige IDs.
+- Materialverweise.
+- Einheiten.
+- Körperteilverbindungen.
+- Animationszuordnungen.
+- Ernährungsregeln.
+- Fortpflanzungsregeln.
+- Physikalische Werte.
+- Doppelte Erfindungseinträge.
+
+Bereits bekannte Probleme:
+- In 17_Voxel_Typen verweist Kupfer auf MAT002, während MAT002 in 03_Materialien Cellulose_rein bezeichnet.
+- MAT_Erde, MAT_Gras und MAT_Holz fehlen als Material-IDs.
+- Voxel_Größe ist mit 0,1 Metern für die gesamte Welt angegeben.
+- Die Fortpflanzungstabelle enthält eine Zwei-Wesen-Regel, einen unklaren Wert von −1 Nachkommen und einen unpassenden Tabellenverweis.
+- Die Ernährung des Pflanzenwesen-Setzlings widerspricht möglicherweise dem bisherigen Spielkonzept.
+
+Explizite Projektentscheidungen haben Vorrang vor widersprüchlichen Tabelleneinträgen:
+- Nachwuchs entsteht über den Lebensbaum.
+- Körper- und Geländeauflösung sind getrennt konfigurierbar.
+- Körperzustand, Materialien und Fähigkeiten bestimmen die tatsächlichen Möglichkeiten.
+
+Unklare Angaben nicht stillschweigend in verbindliche Regeln verwandeln. Dokumentiere sie und arbeite an unabhängigen Teilen weiter.
+
+## 2. Erfindungen als Katalog integrieren
+
+Die Erfindungsdatei ist ein Katalog möglicher Ideen.
+
+Importiere:
+- Name.
+- Kategorie.
+- Quellenzeile.
+- Beschreibung.
+- Historische beziehungsweise redaktionelle Stufe als Metadatum.
+
+Die Stufe darf keine zwingende Entwicklungsreihenfolge erzeugen.
+
+Pauschale Effekte wie „+15 % Militärstärke“ dürfen nicht automatisch auf die Simulation angewendet werden.
+
+Erstelle für aktivierte Erfindungen zusätzliche strukturierte Definitionen:
+- Benötigte Materialien und Mengen.
+- Körperfähigkeiten.
+- Werkzeuge.
+- Verarbeitungsvorgänge.
+- Arbeitsschritte.
+- Zeit- und Energiebedarf.
+- Ergebnisgeometrie.
+- Messbare Funktion.
+- Erforderliche Animationen.
+- Implementierungsstatus.
+
+Identische Namen sind nicht automatisch identische Verfahren. Fasse nur tatsächlich gleichwertige Einträge zusammen und erhalte ihre Herkunft.
+
+Noch nicht implementierte Erfindungen bleiben Katalogeinträge. Sie werden den Wesen nicht als vollständiges Startwissen gegeben.
+
+## 3. Animationen mit echten Handlungen verbinden
+
+Prüfe die vorhandenen Animationen und ergänze mindestens:
+- Tragen.
+- Ablegen.
+- Hämmern beziehungsweise Schlagen.
+- Bauteile zusammenfügen.
+- Material platzieren.
+- Erhitzen bedienen.
+- Vorsichtiges Gießen mit geeignetem Behälter.
+
+Bereite Graben und Erde verdichten für die vorhandene Terrainarchitektur vor. Aktiviere diese Handlungen nur, wenn Abbau und Mengenbilanz tatsächlich funktionieren.
+
+Für jede aktive Handlung:
+- Geeignete Ausgangspose.
+- Bewegung zum Ziel.
+- Passender Werkzeug- oder Gegenstandskontakt.
+- Arbeitsphase.
+- Rückkehr in eine gültige Pose.
+- Kontrollierter Abbruch.
+
+Weder Ressourcenverbrauch noch Schaden dürfen ausschließlich von einem abgespielten Animationsclip abhängen. Das Handlungssystem ist für den tatsächlichen Vorgang zuständig.
+
+Synchronisiere Animation und Simulationsereignis eindeutig, damit ein Kontakt nicht mehrfach zählt.
+
+## 4. Körper und Gegenstände berücksichtigen
+
+Animationen verwenden:
+- Vorhandene Gelenke.
+- Reale Körperproportionen.
+- Griffpunkte.
+- Werkzeugabmessungen.
+- Tatsächliche Zielpositionen.
+
+Keine Animation darf einen entfernten Arm verwenden.
+
+Bei fehlenden Fähigkeiten:
+- Unterstützte einarmige Variante nutzen, falls implementiert.
+- Sonst Handlung nachvollziehbar ablehnen.
+
+Gehaltene Gegenstände müssen sichtbar an geeigneten Griffpunkten sitzen.
+
+Keine doppelten Gegenstände gleichzeitig in Hand, Inventar und Welt.
+
+Bewegung und Animation müssen zusammenpassen. Vermeide dauerhaftes Fußgleiten und Hämmern neben dem Ziel.
+
+## 5. Eigenständige Herstellung
+
+Die Wesen sollen einfache Herstellung aus einem konkreten Bedarf heraus beginnen können.
+
+Verwende zunächst einen kleinen vollständigen Ablauf:
+1. Ein Wesen erkennt einen bearbeitbaren Gegenstand oder eine Aufgabe.
+2. Es bewertet ein bekanntes einfaches Werkzeugverfahren.
+3. Es sucht individuell bekannte Materialien.
+4. Es holt und transportiert sie.
+5. Es führt die Arbeitsschritte aus.
+6. Es prüft das Ergebnis.
+7. Es speichert Erfolg oder Fehlschlag.
+
+Nutze das bestehende Entscheidungs-, Wissens-, Experiment- und Handlungssystem.
+
+Ollama darf einen Plan vorschlagen. Jeder Schritt benötigt reale Voraussetzungen.
+
+Bei Ressourcenmangel oder Gefahr darf das Wesen abbrechen, umplanen oder zu Grundbedürfnissen zurückkehren.
+
+Keine fest geskriptete Werkzeugherstellung für jedes Wesen beim Spielstart.
+
+## 6. Begrenzter Bauumfang nach Prompt 6
+
+Implementiere zunächst die sichtbare Herstellung eines einfachen zusammengesetzten Gegenstands, beispielsweise eines Schlagwerkzeugs.
+
+Wenn das vorhandene Konstruktionssystem bereits geeignet ist, ergänze ein einfaches Gestell aus realen Bauteilen.
+
+Vollständige gemeinsame Gebäudeprojekte gehören weiterhin zu Prompt 9.
+
+Kennzeichne klar:
+- Gegenstandsherstellung funktioniert.
+- Einfaches Einzelbauwerk funktioniert.
+- Gemeinsames Siedlungsbauen noch nicht umgesetzt.
+
+Ein Modellname wie „Haus“ oder eine fertige Gebäudegrafik ist kein Nachweis für eigenständiges Bauen.
+
+## 7. Prüfbare Demonstration
+
+Erstelle eine separate Testszene mit:
+- Einem Wesen.
+- Zugänglichen Materialien.
+- Einer geeigneten Arbeitsstelle.
+- Einer konkreten Aufgabe.
+- Sichtbarer Aktions- und Animationsanzeige.
+
+Prüfe:
+- Material suchen.
+- Hinlaufen.
+- Aufheben.
+- Tragen.
+- Ablegen.
+- Bearbeiten.
+- Verbinden.
+- Ergebnis benutzen.
+
+Ergänze Fälle mit:
+- Fehlendem Material.
+- Blockiertem Weg.
+- Fehlendem Arm.
+- Zu schwerem Gegenstand.
+- Unterbrochener Handlung.
+- Speichern und Laden während der Herstellung.
+
+Der normale Spielmodus muss denselben Ausführungscode verwenden wie die Testszene.
+
+Unterscheide einen kontrollierten Funktionstest von einer tatsächlich autonom beobachteten Entscheidung.
+
+## 8. Abschluss
+
+Liefere:
+- Importbericht mit den gefundenen Tabellenproblemen.
+- Dokumentierte Zuordnung der verwendbaren Definitionen.
+- Liste vorhandener und fehlender Animationen.
+- Funktionierenden sichtbaren Herstellungsablauf.
+- Tatsächlich getestete autonome Entscheidungen.
+- Offene Voraussetzungen für das spätere Siedlungsbauen.
+
+Aktualisiere Status, Tests und Bedienhinweise.
+
+Erstelle keine Erfolgsmeldung „alle Erfindungen implementiert“, nur weil die Excel importiert wurde.
+
+Beginne mit dem Daten- und Codeabgleich und implementiere anschließend diesen Ergänzungsschritt.

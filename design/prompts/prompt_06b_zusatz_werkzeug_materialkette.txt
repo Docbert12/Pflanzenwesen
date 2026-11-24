@@ -1,5 +1,5 @@
 Prompt 6B – Verbindliche Ergänzung (Werkzeug- und Materialkette)
-Stand 2026-11-24: Nur dieser Zusatz liegt vor; der Haupttext von Prompt 6B folgt vom Nutzer.
+Stand 2026-11-24: Haupttext in prompt_06b_excel_animationen_herstellung.txt. Der Nutzer hat diesen Zusatz am 2026-11-24 erneut als verbindlich übergeben.
 Wunsch des Nutzers: Die Wesen sollen den selbst gebauten Hammer nehmen, damit etwas kaputtschlagen, die Stücke aufnehmen und schmelzen oder irgendwo verbauen.
 
 Kurzfassung des gewünschten Ablaufs:
