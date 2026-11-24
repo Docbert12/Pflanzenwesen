@@ -1,5 +1,11 @@
 # Changelog
 
+## Repository-Umzug (keine neue Version, Stand 0.6.0)
+- Projekt ins neue Repository **Docbert12/Pflanzenwesen** übernommen (Zweige `main` und `version/v0.6.0`). Der ältere Verlauf bleibt im alten Repository `Robert-JosepSubiranaSlotos/pflanzenwesen`.
+- `docs/HANDOVER.md`: Repository-Adresse, Umzugshinweis, Zeile für Prompt 6B.
+- `design/prompts/prompt_06b_zusatz_werkzeug_materialkette.txt`: verbindlicher Zusatz zu Prompt 6B abgelegt (Haupttext folgt).
+- Entfernt/Geändert: nichts an Spiel, Daten oder Tests.
+
 ## 0.6.0-prototype – Prompt 6 (Experimente, Werkzeugherstellung, praktisches Wissen)
 - **Bestandsprüfung** `docs/progress_audit.md`: Funktionen, Dateien, Status, Evidenz und Blocker, aus Code und Testläufen (Ausgangsbasis v0.5.1: 354/354 auf 4.7.2 und 4.5).
 - **Gegenstände** (`scripts/technology/`):

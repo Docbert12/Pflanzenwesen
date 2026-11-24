@@ -6,7 +6,8 @@ Dieses Dokument ist das **Gedächtnis des Projekts**. Es hängt nicht am Chatver
 Godot-4-Spiel „Pflanzenwesen“: 3D-Voxelwelt mit 50 individuellen Pflanzenwesen (Körper aus Teilen und Materialien, Stoffwechsel, Wahrnehmung, Gedächtnis, Lernen, Beziehungen, Gespräche), Lebensbaum, Göttermenü, optionale lokale KI über Ollama. Aufgebaut in **13 Prompts**, die der Nutzer nacheinander liefert. Datenbasis: Excel `design/Pflanzenwesen_Voxel_Datenbasis.xlsx` (wird nie verändert, nur importiert).
 
 ## 1a. Repository
-- GitHub (privat): **https://github.com/Robert-JosepSubiranaSlotos/pflanzenwesen**, Hauptzweig `main` = immer der neueste ausgelieferte Stand.
+- GitHub: **https://github.com/Docbert12/Pflanzenwesen** (seit 2026-11-24), Hauptzweig `main` = immer der neueste ausgelieferte Stand.
+- **Umzug:** Bis v0.6.0 lag das Projekt in `Robert-JosepSubiranaSlotos/pflanzenwesen`. Der Stand v0.6.0 wurde unverändert übernommen (neues Repository: Zweig `version/v0.6.0`, Commit 2e60241). Der ältere Verlauf v0.1.0–v0.6.0 und die Versionszweige liegen weiter im alten Repository; die Commit-Nummern in der Tabelle unten bis v0.6.0 beziehen sich auf das alte Repository. Beide Repositorys heißen `pflanzenwesen` und lassen sich deshalb nicht in derselben Claude-Sitzung anbinden.
 - **Versionsmarken sind Zweige `version/vX.Y.Z`** (die Claude-Arbeitsumgebung darf keine Git-Tags hochladen). Ein Versionszweig wird nach der Lieferung nicht mehr verändert.
 - Das ZIP für den Nutzer enthält **kein** `.git` (Befehl in Abschnitt 5; die Arbeitsumgebung klont flach, ein mitgeliefertes `.git` hätte nur einen unvollständigen Verlauf). Der vollständige Verlauf liegt auf GitHub. Tags `vX.Y.Z` entstehen nur lokal in der Arbeitsumgebung und können nicht hochgeladen werden; maßgeblich sind die Versionszweige.
 
@@ -18,9 +19,10 @@ Godot-4-Spiel „Pflanzenwesen“: 3D-Voxelwelt mit 50 individuellen Pflanzenwes
 | v0.4.0 | 26dc574 |
 | v0.5.0 | 098a957 |
 | v0.5.1 | 2668786 (+ Doku-Nachtrag Repository) |
-| v0.6.0 | 50bc72c (+ Nachtrag Commit-Hash) |
+| v0.6.0 | 50bc72c (+ Nachtrag Commit-Hash) – altes Repository |
+| v0.6.0 (Übernahme) | 2e60241 – neues Repository `Docbert12/Pflanzenwesen`, inhaltlich identisch |
 
-**Neuer Chat:** Der Nutzer schreibt „Pflanzenwesen, Repository Robert-JosepSubiranaSlotos/pflanzenwesen, hier ist Prompt N“. Dann: Repository anbinden, klonen, diese Datei lesen. Für den Versionsvergleich die letzte Version holen: `git fetch --depth=1 origin version/vX.Y.Z` und `python3 tools/compare_versions.py git:FETCH_HEAD .` (oder `git:origin/version/vX.Y.Z`).
+**Neuer Chat:** Der Nutzer schreibt „Pflanzenwesen, Repository Docbert12/Pflanzenwesen, hier ist Prompt N“. Dann: Repository anbinden, klonen, diese Datei lesen. Für den Versionsvergleich die letzte Version holen: `git fetch --depth=1 origin version/vX.Y.Z` und `python3 tools/compare_versions.py git:FETCH_HEAD .` (oder `git:origin/version/vX.Y.Z`).
 
 ## 2. Stand
 | Prompt | Inhalt | Version | Status |
@@ -32,6 +34,7 @@ Godot-4-Spiel „Pflanzenwesen“: 3D-Voxelwelt mit 50 individuellen Pflanzenwes
 | 5 | Ollama-Anbindung, Pläne, Gespräche, Hörensagen | v0.5.0 | fertig – **echte Ollama-Verbindung noch nicht verifiziert** |
 | – | HANDOVER, Versionsvergleich, Git-Verlauf | v0.5.1 | fertig |
 | 6 | Experimente, Werkzeugherstellung, praktisches Wissen, Testwerkstatt | v0.6.0 | fertig – Modellvorschläge für Versuche **mit echtem Ollama nicht verifiziert** |
+| 6B | Durchgängige Werkzeug- und Materialkette (Hammer bauen → schlagen → Bruchstücke sammeln → lagern / verbauen / schmelzen) | – | offen – verbindlicher Zusatz liegt in `design/prompts/prompt_06b_zusatz_werkzeug_materialkette.txt`, Haupttext folgt vom Nutzer |
 | 7–10 | folgen (Texte liefert der Nutzer) | – | offen |
 | 11 | Schrift, Bücher, Wissen – Text liegt in `design/prompts/prompt_11_schrift_buecher_wissen.txt` | – | **nach 6–10** (Entscheidung des Nutzers) |
 | 12–13 | folgen | – | offen |

@@ -1,0 +1,110 @@
+Prompt 6B – Verbindliche Ergänzung (Werkzeug- und Materialkette)
+Stand 2026-11-24: Nur dieser Zusatz liegt vor; der Haupttext von Prompt 6B folgt vom Nutzer.
+Wunsch des Nutzers: Die Wesen sollen den selbst gebauten Hammer nehmen, damit etwas kaputtschlagen, die Stücke aufnehmen und schmelzen oder irgendwo verbauen.
+
+Kurzfassung des gewünschten Ablaufs:
+
+Das Wesen baut einen Hammer aus vorhandenen Teilen.
+Es nimmt genau diesen Hammer sichtbar in die Hand.
+Es schlägt damit auf einen erreichbaren Gegenstand.
+Der Gegenstand wird entsprechend Material, Werkzeug und Belastung beschädigt oder zerbrochen.
+Das Wesen sammelt die tatsächlich entstandenen Stücke.
+Es transportiert sie und entscheidet je nach Wissen und Möglichkeiten: lagern, verbauen oder in einem geeigneten Ofen schmelzen.
+Dabei darf nichts einfach verschwinden und als fertiges Ergebnis wieder erscheinen. Gegenstände, Mengen und Verarbeitung müssen zusammenhängen. Schmelzen funktioniert nur bei geeigneten Materialien und ausreichender Wärme.
+
+----------------------------------------------------------------------
+
+Verbindliche Ergänzung: Durchgängige physische Werkzeug- und Materialkette
+
+Implementiere jetzt einen vollständigen Ablauf vom selbst hergestellten Werkzeug bis zur Weiterverwendung des bearbeiteten Materials.
+
+Ein Wesen soll:
+
+Einen Hammer aus vorhandenen geeigneten Bauteilen herstellen.
+
+Diesen konkreten Gegenstand aufnehmen und ausrüsten.
+
+Ihn sichtbar an einem gültigen Griffpunkt halten.
+
+Einen erreichbaren Gegenstand mit einer passenden Schlaganimation bearbeiten.
+
+Tatsächlichen Schaden entsprechend Werkzeug, Material, Belastung und Verbindung erzeugen.
+
+Entstandene Bruchstücke aufnehmen.
+
+Diese transportieren.
+
+Sie lagern, an einer geeigneten Stelle verbauen oder einer unterstützten Schmelzverarbeitung zuführen.
+
+Verwende für alle Schritte dieselben tatsächlichen Gegenstände und Materialmengen.
+
+Werkzeug und Schlag
+Der hergestellte Hammer erhält eine eindeutige ID.
+
+Ausrüsten darf keine grafische Kopie erzeugen, während das Original am Boden liegen bleibt.
+
+Griff, Hammerkopf und Verbindung bestimmen seine Nutzbarkeit.
+
+Das Wesen benötigt passende Körperfähigkeiten und ausreichende Tragfähigkeit.
+
+Der Schlag benötigt Reichweite, Zeit und Energie.
+
+Schaden wird durch das Handlungssystem berechnet und mit dem sichtbaren Kontakt synchronisiert.
+
+Ein Schlag darf nicht mehrfach Schaden auslösen, weil mehrere Animationsframes dieselbe Kontaktphase zeigen.
+
+Werkzeug und Verbindung können verschleißen oder beschädigt werden.
+
+Bruchstücke
+Ein zerbrochener Gegenstand hinterlässt tatsächliche Materialstücke oder begrenzte Materialhaufen.
+
+Materialart und Gesamtmasse bleiben erhalten.
+
+Temperatur und andere relevante Zustände werden korrekt übertragen.
+
+Nicht jeder Hammerschlag zerbricht jedes Material.
+
+Verformung statt Bruch muss möglich sein, wenn das unterstützte Materialmodell dies vorsieht.
+
+Weiterverwendung
+Implementiere drei überprüfbare Wege:
+
+Aufnehmen und in ein reales Lager bringen.
+
+An eine Baustelle transportieren und als geeignetes Bauteil oder Material verwenden.
+
+In einen geeigneten Behälter beziehungsweise Ofen bringen und bei ausreichender Energie schmelzen.
+
+Schmelzen ist keine universelle Recyclingaktion. Ungeeignete Materialien werden abgewiesen beziehungsweise nach ihren unterstützten Materialregeln behandelt.
+
+Ein vorhandener Testofen darf als Testausrüstung verwendet werden. Das ist kein Nachweis dafür, dass die Wesen bereits selbst Öfen bauen können.
+
+Autonomie
+Das Wesen soll eine passende Handlungskette aus einem eigenen Bedarf und seinem vorhandenen Wissen wählen können.
+
+Ollama darf einen begrenzten Plan vorschlagen. Bewegung, Werkzeugkontakt, Materialänderung und Ressourcenverbrauch erfolgen ausschließlich über geprüfte Spielhandlungen.
+
+Bei fehlendem Werkzeug, ungeeignetem Material, blockiertem Weg oder fehlender Wärmequelle muss der Ablauf nachvollziehbar stoppen oder umgeplant werden.
+
+Nachweis
+Erstelle eine sichtbare Testszene, in der ich den gesamten Ablauf beobachten kann.
+
+Zeige beim ausgewählten Wesen:
+
+Aktuelles Ziel.
+
+Laufende Handlung.
+
+Werkzeug-ID.
+
+Zielobjekt.
+
+Transportierte Materialmenge.
+
+Fortschritt.
+
+Gegebenenfalls Abbruchgrund.
+
+Prüfe zusätzlich einen autonom gestarteten Durchlauf. Dokumentiere getrennt, ob nur die kontrollierte Handlungskette funktioniert oder auch die eigenständige Entscheidung tatsächlich beobachtet wurde.
+
+Dieser Ablauf ist ein Abschlusskriterium für Prompt 6B. Verschiebe ihn nicht vollständig auf den späteren Siedlungsbau.
