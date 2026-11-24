@@ -33,12 +33,22 @@ func validate_start(a: GameAction, ctx: LifeContext) -> ActionResult:
 			return r0
 	if ctx.distance_xz(cr.position, h.position) > TechActionUtil.reach_m(ctx):
 		return ActionResult.fail("out_of_reach", "Heizung #%d außer Reichweite." % hid)
+	# Prompt 6B: nur unterstützte Schmelzgüter (keine universelle Recyclingaktion)
+	for p in ConstructionSystem.parts_of(ctx, top):
+		if (p as MaterialPiece).shape == "cup":
+			for c in ConstructionSystem.contents_of(ctx, p.id):
+				var ms := MaterialProcessSystem.melt_support(c.material(), (p as MaterialPiece).material())
+				if not ms["ok"]:
+					return ActionResult.fail("unsuitable_for_melting", "Inhalt #%d: %s" % [c.id, ms["message"]])
 	return ActionResult.success()
 
 
 func step(a: GameAction, ctx: LifeContext, _dt: float) -> ActionResult:
 	var d := estimate_s(a, ctx)
 	a.progress = clampf(a.elapsed_s / d, 0.0, 1.0)
+	var h: TestHeater = ctx.heaters.get(int(a.params.get("heater", 0)), null)
+	if h != null:
+		WorkMotion.set_anim(a, "operate_heater", "work", a.progress, h.slot_position(), {"heater": h.id, "object": a.target_id})
 	if a.elapsed_s < d:
 		return ActionResult.success()
 	var cr := ctx.creature(a.actor_id)

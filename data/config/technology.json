@@ -12,7 +12,28 @@
   },
   "temperature": {
     "_note": "Wahrnehmbare Kategorien (ohne Messmittel) und Kontaktverletzung. handle_safe_k: bis hier gefahrlos greifbar; darüber Verbrennung je Kelvin Überschreitung und Sekunde Kontakt.",
-    "categories": [[305.0, "kühl"], [318.0, "lauwarm"], [333.0, "warm"], [373.0, "heiß"], [798.0, "sehr heiß (Hitze aus Abstand spürbar)"]],
+    "categories": [
+      [
+        305.0,
+        "kühl"
+      ],
+      [
+        318.0,
+        "lauwarm"
+      ],
+      [
+        333.0,
+        "warm"
+      ],
+      [
+        373.0,
+        "heiß"
+      ],
+      [
+        798.0,
+        "sehr heiß (Hitze aus Abstand spürbar)"
+      ]
+    ],
     "glow_label": "glühend",
     "handle_safe_k": 318.15,
     "burn_damage_per_k_s": 0.0008,
@@ -47,7 +68,13 @@
       "handle_min_length_m": 0.2,
       "handle_max_diameter_m": 0.05,
       "head_max_kg": 1.0,
-      "skill_fit": {"none": 0.45, "gehört": 0.55, "zugesehen": 0.75, "versucht": 0.85, "erfolgreich": 1.0}
+      "skill_fit": {
+        "none": 0.45,
+        "gehört": 0.55,
+        "zugesehen": 0.75,
+        "versucht": 0.85,
+        "erfolgreich": 1.0
+      }
     },
     "test_fixture": {
       "_note": "Fest montierte Verbindung NUR für ausdrücklich platzierte Testausrüstung (Tiegel mit Griff). Für Wesen nicht verfügbar.",
@@ -104,7 +131,12 @@
   "knowledge": {
     "procedures_max": 16,
     "versions_max": 8,
-    "level_order": ["gehört", "zugesehen", "versucht", "erfolgreich"]
+    "level_order": [
+      "gehört",
+      "zugesehen",
+      "versucht",
+      "erfolgreich"
+    ]
   },
   "teaching": {
     "demo_visibility_m": 6.0,
@@ -114,5 +146,70 @@
     "watch_weight": 0.3,
     "practice_weight": 0.3,
     "watch_wait_s": 12.0
+  },
+  "motion": {
+    "_note": "Prompt 6B: Arbeitsbewegungen. Jede Arbeitshandlung: Anlauf zum Arbeitsplatz (echte Fortbewegung, Voxelprüfung) → Ausgangspose → Arbeitsphase (ggf. genau ein Kontakt) → Rückkehr. SPIELPARAMETER.",
+    "approach_speed_factor": 0.6,
+    "approach_max_m": 1.4,
+    "approach_budget_s": 2.5,
+    "stand_tolerance_m": 0.04,
+    "prepare_s": 0.25,
+    "recover_s": 0.3,
+    "put_down_s": 0.7,
+    "one_arm_lashing_time_factor": 1.8,
+    "one_arm_lashing_fit_factor": 0.8,
+    "_one_arm_note": "Einarmige Variante des Umwickelns: dauert 1,8-mal so lange, Umwicklung weniger straff (Passung ·0,8). Annahme, Spielparameter."
+  },
+  "storage": {
+    "_note": "Prompt 6B: reale Lagerplätze. Kapazität je Bodenfläche; nur einzelne, feste, nicht heiße Stücke; kein Zusammenführen zu Stapeln. SPIELPARAMETER.",
+    "capacity_kg_per_m2": 40.0,
+    "capacity_m3_per_m2": 0.03,
+    "max_temperature_k": 333.0,
+    "deposit_s": 1.2
+  },
+  "structures": {
+    "_note": "Prompt 6B: im Code unterstützte, parametrisierte Baupläne für EINZELBAUWERKE. Gemeinsames Bauen, Projekte und Siedlungen folgen in Prompt 9.",
+    "place_s": 1.6,
+    "steinreihe": {
+      "label": "Steinreihe",
+      "slots": 3,
+      "spacing_m": 0.22,
+      "materials": [
+        "stone"
+      ],
+      "shapes": [
+        "lump",
+        "block"
+      ],
+      "min_kg": 0.12,
+      "max_kg": 2.2,
+      "_note": "Je Platz ein einzelnes festes Steinstück 0,12–2,2 kg. Zu große Steine müssen erst zerkleinert werden."
+    }
+  },
+  "containers": {
+    "_note": "Prompt 6B: Stücke in einen Tiegel legen. Zweck „schmelzen“ nur für Materialien mit unterstütztem Schmelzmodell (MaterialProcessSystem.melt_support).",
+    "put_in_s": 1.2
+  },
+  "work": {
+    "_note": "Prompt 6B: Arbeitsketten aus eigenem Bedarf (Werkzeug herstellen → bearbeiten → Bruchstücke sammeln → lagern/verbauen/schmelzen). Konkurriert im einzigen Entscheider mit allen anderen Optionen; Überleben hat Vorrang. SPIELPARAMETER, kalibriert in der Testszene.",
+    "enabled": true,
+    "weight": 0.55,
+    "max_hunger": 0.5,
+    "cooldown_s": 20.0,
+    "pause_max_s": 240.0,
+    "max_steps": 80,
+    "max_replans": 4,
+    "candidate_radius_m": 14.0,
+    "distance_weight_per_m": 0.01,
+    "need_site": 0.45,
+    "need_store": 0.3,
+    "need_cast": 0.35,
+    "need_start_site": 0.2,
+    "start_site_min_persistence": 0.55,
+    "start_site_min_stones": 1,
+    "start_site_cooldown_s": 600.0,
+    "tool_min_level": "gehört",
+    "move_retries": 2,
+    "_need_note": "Bedarf je Anlass: eigene Baustelle mit freien Plätzen (need_site), selbst erzeugte lose Stücke + bekanntes Lager mit Platz (need_store), bekanntes Gießverfahren + Kupfer + Tiegel + Ofen + Form (need_cast), eigenes Einzelbauwerk beginnen (need_start_site, nur beharrliche Wesen, selten)."
   }
 }

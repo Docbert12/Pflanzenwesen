@@ -26,8 +26,8 @@ func validate_start(a: GameAction, ctx: LifeContext) -> ActionResult:
 	return ActionResult.success()
 
 
-func step(a: GameAction, ctx: LifeContext, _dt: float) -> ActionResult:
-	return TechActionUtil.strike_series(a, ctx, 1, true)
+func step(a: GameAction, ctx: LifeContext, dt: float) -> ActionResult:
+	return TechActionUtil.strike_series(a, ctx, 1, true, dt)
 
 
 func power_w(a: GameAction, _ctx: LifeContext) -> float:

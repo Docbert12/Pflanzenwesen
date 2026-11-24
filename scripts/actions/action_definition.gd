@@ -57,6 +57,13 @@ const TYPES := {
 		"description": "Ein selbst erfolgreich ausgeführtes Verfahren sichtbar vorführen (echter Vorgang mit echten Gegenständen)."},
 	"practice_procedure": {"capabilities": ["grasp"], "target": "none", "interruptible": true, "reserves": false, "on_load": "cancel",
 		"description": "Ein gehörtes oder gesehenes Verfahren selbst üben (eigener Versuch)."},
+	# ── Prompt 6B: Werkzeug- und Materialkette (Lagern, Verbauen, in den Tiegel legen) ──
+	"deposit_in_storage": {"capabilities": ["grasp"], "target": "entity", "interruptible": true, "reserves": false, "on_load": "cancel",
+		"description": "Gehaltenes Stück an einem freien Platz eines realen Lagers ablegen (Kapazität, Temperatur geprüft)."},
+	"place_building_part": {"capabilities": ["grasp"], "target": "entity", "interruptible": true, "reserves": false, "on_load": "cancel",
+		"description": "Gehaltenes Stück an einer Baustelle auf einen freien Platz setzen (Bauplan, Untergrund geprüft)."},
+	"put_into_container": {"capabilities": ["grasp"], "target": "entity", "interruptible": true, "reserves": false, "on_load": "cancel",
+		"description": "Gehaltenes Stück in einen Tiegel legen (nur unterstützte Schmelzgüter, freies Volumen geprüft)."},
 }
 
 
@@ -65,10 +72,12 @@ const LABELS := {"move_to": "Gehen", "pick_up": "Aufnehmen", "eat": "Essen", "dr
 	"decline_request": "Bitte ablehnen", "raise_arms": "Arme heben", "talk": "Sprechen",
 	"inspect_object": "Untersuchen", "equip_tool": "In die Hand nehmen", "strike_target": "Schlagen", "deform_material": "Verformen",
 	"connect_parts": "Verbinden", "disconnect_parts": "Lösen", "place_in_heater": "In die Heizung setzen", "pour_into_mold": "Gießen",
-	"demonstrate_procedure": "Vorführen", "practice_procedure": "Üben"}
+	"demonstrate_procedure": "Vorführen", "practice_procedure": "Üben",
+	"deposit_in_storage": "Einlagern", "place_building_part": "Verbauen", "put_into_container": "In den Tiegel legen"}
 
 const TECH_TYPES := ["inspect_object", "equip_tool", "strike_target", "deform_material", "connect_parts", "disconnect_parts",
-	"place_in_heater", "pour_into_mold", "demonstrate_procedure", "practice_procedure"]
+	"place_in_heater", "pour_into_mold", "demonstrate_procedure", "practice_procedure",
+	"deposit_in_storage", "place_building_part", "put_into_container"]
 
 
 static func label(t: String) -> String:

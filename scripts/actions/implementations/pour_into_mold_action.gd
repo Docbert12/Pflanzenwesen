@@ -60,6 +60,11 @@ func validate_step(a: GameAction, ctx: LifeContext) -> ActionResult:
 func step(a: GameAction, ctx: LifeContext, dt: float) -> ActionResult:
 	var cr := ctx.creature(a.actor_id)
 	var g := ConstructionSystem.grip_piece(ctx, a.target_id)
+	# Prompt 6B: vorsichtiges Gießen – langsames Neigen über die Gießdauer (Darstellung liest nur)
+	var mold_p: MaterialPiece = ctx.material_pieces.get(int(a.params.get("mold", 0)), null)
+	if mold_p != null:
+		WorkMotion.set_anim(a, "pour", "work", a.elapsed_s / maxf(0.1, estimate_s(a, ctx)), mold_p.position + Vector3(0, mold_p.dims_m.y + 0.04, 0),
+			{"object": a.target_id, "mold": mold_p.id})
 	# Während des Gießens hält die Hand den Griff: Wärme fließt in die Hand (bilanziert)
 	if g != null:
 		ctx.sim.thermal.transfer_to_body(g, float(ctx.tc("temperature").get("hand_conductance_w_k", 0.25)), 310.0, dt)

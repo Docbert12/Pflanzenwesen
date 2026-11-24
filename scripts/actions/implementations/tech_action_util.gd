@@ -44,12 +44,37 @@ static func strike_key(ctx: LifeContext, cr: Creature, target: MaterialPiece) ->
 	return ProceduralKnowledge.strike_key(contact, tool_form(ctx, cr.held_object_id), target.material_id)
 
 
-## Schlagfolge: n Schläge auf target, jeder Schlag wirkt erst am Ende seiner Dauer (unterbrechbar:
-## bereits ausgeführte Schläge bleiben wirksam, verbrauchte Energie wird nicht erstattet).
-## a.state: strikes_done, next_strike_at, log, thickness0. Rückgabe ActionResult (done bei Ende).
-static func strike_series(a: GameAction, ctx: LifeContext, n: int, stop_on_break: bool) -> ActionResult:
+## Schlagfolge: n Schläge auf target (Prompt 6B mit Bewegungsphasen):
+##   approach: zum Standpunkt gehen, an dem der Werkzeugkopf (bzw. die Hand) beim Kontakt genau auf
+##             dem Ziel liegt (WorkPose/WorkMotion) und zum Ziel drehen
+##   work:     je Schlag Ausholen über die Schlagdauer; am Ende genau EIN Kontakt (Simulationsereignis)
+##   recover:  nach dem letzten Schlag zurück in eine gültige Haltepose
+## Jeder Schlag wirkt nur am Kontaktzeitpunkt (a.state.contacts zählt die Kontakte); die Animation
+## liest die Phase nur und kann keinen zusätzlichen Schaden auslösen. Unterbrechbar: bereits
+## ausgeführte Schläge bleiben wirksam, verbrauchte Energie wird nicht erstattet.
+static func strike_series(a: GameAction, ctx: LifeContext, n: int, stop_on_break: bool, dt: float = 1.0 / 60.0) -> ActionResult:
 	var cr := ctx.creature(a.actor_id)
 	var target: MaterialPiece = ctx.material_pieces.get(a.target_id, null)
+	# Rückkehrphase nach dem letzten Kontakt
+	if a.state.has("recover_until"):
+		WorkMotion.set_anim(a, "strike", "recover", 1.0 - (float(a.state["recover_until"]) - a.elapsed_s) / maxf(1e-6, float(a.state.get("recover_s", 0.3))), null)
+		if a.elapsed_s >= float(a.state["recover_until"]):
+			return ActionResult.success(str(a.state.get("final_msg", "")), {"done": true})
+		return ActionResult.success()
+	if not a.state.get("approached", false):
+		if target == null:
+			return ActionResult.fail("target_lost", "Ziel existiert nicht mehr.")
+		var tool_h := WorkPose.tool_reach(ctx, cr.held_object_id)
+		var tt := WorkMotion.target_height(ctx, cr, a.target_id, target.position)
+		var ap := WorkMotion.approach(a, ctx, dt, tt, "strike", tool_h)
+		if ap["blocked"]:
+			return ActionResult.fail("blocked", str(ap["reason"]))
+		if not ap["done"]:
+			return ActionResult.success()
+		a.state["approached"] = true
+		a.state["t0"] = a.elapsed_s
+		a.state["tool_h"] = tool_h
+		a.state["contacts"] = 0
 	if not a.state.has("strikes_done"):
 		a.state["strikes_done"] = 0
 		a.state["log"] = []
@@ -61,20 +86,28 @@ static func strike_series(a: GameAction, ctx: LifeContext, n: int, stop_on_break
 		var sw0 := ToolUseSystem.swing(ctx, cr, cr.held_object_id)
 		if not sw0["ok"]:
 			return ActionResult.fail(str(sw0["code"]), str(sw0["message"]))
-		a.state["next_strike_at"] = float(sw0["duration_s"])
+		a.state["next_strike_at"] = float(a.state.get("t0", 0.0)) + float(sw0["duration_s"])
+		a.state["swing_s"] = float(sw0["duration_s"])
 		a.state["power_w"] = float(sw0["power_w"])
 		a.state["key"] = strike_key(ctx, cr, target)
 	if target == null:
 		a.consumed["strikes"] = a.state["strikes_done"]
 		if int(a.state["strikes_done"]) > 0:
-			return ActionResult.success("Ziel zerbrochen nach %d Schlägen." % int(a.state["strikes_done"]), {"done": true})
+			return _strike_recover(a, ctx, "Ziel zerbrochen nach %d Schlägen." % int(a.state["strikes_done"]))
 		return ActionResult.fail("target_lost", "Ziel existiert nicht mehr.")
 	a.progress = clampf(float(a.state["strikes_done"]) / maxf(1.0, n), 0.0, 1.0)
+	var top_now := WorkMotion.target_height(ctx, cr, a.target_id, target.position)
 	if a.elapsed_s < float(a.state["next_strike_at"]):
+		var sws := float(a.state.get("swing_s", 1.0))
+		WorkMotion.set_anim(a, "strike", "work", 1.0 - (float(a.state["next_strike_at"]) - a.elapsed_s) / maxf(1e-6, sws), top_now,
+			{"tool_h": float(a.state.get("tool_h", 0.0)), "contacts": int(a.state.get("contacts", 0)), "tool": cr.held_object_id})
 		return ActionResult.success()
+	# ── Kontakt: genau ein Simulationsereignis je Schlag ──
 	var r := ToolUseSystem.strike(ctx, cr, a.target_id)
 	if not r["ok"]:
 		return ActionResult.fail(str(r.get("code", "strike_failed")), str(r["message"]))
+	a.state["contacts"] = int(a.state.get("contacts", 0)) + 1
+	WorkMotion.set_anim(a, "strike", "contact", 1.0, top_now, {"contacts": a.state["contacts"], "tool": cr.held_object_id})
 	a.state["strikes_done"] = int(a.state["strikes_done"]) + 1
 	a.state["mech_j"] = float(a.state["mech_j"]) + float(r["energy_j"])
 	var lg: Array = a.state["log"]
@@ -83,7 +116,8 @@ static func strike_series(a: GameAction, ctx: LifeContext, n: int, stop_on_break
 	while lg.size() > 40:
 		lg.pop_front()
 	a.consumed = {"strikes": a.state["strikes_done"], "mechanical_j": a.state["mech_j"], "key": a.state["key"],
-		"thickness0_m": a.state["thickness0"], "strain0": a.state["strain0"], "damage0": a.state["damage0"], "log": lg.duplicate(true)}
+		"thickness0_m": a.state["thickness0"], "strain0": a.state["strain0"], "damage0": a.state["damage0"], "log": lg.duplicate(true),
+		"contacts": a.state["contacts"], "tool": int(a.state.get("tool0", 0))}
 	if ctx.material_pieces.has(a.target_id):
 		var t2: MaterialPiece = ctx.material_pieces[a.target_id]
 		a.consumed["thickness_m"] = t2.dims_m.y
@@ -95,16 +129,30 @@ static func strike_series(a: GameAction, ctx: LifeContext, n: int, stop_on_break
 	if r["broke"]:
 		a.consumed["tool_broke"] = true
 		if stop_on_break:
-			return ActionResult.success("Werkzeugverbindung gebrochen nach %d Schlägen." % int(a.state["strikes_done"]), {"done": true})
+			return _strike_recover(a, ctx, "Werkzeugverbindung gebrochen nach %d Schlägen." % int(a.state["strikes_done"]))
 	if not ctx.material_pieces.has(a.target_id):
-		return ActionResult.success("Ziel zerbrochen.", {"done": true})
+		return _strike_recover(a, ctx, "Ziel zerbrochen.")
 	if int(a.state["strikes_done"]) >= n:
-		return ActionResult.success("%d Schläge ausgeführt." % n, {"done": true})
+		return _strike_recover(a, ctx, "%d Schläge ausgeführt." % n)
 	var sw := ToolUseSystem.swing(ctx, cr, cr.held_object_id)
 	if not sw["ok"]:
 		return ActionResult.fail(str(sw["code"]), str(sw["message"]))
 	a.state["next_strike_at"] = a.elapsed_s + float(sw["duration_s"])
+	a.state["swing_s"] = float(sw["duration_s"])
 	a.state["power_w"] = float(sw["power_w"])
+	return ActionResult.success()
+
+
+## Nach dem letzten Kontakt: kurze Rückkehrphase, danach erfolgreich beendet.
+static func _strike_recover(a: GameAction, ctx: LifeContext, msg: String) -> ActionResult:
+	var rs := float(ctx.tc("motion").get("recover_s", 0.3))
+	a.state["recover_s"] = rs
+	a.state["recover_until"] = a.elapsed_s + rs
+	a.state["final_msg"] = msg
+	a.state["power_w"] = 0.0
+	a.progress = 1.0
+	if rs <= 0.0:
+		return ActionResult.success(msg, {"done": true})
 	return ActionResult.success()
 
 

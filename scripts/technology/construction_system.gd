@@ -136,13 +136,17 @@ static func max_temperature_k(ctx: LifeContext, id: int) -> float:
 
 ## Verbindet Stiel und Kopf mit Fasern (lashing). Prüft die Methode über ConnectionDefinition.
 ## actor_id: Erbauer (0 = Testausrüstung). Fasern über dem Bedarf bleiben als eigenes Stück liegen.
-static func connect_lashing(ctx: LifeContext, actor_id: int, handle_id: int, head_id: int, fiber_id: int, skill_level: String, label: String = "") -> Dictionary:
+static func connect_lashing(ctx: LifeContext, actor_id: int, handle_id: int, head_id: int, fiber_id: int, skill_level: String, label: String = "", quality: float = 1.0) -> Dictionary:
 	var handle: MaterialPiece = ctx.material_pieces.get(handle_id, null)
 	var head: MaterialPiece = ctx.material_pieces.get(head_id, null)
 	var fiber: MaterialPiece = ctx.material_pieces.get(fiber_id, null)
 	var chk := ConnectionDefinition.check_lashing(ctx, handle, head, fiber, skill_level)
 	if not chk["ok"]:
 		return chk
+	if quality < 1.0:
+		# Prompt 6B: einarmige Variante – Umwicklung weniger straff (dokumentierter Spielparameter)
+		chk["capacity_j"] = float(chk["capacity_j"]) * quality
+		chk["fit"] = float(chk["fit"]) * quality
 	var binding := fiber
 	var rest_id := 0
 	var use := float(chk["fiber_use_kg"])

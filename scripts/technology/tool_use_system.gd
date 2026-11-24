@@ -56,7 +56,11 @@ static func hand_hardness(cr: Creature, ctx: LifeContext) -> float:
 
 static func hand_position(cr: Creature) -> Vector3:
 	var fwd := Vector3(sin(cr.heading), 0.0, cos(cr.heading))
-	return cr.position + Vector3(0, 0.32, 0) + fwd * 0.18
+	var right := Vector3(cos(cr.heading), 0.0, -sin(cr.heading))
+	if cr.hold_mode == "two":
+		return cr.position + Vector3(0, 0.36, 0) + fwd * 0.2        # vor der Brust, zwischen beiden Händen
+	var side := cr.hold_side if cr.hold_side != "" else str(cr.caps.get("grasp_side", "r"))
+	return cr.position + Vector3(0, 0.32, 0) + fwd * 0.18 + right * (0.06 if side == "r" else -0.06)
 
 
 static func carry_limit_kg(cr: Creature, ctx: LifeContext) -> float:
@@ -68,12 +72,47 @@ static func swing_limit_kg(cr: Creature, ctx: LifeContext) -> float:
 
 
 static func free_hands(cr: Creature) -> int:
+	var n := grasp_hands(cr)
+	var used := (1 if cr.carried_item_id != 0 else 0) + ((2 if cr.hold_mode == "two" else 1) if cr.held_object_id != 0 else 0)
+	return n - used
+
+
+## Anzahl greiffähiger Hände (Hand oder Hakenprothese mit Greifwert > 0).
+static func grasp_hands(cr: Creature) -> int:
 	var n := 0
 	for s in cr.caps.get("grasp_by_side", {}):
 		if float(cr.caps["grasp_by_side"][s]) > 0.0:
 			n += 1
-	var used := (1 if cr.carried_item_id != 0 else 0) + (1 if cr.held_object_id != 0 else 0)
-	return n - used
+	return n
+
+
+## Tragegrenze mit beiden Händen (Prompt 6B): Summe der Greifwerte beider Seiten.
+static func carry_limit_two_kg(cr: Creature, ctx: LifeContext) -> float:
+	var g := 0.0
+	for s in cr.caps.get("grasp_by_side", {}):
+		g += maxf(0.0, float(cr.caps["grasp_by_side"][s]))
+	return float(cfg(ctx, "hands").get("carry_kg_per_body_kg", 0.15)) * cr.mass_kg * g
+
+
+## Prompt 6B: Aufnehmen zum TRAGEN. Wie check_grasp, aber ein Stück, das für eine Hand zu schwer ist,
+## darf mit BEIDEN freien Händen getragen werden (nur einzelne Stücke, kein Werkzeuggebrauch).
+## Rückgabe {ok, mode ("one"|"two"), code, message}.
+static func check_carry(ctx: LifeContext, cr: Creature, id: int) -> Dictionary:
+	var g := check_grasp(ctx, cr, id)
+	if g.ok:
+		return {"ok": true, "mode": "one", "code": "ok", "message": g.message}
+	if g.code != "too_heavy":
+		return {"ok": false, "mode": "", "code": g.code, "message": g.message}
+	var top := ConstructionSystem.top_id(ctx, id)
+	var mass := ConstructionSystem.mass_of(ctx, top)
+	var lim2 := carry_limit_two_kg(cr, ctx)
+	if grasp_hands(cr) < 2:
+		return {"ok": false, "mode": "", "code": "too_heavy", "message": "Zu schwer für eine Hand (%.2f kg > %.2f kg); eine zweite greiffähige Hand fehlt." % [mass, carry_limit_kg(cr, ctx)]}
+	if cr.carried_item_id != 0 or cr.held_object_id != 0:
+		return {"ok": false, "mode": "", "code": "hands_full", "message": "Für %.2f kg werden beide Hände gebraucht – erst ablegen." % mass}
+	if mass > lim2:
+		return {"ok": false, "mode": "", "code": "too_heavy", "message": "Auch mit beiden Händen zu schwer (%.2f kg > %.2f kg)." % [mass, lim2]}
+	return {"ok": true, "mode": "two", "code": "ok", "message": "mit beiden Händen"}
 
 
 # ── Temperatur (wahrnehmbar vs. exakt) ───────────
@@ -150,6 +189,8 @@ static func check_grasp(ctx: LifeContext, cr: Creature, id: int) -> ActionResult
 		return ActionResult.fail("reserved", "#%d ist von einem anderen Wesen reserviert." % top)
 	if mp != null and mp.container_id != 0 and ctx.material_pieces.has(mp.container_id):
 		return ActionResult.fail("in_container", "#%d liegt in Behälter/Form #%d." % [top, mp.container_id])
+	if mp != null and mp.structure_id != 0:
+		return ActionResult.fail("built_in", "#%d ist in Bauwerk #%d verbaut." % [top, mp.structure_id])
 	var grip := ConstructionSystem.grip_piece(ctx, top)
 	if grip == null:
 		return ActionResult.fail("no_grip", "Kein Griffbereich.")
@@ -167,10 +208,14 @@ static func check_grasp(ctx: LifeContext, cr: Creature, id: int) -> ActionResult
 	return ActionResult.success()
 
 
-static func hold(ctx: LifeContext, cr: Creature, id: int) -> void:
+static func hold(ctx: LifeContext, cr: Creature, id: int, mode: String = "one") -> void:
 	var top := ConstructionSystem.top_id(ctx, id)
+	if ctx.material_pieces.has(top) and (ctx.material_pieces[top] as MaterialPiece).storage_id != 0:
+		StorageSystem.take_out(ctx, ctx.material_pieces[top], cr.id)
 	ConstructionSystem.set_carrier(ctx, top, cr.id)
 	cr.held_object_id = top
+	cr.hold_mode = mode
+	cr.hold_side = str(cr.caps.get("grasp_side", "r"))
 	if ctx.assemblies.has(top):
 		(ctx.assemblies[top] as Assembly).container_id = 0
 	ConstructionSystem.sync_positions(ctx)
@@ -181,6 +226,8 @@ static func release(ctx: LifeContext, cr: Creature, reason: String) -> int:
 	if top == 0:
 		return 0
 	cr.held_object_id = 0
+	cr.hold_mode = ""
+	cr.hold_side = ""
 	ConstructionSystem.set_carrier(ctx, top, 0)
 	var ground := cr.position + Vector3(sin(cr.heading), 0.0, cos(cr.heading)) * 0.25
 	if ctx.assemblies.has(top):
@@ -189,6 +236,24 @@ static func release(ctx: LifeContext, cr: Creature, reason: String) -> int:
 		(ctx.material_pieces[top] as MaterialPiece).position = ground + Vector3(0, 0.02, 0)
 	ConstructionSystem.sync_positions(ctx)
 	ctx.log_event("object_released", [cr.id, top], {"reason": reason})
+	return top
+
+
+## Prompt 6B: gehaltenen Gegenstand GENAU an pos ablegen (Lagerplatz, Bauplatz, Boden vor dem Wesen).
+static func release_at(ctx: LifeContext, cr: Creature, pos: Vector3, reason: String) -> int:
+	var top := cr.held_object_id
+	if top == 0:
+		return 0
+	cr.held_object_id = 0
+	cr.hold_mode = ""
+	cr.hold_side = ""
+	ConstructionSystem.set_carrier(ctx, top, 0)
+	if ctx.assemblies.has(top):
+		(ctx.assemblies[top] as Assembly).position = pos
+	elif ctx.material_pieces.has(top):
+		(ctx.material_pieces[top] as MaterialPiece).position = pos
+	ConstructionSystem.sync_positions(ctx)
+	ctx.log_event("object_released", [cr.id, top], {"reason": reason, "position": [snappedf(pos.x, 0.01), snappedf(pos.y, 0.01), snappedf(pos.z, 0.01)]})
 	return top
 
 
@@ -397,6 +462,10 @@ static func place_in_heater(ctx: LifeContext, cr: Creature, obj_id: int, heater_
 		return {"ok": false, "code": "no_container", "message": "Nur ein unterstützter Behälter (Tiegel) darf in die Heizung."}
 	if cup.material().valid_max_k < 1000.0:
 		return {"ok": false, "code": "container_incompatible", "message": "Behältermaterial %s ist für die Heizung ungeeignet." % cup.material().display_name}
+	for c in ConstructionSystem.contents_of(ctx, cup.id):
+		var ms := MaterialProcessSystem.melt_support(c.material(), cup.material())
+		if not ms["ok"]:
+			return {"ok": false, "code": "unsuitable_for_melting", "message": "Inhalt #%d: %s" % [c.id, ms["message"]]}
 	if cr != null and cr.held_object_id == top:
 		cr.held_object_id = 0
 		ConstructionSystem.set_carrier(ctx, top, 0)

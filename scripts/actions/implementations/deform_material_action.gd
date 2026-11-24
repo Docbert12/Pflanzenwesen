@@ -36,8 +36,8 @@ func start(a: GameAction, ctx: LifeContext) -> ActionResult:
 	return TechActionUtil.reserve_objects(ctx, a, [a.target_id])
 
 
-func step(a: GameAction, ctx: LifeContext, _dt: float) -> ActionResult:
-	return TechActionUtil.strike_series(a, ctx, _n(a, ctx), true)
+func step(a: GameAction, ctx: LifeContext, dt: float) -> ActionResult:
+	return TechActionUtil.strike_series(a, ctx, _n(a, ctx), true, dt)
 
 
 func cleanup(a: GameAction, ctx: LifeContext) -> void:

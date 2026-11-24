@@ -18,6 +18,8 @@ var alive: bool = true
 var death: Dictionary = {}
 var carried_item_id: int = 0
 var held_object_id: int = 0          # Gegenstand/Werkzeug in der Greifhand (Prompt 6; Stück oder Verbund)
+var hold_mode: String = ""          # Prompt 6B: "" | "one" (eine Hand) | "two" (beide Hände, schweres Stück tragen)
+var hold_side: String = ""          # Prompt 6B: Hand, die den Gegenstand hält ("l"/"r"; bei "two" die führende Hand)
 var food_memory: Dictionary = {}     # id -> {pos, available_kg, seen_t, kind}
 var unreachable: Dictionary = {}     # id -> bis Zeitpunkt
 var visible_food: Array = []
@@ -137,6 +139,8 @@ func die(cause: String, ctx: LifeContext) -> void:
 	var dropped_obj := 0
 	if ctx.experiments != null:
 		ctx.experiments.abort(self, "Wesen gestorben", ctx)
+	if ctx.work != null:
+		ctx.work.abort(self, "Wesen gestorben", ctx)
 	if held_object_id != 0:
 		dropped_obj = ToolUseSystem.release(ctx, self, "Tod")
 	death = {"t": ctx.now(), "cause": cause, "position": [position.x, position.y, position.z], "dropped_item": dropped, "dropped_object": dropped_obj,
@@ -151,7 +155,7 @@ func die(cause: String, ctx: LifeContext) -> void:
 func to_dict() -> Dictionary:
 	return {"id": id, "display_name": display_name, "plan": plan.to_dict(), "base_genes": base_genes.duplicate(true), "plan_seed": plan_seed,
 		"health": health.to_dict(), "metabolism": metabolism.to_dict(), "position": [position.x, position.y, position.z], "heading": heading,
-		"alive": alive, "death": death.duplicate(true), "carried_item_id": carried_item_id, "held_object_id": held_object_id, "food_memory": food_memory.duplicate(true),
+		"alive": alive, "death": death.duplicate(true), "carried_item_id": carried_item_id, "held_object_id": held_object_id, "hold_mode": hold_mode, "hold_side": hold_side, "food_memory": food_memory.duplicate(true),
 		"unreachable": unreachable.duplicate(), "behavior_state": behavior_state, "behavior_reason": behavior_reason, "goal": goal.duplicate(),
 		"last_result": last_result.duplicate(true), "rng_state": str(rng.state), "rng_seed": str(rng.seed),
 		"next_decision_t": next_decision_t, "next_perception_t": next_perception_t, "explore_attempts": explore_attempts, "behavior_enabled": behavior_enabled, "stats": stats.duplicate(),
@@ -256,6 +260,8 @@ static func from_dict(d: Dictionary, materials: MaterialRegistry) -> Dictionary:
 	c.death = d.get("death", {}).duplicate(true)
 	c.carried_item_id = int(d.get("carried_item_id", 0))
 	c.held_object_id = int(d.get("held_object_id", 0))
+	c.hold_mode = str(d.get("hold_mode", "one" if c.held_object_id != 0 else ""))
+	c.hold_side = str(d.get("hold_side", ""))
 	for k in d.get("food_memory", {}):
 		c.food_memory[int(k)] = d["food_memory"][k].duplicate(true)
 	for k in d.get("unreachable", {}):

@@ -78,6 +78,21 @@ const MIN_PIECE_KG := 1.0e-4
 const MAX_STRAIN_PER_STRIKE := 0.2
 
 
+## Prompt 6B: Schmelzen ist KEINE universelle Recyclingaktion. Unterstützt nur, wenn das Material ein
+## Phasenmodell mit Schmelzpunkt hat und der Behälter darüber gültig bleibt. Brennbare Stoffe werden
+## abgewiesen (Verbrennung ist nicht simuliert); Gestein/Keramik „schmelzen“ im Modell nicht.
+static func melt_support(m: MaterialDefinition, container: MaterialDefinition = null) -> Dictionary:
+	if m == null:
+		return {"ok": false, "code": "unknown_material", "message": "Material unbekannt."}
+	if not m.has_melting():
+		if m.combustible:
+			return {"ok": false, "code": "combustible", "message": "%s ist brennbar; Verbrennung ist noch nicht simuliert – Schmelzen abgewiesen." % m.display_name}
+		return {"ok": false, "code": "not_meltable", "message": "%s schmilzt im unterstützten Modell nicht (nur fester Zustand modelliert) – abgewiesen." % m.display_name}
+	if container != null and container.valid_max_k < m.melting_point + 50.0:
+		return {"ok": false, "code": "container_incompatible", "message": "Behälter aus %s hält die Schmelztemperatur von %s (%.0f K) nicht." % [container.display_name, m.display_name, m.melting_point]}
+	return {"ok": true, "code": "ok", "message": "schmelzbar (Schmelzpunkt %.0f K)" % m.melting_point}
+
+
 ## Teilmenge mass_kg von einem Stück abnehmen (Fasern fürs Umwickeln, Gussrest).
 ## Neues Stück: gleiche spezifische Enthalpie (gleiche Temperatur). Rückgabe {ok, piece, message}.
 static func take_portion(ctx: LifeContext, src: MaterialPiece, mass_kg: float, allow_liquid: bool) -> Dictionary:
@@ -185,11 +200,21 @@ static func fracture_piece(ctx: LifeContext, mp: MaterialPiece) -> Dictionary:
 		f.origin = "bruch:#%d" % mp.id
 		f.parent_ids = [mp.id]
 		f.label = "Bruchstück %d/%d" % [i + 1, n]
+		# Prompt 6B: relevante Zustände übertragen – Temperatur über die anteilige Wärmeenergie (oben),
+		# Testausrüstungs-Kennzeichen, Behälter (Bruchstücke bleiben im Tiegel/in der Form), Herkunft.
+		f.test_equipment = mp.test_equipment
+		if mp.container_id != 0 and ctx.material_pieces.has(mp.container_id):
+			f.container_id = mp.container_id
+		f.add_history(ctx.now(), "Bruchstück von #%d (%.3f von %.3f kg, %.1f K übernommen)" % [mp.id, f.mass_kg, mass_before, f.temperature_k()])
 		ids.append(ConstructionSystem.add_piece(ctx, f))
 	if carrier != 0:
 		var cr := ctx.creature(carrier)
 		if cr != null and cr.held_object_id == mp.id:
 			cr.held_object_id = 0
+			cr.hold_mode = ""
+			cr.hold_side = ""
+	StorageSystem.forget_piece(ctx, mp.id)
+	StructureSystem.forget_piece(ctx, mp.id)
 	ConstructionSystem.remove_piece(ctx, mp.id)
 	ctx.publish({"type": "object_fractured", "actor": 0, "target": 0, "position": mp.position,
 		"consequences": {"piece": mp.id, "material": mp.material_id, "fragments": ids, "mass_kg": mass_before},

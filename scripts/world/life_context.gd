@@ -28,6 +28,9 @@ var material_pieces: Dictionary = {}   # id -> MaterialPiece (Göttereingriffe, 
 var assemblies: Dictionary = {}        # id -> Assembly (zusammengesetzte Gegenstände, Prompt 6)
 var heaters: Dictionary = {}           # id -> TestHeater (nur Testausrüstung)
 var experiments: ExperimentSystem      # Versuche, Verfahrenswissen-Verbuchung (Prompt 6)
+var storages: Dictionary = {}          # id -> StoragePlace (Prompt 6B: reale Lagerplätze)
+var structures: Dictionary = {}        # id -> Structure (Prompt 6B: Baustellen/Einzelbauwerke)
+var work: WorkSystem                   # Arbeitsketten aus eigenem Bedarf (Prompt 6B)
 var tech_cfg: Dictionary = {}          # data/config/technology.json
 var last_observers: Array = []          # Diagnose: Beobachter des zuletzt verteilten Ereignisses
 var observation_stats: Dictionary = {}  # Zähler: verteilte Ereignisse, Sichtprüfungen, Beobachtungen
@@ -97,6 +100,10 @@ func position_of(id: int):
 		return assemblies[id].position
 	if heaters.has(id):
 		return heaters[id].position
+	if storages.has(id):
+		return storages[id].position
+	if structures.has(id):
+		return structures[id].position
 	return null
 
 

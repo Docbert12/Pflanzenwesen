@@ -25,6 +25,8 @@ var container_id: int = 0            # liegt in Behälter/Form (Stück-ID) bzw. 
 var strain: float = 0.0              # akkumulierte plastische Stauchung (wahre Dehnung, Spielmodell)
 var wear: float = 0.0                # Oberflächenverschleiß 0..1 (Werkzeugkopf)
 var test_equipment: bool = false     # ausdrücklich platzierte Testausrüstung
+var storage_id: int = 0              # Prompt 6B: liegt eingelagert in Lager # (StorageSystem)
+var structure_id: int = 0            # Prompt 6B: ist verbautes Teil von Bauwerk # (StructureSystem)
 var reserved_by: int = 0             # Reservierung (Handlungssystem)
 var created_t: float = 0.0
 var history: Array = []              # kurze Bearbeitungsgeschichte [{t, what}]
@@ -130,7 +132,7 @@ func surface_area_m2() -> float:
 
 
 func is_free() -> bool:
-	return carrier_id == 0 and assembly_id == 0 and container_id == 0
+	return carrier_id == 0 and assembly_id == 0 and container_id == 0 and structure_id == 0
 
 
 func add_history(t: float, what: String) -> void:
@@ -149,7 +151,7 @@ func to_dict() -> Dictionary:
 	d.merge({"shape": shape, "dims_m": [dims_m.x, dims_m.y, dims_m.z], "size_m": size_m,
 		"position": [position.x, position.y, position.z], "cavity_m3": cavity_m3, "carrier_id": carrier_id,
 		"assembly_id": assembly_id, "role": role, "container_id": container_id, "strain": strain, "wear": wear,
-		"test_equipment": test_equipment, "created_t": created_t, "history": history.duplicate(true)}, true)
+		"test_equipment": test_equipment, "storage_id": storage_id, "structure_id": structure_id, "created_t": created_t, "history": history.duplicate(true)}, true)
 	return d
 
 
@@ -180,6 +182,8 @@ static func from_dict(d: Dictionary, materials: MaterialRegistry = null) -> Mate
 	m.strain = float(d.get("strain", 0.0))
 	m.wear = float(d.get("wear", 0.0))
 	m.test_equipment = bool(d.get("test_equipment", false))
+	m.storage_id = int(d.get("storage_id", 0))
+	m.structure_id = int(d.get("structure_id", 0))
 	m.created_t = float(d.get("created_t", 0.0))
 	m.history = d.get("history", []).duplicate(true)
 	return m

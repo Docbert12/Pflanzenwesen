@@ -27,7 +27,9 @@ func _init(p_ctx: LifeContext) -> void:
 		"inspect_object": InspectObjectAction.new(), "equip_tool": EquipToolAction.new(), "strike_target": StrikeTargetAction.new(),
 		"deform_material": DeformMaterialAction.new(), "connect_parts": ConnectPartsAction.new(), "disconnect_parts": DisconnectPartsAction.new(),
 		"place_in_heater": PlaceInHeaterAction.new(), "pour_into_mold": PourIntoMoldAction.new(),
-		"demonstrate_procedure": DemonstrateProcedureAction.new(), "practice_procedure": PracticeProcedureAction.new()}
+		"demonstrate_procedure": DemonstrateProcedureAction.new(), "practice_procedure": PracticeProcedureAction.new(),
+		"deposit_in_storage": DepositInStorageAction.new(), "place_building_part": PlaceBuildingPartAction.new(),
+		"put_into_container": PutIntoContainerAction.new()}
 
 
 ## Fordert eine Handlung an. Rückgabe {"result": ActionResult, "action": GameAction}.
