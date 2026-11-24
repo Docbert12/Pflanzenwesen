@@ -1,0 +1,62 @@
+ACHTUNG: Dieser Lauf ging gegen die lokale HTTP-ATTRAPPE (tools/ollama_attrappe.py), NICHT gegen Ollama. Er zeigt nur, dass das Werkzeug funktioniert.
+
+Pflanzenwesen – Ollama-Live-Test (ECHTER Dienst, keine Simulation)
+Zeit: 2026-11-21T11:22:01 · Godot 4.7.2-stable (official) · Linux · CPU Intel(R) Xeon(R) Processor @ 2.10GHz (2 Kerne) · RAM 7.8 GB
+Grafikkarte: im Kopflos-Modus von Godot nicht ermittelbar; Hinweis liefert Ollama (/api/ps: Speicher im Grafikspeicher).
+
+== 0 Verbindung ==
+Adresse http://127.0.0.1:11977 · Zustand: verbunden · Ollama 0.0.0-ATTRAPPE, Modell „attrappe:klein“.
+Installiert: attrappe:klein (Attrappe, -)
+Modell: attrappe:klein · Ollama 0.0.0-ATTRAPPE
+
+== 1 Ein Wesen, eine Plananfrage ==
+Anfrage 1 für #141 eingereiht (plan).
+Ergebnis: angenommen · Antwortzeit 0.0 s · Plan mit 3 Schritten angenommen (Unsicherheit 0.30).
+Modellbegründung (nur Vorschlag): „(Attrappe) Nahrung aufsuchen.“
+  Schritt: go_to #96
+  Schritt: pick_up #96
+  Schritt: eat #0
+Ausführung: Plan abgeschlossen – alle Schritte ausgeführt
+  erledigt go_to #96 → Gehen: 
+  erledigt pick_up #96 → Aufnehmen: 
+  erledigt eat #0 → Essen: 
+Prüfung der Welt: in Ordnung
+
+== 2 Zwei Wesen, ein kurzes Gespräch ==
+Anfrage 1 für #141 eingereiht (talk).
+Ergebnis: angenommen · Antwortzeit 0.0 s · Plan mit 1 Schritten angenommen (Unsicherheit 0.00).
+  Schritt: talk #142
+Äußerung #141 → #142 (ollama, gehört): „Bei Quelle #96 (P007) gab es Nahrung, etwa 0.64 kg.“ (selbst gesehen, Sicherheit 100 %) | Modelltext ohne Wirkung: (Attrappe)
+Beim Zuhörer: Hörensagen von #141, Status selbst_beobachtet, Sicherheit 1.00
+
+== 3 50 Wesen mit begrenzter Anfragerate (0 min Echtzeit) ==
+Einstellungen: 8 Anfragen/min, 1 gleichzeitig, 90 s Mindestabstand je Wesen, Anteil fragender Wesen 50 %
+Gesendet 7 (14.0/min) · angenommen 7 · abgelehnt 0 · Fehler {  } · Ø Antwortzeit 0.0 s · max 0.0 s
+Anlässe { "talk": 23 } · Ablehnungen nach Stufe {  } · Simulationstakt Ø 4.90 ms
+Welt: 50 lebend, Prüfung in Ordnung
+  Anfrage 1 #162 talk: Gesprächsgelegenheit mit #168 → angenommen: Plan mit 1 Schritten angenommen (Unsicherheit 0.00).
+  Anfrage 2 #143 talk: Gesprächsgelegenheit mit #141 → angenommen: Plan mit 1 Schritten angenommen (Unsicherheit 0.00).
+  Anfrage 3 #170 talk: Gesprächsgelegenheit mit #147 → angenommen: Plan mit 1 Schritten angenommen (Unsicherheit 0.00).
+  Anfrage 4 #144 talk: Gesprächsgelegenheit mit #177 → angenommen: Plan mit 1 Schritten angenommen (Unsicherheit 0.00).
+  Anfrage 5 #142 talk: Gesprächsgelegenheit mit #156 → angenommen: Plan mit 1 Schritten angenommen (Unsicherheit 0.00).
+  Anfrage 6 #179 talk: Gesprächsgelegenheit mit #141 → angenommen: Plan mit 1 Schritten angenommen (Unsicherheit 0.00).
+  Anfrage 7 #141 talk: Gesprächsgelegenheit mit #179 → angenommen: Plan mit 1 Schritten angenommen (Unsicherheit 0.00).
+
+(4/5 Unterbrechung übersprungen – mit --unterbrechung ausführen.)
+
+Protokoll (letzte Einträge):
+  [info] Antwort 1 (#141, Ollama): Plan mit 1 Schritten angenommen (Unsicherheit 0.00).
+  [info] Anfrage 1 gesendet: #162, talk – Gesprächsgelegenheit mit #168 (2739 Zeichen Kontext).
+  [info] Antwort 1 (#162, Ollama): Plan mit 1 Schritten angenommen (Unsicherheit 0.00).
+  [info] Anfrage 2 gesendet: #143, talk – Gesprächsgelegenheit mit #141 (2737 Zeichen Kontext).
+  [info] Antwort 2 (#143, Ollama): Plan mit 1 Schritten angenommen (Unsicherheit 0.00).
+  [info] Anfrage 3 gesendet: #170, talk – Gesprächsgelegenheit mit #147 (1941 Zeichen Kontext).
+  [info] Antwort 3 (#170, Ollama): Plan mit 1 Schritten angenommen (Unsicherheit 0.00).
+  [info] Anfrage 4 gesendet: #144, talk – Gesprächsgelegenheit mit #177 (2749 Zeichen Kontext).
+  [info] Antwort 4 (#144, Ollama): Plan mit 1 Schritten angenommen (Unsicherheit 0.00).
+  [info] Anfrage 5 gesendet: #142, talk – Gesprächsgelegenheit mit #156 (2754 Zeichen Kontext).
+  [info] Antwort 5 (#142, Ollama): Plan mit 1 Schritten angenommen (Unsicherheit 0.00).
+  [info] Anfrage 6 gesendet: #179, talk – Gesprächsgelegenheit mit #141 (2750 Zeichen Kontext).
+  [info] Antwort 6 (#179, Ollama): Plan mit 1 Schritten angenommen (Unsicherheit 0.00).
+  [info] Anfrage 7 gesendet: #141, talk – Gesprächsgelegenheit mit #179 (3151 Zeichen Kontext).
+  [info] Antwort 7 (#141, Ollama): Plan mit 1 Schritten angenommen (Unsicherheit 0.00).

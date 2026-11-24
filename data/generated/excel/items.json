@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "generated_by": "tools/import_definitions.py – NICHT VON HAND BEARBEITEN",
+  "source_sheet": "11_Werkzeuge_Items",
+  "kind": "items",
+  "description": "Werkzeuge und Gegenstände",
+  "status_note": "game_status stammt aus data/config/implementation_status.json; ein Excel-Eintrag aktiviert keine Spielfunktion.",
+  "entries": [
+    {
+      "id": "I001",
+      "name": "Steinbeil",
+      "type": "Werkzeug",
+      "raw_material_1_name": "Stein",
+      "raw_material_2_name": "Holz",
+      "hardness": 5.0,
+      "weight_kg_assumed": 1.5,
+      "function": [
+        "Fällen",
+        "Bauen"
+      ],
+      "crafting": "Handwerk",
+      "description": "Einfaches Werkzeug",
+      "_excel_row": 2,
+      "game_status": "data_only",
+      "import_warnings": [
+        "11_Werkzeuge_Items!Zeile 2: Rohstoff 'Stein' ist ein Name, keine ID, und existiert nicht in 02_Rohstoffe."
+      ]
+    },
+    {
+      "id": "I002",
+      "name": "Kupferprothese_Arm",
+      "type": "Prothese",
+      "raw_material_1_name": "Kupfer",
+      "raw_material_2_name": "Pflanzenfaser",
+      "hardness": 6.0,
+      "weight_kg_assumed": 3.5,
+      "function": [
+        "Ersatzglied"
+      ],
+      "crafting": "Schmieden",
+      "description": "Metallischer Unterarm",
+      "_excel_row": 3,
+      "game_status": "partial",
+      "game_status_note": "Kupferprothese als Körperteil in der Vorschau; Masse wird aus Material und Volumen berechnet, nicht aus der Excel-Spalte Gewicht.",
+      "import_warnings": [
+        "11_Werkzeuge_Items!Zeile 3: Rohstoff 'Kupfer' ist ein Name, keine ID, und existiert nicht in 02_Rohstoffe."
+      ]
+    },
+    {
+      "id": "I003",
+      "name": "Holzspeer",
+      "type": "Waffe",
+      "raw_material_1_name": "Holz",
+      "raw_material_2_name": "Stein",
+      "hardness": 4.0,
+      "weight_kg_assumed": 1.2,
+      "function": [
+        "Angriff",
+        "Jagd"
+      ],
+      "crafting": "Handwerk",
+      "description": "Einfacher Speer",
+      "_excel_row": 4,
+      "game_status": "data_only",
+      "import_warnings": [
+        "11_Werkzeuge_Items!Zeile 4: Rohstoff 'Stein' ist ein Name, keine ID, und existiert nicht in 02_Rohstoffe."
+      ]
+    },
+    {
+      "id": "I004",
+      "name": "Blattkorb",
+      "type": "Behälter",
+      "raw_material_1_name": "Pflanzenfaser",
+      "raw_material_2_name": "Blätter",
+      "hardness": 1.0,
+      "weight_kg_assumed": 0.3,
+      "function": [
+        "Transport"
+      ],
+      "crafting": "Flechten",
+      "description": "Zum Sammeln",
+      "_excel_row": 5,
+      "game_status": "data_only",
+      "import_warnings": [
+        "11_Werkzeuge_Items!Zeile 5: Rohstoff 'Blätter' ist ein Name, keine ID, und existiert nicht in 02_Rohstoffe."
+      ]
+    },
+    {
+      "id": "I005",
+      "name": "Wasserflasche",
+      "type": "Behälter",
+      "raw_material_1_name": "Ton",
+      "raw_material_2_name": "Kork",
+      "hardness": 2.0,
+      "weight_kg_assumed": 0.8,
+      "function": [
+        "Wasser tragen"
+      ],
+      "crafting": "Brennen",
+      "description": "Flüssigkeit speichern",
+      "_excel_row": 6,
+      "game_status": "data_only",
+      "import_warnings": [
+        "11_Werkzeuge_Items!Zeile 6: Rohstoff 'Kork' ist ein Name, keine ID, und existiert nicht in 02_Rohstoffe."
+      ]
+    }
+  ],
+  "rejected": []
+}

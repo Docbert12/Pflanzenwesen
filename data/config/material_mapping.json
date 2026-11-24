@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "_note": "VORLÄUFIGE ANNAHMEN, keine Nutzerentscheidungen. Ordnet Excel-Materialien (03_Materialien) anhand von Namensbestandteilen einem Physikmaterial aus data/materials/ zu. Die physikalischen Eigenschaften kommen IMMER aus data/materials/, nie aus der Excel. Erste passende Regel gewinnt. Keine Regel → physics_material_id = null (nur Designdaten).",
+  "rules": [
+    {"match_name_contains": ["Kupfer"], "physics_material_id": "copper"},
+    {"match_name_contains": ["Holz", "Rinde"], "physics_material_id": "wood"},
+    {"match_name_contains": ["Granit", "Stein", "Basalt", "Fels"], "physics_material_id": "stone"},
+    {"match_name_contains": ["Wasser"], "physics_material_id": "water"},
+    {"match_name_contains": ["Erde", "Lehm", "Humus"], "physics_material_id": "soil"},
+    {"match_name_contains": ["Pflanzenfaser", "Blatt", "Cellulose", "Wurzel", "Chlorophyll", "Moos"], "physics_material_id": "plant_tissue"}
+  ]
+}

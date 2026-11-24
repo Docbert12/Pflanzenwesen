@@ -1,0 +1,27 @@
+t= 300 s  Versuche { "started": 2, "completed": 2, "failed": 0, "aborted": 0, "by_source": { "eigene Idee": 2 } }  Audit 0
+t= 600 s  Versuche { "started": 4, "completed": 4, "failed": 0, "aborted": 0, "by_source": { "eigene Idee": 4 } }  Audit 0
+t= 900 s  Versuche { "started": 7, "completed": 6, "failed": 0, "aborted": 0, "by_source": { "eigene Idee": 7 } }  Audit 0
+t=1200 s  Versuche { "started": 10, "completed": 10, "failed": 0, "aborted": 0, "by_source": { "eigene Idee": 9, "Übung": 1 } }  Audit 0
+t=1500 s  Versuche { "started": 12, "completed": 12, "failed": 0, "aborted": 0, "by_source": { "eigene Idee": 11, "Übung": 1 } }  Audit 0
+t=1800 s  Versuche { "started": 14, "completed": 14, "failed": 0, "aborted": 0, "by_source": { "eigene Idee": 13, "Übung": 1 } }  Audit 0
+== Ergebnis nach 1800 s Simulationszeit (56.7 s Rechenzeit), Startwert 12345 ==
+Statistik: { "started": 14, "completed": 14, "failed": 0, "aborted": 0, "by_source": { "eigene Idee": 13, "Übung": 1 } }
+    1 × abgeschlossen | Wesen B | eigene Idee | Was ist #149 (Fasern)?
+    1 × abgeschlossen | Wesen B | eigene Idee | Was ist #152 (Kupfer)?
+    1 × abgeschlossen | Wesen B | eigene Idee | Was ist #147 (Holz)?
+    1 × abgeschlossen | Wesen B | eigene Idee | Was ist #150 (Kupfer)?
+    1 × abgeschlossen | Wesen B | eigene Idee | Was ist #148 (Fasern)?
+    1 × abgeschlossen | Wesen B | eigene Idee | Was ist #151 (Kupfer)?
+    1 × abgeschlossen | Wesen B | eigene Idee | Hält #151 am Stab #147, wenn ich Fasern #148 darum wickle?
+    1 × abgeschlossen | Wesen A | Übung | Gelingt mir „Stiel (Holz) und Kopf (Kupfer) mit Fasern umwic
+    1 × abgeschlossen | Wesen B | eigene Idee | Was ist #157 (Keramik)?
+    1 × abgeschlossen | Wesen B | eigene Idee | Was ist #144 (Stein)?
+    1 × abgeschlossen | Wesen B | eigene Idee | Was ist #143 (Stein)?
+    1 × abgeschlossen | Wesen B | eigene Idee | Was ist #155 (Verbund)?
+    1 × abgeschlossen | Wesen B | eigene Idee | Was ist #145 (Stein)?
+    1 × abgeschlossen | Wesen B | eigene Idee | Was ist #156 (Kupfer)?
+Wesen A #141: lebt true, Neugier 0.33, Vorsicht 0.52, gegessen 0.90 kg, Versuchszeit im letzten Fenster 11 s, bekannte Gegenstände 16
+    Verfahren: Stiel (Holz) und Kopf (Kupfer) mit Fasern umwickeln – erfolgreich (eigene Versuche 1, Sicherheit 0.60)
+Wesen B #142: lebt true, Neugier 0.59, Vorsicht 0.83, gegessen 1.00 kg, Versuchszeit im letzten Fenster 151 s, bekannte Gegenstände 16
+    Verfahren: Stiel (Holz) und Kopf (Kupfer) mit Fasern umwickeln – erfolgreich (eigene Versuche 1, Sicherheit 0.38)
+Audit: []

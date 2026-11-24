@@ -1,0 +1,94 @@
+{
+  "schema_version": 1,
+  "generated_by": "tools/import_definitions.py – NICHT VON HAND BEARBEITEN",
+  "source_sheet": "12_Verletzungen_Prothesen",
+  "kind": "injuries",
+  "description": "Verletzungen und Prothesen",
+  "status_note": "game_status stammt aus data/config/implementation_status.json; ein Excel-Eintrag aktiviert keine Spielfunktion.",
+  "entries": [
+    {
+      "id": "V001",
+      "name": "Armverlust",
+      "affected_module": "Arm",
+      "severity": 3,
+      "effect": "Modul entfernen",
+      "healing": "Nein",
+      "prosthesis_possible": true,
+      "prosthesis_type_text": "M_PROTHESE_KUPFER",
+      "movement_restriction": "Greifen eingeschränkt",
+      "_excel_row": 2,
+      "game_status": "partial",
+      "game_status_note": "Unterarm entfernen (Entwicklermodus, Kreaturenvorschau); Fähigkeiten werden neu berechnet.",
+      "import_warnings": [
+        "12_Verletzungen_Prothesen!Zeile 2: Prothese_Typ 'M_PROTHESE_KUPFER' verweist auf keinen Eintrag in 11_Werkzeuge_Items (uneinheitlich: Code vs. Name)."
+      ]
+    },
+    {
+      "id": "V002",
+      "name": "Beinverlust",
+      "affected_module": "Bein",
+      "severity": 3,
+      "effect": "Modul entfernen",
+      "healing": "Nein",
+      "prosthesis_possible": true,
+      "prosthesis_type_text": "Holzprothese",
+      "movement_restriction": "Hinken / langsamer",
+      "_excel_row": 3,
+      "game_status": "partial",
+      "game_status_note": "Bein verletzen (Entwicklermodus); bei Schaden 100 % geht der Unterschenkel samt Fuß verloren, Gehen stoppt erklärt.",
+      "import_warnings": [
+        "12_Verletzungen_Prothesen!Zeile 3: Prothese_Typ 'Holzprothese' verweist auf keinen Eintrag in 11_Werkzeuge_Items (uneinheitlich: Code vs. Name)."
+      ]
+    },
+    {
+      "id": "V003",
+      "name": "Blattverlust",
+      "affected_module": "Blatt",
+      "severity": 1,
+      "effect": "Blatt entfernen",
+      "healing": "Nachwachsen",
+      "prosthesis_possible": false,
+      "prosthesis_type_text": null,
+      "movement_restriction": "Keine",
+      "_excel_row": 4,
+      "not_applicable_fields": [
+        "prosthesis_type_text"
+      ],
+      "game_status": "partial",
+      "game_status_note": "Blatt entfernen (Entwicklermodus, Vorschau); senkt Blattfläche, Masse und Blattunterhalt."
+    },
+    {
+      "id": "V004",
+      "name": "Körperriss",
+      "affected_module": "Körper",
+      "severity": 2,
+      "effect": "Stabilität -30%",
+      "healing": "Langsam",
+      "prosthesis_possible": false,
+      "prosthesis_type_text": null,
+      "movement_restriction": "Leichte Einschränkung",
+      "_excel_row": 5,
+      "not_applicable_fields": [
+        "prosthesis_type_text"
+      ],
+      "game_status": "data_only"
+    },
+    {
+      "id": "V005",
+      "name": "Kopfbeschädigung",
+      "affected_module": "Kopf",
+      "severity": 2,
+      "effect": "Sinne -20%",
+      "healing": "Teilweise",
+      "prosthesis_possible": false,
+      "prosthesis_type_text": null,
+      "movement_restriction": "Wahrnehmung reduziert",
+      "_excel_row": 6,
+      "not_applicable_fields": [
+        "prosthesis_type_text"
+      ],
+      "game_status": "data_only"
+    }
+  ],
+  "rejected": []
+}

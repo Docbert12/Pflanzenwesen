@@ -1,0 +1,14 @@
+{
+  "type": "object",
+  "properties": {
+    "request_id": {"type": "integer"},
+    "speaker_id": {"type": "integer"},
+    "listener_id": {"type": "integer"},
+    "intent": {"type": "string", "enum": ["none", "ask_food", "offer_help", "point_food", "share_experience", "share_guess", "explain_procedure"]},
+    "subject_id": {"type": "integer"},
+    "referenced_memory_ids": {"type": "array", "maxItems": 3, "items": {"type": "integer"}},
+    "expressed_certainty": {"type": "number", "minimum": 0, "maximum": 1},
+    "optional_text": {"type": "string", "maxLength": 120}
+  },
+  "required": ["request_id", "speaker_id", "listener_id", "intent", "subject_id", "referenced_memory_ids", "expressed_certainty"]
+}

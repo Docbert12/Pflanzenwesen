@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/world/world_preview.gd" id="1_wp"]
+[ext_resource type="Script" path="res://scripts/core/simulation.gd" id="2_sim"]
+[ext_resource type="Script" path="res://scripts/ui/lab_camera.gd" id="3_cam"]
+[ext_resource type="Script" path="res://scripts/world/voxel_world.gd" id="4_vw"]
+
+[node name="WorldPreview" type="Node3D"]
+script = ExtResource("1_wp")
+
+[node name="Simulation" type="Node" parent="."]
+script = ExtResource("2_sim")
+
+[node name="LabCamera" type="Camera3D" parent="."]
+current = true
+script = ExtResource("3_cam")
+
+[node name="VoxelWorld" type="Node3D" parent="."]
+script = ExtResource("4_vw")

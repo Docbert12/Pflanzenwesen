@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/lab/physics_lab.gd" id="1_lab"]
+[ext_resource type="Script" path="res://scripts/core/simulation.gd" id="2_sim"]
+[ext_resource type="Script" path="res://scripts/ui/lab_camera.gd" id="3_cam"]
+[ext_resource type="Script" path="res://scripts/ui/lab_ui.gd" id="4_ui"]
+
+[node name="PhysicsLab" type="Node3D"]
+script = ExtResource("1_lab")
+
+[node name="Simulation" type="Node" parent="."]
+script = ExtResource("2_sim")
+
+[node name="LabCamera" type="Camera3D" parent="."]
+current = true
+script = ExtResource("3_cam")
+
+[node name="LabUI" type="CanvasLayer" parent="."]
+script = ExtResource("4_ui")

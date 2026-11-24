@@ -1,0 +1,173 @@
+# Changelog
+
+## 0.6.0-prototype – Prompt 6 (Experimente, Werkzeugherstellung, praktisches Wissen)
+- **Bestandsprüfung** `docs/progress_audit.md`: Funktionen, Dateien, Status, Evidenz und Blocker, aus Code und Testläufen (Ausgangsbasis v0.5.1: 354/354 auf 4.7.2 und 4.5).
+- **Gegenstände** (`scripts/technology/`):
+  - `MaterialPiece` ist jetzt ein `PhysicalObject` mit Form, Maßen, Wärme, Phase, Verformung, Verschleiß, Träger und Behälter.
+  - Verbünde (`Assembly`); `ConstructionSystem` mit Eindeutigkeitsprüfung (`audit`).
+  - Halten (`Creature.held_object_id`, getrennt von getragener Nahrung).
+- **Werkzeuggebrauch:**
+  - Schlagmodell aus Armlänge, Trägheitsmoment, Körperarbeit, Härte, Kopplung, Masse und Verschleiß.
+  - Verbrennungen, bilanziert in die Hand; Loslass-Reflex.
+  - Funktionale Bewertung ohne Namen, inklusive Haltbarkeit des Kopfes.
+- **Verbindungen:**
+  - Umwickeln mit Pflanzenfasern (Fasern werden Bauteil, Masse exakt).
+  - Belastbarkeit aus Fasermenge, Passung und Geschick.
+  - Bruch bei Überlast; Teile bleiben genau einmal erhalten.
+  - Feste Testhalterung nur für Testausrüstung.
+- **Bearbeiten:** Kupfer kalt verformen (Δε = W/(σ·V), Verfestigung, Risse); spröde Stücke beschädigen und brechen (`MaterialProcessSystem`).
+- **Heizen und Gießen:**
+  - Extern versorgte Testheizung, Keramiktiegel mit Holzgriff, Gussform.
+  - Schmelzen über das vorhandene Phasenmodell.
+  - Gießen mit exakter Masse und Energie; Wärmebilanz einschließlich Körper geschlossen.
+- **Versuche:**
+  - `ExperimentSystem`/`ExperimentRecord`: Simulation und Wahrnehmung getrennt; nur über `ActionExecutor` (neu: `dry_run`).
+  - Eigenständig und begrenzt (Neugier, Hunger, Risiko, Zeitbudget, Weg); Abbruch mit Zwischenstand.
+  - Kein Technologiebaum.
+- **10 Handlungen:** `inspect_object`, `equip_tool`, `strike_target`, `deform_material`, `connect_parts`, `disconnect_parts`, `place_in_heater`, `pour_into_mold`, `demonstrate_procedure`, `practice_procedure`.
+- **Praktisches Wissen:**
+  - `ProceduralKnowledge`: Stufen gehört < zugesehen < versucht < erfolgreich; Herkunft, unabhängige Ursprünge, Sicherheit, Versionen, Hypothesen.
+  - `TeachingSystem`: erklären, Vorführung anbieten, vorführen, zusehen, üben.
+  - Gesprächsabsichten `explain_procedure`, `offer_demo`.
+  - Kein Wissensübergang beim Tod.
+- **Ollama:** Art `experiment` (Schema, Systemanweisung, Kontext aus eigenem Wissen); Prüfung jedes Schritts über `dry_run`. Ergebnis ist nur eine ungeprüfte Hypothese. Echte Verbindung **nicht verifiziert**.
+- **Testwerkstatt** (`scripts/lab/test_workshop.gd`, Startbildschirm): 2 Testwesen, Testausrüstung, 6 gezielt auslösbare Versuche, Beobachtungslauf, eigener Spielstand. Im normalen Spiel keine Testausrüstung.
+- **Oberfläche und Darstellung:**
+  - Versuchs-/Gegenstandsansicht (E) und Wissensansicht (W); Spielerdiagnose getrennt gekennzeichnet.
+  - Gegenstände per Klick wählbar.
+  - Voxelmodelle der Gegenstände aus den Daten (`ObjectGenerator`).
+- **Göttermenü:** Pflanzenfasern; Formen kleiner Block, Stab, Faserbündel.
+- **Daten:**
+  - Abschnitt `working` in den Materialdateien;
+  - neue Materialien `plant_fiber`, `ceramic`;
+  - `data/config/technology.json`;
+  - `mind.json`: Auslöser `experiment`, Göttermenü-Material `plant_fiber`.
+- **Speicherformat 4:** Gegenstände mit Wärme, Verbünde, Heizungen, Wärmekontakte, Versuche, Verfahrenswissen. Migration 3→4, getestet mit echtem v0.5.1-Spielstand `tests/fixtures/save_v3_prompt05.json` (vor jeder Codeänderung erzeugt); Kette 1→2→3→4.
+- **Tests:**
+  - `tests/test_technology.gd`: Abnahmetests (1)–(15) und Beobachtungslauf.
+  - Szenentest Testwerkstatt in `tests/run_tests.gd`.
+  - Einzelläufer `tools/run_tech_tests.gd`.
+  - `tools/scene_smoke.gd` startet zusätzlich die Testwerkstatt.
+  - `tools/check_scripts.gd`: Kompilierprüfung aller Skripte.
+  - `tools/make_save_fixture.gd --mit-material`.
+- **Entfernt/Geändert (mit Grund):**
+  - Test „1 Materialdefinitionen laden …“ (`test_suite.gd`) und „Materialien: Erde …“ (`test_world.gd`): erwartete Materialliste bzw. -anzahl um `ceramic` und `plant_fiber` erweitert (6 → 8), weil die beiden Materialien neu sind. Die Prüfung selbst ist unverändert.
+  - Test „Migrationsschnittstelle …“ (`test_life.gd`): umbenannt von „… 1→2→3“ in „… 1→2→3→4“ und erwartet die Stufen [1, 2, 3], weil die Stufe 3→4 neu ist.
+  - Test „Migration: ausgelieferte Definitionen v0.5.0 …“ (`test_mind.gd`): umbenannt in „… v0.6.0 …“ und vergleicht mit `V4_SHIPPED_DEFINITIONS`. Die aktuellen Definitionen sind absichtlich nicht mehr die von v0.5.0. Der v0.5.0-Fingerabdruck wird weiter geprüft: durch die Migration des echten v0.5.1-Spielstands (`V3_KNOWN_DEFINITIONS`) und die Kette 2→3.
+  - Test „Laden lädt ohne Modell; Spielstand enthält keine Verbindungsdaten/Modellnamen“ (`test_ai.gd`): sucht jetzt die Adressform `:11434` statt der bloßen Ziffernfolge `11434`. Seit Format 4 enthält der Spielstand viele lange Gleitkommazahlen (Wärmeenergien), und eine davon enthielt zufällig „11434“ (z. B. `127.89911434…`). Die Prüfung schlug fehl, obwohl keine Verbindungsdaten gespeichert waren. Ihre Absicht (keine Dienstadresse im Spielstand) bleibt unverändert.
+  - `SaveMigrations._migrate_2_to_3` vergleicht nur noch dann mit den aktuellen Definitionen, wenn Format 3 das Endformat ist. Sonst setzt es den v0.5.0-Fingerabdruck für die Folgestufe (wie seit 0.5.0 bei 1→2).
+  - `MaterialPiece`: von `RefCounted` auf `PhysicalObject` umgestellt (Wärme, Phase). Bisherige Felder und das Lesen alter Daten bleiben.
+  - `DamageSystem._fracture`: Aufteilung in `fragment_shares` herausgelöst, Verhalten unverändert.
+  - `pick_up` prüft zusätzlich eine freie Hand; `drop` legt einen gehaltenen Gegenstand ab, wenn keine Nahrung getragen wird.
+- **Fehler und Kalibrierung während der Entwicklung (gefunden durch die neuen Tests):**
+  - Der Tiegelgriff wurde über die Halterung zu heiß (0,02 W/K; ein 30-cm-Holzstiel leitet nur ≈ 1,6·10⁻⁴ W/K). Jetzt 0,002 W/K, begründet in `technology.json`.
+  - Versuche verloren stets gegen „Ruhen“: Im 240-s-Beobachtungslauf gab es keinen eigenen Versuch. Gewicht von 0,32 auf 0,6 gesetzt; Kandidaten bis 20 m mit Wegabzug, damit Wesen nach dem Essen zurückkehren.
+  - Endloses Hin- und Herlaufen, wenn Teile weiter auseinanderliegen als die Reichweite: jetzt höchstens 3 Annäherungen je Schritt, dann ein ehrlicher Fehlschlag.
+  - Fehlende Versuchszähler nach der Migration lösten Skriptfehler aus; `from_dict` ergänzt jetzt Standardwerte.
+  - Im 30-min-Beobachtungslauf scheiterten **alle** eigenen Verbindungsversuche: Die Teile lagen 1,3–2,2 m auseinander. Derselbe Versuch wurde dabei bis zu siebenmal wiederholt.
+    - Neu: Vorgang `bring` (aufnehmen → gehen → ablegen, nur über vorhandene Handlungen). Er wird vor dem Verbinden automatisch ergänzt.
+    - Neu: Gedächtnis für gescheiterte Versuche (`failed_plan_memory_s`, `failed_plan_novelty_factor`).
+    - Danach verbindet das neugierige Testwesen von selbst einen Kopf mit einem Stiel. Das zweite hat davon erfahren und übt das Verfahren danach selbst. Beides ist ein Messwert, keine Pflicht.
+  - Gefunden auf Bildschirmfotos (`tools/capture_workshop.gd`):
+    - Das Gussstück wurde im Formboden gezeichnet. Inhalte sitzen jetzt auf dem Innenboden (`MaterialPiece.inner_floor_m`).
+    - Die Formwand war in der Tiefe zu dick (Wandstärke aus der Breite berechnet).
+    - Das Werkstattfeld überdeckte das Wesenfenster; es sitzt jetzt links zwischen Population und Ereignisliste. Die Wissensansicht überdeckte die Ereignisliste und liegt jetzt unten in der Mitte.
+- **Werkzeug** `tools/observe_workshop.gd`: Beobachtungslauf der Testwerkstatt ohne Auslöser mit Fehlschlaggründen.
+
+## 0.5.1-prototype – Absicherung der Weiterentwicklung
+- **Git-Verlauf** aller ausgelieferten Versionen (v0.1.0–v0.5.0 als Commits mit Tags, unverändert aus den ZIPs übernommen; v0.1.0/v0.2.0 ohne den damaligen Oberordner `pflanzenwesen/`).
+- **`docs/HANDOVER.md`** und **`CLAUDE.md`**: Projektgedächtnis unabhängig vom Chatverlauf – Stand je Prompt, feste Regeln, Ablauf, Werkzeuge, Stolperfallen, offene Punkte.
+- **`tools/compare_versions.py`** (+ 2 Python-Tests): listet entfernte Dateien, Klassen, Funktionen, Testprüfungen und Konfigurationsschlüssel zwischen zwei Ständen (Ordner, ZIP oder Git-Tag). Berichte der bisherigen Versionssprünge in `reports/versionsvergleiche/`.
+- Entfernt/Geändert: nichts am Spiel; nur Versionsnummer.
+
+## 0.5.0-prototype – Prompt 5 (Ollama-Anbindung, Pläne, Gespräche)
+- **Ollama-Anbindung** (`scripts/ai/`): Einstellungen (`data/settings/ai.json`, `user://ai_settings.json`, nur lokale Adressen, Schlüssel nur aus Umgebungsvariable), nicht blockierender HTTP-Transport, Client nur mit Abfragen (version/tags/ps/chat), anwendungsweiter Dienst mit Gesundheitsprüfung, Unterbrecher, Ratenbegrenzung und Statistik; Warteschlange mit Priorität, Fairness, Duplikaten, Ablauf, Wiederholung; Sitzungsnummer je Welt.
+- **Strukturierte Antworten:** JSON-Schemata (`data/ai/`), Systemanweisungen (`data/ai/prompts/`), 7-stufige Prüfung (`ResponseValidator`).
+- **Pläne:** `PlanManager` – Abgleich mit Bedürfnis/Ziel, Option `follow_plan` im einzigen Entscheider, jeder Schritt neu geprüft, kein Ersatzobjekt, gescheiterte Pläne gesperrt; Zielvorschläge über `GoalManager.suggest`; Modelldeutungen nur als Notiz.
+- **Gespräche und Hörensagen** (`scripts/social/`): Handlung `talk`, Themen nur aus eigenem Wissen, Vorlagentexte, Hörensagen mit Herkunft/Kette/Vertrauen, Prüfung durch eigene Wahrnehmung (bestätigt, veraltet, Fehler, widersprochen, nicht prüfbar), vorsichtige Vertrauensänderung, Option `check_hint`.
+- **Oberfläche:** KI-Panel (K), Gesprächsansicht (C), Wesenfenster-Abschnitte MODELLVORSCHLAG/HÖRENSAGEN, Entscheidungsquelle, Entwicklerknöpfe für gezielte Anfragen.
+- **Speicherformat 3** mit Migration 2→3 (getestet mit echtem v0.4.0-Spielstand) und Kette 1→2→3.
+- **Tests:** `tests/test_ai.gd` mit SIMULIERTEM Testdienst und lokaler HTTP-Attrappe (`tools/ollama_attrappe.py`); Live-Test für echtes Ollama `tools/ollama_live_test.gd`; Prüfling-Werkzeug `tools/make_save_fixture.gd`.
+- **Fehler behoben während der Entwicklung:** HTTP-Antworttext ging verloren (PackedByteArray ist ein Werttyp – nach dem Anhängen zurückschreiben); Lesen vor erneutem `poll()` im Antwortzustand, damit schließende Server nicht als Verbindungsfehler gelten; bereits erfüllte Planschritte blockierten den Plan bis zur nächsten Entscheidung.
+
+## 0.4.0-prototype – Prompt 4 (Geist, Soziales, Göttermenü)
+- **Geist je Wesen** (`scripts/mind/`):
+  - Persönlichkeit (5 Werte, reproduzierbar, fest);
+  - Beobachtungen nur bei tatsächlicher Wahrnehmung;
+  - begrenzte Erinnerungen mit Verblassen und ehrlicher Verdichtung;
+  - Überzeugungen als Beta-Schätzung mit Vergessen, Konfidenz und Grundhäufigkeit;
+  - gerichtete Beziehungen, die Ähnlichkeit nur aus sichtbaren Merkmalen ableiten.
+- **Lernen:** `LearningSystem` verarbeitet Beobachtungen und eigene Handlungen. `RewardAssociation` ordnet Eingriffe zeitgewichtet eigenen Handlungen zu; Beobachter bilden eigene Erklärungen.
+- **Entscheidungen:** `DecisionSystem` ist der einzige Entscheider und ersetzt `BasicBehavior.decide`.
+  - Er protokolliert die Bewertungsbeiträge.
+  - Ziele bleiben eine Mindestzeit gebunden, Überleben hat Vorrang.
+  - `GoalManager.suggest` ist als Schnittstelle für Ollama vorbereitet.
+- **Soziale Handlungen:** `request_food`, `offer_food`, `give_food`, `decline_request` sowie `raise_arms` („Arme heben“, neutral) mit Animation.
+- **Göttermenü** (`scripts/god/`, `ui/god_menu.gd`):
+  - Nahrung schenken, Material platzieren, Heilen;
+  - Ereigniszuordnung als privates Spielerwissen;
+  - Vorschau, Positionsprüfung, Bilanz (`god_kg`), Protokoll mit IDs, Leuchtzeichen.
+- **Oberfläche:** Das Beobachtungsfenster trennt Weltfakt, Beobachtung, Erinnerung, Vermutung und Entscheidung; dazu kommen eine Vergleichsansicht für zwei Wesen und Symbole bei sozialen Handlungen.
+- **Speicherformat 2:** Migration aus Format 1 (v0.3.0) mit Sicherung vor der Migration. Es entstehen keine erfundenen Erinnerungen, und die Persönlichkeit ist reproduzierbar.
+- **Testbereich** „Geistlabor“ und `tests/test_mind.gd`: Szenarien A–G über 3 Startwerte, Entscheidungen, Göttermenü, Privatsphäre, Pause, Migration mit echtem v0.3.0-Spielstand.
+- **Fehler behoben:**
+  - Ein laufendes Aufnehmen überschrieb eine gerade übergebene Portion; jetzt bricht es mit `hands_full` ab.
+  - Ein Empfänger, der gerade mit Nahrung beschäftigt ist, nimmt nichts an.
+- **Ideenkatalog** aus `Erfindungen_nach_Kategorien_und_Stufen.xlsx`: `tools/import_inventions.py`, nichts aktiv.
+- **Prompt 11** unter `design/prompts/` aufbewahrt.
+
+## 0.3.0-prototype – Prompt 3 (erste Lebenssimulation)
+- **Handlungssystem** (`scripts/actions/`):
+  - Handlungen move_to, pick_up, eat, drop und wait mit den Zuständen geplant, laufend, erfolgreich, fehlgeschlagen und abgebrochen.
+  - Prüfung beim Start und in jedem Schritt.
+  - Reservierungen mit atomarer Entnahme; Freigabe bei Abbruch, Tod, Zeitlimit, Zielverlust und Ablauf.
+  - Strukturierte Ergebnisse für spätere Lernsysteme und Ollama.
+- **Körper und Biologie:**
+  - Fähigkeiten aus der Funktion der Körperteile; Gesundheit mit Teilschaden, Teilverlust und Tod.
+  - Stoffwechsel mit Energie- und Nährstoffbilanz inklusive Abfall.
+  - Photosynthese aus Blattfläche, Licht, Verschattung und Blattzustand.
+  - Alle Werte sind Spielbiologie in `data/config/life.json`.
+- **Nahrung:** endliche Quellen aus Excel N001 (Beeren) und N002 (Pilz), Restmenge sichtbar. Nachfüllen gibt es nur als sichtbare Testoption.
+- **Wahrnehmung und Verhalten:**
+  - Wahrnehmung mit Radius, Sichtprüfung und Merkliste.
+  - Zustandsverhalten mit Hysterese, Verwerfen unerreichbarer Ziele und begrenztem Erkunden.
+- **Navigation:**
+  - Spaltenraster-A* mit Stufen, spaltenweiser Aktualisierung und begrenzter Suche bzw. Neuplanung.
+  - Kinematische Bewegung mit Voxelprüfung und Ausweichen.
+- **Lebenswelt** (`scenes/living_world.tscn`):
+  - genau 50 Wesen mit reproduzierbaren Körpern und gültigen Startpositionen;
+  - Animation an Handlungen gekoppelt; Tag und Nacht;
+  - Beobachtungsfenster, Populationsanzeige, Ereignisanzeige, Leistungsanzeige;
+  - Pause; Entwicklermodus.
+- **Speichern und Laden** (`scripts/persistence/`):
+  - Speicherort `user://saves/`; Schreiben über eine Temp-Datei, die vorherige Speicherung bleibt als Sicherung.
+  - SHA-256-Prüfsumme und Formatversion mit Migrationsschnittstelle (leer).
+  - Fingerabdruck der Definitionen, Ladeverhalten je Handlung, keine Offline-Zeit.
+- **Menü:** „Neues Spiel“ und „Fortsetzen / Laden“ (ggf. „Sicherung laden“); die drei Vorschaubereiche bleiben.
+- **Anpassungen am Bestand:**
+  - `WorldObjects` aus der Weltvorschau herausgelöst.
+  - `EntityRegistry.ensure_next_id/next_id` ergänzt.
+  - Ereignisprotokoll auf 1000 Einträge erweitert.
+  - `implementation_status.json` aktualisiert und Import neu geschrieben (Excel unverändert).
+- **Tests:** 249 Godot-Prüfungen, darunter alle 15 Punkte des Auftrags und ein 10-Minuten-Dauerlauf mit 50 Wesen; geprüft mit Godot 4.7.2 und 4.5.
+
+## 0.2.0-prototype – Prompt 2 (Schritte 3 + 4)
+- **Excel-Import:** `tools/import_definitions.py` (Python/openpyxl, nur lesend), 21 Blätter → `data/generated/excel/`; Prüfung von IDs, Zahlen, Verweisen, Zusammensetzungen; stabile IDs; Diff vor dem Schreiben; Bericht `reports/import_report.md`; 10 Python-Tests. Ergebnis: 4 abgewiesene Zeilen, 321 Warnungen (siehe `docs/excel_mapping.md`).
+- **Trennung** von erzeugten (`data/generated/`) und handgeschriebenen (`data/config/`) Daten; Spielstatus nur aus `implementation_status.json`.
+- **Neues Physikmaterial** Erde (`soil`) mit Quelle.
+- **Voxelwelt:** 64×32×64 Zellen à 0,5 m, 16 Chunks; Außenflächen-Netz + passende Kollision je Chunk; Bearbeitung (Auswählen/Hinzufügen/Entfernen/Material/Zurücksetzen); vereinfachte Abstützung mit Bruchstücken (Massenbilanz); mengenbasiertes Wasser-Höhenmodell.
+- **Lebensbaum** (KR001, 8 m) mit Wurzeln und Wurzelbeet; **Pflanzen** Beerenstrauch, Grasbüschel, Farn; **Pilze** rot und braun.
+- **Pflanzenwesen** (KR002): Körperplan mit Validierung, gekoppelte Variation, Voxel-Darstellung mit Gesicht, getrennte Kollisionsformen, Unterarm entfernen, Holz-/Kupferprothese, Blätter ±, Animationen Ruhe/Gehen/Greifen/Zum Mund mit Ersatzverhalten, Speichern/Laden.
+- **Kreaturenvorschau** mit 10er- und 50er-Ansicht inkl. Leistungsmessung; **Startbildschirm** mit drei Bereichen.
+- Anpassung Kern: nicht-physikalische Entitäten im gemeinsamen Register (`Simulation.add_entity`).
+- 165 Godot-Tests (Physik, Welt, Wesen, Szenen), geprüft mit Godot 4.7.2 und 4.5.
+
+## 0.1.0-prototype – Schritt 1 + 2
+- Projektgrundlage: Simulation mit fester Initialisierungsreihenfolge, Simulationsuhr (Pause, keine Zeitbeschleunigung), Objektregister mit eindeutigen IDs, begrenztes Ereignisprotokoll, serialisierbarer Weltzustand.
+- Einstellungen `data/settings/simulation.json` (Schema 1, Startwert 12345, initial_population 50 – nur Einstellung).
+- Fünf Materialdefinitionen mit Herkunftskennzeichnung (Referenz / Annahme / abgeleitet / Spielparameter / nicht anwendbar) und Quellen; Validierung mit verständlichen Fehlermeldungen.
+- Enthalpiebasiertes Wärmemodell: Heizung, Kühlung, Umgebungsreservoir, explizite Kontakte (exakte Zwei-Körper-Lösung + Überschwingschutz).
+- Schmelzen/Erstarren mit latenter Wärme (vorgeführt an Kupfer; Wasser-Gefrieren im selben Modell).
+- Spielmodell für Beschädigung, Bruch in wenige Fragmente, Teilen und Zusammenführen mit Massen- und Energieerhaltung.
+- Interaktives 3D-Physiklabor mit vier Stationen, Orbitkamera, Auswahl, Falschfarbe, Ereignisanzeige.
+- 90 automatisierte Tests (Logik + Szene), geprüft mit Godot 4.7.2 und 4.5.

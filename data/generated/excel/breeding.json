@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "generated_by": "tools/import_definitions.py – NICHT VON HAND BEARBEITEN",
+  "source_sheet": "19_Zucht_Fortpflanzung",
+  "kind": "breeding",
+  "description": "Fortpflanzung (für spätere Schritte)",
+  "status_note": "game_status stammt aus data/config/implementation_status.json; ein Excel-Eintrag aktiviert keine Spielfunktion.",
+  "entries": [
+    {
+      "id": "Z001",
+      "condition_text": "Zwei Wesen, Energie hoch",
+      "duration_days": 3.0,
+      "offspring": 1,
+      "inheritance_text": "Aus 12_Vererbung",
+      "mutation_text": "Ja",
+      "description": "Standard-Fortpflanzung",
+      "_excel_row": 2,
+      "game_status": "data_only",
+      "import_warnings": [
+        "19_Zucht_Fortpflanzung!Zeile 2: Text verweist auf '12_Vererbung'; das Blatt heißt '13_Vererbung_Genetik'."
+      ]
+    },
+    {
+      "id": "Z003",
+      "condition_text": "Prothese vorhanden",
+      "duration_days": 4.0,
+      "offspring": 1,
+      "inheritance_text": "Prothese nicht vererbt",
+      "mutation_text": "Ja",
+      "description": "Prothese wird nicht weitergegeben",
+      "_excel_row": 4,
+      "game_status": "data_only"
+    }
+  ],
+  "rejected": [
+    {
+      "excel_row": 3,
+      "id": "Z002",
+      "errors": [
+        "19_Zucht_Fortpflanzung!D3: Nachkommen: Wert darf nicht negativ sein (gefunden -1)"
+      ]
+    }
+  ]
+}

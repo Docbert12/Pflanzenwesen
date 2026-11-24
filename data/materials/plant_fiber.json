@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "id": "plant_fiber",
+  "display_name": "Pflanzenfaser (Modell: getrocknete Bastfaser)",
+  "description": "Getrocknete Bastfasern als Bindematerial (Prompt 6). Nur als ausdrückliche Start-/Testressource oder über das Göttermenü vorhanden – keine Landwirtschaft, kein Sammeln von Fasern aus Pflanzen.",
+  "model_material": "Gebündelte, trockene Cellulosefasern (flachs-/hanfähnlich), isotrop vereinfacht. Feuchtigkeit wird ignoriert.",
+  "phase_model": "solid_only",
+  "properties": {
+    "density_kg_m3": {"value": 1100.0, "unit": "kg/m³", "kind": "assumed", "unverified": true, "note": "Schüttdichte eines gedrehten Faserbündels. Die Dichte der Zellwand selbst liegt bei etwa 1500 kg/m³; Hohlräume im Bündel sind grob angenommen."},
+    "specific_heat_solid_j_kgk": {"value": 1300.0, "unit": "J/(kg·K)", "kind": "assumed", "unverified": true, "note": "Größenordnung trockener Cellulose/Pflanzenteile; nicht gegen eine Quelle geprüft."},
+    "specific_heat_liquid_j_kgk": {"value": null, "kind": "not_applicable"},
+    "thermal_conductivity_w_mk": {"value": 0.08, "unit": "W/(m·K)", "kind": "assumed", "unverified": true, "note": "Lockeres Faserbündel mit Lufteinschlüssen leitet schlecht (Annahme)."},
+    "melting_point_k": {"value": null, "kind": "not_applicable", "note": "Fasern schmelzen nicht; sie zersetzen sich thermisch."},
+    "latent_heat_fusion_j_kg": {"value": null, "kind": "not_applicable"},
+    "model_valid_min_k": {"value": 1.0, "unit": "K", "kind": "game"},
+    "model_valid_max_k": {"value": 450.0, "unit": "K", "kind": "assumed", "unverified": true, "note": "Grob angenommener Beginn der Zersetzung. Zersetzung und Brand sind nicht simuliert."}
+  },
+  "mechanical": {
+    "fracture_behavior": {"value": "fibrous", "kind": "game", "note": "Reißt bei Überlast."},
+    "toughness_j_kg": {"value": 200.0, "unit": "J/kg", "kind": "game", "note": "Spielparameter."},
+    "max_fragments": {"value": 2, "kind": "game"}
+  },
+  "working": {
+    "_note": "Bearbeitungs- und Bindeparameter (Prompt 6). Alle Werte sind SPIELPARAMETER (kind=game), keine gemessenen Werkstoffdaten.",
+    "hardness": {"value": 0.5, "kind": "game", "note": "Relative Härte 0–10 (grob an der Mohs-Skala orientiert)."},
+    "binding_energy_j_per_kg": {"value": 450.0, "unit": "J/kg", "kind": "game", "note": "Stoßenergie, die eine Umwicklung je kg Faser bei EINEM Schlag aufnimmt, bevor sie reißt (Bruchgrenze)."},
+    "binding_fatigue": {"value": 0.03, "kind": "game", "note": "Verschleiß der Bindung je Schlag bei voller Auslastung (quadratisch mit der Auslastung)."}
+  },
+  "combustion": {
+    "combustible": {"value": true, "kind": "assumed", "note": "Trockene Fasern brennen; Verbrennung ist nicht simuliert."},
+    "decomposition_onset_k": {"value": 450.0, "unit": "K", "kind": "assumed", "unverified": true},
+    "simulated": false
+  },
+  "render": {"color": "#B8A46A", "liquid_color": "#B8A46A", "kind": "game"},
+  "sources": []
+}

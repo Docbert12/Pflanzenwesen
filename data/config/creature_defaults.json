@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "_note": "Standardwerte für den Grundkörper KR002. Die Excel liefert Größe (85 cm), Farben, Blattzahl-Bereich und Körperteiltypen, aber keine verwendbaren Proportionen (die Voxelmaße in 05_Körperteile ergeben bei 0,1 m z. B. einen 2 m hohen Rumpf). Alle Proportionen hier sind dokumentierte Standardwerte, keine Excel-Angaben.",
+  "species_id": "KR002",
+  "base_height_m_fallback": 0.85,
+  "variation": {
+    "size_factor": [0.88, 1.12],
+    "torso_ratio": [0.9, 1.12],
+    "limb_factor": [0.9, 1.1],
+    "arm_leg_decoupling": 0.04,
+    "leaf_count": [1, 3],
+    "leaf_count_max": 8,
+    "leaf_shapes": ["rund", "spitz", "gelappt"],
+    "skin_palette_ids": ["F001", "F002", "F005"],
+    "leaf_palette_ids": ["F002", "F001", "F005"]
+  },
+  "proportions": {
+    "_note": "Anteile der Gesamthöhe H (Standhöhe Fuß bis Scheitel ohne Blätter).",
+    "leg_upper": 0.19, "leg_lower": 0.18, "foot_height": 0.035,
+    "torso_height": 0.30, "torso_width": 0.27, "torso_depth": 0.19,
+    "head_size": 0.26, "neck": 0.02,
+    "arm_upper": 0.17, "arm_lower": 0.16, "hand": 0.065,
+    "limb_thickness": 0.07, "leaf_length": 0.20
+  },
+  "materials": {"body": "plant_tissue", "prosthesis_options": ["wood", "copper"]}
+}

@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "_note": "Handgeschrieben. Abweichung zur Excel: 09_Generator_Parameter nennt Voxel_Größe 0,1 m für die gesamte Welt. Bei 0,1 m wäre eine 64×32×64-Karte nur 6,4 m breit; deshalb Terrainzellen 0,5 m (vorläufige Annahme, siehe docs/excel_mapping.md).",
+  "seed": 12345,
+  "cell_size_m": 0.5,
+  "size_cells": [64, 32, 64],
+  "chunk_size_cells": [16, 32, 16],
+  "base_height_cells": 12,
+  "hill_amplitude_cells": 9,
+  "water_level_cells": 10,
+  "start_area": {"center": [22, 30], "radius_cells": 9},
+  "lake": {"center": [46, 42], "radius_cells": 10, "floor_cells": 6},
+  "stone_above_cells": 18,
+  "root_bed_radius_cells": 4,
+  "support": {"max_fragment_cells": 256, "max_dynamic_fragments": 6},
+  "water": {"tick_s": 0.1, "flow_rate_per_s": 2.0, "min_depth_m": 0.001},
+  "voxel_sizes_m": {"tree": 0.2, "plant": 0.05, "creature": 0.02},
+  "plants": {"count": 46, "mushroom_share": 0.25}
+}

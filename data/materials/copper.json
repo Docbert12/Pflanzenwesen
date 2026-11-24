@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "id": "copper",
+  "display_name": "Kupfer",
+  "description": "Reines Kupfer (Cu). Einziges Material, dessen Schmelzen und Erstarren in diesem Schritt im Labor vollständig vorgeführt wird.",
+  "model_material": "Reinmetall Cu, konstante Wärmekapazität je Phase (Vereinfachung).",
+  "phase_model": "solid_liquid",
+  "properties": {
+    "density_kg_m3": {"value": 8960.0, "unit": "kg/m³", "kind": "reference", "source": "S1", "note": "bei 20 °C (8,96 g/cm³). Dichteänderung beim Schmelzen (flüssig ca. 8020 kg/m³, S2) wird vernachlässigt."},
+    "specific_heat_solid_j_kgk": {"value": 385.0, "unit": "J/(kg·K)", "kind": "reference", "source": "S1", "note": "bei 25 °C. Im Modell konstant über alle Temperaturen des festen Zustands (Vereinfachung, real steigt cp mit T)."},
+    "specific_heat_liquid_j_kgk": {"value": 385.0, "unit": "J/(kg·K)", "kind": "assumed", "unverified": true, "note": "Annahme: gleich dem Wert des Festkörpers gesetzt. Kein Quellenwert für flüssiges Kupfer geprüft."},
+    "thermal_conductivity_w_mk": {"value": 401.0, "unit": "W/(m·K)", "kind": "reference", "source": "S3", "note": "bei 300 K"},
+    "melting_point_k": {"value": 1357.77, "unit": "K", "kind": "reference", "source": "S3", "note": "ITS-90-Fixpunkt (1084,62 °C)"},
+    "latent_heat_fusion_j_kg": {"value": 208670.0, "unit": "J/kg", "kind": "derived", "source": "S2", "note": "13,26 kJ/mol ÷ 63,546 g/mol. Andere Quellen nennen 205 J/g (S1); Abweichung ca. 2 %."},
+    "model_valid_min_k": {"value": 1.0, "unit": "K", "kind": "game", "note": "Technische Untergrenze des Enthalpiemodells."},
+    "model_valid_max_k": {"value": 2835.0, "unit": "K", "kind": "reference", "source": "S2", "note": "Siedepunkt bei 1 atm. Verdampfung ist NICHT modelliert; die Heizung schaltet hier ab."}
+  },
+  "mechanical": {
+    "fracture_behavior": {"value": "ductile", "kind": "game", "note": "Duktil: Last verformt die Probe, sie zerbricht im Spielmodell nicht."},
+    "toughness_j_kg": {"value": 400.0, "unit": "J/kg", "kind": "game", "note": "Spielparameter, keine reale Bruchmechanik."},
+    "max_fragments": {"value": 1, "kind": "game"}
+  },
+  "working": {
+    "_note": "Bearbeitungsparameter (Prompt 6). SPIELPARAMETER, grob an Größenordnungen von weichgeglühtem Kupfer orientiert, keine vollständige Werkstoffsimulation.",
+    "hardness": {"value": 3.0, "kind": "game", "note": "Relative Härte 0–10 (Mohs-Größenordnung von Kupfer ≈ 3)."},
+    "flow_stress_mpa": {"value": 70.0, "unit": "MPa", "kind": "game", "note": "Fließspannung zu Beginn der Kaltverformung (weichgeglüht, Größenordnung). Verformungsarbeit W = σ(ε) · V · Δε."},
+    "hardening_mpa_per_strain": {"value": 400.0, "unit": "MPa", "kind": "game", "note": "Kaltverfestigung: σ(ε) = σ0 + k·ε (lineare Vereinfachung)."},
+    "max_cold_strain": {"value": 1.6, "kind": "game", "note": "Oberhalb dieser wahren Stauchung entstehen im Spielmodell Risse (Schaden)."},
+    "hot_softening_min": {"value": 0.12, "kind": "game", "note": "Fließspannung warm: σ · max(min, 1 − (T − 293 K)/(Tm − 293 K))."},
+    "plastic": {"value": 1.0, "kind": "game", "note": "1 = plastisch verformbar (kalt und warm) im unterstützten Modell."}
+  },
+  "combustion": {
+    "combustible": {"value": false, "kind": "assumed", "note": "Massives Kupfer brennt nicht. Oxidation ist nicht modelliert."},
+    "decomposition_onset_k": {"value": null, "kind": "not_applicable"},
+    "simulated": false
+  },
+  "render": {"color": "#B87333", "liquid_color": "#FF7A1A", "kind": "game"},
+  "sources": [
+    {"id": "S1", "title": "PURE COPPER – Materialdaten (PPPL ARIES)", "url": "https://aries.pppl.gov/LIB/PROPS/PANOS/cu.html"},
+    {"id": "S2", "title": "Copper – Infobox (Wikiwand / Wikipedia)", "url": "https://wikiwand.com/en/articles/copper"},
+    {"id": "S3", "title": "Copper – Elements Handbook (KnowledgeDoor)", "url": "https://www.knowledgedoor.com/2/elements_handbook/copper.html"}
+  ]
+}

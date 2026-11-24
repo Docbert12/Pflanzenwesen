@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "generated_by": "tools/import_definitions.py – NICHT VON HAND BEARBEITEN",
+  "source_sheet": "18_Interaktionen",
+  "kind": "interactions",
+  "description": "Interaktionen (für spätere Schritte)",
+  "status_note": "game_status stammt aus data/config/implementation_status.json; ein Excel-Eintrag aktiviert keine Spielfunktion.",
+  "entries": [
+    {
+      "id": "INT001",
+      "name": "Aufheben",
+      "target_text": "Item/Nahrung",
+      "requirement_text": "Freie Hand",
+      "effect": "In Inventar",
+      "animation_ref": "A003",
+      "description": "Gegenstand nehmen",
+      "_excel_row": 2,
+      "game_status": "data_only"
+    },
+    {
+      "id": "INT002",
+      "name": "Essen",
+      "target_text": "Nahrung",
+      "requirement_text": "Nahrung im Inventar",
+      "effect": "Hunger -",
+      "animation_ref": "A004",
+      "description": "Verzehren",
+      "_excel_row": 3,
+      "game_status": "data_only"
+    },
+    {
+      "id": "INT003",
+      "name": "Trinken",
+      "target_text": "Wasser",
+      "requirement_text": "Am Wasser",
+      "effect": "Durst -",
+      "animation_ref": "A004",
+      "description": "Wasser trinken",
+      "_excel_row": 4,
+      "game_status": "data_only"
+    },
+    {
+      "id": "INT004",
+      "name": "Prothese anbringen",
+      "target_text": "Verletztes Glied",
+      "requirement_text": "Prothese + Verletzung",
+      "effect": "Modul ersetzen",
+      "animation_ref": "A003",
+      "description": "Reparatur",
+      "_excel_row": 5,
+      "game_status": "data_only"
+    },
+    {
+      "id": "INT005",
+      "name": "Pflanzen ernten",
+      "target_text": "Pflanze",
+      "requirement_text": "In Reichweite",
+      "effect": "Ressource erhalten",
+      "animation_ref": "A003",
+      "description": "Sammeln",
+      "_excel_row": 6,
+      "game_status": "data_only"
+    }
+  ],
+  "rejected": []
+}

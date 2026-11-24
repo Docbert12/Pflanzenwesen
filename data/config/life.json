@@ -1,0 +1,161 @@
+{
+  "schema_version": 1,
+  "_note": "SPIELBIOLOGIE: vereinfachte, frei gewählte Spielwerte. Keine realistische Pflanzenphysiologie. Werte mit 'excel' stammen aus der Datenbasis, alle anderen sind dokumentierte Spielannahmen (docs/life_simulation.md).",
+  "population": {
+    "seed_offset": 5000,
+    "min_spacing_m": 0.8,
+    "spawn_ring_m": [
+      2.6,
+      11.0
+    ],
+    "_count_source": "Anzahl aus data/settings/simulation.json → initial_population (einzige Quelle)"
+  },
+  "day_night": {
+    "day_length_s": 600.0,
+    "start_time_of_day": 0.3
+  },
+  "perception": {
+    "radius_m": 10.0,
+    "radius_source": "excel 21_Balancing wahrnehmung Standard 10 m",
+    "interval_s": 1.0,
+    "memory_s": 120.0,
+    "eye_height_m": 0.75,
+    "unreachable_blacklist_s": 60.0
+  },
+  "behavior": {
+    "decision_interval_s": 0.5,
+    "hunger_seek_threshold": 0.6,
+    "hunger_source": "excel 15_Verhalten KI001 'Hunger > 60'",
+    "sated_threshold": 0.15,
+    "explore_radius_m": 8.0,
+    "explore_attempts": 3,
+    "idle_wander_chance": 0.25
+  },
+  "locomotion": {
+    "base_speed_m_s": 1.0,
+    "speed_source": "excel 21_Balancing geschwindigkeit Standard 1,0 m/s",
+    "max_step_up_cells": 1,
+    "max_drop_cells": 2,
+    "max_water_depth_m": 0.25,
+    "avoid_radius_m": 0.45,
+    "arrive_m": 0.15
+  },
+  "navigation": {
+    "max_expansions": 2500,
+    "max_path_requests_per_tick": 4,
+    "max_replans": 2
+  },
+  "metabolism": {
+    "energy_capacity_j_per_kg": 1500.0,
+    "nutrient_capacity_g_per_kg": 2.0,
+    "start_fraction_min": 0.4,
+    "start_fraction_max": 0.75,
+    "basal_w_per_kg": 1.0,
+    "nutrient_use_g_per_s_per_kg": 0.0006,
+    "leaf_upkeep_w": 0.25,
+    "move_cost_j_per_kg_m": 2.0,
+    "action_power_w": {
+      "pick_up": 4.0,
+      "eat": 2.0,
+      "drop": 2.0,
+      "wait": 0.0,
+      "move_to": 0.0
+    },
+    "digest_efficiency": 0.8,
+    "starvation_damage_per_s": 0.004,
+    "nutrient_starvation_damage_per_s": 0.002,
+    "weakness_energy_fraction": 0.15,
+    "weakness_speed_factor": 0.6
+  },
+  "photosynthesis": {
+    "power_w_per_m2_full_light": 230.0,
+    "shade_factor_under_crown": 0.35,
+    "leaf_area_factor": 0.6
+  },
+  "food": {
+    "kinds": {
+      "P007": {
+        "excel_food_id": "N001",
+        "edible_kg": [
+          0.6,
+          1.0
+        ]
+      },
+      "P009": {
+        "excel_food_id": "N002",
+        "edible_kg": [
+          0.6,
+          1.0
+        ]
+      },
+      "P010": {
+        "excel_food_id": "N002",
+        "edible_kg": [
+          0.5,
+          0.9
+        ]
+      }
+    },
+    "energy_j_per_kg_per_nutrition_point": 3000.0,
+    "nutrient_g_per_kg_dry_matter": 100.0,
+    "bite_kg": 0.1,
+    "eat_rate_kg_per_s": 0.02,
+    "reach_m": 1.1,
+    "extra_sources": 20,
+    "extra_ring_m": [
+      5.0,
+      13.0
+    ],
+    "test_refill_kg": 0.5,
+    "refill_interval_s": 60.0
+  },
+  "health": {
+    "leg_injury_damage": 0.6,
+    "walk_min_per_side": 0.3,
+    "_note": "Gehen braucht je Seite ≥ 0,3 (Oberschenkel 0,2 + Unterschenkel 0,15 + Fuß 0,15 = 0,5). Fehlt Unterschenkel samt Fuß, ist Gehen nicht möglich (Hinken/Kriechen nicht implementiert)."
+  },
+  "capabilities": {
+    "_note": "Beiträge je Körperteil-FUNKTION (nicht je Name). Wirksamer Beitrag = Wert · Π(1 − Schaden) über das Teil und alle Vorfahren.",
+    "by_function": {
+      "bein": {
+        "locomotion": 0.2
+      },
+      "unterschenkel": {
+        "locomotion": 0.15
+      },
+      "stehen": {
+        "locomotion": 0.15
+      },
+      "greifen": {
+        "grasp": 1.0,
+        "feeding": 1.0
+      },
+      "haken": {
+        "grasp": 0.6,
+        "feeding": 0.5
+      },
+      "stuetze": {},
+      "kopf_sinne": {
+        "mouth": 1.0,
+        "perception": 1.0
+      },
+      "photosynthese_dekor": {
+        "photosynthesis": 1.0
+      },
+      "arm": {
+        "gesture": 0.5
+      }
+    },
+    "mouth_only_feeding": 0.25,
+    "_note_haken": "Kupferhaken: greift und führt eingeschränkt zum Mund (Spielannahme). Holzstütze: keine Greif-/Essfunktion."
+  },
+  "actions": {
+    "timeout_factor": 3.0,
+    "timeout_min_s": 10.0,
+    "reservation_ttl_s": 60.0,
+    "pick_up_s": 1.0,
+    "drop_s": 0.5,
+    "result_history": 500,
+    "social_note": "Soziale Handlungen und Arme heben: Parameter in data/config/mind.json (social, raise_arms)."
+  }
+}

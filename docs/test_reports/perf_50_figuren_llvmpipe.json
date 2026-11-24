@@ -1,0 +1,26 @@
+{
+  "avg_frame_ms": 132.973934567901,
+  "build_ms": 256.512,
+  "collision_areas": 795,
+  "cpu": "Intel(R) Xeon(R) Processor @ 2.10GHz",
+  "draw_calls": 3880.0,
+  "figures": 50,
+  "fps_engine": 5.0,
+  "frames_measured": 180,
+  "godot": "4.7.2-stable (official)",
+  "mesh_instances": 795,
+  "note": "Gemessen über 180 Bilder nach dem Aufbau. Keine Simulation, keine KI; nur Darstellung + Animation.",
+  "objects_in_frame": 4623.0,
+  "os": "Linux",
+  "primitives": 1144552.0,
+  "renderer": "gl_compatibility",
+  "static_memory_mb": 66.3229656219482,
+  "video_adapter": "llvmpipe (LLVM 20.1.2, 256 bits)",
+  "voxel_size_m": 0.02,
+  "voxels_total": 104092,
+  "window": [
+    1600,
+    900
+  ],
+  "worst_frame_ms": 148.865666666667
+}

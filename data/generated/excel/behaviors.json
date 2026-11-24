@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "generated_by": "tools/import_definitions.py – NICHT VON HAND BEARBEITEN",
+  "source_sheet": "15_Verhalten_KI",
+  "kind": "behaviors",
+  "description": "Verhaltensregeln (für spätere Schritte)",
+  "status_note": "game_status stammt aus data/config/implementation_status.json; ein Excel-Eintrag aktiviert keine Spielfunktion.",
+  "entries": [
+    {
+      "id": "KI001",
+      "name": "Nahrung suchen",
+      "priority": 8,
+      "condition_text": "Hunger > 60",
+      "action_text": "Gehen zu Pflanze + Essen",
+      "energy_cost": 5.0,
+      "description": "Grundbedürfnis",
+      "_excel_row": 2,
+      "game_status": "partial",
+      "game_status_note": "Nahrung suchen ab Hunger ≥ 60 % (Excel „Hunger > 60“), mit Hysterese bis 15 %."
+    },
+    {
+      "id": "KI002",
+      "name": "Wasser suchen",
+      "priority": 9,
+      "condition_text": "Durst > 70",
+      "action_text": "Gehen zu Wasser + Trinken",
+      "energy_cost": 4.0,
+      "description": "Überlebenswichtig",
+      "_excel_row": 3,
+      "game_status": "data_only"
+    },
+    {
+      "id": "KI003",
+      "name": "Fliehen",
+      "priority": 10,
+      "condition_text": "Bedrohung erkannt",
+      "action_text": "Weglaufen",
+      "energy_cost": 15.0,
+      "description": "Gefahr vermeiden",
+      "_excel_row": 4,
+      "game_status": "data_only"
+    },
+    {
+      "id": "KI004",
+      "name": "Erkunden",
+      "priority": 3,
+      "condition_text": "Keine Bedürfnisse",
+      "action_text": "Zufällig bewegen",
+      "energy_cost": 3.0,
+      "description": "Welt entdecken",
+      "_excel_row": 5,
+      "game_status": "partial",
+      "game_status_note": "Erkunden ∝ Neugier, begrenzt; gelegentlich „Arme heben“ als Ausprobieren (Prompt 4)."
+    },
+    {
+      "id": "KI005",
+      "name": "Sozial",
+      "priority": 4,
+      "condition_text": "Andere Wesen in Nähe",
+      "action_text": "Annähern + Interagieren",
+      "energy_cost": 2.0,
+      "description": "Kommunikation",
+      "_excel_row": 6,
+      "game_status": "partial",
+      "game_status_note": "Annäherung, um Nahrung bitten, anbieten, geben, ablehnen (Prompt 4) – über DecisionSystem mit Persönlichkeit und Beziehungen."
+    }
+  ],
+  "rejected": []
+}

@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "generated_by": "tools/import_definitions.py – NICHT VON HAND BEARBEITEN",
+  "source_sheet": "14_Nahrung_Konsum",
+  "kind": "food",
+  "description": "Nahrung",
+  "status_note": "game_status stammt aus data/config/implementation_status.json; ein Excel-Eintrag aktiviert keine Spielfunktion.",
+  "entries": [
+    {
+      "id": "N001",
+      "name": "Beeren",
+      "type": "Pflanze",
+      "nutrition": 15.0,
+      "water_content": 0.4,
+      "effect": "Energie +",
+      "source_text": "Büsche",
+      "description": "Kleine Früchte",
+      "_excel_row": 2,
+      "game_status": "partial",
+      "game_status_note": "Energie = Nährwert 15 × 3000 J/kg (Spielwert), Nährstoffe aus Trockenmasse (1 − Wassergehalt). Effekt-Text nicht ausgewertet."
+    },
+    {
+      "id": "N002",
+      "name": "Pilz",
+      "type": "Pilz",
+      "nutrition": 20.0,
+      "water_content": 0.6,
+      "effect": "Energie + / Risiko",
+      "source_text": "Pilze",
+      "description": "Essbar oder giftig",
+      "_excel_row": 3,
+      "game_status": "partial",
+      "game_status_note": "Wie N001 mit Nährwert 20. „Risiko“ (giftig) nicht umgesetzt."
+    },
+    {
+      "id": "N003",
+      "name": "Wasser",
+      "type": "Flüssigkeit",
+      "nutrition": 5.0,
+      "water_content": 1.0,
+      "effect": "Durst -",
+      "source_text": "Seen",
+      "description": "Trinken",
+      "_excel_row": 4,
+      "game_status": "data_only"
+    },
+    {
+      "id": "N004",
+      "name": "Blätter",
+      "type": "Pflanze",
+      "nutrition": 8.0,
+      "water_content": 0.3,
+      "effect": "Leichte Energie",
+      "source_text": "Bäume",
+      "description": "Notnahrung",
+      "_excel_row": 5,
+      "game_status": "data_only"
+    },
+    {
+      "id": "N005",
+      "name": "Wurzel",
+      "type": "Pflanze",
+      "nutrition": 12.0,
+      "water_content": 0.5,
+      "effect": "Sättigung",
+      "source_text": "Untergrund",
+      "description": "Ausgegraben",
+      "_excel_row": 6,
+      "game_status": "data_only"
+    }
+  ],
+  "rejected": []
+}

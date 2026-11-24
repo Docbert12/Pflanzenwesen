@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "id": "plant_tissue",
+  "display_name": "Pflanzengewebe (Modell)",
+  "description": "„Pflanzengewebe“ ist kein Einzelstoff. Modell: frisches, wasserreiches Gewebe mit angenommen 80 % Wasser. Grundlage für spätere Pflanzenwesen.",
+  "model_material": "Mischungsmodell 80 % Wasser + 20 % Trockenmasse (Annahme).",
+  "phase_model": "solid_only",
+  "properties": {
+    "density_kg_m3": {"value": 950.0, "unit": "kg/m³", "kind": "game", "note": "Spielparameter für frisches Gewebe, ungeprüft."},
+    "specific_heat_solid_j_kgk": {"value": 3702.0, "unit": "J/(kg·K)", "kind": "derived", "source": "S1", "note": "Massenanteile: 0,8 × 4182 (Wasser) + 0,2 × 1780 (trockene Blätter, S1). Annahme 80 % Wasser."},
+    "specific_heat_liquid_j_kgk": {"value": null, "kind": "not_applicable"},
+    "thermal_conductivity_w_mk": {"value": 0.51, "unit": "W/(m·K)", "kind": "derived", "source": "S1", "unverified": true, "note": "Grobe lineare Mischung 0,8 × 0,6 + 0,2 × 0,17 (S1). Reale Gewebe sind anisotrop."},
+    "melting_point_k": {"value": null, "kind": "not_applicable", "note": "Gefrieren des Wasseranteils ist nicht modelliert."},
+    "latent_heat_fusion_j_kg": {"value": null, "kind": "not_applicable"},
+    "model_valid_min_k": {"value": 273.15, "unit": "K", "kind": "game", "note": "Darunter würde das Wasser gefrieren – nicht modelliert."},
+    "model_valid_max_k": {"value": 333.15, "unit": "K", "kind": "game", "unverified": true, "note": "Spielgrenze für Gewebeschäden durch Hitze (nicht simuliert)."}
+  },
+  "mechanical": {
+    "fracture_behavior": {"value": "soft", "kind": "game", "note": "Reißt in wenige Teile."},
+    "toughness_j_kg": {"value": 60.0, "unit": "J/kg", "kind": "game"},
+    "max_fragments": {"value": 2, "kind": "game"}
+  },
+  "working": {"_note": "Spielparameter (Prompt 6).", "hardness": {"value": 0.3, "kind": "game", "note": "Weiches, wasserreiches Gewebe (Körper der Wesen)."}},
+  "combustion": {
+    "combustible": {"value": true, "kind": "assumed", "note": "Nur in getrocknetem Zustand; Trocknung und Verbrennung sind nicht simuliert."},
+    "decomposition_onset_k": {"value": null, "kind": "not_applicable"},
+    "simulated": false
+  },
+  "render": {"color": "#2E7D32", "liquid_color": "#2E7D32", "kind": "game", "note": "Farbe F001 aus der Excel-Datenbasis."},
+  "sources": [
+    {"id": "S1", "title": "Benincá et al.: Thermophysical properties of mate leaves (dry leaves cp ≈ 1780 J/kg/K, k ≈ 0,17 W/m/K)", "url": "https://searchworks.jioinstitute.edu.in/articles/edsair__edsair.doi...........83820d0bfc947205715c93f7ed765b89"}
+  ]
+}

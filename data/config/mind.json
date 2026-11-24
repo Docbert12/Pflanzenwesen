@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "_note": "SPIELPARAMETER des Geistes (Prompt 4). Die Excel enthält keine Persönlichkeitswerte; alle Werte sind dokumentierte Annahmen (docs/mind_and_learning.md). Nur KI005 'Sozial' und KI004 'Erkunden' (Priorität 4 bzw. 3) dienen als Orientierung für die Grundgewichte.",
+  "personality": {
+    "traits": [
+      "neugier",
+      "geselligkeit",
+      "hilfsbereitschaft",
+      "vorsicht",
+      "beharrlichkeit"
+    ],
+    "labels": {
+      "neugier": "Neugier",
+      "geselligkeit": "Geselligkeit",
+      "hilfsbereitschaft": "Hilfsbereitschaft",
+      "vorsicht": "Vorsicht",
+      "beharrlichkeit": "Beharrlichkeit"
+    },
+    "mean": 0.5,
+    "spread": 0.18,
+    "min": 0.05,
+    "max": 0.95,
+    "seed_salt": 7151,
+    "_note": "Werte 0…1, Summe von 3 Zufallszahlen (annähernd glockenförmig) um mean ± spread, begrenzt auf [min, max]. Reproduzierbar aus dem Körper-Startwert. Keine Kopplung an Farbe, Art oder Körper."
+  },
+  "observation": {
+    "_note": "Beobachtbare Ereignisse werden nur an Wesen verteilt, die sie wahrnehmen können (Reichweite × Kopffunktion, Sichtlinie, lebend).",
+    "quality_min": 0.15,
+    "self_quality": 1.0,
+    "gesture_visibility_m": 10.0,
+    "intervention_visibility_m": 14.0
+  },
+  "memory": {
+    "capacity": 64,
+    "merge_window_s": 120.0,
+    "merge_place_m": 4.0,
+    "salience_half_life_s": 300.0,
+    "significance_slows_decay": 4.0,
+    "min_significance_store": 0.08,
+    "significance": {
+      "self_involved": 0.35,
+      "received_food": 0.5,
+      "gave_food": 0.3,
+      "declined_me": 0.3,
+      "request_to_me": 0.2,
+      "divine_gift": 0.55,
+      "healed": 0.6,
+      "death_seen": 0.6,
+      "injury_seen": 0.4,
+      "food_eaten_seen": 0.1,
+      "food_taken_seen": 0.08,
+      "raise_arms_seen": 0.12,
+      "other_help_seen": 0.25,
+      "material_appeared": 0.35
+    }
+  },
+  "beliefs": {
+    "capacity": 32,
+    "prior_alpha": 1.0,
+    "prior_beta": 1.0,
+    "forgetting": 0.97,
+    "confidence_k": 4.0,
+    "max_evidence": 30.0,
+    "place_cell_m": 4.0,
+    "_note": "Beta-Bernoulli-Schätzung mit Vergessensfaktor (Lernrate begrenzt). Konfidenz = n/(n+k) aus der wirksamen Erfahrungsmenge n. Erwarteter Nutzen getrennt davon."
+  },
+  "learning": {
+    "credit_window_s": 12.0,
+    "credit_tau_s": 4.0,
+    "credit_min_weight": 0.15,
+    "trackable_actions": [
+      "raise_arms",
+      "wait",
+      "move_to",
+      "eat",
+      "pick_up",
+      "give_food",
+      "offer_food",
+      "request_food",
+      "decline_request"
+    ],
+    "pending_max": 12,
+    "_note": "Eingriffe werden nur eigenen Handlungen im Zeitfenster zugeordnet; Gewicht exp(-Δt/τ), normiert, nur Handlungen über credit_min_weight. Bleibt ein Eingriff nach einer Handlung aus, zählt das nach Ablauf des Fensters als Gegenbeispiel."
+  },
+  "relationships": {
+    "capacity": 24,
+    "similarity_familiarity": 0.12,
+    "similarity_trust_prior": 0.6,
+    "familiarity_gain_per_observation": 0.02,
+    "familiarity_gain_interaction": 0.08,
+    "familiarity_decay_per_s": 0.0002,
+    "trust_help_weight": 1.0,
+    "trust_decline_weight": 0.3,
+    "trust_decline_without_visible_food": 0.0,
+    "trust_observed_help_weight": 0.25,
+    "trust_forgetting": 0.98
+  },
+  "social": {
+    "request_range_m": 3.0,
+    "give_range_m": 1.4,
+    "request_duration_s": 1.5,
+    "decline_duration_s": 1.0,
+    "give_duration_s": 1.0,
+    "offer_timeout_s": 10.0,
+    "request_expire_s": 10.0,
+    "request_cooldown_s": 15.0,
+    "same_target_cooldown_s": 60.0,
+    "after_decline_cooldown_s": 90.0,
+    "accept_hunger_min": 0.25,
+    "share_eat_threshold": 0.35,
+    "_note": "Wer versorgt ist und hilfsbereit, kann eine Portion tragen statt sie sofort zu essen; gegessen wird getragene Nahrung erst ab share_eat_threshold Hunger."
+  },
+  "decision": {
+    "_note": "Nutzwerte 0…~2. Überleben dominiert ab critical_hunger. Beiträge werden je Entscheidung protokolliert.",
+    "critical_hunger": 0.8,
+    "food_need_low": 0.3,
+    "food_need_high": 0.9,
+    "food_weight": 1.2,
+    "survival_weight": 2.5,
+    "explore_weight": 0.45,
+    "social_weight": 0.35,
+    "help_weight": 0.9,
+    "repeat_weight": 0.8,
+    "rest_base": 0.15,
+    "caution_uncertainty_penalty": 0.5,
+    "switch_margin": 0.15,
+    "commit_base_s": 6.0,
+    "raise_arms_try_chance": 0.02,
+    "suggestion_max_bonus": 0.2,
+    "collect_for_sharing_weight": 0.35,
+    "walk_cost_per_m": 0.015,
+    "walk_cost_max": 0.3,
+    "_note_walk": "Wegkosten: Nutzwertabzug je Meter Entfernung zum Ziel (Nahrung bzw. Wesen), begrenzt.",
+    "ask_sociability_weight": 0.3
+  },
+  "raise_arms": {
+    "duration_s": 3.0,
+    "energy_w": 3.0
+  },
+  "god": {
+    "_note": "Göttermenü (Spielerwerkzeug). Mengen begrenzt; Positionen werden geprüft.",
+    "food_kg_range": [
+      0.05,
+      1.0
+    ],
+    "food_default_kg": 0.2,
+    "gift_distance_m": 0.55,
+    "min_creature_clearance_m": 0.35,
+    "materials": [
+      "stone",
+      "wood",
+      "copper",
+      "plant_fiber"
+    ],
+    "material_size_m": 0.12,
+    "heal_default": 0.5,
+    "heal_max": 1.0,
+    "effect_visible_s": 4.0
+  },
+  "plans": {
+    "_note": "Modellpläne (Prompt 5) sind nur Vorschläge an den EINEN Entscheider (DecisionSystem): Option 'follow_plan' mit begrenztem Nutzwert. Jeder Schritt wird vor der Ausführung neu geprüft.",
+    "follow_weight": 0.35,
+    "food_alignment": 0.5,
+    "uncertainty_discount": 0.5,
+    "max_plan_age_s": 180.0,
+    "step_timeout_s": 40.0,
+    "step_wait_s": 5.0,
+    "step_explore_radius_m": 6.0,
+    "failed_signature_block_s": 600.0,
+    "failed_signatures_max": 8,
+    "history_max": 5,
+    "notes_max": 8,
+    "suggestion_ttl_s": 30.0
+  },
+  "ai_triggers": {
+    "_note": "Anlässe für Modellanfragen. Nie für Bewegung, Nahrungssuche, Hungeraktualisierung, Ausweichen oder Gesundheitsänderungen; nie bei kritischem Hunger.",
+    "fail_streak": 3,
+    "hard_choice_margin": 0.05,
+    "hard_choice_min_u": 0.25,
+    "notable_significance": 0.5,
+    "notable_window_s": 8.0,
+    "contradiction_min_support": 1,
+    "contradiction_min_contra": 2,
+    "talk_request_chance": 0.05,
+    "priority": {
+      "failure": 3,
+      "notable": 3,
+      "hard_choice": 2,
+      "interpret": 2,
+      "experiment": 2,
+      "talk": 1
+    }
+  },
+  "communication": {
+    "_note": "Kurze direkte Gespräche (Prompt 5). Inhalte sind strukturiert und werden gegen das eigene Wissen des Sprechers geprüft; angezeigter Text entsteht aus Vorlagen. Strategische Täuschung ist NICHT implementiert.",
+    "local_enabled": true,
+    "range_m": 4.0,
+    "duration_s": 1.5,
+    "visibility_m": 8.0,
+    "speaker_cooldown_s": 25.0,
+    "pair_cooldown_s": 90.0,
+    "talk_weight": 0.3,
+    "hint_relevance": 0.15,
+    "point_food_max_age_s": 90.0,
+    "topics_max": 5,
+    "log_max": 200,
+    "share_chance": 0.15
+  },
+  "hearsay": {
+    "_note": "Gehörtes ist Hörensagen, kein eigenes Wissen: es landet NICHT im Nahrungsgedächtnis und NICHT als Beleg in Überzeugungen. Nur eigene Wahrnehmung prüft es.",
+    "capacity": 24,
+    "expire_s": 600.0,
+    "check_weight": 0.8,
+    "independent_bonus": 0.05,
+    "verify_radius_m": 3.0,
+    "contradiction_window_s": 10.0,
+    "empty_seen_max": 32,
+    "trust_confirm_weight": 0.3,
+    "trust_contradict_weight": 0.4,
+    "trust_error_weight": 0.4,
+    "trust_outdated_weight": 0.0
+  }
+}

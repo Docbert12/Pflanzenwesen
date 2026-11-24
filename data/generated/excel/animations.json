@@ -1,0 +1,94 @@
+{
+  "schema_version": 1,
+  "generated_by": "tools/import_definitions.py – NICHT VON HAND BEARBEITEN",
+  "source_sheet": "08_Animationen",
+  "kind": "animations",
+  "description": "Animationen (Beschreibungen)",
+  "status_note": "game_status stammt aus data/config/implementation_status.json; ein Excel-Eintrag aktiviert keine Spielfunktion.",
+  "entries": [
+    {
+      "id": "A001",
+      "name": "Stehen",
+      "body_form": "Zweibeiner",
+      "joints_required": [
+        "Hüfte",
+        "Knie"
+      ],
+      "duration_s": 0.0,
+      "description": "Idle-Pose",
+      "motion": "Leichte Atembewegung",
+      "special_case": "Standard",
+      "_excel_row": 2,
+      "game_status": "implemented",
+      "game_status_note": "Ruhehaltung, in der Lebenssimulation bei Warten/ohne Handlung."
+    },
+    {
+      "id": "A002",
+      "name": "Gehen",
+      "body_form": "Zweibeiner",
+      "joints_required": [
+        "Hüfte",
+        "Knie",
+        "Schulter",
+        "Ellbogen"
+      ],
+      "duration_s": 1.2,
+      "description": "Normaler Gang",
+      "motion": "Beine abwechselnd, Arme mitschwingen",
+      "special_case": "Bei fehlendem Bein: Hinken",
+      "_excel_row": 3,
+      "game_status": "partial",
+      "game_status_note": "Gehen in der Lebenssimulation an echte Bewegung (move_to) gekoppelt, Takt ∝ tatsächlicher Geschwindigkeit. Hinken: nicht implementiert."
+    },
+    {
+      "id": "A003",
+      "name": "Aufheben",
+      "body_form": "Zweibeiner",
+      "joints_required": [
+        "Schulter",
+        "Ellbogen"
+      ],
+      "duration_s": 0.8,
+      "description": "Gegenstand aufheben",
+      "motion": "Arm nach unten beugen",
+      "special_case": "Einarmig möglich",
+      "_excel_row": 4,
+      "game_status": "partial",
+      "game_status_note": "Greifen während pick_up, nur mit vorhandener Greiffähigkeit (Hand oder Kupferhaken)."
+    },
+    {
+      "id": "A004",
+      "name": "Essen",
+      "body_form": "Zweibeiner",
+      "joints_required": [
+        "Kopf",
+        "Arm"
+      ],
+      "duration_s": 1.5,
+      "description": "Essen/Trinken",
+      "motion": "Hand zum Mund",
+      "special_case": "Blätter können wackeln",
+      "_excel_row": 5,
+      "game_status": "partial",
+      "game_status_note": "Zum Mund führen während eat (getragene Nahrung). Direktes Essen ohne Hände ohne eigene Animation."
+    },
+    {
+      "id": "A005",
+      "name": "Stehen",
+      "body_form": "Vierbeiner",
+      "joints_required": [
+        "alle Beine"
+      ],
+      "duration_s": 0.0,
+      "description": "Vierbeiniger Idle",
+      "motion": "Leichte Gewichtsverlagerung",
+      "special_case": "Für spätere Wesen",
+      "_excel_row": 6,
+      "game_status": "not_implemented",
+      "import_warnings": [
+        "08_Animationen!Zeile 6: Name 'Stehen' kommt mehrfach vor (zuerst Zeile 2)."
+      ]
+    }
+  ],
+  "rejected": []
+}

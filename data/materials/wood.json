@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "id": "wood",
+  "display_name": "Holz (Modell: trockenes Hartholz)",
+  "description": "„Holz“ ist kein Einzelstoff. Modellmaterial: ofentrockenes, eichenähnliches Hartholz.",
+  "model_material": "Trockenes Hartholz, isotrop vereinfacht (Faserrichtung wird ignoriert).",
+  "phase_model": "solid_only",
+  "properties": {
+    "density_kg_m3": {"value": 700.0, "unit": "kg/m³", "kind": "assumed", "unverified": true, "note": "Trockendichten reichen etwa von 300 bis 1040 kg/m³ (S3)."},
+    "specific_heat_solid_j_kgk": {"value": 1236.0, "unit": "J/(kg·K)", "kind": "derived", "source": "S1", "note": "Wood Handbook Gl. 4-16a: cp_dry = 0,1031 + 0,003867·T [kJ/(kg·K)] bei T = 293,15 K. Im Modell konstant."},
+    "specific_heat_liquid_j_kgk": {"value": null, "kind": "not_applicable"},
+    "thermal_conductivity_w_mk": {"value": 0.17, "unit": "W/(m·K)", "kind": "assumed", "unverified": true, "note": "Typischer Wert quer zur Faser, nicht gegen Tabelle 4-7 des Wood Handbook geprüft."},
+    "melting_point_k": {"value": null, "kind": "not_applicable", "note": "Holz schmilzt nicht; es zersetzt sich thermisch (Pyrolyse)."},
+    "latent_heat_fusion_j_kg": {"value": null, "kind": "not_applicable"},
+    "model_valid_min_k": {"value": 1.0, "unit": "K", "kind": "game"},
+    "model_valid_max_k": {"value": 500.0, "unit": "K", "kind": "assumed", "unverified": true, "note": "Grob angenommener Beginn der thermischen Zersetzung. Zersetzung ist nicht simuliert; die Heizung schaltet hier ab."}
+  },
+  "mechanical": {
+    "fracture_behavior": {"value": "fibrous", "kind": "game", "note": "Splittert in wenige Teile."},
+    "toughness_j_kg": {"value": 150.0, "unit": "J/kg", "kind": "game"},
+    "max_fragments": {"value": 2, "kind": "game"}
+  },
+  "working": {"_note": "Spielparameter (Prompt 6).", "hardness": {"value": 2.0, "kind": "game", "note": "Relative Härte 0–10 (trockenes Hartholz, grob)."}},
+  "combustion": {
+    "combustible": {"value": true, "kind": "assumed"},
+    "decomposition_onset_k": {"value": 500.0, "unit": "K", "kind": "assumed", "unverified": true},
+    "simulated": false
+  },
+  "render": {"color": "#8B5A2B", "liquid_color": "#8B5A2B", "kind": "game"},
+  "sources": [
+    {"id": "S1", "title": "Glass & Zelinka 2010: Moisture relations and physical properties of wood. Wood Handbook Kap. 4, FPL-GTR-190", "url": "https://research.fs.usda.gov/treesearch/37428"},
+    {"id": "S2", "title": "chemics.wood – Implementierung von Gl. 4-16a (zur Nachprüfung der Formel)", "url": "https://chemics.readthedocs.io/en/latest/_modules/chemics/wood.html"},
+    {"id": "S3", "title": "Wood Combustion Lesson 02 (Zusammenstellung FPL-Daten)", "url": "https://is.muni.cz/el/1423/podzim2013/MEB423/um/Wood_Combustion_Lesson_02.pdf"}
+  ]
+}

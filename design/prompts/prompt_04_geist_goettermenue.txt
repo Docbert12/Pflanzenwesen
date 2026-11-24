@@ -1,0 +1,480 @@
+Entwickle unser bestehendes Godot-Projekt weiter. Dies ist Prompt 4.
+
+Implementiere individuelle Persönlichkeit, Erinnerungen, Überzeugungen, Beziehungen und erfahrungsbasiertes Lernen für die bestehende Bevölkerung. Ergänze ein Göttermenü, mit dem der Spieler durch sichtbare Eingriffe auf Handlungen reagieren kann.
+
+Arbeite direkt im Projekt und integriere alle Funktionen in die vorhandene Lebenssimulation.
+
+## 1. Bestand prüfen
+
+Lies zuerst:
+- README.md
+- docs/architecture.md
+- docs/implementation_status.md
+- docs/physics_model.md
+- docs/life_simulation.md
+- docs/save_format.md
+- docs/excel_mapping.md
+- Die vorhandenen Tests und relevanten Excel-Definitionen.
+
+Prüfe insbesondere:
+- Wahrnehmung.
+- Einfaches Verhalten.
+- Handlungssystem.
+- Ereignisprotokoll.
+- Körperfunktionen.
+- Speichern und Laden.
+- Beobachtungsoberfläche.
+
+Erweitere vorhandene Systeme. Erstelle keine zweite Wahrnehmungs-, Ereignis- oder Handlungsverwaltung.
+
+Die Dateinamen unten sind Zielvorschläge. Wenn gleichwertige Module bereits existieren, erweitere diese und dokumentiere die Zuordnung.
+
+Behebe blockierende Fehler gezielt und erhalte die bisherigen Testbereiche.
+
+## 2. Ziel dieser Version
+
+Die Wesen sollen sich aufgrund ihrer Persönlichkeit und ihrer eigenen Erfahrungen unterschiedlich verhalten.
+
+Sie können:
+- Ereignisse selbst beobachten.
+- Sich an wichtige Erlebnisse erinnern.
+- Erwartungen aus Erfolgen und Misserfolgen bilden.
+- Individuelles Vertrauen entwickeln.
+- Nahrung teilen oder Hilfe verweigern.
+- Ähnlichkeiten und Unterschiede erkennen.
+- Eigene Ziele verfolgen.
+- Göttliche Eingriffe wahrnehmen und unterschiedlich interpretieren.
+- Erlernte Handlungen erneut ausprobieren.
+
+Der Spieler kann:
+- Nahrung oder Materialien schenken.
+- Verletzungen gezielt heilen.
+- Eine beobachtete Handlung auswählen und darauf reagieren.
+- Die unterschiedlichen Reaktionen untersuchen.
+
+Alle Funktionen arbeiten zunächst mit lokalen Regeln und strukturierten Daten. Eine Ollama-Anbindung folgt später.
+
+Nicht Bestandteil dieses Auftrags:
+- Vollständige Religionen.
+- Sprache, freie Dialoge und Bücher.
+- Technologische Erfindungen.
+- Fortpflanzung und Baumgründung.
+- Organisierte Kriege oder gesellschaftliche Institutionen.
+- Training eines neuronalen Netzes.
+
+## 3. Architektur und Zuständigkeiten
+
+Erstelle oder erweitere:
+- scripts/mind/personality.gd
+- scripts/mind/observation.gd
+- scripts/mind/memory_store.gd
+- scripts/mind/belief_store.gd
+- scripts/mind/relationship_store.gd
+- scripts/mind/learning_system.gd
+- scripts/mind/goal_manager.gd
+- scripts/mind/decision_system.gd
+- scripts/social/social_interaction_system.gd
+- scripts/god/god_commands.gd
+- scripts/god/intervention_system.gd
+- scripts/god/reward_association.gd
+- scripts/ui/god_menu.gd
+
+Das bestehende basic_behavior wird kontrolliert in das neue Entscheidungssystem integriert oder durch dieses ersetzt.
+
+Es darf pro Wesen nur eine zuständige Instanz für die Auswahl laufender Handlungen geben.
+
+Trenne strikt:
+1. Den tatsächlichen Weltzustand.
+2. Beobachtungen eines Wesens.
+3. Erinnerungen.
+4. Vermutungen und Erwartungen.
+5. Entscheidungen.
+
+Ein Wesen darf den globalen Ereignisverlauf nicht als allwissende Wissensquelle verwenden.
+
+## 4. Persönlichkeit
+
+Definiere wenige verständliche, konfigurierbare Eigenschaften, beispielsweise:
+- Neugier.
+- Geselligkeit.
+- Hilfsbereitschaft.
+- Vorsicht.
+- Beharrlichkeit.
+
+Nutze vorhandene passende Excel-Angaben. Ergänze fehlende Werte als dokumentierte Spielparameter.
+
+Anforderungen:
+- Begrenzte Wertebereiche.
+- Reproduzierbare Anfangsverteilung anhand des Startwerts.
+- Eigenschaften beeinflussen konkrete Entscheidungsbewertungen.
+- Persönlichkeit ist keine feste Berufsklasse.
+- Persönlichkeit ändert sich nicht nach jedem Ereignis beliebig.
+- Kurzfristige Zustände wie Hunger und Bedrohung bleiben davon getrennt.
+
+Keine angeborenen Kategorien „gut“ oder „böse“.
+
+Keine automatische Verknüpfung von moralischen Eigenschaften mit Körperfarbe, Art oder Mutation.
+
+## 5. Wahrnehmung und Beobachtungen
+
+Erweitere die vorhandene Wahrnehmung.
+
+Eine Beobachtung enthält:
+- Beobachter-ID.
+- Simulationszeit.
+- Beobachteten Ereignistyp.
+- Tatsächlich wahrgenommene Beteiligte.
+- Ort.
+- Wahrgenommene Folgen.
+- Beobachtungsqualität.
+- Quellenart.
+
+Verwende zunächst die Quellenart „eigene Beobachtung“. Bereite eine erweiterbare Quellenstruktur für spätere Kommunikation vor, ohne bereits ein Gesprächssystem zu bauen.
+
+Wichtig:
+- Verdeckte Ereignisse werden nicht automatisch bekannt.
+- Beobachter kennen nicht die Absichten anderer.
+- Sichtbare Verletzung bedeutet nicht automatisch Kenntnis ihrer Ursache.
+- Die Auswahl eines Ereignisses im Göttermenü ist privates Spielerwissen.
+- Debug-Anzeigen dürfen globale Fakten zeigen, müssen sie aber von individuellem Wissen trennen.
+
+Halte Wahrnehmungsprüfungen für 50 Wesen effizient.
+
+## 6. Erinnerungen
+
+Implementiere begrenzte individuelle Erinnerungsspeicher.
+
+Eine Erinnerung enthält:
+- Eindeutige ID.
+- Zugehörige Beobachtung beziehungsweise nachvollziehbare Herkunft.
+- Beteiligte und Ort.
+- Ereignistyp.
+- Wahrgenommene Folgen.
+- Persönliche Bedeutung.
+- Sicherheit.
+- Zeitpunkt.
+
+Unterstütze:
+- Erinnern besonders relevanter Ereignisse.
+- Abnehmende Zugänglichkeit gewöhnlicher Erlebnisse.
+- Verdichtung wiederholter Erfahrungen.
+- Abruf nach beteiligter Person, Handlung, Ort und Ereignistyp.
+- Begrenzten Speicherbedarf.
+
+Verdichtung darf keine neuen Ereignisse erfinden oder Unsicherheit in Gewissheit umwandeln.
+
+Ein aus dem globalen Verlauf entferntes Ereignis darf nicht zu ungültigen Speicherreferenzen führen. Persönliche Erinnerungen müssen ausreichende eigene Daten enthalten.
+
+Es ist noch kein Sprachmodell für Zusammenfassungen erforderlich.
+
+## 7. Überzeugungen und Erwartungen
+
+Implementiere strukturierte, überprüfbare Hypothesen.
+
+Beispiele:
+- „Bei diesem Ort finde ich häufig Nahrung.“
+- „Dieses Wesen hat mir mehrfach geholfen.“
+- „Nach dieser Handlung trat manchmal ein auffälliges Geschenk auf.“
+
+Jede Hypothese benötigt:
+- Gegenstand beziehungsweise Zusammenhang.
+- Unterstützende Erfahrungen.
+- Widersprechende Erfahrungen.
+- Konfidenz.
+- Aktualisierungszeit.
+- Gültigkeitsbereich.
+
+Ein zeitlicher Zusammenhang ist keine bewiesene Ursache.
+
+Nutze ein dokumentiertes, einfaches Lernmodell:
+- Begrenzte Lernraten.
+- Berücksichtigung widersprechender Ergebnisse.
+- Keine Gewissheit nach einer einzelnen Belohnung.
+- Konfidenz und erwarteten Nutzen getrennt halten.
+- Vergleich mit der allgemeinen Häufigkeit eines Ereignisses, soweit das Modell dies unterstützt.
+
+Dokumentiere ausdrücklich, welche kausalen Schlussfolgerungen das vereinfachte System nicht leisten kann.
+
+## 8. Individuelle Beziehungen und Unterschiede
+
+Implementiere gerichtete Beziehungen: A kann B vertrauen, während B A nicht vertraut.
+
+Unterscheide:
+- Vertrautheit.
+- Vertrauen aufgrund von Erfahrungen.
+- Erhaltene Hilfe.
+- Erlebte negative Interaktionen.
+- Wahrgenommene Ähnlichkeit.
+- Beobachtete Herkunft, soweit bekannt.
+
+Körpermerkmale stammen aus den sichtbaren Körperdaten.
+
+Ein Wesen darf nicht die vollständige verborgene genetische Definition eines anderen auslesen.
+
+Ähnlichkeit kann einen konfigurierbaren kleinen Einfluss auf anfängliche Vertrautheit haben. Wiederholte Erfahrungen müssen diese Anfangstendenz verändern können.
+
+In dieser Version gibt es noch keine vollständige Lügen- oder Ehrlichkeitsbewertung, da Sprache erst später folgt. Bereite die Datenstruktur dafür vor, aber zeige keine unbegründeten Ehrlichkeitswerte an.
+
+## 9. Zusätzliche soziale Handlungen
+
+Erweitere das bestehende Handlungssystem um:
+- request_food
+- offer_food
+- give_food
+- decline_request
+
+Diese Interaktionen dürfen zunächst über Symbole und kurze strukturierte Meldungen dargestellt werden.
+
+Definiere eindeutig:
+- Reichweite.
+- Wahrnehmbarkeit.
+- Voraussetzungen.
+- Reaktion des Empfängers.
+- Ablauf beziehungsweise Zeitlimit.
+- Ressourcenübertragung.
+- Abbruchbedingungen.
+
+Nahrung wird tatsächlich übertragen und beim Geber abgezogen. Angebotene Nahrung kann nicht gleichzeitig gegessen oder anderweitig vergeben werden.
+
+Ein Nahrungswunsch ist kein Zwang. Die Antwort hängt beispielsweise ab von:
+- Eigenem Bedarf.
+- Verfügbarer Menge.
+- Persönlichkeit.
+- Beziehung.
+- Bisherigen Erfahrungen.
+
+Verhindere endlose Bitte-Ablehnung-Schleifen durch sinnvolle Wartezeiten.
+
+Verweigerung einer Bitte ist nicht automatisch ein schwerwiegender Vertrauensbruch.
+
+## 10. Ziele und Entscheidungen
+
+Implementiere eine gemeinsame Bewertung von:
+- Überleben.
+- Nahrungssuche.
+- Erkunden.
+- Sozialer Annäherung.
+- Hilfe beziehungsweise Teilen.
+- Wiederholen einer erfolgreich bewerteten Handlung.
+
+Nutze:
+- Aktuelle Bedürfnisse.
+- Körperfähigkeiten.
+- Persönlichkeit.
+- Beziehungen.
+- Erinnerungen.
+- Unsicherheit und erwarteten Nutzen.
+
+Verhindere ständigen Zielwechsel durch:
+- Mindestbindung an geeignete Ziele.
+- Abbruch bei Gefahr oder ungültigen Voraussetzungen.
+- Wartezeiten.
+- Begrenzte Neuplanung.
+
+Kritische körperliche Bedürfnisse müssen angemessen berücksichtigt werden. Eine schwache gelernte Vorliebe darf nicht regelmäßig dazu führen, dass Wesen ohne nachvollziehbaren Grund verhungern.
+
+Protokolliere die wesentlichen Bewertungsbeiträge, damit Entscheidungen später erklärt werden können.
+
+Für spätere Ollama-Pläne bereite eine Schnittstelle für Zielvorschläge vor. Implementiere jetzt keine Netzwerkverbindung und keinen zweiten Entscheider.
+
+## 11. Göttermenü
+
+Implementiere:
+- Nahrung schenken.
+- Einen definierten Materialgegenstand platzieren.
+- Eine begrenzte Verletzung heilen.
+- Ein kürzlich beobachtetes Ereignis auswählen.
+- Auf dieses Ereignis mit einem Eingriff reagieren.
+
+Die Oberfläche zeigt vor der Ausführung:
+- Eingriffsart.
+- Ziel oder Position.
+- Menge beziehungsweise Umfang.
+- Das optional zugeordnete Ereignis.
+
+Nahrung und Material entstehen nur an gültigen Positionen. Verhindere Platzierung in festen Objekten oder Körpern.
+
+Heilung repariert in dieser Version vorhandenes verletztes Gewebe. Fehlende Körperteile werden dadurch nicht automatisch regeneriert.
+
+Alle Eingriffe:
+- Erhalten eine eindeutige ID.
+- Werden im Ereignisprotokoll gespeichert.
+- Werden als externe Ressourcen- beziehungsweise Zustandsänderung bilanziert.
+- Sind sichtbar erkennbar.
+- Können nur von geeigneten Beobachtern wahrgenommen werden.
+
+Der Spieler kann nicht direkt mit Wesen sprechen oder ihnen Befehle geben.
+
+## 12. Belohnungslernen und Interpretation
+
+Trenne:
+1. Die tatsächliche Absicht des Spielers.
+2. Den sichtbaren Eingriff.
+3. Die Interpretation jedes Beobachters.
+
+Die im Menü ausgewählte Handlung darf für Diagnose und Auswertung gespeichert werden. Sie darf nicht als geheime Gewissheit in den Geist der Wesen gelangen.
+
+Ein Wesen berücksichtigt nur:
+- Eigene wahrgenommene Handlungen.
+- Zeitlichen Abstand.
+- Sichtbaren Empfänger.
+- Ort.
+- Wiederholungen.
+- Vergleichbare Ereignisse ohne Geschenk.
+- Alternative naheliegende Erklärungen.
+
+Bewerte einen Eingriff nach seinen tatsächlichen Folgen für das Wesen. Ein Geschenk ist nicht automatisch für jeden eine positive Belohnung.
+
+Implementiere die Zuordnung als begrenztes, nachvollziehbares Lernmodell. Ein Eingriff darf nicht alle kürzlich ausgeführten Handlungen gleich stark verstärken.
+
+Es soll möglich sein, dass:
+- Ein Empfänger einen Zusammenhang vermutet.
+- Ein Beobachter eine andere Erklärung entwickelt.
+- Ein nicht anwesendes Wesen nichts davon weiß.
+- Wiederholte ausbleibende Bestätigung die Erwartung abschwächt.
+
+## 13. Kleine ritualähnliche Handlung
+
+Ergänze eine einfache expressive Handlung, beispielsweise:
+- An einem Ort anhalten und die Arme heben.
+
+Diese kann als Testhandlung für erlernte Wiederholung dienen.
+
+Wichtig:
+- Nicht von Anfang an als universelles Gebet definieren.
+- Keine automatische Kenntnis einer Gottheit.
+- Keine garantierte Belohnung.
+- Kein fester religiöser Nutzen.
+- Nicht jedes Wesen muss sie ausführen.
+
+Sie darf durch gelegentliches Erkunden einer möglichen Handlung auftreten. Wenn passende Erfahrungen folgen, kann ihre Bewertung steigen.
+
+Die Oberfläche bezeichnet sie zunächst neutral, etwa als „Arme heben“. Eine religiöse Interpretation gehört in ein späteres Kultursystem.
+
+## 14. Beobachtungsfenster erweitern
+
+Zeige bei einem Wesen:
+- Persönlichkeit.
+- Aktuelle Bedürfnisse.
+- Ziel und Handlung.
+- Wesentliche Gründe der Entscheidung.
+- Wichtigste Erinnerungen.
+- Überzeugungen mit Konfidenz.
+- Unterstützende und widersprechende Erfahrungen.
+- Beziehungen.
+- Wahrgenommene göttliche Eingriffe.
+
+Trenne sichtbar:
+- Weltfakt.
+- Beobachtung.
+- Erinnerung.
+- Vermutung.
+
+Erklärungen werden aus tatsächlichen Systemdaten erstellt. Keine erfundenen Gedanken oder nachträglichen Begründungen.
+
+Ergänze eine Vergleichsansicht für zwei Wesen.
+
+## 15. Speichern und Laden erweitern
+
+Speichere:
+- Persönlichkeit.
+- Erinnerungen.
+- Überzeugungen.
+- Beziehungen.
+- Laufende Ziele.
+- Lernparameter beziehungsweise gelernte Bewertungen.
+- Wartezeiten und relevante Zufallszustände.
+- Göttliche Eingriffe und notwendige Referenzen.
+
+Erhöhe die Speicherformatversion.
+
+Implementiere eine Migration aus der tatsächlich vorhandenen Vorgängerversion:
+- Alte Wesen erhalten reproduzierbare Anfangswerte.
+- Bestehende Körper-, Ressourcen- und Weltzustände bleiben erhalten.
+- Erzeuge keine erfundenen historischen Erinnerungen.
+- Fehlende Vergangenheit bleibt unbekannt.
+
+Sichere einen Spielstand vor der Migration.
+
+## 16. Kontrollierte Testszenen
+
+Erstelle einen separaten Testbereich für reproduzierbare Versuche.
+
+A. Individuelle Erfahrung
+- Zwei vergleichbare Wesen erleben unterschiedliche Ereignisse.
+- Prüfe die unterschiedlichen gespeicherten Erfahrungen und Bewertungen.
+
+B. Hilfe
+- Ein Wesen gibt einem anderen tatsächlich Nahrung.
+- Prüfe Mengenübertragung und die gerichtete Beziehungsänderung.
+
+C. Verdecktes Ereignis
+- Ein Wesen ist außerhalb der Wahrnehmung.
+- Es erhält keine Erinnerung und keine Beziehungskorrektur zu diesem Ereignis.
+
+D. Belohnungsassoziation
+- Eine Handlung wird wiederholt von einem sichtbaren Eingriff gefolgt.
+- Prüfe, ob die Erwartung nachvollziehbar zunimmt.
+- Vergleiche mit zeitlich unverbundenen Eingriffen.
+
+E. Widerspruch
+- Eine erwartete Folge bleibt wiederholt aus.
+- Prüfe eine begrenzte Abschwächung der Erwartung.
+
+F. Ähnlichkeit und Erfahrung
+- Ein äußerlich anderes Wesen hilft wiederholt.
+- Positive eigene Erfahrung muss Vertrauen ermöglichen.
+
+G. Speichern
+- Erinnerungen, Beziehungen und Überzeugungen überstehen einen Speicher-Lade-Zyklus.
+
+Die Testszenen dürfen Ereignisse gezielt auslösen. Solche Testeingriffe dürfen nicht als fest vorgeschriebene Handlung im normalen Spiel verborgen sein.
+
+Teste Lernverhalten über mehrere feste Startwerte. Ein einzelner zufälliger Durchlauf ist kein ausreichender Nachweis für allgemeines Verhalten.
+
+## 17. Leistung und Regression
+
+Prüfe:
+- Die bestehenden 50 Wesen bleiben funktionsfähig.
+- Handlungssystem und Nahrungssuche funktionieren weiterhin.
+- Keine unbegrenzten Speicherlisten.
+- Keine vollständige Auswertung aller Erinnerungen in jedem Frame.
+- Keine vollständige Paarprüfung aller Wesen pro Frame.
+- Keine ungültigen Referenzen nach Tod oder Laden.
+- Pause stoppt Lernen und Simulation.
+- Kein Zugriff auf verborgenes Weltwissen.
+- Bisherige Physik- und Speicherprüfungen bestehen weiterhin.
+
+Führe einen längeren Integrationstest durch, soweit möglich, und dokumentiere reale Laufzeiten und Einschränkungen.
+
+## 18. Dokumentation und Abschluss
+
+Aktualisiere:
+- README.md
+- docs/architecture.md
+- docs/implementation_status.md
+- docs/save_format.md
+- docs/test_results.md
+
+Ergänze:
+- docs/mind_and_learning.md
+- docs/god_interactions.md
+
+Beschreibe:
+- Die tatsächlichen Lernregeln.
+- Bedeutung und Grenzen der Persönlichkeitswerte.
+- Unterschied zwischen Beobachtung und Überzeugung.
+- Umgang mit zeitlichen Zusammenhängen.
+- Die Bedienung des Göttermenüs.
+- Die Migration bestehender Spielstände.
+- Tatsächlich ausgeführte Tests.
+
+Liefere am Ende:
+- Was jetzt spielbar ist.
+- Wie ich unterschiedliche Individuen vergleichen kann.
+- Wie ich auf Handlungen reagiere.
+- Wie ich erkenne, ob ein Wesen etwas gelernt hat.
+- Welche Einschränkungen bestehen.
+- Welche Schnittstellen für Ollama vorbereitet sind.
+
+Beginne mit der Bestandsprüfung und implementiere diese Version vollständig.

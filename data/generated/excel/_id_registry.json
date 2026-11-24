@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "sheets": {
+    "01_Elemente": {},
+    "02_Rohstoffe": {},
+    "03_Materialien": {},
+    "04_Komponenten": {},
+    "05_Körperteile": {},
+    "06_Kreaturen": {},
+    "07_Pflanzen_Bäume": {},
+    "08_Animationen": {},
+    "09_Generator_Parameter": {
+      "Voxel_Größe": "voxel_groesse",
+      "Gelände_Seed": "gelaende_seed",
+      "Wasser_Höhe": "wasser_hoehe",
+      "Baum_Dichte": "baum_dichte",
+      "Kreatur_Max_Größe": "kreatur_max_groesse",
+      "Prothese_Schwelle": "prothese_schwelle",
+      "Vererbung_Rate": "vererbung_rate",
+      "Blatt_Variation": "blatt_variation"
+    },
+    "10_Biome_Gelände": {},
+    "11_Werkzeuge_Items": {},
+    "12_Verletzungen_Prothesen": {},
+    "13_Vererbung_Genetik": {
+      "Größe": "groesse",
+      "Kopfblätter_Anzahl": "kopfblaetter_anzahl",
+      "Hautfarbe": "hautfarbe",
+      "Arm_Anzahl": "arm_anzahl",
+      "Blattform": "blattform",
+      "Widerstandsfähigkeit": "widerstandsfaehigkeit"
+    },
+    "14_Nahrung_Konsum": {},
+    "15_Verhalten_KI": {},
+    "16_Farben_Paletten": {},
+    "17_Voxel_Typen": {},
+    "18_Interaktionen": {},
+    "19_Zucht_Fortpflanzung": {},
+    "20_Umwelt_Effekte": {},
+    "21_Balancing_Statistik": {
+      "HP / Leben": "hp_leben",
+      "Energie": "energie",
+      "Hunger": "hunger",
+      "Durst": "durst",
+      "Geschwindigkeit": "geschwindigkeit",
+      "Stärke": "staerke",
+      "Wahrnehmung": "wahrnehmung"
+    }
+  }
+}

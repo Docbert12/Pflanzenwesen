@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "_note": "Prompt 6 – Experimente, Werkzeuge, Verbindungen, Gießen, praktisches Wissen. ALLE Zahlen hier sind dokumentierte SPIELPARAMETER (vereinfachte Modelle, keine vollständige Werkstoff- oder Biomechaniksimulation). Herleitung und Formeln: docs/tools_and_construction.md, docs/experimentation.md.",
+  "hands": {
+    "_note": "Greifen und Halten von Gegenständen (nicht Nahrung).",
+    "grasp_max_width_m": 0.1,
+    "carry_kg_per_body_kg": 0.15,
+    "swing_kg_per_body_kg": 0.07,
+    "reach_m": 1.1,
+    "equip_s": 1.0,
+    "inspect_s": 2.0
+  },
+  "temperature": {
+    "_note": "Wahrnehmbare Kategorien (ohne Messmittel) und Kontaktverletzung. handle_safe_k: bis hier gefahrlos greifbar; darüber Verbrennung je Kelvin Überschreitung und Sekunde Kontakt.",
+    "categories": [[305.0, "kühl"], [318.0, "lauwarm"], [333.0, "warm"], [373.0, "heiß"], [798.0, "sehr heiß (Hitze aus Abstand spürbar)"]],
+    "glow_label": "glühend",
+    "handle_safe_k": 318.15,
+    "burn_damage_per_k_s": 0.0008,
+    "touch_s": 0.25,
+    "hand_conductance_w_k": 0.25,
+    "radiant_feel_k": 500.0,
+    "radiant_feel_m": 1.5
+  },
+  "strike": {
+    "_note": "Schlagmodell: Schwung um die Schulter. Energie E = min(Körperarbeit, ½·I·ω_max²). I aus Hand + Werkzeugteilen (Abstand zum Schultergelenk). Wirksame Arbeit am Ziel = E · Kopplung(Ziel) · Härtefaktor(Werkzeug/Ziel) · (1 − Verschleißverlust).",
+    "body_work_j_per_kg_body": 0.5,
+    "arm_omega_max_rad_s": 14.0,
+    "coupling_plastic": 0.8,
+    "coupling_brittle": 0.5,
+    "coupling_other": 0.3,
+    "base_duration_s": 0.7,
+    "duration_per_sqrt_inertia_s": 1.2,
+    "muscle_efficiency": 0.25,
+    "hand_damage_per_j": 0.004,
+    "tool_wear_per_j": 0.001,
+    "wear_efficiency_loss": 0.5,
+    "max_strikes_per_action": 30,
+    "deform_default_strikes": 12
+  },
+  "connection": {
+    "lashing": {
+      "_note": "Umwickeln mit Pflanzenfasern. Belastbarkeit = Fasermasse · binding_energy_j_per_kg (Material) · Passung · Geschick.",
+      "fiber_need_kg_per_kg_head": 0.08,
+      "fiber_min_kg": 0.004,
+      "fiber_use_max_kg": 0.04,
+      "duration_s": 6.0,
+      "handle_min_length_m": 0.2,
+      "handle_max_diameter_m": 0.05,
+      "head_max_kg": 1.0,
+      "skill_fit": {"none": 0.45, "gehört": 0.55, "zugesehen": 0.75, "versucht": 0.85, "erfolgreich": 1.0}
+    },
+    "test_fixture": {
+      "_note": "Fest montierte Verbindung NUR für ausdrücklich platzierte Testausrüstung (Tiegel mit Griff). Für Wesen nicht verfügbar.",
+      "capacity_j": 200.0,
+      "fatigue": 0.0005,
+      "thermal_conductance_w_k": 0.002,
+      "_thermal_note": "Halterung Tiegel↔Holzgriff: Wärmeleitung eines 30-cm-Holzstiels 2×2 cm ist k·A/L ≈ 0,12·4e-4/0,3 ≈ 1,6e-4 W/K; 0,002 W/K (gut 10-fach) deckt die Kontaktfläche der Halterung ab. Spielparameter; der Griff wird als ein Temperaturwert geführt (Mittelwert), das gegriffene Ende wäre real kühler."
+    },
+    "disconnect_s": 3.0,
+    "joint_rebound_share": 1.0
+  },
+  "heater": {
+    "_note": "Explizit extern versorgte Testheizung (keine Erfindung der Wesen). Heizt den eingesetzten Behälter mit fester Leistung; Energie wird in der Wärmebilanz als Heizzufuhr gezählt.",
+    "power_w": 3500.0,
+    "container_sample_conductance_w_k": 3.0,
+    "place_s": 1.5
+  },
+  "casting": {
+    "min_liquid_fraction": 0.95,
+    "pour_s": 3.0,
+    "cast_mold_conductance_w_k": 2.0,
+    "remove_max_k": 318.15
+  },
+  "perception": {
+    "_note": "Was ein Wesen OHNE Messmittel bemerkt.",
+    "visible_thickness_change": 0.05,
+    "visible_wear": 0.25,
+    "visible_joint_wear": 0.5
+  },
+  "experiments": {
+    "_note": "Begrenzung eigenständiger Versuche: Bedarf, Neugier, Ressourcen, Fähigkeiten, Risiko, Erfahrung, Zeitbudget.",
+    "enabled": true,
+    "weight": 0.6,
+    "_weight_note": "Neugier-Gewicht für einen konkreten unbekannten Gegenstand; höher als ziellose Erkundung (explore_weight 0,45), weil das Objekt in Sicht ist. Begrenzt durch budget_share, cooldown_s und max_hunger. Kalibriert in v0.6.0: mit 0,32 lag ein Versuch stets unter „Ruhen“ (0,15–0,2) – im Beobachtungslauf gab es keinen einzigen eigenen Versuch.",
+    "max_hunger": 0.45,
+    "cooldown_s": 45.0,
+    "budget_window_s": 600.0,
+    "budget_share": 0.25,
+    "risk_weight": 0.5,
+    "novelty_weight": 0.15,
+    "max_steps": 6,
+    "step_timeout_s": 40.0,
+    "records_max": 40,
+    "own_records_max": 8,
+    "known_objects_max": 24,
+    "candidate_radius_m": 20.0,
+    "distance_weight_per_m": 0.004,
+    "_distance_note": "Bekannte Gegenstände bis candidate_radius_m kommen als Versuch in Frage; je Meter Weg sinkt der Nutzen um distance_weight_per_m (Spielparameter).",
+    "model_hypotheses_max": 4,
+    "failed_plan_memory_s": 300.0,
+    "failed_plan_novelty_factor": 0.2,
+    "_failed_plan_note": "Ein Versuch, der an einer Voraussetzung scheitert (z. B. außer Reichweite), wird 300 s lang mit 20 % Neuheit bewertet – sonst wiederholt ein neugieriges Wesen denselben unmöglichen Versuch (Spielparameter, gemessen im 30-min-Beobachtungslauf)."
+  },
+  "knowledge": {
+    "procedures_max": 16,
+    "versions_max": 8,
+    "level_order": ["gehört", "zugesehen", "versucht", "erfolgreich"]
+  },
+  "teaching": {
+    "demo_visibility_m": 6.0,
+    "demo_strikes": 4,
+    "offer_cooldown_s": 120.0,
+    "teach_weight": 0.25,
+    "watch_weight": 0.3,
+    "practice_weight": 0.3,
+    "watch_wait_s": 12.0
+  }
+}

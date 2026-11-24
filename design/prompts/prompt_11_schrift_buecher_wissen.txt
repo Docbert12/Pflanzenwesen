@@ -1,0 +1,482 @@
+Entwickle unser bestehendes Godot-Projekt weiter. Dies ist Prompt 11: Schrift, Bücher, Unterricht, Wissenssammlungen, Wissensverlust und Wiederentdeckung.
+
+Implementiere die Funktionen direkt im vorhandenen Projekt. Erhalte alle bisherigen Systeme und Spielstände.
+
+## 1. Tatsächlichen Ausgangsstand prüfen
+
+Lies die vorhandene Dokumentation und prüfe die Implementierungen für:
+- Individuelle Erinnerungen und Überzeugungen.
+- Wissensquellen und Gespräche.
+- Praktisches Verfahrenswissen und Unterricht.
+- Experimente und Werkzeugherstellung.
+- Materialien, Gegenstände und Konstruktion.
+- Lager, Besitz und Handel.
+- Gemeinschaften, Regeln und Religionen.
+- Ollama und Antwortvalidierung.
+- Speichern und Laden.
+
+Dokumentiere, was getestet, ungeprüft, teilweise vorhanden oder fehlend ist.
+
+Behebe erforderliche Lücken gezielt. Erstelle keine parallele Wissens- oder Kommunikationsverwaltung.
+
+## 2. Ziel
+
+Wesen können Informationen außerhalb ihres Gedächtnisses festhalten und später wieder nutzen.
+
+Implementiere:
+- Einfache Markierungen.
+- Gemeinsame Zeichensysteme.
+- Erlernte Lesefähigkeit.
+- Beschreibbare Gegenstände.
+- Aufzeichnungen und mehrseitige Dokumente.
+- Abschreiben.
+- Unterricht im Lesen und in praktischen Verfahren.
+- Gemeinsame Wissenssammlungen.
+- Beschädigung und Verlust von Aufzeichnungen.
+- Wiederentdeckung vergessenen Wissens.
+
+Schrift und Bücher dürfen nicht automatisch allen Wesen zur Verfügung stehen.
+
+Keine automatische Wissensübertragung durch räumliche Nähe zu einem Buch.
+
+## 3. Grundlegende Trennung
+
+Trenne:
+1. Den tatsächlichen Weltzustand.
+2. Die Aussage eines Autors.
+3. Die physische Aufzeichnung.
+4. Das Verständnis des Lesers.
+5. Die Überzeugung des Lesers.
+6. Die praktische Fähigkeit des Lesers.
+
+Eine Aufzeichnung kann:
+- Korrekt.
+- Unvollständig.
+- Veraltet.
+- Irrtümlich.
+- Absichtlich irreführend sein.
+
+Das Lesen einer Anleitung bedeutet nicht, dass ein Wesen sie bereits erfolgreich ausführen kann.
+
+## 4. Module
+
+Erstelle oder erweitere:
+- scripts/culture/writing_system.gd
+- scripts/culture/symbol_system.gd
+- scripts/culture/literacy_system.gd
+- scripts/culture/document_system.gd
+- scripts/culture/document_content.gd
+- scripts/culture/copying_system.gd
+- scripts/culture/knowledge_collection.gd
+- scripts/social/teaching_system.gd
+- scripts/ui/document_viewer.gd
+- scripts/ui/knowledge_collection_viewer.gd
+- scripts/ui/learning_inspector.gd
+
+Verwende bestehende gleichwertige Komponenten weiter.
+
+## 5. Entstehung von Zeichen
+
+Beginne mit einem begrenzten, nachvollziehbaren Zeichensystem.
+
+Wesen können bekannte Inhalte durch Markierungen repräsentieren, beispielsweise:
+- Einen Ort.
+- Eine Materialart.
+- Eine Menge.
+- Eine Person.
+- Eine Handlung.
+- Eine Warnung.
+- Eine Abfolge bereits bekannter Arbeitsschritte.
+
+Ein Zeichen erhält seine Bedeutung durch Verwendung und Lernen.
+
+Implementiere:
+- Zeichen-ID.
+- Sichtbare Form.
+- Zugeordnete Bedeutung innerhalb eines Zeichensystems.
+- Ursprung.
+- Bekannte Nutzer.
+- Varianten.
+
+Ein Wesen, das ein unbekanntes Zeichen sieht, kennt dessen Bedeutung nicht automatisch.
+
+Zeichenbedeutungen sind innerhalb dieses Spielmodells strukturiert. Behaupte keine vollständige Simulation der historischen Entstehung natürlicher Sprache.
+
+## 6. Gemeinsame Zeichensysteme
+
+Eine Gruppe kann Zeichenkonventionen teilen.
+
+Unterscheide:
+- Individuelle Markierung.
+- Gemeinsam erlernte Konvention.
+- Spätere abweichende Variante.
+
+Die Zugehörigkeit zu einer Gruppe verleiht keine automatische Lesefähigkeit.
+
+Wesen können mehrere Zeichensysteme teilweise oder vollständig erlernen.
+
+Es darf ähnliche Zeichen mit unterschiedlichen Bedeutungen geben. Verhindere deshalb eine globale Zuordnung „dieses Bild bedeutet überall dasselbe“.
+
+## 7. Physische Schreibträger
+
+Aufzeichnungen benötigen tatsächlich vorhandene Gegenstände.
+
+Implementiere zunächst geeignete Träger aus bereits unterstützten Materialien, beispielsweise:
+- Eine bearbeitete Holztafel.
+- Eine geeignete Steinfläche.
+- Eine Tonplatte.
+
+Prüfe vorhandene Materialdefinitionen und Werkzeuge.
+
+Schreiben beziehungsweise Einritzen benötigt:
+- Erreichbaren Träger.
+- Unterstütztes Werkzeug.
+- Körperfähigkeiten.
+- Zeit.
+- Ausreichende beschreibbare Fläche.
+- Einen geeigneten Materialzustand.
+
+Keine sofortige kostenlose Erzeugung von Papier, Tinte oder Büchern.
+
+Papier und Tinte dürfen nur hinzukommen, wenn dafür passende Material- und Herstellungsprozesse tatsächlich implementiert werden.
+
+## 8. Dokumentstruktur
+
+Ein Dokument besitzt:
+- Eindeutige ID.
+- Physischen Träger beziehungsweise Trägerteile.
+- Zeichensystem.
+- Autor, soweit bekannt.
+- Erstellungszeit.
+- Abschnitte.
+- Inhalt.
+- Quellenbezüge.
+- Zustand und Lesbarkeit.
+- Kapazität.
+
+Unterstütze zunächst:
+- Orts- und Ressourcenhinweise.
+- Kurze persönliche Aufzeichnungen.
+- Strukturierte Verfahrensanleitungen.
+- Gruppenregeln.
+- Religiöse Deutungen.
+
+Ein Dokument muss nicht wahr sein. Sein Inhalt darf nicht direkt den Weltzustand verändern.
+
+## 9. Mehrseitige Dokumente und Bücher
+
+Ein Buch ist ein zusammengesetzter Gegenstand aus geeigneten beschreibbaren Teilen und einer unterstützten Verbindung.
+
+Falls Papier noch nicht existiert:
+- Verwende beispielsweise verbundene Tafeln.
+- Benenne das Objekt entsprechend.
+- Behaupte keine bereits vorhandene Papierherstellung.
+
+Verwende das vorhandene Konstruktionssystem.
+
+Ein mehrseitiges Dokument benötigt:
+- Tatsächliche Trägerteile.
+- Verbindungen.
+- Reihenfolge.
+- Masse.
+- Begrenzte Inhaltskapazität.
+
+Seiten können fehlen oder beschädigt werden. Das beeinflusst den zugänglichen Inhalt.
+
+## 10. Darstellung der Modelle
+
+Erzeuge prozedural:
+- Markierte Tafeln.
+- Sichtbare Zeichenflächen.
+- Mehrteilige Dokumente.
+- Beschädigte Aufzeichnungen.
+- Regale beziehungsweise geeignete Aufbewahrung.
+
+Nutze vorhandene Modelle und Bauteile weiter.
+
+Nicht jedes Zeichen benötigt eigene 3D-Geometrie. Verwende effiziente Texturen oder vergleichbare passende Darstellungen.
+
+Sichtbarer Zustand und tatsächliche Lesbarkeit müssen zusammenpassen.
+
+## 11. Schreiben und Lesen als Handlungen
+
+Erweitere das gemeinsame Handlungssystem um:
+- mark_surface
+- write_record
+- read_record
+- copy_record
+- teach_symbols
+- demonstrate_from_record
+- organize_collection
+
+Verwende vorhandene Handlungen für Transport, Übergabe und Herstellung.
+
+Beim Lesen prüfe:
+- Physische Erreichbarkeit.
+- Sichtbarkeit und ausreichende Beleuchtung.
+- Lesbarkeit.
+- Bekanntes Zeichensystem.
+- Vorhandene Fähigkeiten.
+- Benötigte Zeit.
+
+Ein Wesen darf den Inhalt eines nicht geöffneten oder entfernten Dokuments nicht aus einer globalen Datenbank abrufen.
+
+## 12. Lernen aus Aufzeichnungen
+
+Ein gelesener Inhalt wird zunächst als dokumentierte Aussage gespeichert.
+
+Bewahre:
+- Dokument-ID.
+- Bekannten Autor.
+- Lesezeit.
+- Verstandene Abschnitte.
+- Unsicherheit.
+- Herkunft der Aussage.
+- Mögliche Widersprüche.
+
+Unbekannte Zeichen und fehlende Abschnitte dürfen nicht automatisch ergänzt werden.
+
+Eine Anleitung führt zunächst zu Wissen über einen möglichen Ablauf. Praktische Fertigkeit entsteht durch:
+- Vorführung.
+- Übung.
+- Eigene Versuche.
+- Tatsächliche Ergebnisse.
+
+Nutze die vorhandenen Stufen für gehört, beobachtet, versucht und erfolgreich ausgeführt.
+
+## 13. Abschreiben und Quellen
+
+Abschreiben:
+- Benötigt einen erreichbaren Ausgangstext.
+- Verbraucht Schreibfläche und gegebenenfalls Material.
+- Kostet Zeit.
+- Erzeugt einen neuen physischen Gegenstand beziehungsweise neue Inhalte.
+
+Bewahre die Quellenkette.
+
+Zehn Abschriften derselben Aussage sind nicht zehn unabhängige Belege.
+
+Fehler können über ein begrenztes, dokumentiertes Spielmodell entstehen, beispielsweise:
+- Ausgelassener Abschnitt.
+- Verwechseltes bekanntes Zeichen.
+- Falsch übertragene Menge.
+
+Fehler müssen nachvollziehbar sein. Keine beliebigen Änderungen, nur um künstlich Verwirrung zu erzeugen.
+
+## 14. Unterricht
+
+Erweitere das bestehende Unterrichtssystem um:
+- Zeichen erklären.
+- Gemeinsam lesen.
+- Ein bekanntes Verfahren anhand einer Aufzeichnung vorführen.
+- Lernende selbst üben lassen.
+- Ergebnisse vergleichen.
+
+Ein Lehrer kann nur Inhalte vermitteln, die er tatsächlich kennt oder selbst gerade nachvollziehen kann.
+
+Unterricht benötigt:
+- Beteiligung.
+- Wahrnehmbarkeit.
+- Zeit.
+- Geeignetes Material.
+- Verfügbarkeit der Teilnehmer.
+
+Lehrende besitzen kein magisches Wissen über den Lernerfolg. Erfolg wird durch passende Rückmeldungen oder ausgeführte Aufgaben überprüft.
+
+## 15. Wissenssammlungen
+
+Eine Wissenssammlung ist ein realer Ort mit vorhandenen Dokumenten.
+
+Sie kann entstehen, wenn Wesen:
+- Dokumente sammeln.
+- Einen Lagerort verwenden.
+- Inhalte ordnen.
+- Anderen Zugang ermöglichen oder verweigern.
+
+Verwende bestehende Lager-, Besitz- und Gruppensysteme.
+
+Die Sammlung erhält:
+- Ort.
+- Enthaltene physische Dokumente.
+- Bekannte Ordnung.
+- Beteiligte.
+- Anerkannte Zugangsregeln.
+
+Keine globale Bibliothek mit überall verfügbaren Inhalten.
+
+Ein Katalog ist selbst eine Aufzeichnung. Er kann unvollständig oder veraltet sein.
+
+## 16. Wissensverlust und Wiederentdeckung
+
+Implementiere:
+- Tod sachkundiger Wesen.
+- Verlust oder Zerstörung von Dokumenten.
+- Unleserlichkeit.
+- Verlust einer Zeichenkonvention.
+- Wiederfinden alter Aufzeichnungen.
+- Erneutes Prüfen eines beschriebenen Verfahrens.
+
+Wissen gilt nicht automatisch als verfügbar, nur weil irgendwo eine Datei dazu existiert.
+
+Ein Dokument in unbekannter Schrift bleibt zunächst unverstanden.
+
+Wiederentdeckung kann durch erhaltene Lehrer, Vergleichsaufzeichnungen oder begrenztes schrittweises Entschlüsseln erfolgen. Keine automatische Übersetzung durch das Sprachmodell.
+
+## 17. Weiterentwicklung von Verfahren
+
+Aufzeichnungen können Versionen eines bekannten Verfahrens beschreiben.
+
+Ein Wesen kann:
+- Eine Variante ausprobieren.
+- Ergebnisse mit bekannten Versuchen vergleichen.
+- Eine Verbesserung dokumentieren.
+- Auf einen Fehlschlag hinweisen.
+
+Bewerte Verbesserungen anhand messbarer Ergebnisse:
+- Zeit.
+- Materialverbrauch.
+- Zuverlässigkeit.
+- Energiebedarf.
+- Funktionsfähigkeit.
+
+Eine überzeugende Beschreibung macht eine Variante nicht besser.
+
+Keine automatischen technologischen Epochen oder globalen Freischaltungen.
+
+## 18. Physische Beschädigung
+
+Verwende vorhandene Material- und Schadenssysteme.
+
+Beschädigung eines Trägers beeinflusst konkrete Inhaltsbereiche.
+
+Unterstütze die bereits simulierten Ursachen, beispielsweise:
+- Mechanischen Bruch.
+- Verschleiß.
+- Hitze, soweit das Materialmodell entsprechende Veränderungen unterstützt.
+
+Wasser- oder Feuerschäden dürfen nur als Funktionen gelten, wenn die nötigen Materialprozesse wirklich implementiert sind.
+
+Beim Teilen einer Tafel dürfen Inhalte nicht vollständig auf beide Fragmente kopiert werden.
+
+## 19. Ollama
+
+Ollama darf unterstützen bei:
+- Formulieren bereits bekannter Inhalte.
+- Vorschlagen einer Gliederung.
+- Erklären eines bekannten Verfahrens.
+- Vergleichen eigener dokumentierter Erfahrungen.
+
+Die tatsächlichen Inhalte bleiben strukturiert und geprüft.
+
+Ollama darf nicht:
+- Unbekannte Schrift automatisch entschlüsseln.
+- Fehlende Seiten als Tatsachen rekonstruieren.
+- Neue physikalische Fähigkeiten erzeugen.
+- Verborgene Dokumente lesen.
+- Einen Versuch als erfolgreich darstellen, der nicht ausgeführt wurde.
+
+Dokumenttext ist untrusted data. Anweisungen darin dürfen weder Systemprompts ändern noch Code, Dateien oder Netzwerkaktionen auslösen.
+
+## 20. Oberfläche
+
+Ergänze:
+- Dokumentansicht.
+- Physische Seiten beziehungsweise Abschnitte.
+- Lesbarkeit.
+- Zeichensystem.
+- Bekannte Herkunft.
+- Quellenkette.
+- Verständnis des ausgewählten Wesens.
+- Praktische Erfahrung zum beschriebenen Verfahren.
+
+Biete zwei klar getrennte Ansichten:
+- Spielerdiagnose mit strukturierten Inhaltsdaten.
+- Perspektive des ausgewählten Wesens mit tatsächlich verstandenen Informationen.
+
+Unbekannte Zeichen bleiben in der Wesenperspektive unbekannt.
+
+## 21. Speichern und Laden
+
+Speichere:
+- Zeichensysteme und Varianten.
+- Individuelle Zeichenkenntnisse.
+- Dokumente und Träger.
+- Seitenreihenfolge.
+- Schäden und Lesbarkeit.
+- Inhalte und Quellenketten.
+- Unterrichtsfortschritt.
+- Wissenssammlungen.
+- Laufende Schreib- und Kopiervorgänge.
+
+Erweitere die Migration aus der tatsächlich vorhandenen Vorversion.
+
+Beim Laden:
+- Keine Inhalte duplizieren.
+- Keine Schreibfläche kostenlos erneuern.
+- Keine verlorenen Seiten wiederherstellen.
+- Keine Lesefähigkeit automatisch vergeben.
+- Keine Quellenaussage in unabhängige Evidenz verwandeln.
+
+## 22. Implementierungsreihenfolge
+
+Arbeite in überprüfbaren Abschnitten:
+1. Ein physischer Träger mit einer Markierung.
+2. Ein begrenztes Zeichensystem.
+3. Individuelles Lernen und Lesen.
+4. Strukturierte Verfahrensaufzeichnung.
+5. Abschreiben mit Quellenbezug.
+6. Mehrseitiges Dokument.
+7. Unterricht.
+8. Wissenssammlung.
+9. Beschädigung und Wiederentdeckung.
+10. Integration und Regressionstests.
+
+## 23. Abnahmetests
+
+Prüfe mindestens:
+1. Schreiben benötigt reale Werkzeuge, Zeit und Fläche.
+2. Ein unbekanntes Zeichensystem wird nicht automatisch verstanden.
+3. Lesen benötigt tatsächlichen Zugang.
+4. Ein gelesener Text erzeugt keine sofortige praktische Meisterschaft.
+5. Eine falsche Aufzeichnung verändert nicht die Weltwahrheit.
+6. Abschreiben erzeugt keinen kostenlosen Träger.
+7. Kopien bleiben auf ihre Quelle zurückführbar.
+8. Beschädigung betrifft die entsprechenden Inhaltsbereiche.
+9. Geteilte Träger duplizieren keine vollständigen Inhalte.
+10. Ein Dokument kann Wissen über den Tod des Autors hinaus erhalten.
+11. Wissen bleibt ohne Zugang oder Lesefähigkeit unzugänglich.
+12. Ein erneut ausgeführtes Verfahren wird anhand realer Ergebnisse bewertet.
+13. Ollama erhält keine unbekannten Dokumentinhalte.
+14. Speichern und Laden erhalten Inhalte, Kenntnisse und Zwischenzustände.
+15. Vorherige Spielsysteme funktionieren weiterhin.
+
+Ergänze ein reproduzierbares Szenario:
+- Wesen A kennt ein einfaches Verfahren.
+- A dokumentiert es.
+- Wesen B kennt zunächst die Schrift nicht.
+- B lernt die benötigten Zeichen.
+- A steht später nicht mehr als Lehrer zur Verfügung.
+- B liest die Aufzeichnung.
+- B versucht das Verfahren.
+- Der Erfolg hängt von echten Materialien, Fähigkeiten und Arbeitsschritten ab.
+
+Trenne geskriptete Funktionsprüfung und spontan beobachtete Entwicklung.
+
+## 24. Dokumentation und Abschluss
+
+Aktualisiere die bestehende Architektur-, Status-, Speicher- und Testdokumentation.
+
+Ergänze:
+- docs/writing_and_literacy.md
+- docs/documents_and_collections.md
+- docs/knowledge_preservation.md
+
+Berichte:
+- Was tatsächlich spielbar ist.
+- Wie ich eine Aufzeichnung beobachten kann.
+- Wie ich den Wissensstand zweier Wesen vergleiche.
+- Wie ich Wissensverlust und Wiederentdeckung teste.
+- Welche Teile vereinfacht sind.
+- Welche Prüfungen ausgeführt wurden.
+
+Beginne mit der Bestandsprüfung und implementiere anschließend diesen Umfang direkt im Projekt.

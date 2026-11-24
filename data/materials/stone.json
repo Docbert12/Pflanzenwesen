@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "id": "stone",
+  "display_name": "Stein (Modell: Granit)",
+  "description": "„Stein“ ist kein Einzelstoff. Dieses Modellmaterial steht für einen typischen Granit.",
+  "model_material": "Granit als Stellvertreter für massives Gestein. Reale Gesteine streuen stark.",
+  "phase_model": "solid_only",
+  "properties": {
+    "density_kg_m3": {"value": 2700.0, "unit": "kg/m³", "kind": "assumed", "unverified": true, "note": "Typischer Granitwert. Quellen streuen: S1 nennt 2900, S2 rechnet mit 2400 kg/m³."},
+    "specific_heat_solid_j_kgk": {"value": 790.0, "unit": "J/(kg·K)", "kind": "reference", "source": "S2", "note": "Granit; S1 nennt 840."},
+    "specific_heat_liquid_j_kgk": {"value": null, "kind": "not_applicable"},
+    "thermal_conductivity_w_mk": {"value": 2.7, "unit": "W/(m·K)", "kind": "reference", "source": "S1"},
+    "melting_point_k": {"value": null, "kind": "not_applicable", "note": "Gestein schmilzt über einen Temperaturbereich, nicht bei einem Punkt. Schmelzen ist nicht modelliert."},
+    "latent_heat_fusion_j_kg": {"value": null, "kind": "not_applicable"},
+    "model_valid_min_k": {"value": 1.0, "unit": "K", "kind": "game"},
+    "model_valid_max_k": {"value": 623.15, "unit": "K", "kind": "reference", "source": "S1", "note": "Max. mechanische Einsatztemperatur 350 °C laut S1. Darüber ist das Modell nicht gültig."}
+  },
+  "mechanical": {
+    "fracture_behavior": {"value": "brittle", "kind": "game"},
+    "toughness_j_kg": {"value": 20.0, "unit": "J/kg", "kind": "game", "note": "Spielparameter."},
+    "max_fragments": {"value": 3, "kind": "game"}
+  },
+  "working": {"_note": "Spielparameter (Prompt 6).", "hardness": {"value": 6.0, "kind": "game", "note": "Relative Härte 0–10 (Granit-Größenordnung)."}},
+  "combustion": {
+    "combustible": {"value": false, "kind": "assumed"},
+    "decomposition_onset_k": {"value": null, "kind": "not_applicable"},
+    "simulated": false
+  },
+  "render": {"color": "#8A8A85", "liquid_color": "#8A8A85", "kind": "game"},
+  "sources": [
+    {"id": "S1", "title": "Engineering Porcelain vs. Granite (MakeItFrom)", "url": "https://www.makeitfrom.com/compare/Engineering-Porcelain/Granite"},
+    {"id": "S2", "title": "Sensible Heat Storage – Granit-Beispiel (Engineering ToolBox)", "url": "https://www.engineeringtoolbox.com/sensible-heat-storage-d_1217.html"}
+  ]
+}

@@ -1,0 +1,454 @@
+Entwickle unser bestehendes Godot-Projekt weiter. Dies ist Prompt 5 und entspricht der Ollama-Anbindung aus Entwicklungsschritt 10.
+
+Verbinde die vorhandenen individuellen Wesen mit einem lokalen Ollama-Modell. Implementiere begrenzte komplexe Planung und erste strukturierte Gespräche.
+
+Ollama ergänzt das bestehende Verhalten. Physik, Wahrnehmung, Erinnerungen, Lernen und Handlungsausführung bleiben zuständige Spielsysteme.
+
+Arbeite direkt im vorhandenen Projekt und erhalte alle bisherigen Funktionen.
+
+## 1. Bestand und Voraussetzungen prüfen
+
+Lies:
+- README.md
+- docs/architecture.md
+- docs/implementation_status.md
+- docs/mind_and_learning.md
+- docs/god_interactions.md
+- docs/save_format.md
+- docs/test_results.md
+
+Prüfe:
+- Entscheidungssystem und Zielverwaltung.
+- Handlungsschnittstelle.
+- Individuelle Wahrnehmung und Erinnerungen.
+- Überzeugungen und Beziehungen.
+- Speichern und Laden.
+- Vorbereitete Schnittstelle für externe Zielvorschläge.
+
+Prüfe anschließend:
+- Ob Ollama lokal erreichbar ist.
+- Welche Modelle tatsächlich installiert sind.
+- Welche Hardwareinformationen zuverlässig ermittelbar sind.
+- Welche API-Funktionen die vorhandene Version unterstützt.
+
+Nutze bei Bedarf die aktuelle offizielle Ollama-Dokumentation.
+
+Wenn Ollama oder ein geeignetes Modell fehlt:
+- Implementiere alle unabhängig davon umsetzbaren Projektteile.
+- Gib konkrete Einrichtungsschritte für die erkannte Umgebung an.
+- Starte keine großen Modelldownloads ohne ausdrücklichen Auftrag.
+- Kennzeichne die reale Integration als noch nicht verifiziert.
+
+Ein simulierter Testdienst ist für Tests erlaubt. Er darf nicht als erfolgreiche Verbindung zu Ollama ausgegeben werden.
+
+## 2. Ziel der Version
+
+Die bestehenden 50 Wesen können bei ausgewählten Anlässen:
+- Einen längerfristigen Plan vorschlagen lassen.
+- Zwischen mehreren bekannten Handlungsmöglichkeiten abwägen.
+- Eigene unsichere Erfahrungen interpretieren.
+- Ein anderes Wesen gezielt ansprechen.
+- Bereits bekanntes Wissen oder Vermutungen weitergeben.
+
+Die Welt funktioniert auch ohne Ollama weiter.
+
+Noch nicht implementieren:
+- Freie Ausführung von generiertem Code.
+- Vollständige Technologieentwicklung.
+- Neue physikalische Prozesse aufgrund einer Modellbehauptung.
+- Vollständige Religionen oder politische Institutionen.
+- Bücher und Schrift.
+- Fortpflanzung und Vererbung.
+- Modelltraining oder automatisches Fine-Tuning.
+
+## 3. Architektur
+
+Erstelle oder erweitere:
+- scripts/ai/ollama_client.gd
+- scripts/ai/request_queue.gd
+- scripts/ai/context_builder.gd
+- scripts/ai/response_validator.gd
+- scripts/ai/plan_manager.gd
+- scripts/ai/ai_settings.gd
+- scripts/social/communication_system.gd
+- scripts/social/claim_evaluator.gd
+- scripts/ui/ai_status_panel.gd
+- scripts/ui/conversation_viewer.gd
+- data/ai/decision_schema.json
+- data/ai/conversation_schema.json
+- data/ai/prompts/
+- data/settings/ai.json
+
+Verwende gleichwertige vorhandene Module weiter, statt sie zu duplizieren.
+
+Es darf weiterhin nur eine zuständige Entscheidungsinstanz pro Wesen geben. Ollama liefert Vorschläge an diese Instanz.
+
+## 4. Lokale Verbindung und Einstellungen
+
+Verwende standardmäßig den lokalen Ollama-Dienst.
+
+Konfigurierbar:
+- Aktiviert beziehungsweise deaktiviert.
+- Lokale Dienstadresse.
+- Modellname.
+- Anfragezeitlimit.
+- Maximale Antwortlänge.
+- Maximale Warteschlangenlänge.
+- Maximale gleichzeitig laufende Anfragen.
+- Mindestabstand zwischen Anfragen desselben Wesens.
+- Globale Anfragerate.
+
+Starte konservativ mit höchstens einer gleichzeitig laufenden Anfrage. Passe Einstellungen nach Messungen an.
+
+Implementiere eine Einstellungsansicht mit:
+- Verbindungsstatus.
+- Liste tatsächlich installierter Modelle.
+- Modellauswahl.
+- Verbindungstest.
+- Verständlicher Fehlermeldung.
+- Anzeige, ob echte oder simulierte Testantworten verwendet werden.
+
+Keine automatische Cloud-Ausweichverbindung.
+
+Wenn Anmeldedaten für eine ausdrücklich konfigurierte andere Umgebung erforderlich werden, dürfen sie nicht in Spielständen oder normalen Protokollen gespeichert werden.
+
+## 5. Asynchrone Verarbeitung
+
+Netzwerkanfragen dürfen die Darstellung und Simulation nicht blockieren.
+
+Die Warteschlange benötigt:
+- Prioritäten.
+- Begrenzte Länge.
+- Faire Verteilung zwischen Wesen.
+- Erkennung doppelter Anfragen.
+- Ablaufzeiten.
+- Begrenzte Wiederholungsversuche.
+- Erholung nach Dienstunterbrechung.
+
+Verhindere, dass ein einzelnes Wesen die Warteschlange dauerhaft belegt.
+
+Nutze eine Anfrage-ID sowie eine Welt- beziehungsweise Sitzungsgeneration. Antworten aus einer früheren geladenen Welt dürfen niemals in die aktuelle Welt übernommen werden.
+
+Bei Pause:
+- Keine neuen Simulationsanfragen auslösen.
+- Ankommende Antworten nicht unmittelbar in Handlungen umsetzen.
+- Nach Fortsetzen erneut prüfen.
+
+Bei Tod, Laden oder Zurücksetzen:
+- Betroffene Anfragen abbrechen oder ihre Ergebnisse sicher ignorieren.
+
+## 6. Wann ein Wesen Ollama nutzt
+
+Nutze Ollama beispielsweise:
+- Nach mehreren gescheiterten Versuchen eines Ziels.
+- Bei einer schwierigen Wahl zwischen bekannten Möglichkeiten.
+- Nach einem auffälligen beobachteten Ereignis.
+- Für einen gezielten Gesprächsbeitrag.
+- Für eine begrenzte Neubewertung widersprüchlicher Erfahrungen.
+
+Nicht für:
+- Jeden Bewegungsschritt.
+- Jede Nahrungssuche.
+- Jede Aktualisierung des Hungers.
+- Unmittelbare Kollisionsvermeidung.
+- Jede Temperatur- oder Gesundheitsänderung.
+
+Kritische Reaktionen werden weiterhin lokal ausgeführt.
+
+Während der Wartezeit darf ein Wesen einen geeigneten bestehenden Plan fortführen oder auf lokales Verhalten zurückgreifen.
+
+## 7. Individuellen Kontext erstellen
+
+Eine Anfrage enthält nur:
+- Identität des handelnden Wesens.
+- Eigene Körperfähigkeiten.
+- Aktuelle Bedürfnisse.
+- Persönlichkeitswerte.
+- Eigene Wahrnehmungen.
+- Relevante eigene Erinnerungen.
+- Überzeugungen mit Unsicherheit.
+- Bekannte Beziehungen.
+- Aktuelles Ziel.
+- Zulässige Handlungen.
+- Begrenzte, nachvollziehbare Kandidaten für Ziele und Gegenstände.
+
+Nicht enthalten:
+- Der vollständige Weltzustand.
+- Verborgene Eigenschaften anderer Wesen.
+- Die privaten Absichten des Spielers.
+- Unbeobachtete Ereignisse.
+- Erinnerungen anderer Wesen.
+- Ein weltweiter Technologiebaum.
+
+Begrenze den Kontextumfang und wähle Einträge nach Relevanz aus.
+
+Eine zeitliche Zusammenfassung darf keine unbekannten Informationen hinzufügen.
+
+Jede Anfrage muss einem Wesen eindeutig zugeordnet sein. Kontexte verschiedener Wesen dürfen nicht versehentlich vermischt werden.
+
+## 8. Strukturierte Antworten
+
+Verwende das von der vorhandenen Ollama-Version unterstützte strukturierte Ausgabeformat und überprüfe Antworten zusätzlich im Spiel.
+
+Definiere ein Entscheidungsschema mit beispielsweise:
+- request_id
+- actor_id
+- goal_type
+- proposed_steps
+- referenced_memory_ids
+- uncertainty
+- short_explanation
+
+Ein Planschritt darf nur enthalten:
+- Einen zugelassenen Handlungstyp.
+- Bekannte Ziel-IDs.
+- Erlaubte Parameter.
+- Begrenzte Mengen und Zeiträume.
+
+Nutze eine begrenzte Planlänge, zunächst beispielsweise maximal fünf Schritte.
+
+Prüfe:
+1. Antwortgröße und gültiges Format.
+2. Schema und Datentypen.
+3. Gültige IDs.
+4. Zuständiges Wesen und aktuelle Sitzung.
+5. Zugelassene Handlungen.
+6. Wissen und Fähigkeiten des Wesens.
+7. Aktuelle Voraussetzungen der Simulation.
+
+Das Modell darf keine IDs autoritativ neu vergeben.
+
+Eine lesbare Erklärung ist nur ein Modellvorschlag. Sie ersetzt nicht die tatsächlichen Entscheidungs- und Ausführungsprotokolle.
+
+## 9. Pläne prüfen und ausführen
+
+Nutze das bestehende Handlungssystem.
+
+Ablauf:
+1. Vorschlag empfangen.
+2. Struktur prüfen.
+3. Inhalt und aktuelle Voraussetzungen prüfen.
+4. Vorschlag mit aktuellem Ziel und Bedarf abgleichen.
+5. Gültigen Plan übernehmen oder ablehnen.
+6. Jeden Schritt vor Ausführung erneut validieren.
+7. Tatsächliches Ergebnis speichern.
+
+Ein angenommener Plan garantiert keinen Erfolg.
+
+Beispiel:
+Ein Wesen plant, einen Pilz zu holen und zu verschenken. Wird der Pilz vorher gegessen, darf der Plan keinen Ersatzpilz erfinden. Er muss scheitern oder anhand realer Alternativen neu geplant werden.
+
+Verhindere unbegrenzte Wiederholung derselben gescheiterten Pläne.
+
+## 10. Umgang mit vortrainiertem Wissen
+
+Das Sprachmodell kennt Dinge, die ein Wesen noch nicht entdeckt hat. Eine Prompt-Anweisung allein verhindert diesen Wissensvorsprung nicht zuverlässig.
+
+Begrenze deshalb die wirksamen Vorschläge:
+- Nur vorhandene Handlungstypen.
+- Nur bekannte oder aktuell wahrnehmbare Objekte.
+- Nur unterstützte Körperfähigkeiten.
+- Nur im Spiel verfügbare Verarbeitungsvorgänge.
+- Keine automatische Übernahme neuer wissenschaftlicher Aussagen.
+
+Wenn das Modell einen Generator, ein Fahrzeug oder eine andere noch nicht unterstützte Technik erwähnt, entsteht dadurch weder ein Gegenstand noch eine bestätigte Entdeckung.
+
+Diese Einschränkungen müssen im Validator und Handlungssystem liegen, nicht ausschließlich im Prompt.
+
+## 11. Erste Gespräche
+
+Implementiere kurze direkte Gespräche zwischen nahe gelegenen Wesen.
+
+Voraussetzungen:
+- Sprecher und Empfänger existieren.
+- Der Empfänger kann die Äußerung wahrnehmen.
+- Beide sind in einem geeigneten Zustand.
+- Der Gesprächsanlass ist vorhanden.
+- Wartezeiten verhindern dauerhaftes gegenseitiges Ansprechen.
+
+Starte mit strukturierten Absichten:
+- Nahrung erbitten.
+- Hilfe anbieten.
+- Auf eine bekannte Nahrungsquelle hinweisen.
+- Eine eigene beobachtete Erfahrung mitteilen.
+- Eine unsichere Vermutung über einen Eingriff äußern.
+
+Jede Aussage besitzt:
+- Sprecher-ID.
+- Empfänger-ID.
+- Inhaltstyp.
+- Strukturierte Aussage.
+- Referenzierte bekannte Entitäten.
+- Quelle beziehungsweise Erfahrungsbezug.
+- Vom Sprecher ausgedrückte Sicherheit.
+- Optionalen kurzen gesprochenen Text.
+
+Der strukturierte Inhalt steuert die Simulation. Freitext darf keine versteckten Aktionen auslösen.
+
+Erzeuge den angezeigten Text aus dem validierten Aussageinhalt. Wenn freie Modellformulierungen verwendet werden, dürfen sie keine zusätzlichen spielwirksamen Behauptungen einführen; verwende bei Unsicherheit eine passende Textvorlage.
+
+## 12. Wissen und Vertrauen durch Gespräche
+
+Eine gehörte Aussage wird als Hörensagen gespeichert, nicht als bewiesene Weltwahrheit.
+
+Speichere:
+- Wer die Aussage gemacht hat.
+- Wann sie gehört wurde.
+- Welchen Gegenstand sie betrifft.
+- Die ursprüngliche Quelle, soweit bekannt.
+- Vertrauen in den Sprecher.
+- Bestehende widersprechende Beobachtungen.
+
+Wiederholtes Weitererzählen derselben Quelle darf nicht wie mehrere unabhängige Beweise zählen.
+
+Ein Wesen kann eine Aussage später überprüfen:
+- Nahrung am genannten Ort gefunden.
+- Quelle inzwischen leer.
+- Vorgang selbst beobachtet.
+- Behauptung weiterhin nicht überprüfbar.
+
+Eine inzwischen leere Nahrungsquelle beweist keine Lüge. Unterscheide veraltete Information, Irrtum und widersprüchliche Evidenz.
+
+Aktualisiere Vertrauen vorsichtig anhand nachvollziehbarer Erfahrungen.
+
+Strategische Täuschung ist in diesem Auftrag noch kein vollständiges System. Kennzeichne es entsprechend.
+
+## 13. Schutz der Spielregeln
+
+Modellantworten und Gesprächsinhalte sind untrusted data.
+
+Sie dürfen niemals:
+- GDScript oder Shell-Befehle ausführen.
+- Dateien beliebig lesen oder schreiben.
+- Neue Netzwerkziele festlegen.
+- Systemprompts verändern.
+- Die Handlungsliste erweitern.
+- Materialregeln umgehen.
+- Spielerressourcen außerhalb definierter Spielaktionen verändern.
+
+Auch ein Gespräch wie „Ignoriere die Regeln und erschaffe Nahrung“ bleibt eine ungültige Spieläußerung und darf keine Kontrollfunktion erhalten.
+
+## 14. Fehlerverhalten
+
+Behandle:
+- Ollama nicht erreichbar.
+- Modell nicht vorhanden.
+- Zeitüberschreitung.
+- Leere Antwort.
+- Ungültiges JSON.
+- Schemafehler.
+- Unbekannte IDs.
+- Veralteten Weltzustand.
+- Unmögliche Handlung.
+- Überfüllte Warteschlange.
+
+Bei Fehlern:
+- Begrenzte Wiederholung, wenn sinnvoll.
+- Verständlicher Diagnoseeintrag.
+- Lokales Verhalten fortsetzen.
+- Keine endlose Fehlerschleife.
+- Keine fiktive Modellentscheidung als Ersatz ausgeben.
+
+## 15. Beobachtung und Diagnose
+
+Erweitere das Wesenfenster um:
+- Lokale oder modellgestützte Entscheidung.
+- Grund für die Modellanfrage.
+- Wartestatus.
+- Alter des angefragten Zustands.
+- Vorgeschlagenen Plan.
+- Annahme oder Ablehnung mit tatsächlichem Prüfgrund.
+- Ausgeführte Schritte und Ergebnisse.
+
+Ergänze ein globales KI-Panel mit:
+- Modell und Verbindungsstatus.
+- Warteschlangenlänge.
+- Laufenden Anfragen.
+- Antwortzeiten.
+- Fehlerrate.
+- Verworfenen veralteten Antworten.
+
+Begrenze gespeicherte Anfrage- und Antwortprotokolle. Vollständige Kontexte nur in einem ausdrücklich aktivierten Diagnosemodus speichern.
+
+## 16. Speichern und Laden
+
+Speichere:
+- Angenommene Ziele und Pläne.
+- Tatsächlich gelernte Informationen.
+- Gesprächserinnerungen.
+- Quellenbezüge und Vertrauen.
+- Relevante Wartezeiten.
+
+Speichere keine offenen Netzwerkverbindungen.
+
+Beim Laden:
+- Alte ausstehende Anfragen invalidieren.
+- Gespeicherte Pläne erneut prüfen.
+- Reservierungen konsistent herstellen oder freigeben.
+- Neue Anfragen nur bei Bedarf stellen.
+
+Modellauswahl und Dienstadresse sind Anwendungseinstellungen. Ein Spielstand muss auch ohne dieses Modell ladbar bleiben.
+
+Erweitere die Speichermigration aus der tatsächlich vorhandenen Vorversion.
+
+## 17. Tests
+
+Automatisierte Tests mit einem kontrollierten Testdienst:
+- Gültiger Plan wird über das Handlungssystem ausgeführt.
+- Unbekannte IDs werden abgewiesen.
+- Verbotene Handlungen werden abgewiesen.
+- Erfundenes Material erzeugt keinen Gegenstand.
+- Veraltete Antwort wird nach Laden oder Zurücksetzen ignoriert.
+- Tod des Akteurs verhindert spätere Ausführung.
+- Pause verhindert Anwendung wartender Entscheidungen.
+- Zeitüberschreitung lässt die Simulation weiterlaufen.
+- Ein Wesen erhält keine Erinnerungen eines anderen.
+- Gehörte Aussage bleibt als Hörensagen gekennzeichnet.
+- Weitererzählen erzeugt keine unabhängigen Beweise.
+- Ressourcen werden bei Gesprächen und Plänen nicht dupliziert.
+
+Zusätzlich mit echter Ollama-Verbindung, soweit verfügbar:
+1. Ein Wesen und eine einfache Plananfrage.
+2. Zwei Wesen und ein kurzes Gespräch.
+3. 50 Wesen mit begrenzter Anfragerate.
+4. Dienst während der Simulation unterbrechen.
+5. Dienst wieder verfügbar machen.
+
+Protokolliere tatsächliche Ergebnisse, Modellname, Testumgebung und Antwortzeiten.
+
+Strukturprüfungen dürfen deterministisch getestet werden. Erwarte bei echten Sprachmodellantworten keine identischen Formulierungen.
+
+## 18. Dokumentation und Lieferung
+
+Erstelle:
+- docs/ollama_setup.md
+- docs/ai_integration.md
+- docs/communication.md
+
+Aktualisiere:
+- README.md
+- docs/architecture.md
+- docs/implementation_status.md
+- docs/save_format.md
+- docs/test_results.md
+
+Beschreibe:
+- Einrichtung für die erkannte Umgebung.
+- Modellauswahl und gemessene Grenzen.
+- Einstellungen.
+- Individuelle Kontextbildung.
+- Prüfung von Modellantworten.
+- Ausfallverhalten.
+- Gesprächs- und Wissensmodell.
+- Tatsächlich getestete Funktionen.
+
+Am Ende nenne:
+- Was jetzt spielbar ist.
+- Was ich gegebenenfalls noch in Ollama einrichten muss.
+- Wie ich die Verbindung teste.
+- Wie ich einen modellgestützten Plan beobachte.
+- Wie ich ein Gespräch und dessen Wissenswirkung prüfe.
+- Welche Tests erfolgreich waren.
+- Welche Funktionen noch nicht real verifiziert sind.
+
+Beginne mit der Bestands- und Verbindungsprüfung und setze die Integration anschließend vollständig um.

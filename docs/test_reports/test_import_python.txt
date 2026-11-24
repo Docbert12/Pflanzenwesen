@@ -1,0 +1,22 @@
+test_dry_run_writes_nothing_but_reports_diff (test_import_definitions.ImportTests.test_dry_run_writes_nothing_but_reports_diff) ... ok
+test_duplicate_id_detected (test_import_definitions.ImportTests.test_duplicate_id_detected) ... ok
+test_generated_ids_stable_after_row_reorder (test_import_definitions.ImportTests.test_generated_ids_stable_after_row_reorder) ... ok
+test_invalid_id_format_detected (test_import_definitions.ImportTests.test_invalid_id_format_detected) ... ok
+test_invalid_reference_detected_with_cell (test_import_definitions.ImportTests.test_invalid_reference_detected_with_cell) ... ok
+test_missing_vs_not_applicable (test_import_definitions.ImportTests.test_missing_vs_not_applicable) ... ok
+test_original_untouched_and_import_runs (test_import_definitions.ImportTests.test_original_untouched_and_import_runs) ... ok
+test_reimport_keeps_ids_and_reports_no_diff (test_import_definitions.ImportTests.test_reimport_keeps_ids_and_reports_no_diff) ... ok
+test_status_comes_only_from_config (test_import_definitions.ImportTests.test_status_comes_only_from_config) ... ok
+test_text_in_number_column_rejected (test_import_definitions.ImportTests.test_text_in_number_column_rejected) ... ok
+5498 Einträge, 96 Grundbegriffe, 0 Abweichungen; Katalog geschrieben.
+test_concepts_and_ids (test_import_inventions.TestImportInventions.test_concepts_and_ids) ... ok
+test_counts_match_overview (test_import_inventions.TestImportInventions.test_counts_match_overview) ... ok
+test_deterministic (test_import_inventions.TestImportInventions.test_deterministic) ... 5498 Einträge, 96 Grundbegriffe, 0 Abweichungen; Katalog geschrieben.
+ok
+test_excel_unchanged_and_ok (test_import_inventions.TestImportInventions.test_excel_unchanged_and_ok) ... ok
+test_nothing_active (test_import_inventions.TestImportInventions.test_nothing_active) ... ok
+
+----------------------------------------------------------------------
+Ran 15 tests in 12.400s
+
+OK

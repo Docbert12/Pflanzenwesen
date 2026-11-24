@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "source_file": "Pflanzenwesen_Voxel_Datenbasis.xlsx",
+  "source_sha256": "a5557d3a1f206105f612b09dc7f12afa351464b1fb825b6311691e70e97cea13",
+  "imported_at_utc": "2026-11-19T14:55:19Z",
+  "openpyxl_version": "3.1.5",
+  "formula_cells": 0,
+  "files": [
+    "animations.json",
+    "balancing.json",
+    "behaviors.json",
+    "biomes.json",
+    "body_parts.json",
+    "breeding.json",
+    "components.json",
+    "elements.json",
+    "environment_effects.json",
+    "food.json",
+    "generator_parameters.json",
+    "genetics.json",
+    "injuries.json",
+    "interactions.json",
+    "items.json",
+    "material_catalog.json",
+    "palettes.json",
+    "plants.json",
+    "raw_materials.json",
+    "species.json",
+    "voxel_types.json"
+  ]
+}

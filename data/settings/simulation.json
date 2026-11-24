@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "random_seed": 12345,
+  "initial_population": 50,
+  "physics_ticks_per_second": 60,
+  "gravity_m_s2": 9.81,
+  "event_log_max_entries": 1000,
+  "lab": {
+    "ambient_temperature_k": 293.15,
+    "environment_exchange_enabled": true,
+    "convection_coefficient_w_m2k": 10.0,
+    "heater_power_default_w": 1000.0,
+    "heater_power_max_w": 3000.0,
+    "cooling_power_w": 800.0,
+    "cooling_sink_temperature_k": 293.15,
+    "drop_height_m": 3.0,
+    "fall_cube_edge_m": 0.1,
+    "melt_sample_edge_m": 0.03,
+    "load_default_j": 100.0,
+    "load_max_j": 2000.0
+  },
+  "_notes": {
+    "random_seed": "12345 entspricht dem Gelände_Seed aus design/Pflanzenwesen_Voxel_Datenbasis.xlsx (Blatt 09).",
+    "initial_population": "Anzahl der Wesen bei „Neues Spiel“ (PopulationSpawner). Einzige Quelle für die Startanzahl.",
+    "convection_coefficient_w_m2k": "Annahme für freie Konvektion in Luft (Größenordnung 5–25 W/m²K), ungeprüft. Wärmestrahlung wird nicht modelliert.",
+    "time_acceleration": "Nicht implementiert. Die Simulation läuft nur mit Faktor 1."
+  }
+}

@@ -1,0 +1,248 @@
+{
+  "schema_version": 1,
+  "_note": "Handgeschrieben. Status-Werte: implemented, preview_only, world_object_preview, partial, data_only, not_implemented. Nicht aufgeführte Excel-Einträge gelten als data_only.",
+  "species": {
+    "KR001": {
+      "status": "world_object_preview",
+      "note": "Lebensbaum als statisches Weltobjekt in Weltvorschau und Lebenssimulation (Voxelmodell, Wurzeln, Wurzelbeet, Schatten, blockiert Stammspalten). Keine Fortpflanzung, kein Recycling."
+    },
+    "KR002": {
+      "status": "partial",
+      "note": "Lebenssimulation mit Persönlichkeit, Erinnerungen, Überzeugungen, Beziehungen, sozialen Handlungen, Lernen aus Eingriffen (Prompt 3+4), kurzen strukturierten Gesprächen mit Hörensagen und optionalen Modellvorschlägen über Ollama (Prompt 5, echte Verbindung noch nicht verifiziert). Prompt 6: eigenständige, begrenzte Versuche mit Gegenständen, Werkzeuggebrauch, Verbinden mit Fasern, Verfahrenswissen mit Erfahrungsstufen, Erklären/Vorführen/Üben. Keine freie Sprache, keine Fortpflanzung, keine Religion."
+    }
+  },
+  "plants": {
+    "P007": {
+      "status": "partial",
+      "note": "Beerenstrauch: endliche Nahrungsquelle (Excel N001 Beeren). Kein Nachwachsen."
+    },
+    "P011": {
+      "status": "preview_only",
+      "note": "Prozedurales Modell Grasbüschel."
+    },
+    "P013": {
+      "status": "preview_only",
+      "note": "Prozedurales Modell Farn."
+    },
+    "P009": {
+      "status": "partial",
+      "note": "Pilz rot: endliche Nahrungsquelle (Excel N002 Pilz). Giftigkeit nicht umgesetzt."
+    },
+    "P010": {
+      "status": "partial",
+      "note": "Pilz braun: endliche Nahrungsquelle (Excel N002 Pilz). Giftigkeit nicht umgesetzt."
+    }
+  },
+  "animations": {
+    "A001": {
+      "status": "implemented",
+      "note": "Ruhehaltung, in der Lebenssimulation bei Warten/ohne Handlung."
+    },
+    "A002": {
+      "status": "partial",
+      "note": "Gehen in der Lebenssimulation an echte Bewegung (move_to) gekoppelt, Takt ∝ tatsächlicher Geschwindigkeit. Hinken: nicht implementiert."
+    },
+    "A003": {
+      "status": "partial",
+      "note": "Greifen während pick_up, nur mit vorhandener Greiffähigkeit (Hand oder Kupferhaken)."
+    },
+    "A004": {
+      "status": "partial",
+      "note": "Zum Mund führen während eat (getragene Nahrung). Direktes Essen ohne Hände ohne eigene Animation."
+    },
+    "A005": {
+      "status": "not_implemented"
+    }
+  },
+  "body_parts": {
+    "KT001": {
+      "status": "partial",
+      "note": "Typ Körper → Rumpf des Grundkörpers. Excel-Voxelmaße werden nicht verwendet (siehe excel_mapping.md)."
+    },
+    "KT003": {
+      "status": "partial",
+      "note": "Typ Kopf → Kopf des Grundkörpers."
+    },
+    "KT006": {
+      "status": "partial",
+      "note": "Typ Arm → beide Arme (Excel listet nur Arm_Links)."
+    },
+    "KT008": {
+      "status": "partial",
+      "note": "Typ Bein → beide Beine (Excel listet nur Bein_Links)."
+    },
+    "KT012": {
+      "status": "partial",
+      "note": "Typ Blatt → Kopfblätter."
+    },
+    "KT014": {
+      "status": "partial",
+      "note": "Typ Prothese (Arm) → einfache Holz-/Kupferprothese in der Vorschau."
+    }
+  },
+  "injuries": {
+    "V001": {
+      "status": "partial",
+      "note": "Unterarm entfernen (Entwicklermodus, Kreaturenvorschau); Fähigkeiten werden neu berechnet."
+    },
+    "V003": {
+      "status": "partial",
+      "note": "Blatt entfernen (Entwicklermodus, Vorschau); senkt Blattfläche, Masse und Blattunterhalt."
+    },
+    "V002": {
+      "status": "partial",
+      "note": "Bein verletzen (Entwicklermodus); bei Schaden 100 % geht der Unterschenkel samt Fuß verloren, Gehen stoppt erklärt."
+    }
+  },
+  "items": {
+    "I002": {
+      "status": "partial",
+      "note": "Kupferprothese als Körperteil in der Vorschau; Masse wird aus Material und Volumen berechnet, nicht aus der Excel-Spalte Gewicht."
+    },
+    "I001": {
+      "status": "data_only",
+      "note": "Steinbeil: keine Freischaltung. Wesen können seit Prompt 6 aus Holzstiel, Steinkopf und Fasern einen Schlagverbund herstellen; das ist ein aus Material und Geometrie entstehendes Objekt und wird NICHT dem Excel-Eintrag I001 zugeordnet (kein Technologiebaum)."
+    },
+    "I003": {
+      "status": "data_only",
+      "note": "Holzspeer: nicht implementiert (Prompt 6 kennt nur Schlagwerkzeuge)."
+    }
+  },
+  "genetics": {
+    "groesse": {
+      "status": "partial",
+      "note": "Variation der Körpergröße im Generator (enger Bereich, siehe creature_defaults.json)."
+    },
+    "kopfblaetter_anzahl": {
+      "status": "partial",
+      "note": "Blattanzahl 1–3 beim Erzeugen, 0–8 per Hinzufügen/Entfernen."
+    },
+    "hautfarbe": {
+      "status": "partial",
+      "note": "Farbwahl aus den Excel-Farben F001/F002/F005."
+    },
+    "blattform": {
+      "status": "partial",
+      "note": "Drei Blattformen (rund, spitz, gelappt)."
+    },
+    "arm_anzahl": {
+      "status": "not_implemented",
+      "note": "Nur zwei Arme werden unterstützt."
+    }
+  },
+  "palettes": {
+    "F001": {
+      "status": "implemented"
+    },
+    "F002": {
+      "status": "implemented"
+    },
+    "F003": {
+      "status": "implemented"
+    },
+    "F004": {
+      "status": "implemented"
+    },
+    "F005": {
+      "status": "implemented"
+    },
+    "F006": {
+      "status": "implemented"
+    }
+  },
+  "generator_parameters": {
+    "gelaende_seed": {
+      "status": "implemented",
+      "note": "Standard-Startwert der Weltvorschau."
+    },
+    "wasser_hoehe": {
+      "status": "implemented",
+      "note": "Wasserspiegel in Terrainzellen."
+    },
+    "blatt_variation": {
+      "status": "implemented",
+      "note": "Streuung der Blattgröße/-form."
+    },
+    "voxel_groesse": {
+      "status": "partial",
+      "note": "0,1 m gilt für Bäume/Pflanzen-Voxel nicht; siehe world.json. Terrain 0,5 m, Lebensbaum 0,2 m, Pflanzen 0,05 m, Wesen 0,02 m."
+    }
+  },
+  "biomes": {
+    "B001": {
+      "status": "partial",
+      "note": "Hügel mit Gras/Erde."
+    },
+    "B002": {
+      "status": "partial",
+      "note": "Flacher Startbereich."
+    },
+    "B003": {
+      "status": "partial",
+      "note": "Steinkuppen oberhalb 18 Zellen."
+    },
+    "B004": {
+      "status": "partial",
+      "note": "Seebecken; Schlamm als Erde dargestellt."
+    }
+  },
+  "voxel_types": {
+    "V002": {
+      "status": "implemented"
+    },
+    "V003": {
+      "status": "implemented"
+    },
+    "V004": {
+      "status": "partial",
+      "note": "Wasser ist kein Voxel, sondern ein mengenbasiertes Höhenmodell."
+    },
+    "V005": {
+      "status": "implemented"
+    },
+    "V006": {
+      "status": "implemented"
+    },
+    "V007": {
+      "status": "implemented"
+    }
+  },
+  "food": {
+    "N001": {
+      "status": "partial",
+      "note": "Energie = Nährwert 15 × 3000 J/kg (Spielwert), Nährstoffe aus Trockenmasse (1 − Wassergehalt). Effekt-Text nicht ausgewertet."
+    },
+    "N002": {
+      "status": "partial",
+      "note": "Wie N001 mit Nährwert 20. „Risiko“ (giftig) nicht umgesetzt."
+    }
+  },
+  "behaviors": {
+    "KI001": {
+      "status": "partial",
+      "note": "Nahrung suchen ab Hunger ≥ 60 % (Excel „Hunger > 60“), mit Hysterese bis 15 %."
+    },
+    "KI004": {
+      "status": "partial",
+      "note": "Erkunden ∝ Neugier, begrenzt; gelegentlich „Arme heben“ als Ausprobieren (Prompt 4). Prompt 6: Neugier wirkt zusätzlich auf Versuche mit wahrgenommenen Gegenständen (begrenzt durch Zeitbudget, Hunger und Risiko)."
+    },
+    "KI005": {
+      "status": "partial",
+      "note": "Annäherung, um Nahrung bitten, anbieten, geben, ablehnen (Prompt 4); kurze Mitteilungen (Hinweis auf Nahrung, Erlebnis, Vermutung) mit Hörensagen und Vertrauen (Prompt 5) – alles über DecisionSystem. Prompt 6: Verfahren erklären und Vorführung anbieten."
+    }
+  },
+  "balancing": {
+    "geschwindigkeit": {
+      "status": "implemented",
+      "note": "Grundgeschwindigkeit 1,0 m/s × Fortbewegungsfähigkeit."
+    },
+    "wahrnehmung": {
+      "status": "implemented",
+      "note": "Wahrnehmungsradius 10 m × Kopffunktion."
+    },
+    "hunger": {
+      "status": "partial",
+      "note": "Hunger 0–100 % aus Energie- und Nährstoffspeicher abgeleitet."
+    }
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "id": "water",
+  "display_name": "Wasser",
+  "description": "Reines Wasser als Vergleichsprobe. Gefrieren/Schmelzen folgt demselben Enthalpiemodell; Verdampfen ist NICHT modelliert.",
+  "model_material": "H2O bei 1 atm, konstante Wärmekapazität je Phase.",
+  "phase_model": "solid_liquid",
+  "properties": {
+    "density_kg_m3": {"value": 998.2, "unit": "kg/m³", "kind": "reference", "source": "S1", "note": "bei 20 °C. Dichte von Eis (geringer) wird vernachlässigt."},
+    "specific_heat_solid_j_kgk": {"value": 2108.0, "unit": "J/(kg·K)", "kind": "reference", "source": "S2", "note": "Eis"},
+    "specific_heat_liquid_j_kgk": {"value": 4182.0, "unit": "J/(kg·K)", "kind": "reference", "source": "S1", "note": "bei 20 °C"},
+    "thermal_conductivity_w_mk": {"value": 0.598, "unit": "W/(m·K)", "kind": "reference", "source": "S3", "note": "flüssig, 20 °C. Für Eis nicht getrennt modelliert."},
+    "melting_point_k": {"value": 273.15, "unit": "K", "kind": "reference", "source": "S2"},
+    "latent_heat_fusion_j_kg": {"value": 333400.0, "unit": "J/kg", "kind": "reference", "source": "S4", "note": "S2 nennt 334 kJ/kg."},
+    "model_valid_min_k": {"value": 1.0, "unit": "K", "kind": "game"},
+    "model_valid_max_k": {"value": 373.15, "unit": "K", "kind": "reference", "source": "S4", "note": "Siedepunkt bei 1 atm. Verdampfen ist nicht modelliert; Heizung schaltet hier ab."}
+  },
+  "mechanical": {
+    "fracture_behavior": {"value": "not_applicable", "kind": "game", "note": "Mechanische Last auf Flüssigkeit/Eis ist nicht modelliert."},
+    "toughness_j_kg": {"value": null, "kind": "not_applicable"},
+    "max_fragments": {"value": 1, "kind": "game"}
+  },
+  "working": {"_note": "Spielparameter (Prompt 6).", "hardness": {"value": 0.0, "kind": "game", "note": "Mechanische Bearbeitung von Wasser/Eis ist nicht modelliert."}},
+  "combustion": {
+    "combustible": {"value": false, "kind": "assumed"},
+    "decomposition_onset_k": {"value": null, "kind": "not_applicable"},
+    "simulated": false
+  },
+  "render": {"color": "#3A7BD5", "liquid_color": "#3A7BD5", "kind": "game"},
+  "sources": [
+    {"id": "S1", "title": "Water – Materialdaten nach matweb (nTop-Dokumentation)", "url": "https://docs.ntop.com/Product-Documentation/ntop/block-documentation/blocks/fluids-beta/material-information/water.md"},
+    {"id": "S2", "title": "Water – Thermophysical Properties (Engineering ToolBox)", "url": "https://www.engineeringtoolbox.com/water-thermal-properties-d_162.html"},
+    {"id": "S3", "title": "Water properties table (The Engineering Mindset)", "url": "https://theengineeringmindset.com/?p=434"},
+    {"id": "S4", "title": "Formula Basics Water (FH Erfurt)", "url": "https://www.fh-erfurt.de/fileadmin/Dokumente/Module/BKR/Orbit/Formula/General/e/B_3_6_13-Formula-Basics-Water-ENG.pdf"}
+  ]
+}

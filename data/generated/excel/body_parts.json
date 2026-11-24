@@ -1,0 +1,2034 @@
+{
+  "schema_version": 1,
+  "generated_by": "tools/import_definitions.py – NICHT VON HAND BEARBEITEN",
+  "source_sheet": "05_Körperteile",
+  "kind": "body_parts",
+  "description": "Körperteile (Designdaten; Typen werden auf den Körperplan abgebildet)",
+  "status_note": "game_status stammt aus data/config/implementation_status.json; ein Excel-Eintrag aktiviert keine Spielfunktion.",
+  "entries": [
+    {
+      "id": "KT001",
+      "name": "Körper_Standard_1",
+      "type": "Körper",
+      "component_refs": [
+        "KMP031",
+        "KMP046",
+        "KMP041"
+      ],
+      "component_count": 3,
+      "voxels_x": 3,
+      "voxels_y": 20,
+      "voxels_z": 4,
+      "attach_points": [
+        "Modular"
+      ],
+      "weight_kg_excel": 8.2,
+      "stability": 8.0,
+      "mobility": 4.0,
+      "replaceable": true,
+      "prosthesis_capable": false,
+      "animation_relevant": true,
+      "description": "Körper aus Komponenten",
+      "_excel_row": 2,
+      "game_status": "partial",
+      "game_status_note": "Typ Körper → Rumpf des Grundkörpers. Excel-Voxelmaße werden nicht verwendet (siehe excel_mapping.md)."
+    },
+    {
+      "id": "KT002",
+      "name": "Körper_Groß_2",
+      "type": "Körper",
+      "component_refs": [
+        "KMP038",
+        "KMP034",
+        "KMP014",
+        "KMP039"
+      ],
+      "component_count": 4,
+      "voxels_x": 8,
+      "voxels_y": 14,
+      "voxels_z": 5,
+      "attach_points": [
+        "Stiel"
+      ],
+      "weight_kg_excel": 5.0,
+      "stability": 6.0,
+      "mobility": 7.0,
+      "replaceable": true,
+      "prosthesis_capable": false,
+      "animation_relevant": true,
+      "description": "Körper aus Komponenten",
+      "_excel_row": 3,
+      "game_status": "data_only"
+    },
+    {
+      "id": "KT003",
+      "name": "Kopf_Blatt_3",
+      "type": "Kopf",
+      "component_refs": [
+        "KMP013",
+        "KMP018"
+      ],
+      "component_count": 2,
+      "voxels_x": 6,
+      "voxels_y": 17,
+      "voxels_z": 6,
+      "attach_points": [
+        "Mehrfach"
+      ],
+      "weight_kg_excel": 3.5,
+      "stability": 8.0,
+      "mobility": 7.0,
+      "replaceable": true,
+      "prosthesis_capable": false,
+      "animation_relevant": true,
+      "description": "Kopf aus Komponenten",
+      "_excel_row": 4,
+      "game_status": "partial",
+      "game_status_note": "Typ Kopf → Kopf des Grundkörpers."
+    },
+    {
+      "id": "KT004",
+      "name": "Kopf_Tier_4",
+      "type": "Kopf",
+      "component_refs": [
+        "KMP012",
+        "KMP043"
+      ],
+      "component_count": 2,
+      "voxels_x": 9,
+      "voxels_y": 7,
+      "voxels_z": 7,
+      "attach_points": [
+        "Mehrfach"
+      ],
+      "weight_kg_excel": 11.1,
+      "stability": 7.0,
+      "mobility": 2.0,
+      "replaceable": true,
+      "prosthesis_capable": false,
+      "animation_relevant": true,
+      "description": "Kopf aus Komponenten",
+      "_excel_row": 5,
+      "game_status": "data_only"
+    },
+    {
+      "id": "KT005",
+      "name": "Kopf_Pilz_5",
+      "type": "Kopf",
+      "component_refs": [
+        "KMP014",
+        "KMP029"
+      ],
+      "component_count": 2,
+      "voxels_x": 9,
+      "voxels_y": 12,
+      "voxels_z": 4,
+      "attach_points": [
+        "Hüfte"
+      ],
+      "weight_kg_excel": 2.1,
+      "stability": 8.0,
+      "mobility": 2.0,
+      "replaceable": true,
+      "prosthesis_capable": false,
+      "animation_relevant": true,
+      "description": "Kopf aus Komponenten",
+      "_excel_row": 6,
+      "game_status": "data_only"
+    },
+    {
+      "id": "KT006",
+      "name": "Arm_Links_6",
+      "type": "Arm",
+      "component_refs": [
+        "KMP030",
+        "KMP038"
+      ],
+      "component_count": 2,
+      "voxels_x": 3,
+      "voxels_y": 20,
+      "voxels_z": 5,
+      "attach_points": [
+        "Hals",
+        "Schulter"
+      ],
+      "weight_kg_excel": 8.1,
+      "stability": 6.0,
+      "mobility": 8.0,
+      "replaceable": true,
+      "prosthesis_capable": true,
+      "animation_relevant": true,
+      "description": "Arm aus Komponenten",
+      "_excel_row": 7,
+      "game_status": "partial",
+      "game_status_note": "Typ Arm → beide Arme (Excel listet nur Arm_Links)."
+    },
+    {
+      "id": "KT007",
+      "name": "Arm_Rechts_7",
+      "type": "Arm",
+      "component_refs": [
+        "KMP020",
+        "KMP007"
+      ],
+      "component_count": 2,
+      "voxels_x": 8,
+      "voxels_y": 9,
+      "voxels_z": 4,
+      "attach_points": [
+        "Modular"
+      ],
+      "weight_kg_excel": 12.4,
+      "stability": 4.0,
+      "mobility": 4.0,
+      "replaceable": true,
+      "prosthesis_capable": true,
+      "animation_relevant": true,
+      "description": "Arm aus Komponenten",
+      "_excel_row": 8,
+      "game_status": "data_only"
+    },
+    {
+      "id": "KT008",
+      "name": "Bein_Links_8",
+      "type": "Bein",
+      "component_refs": [
+        "KMP010",
+        "KMP042"
+      ],
+      "component_count": 2,
+      "voxels_x": 3,
+      "voxels_y": 17,
+      "voxels_z": 8,
+      "attach_points": [
+        "Hals",
+        "Schulter"
+      ],
+      "weight_kg_excel": 7.5,
+      "stability": 8.0,
+      "mobility": 3.0,
+      "replaceable": true,
+      "prosthesis_capable": true,
+      "animation_relevant": true,
+      "description": "Bein aus Komponenten",
+      "_excel_row": 9,
+      "game_status": "partial",
+      "game_status_note": "Typ Bein → beide Beine (Excel listet nur Bein_Links)."
+    },
+    {
+      "id": "KT009",
+      "name": "Bein_Rechts_9",
+      "type": "Bein",
+      "component_refs": [
+        "KMP046",
+        "KMP011"
+      ],
+      "component_count": 2,
+      "voxels_x": 10,
+      "voxels_y": 6,
+      "voxels_z": 8,
+      "attach_points": [
+        "Mehrfach"
+      ],
+      "weight_kg_excel": 9.1,
+      "stability": 9.0,
+      "mobility": 6.0,
+      "replaceable": true,
+      "prosthesis_capable": true,
+      "animation_relevant": true,
+      "description": "Bein aus Komponenten",
+      "_excel_row": 10,
+      "game_status": "data_only"
+    },
+    {
+      "id": "KT010",
+      "name": "Bein_Vorder_L_10",
+      "type": "Bein",
+      "component_refs": [
+        "KMP026",
+        "KMP027"
+      ],
+      "component_count": 2,
+      "voxels_x": 3,
+      "voxels_y": 18,
+      "voxels_z": 3,
+      "attach_points": [
+        "Modular"
+      ],
+      "weight_kg_excel": 13.6,
+      "stability": 5.0,
+      "mobility": 4.0,
+      "replaceable": true,
+      "prosthesis_capable": true,
+      "animation_relevant": true,
+      "description": "Bein aus Komponenten",
+      "_excel_row": 11,
+      "game_status": "data_only"
+    },
+    {
+      "id": "KT011",
+      "name": "Bein_Vorder_R_11",
+      "type": "Bein",
+      "component_refs": [
+        "KMP012",
+        "KMP027"
+      ],
+      "component_count": 2,
+      "voxels_x": 10,
+      "voxels_y": 13,
+      "voxels_z": 3,
+      "attach_points": [
+        "Stiel"
+      ],
+      "weight_kg_excel": 8.4,
+      "stability": 5.0,
+      "mobility": 2.0,
+      "replaceable": true,
+      "prosthesis_capable": true,
+      "animation_relevant": true,
+      "description": "Bein aus Komponenten",
+      "_excel_row": 12,
+      "game_status": "data_only"
+    },
+    {
+      "id": "KT012",
+      "name": "Blattmodul_Kopf_12",
+      "type": "Blatt",
+      "component_refs": [
+        "KMP039"
+      ],
+      "component_count": 1,
+      "voxels_x": 5,
+      "voxels_y": 8,
+      "voxels_z": 6,
+      "attach_points": [
+        "Hüfte"
+      ],
+      "weight_kg_excel": 3.3,
+      "stability": 9.0,
+      "mobility": 2.0,
+      "replaceable": true,
+      "prosthesis_capable": false,
+      "animation_relevant": false,
+      "description": "Blatt aus Komponenten",
+      "_excel_row": 13,
+      "game_status": "partial",
+      "game_status_note": "Typ Blatt → Kopfblätter."
+    },
+    {
+      "id": "KT013",
+      "name": "Blattmodul_Körper_13",
+      "type": "Blatt",
+      "component_refs": [
+        "KMP003"
+      ],
+      "component_count": 1,
+      "voxels_x": 10,
+      "voxels_y": 8,
+      "voxels_z": 7,
+      "attach_points": [
+        "Hals",
+        "Schulter"
+      ],
+      "weight_kg_excel": 14.6,
+      "stability": 7.0,
+      "mobility": 4.0,
+      "replaceable": true,
+      "prosthesis_capable": false,
+      "animation_relevant": false,
+      "description": "Blatt aus Komponenten",
+      "_excel_row": 14,
+      "game_status": "data_only"
+    },
+    {
+      "id": "KT014",
+      "name": "Prothese_Arm_14",
+      "type": "Prothese",
+      "component_refs": [
+        "KMP048",
+        "KMP018"
+      ],
+      "component_count": 2,
+      "voxels_x": 4,
+      "voxels_y": 17,
+      "voxels_z": 7,
+      "attach_points": [
+        "Stiel"
+      ],
+      "weight_kg_excel": 1.3,
+      "stability": 9.0,
+      "mobility": 4.0,
+      "replaceable": true,
+      "prosthesis_capable": true,
+      "animation_relevant": true,
+      "description": "Prothese aus Komponenten",
+      "_excel_row": 15,
+      "game_status": "partial",
+      "game_status_note": "Typ Prothese (Arm) → einfache Holz-/Kupferprothese in der Vorschau."
+    },
+    {
+      "id": "KT015",
+      "name": "Prothese_Bein_15",
+      "type": "Prothese",
+      "component_refs": [
+        "KMP032",
+        "KMP029"
+      ],
+      "component_count": 2,
+      "voxels_x": 5,
+      "voxels_y": 16,
+      "voxels_z": 5,
+      "attach_points": [
+        "Modular"
+      ],
+      "weight_kg_excel": 3.1,
+      "stability": 6.0,
+      "mobility": 2.0,
+      "replaceable": true,
+      "prosthesis_capable": true,
+      "animation_relevant": true,
+      "description": "Prothese aus Komponenten",
+      "_excel_row": 16,
+      "game_status": "data_only"
+    },
+    {
+      "id": "KT016",
+      "name": "Schwanz_16",
+      "type": "Schwanz",
+      "component_refs": [
+        "KMP019"
+      ],
+      "component_count": 1,
+      "voxels_x": 10,
+      "voxels_y": 15,
+      "voxels_z": 4,
+      "attach_points": [
+        "Stiel"
+      ],
+      "weight_kg_excel": 7.9,
+      "stability": 4.0,
+      "mobility": 2.0,
+      "replaceable": true,
+      "prosthesis_capable": false,
+      "animation_relevant": true,
+      "description": "Schwanz aus Komponenten",
+      "_excel_row": 17,
+      "game_status": "data_only"
+    },
+    {
+      "id": "KT017",
+      "name": "Flügel_17",
+      "type": "Flügel",
+      "component_refs": [
+        "KMP021",
+        "KMP017"
+      ],
+      "component_count": 2,
+      "voxels_x": 9,
+      "voxels_y": 13,
+      "voxels_z": 4,
+      "attach_points": [
+        "Modular"
+      ],
+      "weight_kg_excel": 1.9,
+      "stability": 4.0,
+      "mobility": 2.0,
+      "replaceable": true,
+      "prosthesis_capable": false,
+      "animation_relevant": true,
+      "description": "Flügel aus Komponenten",
+      "_excel_row": 18,
+      "game_status": "data_only"
+    },
+    {
+      "id": "KT018",
+      "name": "Wurzel_Basis_18",
+      "type": "Wurzel",
+      "component_refs": [
+        "KMP016",
+        "KMP012"
+      ],
+      "component_count": 2,
+      "voxels_x": 4,
+      "voxels_y": 15,
+      "voxels_z": 4,
+      "attach_points": [
+        "Stiel"
+      ],
+      "weight_kg_excel": 2.5,
+      "stability": 9.0,
+      "mobility": 7.0,
+      "replaceable": false,
+      "prosthesis_capable": false,
+      "animation_relevant": false,
+      "description": "Wurzel aus Komponenten",
+      "_excel_row": 19,
+      "game_status": "data_only"
+    },
+    {
+      "id": "KT019",
+      "name": "Körper_Standard_19",
+      "type": "Körper",
+      "component_refs": [
+        "KMP022",
+        "KMP003",
+        "KMP026"
+      ],
+      "component_count": 3,
+      "voxels_x": 3,
+      "voxels_y": 12,
+      "voxels_z": 4,
+      "attach_points": [
+        "Modular"
+      ],
+      "weight_kg_excel": 10.8,
+      "stability": 7.0,
+      "mobility": 6.0,
+      "replaceable": true,
+      "prosthesis_capable": false,
+      "animation_relevant": true,
+      "description": "Körper aus Komponenten",
+      "_excel_row": 20,
+      "game_status": "data_only"
+    },
+    {
+      "id": "KT020",
+      "name": "Körper_Groß_20",
+      "type": "Körper",
+      "component_refs": [
+        "KMP046",
+        "KMP014",
+        "KMP044",
+        "KMP025"
+      ],
+      "component_count": 4,
+      "voxels_x": 4,
+      "voxels_y": 20,
+      "voxels_z": 8,
+      "attach_points": [
+        "Stiel"
+      ],
+      "weight_kg_excel": 6.9,
+      "stability": 7.0,
+      "mobility": 5.0,
+      "replaceable": true,
+      "prosthesis_capable": false,
+      "animation_relevant": true,
+      "description": "Körper aus Komponenten",
+      "_excel_row": 21,
+      "game_status": "data_only"
+    },
+    {
+      "id": "KT021",
+      "name": "Kopf_Blatt_21",
+      "type": "Kopf",
+      "component_refs": [
+        "KMP032",
+        "KMP019"
+      ],
+      "component_count": 2,
+      "voxels_x": 9,
+      "voxels_y": 16,
+      "voxels_z": 8,
+      "attach_points": [
+        "Hüfte"
+      ],
+      "weight_kg_excel": 13.5,
+      "stability": 7.0,
+      "mobility": 5.0,
+      "replaceable": true,
+      "prosthesis_capable": false,
+      "animation_relevant": true,
+      "description": "Kopf aus Komponenten",
+      "_excel_row": 22,
+      "game_status": "data_only"
+    },
+    {
+      "id": "KT022",
+      "name": "Kopf_Tier_22",
+      "type": "Kopf",
+      "component_refs": [
+        "KMP018",
+        "KMP031"
+      ],
+      "component_count": 2,
+      "voxels_x": 8,
+      "voxels_y": 5,
+      "voxels_z": 6,
+      "attach_points": [
+        "Mehrfach"
+      ],
+      "weight_kg_excel": 7.7,
+      "stability": 5.0,
+      "mobility": 3.0,
+      "replaceable": true,
+      "prosthesis_capable": false,
+      "animation_relevant": true,
+      "description": "Kopf aus Komponenten",
+      "_excel_row": 23,
+      "game_status": "data_only"
+    },
+    {
+      "id": "KT023",
+      "name": "Kopf_Pilz_23",
+      "type": "Kopf",
+      "component_refs": [
+        "KMP047",
+        "KMP022"
+      ],
+      "component_count": 2,
+      "voxels_x": 8,
+      "voxels_y": 19,
+      "voxels_z": 8,
+      "attach_points": [
+        "Mehrfach"
+      ],
+      "weight_kg_excel": 10.4,
+      "stability": 4.0,
+      "mobility": 6.0,
+      "replaceable": true,
+      "prosthesis_capable": false,
+      "animation_relevant": true,
+      "description": "Kopf aus Komponenten",
+      "_excel_row": 24,
+      "game_status": "data_only"
+    },
+    {
+      "id": "KT024",
+      "name": "Arm_Links_24",
+      "type": "Arm",
+      "component_refs": [
+        "KMP028",
+        "KMP025"
+      ],
+      "component_count": 2,
+      "voxels_x": 6,
+      "voxels_y": 19,
+      "voxels_z": 3,
+      "attach_points": [
+        "Mehrfach"
+      ],
+      "weight_kg_excel": 14.2,
+      "stability": 4.0,
+      "mobility": 2.0,
+      "replaceable": true,
+      "prosthesis_capable": true,
+      "animation_relevant": true,
+      "description": "Arm aus Komponenten",
+      "_excel_row": 25,
+      "game_status": "data_only"
+    },
+    {
+      "id": "KT025",
+      "name": "Arm_Rechts_25",
+      "type": "Arm",
+      "component_refs": [
+        "KMP035",
+        "KMP007"
+      ],
+      "component_count": 2,
+      "voxels_x": 6,
+      "voxels_y": 9,
+      "voxels_z": 5,
+      "attach_points": [
+        "Hals",
+        "Schulter"
+      ],
+      "weight_kg_excel": 14.2,
+      "stability": 4.0,
+      "mobility": 6.0,
+      "replaceable": true,
+      "prosthesis_capable": true,
+      "animation_relevant": true,
+      "description": "Arm aus Komponenten",
+      "_excel_row": 26,
+      "game_status": "data_only"
+    },
+    {
+      "id": "KT026",
+      "name": "Bein_Links_26",
+      "type": "Bein",
+      "component_refs": [
+        "KMP016",
+        "KMP011"
+      ],
+      "component_count": 2,
+      "voxels_x": 9,
+      "voxels_y": 19,
+      "voxels_z": 5,
+      "attach_points": [
+        "Mehrfach"
+      ],
+      "weight_kg_excel": 1.5,
+      "stability": 8.0,
+      "mobility": 8.0,
+      "replaceable": true,
+      "prosthesis_capable": true,
+      "animation_relevant": true,
+      "description": "Bein aus Komponenten",
+      "_excel_row": 27,
+      "game_status": "data_only"
+    },
+    {
+      "id": "KT027",
+      "name": "Bein_Rechts_27",
+      "type": "Bein",
+      "component_refs": [
+        "KMP006",
+        "KMP001"
+      ],
+      "component_count": 2,
+      "voxels_x": 6,
+      "voxels_y": 17,
+      "voxels_z": 8,
+      "attach_points": [
+        "Modular"
+      ],
+      "weight_kg_excel": 10.7,
+      "stability": 6.0,
+      "mobility": 5.0,
+      "replaceable": true,
+      "prosthesis_capable": true,
+      "animation_relevant": true,
+      "description": "Bein aus Komponenten",
+      "_excel_row": 28,
+      "game_status": "data_only"
+    },
+    {
+      "id": "KT028",
+      "name": "Bein_Vorder_L_28",
+      "type": "Bein",
+      "component_refs": [
+        "KMP030",
+        "KMP046"
+      ],
+      "component_count": 2,
+      "voxels_x": 5,
+      "voxels_y": 20,
+      "voxels_z": 6,
+      "attach_points": [
+        "Mehrfach"
+      ],
+      "weight_kg_excel": 4.3,
+      "stability": 6.0,
+      "mobility": 3.0,
+      "replaceable": true,
+      "prosthesis_capable": true,
+      "animation_relevant": true,
+      "description": "Bein aus Komponenten",
+      "_excel_row": 29,
+      "game_status": "data_only"
+    },
+    {
+      "id": "KT029",
+      "name": "Bein_Vorder_R_29",
+      "type": "Bein",
+      "component_refs": [
+        "KMP003",
+        "KMP014"
+      ],
+      "component_count": 2,
+      "voxels_x": 3,
+      "voxels_y": 16,
+      "voxels_z": 6,
+      "attach_points": [
+        "Stiel"
+      ],
+      "weight_kg_excel": 8.4,
+      "stability": 8.0,
+      "mobility": 2.0,
+      "replaceable": true,
+      "prosthesis_capable": true,
+      "animation_relevant": true,
+      "description": "Bein aus Komponenten",
+      "_excel_row": 30,
+      "game_status": "data_only"
+    },
+    {
+      "id": "KT030",
+      "name": "Blattmodul_Kopf_30",
+      "type": "Blatt",
+      "component_refs": [
+        "KMP037"
+      ],
+      "component_count": 1,
+      "voxels_x": 10,
+      "voxels_y": 13,
+      "voxels_z": 3,
+      "attach_points": [
+        "Modular"
+      ],
+      "weight_kg_excel": 14.1,
+      "stability": 8.0,
+      "mobility": 6.0,
+      "replaceable": true,
+      "prosthesis_capable": false,
+      "animation_relevant": false,
+      "description": "Blatt aus Komponenten",
+      "_excel_row": 31,
+      "game_status": "data_only"
+    },
+    {
+      "id": "KT031",
+      "name": "Blattmodul_Körper_31",
+      "type": "Blatt",
+      "component_refs": [
+        "KMP004"
+      ],
+      "component_count": 1,
+      "voxels_x": 5,
+      "voxels_y": 12,
+      "voxels_z": 6,
+      "attach_points": [
+        "Hüfte"
+      ],
+      "weight_kg_excel": 4.3,
+      "stability": 8.0,
+      "mobility": 8.0,
+      "replaceable": true,
+      "prosthesis_capable": false,
+      "animation_relevant": false,
+      "description": "Blatt aus Komponenten",
+      "_excel_row": 32,
+      "game_status": "data_only"
+    },
+    {
+      "id": "KT032",
+      "name": "Prothese_Arm_32",
+      "type": "Prothese",
+      "component_refs": [
+        "KMP033",
+        "KMP009"
+      ],
+      "component_count": 2,
+      "voxels_x": 3,
+      "voxels_y": 5,
+      "voxels_z": 6,
+      "attach_points": [
+        "Hüfte"
+      ],
+      "weight_kg_excel": 7.8,
+      "stability": 7.0,
+      "mobility": 3.0,
+      "replaceable": true,
+      "prosthesis_capable": true,
+      "animation_relevant": true,
+      "description": "Prothese aus Komponenten",
+      "_excel_row": 33,
+      "game_status": "data_only"
+    },
+    {
+      "id": "KT033",
+      "name": "Prothese_Bein_33",
+      "type": "Prothese",
+      "component_refs": [
+        "KMP028",
+        "KMP047"
+      ],
+      "component_count": 2,
+      "voxels_x": 4,
+      "voxels_y": 15,
+      "voxels_z": 8,
+      "attach_points": [
+        "Hals",
+        "Schulter"
+      ],
+      "weight_kg_excel": 13.6,
+      "stability": 7.0,
+      "mobility": 2.0,
+      "replaceable": true,
+      "prosthesis_capable": true,
+      "animation_relevant": true,
+      "description": "Prothese aus Komponenten",
+      "_excel_row": 34,
+      "game_status": "data_only"
+    },
+    {
+      "id": "KT034",
+      "name": "Schwanz_34",
+      "type": "Schwanz",
+      "component_refs": [
+        "KMP037"
+      ],
+      "component_count": 1,
+      "voxels_x": 10,
+      "voxels_y": 14,
+      "voxels_z": 6,
+      "attach_points": [
+        "Modular"
+      ],
+      "weight_kg_excel": 1.5,
+      "stability": 8.0,
+      "mobility": 3.0,
+      "replaceable": true,
+      "prosthesis_capable": false,
+      "animation_relevant": true,
+      "description": "Schwanz aus Komponenten",
+      "_excel_row": 35,
+      "game_status": "data_only"
+    },
+    {
+      "id": "KT035",
+      "name": "Flügel_35",
+      "type": "Flügel",
+      "component_refs": [
+        "KMP027",
+        "KMP038"
+      ],
+      "component_count": 2,
+      "voxels_x": 3,
+      "voxels_y": 10,
+      "voxels_z": 7,
+      "attach_points": [
+        "Stiel"
+      ],
+      "weight_kg_excel": 10.9,
+      "stability": 8.0,
+      "mobility": 2.0,
+      "replaceable": true,
+      "prosthesis_capable": false,
+      "animation_relevant": true,
+      "description": "Flügel aus Komponenten",
+      "_excel_row": 36,
+      "game_status": "data_only"
+    },
+    {
+      "id": "KT036",
+      "name": "Wurzel_Basis_36",
+      "type": "Wurzel",
+      "component_refs": [
+        "KMP026",
+        "KMP042"
+      ],
+      "component_count": 2,
+      "voxels_x": 4,
+      "voxels_y": 10,
+      "voxels_z": 4,
+      "attach_points": [
+        "Modular"
+      ],
+      "weight_kg_excel": 6.6,
+      "stability": 4.0,
+      "mobility": 8.0,
+      "replaceable": false,
+      "prosthesis_capable": false,
+      "animation_relevant": false,
+      "description": "Wurzel aus Komponenten",
+      "_excel_row": 37,
+      "game_status": "data_only"
+    },
+    {
+      "id": "KT037",
+      "name": "Körper_Standard_37",
+      "type": "Körper",
+      "component_refs": [
+        "KMP047",
+        "KMP029",
+        "KMP021"
+      ],
+      "component_count": 3,
+      "voxels_x": 7,
+      "voxels_y": 11,
+      "voxels_z": 3,
+      "attach_points": [
+        "Mehrfach"
+      ],
+      "weight_kg_excel": 10.7,
+      "stability": 8.0,
+      "mobility": 5.0,
+      "replaceable": true,
+      "prosthesis_capable": false,
+      "animation_relevant": true,
+      "description": "Körper aus Komponenten",
+      "_excel_row": 38,
+      "game_status": "data_only"
+    },
+    {
+      "id": "KT038",
+      "name": "Körper_Groß_38",
+      "type": "Körper",
+      "component_refs": [
+        "KMP040",
+        "KMP022",
+        "KMP001",
+        "KMP038"
+      ],
+      "component_count": 4,
+      "voxels_x": 6,
+      "voxels_y": 7,
+      "voxels_z": 6,
+      "attach_points": [
+        "Hals",
+        "Schulter"
+      ],
+      "weight_kg_excel": 8.0,
+      "stability": 4.0,
+      "mobility": 4.0,
+      "replaceable": true,
+      "prosthesis_capable": false,
+      "animation_relevant": true,
+      "description": "Körper aus Komponenten",
+      "_excel_row": 39,
+      "game_status": "data_only"
+    },
+    {
+      "id": "KT039",
+      "name": "Kopf_Blatt_39",
+      "type": "Kopf",
+      "component_refs": [
+        "KMP019",
+        "KMP039"
+      ],
+      "component_count": 2,
+      "voxels_x": 6,
+      "voxels_y": 15,
+      "voxels_z": 6,
+      "attach_points": [
+        "Stiel"
+      ],
+      "weight_kg_excel": 7.4,
+      "stability": 8.0,
+      "mobility": 6.0,
+      "replaceable": true,
+      "prosthesis_capable": false,
+      "animation_relevant": true,
+      "description": "Kopf aus Komponenten",
+      "_excel_row": 40,
+      "game_status": "data_only"
+    },
+    {
+      "id": "KT040",
+      "name": "Kopf_Tier_40",
+      "type": "Kopf",
+      "component_refs": [
+        "KMP032",
+        "KMP004"
+      ],
+      "component_count": 2,
+      "voxels_x": 6,
+      "voxels_y": 16,
+      "voxels_z": 3,
+      "attach_points": [
+        "Mehrfach"
+      ],
+      "weight_kg_excel": 6.2,
+      "stability": 7.0,
+      "mobility": 8.0,
+      "replaceable": true,
+      "prosthesis_capable": false,
+      "animation_relevant": true,
+      "description": "Kopf aus Komponenten",
+      "_excel_row": 41,
+      "game_status": "data_only"
+    },
+    {
+      "id": "KT041",
+      "name": "Kopf_Pilz_41",
+      "type": "Kopf",
+      "component_refs": [
+        "KMP021",
+        "KMP013"
+      ],
+      "component_count": 2,
+      "voxels_x": 10,
+      "voxels_y": 18,
+      "voxels_z": 6,
+      "attach_points": [
+        "Hals",
+        "Schulter"
+      ],
+      "weight_kg_excel": 10.0,
+      "stability": 4.0,
+      "mobility": 5.0,
+      "replaceable": true,
+      "prosthesis_capable": false,
+      "animation_relevant": true,
+      "description": "Kopf aus Komponenten",
+      "_excel_row": 42,
+      "game_status": "data_only"
+    },
+    {
+      "id": "KT042",
+      "name": "Arm_Links_42",
+      "type": "Arm",
+      "component_refs": [
+        "KMP007",
+        "KMP034"
+      ],
+      "component_count": 2,
+      "voxels_x": 7,
+      "voxels_y": 13,
+      "voxels_z": 6,
+      "attach_points": [
+        "Hals",
+        "Schulter"
+      ],
+      "weight_kg_excel": 13.1,
+      "stability": 6.0,
+      "mobility": 8.0,
+      "replaceable": true,
+      "prosthesis_capable": true,
+      "animation_relevant": true,
+      "description": "Arm aus Komponenten",
+      "_excel_row": 43,
+      "game_status": "data_only"
+    },
+    {
+      "id": "KT043",
+      "name": "Arm_Rechts_43",
+      "type": "Arm",
+      "component_refs": [
+        "KMP019",
+        "KMP013"
+      ],
+      "component_count": 2,
+      "voxels_x": 6,
+      "voxels_y": 14,
+      "voxels_z": 4,
+      "attach_points": [
+        "Hüfte"
+      ],
+      "weight_kg_excel": 7.0,
+      "stability": 9.0,
+      "mobility": 8.0,
+      "replaceable": true,
+      "prosthesis_capable": true,
+      "animation_relevant": true,
+      "description": "Arm aus Komponenten",
+      "_excel_row": 44,
+      "game_status": "data_only"
+    },
+    {
+      "id": "KT044",
+      "name": "Bein_Links_44",
+      "type": "Bein",
+      "component_refs": [
+        "KMP022",
+        "KMP007"
+      ],
+      "component_count": 2,
+      "voxels_x": 9,
+      "voxels_y": 6,
+      "voxels_z": 4,
+      "attach_points": [
+        "Mehrfach"
+      ],
+      "weight_kg_excel": 2.7,
+      "stability": 6.0,
+      "mobility": 2.0,
+      "replaceable": true,
+      "prosthesis_capable": true,
+      "animation_relevant": true,
+      "description": "Bein aus Komponenten",
+      "_excel_row": 45,
+      "game_status": "data_only"
+    },
+    {
+      "id": "KT045",
+      "name": "Bein_Rechts_45",
+      "type": "Bein",
+      "component_refs": [
+        "KMP018",
+        "KMP044"
+      ],
+      "component_count": 2,
+      "voxels_x": 9,
+      "voxels_y": 9,
+      "voxels_z": 3,
+      "attach_points": [
+        "Hüfte"
+      ],
+      "weight_kg_excel": 8.7,
+      "stability": 6.0,
+      "mobility": 8.0,
+      "replaceable": true,
+      "prosthesis_capable": true,
+      "animation_relevant": true,
+      "description": "Bein aus Komponenten",
+      "_excel_row": 46,
+      "game_status": "data_only"
+    },
+    {
+      "id": "KT046",
+      "name": "Bein_Vorder_L_46",
+      "type": "Bein",
+      "component_refs": [
+        "KMP019",
+        "KMP029"
+      ],
+      "component_count": 2,
+      "voxels_x": 5,
+      "voxels_y": 8,
+      "voxels_z": 3,
+      "attach_points": [
+        "Mehrfach"
+      ],
+      "weight_kg_excel": 8.3,
+      "stability": 4.0,
+      "mobility": 8.0,
+      "replaceable": true,
+      "prosthesis_capable": true,
+      "animation_relevant": true,
+      "description": "Bein aus Komponenten",
+      "_excel_row": 47,
+      "game_status": "data_only"
+    },
+    {
+      "id": "KT047",
+      "name": "Bein_Vorder_R_47",
+      "type": "Bein",
+      "component_refs": [
+        "KMP042",
+        "KMP036"
+      ],
+      "component_count": 2,
+      "voxels_x": 10,
+      "voxels_y": 13,
+      "voxels_z": 5,
+      "attach_points": [
+        "Stiel"
+      ],
+      "weight_kg_excel": 0.6,
+      "stability": 4.0,
+      "mobility": 5.0,
+      "replaceable": true,
+      "prosthesis_capable": true,
+      "animation_relevant": true,
+      "description": "Bein aus Komponenten",
+      "_excel_row": 48,
+      "game_status": "data_only"
+    },
+    {
+      "id": "KT048",
+      "name": "Blattmodul_Kopf_48",
+      "type": "Blatt",
+      "component_refs": [
+        "KMP022"
+      ],
+      "component_count": 1,
+      "voxels_x": 4,
+      "voxels_y": 16,
+      "voxels_z": 6,
+      "attach_points": [
+        "Modular"
+      ],
+      "weight_kg_excel": 5.7,
+      "stability": 4.0,
+      "mobility": 6.0,
+      "replaceable": true,
+      "prosthesis_capable": false,
+      "animation_relevant": false,
+      "description": "Blatt aus Komponenten",
+      "_excel_row": 49,
+      "game_status": "data_only"
+    },
+    {
+      "id": "KT049",
+      "name": "Blattmodul_Körper_49",
+      "type": "Blatt",
+      "component_refs": [
+        "KMP003"
+      ],
+      "component_count": 1,
+      "voxels_x": 6,
+      "voxels_y": 9,
+      "voxels_z": 5,
+      "attach_points": [
+        "Mehrfach"
+      ],
+      "weight_kg_excel": 5.9,
+      "stability": 4.0,
+      "mobility": 5.0,
+      "replaceable": true,
+      "prosthesis_capable": false,
+      "animation_relevant": false,
+      "description": "Blatt aus Komponenten",
+      "_excel_row": 50,
+      "game_status": "data_only"
+    },
+    {
+      "id": "KT050",
+      "name": "Prothese_Arm_50",
+      "type": "Prothese",
+      "component_refs": [
+        "KMP006",
+        "KMP037"
+      ],
+      "component_count": 2,
+      "voxels_x": 9,
+      "voxels_y": 13,
+      "voxels_z": 3,
+      "attach_points": [
+        "Mehrfach"
+      ],
+      "weight_kg_excel": 10.7,
+      "stability": 7.0,
+      "mobility": 2.0,
+      "replaceable": true,
+      "prosthesis_capable": true,
+      "animation_relevant": true,
+      "description": "Prothese aus Komponenten",
+      "_excel_row": 51,
+      "game_status": "data_only"
+    },
+    {
+      "id": "KT051",
+      "name": "Prothese_Bein_51",
+      "type": "Prothese",
+      "component_refs": [
+        "KMP033",
+        "KMP039"
+      ],
+      "component_count": 2,
+      "voxels_x": 10,
+      "voxels_y": 20,
+      "voxels_z": 5,
+      "attach_points": [
+        "Hals",
+        "Schulter"
+      ],
+      "weight_kg_excel": 10.2,
+      "stability": 9.0,
+      "mobility": 6.0,
+      "replaceable": true,
+      "prosthesis_capable": true,
+      "animation_relevant": true,
+      "description": "Prothese aus Komponenten",
+      "_excel_row": 52,
+      "game_status": "data_only"
+    },
+    {
+      "id": "KT052",
+      "name": "Schwanz_52",
+      "type": "Schwanz",
+      "component_refs": [
+        "KMP045"
+      ],
+      "component_count": 1,
+      "voxels_x": 5,
+      "voxels_y": 14,
+      "voxels_z": 8,
+      "attach_points": [
+        "Modular"
+      ],
+      "weight_kg_excel": 10.8,
+      "stability": 8.0,
+      "mobility": 8.0,
+      "replaceable": true,
+      "prosthesis_capable": false,
+      "animation_relevant": true,
+      "description": "Schwanz aus Komponenten",
+      "_excel_row": 53,
+      "game_status": "data_only"
+    },
+    {
+      "id": "KT053",
+      "name": "Flügel_53",
+      "type": "Flügel",
+      "component_refs": [
+        "KMP018",
+        "KMP026"
+      ],
+      "component_count": 2,
+      "voxels_x": 3,
+      "voxels_y": 16,
+      "voxels_z": 5,
+      "attach_points": [
+        "Hals",
+        "Schulter"
+      ],
+      "weight_kg_excel": 8.4,
+      "stability": 4.0,
+      "mobility": 7.0,
+      "replaceable": true,
+      "prosthesis_capable": false,
+      "animation_relevant": true,
+      "description": "Flügel aus Komponenten",
+      "_excel_row": 54,
+      "game_status": "data_only"
+    },
+    {
+      "id": "KT054",
+      "name": "Wurzel_Basis_54",
+      "type": "Wurzel",
+      "component_refs": [
+        "KMP020",
+        "KMP035"
+      ],
+      "component_count": 2,
+      "voxels_x": 10,
+      "voxels_y": 18,
+      "voxels_z": 4,
+      "attach_points": [
+        "Hals",
+        "Schulter"
+      ],
+      "weight_kg_excel": 4.0,
+      "stability": 4.0,
+      "mobility": 2.0,
+      "replaceable": false,
+      "prosthesis_capable": false,
+      "animation_relevant": false,
+      "description": "Wurzel aus Komponenten",
+      "_excel_row": 55,
+      "game_status": "data_only"
+    },
+    {
+      "id": "KT055",
+      "name": "Körper_Standard_55",
+      "type": "Körper",
+      "component_refs": [
+        "KMP019",
+        "KMP021",
+        "KMP016"
+      ],
+      "component_count": 3,
+      "voxels_x": 8,
+      "voxels_y": 19,
+      "voxels_z": 7,
+      "attach_points": [
+        "Modular"
+      ],
+      "weight_kg_excel": 7.1,
+      "stability": 8.0,
+      "mobility": 4.0,
+      "replaceable": true,
+      "prosthesis_capable": false,
+      "animation_relevant": true,
+      "description": "Körper aus Komponenten",
+      "_excel_row": 56,
+      "game_status": "data_only"
+    },
+    {
+      "id": "KT056",
+      "name": "Körper_Groß_56",
+      "type": "Körper",
+      "component_refs": [
+        "KMP012",
+        "KMP044",
+        "KMP022",
+        "KMP013"
+      ],
+      "component_count": 4,
+      "voxels_x": 8,
+      "voxels_y": 19,
+      "voxels_z": 7,
+      "attach_points": [
+        "Modular"
+      ],
+      "weight_kg_excel": 1.8,
+      "stability": 6.0,
+      "mobility": 2.0,
+      "replaceable": true,
+      "prosthesis_capable": false,
+      "animation_relevant": true,
+      "description": "Körper aus Komponenten",
+      "_excel_row": 57,
+      "game_status": "data_only"
+    },
+    {
+      "id": "KT057",
+      "name": "Kopf_Blatt_57",
+      "type": "Kopf",
+      "component_refs": [
+        "KMP045",
+        "KMP006"
+      ],
+      "component_count": 2,
+      "voxels_x": 7,
+      "voxels_y": 14,
+      "voxels_z": 3,
+      "attach_points": [
+        "Modular"
+      ],
+      "weight_kg_excel": 10.5,
+      "stability": 5.0,
+      "mobility": 2.0,
+      "replaceable": true,
+      "prosthesis_capable": false,
+      "animation_relevant": true,
+      "description": "Kopf aus Komponenten",
+      "_excel_row": 58,
+      "game_status": "data_only"
+    },
+    {
+      "id": "KT058",
+      "name": "Kopf_Tier_58",
+      "type": "Kopf",
+      "component_refs": [
+        "KMP002",
+        "KMP044"
+      ],
+      "component_count": 2,
+      "voxels_x": 7,
+      "voxels_y": 10,
+      "voxels_z": 3,
+      "attach_points": [
+        "Hals",
+        "Schulter"
+      ],
+      "weight_kg_excel": 10.9,
+      "stability": 6.0,
+      "mobility": 3.0,
+      "replaceable": true,
+      "prosthesis_capable": false,
+      "animation_relevant": true,
+      "description": "Kopf aus Komponenten",
+      "_excel_row": 59,
+      "game_status": "data_only"
+    },
+    {
+      "id": "KT059",
+      "name": "Kopf_Pilz_59",
+      "type": "Kopf",
+      "component_refs": [
+        "KMP019",
+        "KMP031"
+      ],
+      "component_count": 2,
+      "voxels_x": 4,
+      "voxels_y": 11,
+      "voxels_z": 7,
+      "attach_points": [
+        "Mehrfach"
+      ],
+      "weight_kg_excel": 14.1,
+      "stability": 7.0,
+      "mobility": 5.0,
+      "replaceable": true,
+      "prosthesis_capable": false,
+      "animation_relevant": true,
+      "description": "Kopf aus Komponenten",
+      "_excel_row": 60,
+      "game_status": "data_only"
+    },
+    {
+      "id": "KT060",
+      "name": "Arm_Links_60",
+      "type": "Arm",
+      "component_refs": [
+        "KMP021",
+        "KMP001"
+      ],
+      "component_count": 2,
+      "voxels_x": 7,
+      "voxels_y": 13,
+      "voxels_z": 7,
+      "attach_points": [
+        "Stiel"
+      ],
+      "weight_kg_excel": 10.3,
+      "stability": 9.0,
+      "mobility": 8.0,
+      "replaceable": true,
+      "prosthesis_capable": true,
+      "animation_relevant": true,
+      "description": "Arm aus Komponenten",
+      "_excel_row": 61,
+      "game_status": "data_only"
+    },
+    {
+      "id": "KT061",
+      "name": "Arm_Rechts_61",
+      "type": "Arm",
+      "component_refs": [
+        "KMP001",
+        "KMP013"
+      ],
+      "component_count": 2,
+      "voxels_x": 6,
+      "voxels_y": 20,
+      "voxels_z": 3,
+      "attach_points": [
+        "Stiel"
+      ],
+      "weight_kg_excel": 14.1,
+      "stability": 4.0,
+      "mobility": 7.0,
+      "replaceable": true,
+      "prosthesis_capable": true,
+      "animation_relevant": true,
+      "description": "Arm aus Komponenten",
+      "_excel_row": 62,
+      "game_status": "data_only"
+    },
+    {
+      "id": "KT062",
+      "name": "Bein_Links_62",
+      "type": "Bein",
+      "component_refs": [
+        "KMP021",
+        "KMP020"
+      ],
+      "component_count": 2,
+      "voxels_x": 10,
+      "voxels_y": 17,
+      "voxels_z": 6,
+      "attach_points": [
+        "Hüfte"
+      ],
+      "weight_kg_excel": 11.9,
+      "stability": 6.0,
+      "mobility": 4.0,
+      "replaceable": true,
+      "prosthesis_capable": true,
+      "animation_relevant": true,
+      "description": "Bein aus Komponenten",
+      "_excel_row": 63,
+      "game_status": "data_only"
+    },
+    {
+      "id": "KT063",
+      "name": "Bein_Rechts_63",
+      "type": "Bein",
+      "component_refs": [
+        "KMP022",
+        "KMP048"
+      ],
+      "component_count": 2,
+      "voxels_x": 4,
+      "voxels_y": 11,
+      "voxels_z": 5,
+      "attach_points": [
+        "Stiel"
+      ],
+      "weight_kg_excel": 11.9,
+      "stability": 8.0,
+      "mobility": 4.0,
+      "replaceable": true,
+      "prosthesis_capable": true,
+      "animation_relevant": true,
+      "description": "Bein aus Komponenten",
+      "_excel_row": 64,
+      "game_status": "data_only"
+    },
+    {
+      "id": "KT064",
+      "name": "Bein_Vorder_L_64",
+      "type": "Bein",
+      "component_refs": [
+        "KMP034",
+        "KMP035"
+      ],
+      "component_count": 2,
+      "voxels_x": 10,
+      "voxels_y": 14,
+      "voxels_z": 6,
+      "attach_points": [
+        "Hals",
+        "Schulter"
+      ],
+      "weight_kg_excel": 6.1,
+      "stability": 9.0,
+      "mobility": 3.0,
+      "replaceable": true,
+      "prosthesis_capable": true,
+      "animation_relevant": true,
+      "description": "Bein aus Komponenten",
+      "_excel_row": 65,
+      "game_status": "data_only"
+    },
+    {
+      "id": "KT065",
+      "name": "Bein_Vorder_R_65",
+      "type": "Bein",
+      "component_refs": [
+        "KMP002",
+        "KMP003"
+      ],
+      "component_count": 2,
+      "voxels_x": 9,
+      "voxels_y": 6,
+      "voxels_z": 3,
+      "attach_points": [
+        "Modular"
+      ],
+      "weight_kg_excel": 8.9,
+      "stability": 4.0,
+      "mobility": 2.0,
+      "replaceable": true,
+      "prosthesis_capable": true,
+      "animation_relevant": true,
+      "description": "Bein aus Komponenten",
+      "_excel_row": 66,
+      "game_status": "data_only"
+    },
+    {
+      "id": "KT066",
+      "name": "Blattmodul_Kopf_66",
+      "type": "Blatt",
+      "component_refs": [
+        "KMP010"
+      ],
+      "component_count": 1,
+      "voxels_x": 4,
+      "voxels_y": 17,
+      "voxels_z": 8,
+      "attach_points": [
+        "Modular"
+      ],
+      "weight_kg_excel": 11.0,
+      "stability": 6.0,
+      "mobility": 8.0,
+      "replaceable": true,
+      "prosthesis_capable": false,
+      "animation_relevant": false,
+      "description": "Blatt aus Komponenten",
+      "_excel_row": 67,
+      "game_status": "data_only"
+    },
+    {
+      "id": "KT067",
+      "name": "Blattmodul_Körper_67",
+      "type": "Blatt",
+      "component_refs": [
+        "KMP012"
+      ],
+      "component_count": 1,
+      "voxels_x": 7,
+      "voxels_y": 7,
+      "voxels_z": 7,
+      "attach_points": [
+        "Hüfte"
+      ],
+      "weight_kg_excel": 3.0,
+      "stability": 9.0,
+      "mobility": 4.0,
+      "replaceable": true,
+      "prosthesis_capable": false,
+      "animation_relevant": false,
+      "description": "Blatt aus Komponenten",
+      "_excel_row": 68,
+      "game_status": "data_only"
+    },
+    {
+      "id": "KT068",
+      "name": "Prothese_Arm_68",
+      "type": "Prothese",
+      "component_refs": [
+        "KMP029",
+        "KMP041"
+      ],
+      "component_count": 2,
+      "voxels_x": 8,
+      "voxels_y": 11,
+      "voxels_z": 5,
+      "attach_points": [
+        "Stiel"
+      ],
+      "weight_kg_excel": 14.2,
+      "stability": 4.0,
+      "mobility": 4.0,
+      "replaceable": true,
+      "prosthesis_capable": true,
+      "animation_relevant": true,
+      "description": "Prothese aus Komponenten",
+      "_excel_row": 69,
+      "game_status": "data_only"
+    },
+    {
+      "id": "KT069",
+      "name": "Prothese_Bein_69",
+      "type": "Prothese",
+      "component_refs": [
+        "KMP035",
+        "KMP021"
+      ],
+      "component_count": 2,
+      "voxels_x": 7,
+      "voxels_y": 12,
+      "voxels_z": 7,
+      "attach_points": [
+        "Stiel"
+      ],
+      "weight_kg_excel": 10.2,
+      "stability": 5.0,
+      "mobility": 2.0,
+      "replaceable": true,
+      "prosthesis_capable": true,
+      "animation_relevant": true,
+      "description": "Prothese aus Komponenten",
+      "_excel_row": 70,
+      "game_status": "data_only"
+    },
+    {
+      "id": "KT070",
+      "name": "Schwanz_70",
+      "type": "Schwanz",
+      "component_refs": [
+        "KMP015"
+      ],
+      "component_count": 1,
+      "voxels_x": 4,
+      "voxels_y": 9,
+      "voxels_z": 6,
+      "attach_points": [
+        "Hals",
+        "Schulter"
+      ],
+      "weight_kg_excel": 10.0,
+      "stability": 5.0,
+      "mobility": 8.0,
+      "replaceable": true,
+      "prosthesis_capable": false,
+      "animation_relevant": true,
+      "description": "Schwanz aus Komponenten",
+      "_excel_row": 71,
+      "game_status": "data_only"
+    },
+    {
+      "id": "KT071",
+      "name": "Flügel_71",
+      "type": "Flügel",
+      "component_refs": [
+        "KMP022",
+        "KMP037"
+      ],
+      "component_count": 2,
+      "voxels_x": 8,
+      "voxels_y": 19,
+      "voxels_z": 7,
+      "attach_points": [
+        "Modular"
+      ],
+      "weight_kg_excel": 11.7,
+      "stability": 4.0,
+      "mobility": 5.0,
+      "replaceable": true,
+      "prosthesis_capable": false,
+      "animation_relevant": true,
+      "description": "Flügel aus Komponenten",
+      "_excel_row": 72,
+      "game_status": "data_only"
+    },
+    {
+      "id": "KT072",
+      "name": "Wurzel_Basis_72",
+      "type": "Wurzel",
+      "component_refs": [
+        "KMP020",
+        "KMP025"
+      ],
+      "component_count": 2,
+      "voxels_x": 6,
+      "voxels_y": 19,
+      "voxels_z": 8,
+      "attach_points": [
+        "Stiel"
+      ],
+      "weight_kg_excel": 6.6,
+      "stability": 4.0,
+      "mobility": 7.0,
+      "replaceable": false,
+      "prosthesis_capable": false,
+      "animation_relevant": false,
+      "description": "Wurzel aus Komponenten",
+      "_excel_row": 73,
+      "game_status": "data_only"
+    },
+    {
+      "id": "KT073",
+      "name": "Körper_Standard_73",
+      "type": "Körper",
+      "component_refs": [
+        "KMP007",
+        "KMP047",
+        "KMP035"
+      ],
+      "component_count": 3,
+      "voxels_x": 3,
+      "voxels_y": 19,
+      "voxels_z": 3,
+      "attach_points": [
+        "Stiel"
+      ],
+      "weight_kg_excel": 3.0,
+      "stability": 4.0,
+      "mobility": 7.0,
+      "replaceable": true,
+      "prosthesis_capable": false,
+      "animation_relevant": true,
+      "description": "Körper aus Komponenten",
+      "_excel_row": 74,
+      "game_status": "data_only"
+    },
+    {
+      "id": "KT074",
+      "name": "Körper_Groß_74",
+      "type": "Körper",
+      "component_refs": [
+        "KMP001",
+        "KMP005",
+        "KMP017",
+        "KMP030"
+      ],
+      "component_count": 4,
+      "voxels_x": 10,
+      "voxels_y": 8,
+      "voxels_z": 4,
+      "attach_points": [
+        "Modular"
+      ],
+      "weight_kg_excel": 2.4,
+      "stability": 7.0,
+      "mobility": 6.0,
+      "replaceable": true,
+      "prosthesis_capable": false,
+      "animation_relevant": true,
+      "description": "Körper aus Komponenten",
+      "_excel_row": 75,
+      "game_status": "data_only"
+    },
+    {
+      "id": "KT075",
+      "name": "Kopf_Blatt_75",
+      "type": "Kopf",
+      "component_refs": [
+        "KMP048",
+        "KMP003"
+      ],
+      "component_count": 2,
+      "voxels_x": 8,
+      "voxels_y": 7,
+      "voxels_z": 3,
+      "attach_points": [
+        "Hüfte"
+      ],
+      "weight_kg_excel": 12.1,
+      "stability": 6.0,
+      "mobility": 5.0,
+      "replaceable": true,
+      "prosthesis_capable": false,
+      "animation_relevant": true,
+      "description": "Kopf aus Komponenten",
+      "_excel_row": 76,
+      "game_status": "data_only"
+    },
+    {
+      "id": "KT076",
+      "name": "Kopf_Tier_76",
+      "type": "Kopf",
+      "component_refs": [
+        "KMP014",
+        "KMP039"
+      ],
+      "component_count": 2,
+      "voxels_x": 4,
+      "voxels_y": 5,
+      "voxels_z": 8,
+      "attach_points": [
+        "Modular"
+      ],
+      "weight_kg_excel": 2.5,
+      "stability": 4.0,
+      "mobility": 5.0,
+      "replaceable": true,
+      "prosthesis_capable": false,
+      "animation_relevant": true,
+      "description": "Kopf aus Komponenten",
+      "_excel_row": 77,
+      "game_status": "data_only"
+    },
+    {
+      "id": "KT077",
+      "name": "Kopf_Pilz_77",
+      "type": "Kopf",
+      "component_refs": [
+        "KMP007",
+        "KMP047"
+      ],
+      "component_count": 2,
+      "voxels_x": 6,
+      "voxels_y": 6,
+      "voxels_z": 6,
+      "attach_points": [
+        "Hüfte"
+      ],
+      "weight_kg_excel": 4.1,
+      "stability": 4.0,
+      "mobility": 4.0,
+      "replaceable": true,
+      "prosthesis_capable": false,
+      "animation_relevant": true,
+      "description": "Kopf aus Komponenten",
+      "_excel_row": 78,
+      "game_status": "data_only"
+    },
+    {
+      "id": "KT078",
+      "name": "Arm_Links_78",
+      "type": "Arm",
+      "component_refs": [
+        "KMP017",
+        "KMP047"
+      ],
+      "component_count": 2,
+      "voxels_x": 6,
+      "voxels_y": 19,
+      "voxels_z": 7,
+      "attach_points": [
+        "Modular"
+      ],
+      "weight_kg_excel": 14.0,
+      "stability": 6.0,
+      "mobility": 6.0,
+      "replaceable": true,
+      "prosthesis_capable": true,
+      "animation_relevant": true,
+      "description": "Arm aus Komponenten",
+      "_excel_row": 79,
+      "game_status": "data_only"
+    },
+    {
+      "id": "KT079",
+      "name": "Arm_Rechts_79",
+      "type": "Arm",
+      "component_refs": [
+        "KMP005",
+        "KMP020"
+      ],
+      "component_count": 2,
+      "voxels_x": 7,
+      "voxels_y": 17,
+      "voxels_z": 5,
+      "attach_points": [
+        "Mehrfach"
+      ],
+      "weight_kg_excel": 14.1,
+      "stability": 9.0,
+      "mobility": 6.0,
+      "replaceable": true,
+      "prosthesis_capable": true,
+      "animation_relevant": true,
+      "description": "Arm aus Komponenten",
+      "_excel_row": 80,
+      "game_status": "data_only"
+    },
+    {
+      "id": "KT080",
+      "name": "Bein_Links_80",
+      "type": "Bein",
+      "component_refs": [
+        "KMP048",
+        "KMP013"
+      ],
+      "component_count": 2,
+      "voxels_x": 9,
+      "voxels_y": 20,
+      "voxels_z": 6,
+      "attach_points": [
+        "Hüfte"
+      ],
+      "weight_kg_excel": 9.4,
+      "stability": 8.0,
+      "mobility": 7.0,
+      "replaceable": true,
+      "prosthesis_capable": true,
+      "animation_relevant": true,
+      "description": "Bein aus Komponenten",
+      "_excel_row": 81,
+      "game_status": "data_only"
+    }
+  ],
+  "rejected": []
+}

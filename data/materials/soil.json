@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "id": "soil",
+  "display_name": "Erde (Modell: trockener Mineralboden)",
+  "description": "„Erde“ ist kein Einzelstoff. Modell: trockener, lockerer Mineralboden. Wird für Erd-, Gras- und Wurzelbeet-Zellen der Voxelwelt verwendet.",
+  "model_material": "Mineralische Bodenbestandteile mit angenommen 47 % Porenraum (luftgefüllt).",
+  "phase_model": "solid_only",
+  "properties": {
+    "density_kg_m3": {"value": 1400.0, "unit": "kg/m³", "kind": "derived", "source": "S1", "unverified": true, "note": "Feststoffdichte 2650 kg/m³ (S1) × (1 − 0,47 angenommene Porosität) ≈ 1400 kg/m³. Die Porosität ist eine Annahme."},
+    "specific_heat_solid_j_kgk": {"value": 870.0, "unit": "J/(kg·K)", "kind": "reference", "source": "S1", "note": "Bodenminerale 0,87 J/(g·K). Luft in den Poren trägt massebezogen vernachlässigbar bei."},
+    "specific_heat_liquid_j_kgk": {"value": null, "kind": "not_applicable"},
+    "thermal_conductivity_w_mk": {"value": 0.3, "unit": "W/(m·K)", "kind": "assumed", "unverified": true, "note": "Trockener, lockerer Boden leitet deutlich schlechter als die Minerale selbst (2,5 W/(m·K), S1). Wert ist eine ungeprüfte Annahme."},
+    "melting_point_k": {"value": null, "kind": "not_applicable", "note": "Schmelzen von Boden ist nicht modelliert."},
+    "latent_heat_fusion_j_kg": {"value": null, "kind": "not_applicable"},
+    "model_valid_min_k": {"value": 1.0, "unit": "K", "kind": "game"},
+    "model_valid_max_k": {"value": 1000.0, "unit": "K", "kind": "game", "note": "Spielgrenze; Brennen/Sintern nicht modelliert."}
+  },
+  "mechanical": {
+    "fracture_behavior": {"value": "brittle", "kind": "game", "note": "Zerfällt im Spielmodell in Brocken."},
+    "toughness_j_kg": {"value": 10.0, "unit": "J/kg", "kind": "game"},
+    "max_fragments": {"value": 3, "kind": "game"}
+  },
+  "working": {"_note": "Spielparameter (Prompt 6).", "hardness": {"value": 0.5, "kind": "game"}},
+  "combustion": {
+    "combustible": {"value": false, "kind": "assumed", "note": "Organische Anteile vernachlässigt."},
+    "decomposition_onset_k": {"value": null, "kind": "not_applicable"},
+    "simulated": false
+  },
+  "render": {"color": "#6D4C33", "liquid_color": "#6D4C33", "kind": "game"},
+  "sources": [
+    {"id": "S1", "title": "METER Group: Thermal properties of soil materials (Tabelle 1, nach Campbell & Norman 1998)", "url": "https://publications.metergroup.com/Sales%20and%20Support/METER%20Environment/Website%20Articles/understanding-rho-changes-changing-density-temperature-composition-water-content-backfill.pdf"}
+  ]
+}

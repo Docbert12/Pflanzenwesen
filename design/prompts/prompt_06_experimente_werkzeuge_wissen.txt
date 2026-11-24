@@ -1,0 +1,428 @@
+Entwickle unser bestehendes Godot-Projekt weiter. Dies ist Prompt 6: Experimente, Werkzeugherstellung und Weitergabe praktischen Wissens.
+
+Prüfe zuerst den tatsächlich implementierten Stand. Setze anschließend die nächste funktionsfähige Erweiterung direkt im Projekt um.
+
+## 1. Tatsächlichen Stand feststellen
+
+Lies die vorhandene Dokumentation und prüfe den zugehörigen Code.
+
+Prüfe insbesondere:
+- Materialphysik und Wärme.
+- Veränderbare Voxelwelt.
+- Körpergenerator und Körperfähigkeiten.
+- Lebenssimulation mit 50 Wesen.
+- Handlungssystem und Ressourcenreservierung.
+- Erinnerungen, Lernen und Beziehungen.
+- Göttermenü.
+- Ollama-Anbindung und Antwortvalidierung.
+- Gespräche und Wissensquellen.
+- Speichern und Laden.
+
+Eine Dokumentationsbehauptung zählt nicht als Funktionsnachweis.
+
+Erstelle docs/progress_audit.md mit:
+- Funktion.
+- Zugehörigen Dateien.
+- Status: getestet, implementiert aber ungeprüft, teilweise oder fehlend.
+- Prüfverfahren beziehungsweise Evidenz.
+- Blockierenden Problemen.
+
+Behebe zunächst die für diesen Auftrag erforderlichen fehlenden Grundlagen. Baue keine zweite Implementierung neben vorhandene Systeme.
+
+Falls die echte Ollama-Verbindung fehlt, müssen die neuen materiellen Funktionen trotzdem lokal testbar sein. Kennzeichne die Modellintegration dann als ungeprüft.
+
+## 2. Ziel
+
+Die Wesen sollen einfache materielle Experimente durchführen, Ergebnisse bewerten, brauchbare Werkzeuge herstellen und erprobte Vorgehensweisen weitergeben können.
+
+Die Ergebnisse müssen aus:
+- Vorhandenen Materialien.
+- Tatsächlicher Geometrie.
+- Eingesetzter Energie.
+- Körperfähigkeiten.
+- Ausgeführten Arbeitsschritten.
+
+entstehen.
+
+Ein Modellvorschlag allein erzeugt weder einen Gegenstand noch eine Entdeckung.
+
+Implementiere zunächst einen begrenzten, vollständigen Funktionsumfang:
+1. Einen geeigneten vorhandenen Gegenstand als Werkzeug benutzen.
+2. Einen Stiel und einen Arbeitskopf verbinden.
+3. Das entstandene Werkzeug praktisch testen.
+4. Eine unterstützte Materialprobe verformen.
+5. Eine Kupferprobe in einem vorhandenen Laboraufbau erhitzen und gießen.
+6. Eine erfolgreiche Vorgehensweise einem anderen Wesen vermitteln.
+
+Das ist noch keine vollständige Simulation beliebiger Technologie.
+
+## 3. Neue beziehungsweise erweiterte Module
+
+Nutze vorhandene gleichwertige Module weiter.
+
+Geplante Zuständigkeiten:
+- scripts/technology/experiment_system.gd
+- scripts/technology/experiment_record.gd
+- scripts/technology/procedural_knowledge.gd
+- scripts/technology/construction_system.gd
+- scripts/technology/connection_definition.gd
+- scripts/technology/object_evaluator.gd
+- scripts/technology/tool_use_system.gd
+- scripts/social/teaching_system.gd
+- scripts/ui/experiment_inspector.gd
+- scripts/ui/knowledge_viewer.gd
+
+Verwende vorhandene Material-, Körper-, Handlungs- und Kommunikationssysteme.
+
+## 4. Experimentdaten
+
+Ein Experiment enthält:
+- Eindeutige ID.
+- Handelndes Wesen.
+- Fragestellung oder erwartete Wirkung.
+- Verwendete Gegenstände und Mengen.
+- Bekannte Ausgangszustände.
+- Vorgeschlagene Arbeitsschritte.
+- Tatsächlich ausgeführte Arbeitsschritte.
+- Aufwand und Energieeinträge.
+- Messbare Ergebnisse.
+- Vom Wesen wahrgenommene Ergebnisse.
+- Fehlschläge.
+- Unsicherheit.
+
+Trenne die vollständigen Simulationsdaten von dem, was das Wesen beobachten kann.
+
+Ohne Messmittel kennt ein Wesen beispielsweise nicht automatisch die exakte Temperatur. Es kann zunächst beobachtbare Kategorien wie kalt, warm oder sichtbar geschmolzen unterscheiden.
+
+Für Spielerdiagnosen dürfen exakte Werte angezeigt werden, klar als Debug-Wissen gekennzeichnet.
+
+## 5. Physikalische Verarbeitung
+
+Erweitere das vorhandene material_process_system um die benötigten Vorgänge.
+
+### Mechanisches Bearbeiten
+
+Implementiere ein vereinfachtes, dokumentiertes Modell:
+- Bearbeitbarkeit hängt von Material, Zustand und Werkzeug ab.
+- Eine ausgeführte Handlung liefert begrenzte mechanische Arbeit.
+- Formänderung benötigt Arbeit und kann Schaden verursachen.
+- Wiederholte Bearbeitung kann Verschleiß erzeugen.
+- Kaltverformung von Kupfer muss innerhalb des unterstützten Modells möglich sein.
+- Ein Material muss nicht grundsätzlich geschmolzen werden, bevor irgendeine Bearbeitung möglich ist.
+
+Kennzeichne empirische Spielparameter. Behaupte keine vollständige reale Werkstoffsimulation.
+
+### Wärme und Gießen
+
+Verwende das bestehende Wärme- und Phasenmodell.
+
+Prüfe:
+- Wärmequelle.
+- Tatsächliche Heizleistung.
+- Energiezufuhr.
+- Unterstützten Behälter.
+- Materialverträglichkeit.
+- Ausreichenden Flüssiganteil.
+- Verfügbare Form.
+- Kapazität und Restmengen.
+- Abkühlung und Erstarrung.
+
+Keine frei erfundene Energiequelle.
+
+Die erste Gießdemonstration darf einen ausdrücklich als Testausrüstung platzierten, extern versorgten Ofen benutzen. Das bedeutet nicht, dass die Wesen bereits selbst einen Ofen erfunden oder gebaut haben.
+
+Wärmeübertragung auf Körper und Kontaktverletzungen müssen für die unterstützten Handlungen berücksichtigt werden. Verhindere gefahrloses Tragen heißer Schmelze mit ungeschützten Händen.
+
+Die vorhandene vereinfachte Flüssigkeitsdarstellung darf weiterverwendet werden. Keine vollständige Schmelzströmung behaupten.
+
+## 6. Bauteile und Verbindungen
+
+Ein zusammengesetzter Gegenstand besitzt:
+- Bauteil-IDs.
+- Materialien und Geometrien.
+- Masse.
+- Verbindungen zwischen Bauteilen.
+- Geeignete Griffbereiche.
+- Mechanische Belastbarkeit.
+- Verschleiß.
+- Thermischen Zustand gemäß dem unterstützten Modell.
+
+Ein Verbindungsvorgang benötigt eine tatsächlich unterstützte Verbindungsmethode.
+
+Beispiel:
+Ein Stiel und ein Steinkopf werden mit geeigneten Pflanzenfasern verbunden. Die Fasermenge wird verbraucht beziehungsweise Bestandteil des Gegenstands.
+
+Wenn passende Fasern noch fehlen:
+- Ergänze eine dokumentierte Materialdefinition.
+- Stelle sie ausschließlich als explizite Start- oder Testressource bereit.
+- Implementiere noch keine vollständige Landwirtschaft.
+
+Keine unsichtbaren unzerstörbaren Verbindungen.
+
+Verbindungen können bei Überlastung versagen. Abgetrennte Teile bleiben als Weltobjekte erhalten.
+
+Verhindere doppelte Besitzer, doppelte Masse oder gleichzeitig einzeln und zusammengesetzt existierende Bauteile.
+
+## 7. Werkzeuge funktional bewerten
+
+Der Name eines Gegenstands darf seine Fähigkeiten nicht bestimmen.
+
+Bewerte beispielsweise:
+- Ist ein Griff erreichbar?
+- Kann das Wesen die Masse tragen?
+- Ist ein Arbeitskopf vorhanden?
+- Welche Form besitzt dessen Kontaktfläche?
+- Ist die Verbindung belastbar?
+- Welches Material trifft auf welches Ziel?
+- Ist der Gegenstand zu heiß?
+
+Beginne mit einem Werkzeugtyp: einem einfachen Schlagwerkzeug.
+
+Vergleiche:
+- Eine unbewaffnete unterstützte Bearbeitung.
+- Einen einzelnen geeigneten Stein.
+- Ein verbundenes Werkzeug aus Stiel und Kopf.
+
+Ein zusammengesetztes Werkzeug ist nicht automatisch besser. Ein schwerer Kopf oder eine schwache Verbindung kann seine Nutzung verschlechtern.
+
+Dokumentiere die vereinfachten Berechnungen und überprüfe sie mit kontrollierten Tests.
+
+## 8. Sichtbare Modelle
+
+Verwende die prozeduralen Generatoren.
+
+Zeige:
+- Tatsächliche Bauteile.
+- Verbindungen.
+- Formänderungen.
+- Bruch und abgetrennte Teile.
+- Den verwendeten Gegenstand beim Greifen.
+- Sichtbare Resultate des Gießens.
+
+Nutze stabile Anschluss- und Griffpunkte.
+
+Physikalischer Zustand, Darstellung und Handlungsmöglichkeiten müssen konsistent bleiben.
+
+Gegenstände werden nicht zu einem völlig anderen Modell, nur weil Ollama sie anders benennt.
+
+## 9. Neue Handlungen
+
+Erweitere das gemeinsame Handlungssystem um die erforderlichen Varianten:
+- inspect_object
+- equip_tool
+- strike_target
+- deform_material
+- connect_parts
+- disconnect_parts
+- place_in_heater
+- pour_into_mold
+- demonstrate_procedure
+- practice_procedure
+
+Prüfe:
+- Reichweite.
+- Verfügbarkeit.
+- Körperfähigkeiten.
+- Mengen.
+- Tragekapazität.
+- Temperatur.
+- Reservierungen.
+- Unterstützte Werkzeuge.
+- Kosten und Dauer.
+
+Verwende unterbrechbare Abläufe.
+
+Nach einem Abbruch bleibt der tatsächliche Zwischenzustand bestehen: Bereits verbrauchte Energie, beschädigte Teile oder gegossenes Material werden nicht zurückgesetzt.
+
+## 10. Entdecken ohne festen Technologiebaum
+
+Programmiere physikalische Vorgänge und kombinierbare Handlungen.
+
+Programmiere keinen zwingenden Ablauf wie:
+„Nach drei Versuchen wird der Hammer freigeschaltet.“
+
+Wesen können innerhalb ihres Wissens:
+- Einen Gegenstand untersuchen.
+- Eine unterstützte Verwendung ausprobieren.
+- Ein früheres Verfahren abwandeln.
+- Erfolg oder Fehlschlag beobachten.
+
+Begrenze Experimente durch:
+- Bedarf.
+- Neugier.
+- Verfügbare Ressourcen.
+- Fähigkeiten.
+- Geschätztes Risiko.
+- Erfahrung.
+- Zeitbudget.
+
+Verhindere, dass alle Wesen ununterbrochen experimentieren und ihre Nahrungssuche aufgeben.
+
+Es gibt keine Garantie, dass jede mögliche Technik entdeckt wird.
+
+## 11. Ollama einbinden
+
+Ollama darf begrenzte Experimente aus bekannten Handlungen vorschlagen.
+
+Der Kontext enthält:
+- Ein konkretes Problem.
+- Individuell bekannte Materialien und Gegenstände.
+- Verfügbare Fähigkeiten.
+- Relevante eigene Erfahrungen.
+- Zugelassene Verarbeitungsvorgänge.
+
+Erweitere die vorhandenen Schemas und Validatoren.
+
+Prüfe jeden vorgeschlagenen Schritt über die echte Handlungsschnittstelle.
+
+Ein Vorschlag wird zunächst als Hypothese gespeichert. Erst ein ausgeführter Versuch liefert Evidenz.
+
+Vortrainiertes Modellwissen darf keine bestätigte persönliche Entdeckung ersetzen.
+
+Die lokalen Testfälle müssen ohne Ollama ausführbar bleiben.
+
+## 12. Praktisches Wissen und Unterricht
+
+Speichere ein bekanntes Verfahren mit:
+- Herkunft.
+- Voraussetzungen.
+- Arbeitsschritten.
+- Unterstützten Materialbereichen.
+- Eigenen Versuchsergebnissen.
+- Beobachteten fremden Versuchen.
+- Sicherheit.
+- Nachvollziehbarer Versionsgeschichte.
+
+Unterscheide:
+1. Davon gehört.
+2. Dabei zugesehen.
+3. Selbst versucht.
+4. Selbst erfolgreich ausgeführt.
+
+Ein Gespräch allein verleiht keine vollständige praktische Fähigkeit.
+
+Erweitere die Kommunikation um:
+- Ein bekanntes Verfahren erklären.
+- Eine Vorführung anbieten.
+- Eine Vorführung beobachten.
+- Selbst üben.
+
+Das lernende Wesen muss die Vorführung tatsächlich wahrnehmen. Es darf nicht automatisch die vollständigen internen Daten des Lehrers erhalten.
+
+Nutze strukturierte Wissensinhalte. Freier Gesprächstext darf keine neuen Fähigkeiten freischalten.
+
+## 13. Wissen bleibt individuell
+
+Eine Entdeckung wird nicht global an alle Wesen verteilt.
+
+Ein Wesen kennt sie nur durch:
+- Eigenen Versuch.
+- Tatsächliche Beobachtung.
+- Kommunikation.
+- Praktischen Unterricht.
+
+Speichere Herkunft und Unsicherheit.
+
+Wenn ein einziges sachkundiges Wesen stirbt, darf sein ungeteiltes Wissen nicht automatisch in andere Wesen übergehen.
+
+Bücher und schriftliche Aufzeichnungen folgen später.
+
+## 14. Testwerkstatt und normales Spiel
+
+Erstelle eine separate Testwerkstatt mit:
+- Stein.
+- Holzstielen.
+- Pflanzenfasern.
+- Kupferprobe.
+- Unterstütztem Behälter.
+- Einfacher Gussform.
+- Explizit versorgter Testheizung.
+- Zwei Testwesen.
+
+Dort können Versuche gezielt ausgelöst werden.
+
+Trenne davon das normale Spiel:
+- Keine automatische Testausrüstung in jedem neuen Spiel.
+- Keine versteckten Materialgeschenke.
+- Keine verpflichtenden Entdeckungen.
+
+In der normalen Welt können geeignete Materialien über das vorhandene Göttermenü platziert werden.
+
+## 15. Oberfläche
+
+Ergänze:
+- Experimentansicht mit Ausgangslage, Arbeitsschritten und Ergebnis.
+- Gegenstandsansicht mit Bauteilen, Verbindungen und Fähigkeiten.
+- Wissensansicht mit Herkunft und Erfahrungsstand.
+- Anzeige fehlgeschlagener Voraussetzungen.
+- Vergleich von Hypothese und tatsächlichem Resultat.
+
+Unterscheide Spielerdiagnose und Wissen des Wesens.
+
+Zeige nicht „Technologie erfunden“, wenn lediglich ein Modell eine Idee vorgeschlagen hat.
+
+## 16. Speichern und Laden
+
+Erweitere das Speicherformat um:
+- Zusammengesetzte Gegenstände.
+- Verbindungen.
+- Verschleiß und Formänderungen.
+- Laufende Experimente.
+- Zwischenprodukte.
+- Verfahrenswissen.
+- Unterrichtsfortschritt.
+- Quellenbezüge.
+
+Implementiere eine Migration aus der tatsächlich vorhandenen Vorgängerversion.
+
+Prüfe beim Laden:
+- Keine doppelten Bauteile.
+- Konsistente Ressourcen.
+- Gültige Verbindungen.
+- Sicherer Umgang mit unterbrochenen Verarbeitungsschritten.
+- Keine rückwirkend geschenkten Entdeckungen.
+
+## 17. Abnahmetests
+
+Prüfe mindestens:
+
+1. Ein benannter „Hammer“ ohne geeignete Eigenschaften erhält keine magischen Fähigkeiten.
+2. Ein geeigneter Stein kann innerhalb des unterstützten Modells als einfaches Werkzeug dienen.
+3. Verbinden erhält Masse und verwendet reale Verbindungsmittel.
+4. Eine überlastete Verbindung kann brechen.
+5. Bruch erzeugt keine doppelten Bauteile.
+6. Bearbeitung benötigt definierte Arbeit.
+7. Kupfer schmilzt nur mit ausreichender Energiezufuhr.
+8. Gießen erhält Materialmengen und bilanziert thermische Energie.
+9. Heiße Objekte werden nicht ohne Temperaturprüfung gehandhabt.
+10. Abbruch erhält den tatsächlichen Zwischenzustand.
+11. Eine Modellhypothese wird nicht automatisch zur bestätigten Entdeckung.
+12. Ein nicht beteiligtes Wesen erhält kein neues Wissen.
+13. Unterricht überträgt Informationen, aber nicht automatisch erfolgreiche Praxiserfahrung.
+14. Speichern und Laden erhalten Werkzeuge, Experimente und Wissen.
+15. Bestehende Lebens-, Lern-, Physik- und KI-Funktionen bleiben funktionsfähig.
+
+Nutze reproduzierbare Tests für die Regeln und zusätzliche Beobachtungsläufe für eigenständige Entscheidungen.
+
+Ein geskripteter Test beweist die Funktionsfähigkeit eines Vorgangs, nicht seine spontane Entdeckung. Dokumentiere diesen Unterschied.
+
+## 18. Abschluss
+
+Aktualisiere die bestehende Dokumentation.
+
+Ergänze:
+- docs/progress_audit.md
+- docs/experimentation.md
+- docs/tools_and_construction.md
+- docs/practical_knowledge.md
+
+Berichte abschließend:
+- Den tatsächlich geprüften Ausgangsstand.
+- Neu implementierte Funktionen.
+- Welche Experimente ich starten kann.
+- Wie ich ein Werkzeug und dessen Wirkung prüfe.
+- Wie ich Unterricht beobachte.
+- Welche Tests bestanden haben.
+- Welche Grenzen bestehen.
+
+Beginne mit der Codeprüfung. Implementiere anschließend diesen Umfang vollständig, statt lediglich weitere Planung oder leere Module zu liefern.

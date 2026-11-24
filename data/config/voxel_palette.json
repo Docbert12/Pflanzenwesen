@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "_note": "Stabile Byte-IDs für Terrainzellen. material_id verweist auf data/materials/. visual wählt nur das Aussehen; die Materialeigenschaften kommen immer aus material_id. excel_ref ist rein informativ.",
+  "types": [
+    {"id": 0, "key": "air", "name": "Luft", "material_id": null, "solid": false, "editable": true, "excel_ref": "V001"},
+    {"id": 1, "key": "soil", "name": "Erde", "material_id": "soil", "visual": "soil", "solid": true, "editable": true, "excel_ref": "V002"},
+    {"id": 2, "key": "grass", "name": "Gras (Erde mit Grasdecke)", "material_id": "soil", "visual": "grass", "solid": true, "editable": true, "excel_ref": "V003", "note": "Annahme: Grasdecke ändert die Materialeigenschaften nicht."},
+    {"id": 3, "key": "stone", "name": "Stein", "material_id": "stone", "visual": "stone", "solid": true, "editable": true, "excel_ref": null, "note": "Nicht in 17_Voxel_Typen; ergänzt für Biom Berg (Boden_Material „Stein“)."},
+    {"id": 4, "key": "wood", "name": "Holz", "material_id": "wood", "visual": "wood", "solid": true, "editable": true, "excel_ref": "V005"},
+    {"id": 5, "key": "plant_fiber", "name": "Pflanzenfaser", "material_id": "plant_tissue", "visual": "plant", "solid": true, "editable": true, "excel_ref": "V006"},
+    {"id": 6, "key": "copper", "name": "Kupfer", "material_id": "copper", "visual": "copper", "solid": true, "editable": true, "excel_ref": "V007"},
+    {"id": 7, "key": "root_bed", "name": "Wurzelbeet", "material_id": "soil", "visual": "root_bed", "solid": true, "editable": true, "excel_ref": null, "note": "Sichtbares Wurzelbeet des Lebensbaums; Material wie Erde."},
+    {"id": 8, "key": "bedrock", "name": "Grundgestein (verankert)", "material_id": "stone", "visual": "bedrock", "solid": true, "editable": false, "anchored": true, "excel_ref": null}
+  ]
+}

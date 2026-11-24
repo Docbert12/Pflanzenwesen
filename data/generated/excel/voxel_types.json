@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "generated_by": "tools/import_definitions.py – NICHT VON HAND BEARBEITEN",
+  "source_sheet": "17_Voxel_Typen",
+  "kind": "voxel_types",
+  "description": "Voxeltypen (Designdaten; im Spiel gilt data/config/voxel_palette.json)",
+  "status_note": "game_status stammt aus data/config/implementation_status.json; ein Excel-Eintrag aktiviert keine Spielfunktion.",
+  "entries": [
+    {
+      "id": "V001",
+      "name": "Luft",
+      "solid": false,
+      "transparent": true,
+      "collision": false,
+      "material_ref": null,
+      "hardness": 0.0,
+      "special": "Leerer Raum",
+      "_excel_row": 2,
+      "not_applicable_fields": [
+        "material_ref"
+      ],
+      "game_status": "data_only"
+    },
+    {
+      "id": "V004",
+      "name": "Wasser",
+      "solid": false,
+      "transparent": true,
+      "collision": false,
+      "material_ref": "MAT004",
+      "hardness": 0.0,
+      "special": "Flüssigkeit",
+      "_excel_row": 5,
+      "game_status": "partial",
+      "game_status_note": "Wasser ist kein Voxel, sondern ein mengenbasiertes Höhenmodell.",
+      "import_warnings": [
+        "17_Voxel_Typen!Zeile 5: Voxeltyp 'Wasser' verweist auf Material MAT004 = 'Holz_gehärtet' (Name passt nicht)."
+      ]
+    },
+    {
+      "id": "V006",
+      "name": "Pflanzenfaser",
+      "solid": true,
+      "transparent": false,
+      "collision": true,
+      "material_ref": "MAT001",
+      "hardness": 2.0,
+      "special": "Kreaturkörper",
+      "_excel_row": 7,
+      "game_status": "implemented"
+    },
+    {
+      "id": "V007",
+      "name": "Kupfer",
+      "solid": true,
+      "transparent": false,
+      "collision": true,
+      "material_ref": "MAT002",
+      "hardness": 6.0,
+      "special": "Prothese",
+      "_excel_row": 8,
+      "game_status": "implemented",
+      "import_warnings": [
+        "17_Voxel_Typen!Zeile 8: Voxeltyp 'Kupfer' verweist auf Material MAT002 = 'Cellulose_rein' (Name passt nicht)."
+      ]
+    }
+  ],
+  "rejected": [
+    {
+      "excel_row": 3,
+      "id": "V002",
+      "errors": [
+        "17_Voxel_Typen!F3: Ungültiger Verweis ['MAT_Erde'] auf 03_Materialien (ID existiert dort nicht)."
+      ]
+    },
+    {
+      "excel_row": 4,
+      "id": "V003",
+      "errors": [
+        "17_Voxel_Typen!F4: Ungültiger Verweis ['MAT_Gras'] auf 03_Materialien (ID existiert dort nicht)."
+      ]
+    },
+    {
+      "excel_row": 6,
+      "id": "V005",
+      "errors": [
+        "17_Voxel_Typen!F6: Ungültiger Verweis ['MAT_Holz'] auf 03_Materialien (ID existiert dort nicht)."
+      ]
+    }
+  ]
+}

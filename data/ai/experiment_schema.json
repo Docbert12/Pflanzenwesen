@@ -1,0 +1,29 @@
+{
+  "type": "object",
+  "properties": {
+    "request_id": {"type": "integer"},
+    "actor_id": {"type": "integer"},
+    "question": {"type": "string", "maxLength": 160},
+    "expected_effect": {"type": "string", "enum": ["form_change", "breaks", "tool_holds", "melts", "cast_piece", "properties", "unknown"]},
+    "proposed_steps": {
+      "type": "array", "maxItems": 5,
+      "items": {
+        "type": "object",
+        "properties": {
+          "op": {"type": "string", "enum": ["inspect", "equip", "release", "strike", "deform", "connect", "disconnect", "heat", "wait_molten", "pour"]},
+          "object_id": {"type": "integer"},
+          "target_id": {"type": "integer"},
+          "head_id": {"type": "integer"},
+          "fiber_id": {"type": "integer"},
+          "heater_id": {"type": "integer"},
+          "mold_id": {"type": "integer"},
+          "strikes": {"type": "integer", "minimum": 1, "maximum": 20}
+        },
+        "required": ["op"]
+      }
+    },
+    "uncertainty": {"type": "number", "minimum": 0, "maximum": 1},
+    "short_explanation": {"type": "string", "maxLength": 200}
+  },
+  "required": ["request_id", "actor_id", "question", "expected_effect", "proposed_steps", "uncertainty", "short_explanation"]
+}

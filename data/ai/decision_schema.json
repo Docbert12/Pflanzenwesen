@@ -1,0 +1,26 @@
+{
+  "type": "object",
+  "properties": {
+    "request_id": {"type": "integer"},
+    "actor_id": {"type": "integer"},
+    "goal_type": {"type": "string", "enum": ["food", "ask_food", "offer_food", "approach", "explore", "rest", "talk", "repeat_learned", "keep_current"]},
+    "proposed_steps": {
+      "type": "array",
+      "maxItems": 5,
+      "items": {
+        "type": "object",
+        "properties": {
+          "action": {"type": "string", "enum": ["go_to", "pick_up", "eat", "give_food", "request_food", "offer_food", "wait", "explore", "raise_arms", "talk"]},
+          "target_id": {"type": "integer"},
+          "intent": {"type": "string", "enum": ["none", "ask_food", "offer_help", "point_food", "share_experience", "share_guess"]}
+        },
+        "required": ["action", "target_id"]
+      }
+    },
+    "referenced_memory_ids": {"type": "array", "maxItems": 5, "items": {"type": "integer"}},
+    "uncertainty": {"type": "number", "minimum": 0, "maximum": 1},
+    "interpretation": {"type": "string", "enum": ["none", "zufall", "zusammenhang_vermutet", "nicht_entscheidbar"]},
+    "short_explanation": {"type": "string", "maxLength": 200}
+  },
+  "required": ["request_id", "actor_id", "goal_type", "proposed_steps", "referenced_memory_ids", "uncertainty", "short_explanation"]
+}
