@@ -1,0 +1,159 @@
+# Zeitalter 17 – Industrielle Revolution (ca. 1760–1840): Dampfmaschine, Textilmaschinen, Eisenbahn, Batterie, Puddeln.
+# Für Pflanzenwesen: Hier wird entdeckt, dass Pflanzen ihre Masse aus Kohlendioxid und Wasser aufbauen, und dass sie aus Zellen bestehen.
+Dampfmaschine mit getrenntem Kondensator | E | eisen,messing,kohle | dampf,vakuum | Kondensation außerhalb des Zylinders spart den größten Teil des Brennstoffs | Atmosphärische Dampfmaschine
+Doppelt wirkende Dampfmaschine | E | eisen,kohle | dampf,getriebe | Dampf drückt den Kolben in beide Richtungen | Dampfmaschine mit getrenntem Kondensator
+Planetengetriebe | M | eisen | getriebe | Zahnräder wandeln die Kolbenbewegung in Drehung | Kurbelwelle; Doppelt wirkende Dampfmaschine
+Fliehkraftregler | M | eisen | getriebe,hebel | rotierende Kugeln regeln die Dampfzufuhr selbsttätig | Doppelt wirkende Dampfmaschine
+Dampfdruckdiagramm | W | papier,messing | messen,dampf | Schreibstift zeichnet Druck über Kolbenweg | Doppelt wirkende Dampfmaschine
+Hochdruckdampfmaschine | E | eisen,kohle | dampf | hoher Dampfdruck ohne Kondensator, klein und leicht | Doppelt wirkende Dampfmaschine
+Dampfwagen | V | eisen,holz,kohle | dampf,fahrzeug | dampfgetriebenes Straßenfahrzeug | Hochdruckdampfmaschine
+Dampflokomotive | V | eisen,kohle,wasser | dampf,fahrzeug,rad_achse | Dampfmaschine auf Rädern zieht Wagen auf Schienen | Hochdruckdampfmaschine
+Eisenbahn | V | eisen,holz,kohle | dampf,fahrzeug,bauen_gemeinsam | öffentliche Strecke mit Lokomotiven nach Fahrplan | Dampflokomotive; Grubenpferde und Holzschienen
+Gewalzte Eisenbahnschiene | V | eisen | walzen | lange schmiedeeiserne Schienen | Walzwerk mit Kaliberwalzen
+Dampfschiff | V | eisen,holz,kohle | dampf,auftrieb | Schaufelräder treiben das Schiff | Hochdruckdampfmaschine
+Schiffsschraube | V | eisen,messing | rad_achse,auftrieb | Schraube unter Wasser statt Schaufelrad | Dampfschiff; Archimedische Schraube
+Dampfhammer | M | eisen,kohle | dampf,schmieden | dampfgehobener Hammer für sehr große Schmiedestücke | Hochdruckdampfmaschine
+Puddelverfahren | B | eisen,kohle | oxidieren,schmieden | Roheisen wird im Flammofen umgerührt und entkohlt | Frischfeuer; Kokshochofen
+Walzwerk mit Kaliberwalzen | B | eisen,kohle | walzen,dampf | profilierte Walzen formen Stäbe und Schienen | Puddelverfahren
+Heißwind im Hochofen | B | eisen,kohle,luft | luftzufuhr,feuer_nutzen | vorgewärmte Luft spart Koks | Kokshochofen
+Gusseiserne Brücke | V | eisen | giessen,tragwerk | Brücke aus gegossenen Eisenbögen | Eisenguss in Formen
+Kettenhängebrücke | V | eisen,stein | tragwerk,bauen_gemeinsam | Fahrbahn hängt an Ketten aus Eisenstäben | Hängebrücke aus Seilen; Gusseiserne Brücke
+Spinnmaschine mit acht Spindeln | T | holz,eisen | weben | eine Person spinnt viele Fäden gleichzeitig | Flügelspinnrad
+Wassergetriebene Spinnmaschine | T | holz,eisen,wasser | weben,wasserkraft | Walzen und Spindeln, angetrieben vom Wasserrad | Spinnmaschine mit Walzen
+Selbstspinnerei-Maschine | T | eisen,holz | weben,getriebe | verbindet Walzen und Wagen – feines, festes Garn | Wassergetriebene Spinnmaschine
+Kardiermaschine | T | eisen,holz | weben,getriebe | Walzen mit Drahthäkchen ordnen Fasern | Wollkämme
+Mechanischer Webstuhl | T | eisen,holz | weben,dampf | Weben ohne Handarbeit | Mechanischer Webstuhl-Entwurf; Doppelt wirkende Dampfmaschine
+Lochkarten-Webstuhl | T | holz,papier | weben,getriebe | Lochkarten steuern jedes Muster automatisch | Weberei-Zug mit Lochkarten
+Baumwollentkörnungsmaschine | L | holz,eisen | getriebe | Walze mit Haken trennt Fasern von Samen | Kardiermaschine
+Fabrik | G | ziegel,eisen | siedlung,regeln | viele Maschinen an einem Antrieb unter einem Dach | Wassergetriebene Spinnmaschine
+Chlorbleiche | B | chemikalie,textil | chemie | Bleichen in Stunden statt Wochen | Schwefelsäure im Bleikammerverfahren
+Sodaherstellung | B | salz,saeure,kohle | chemie | Soda aus Kochsalz für Glas und Seife | Schwefelsäure im Bleikammerverfahren
+Chlorkalk | B | kalk,chemikalie | chemie | haltbares Bleich- und Desinfektionsmittel | Chlorbleiche
+Gasbeleuchtung | E | kohle,gas,eisen | chemie,licht_feuer | Gas aus Kohle wird in Leitungen verteilt und verbrannt | Rundbrenner
+Gaswerk | E | kohle,eisen | holzkohle,chemie | Kohle wird entgast, Gas im Behälter gespeichert | Gasbeleuchtung
+Bohrwerk für Zylinder | M | eisen | bohren,dampf | genau runde Zylinder für Dampfmaschinen | Geschützbohrmaschine
+Drehbank mit Leitspindel und Wechselrädern | M | eisen | drehen,getriebe | genaue Gewinde beliebiger Steigung | Drehbank mit Support
+Messschraube | W | stahl,messing | messen,getriebe | Feingewinde misst auf Bruchteile eines Millimeters | Drehbank mit Leitspindel und Wechselrädern
+Hobelmaschine | M | eisen | schneiden,dampf | ebene Flächen werden maschinell gehobelt | Drehbank mit Leitspindel und Wechselrädern
+Fräsmaschine | M | eisen,stahl | schneiden,getriebe | rotierender Fräser formt Werkstücke | Hobelmaschine
+Austauschbare Teile | M | eisen | messen,regeln | genormte Teile passen ohne Nacharbeit | Messschraube
+Fließfertigung von Seilrollenblöcken | M | holz,eisen | getriebe,siedlung | Maschinenreihe fertigt Blöcke in Serie | Austauschbare Teile
+Voltasche Säule | E | zink,kupfer,saeure | gleichstrom,speicher | gestapelte Metallplatten mit Elektrolyt liefern Dauerstrom | Leidener Flasche
+Daniell-Element | E | zink,kupfer,saeure | gleichstrom,speicher | gleichmäßige Spannung über lange Zeit | Voltasche Säule
+Elektrolyse von Wasser | W | wasser,stromquelle | elektrolyse | Strom zerlegt Wasser in Wasserstoff und Sauerstoff | Voltasche Säule
+Neue Metalle durch Elektrolyse | W | stromquelle,chemikalie | elektrolyse | Natrium, Kalium und andere werden erstmals dargestellt | Elektrolyse von Wasser
+Galvanisieren | B | kupfer,stromquelle,saeure | elektrolyse | Metallschicht wird elektrisch abgeschieden | Neue Metalle durch Elektrolyse
+Bogenlampe | E | holzkohle,stromquelle | licht_elektrisch,gleichstrom | Lichtbogen zwischen Kohlestäben | Voltasche Säule
+Elektromagnetismus entdecken | W | kupfer,eisen | magnetismus,gleichstrom | Strom lenkt eine Kompassnadel ab | Voltasche Säule; Kompass in Europa
+Elektromagnet | E | eisen,kupfer | magnetismus,gleichstrom | Spule um Eisenkern wird zum schaltbaren Magneten | Elektromagnetismus entdecken
+Gesetz für Strom, Spannung und Widerstand | W | kupfer | gleichstrom,messen | Strom ist Spannung geteilt durch Widerstand | Elektromagnetismus entdecken | | im Spiel ab Prompt 12 (Gleichstromkreis)
+Galvanometer | W | kupfer,eisen | magnetismus,messen | Nadelausschlag misst Stromstärke | Elektromagnetismus entdecken
+Thermoelement | W | kupfer,eisen | gleichstrom,messen | Temperaturunterschied erzeugt eine Spannung | Galvanometer
+Elektromagnetische Induktion | W | kupfer,eisen | magnetismus,generator | bewegter Magnet erzeugt Strom in einer Spule | Elektromagnet
+Dynamo | E | kupfer,eisen | generator,magnetismus | Kurbel dreht Magnete an Spulen vorbei | Elektromagnetische Induktion
+Elektromotor | E | kupfer,eisen | elektromotor,magnetismus | Strom dreht einen Anker | Elektromagnet
+Relais | C | kupfer,eisen | magnetismus,gleichstrom | schwacher Strom schaltet einen starken | Elektromagnet
+Elektrischer Telegraf | C | kupfer,stromquelle | gleichstrom,magnetismus,signal | Stromstöße über Draht bewegen Zeiger oder Anker in der Ferne | Relais; Optischer Telegraf
+Morsecode | C | - | signal,zaehlen | Buchstaben als kurze und lange Signale | Elektrischer Telegraf
+Optischer Telegraf | C | holz,glas | signal,optik | Zeigerstellungen werden von Turm zu Turm mit Fernrohren gelesen | Fackeltelegraf; Fernrohr
+Lithografie | C | stein,oel,tinte | chemie,druck | Druck vom flachen Stein durch Abstoßung von Fett und Wasser | Kupferstich
+Schnellpresse | C | eisen,papier | druck,dampf | Zylinder statt Tiegel – viel schnellerer Druck | Druckerpresse; Doppelt wirkende Dampfmaschine
+Papiermaschine | C | faser,wasser,eisen | papier,getriebe | endlose Papierbahn auf einem Sieb | Papiermühle
+Fotografie | C | glas,silber,chemikalie | optik,chemie | Licht verändert Silbersalze, das Bild wird festgehalten | Lochkamera
+Negativ-Positiv-Verfahren | C | papier,silber | optik,chemie | beliebig viele Abzüge von einem Negativ | Fotografie
+Stahlschreibfeder | C | stahl | schmieden | Feder aus Stahl in Massenfertigung | Tintenfass und Federkiel
+Briefmarke | C | papier | druck,regeln | aufgeklebte Marke zeigt bezahltes Porto | Stadtpost zum Einheitspreis
+Brailleschrift | C | papier | zeichen | sechs tastbare Punkte für jedes Zeichen | Blindenschrift-Vorläufer
+Heißluftballon | V | textil,holz | feuer_nutzen,auftrieb | erwärmte Luft hebt eine Hülle mit Korb | Taucherglocke mit Luftnachschub | | erster bemannter Flug
+Gasballon | V | textil,wasserstoff | auftrieb | leichtes Gas trägt den Ballon | Heißluftballon; Wasserstoff entdecken
+Fallschirm | V | textil,seil | aerodynamik | großer Schirm bremst den Fall | Heißluftballon
+Laufmaschine | V | holz,eisen | rad_achse,fahrzeug | Zweirad, mit den Füßen angetrieben | Kutsche
+Schotterstraße mit Bindung | V | stein,sand | verdichten | kleine, verdichtete Steine ergeben eine glatte Decke | Chausseebau
+Gestufte Leuchtturmlinse | V | glas | optik | Ringlinse aus Stufen bündelt Licht weit hinaus | Leuchtturm auf offener Klippe; Achromatisches Objektiv
+Rettungsboot | V | holz,rinde | auftrieb | unsinkbares Boot mit Auftriebskörpern | Rettungsboje aus Kork
+Wasserturbine | E | eisen,wasser | wasserkraft,turbine | Strömung durch gekrümmte Schaufeln – viel besser als das Wasserrad | Wasserrad-Versuche mit Modell
+Kreisprozess-Theorie | W | papier | dampf,zaehlen | der Wirkungsgrad hängt vom Temperaturunterschied ab | Dampfdruckdiagramm
+Gasbatterie | E | wasserstoff,luft,kupfer | speicher,elektrolyse | Wasserstoff und Sauerstoff liefern direkt Strom | Elektrolyse von Wasser | | Vorläufer der Brennstoffzelle
+Lichtelektrischer Effekt an Elektroden | W | silber,sonne | photovoltaik,beobachten | Licht verändert den Strom in einer Zelle | Fotografie | | Vorläufer der Solarzelle – für Pflanzenwesen ein Spiegel der eigenen Blätter
+Kompressions-Kältemaschine (Entwurf) | E | eisen,chemikalie | kaelte | geschlossener Kreislauf mit Verdichter | Kreisprozess-Theorie
+Massenerhaltung bei Reaktionen | W | quecksilber,glas | chemie,messen | bei Reaktionen geht keine Masse verloren | Sauerstoff entdecken | | im Spiel Grundregel (Massenbilanz)
+Chemische Fachsprache | W | papier | chemie,buch | Namen nach Zusammensetzung statt Herkunft | Massenerhaltung bei Reaktionen
+Atomtheorie mit Massenverhältnissen | W | papier | chemie,zaehlen | Elemente verbinden sich in festen Verhältnissen | Chemische Fachsprache
+Harnstoffsynthese | W | chemikalie | chemie | organischer Stoff aus anorganischen Ausgangsstoffen | Atomtheorie mit Massenverhältnissen
+Pflanzen bauen aus Kohlendioxid und Wasser Masse auf | W | pflanze,wasser,luft | messen,beobachten | gewogene Pflanzen nehmen Kohlenstoff aus der Luft auf | Pflanzen geben im Licht Sauerstoff ab | | Kern der Pflanzenwesen
+Blattgrün isolieren | W | blatt,chemikalie | extrahieren | grüner Farbstoff der Blätter wird abgetrennt und benannt | Pflanzen bauen aus Kohlendioxid und Wasser Masse auf | | Kern der Pflanzenwesen
+Osmose | W | wasser,blatt | beobachten,messen | Wasser wandert durch Häute zur konzentrierteren Lösung | Messung des Wasserhaushalts von Pflanzen | | erklärt Wasseraufnahme der Wurzeln
+Zellkern entdecken | W | blatt,glas | optik,beobachten | jede Pflanzenzelle enthält einen Kern | Zellen entdecken
+Zelltheorie | W | papier | beobachten,buch | alle Pflanzen und Tiere bestehen aus Zellen | Zellkern entdecken
+Mineralstofftheorie der Pflanzenernährung | L | pflanze,erde | landbau,messen | Pflanzen brauchen bestimmte Mineralstoffe; der knappste begrenzt das Wachstum | Pflanzen bauen aus Kohlendioxid und Wasser Masse auf | | für Pflanzenwesen zentral
+Lehrbuch der rationellen Landwirtschaft | L | papier | landbau,buch | Landwirtschaft auf Versuche und Zahlen gestützt | Vierfelder-Fruchtwechsel
+Dreschmaschine | L | holz,eisen,tier | getriebe,tierhaltung | Trommel drischt das Getreide | Dreschflegel
+Mähmaschine | L | eisen,holz,tier | fahrzeug,getriebe | Schneidwerk mäht Getreide mit Pferdezug | Mähwagen
+Stahlpflug | L | stahl,holz,tier | schmieden,landbau | polierte Stahlschar bleibt in klebrigem Boden sauber | Leichter Eisenpflug
+Rübenzuckerfabrik | L | pflanze,kohle | extrahieren,kochen | Zucker aus Rüben in industriellem Maßstab | Zucker in Rüben entdecken
+Konservierung durch Erhitzen | L | nahrung,glas | kochen | luftdicht verschlossene, erhitzte Nahrung bleibt lange haltbar | Dampfkochtopf
+Konservendose | L | eisen,zinn,nahrung | kochen,loeten | verzinntes Blech als unzerbrechlicher Behälter | Konservierung durch Erhitzen
+Drainage mit Tonrohren | L | keramik,wasser | graben,ton_brennen | Rohre im Boden entwässern nasse Felder | Tonrohrleitung
+Guano als Dünger | L | duenger | handel,landbau | Vogelmist aus Übersee düngt Felder | Mineralstofftheorie der Pflanzenernährung
+Schutzimpfung mit Kuhpocken | D | - | impfen | Impfung mit harmlosen Kuhpocken schützt vor Pocken | Pockenschutz durch Einimpfen
+Stethoskop | D | holz | klang,diagnose | Röhre überträgt Herz- und Lungengeräusche | Pulsmesser mit Pendel
+Wirkstoff aus Pflanzen isolieren | D | blatt,chemikalie | extrahieren,arznei | reine Wirkstoffe aus Heilpflanzen | Chinarinde gegen Fieber
+Fliegende Ambulanz | D | holz,tier | fahrzeug,heilen | leichte Wagen holen Verwundete schnell vom Feld | Militärlazarett
+Bluttransfusion | D | glas | chirurgie | Blut eines Spenders wird übertragen | Blutkreislauf
+Zweistärkenbrille | D | glas | optik,schleifen | Gläser mit Fern- und Nahteil | Brille
+Menschliche Behandlung psychisch Kranker | D | - | heilen,regeln | Ketten werden abgeschafft, Pflege statt Verwahrung | Spital in der Stadt
+Zahnfüllung | D | silber,quecksilber | chirurgie | Löcher in Zähnen werden gefüllt | Zahnheilkunde-Lehrbuch
+Sicherheitslampe für Bergleute | B | messing,oel | licht_feuer | Drahtgaze verhindert, dass die Flamme Grubengas entzündet | Öllampe mit Glaszylinder | | Prinzip auch für brennbare Pflanzenwesen lehrreich
+Drahtseil | B | eisen | drahtziehen,schnur | verdrillte Eisendrähte statt Hanfseil | Wassergetriebener Drahtzug
+Dampffördermaschine | B | eisen,kohle | dampf,winde | Dampfmaschine zieht Förderkörbe aus dem Schacht | Kohleabbau mit Dampfpumpen; Haspel
+Tübbingausbau | B | eisen | giessen,stollen | gusseiserne Ringe dichten Schächte gegen Wasser | Gusseiserne Brücke
+Aluminium darstellen | B | aluminium,chemikalie | chemie | erstes Aluminium in kleinen Mengen | Neue Metalle durch Elektrolyse
+Vulkanisierter Kautschuk | T | kautschuk,schwefel | chemie,feuer_nutzen | Kautschuk mit Schwefel erhitzt bleibt elastisch | Gummiball
+Reibzündholz | E | holz,schwefel | feuer_machen,chemie | Zündkopf entflammt durch Reibung | Schlagfeuer | | Feuer überall verfügbar – für Pflanzenwesen gefährlich
+Nähmaschine | T | eisen,stahl | naehen,getriebe | Kettenstich mit Nadel und Greifer | Strumpfwirkstuhl
+Erklärung der Menschenrechte | G | papier | regeln | Grundrechte aller Menschen werden erklärt | Verfassungsurkunde
+Geschriebene Verfassung | G | papier | regeln | Staat beruht auf einer geschriebenen Grundordnung | Gewaltenteilung
+Metrisches System | W | platin,messing | messen,regeln | dezimale Einheiten für Länge, Masse und Volumen | Längenmaß aus der Natur
+Patentamt | G | papier | regeln | Behörde prüft und registriert Erfindungen | Patentgesetz
+Sparkasse | G | papier | handel | sichere Geldanlage für kleine Beträge | Zentralbank
+Moderne Polizei | G | - | regeln | uniformierte, bezahlte Polizei | Stadtrat
+Arbeitsschutzgesetz für Kinder | G | - | regeln | Arbeitszeit von Kindern in Fabriken begrenzt | Fabrik
+Kindergarten | G | - | fortpflanzung,lehren,regeln | Spiel und Lernen für kleine Kinder | Allgemeine Schulpflicht
+Gewerkschaft | G | - | regeln,siedlung | Arbeiter verhandeln gemeinsam | Zunft
+Gewerbeausstellung | G | - | lehren,handel | Leistungsschau neuer Produkte | Messe
+Kriegsrakete | K | - | sprengen,rakete | Rakete mit Brandsatz als Waffe | Feuerlanze | | Projektregel: keine Stoffangaben
+Zündhütchen | K | - | sprengen | kleine Zündkapsel für Feuerwaffen | Steinschloss | | Projektregel: keine Stoffangaben
+Hinterlader | K | - | sprengen | Waffe wird von hinten geladen | Zündhütchen | | Projektregel: keine Stoffangaben
+Gezogener Lauf | K | stahl | schneiden | Drallzüge machen Geschosse stabil | Gewindeschneid-Drehbank
+Militärische Kartografie | K | papier | messen,zeichen | Generalstabskarten im einheitlichen Maßstab | Landesaufnahme
+Lebensmittelversorgung für Heere | K | nahrung | lagern,handel,trocknen | Konserven und Depots | Konservendose
+Dampfgetriebene Druckerei für Zeitungen | C | eisen,papier | druck,dampf | Zeitungen in großer Auflage | Schnellpresse; Tageszeitung
+Leihbibliothek | C | papier | buch,handel | Bücher gegen Gebühr ausleihen | Bibliothekskatalog
+Bleistift aus Graphit und Ton | C | holz,ton,erz | ton_brennen | gebrannte Mischung macht Härtegrade möglich | Bleistift
+Schreibtafel aus Schiefer | C | stein,holz | schneiden | wiederbeschreibbare Tafel für Schulen | Wachstafel
+Gaszähler | W | messing,gas | messen | misst den Gasverbrauch eines Haushalts | Gaswerk
+Wasserleitung unter Druck | A | eisen,wasser | hydraulik,bauen_gemeinsam | gusseiserne Rohre bringen Wasser in Häuser | Wasserturm mit Pumpwerk
+Kanalisation mit Spülung | A | ziegel,wasser | bauen_gemeinsam,hygiene | gemauerte Kanäle mit Wasserspülung | Großkanalisation
+Spülklosett mit Ventil | D | keramik,wasser,messing | hydraulik,hygiene | Ventil und Geruchsverschluss | Geruchsverschluss
+Gusseiserne Säulen im Bau | A | eisen | giessen,tragwerk | schlanke Eisenstützen tragen Fabrikdecken | Gusseiserne Brücke
+Feuerfeste Fabrik | A | eisen,ziegel | tragwerk | Eisenträger und Ziegelgewölbe statt Holz | Gusseiserne Säulen im Bau | | Brandschutz – für Pflanzenwesen lebenswichtig
+Glashaus mit Eisenrippen | L | eisen,glas,pflanze | tragwerk,landbau | große, lichte Gewächshäuser | Gewächshaus mit Ofenheizung | | für Pflanzenwesen besonders bedeutsam
+Kanalnetz für Fracht | V | wasser,erde | graben,bauen_gemeinsam | dichtes Netz von Kanälen für Kohle und Waren | Industriekanal
+Pferdebahn | V | eisen,tier | fahrzeug,tierhaltung | Pferde ziehen Wagen auf Schienen | Grubenpferde und Holzschienen
+Omnibus | V | holz,tier | fahrzeug,regeln | Pferdewagen für viele Fahrgäste nach Fahrplan | Postkutschenlinie
+Drehschemel-Lenkung | V | holz,eisen | rad_achse | Vorderachse dreht sich um einen Zapfen | Lastwagen mit Langbaum
+Blattfeder | V | stahl | federn | Federpaket fängt Stöße ab | Kutsche
+Achslager mit Fett | V | eisen,oel | rad_achse | geschmierte Lager senken Reibung | Eisenbahn
+Feuerwehr mit Dampfspritze | G | eisen,wasser,kohle | dampf,hydraulik | Dampfmaschine treibt die Löschpumpe | Feuerspritze | | für Pflanzenwesen lebenswichtig
+Brandmelder-Telegraf | C | kupfer | gleichstrom,signal | Feuermeldestellen melden über Draht | Elektrischer Telegraf | | für Pflanzenwesen lebenswichtig
+Zinkblech | A | zink | walzen | gewalztes Zink für Dächer und Rinnen | Zinkdestillation
+Ziegelpresse | A | ton,eisen | ziegel,getriebe | Maschine presst Ziegel in Serie | Ziegelei in Serie
+Zementherstellung im Ofen | A | kalk,ton,kohle | zement | gebrannter und gemahlener Zement | Wasserfester Kalkmörtel
+Portlandzement | A | kalk,ton | zement | sehr fester Zement nach genauer Mischung | Zementherstellung im Ofen
+Kabelisolierung mit Guttapercha | C | kautschuk,kupfer | chemie | Naturharz isoliert Drähte unter Wasser | Elektrischer Telegraf
+Wettervorhersage-Karte | W | papier | zeichen,messen | Wetterkarte aus gleichzeitigen Messungen | Wetterstationen-Netz
+Geologische Zeitskala | W | stein,geologie | beobachten | Gesteinsschichten werden nach Fossilien geordnet | Geologische Karte
+Klassifikation der Wolken | W | papier | beobachten | Wolkenformen erhalten Namen | Wettervorhersage-Karte
+Pflanzengeografie | W | pflanze | beobachten,messen | Verbreitung der Pflanzen hängt von Klima und Höhe ab | System der Lebewesen | | für Pflanzenwesen besonders wichtig
+Präzisionswaage | W | messing,stahl | hebel,messen | Waage für Milligramm | Balkenwaage
+Platinstandard für Maße | W | platin | messen | Urmeter und Urkilogramm aus Platin | Metrisches System

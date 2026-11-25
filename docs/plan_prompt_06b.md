@@ -143,6 +143,8 @@ Ziel des Nutzers: Die Wesen entwickeln sich **selbst** (kein Technologiebaum). J
 
 **Vorschlag (Entscheidung beim Nutzer):** einen Zwischenschritt „Feuer, Ton und eigener Ofen“ (Zündung, Holzkohle, Luftzufuhr, Ton brennen, eigener Schmelzofen) **vor** Prompt 7 oder 9 einschieben und einen Schritt „Erz und Legierungen“ (Erz im Gelände, Verhüttung, Zinn, Bronze) ergänzen; sonst bleibt der Weg vom Steinhammer zur Bronze bis Prompt 12 blockiert. Der Zusatz Weltarchitektur (Abbau) passt sinnvoll direkt nach 6B, weil 6B Graben/Verdichten nur vorbereitet.
 
+**Umgesetzt (25.11.2026):** Leitlinien-Excel `design/Leitlinie_Steinzeit_bis_Zukunft.xlsx` mit 2.680 Erfindungen, Spielstand je Erfindung und den Zwischenschritten als Auswahl zum Ausprobieren – `docs/leitlinie.md`. Zusätzlich gefundene Lücken: gezieltes Abschlagen/Formen (ab der Frühen Steinzeit), Jahreszeiten/Mond/Sterne und Erdgeschichte im Weltmodell.
+
 ## 9. Zusatz Weltarchitektur (`prompt_zusatz_weltarchitektur_abbau_bauen.txt`)
 
 Noch nicht eingeordnet. Inhalt: 20-fache Grundfläche (Seiten × √20), Blockgröße 0,25 m (Vergleich mit 0,5 m), Abbau/Bau mit Massenbilanz, Einsturz, Wasser in Gruben/Tunneln, Navigation nach Körpergröße, Speicherformat für Chunk-Änderungen. Der Nutzer entscheidet, wann er kommt.

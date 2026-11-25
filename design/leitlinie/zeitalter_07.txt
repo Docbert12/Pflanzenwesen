@@ -1,0 +1,132 @@
+# Zeitalter 7 – Bronzezeit (ca. 3300–1200 v. Chr.): Legieren, Rad, Schrift, Städte, Segel.
+Zinnerz erkennen | B | erz | beobachten | schweres, dunkles Zinnerz in Flusssand und Gestein finden | Malachit erkennen
+Zinngewinnung | B | zinn,erz,holzkohle | verhuetten | Zinn aus Zinnerz schmelzen | Zinnerz erkennen; Kupferverhüttung
+Zinnbronze | B | kupfer,zinn,bronze | legieren | Kupfer mit etwa einem Zehntel Zinn wird härter und gießt besser | Zinngewinnung; Arsenkupfer
+Zweischalige Gussform | T | stein | schleifen | zwei Formhälften ergeben beidseitig geformte Güsse | Offene Gussform
+Bronzeguss | B | bronze,keramik | schmelzen,giessen | flüssige Bronze in Formen gießen | Zinnbronze; Zweischalige Gussform
+Blasebalg | E | leder,holz | luftzufuhr | Balg aus Leder pumpt Luft gleichmäßig ins Feuer | Blasrohr
+Tondüse | E | keramik | ton_formen,ton_brennen | hitzefestes Rohr führt die Luft vom Blasebalg in die Glut | Blasebalg
+Absatzbeil | T | bronze,holz | giessen,binden | Beil mit Absatz gegen das Spalten des Schafts | Bronzeguss; Kupfer-Flachbeil
+Tüllenbeil | T | bronze,holz | giessen | Beil mit hohler Tülle für den Schaft | Absatzbeil
+Bronzesichel | L | bronze,holz | giessen,schleifen | gegossene Sichel mit scharfer Schneide | Bronzeguss; Sichel mit Feuersteinklingen
+Bronzemesser | T | bronze | giessen,schleifen | Messer mit Griffzunge | Bronzeguss
+Bronzesäge | T | bronze | giessen,kalt_verformen | gezahnte Säge aus Bronze | Kupfersäge
+Bronzemeißel | T | bronze | giessen,kalt_verformen | harter Meißel für Holz und Stein | Kupfermeißel
+Bronzepickel | B | bronze,holz | giessen,binden,graben | gegossene Spitzhacke mit Lappen für die Schäftung löst Erz und Salz im Bergwerk | Bronzeguss; Geweihpicke | | Abbauwerkzeug aus Metall; im bronzezeitlichen Salzbergbau der Ostalpen belegt
+Rasiermesser | D | bronze | giessen,schleifen | dünne, sehr scharfe Klinge | Bronzemesser
+Pinzette | D | bronze | kalt_verformen | federnde Zange für feine Arbeit | Kupferblech treiben
+Gewandnadel | G | bronze | giessen | Nadel mit Kopf hält Kleidung zusammen | Kupfernadel
+Fibel | G | bronze | kalt_verformen,federn | Sicherheitsnadel mit Federspirale | Gewandnadel
+Bronzeschwert | K | bronze | giessen,schleifen | lange Klinge für Hieb und Stich | Bronzeguss; Kupferdolch
+Sichelschwert | K | bronze | giessen | gebogene Klinge für den Hieb | Bronzeschwert
+Lanzenspitze mit Tülle | K | bronze,holz | giessen | Spitze sitzt fest auf dem Schaft | Tüllenbeil
+Bronzehelm | K | bronze | kalt_verformen | getriebener Kopfschutz | Kupferblech treiben
+Bronzepanzer | K | bronze,leder | kalt_verformen,naehen | Körperschutz aus Bronzeplatten | Bronzehelm
+Rundschild aus Bronze | K | bronze | kalt_verformen | getriebener Schild | Holzschild
+Kompositbogen | K | holz,geweih,sehne,harz | federn,binden | Schichten aus Holz, Horn und Sehne speichern mehr Energie | Pfeil und Bogen
+Streitwagen | K | holz,tier,bronze | fahrzeug,rad_achse,tierhaltung | leichter Wagen mit Speichenrädern von Pferden gezogen | Speichenrad; Pferd zähmen
+Rammbock | K | holz | hebel,konflikt | schwerer Balken gegen Tore | Stadtmauer
+Belagerungsleiter | K | holz,seil | binden | Leiter zum Übersteigen von Mauern | Stadtmauer
+Geschlossene Schlachtreihe | K | - | konflikt,regeln | eng geordnete Reihe mit Schilden und Speeren | Gemeinsame Abwehr
+Barren | B | kupfer,bronze | giessen | genormte Metallbarren für Handel und Lager | Bronzeguss
+Granulation | G | gold | loeten | winzige Goldkügelchen auf Schmuck gelötet | Goldschmuck
+Löten von Gold | T | gold,silber | loeten | Lot mit niedrigerem Schmelzpunkt verbindet Teile | Goldschmuck
+Elektrum | B | gold,silber | legieren | natürliche Gold-Silber-Legierung | Goldwaschen
+Glasperle | G | glas,sand | glas | kleine Perlen aus geschmolzenem Glas | Fayence
+Kerngeformtes Glasgefäß | T | glas | glas | Glas um einen Kern aus Lehm gewickelt | Glasperle
+Fayence | G | sand,keramik | glas,ton_brennen | Quarzkörper mit glasiger Oberfläche | Töpferofen
+Ägyptisch Blau | C | kupfer,sand,kalk | chemie,ton_brennen | synthetisches blaues Pigment | Fayence
+Schnelle Töpferscheibe | M | holz,stein,ton | drehen,ton_formen | schnell drehende Scheibe zieht Gefäße hoch | Langsame Töpferscheibe
+Bogendrehbank | M | holz,seil | drehen,federn | Bogen dreht das Werkstück hin und her | Bogenbohrer
+Balkenwaage | W | holz,bronze | hebel,messen | gleicharmiger Hebel vergleicht Massen | Gewichtssteine
+Holzriegelschloss | M | holz | hebel | Stifte im Riegel werden mit einem Schlüssel gehoben | Brett und Bohle
+Schaduf | L | holz,seil,stein | hebel,bewaessern | Schwingbaum mit Gegengewicht hebt Wasser | Wippe zum Heben
+Beckenbewässerung | L | erde,wasser | graben,bewaessern | Felder werden bei Hochwasser geflutet und gehalten | Bewässerungskanal
+Saatpflug | L | holz,tier | landbau,tierhaltung | Pflug mit Trichter sät beim Pflügen | Hakenpflug
+Bienenhaltung | L | tier,wachs | tierhaltung | Bienen in Tonröhren oder Körben | Bienenwachs sammeln
+Nassreisfeld | L | pflanze,wasser,erde | landbau,bewaessern | geflutete Felder für Reis | Bewässerungskanal
+Seidenraupenzucht | L | tier,textil | tierhaltung,weben | Seidenfaden aus Kokons | Leinenstoff
+Pfropfen | L | pflanze | zucht | Edelreis wird auf eine Unterlage gesetzt | Obstbäume pflanzen | | für Pflanzenwesen ein bemerkenswertes Verfahren
+Hühnerhaltung | L | tier | tierhaltung | Hühner liefern Eier und Fleisch | Schweinehaltung
+Staatlicher Kornspeicher | L | ton,nahrung | lagern,siedlung | große Speicher sichern die Versorgung | Getreidespeicher
+Speichenrad | V | holz,bronze | rad_achse,schneiden | leichtes Rad mit Speichen und Felge | Scheibenrad
+Plankenboot | V | holz,seil | binden,auftrieb | Planken mit Seilen vernäht | Einbaum
+Rahsegelschiff | V | holz,textil,seil | segeln,auftrieb | großes Schiff mit Rahsegel und Ruderern | Segelboot; Plankenboot
+Steuerruder | V | holz | hebel | breites Ruder am Heck lenkt das Schiff | Paddel
+Gepflasterte Straße | V | stein | verdichten,stapeln | Steinpflaster für Lastwagen | Bohlenweg
+Hafenbecken | V | ton,stein | graben,bauen_gemeinsam | gemauertes Becken für Schiffe | Gepflasterte Straße
+Karawane | V | tier | tierhaltung,handel | lange Reihe von Lasttieren | Esel als Lasttier
+Pyramide | A | stein | bauen_gemeinsam,tragwerk,hebel | riesiger Bau aus Steinblöcken | Megalithtempel
+Stufentempel | A | ton | bauen_gemeinsam,tragwerk | gestufter Hochtempel aus Lehmziegeln | Tempelplattform
+Steinsäule | A | stein | schneiden,tragwerk | behauene Säule trägt Dachbalken | Pfeilerheiligtum
+Obelisk | A | stein | schneiden,hebel | einteiliger hoher Steinpfeiler | Menhir
+Palast | A | stein,holz | bauen_gemeinsam,tragwerk | großer Bau mit Lagerräumen, Werkstätten und Hof | Stadt
+Kragsteingewölbe | A | stein | tragwerk | vorkragende Steinlagen schließen einen Raum | Dolmen
+Zyklopenmauer | K | stein | bauen_gemeinsam,tragwerk,hebel | Mauer aus riesigen, unbehauenen Blöcken | Stadtmauer
+Gebrannter Ziegel | A | ton,holz | ziegel | gebrannte Ziegel widerstehen Wasser | Lehmziegel; Töpferofen
+Rasterstadt | A | ziegel | bauen_gemeinsam,siedlung | Straßen im rechten Winkel | Stadt
+Kanalisation | A | ziegel,wasser | graben,bauen_gemeinsam | abgedeckte Kanäle führen Abwasser ab | Abwasserrinne
+Tonrohrleitung | A | keramik,wasser | ton_formen,ton_brennen | ineinandergesteckte Tonrohre führen Wasser | Kanalisation
+Spültoilette | D | keramik,wasser | hygiene | Wasser spült Abfälle in einen Kanal | Kanalisation
+Staudamm | A | stein,erde | aufschuetten,bauen_gemeinsam | Damm hält Wasser zurück | Grabenwerk
+Steinbruch | B | stein,bronze | schneiden,graben | Steinblöcke werden mit Keilen und Meißeln gelöst | Bronzemeißel
+Keilspaltung | B | stein,holz,wasser | schlagen | trockene Holzkeile quellen und sprengen den Stein | Steinbruch
+Rampe zum Steintransport | M | erde,ziegel | aufschuetten | schiefe Ebene erleichtert das Heben | Pyramide
+Steinschlitten | M | holz,wasser | rad_achse | Schlitten mit nassem Sand gleitet leichter | Schlitten
+Keilschrift | C | ton | schrift | Zeichen mit einem Griffel in feuchten Ton drücken | Zahlzeichen
+Hieroglyphen | C | stein,papier | schrift | Bild- und Lautzeichen | Frühe Zeichen
+Papyrus | C | blatt,papier | papier | Schichten aus Papyrusmark werden zu Blättern gepresst | Hieroglyphen
+Tinte aus Ruß | C | tinte,holzkohle | farbe | Ruß mit Bindemittel ergibt dauerhafte Tinte | Papyrus
+Schreibrohr | C | blatt | schneiden | angeschnittenes Rohr als Feder | Tinte aus Ruß
+Tontafel | C | ton | ton_formen,schrift | flache Tafel als Schreibträger | Keilschrift
+Tontafelarchiv | C | ton | buch | Verwaltung bewahrt Tausende Tafeln geordnet auf | Tontafel
+Konsonantenschrift | C | stein | schrift | wenige Zeichen für Laute statt Tausender Wortzeichen | Hieroglyphen
+Schreiberschule | G | ton | schrift,lehren | Kinder lernen Schreiben und Rechnen | Tontafel
+Sexagesimalsystem | W | ton | zaehlen | Zahlen zur Basis 60, Teilung von Stunden und Kreisen | Zahlzeichen
+Landvermessung | W | seil,holz | messen,zaehlen | Felder werden nach jeder Flut neu vermessen | Sexagesimalsystem
+Flächenberechnung | W | papier | zaehlen,schrift | Regeln für Rechtecke, Dreiecke, Kreise | Landvermessung
+Rechenbuch | W | papier | zaehlen,buch | Aufgabensammlung mit Lösungen | Flächenberechnung
+Sonnenkalender | W | jahreslauf | beobachten,zaehlen | Jahr mit 365 Tagen | Saatkalender
+Sonnenuhr | W | stein | beobachten,zeichen | Schatten auf Skala zeigt die Stunde | Schattenstab
+Wasseruhr | W | keramik,wasser | messen | gleichmäßiges Ausfließen misst Zeit | Sonnenuhr
+Sternbeobachtung | W | jahreslauf | beobachten,schrift | Aufzeichnungen über Planeten und Sterne | Sonnenkalender
+Normgewichte | W | stein,bronze | messen | einheitliche Gewichte im ganzen Land | Gewichtssteine
+Längenmaß Elle | W | holz | messen | genormter Maßstab | Landvermessung
+Staat | G | - | regeln,siedlung | Herrschaft über viele Städte mit Verwaltung | Häuptlingstum
+Gesetzessammlung | G | stein | regeln,schrift | aufgeschriebene Gesetze mit Strafen | Staat; Keilschrift
+Gericht | G | - | regeln | Streitfälle werden nach Regeln entschieden | Streitschlichtung
+Steuer | G | nahrung | regeln,siedlung | Abgaben an den Staat | Tempelwirtschaft
+Verwaltung durch Schreiber | G | ton | schrift,regeln | Schreiber führen Listen über Vorräte und Arbeit | Tontafelarchiv
+Handelsvertrag | G | ton | handel,schrift | schriftliche Vereinbarung über Lieferungen | Fernhandel mit Kupfer
+Handelsgewicht in Silber | G | silber | handel,messen | Silber nach Gewicht als Zahlungsmittel | Normgewichte
+Berufsheer | K | bronze | regeln,konflikt | dauerhaft unterhaltene Krieger | Staat
+Chirurgische Lehrschrift | D | papier | chirurgie,schrift | Behandlung von Wunden und Brüchen beschrieben | Trepanation
+Arzneibuch | D | papier,blatt | arznei,schrift | Sammlung von Heilmitteln und Rezepten | Heilkräutergarten
+Honig als Wundmittel | D | nahrung | heilen | Honig hält Wunden sauber | Bienenhaltung
+Mumifizierung | D | salz,textil | trocknen,religion | Körper wird mit Salz getrocknet und eingewickelt | Ahnenverehrung
+Augenschminke | D | erz,oel | farbe | Bleiglanz-Paste um die Augen | Ockerfarbe
+Prothese aus Holz | D | holz,leder | schneiden,binden | Ersatz für einen fehlenden Zeh | Schienen von Brüchen
+Seife | D | oel,salz | chemie | Fett und Asche ergeben eine waschaktive Masse | Öl pressen
+Duftöl | G | oel,blatt | extrahieren | Pflanzenduft in Öl gelöst | Öl pressen
+Leinenmumienbinde | G | textil | weben | sehr feines Leinen in langen Bahnen | Leinenstoff
+Teppichknüpfen | G | wolle | weben | Knoten auf Kettfäden ergeben dichten Flor | Gewichtswebstuhl
+Schminkpalette | G | stein | schleifen | Steinpalette zum Anreiben von Farbe | Schleifplatte
+Brettspiel | G | holz,stein | schneiden | Spielbrett mit Figuren und Regeln | Spielsteine
+Harfe | C | holz,sehne | klang | gespannte Saiten auf einem Rahmen | Pfeil und Bogen
+Trommel mit Fell | C | holz,leder | klang | gespanntes Fell auf einem Holzkörper | Trommeln auf Holz
+Leuchtfeuer | C | holz | feuer_nutzen,signal | Feuer auf Anhöhen übermittelt Nachrichten | Fackel
+Botenwesen | C | - | signal,regeln | Läufer und Reiter tragen Nachrichten | Staat
+Kerzen aus Talg | E | oel,faser | licht_feuer | Docht in Fett gibt Licht | Tonlampe
+Dauerhafte Ölversorgung | E | oel,keramik | lagern,handel | Öl wird in Krügen gelagert und gehandelt | Öl pressen
+Holzkohle aus Meilern in Mengen | E | holzkohle | holzkohle,siedlung | große Meiler versorgen Metallwerkstätten | Holzkohle für Metall
+Stadtbrunnen | A | ziegel,wasser | graben,bauen_gemeinsam | gemauerter Brunnen versorgt eine Stadt | Holzkastenbrunnen
+Wasserrinne aus Stein | A | stein,wasser | schneiden,stapeln | Rinne führt Quellwasser in die Stadt | Abwasserrinne
+Tempelbibliothek | C | ton | buch | Sammlung von Tafeln mit Wissen | Tontafelarchiv
+Siegel als Unterschrift | C | stein,ton | zeichen,regeln | Siegelabdruck bestätigt Verträge | Rollsiegel
+Kupferkessel | T | kupfer | kalt_verformen,feuer_nutzen | großer getriebener Kessel | Kupfergefäß
+Bronzespiegel | G | bronze | giessen,schleifen | polierte Bronzescheibe | Kupferspiegel
+Pfeilspitze aus Bronze | K | bronze | giessen | gegossene Pfeilspitzen in Serie | Bronzeguss
+Bronzeblech treiben | T | bronze | kalt_verformen | Bronze zu Gefäßen und Helmen treiben | Kupferblech treiben
+Grabkammer mit Felsgängen | A | stein | stollen | in den Fels gehauene Grabanlage | Steinbruch
+Messschnur mit Knoten | W | seil | messen | Knotenabstände dienen als Maß und für rechte Winkel | Landvermessung
+Lot und Waage für den Bau | W | stein,seil | messen | Senklot und Wasserwaage richten Mauern aus | Messschnur mit Knoten

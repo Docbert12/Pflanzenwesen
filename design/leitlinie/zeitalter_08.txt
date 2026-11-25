@@ -1,0 +1,97 @@
+# Zeitalter 8 – Eisenzeit (ca. 1200–500 v. Chr.): Rennofen, Schmiedeeisen, Stahl durch Aufkohlen, Alphabetschrift.
+Rennofen | B | ton,holzkohle,erz | verhuetten,luftzufuhr,tragwerk | Schachtofen reduziert Eisenerz zu einem schwammigen Eisenklumpen | Kupferverhüttung; Blasebalg
+Raseneisenerz | B | erz,erde | graben | eisenhaltige Knollen aus feuchten Böden | Rennofen
+Luppe ausschmieden | B | eisen | schmieden | glühenden Eisenklumpen verdichten und Schlacke herauspressen | Rennofen
+Schmiedeeisen | B | eisen | schmieden | zähes, schmiedbares Eisen | Luppe ausschmieden
+Feuerschweißen | T | eisen | schmieden,loeten | zwei glühende Eisenteile durch Hämmern verbinden | Schmiedeeisen
+Aufkohlen | B | eisen,holzkohle | haerten | Eisen in Holzkohle glühen, Kohlenstoff macht es zu Stahl | Schmiedeeisen
+Abschrecken | B | stahl,wasser | haerten | glühender Stahl im Wasser wird hart | Aufkohlen
+Gusseisen | B | eisen,erz,holzkohle | verhuetten,giessen | höhere Ofentemperatur schmilzt Eisen vollständig | Rennofen | | zuerst in China
+Esse | E | stein,ton,holzkohle | feuer_nutzen,luftzufuhr | offene Schmiedefeuerstelle mit Blasebalg | Blasebalg
+Eiserner Amboss | T | eisen | schmieden | schwere Eisenunterlage für die Schmiede | Amboss-Stein; Schmiedeeisen
+Schmiedezange | T | eisen | schmieden | Zange hält glühende Werkstücke | Schmiedeeisen
+Schmiedehammer | T | eisen,holz | schmieden,binden | Hammer mit Eisenkopf | Kupferhammer; Schmiedeeisen
+Eisenaxt | T | eisen,holz | schmieden,haerten | harte, nachschärfbare Axt | Tüllenbeil; Schmiedeeisen
+Eisenmesser | T | eisen,holz | schmieden,schleifen | Messer mit Stahlschneide | Bronzemesser; Aufkohlen
+Eisenpflugschar | L | eisen,holz | schmieden | Eisenspitze am Pflug bricht schwere Böden | Hakenpflug; Schmiedeeisen
+Eisensichel | L | eisen | schmieden,schleifen | Sichel aus Eisen | Bronzesichel; Schmiedeeisen
+Eisennagel | A | eisen | schmieden | geschmiedete Nägel verbinden Holz | Schmiedeeisen
+Feile | T | stahl | schmieden,haerten | Stahl mit gehauenen Rillen trägt Metall ab | Aufkohlen
+Bügelschere | T | stahl | schmieden,federn | federnder Bügel öffnet die Klingen | Feile
+Löffelbohrer | T | eisen,holz | schmieden | Bohrer mit löffelförmiger Spitze für Holz | Steinbohrer
+Eiserne Säge | T | eisen | schmieden,schneiden | gezahntes Sägeblatt aus Eisen | Bronzesäge
+Spitzhacke aus Eisen | B | eisen,holz | schmieden | spitze Hacke für Erz und Gestein | Geweihpicke; Schmiedeeisen
+Eisenbeschlag am Spaten | L | eisen,holz | schmieden | Eisenkante macht den Holzspaten haltbar | Holzspaten
+Eiserner Radreifen | V | eisen,holz | schmieden,rad_achse | heiß aufgezogener Reifen hält die Felge zusammen | Speichenrad
+Eisenschwert | K | stahl | schmieden,haerten | Schwert mit harter Schneide und zähem Kern | Bronzeschwert; Abschrecken
+Eiserne Lanzenspitze | K | eisen,holz | schmieden | geschmiedete Spitze mit Tülle | Lanzenspitze mit Tülle
+Armbrust | K | holz,seil,bronze | federn,hebel | gespannter Bogen auf einem Schaft, Abzug löst den Schuss | Kompositbogen | | zuerst in China
+Reiterei | K | tier | tierhaltung,konflikt | Kämpfer zu Pferd | Pferd zähmen
+Belagerungsturm | K | holz,leder | tragwerk,fahrzeug | fahrbarer Turm überragt die Mauer | Belagerungsleiter
+Hoplitenschild | K | holz,bronze | kalt_verformen,binden | großer Rundschild mit Armschlaufe | Rundschild aus Bronze
+Schleuderblei | K | blei | giessen,werfen | gegossene Bleigeschosse für die Schleuder | Schleuder; Bleigewinnung
+Ruderkriegsschiff mit Rammsporn | K | holz,bronze | auftrieb,bauen_gemeinsam | schnelles Schiff mit drei Ruderreihen und Sporn | Rahsegelschiff
+Trense | V | bronze,leder | kalt_verformen,tierhaltung | Gebiss im Maul lenkt das Pferd | Pferd zähmen
+Satteldecke | V | leder,wolle | naehen | Polster für das Reiten | Trense
+Dromedar als Lasttier | V | tier | tierhaltung | Kamele tragen Lasten durch Wüsten | Esel als Lasttier
+Steinanker | V | stein,seil | bohren | schwerer gelochter Stein hält das Schiff | Netzsenker
+Eisenanker | V | eisen,seil | schmieden | Anker mit Flunken greift im Grund | Steinanker
+Hafenmole | V | stein | stapeln,bauen_gemeinsam | Damm schützt den Hafen vor Wellen | Hafenbecken
+Königsstraße mit Stationen | V | stein,tier | siedlung,regeln | lange Straße mit Rasthäusern und Pferdewechsel | Gepflasterte Straße; Botenwesen
+Schiffskanal | V | erde,wasser | graben,bauen_gemeinsam | Kanal verbindet zwei Gewässer | Bewässerungskanal
+Pontonbrücke | V | holz,seil | binden,auftrieb | Brücke auf verankerten Booten | Plankenboot
+Seilrolle | M | holz,seil | rad_achse,winde | Rolle lenkt die Zugrichtung des Seils um | Rollen unter Lasten
+Qanat | L | erde,wasser | stollen,bewaessern | unterirdischer Stollen leitet Grundwasser zu Feldern | Holzkastenbrunnen
+Kamelkarawane im Fernhandel | G | tier | handel,tierhaltung | Karawanen verbinden ferne Märkte | Karawane; Dromedar als Lasttier
+Ölmühle mit Mahlstein | L | stein,nahrung | schleifen,extrahieren | rollender Stein zerdrückt Oliven | Öl pressen
+Imkerei mit Körben | L | tier,faser | tierhaltung,flechten | Bienenkorb aus Stroh | Bienenhaltung
+Aquädukt | A | stein,wasser | bauen_gemeinsam,tragwerk | Leitung mit Gefälle führt Wasser über weite Strecken | Wasserrinne aus Stein
+Wassertunnel | A | stein,wasser | stollen | in den Fels getriebener Tunnel führt Quellwasser | Wasserrinne aus Stein
+Gegenortvortrieb | B | stein | stollen,messen | Tunnel von beiden Seiten gleichzeitig vortreiben und treffen | Wassertunnel
+Säulentempel | A | stein | bauen_gemeinsam,tragwerk | Tempel mit Säulenumgang | Steinsäule
+Glasierte Ziegel | A | ziegel,glas | glas,ziegel | farbig glasierte Ziegel für Tore und Wände | Gebrannter Ziegel; Fayence
+Ziegelgewölbe | A | ziegel | tragwerk | gemauertes Tonnengewölbe überspannt Räume | Gebrannter Ziegel
+Rundhaus | A | holz,ton,blatt | tragwerk,flechten | großes Rundhaus mit Flechtwänden und Strohdach | Rundhütte mit Pfosten
+Höhensiedlung mit Wall | K | erde,stein,holz | aufschuetten,bauen_gemeinsam | befestigte Siedlung auf einem Berg | Befestigtes Dorf
+Phönizisches Alphabet | C | papier,stein | schrift | rund zwei Dutzend Zeichen für Konsonanten | Konsonantenschrift
+Alphabet mit Vokalen | C | papier,stein | schrift | Zeichen auch für Vokale | Phönizisches Alphabet
+Wachstafel | C | holz,wachs | zeichen | Holztafel mit Wachsschicht, wiederbeschreibbar | Tontafel
+Griffel | C | bronze,knochen | kalt_verformen | spitzes Ende schreibt, flaches glättet | Wachstafel
+Weltkarte auf Ton | C | ton | schrift,zeichen | Karte der bekannten Welt | Tontafel
+Palastbibliothek | C | ton | buch | Tausende Tafeln zu Wissen, Recht und Erzählung | Tempelbibliothek
+Brieftaube | C | tier | tierhaltung,signal | Tauben tragen Nachrichten nach Hause | Hühnerhaltung
+Reichspost | C | tier | signal,regeln | Reiterstafetten bringen Nachrichten in wenigen Tagen ans Ziel | Königsstraße mit Stationen
+Münze | G | gold,silber | giessen,schlagen | Metallstück mit amtlichem Stempel für Gewicht und Reinheit | Handelsgewicht in Silber
+Prägestempel | T | bronze | giessen,schneiden | Stempel schlägt Bild und Zeichen in Münzen | Münze
+Bürgerstadt | G | - | regeln,siedlung | Stadt mit Bürgerversammlung und Ämtern | Staat
+Volksversammlung | G | - | regeln | Bürger stimmen über Gesetze ab | Bürgerstadt
+Theater | G | stein | bauen_gemeinsam,klang | halbrunde Ränge, gute Akustik | Säulentempel
+Sportwettkampf | G | - | regeln | regelmäßige Wettkämpfe mit festen Regeln | Jahresfest
+Weltreich mit Provinzen | G | - | regeln | Statthalter verwalten Provinzen | Staat
+Volkszählung | G | papier | zaehlen,regeln | Zahl der Einwohner und Abgaben wird erfasst | Verwaltung durch Schreiber
+Finsternisvorhersage | W | ton | beobachten,zaehlen | wiederkehrende Zyklen sagen Finsternisse voraus | Sternbeobachtung
+Schaltmonat | W | jahreslauf | zaehlen,regeln | Mondkalender wird an das Sonnenjahr angeglichen | Sonnenkalender
+Naturerklärung ohne Götter | W | - | beobachten,lehren | Ursachen aus Beobachtung erklären | Ursache und Wirkung erkennen
+Lehrsatz über rechtwinklige Dreiecke | W | - | zaehlen | Beziehung der Seitenlängen im rechtwinkligen Dreieck | Messschnur mit Knoten
+Magnetstein beobachten | W | erz | beobachten | Magneteisenstein zieht Eisen an | Schmiedeeisen
+Reibungselektrizität beobachten | W | harz,wolle | beobachten | geriebener Bernstein zieht leichte Teile an | Bernsteinschmuck
+Starstich | D | bronze | chirurgie | getrübte Linse wird aus der Sehachse geschoben | Chirurgische Lehrschrift
+Nasenplastik | D | blatt | chirurgie | Haut wird aus der Wange verschoben, um die Nase zu formen | Chirurgische Lehrschrift
+Zahnersatz mit Goldband | D | gold | kalt_verformen,chirurgie | Ersatzzähne mit Goldband an Nachbarzähnen | Prothese aus Holz
+Heilschlaf im Heiligtum | D | - | religion,heilen | Kranke ruhen im Heiligtum und werden betreut | Pflege von Kranken
+Pflanzenheilkunde-Schrift | D | papier,blatt | arznei,buch | Sammlung zu Heilpflanzen und ihrer Wirkung | Arzneibuch
+Doppelblasebalg | E | leder,holz | luftzufuhr | zwei Bälge im Wechsel geben ununterbrochenen Luftstrom | Blasebalg
+Holzkohle-Großmeiler | E | holz,erde | holzkohle | mehrere Meiler versorgen Rennöfen | Holzkohle aus Meilern in Mengen
+Bergbau mit Holzausbau | B | holz,erz | stollen,tragwerk | Holzrahmen stützen Stollen | Kupferbergbau
+Salzbergwerk | B | salz | stollen | Steinsalz wird untertage abgebaut | Salzsieden
+Grubenlampe | B | keramik,oel | licht_feuer | Öllampe für die Arbeit unter Tage | Tonlampe
+Grubenentwässerung | B | holz,leder,wasser | sammeln,stollen | Wasser wird in Ledersäcken aus der Grube getragen | Bergbau mit Holzausbau
+Schmiede als Werkstatt | G | eisen | siedlung | feste Schmiede im Dorf | Esse
+Fass aus Dauben | T | holz,eisen | schneiden,schmieden | gebogene Dauben mit Reifen ergeben ein dichtes Fass | Eiserner Radreifen
+Drehscheibe für Metall | M | holz,eisen | drehen | Bogendrehbank für Metallgefäße | Bogendrehbank
+Schlüssel aus Bronze | M | bronze | giessen | Schlüssel hebt Zuhaltungen im Schloss | Holzriegelschloss
+Scharnier | M | bronze,eisen | schmieden,rad_achse | drehbare Verbindung für Türen | Schlüssel aus Bronze
+Kettenglieder | T | eisen | schmieden | geschmiedete Kettenglieder für Lasten | Eisennagel
+Glasgefäß aus der Form | T | glas | glas,giessen | Glas in Formen gegossen | Kerngeformtes Glasgefäß
+Purpurfärberei | G | textil,muschel | extrahieren,farbe | Farbstoff aus Meeresschnecken | Färben mit Pflanzen
+Baumkelter | L | holz,stein,nahrung | hebel,extrahieren | langer Hebelbalken presst Trauben und Oliven | Ölmühle mit Mahlstein

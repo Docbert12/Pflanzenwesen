@@ -1,0 +1,194 @@
+# Zeitalter 18 – Viktorianisches Zeitalter (ca. 1837–1901): Massenstahl, Telegraf, Telefon, Elektrizität, Verbrennungsmotor.
+# Für Pflanzenwesen: Vererbungsregeln an Erbsen, Stickstoffbindung, Pflanzenviren, Stärke im Blattgrün.
+Energieerhaltung | W | papier | messen,zaehlen | Wärme und Arbeit sind ineinander umwandelbar, Energie bleibt erhalten | Kreisprozess-Theorie | | im Spiel Grundregel (Energiebilanz)
+Mechanisches Wärmeäquivalent | W | wasser,messing | messen | Rührwerk-Versuch: bestimmte Arbeit erwärmt Wasser um bestimmten Betrag | Energieerhaltung
+Zweiter Hauptsatz der Wärmelehre | W | papier | zaehlen | Wärme fließt von selbst nur vom Warmen zum Kalten | Energieerhaltung
+Absolute Temperaturskala | W | papier | messen | Temperatur ab dem absoluten Nullpunkt | Zweiter Hauptsatz der Wärmelehre
+Kinetische Gastheorie | W | papier | zaehlen | Druck und Temperatur aus der Bewegung der Teilchen | Absolute Temperaturskala
+Periodensystem | W | papier | chemie,buch | Elemente nach Masse und Eigenschaften geordnet, Lücken sagen neue vorher | Atomtheorie mit Massenverhältnissen
+Spektralanalyse | W | glas,gas | optik,chemie | Spektrallinien verraten die Elemente – auch in Sternen | Spektrum des Lichts
+Bunsenbrenner | W | messing,gas | feuer_nutzen,luftzufuhr | Gas und Luft gemischt ergeben eine heiße, rußfreie Flamme | Gasbeleuchtung
+Elektromagnetische Feldgleichungen | W | papier | zaehlen,magnetismus | Licht ist eine elektromagnetische Welle | Elektromagnetische Induktion
+Elektromagnetische Wellen nachweisen | W | kupfer,stromquelle | funk | Funkenstrecke sendet, Ring empfängt Wellen | Elektromagnetische Feldgleichungen
+Elektron entdecken | W | glas,stromquelle | vakuum,gleichstrom | Kathodenstrahlen bestehen aus winzigen geladenen Teilchen | Elektromagnetische Wellen nachweisen
+Röntgenstrahlen | D | glas,stromquelle | strahlung,vakuum | unsichtbare Strahlen durchdringen Körper und schwärzen Fotoplatten | Elektron entdecken
+Radioaktivität entdecken | W | uran | strahlung | Uransalze senden ohne Energiezufuhr Strahlen aus | Röntgenstrahlen
+Lichtgeschwindigkeit im Labor | W | glas,messing | optik,messen | Zahnrad- und Drehspiegelversuch messen das Licht | Lichtgeschwindigkeit bestimmen
+Doppler-Effekt | W | - | klang,beobachten | Frequenz ändert sich mit der Bewegung der Quelle | Spektralanalyse
+Treibhauswirkung von Gasen | W | gas,glas | messen | Wasserdampf und Kohlendioxid halten Wärmestrahlung zurück | Spektralanalyse | | für Pflanzenwesen und Klima bedeutsam
+Eiszeittheorie | W | stein,geologie | beobachten | Gletscher bedeckten einst weite Gebiete | Geologische Zeitskala
+Evolutionstheorie | W | papier | beobachten,buch | Arten verändern sich durch natürliche Auslese | System der Lebewesen
+Vererbungsregeln an Erbsen | W | pflanze,samen | zucht,zaehlen | Merkmale werden nach festen Zahlenverhältnissen vererbt | Kreuzungsversuche mit Pflanzen | | Kern für Prompt 7 (Vererbung) – an Pflanzen entdeckt
+Zellteilung beobachten | W | glas,blatt | optik,beobachten | Chromosomen teilen sich bei der Zellteilung | Zelltheorie
+Befruchtung als Kernverschmelzung | W | glas | optik,beobachten | Ei- und Samenzellkern verschmelzen | Zellteilung beobachten
+Stärkebildung im Blattgrün | W | blatt,sonne | beobachten,chemie | im Licht entsteht Stärke in den grünen Körnchen der Zellen | Blattgrün isolieren | | Kern der Pflanzenwesen
+Stickstoffbindung durch Knöllchenbakterien | W | pflanze,mikroben | beobachten | Hülsenfrüchte gewinnen mit Bakterien Stickstoff aus der Luft | Mineralstofftheorie der Pflanzenernährung | | für Pflanzenwesen zentral
+Pflanzenvirus entdecken | W | blatt,mikroben | beobachten | Krankheitserreger, die durch Bakterienfilter gehen | Mikroorganismen entdecken | | an der Tabakpflanze entdeckt
+Zellfreie Gärung | W | mikroben,chemikalie | gaeren,chemie | Gärung gelingt mit Presssaft ohne lebende Zellen | Pflanzenvirus entdecken
+Keimtheorie der Krankheiten | D | mikroben | beobachten,hygiene | Mikroorganismen verursachen Krankheiten | Lehre von der Ansteckung; Mikroorganismen entdecken
+Pasteurisieren | L | nahrung | kochen,hygiene | kurzes Erhitzen tötet Keime in Wein und Milch | Keimtheorie der Krankheiten
+Händedesinfektion | D | chemikalie,wasser | hygiene | Waschen mit Chlorkalk senkt das Kindbettfieber | Chlorkalk
+Antiseptische Wundbehandlung | D | chemikalie | hygiene,chirurgie | keimtötende Mittel bei Operationen | Keimtheorie der Krankheiten
+Narkose | D | chemikalie | chirurgie | schmerzfreie Operationen durch Betäubung | Destillierte Arznei
+Erreger in Reinkultur | D | mikroben,glas | zellkultur | einzelne Bakterienarten werden getrennt gezüchtet | Keimtheorie der Krankheiten
+Nährboden mit Agar | D | pflanze,glas | zellkultur | festes Gel aus Algen als Nährboden | Erreger in Reinkultur
+Petrischale | D | glas | glas,zellkultur | flache Glasschale mit Deckel für Kulturen | Nährboden mit Agar
+Bakterienfärbung | D | chemikalie | farbe,diagnose | Farbstoffe machen Bakterien sichtbar und unterscheidbar | Erreger in Reinkultur
+Ölimmersions-Mikroskop | W | glas,oel | optik | Öl zwischen Linse und Präparat erhöht die Auflösung | Achromatisches Objektiv
+Tollwutimpfung | D | - | impfen | abgeschwächte Erreger schützen nach dem Biss | Schutzimpfung mit Kuhpocken
+Acetylsalicylsäure | D | chemikalie | chemie,arznei | Schmerzmittel abgeleitet aus Weidenrinde | Wirkstoff aus Pflanzen isolieren | | Ursprung in einer Pflanze
+Blutdruckmessgerät mit Manschette | D | kautschuk,quecksilber | messen,diagnose | Manschette und Quecksilbersäule messen den Blutdruck | Blutdruckmessung im Versuch
+Klinisches Thermometer | D | glas,quecksilber | messen,diagnose | kurzes Thermometer misst in Minuten | Fieberthermometer
+Krankenpflege als Beruf | D | - | heilen,lehren | ausgebildete Pflegekräfte mit Schule | Krankenpflegeorden
+Rotes Kreuz | G | - | regeln,heilen | neutrale Hilfe für Verwundete aller Seiten | Krankenpflege als Beruf
+Bessemer-Verfahren | B | eisen,luft | oxidieren,luftzufuhr | Luft durch flüssiges Roheisen blasen macht in Minuten Stahl | Puddelverfahren
+Regenerativfeuerung | E | ziegel,gas | feuer_nutzen | Abgaswärme heizt die Verbrennungsluft vor | Heißwind im Hochofen
+Siemens-Martin-Ofen | B | stahl,gas | schmelzen,feuer_nutzen | Herdofen mit Regenerativfeuerung erschmilzt Stahl aus Schrott | Regenerativfeuerung
+Thomas-Verfahren | B | eisen,kalk | oxidieren,chemie | basisches Futter entfernt Phosphor aus dem Eisen | Bessemer-Verfahren
+Thomasmehl als Dünger | L | duenger | chemie,landbau | phosphathaltige Schlacke düngt Felder | Thomas-Verfahren
+Aluminium-Schmelzflusselektrolyse | B | aluminium,stromquelle | elektrolyse | Aluminium wird billig und in großen Mengen | Aluminium darstellen; Dynamo
+Stahlbeton | A | stahl,moertel | zement,tragwerk | Stahleinlagen nehmen Zug auf, Beton den Druck | Portlandzement
+Stahlskelettbau | A | stahl | tragwerk,bauen_gemeinsam | Stahlgerüst trägt das Gebäude, Wände tragen nicht mehr | Gusseiserne Säulen im Bau
+Aufzug mit Fangvorrichtung | A | stahl,seil | winde,federn | Sperrklinken halten die Kabine bei Seilriss | Dampffördermaschine
+Hochhaus | A | stahl,glas | tragwerk,bauen_gemeinsam | viele Stockwerke dank Stahlskelett und Aufzug | Stahlskelettbau; Aufzug mit Fangvorrichtung
+Vorgefertigter Glas-Eisen-Bau | A | eisen,glas | tragwerk,bauen_gemeinsam | Hallen aus genormten Fertigteilen | Glashaus mit Eisenrippen
+Fachwerkturm aus Schmiedeeisen | A | eisen | tragwerk,bauen_gemeinsam | sehr hoher, leichter Gitterturm | Vorgefertigter Glas-Eisen-Bau
+Zentralheizung mit Heizkörpern | E | eisen,wasser | feuer_nutzen,hydraulik | Kessel versorgt Heizkörper in allen Räumen | Heizung mit Warmwasser
+Gasherd | E | eisen,gas | feuer_nutzen | Kochen mit regelbarer Gasflamme | Gaswerk
+Sprinkleranlage | G | kupfer,wasser | hydraulik | Düsen öffnen bei Hitze selbsttätig und löschen | Feuerwehr mit Dampfspritze | | für Pflanzenwesen lebenswichtig
+Tragbarer Feuerlöscher | G | kupfer,wasser,chemikalie | hydraulik,chemie | Behälter mit Druck löscht kleine Brände | Sprinkleranlage | | für Pflanzenwesen lebenswichtig
+Abwassersystem mit Sammlern | A | ziegel,wasser | bauen_gemeinsam,hygiene | große Sammelkanäle leiten Abwasser aus der Stadt | Kanalisation mit Spülung
+Langsamsandfilter | A | sand,wasser | hygiene | Trinkwasser sickert durch Sandschichten | Wasserleitung unter Druck
+Rieselfeld | A | erde,wasser | bewaessern,zersetzen | Abwasser wird über Felder geleitet und gereinigt | Abwassersystem mit Sammlern
+Glühlampe | E | glas,kohle,stromquelle | licht_elektrisch,vakuum | Kohlefaden glüht im luftleeren Glaskolben | Bogenlampe
+Dynamo mit Selbsterregung | E | kupfer,eisen | generator,magnetismus | Maschine erzeugt ihr Magnetfeld selbst | Dynamo
+Ringanker-Generator | E | kupfer,eisen | generator | gleichmäßiger Gleichstrom für die Industrie | Dynamo mit Selbsterregung
+Elektrizitätswerk | E | kupfer,kohle | generator,dampf,siedlung | zentrale Station versorgt ein Stadtviertel mit Strom | Glühlampe; Ringanker-Generator
+Stromzähler | W | kupfer,messing | messen,gleichstrom | misst den Stromverbrauch eines Haushalts | Elektrizitätswerk
+Schmelzsicherung | E | blei,kupfer | gleichstrom | dünner Draht schmilzt bei Überlast | Elektrizitätswerk | | im Spiel ab Prompt 12 denkbar (Kurzschlussbehandlung)
+Wechselstromnetz | E | kupfer | wechselstrom | Wechselstrom lässt sich umspannen und weit übertragen | Elektrizitätswerk
+Transformator | E | kupfer,eisen | wechselstrom,magnetismus | zwei Spulen auf Eisenkern setzen Spannungen um | Wechselstromnetz
+Drehstrom | E | kupfer | wechselstrom | drei versetzte Wechselströme übertragen viel Leistung | Transformator
+Drehstrommotor | E | kupfer,eisen | wechselstrom,elektromotor | robuster Motor ohne Bürsten | Drehstrom
+Fernübertragung von Strom | E | kupfer | wechselstrom,bauen_gemeinsam | Strom über Hunderte Kilometer Leitung | Drehstrom
+Wasserkraftwerk | E | stahl,wasser | turbine,generator | Turbinen treiben Generatoren | Wasserturbine; Dynamo mit Selbsterregung
+Freistrahlturbine | E | stahl,wasser | turbine | Wasserstrahl trifft Becherschaufeln | Wasserturbine
+Dampfturbine | E | stahl,kohle | turbine,dampf | Dampf strömt durch Schaufelräder | Wasserturbine
+Bleiakkumulator | E | blei,saeure | speicher,elektrolyse | wiederaufladbare Batterie | Daniell-Element
+Trockenbatterie | E | zink,kohle | speicher | auslaufsichere Batterie mit Paste | Daniell-Element
+Gasmotor | E | eisen,gas | verbrennungsmotor | Gas verbrennt im Zylinder und treibt den Kolben | Doppelt wirkende Dampfmaschine
+Viertaktmotor | E | eisen,erdoel | verbrennungsmotor | Ansaugen, Verdichten, Arbeiten, Ausstoßen | Gasmotor
+Vergaser | V | messing,erdoel | verbrennungsmotor | mischt flüssigen Kraftstoff mit Luft | Viertaktmotor
+Magnetzündung | V | kupfer,eisen | magnetismus,verbrennungsmotor | Magnet erzeugt den Zündfunken | Viertaktmotor
+Dieselmotor | E | stahl,erdoel | verbrennungsmotor | Selbstzündung durch hohe Verdichtung | Viertaktmotor
+Automobil | V | stahl,erdoel,kautschuk | verbrennungsmotor,fahrzeug | Wagen mit eigenem Motor | Viertaktmotor; Laufmaschine
+Ausgleichsgetriebe | V | stahl | getriebe | Räder einer Achse drehen in Kurven verschieden schnell | Automobil
+Motorrad | V | stahl,erdoel | verbrennungsmotor,fahrzeug | Zweirad mit Motor | Automobil
+Sicherheitsfahrrad | V | stahl,kautschuk | rad_achse,getriebe | gleich große Räder, Kettenantrieb hinten | Laufmaschine; Kettentrieb
+Luftreifen | V | kautschuk,textil | vakuum | Luftgefüllter Schlauch federt und rollt leicht | Vulkanisierter Kautschuk
+Kugellager | M | stahl | rad_achse,schleifen | gehärtete Kugeln ersetzen Gleitreibung | Achslager mit Fett
+Rundschleifmaschine | M | stahl,sandstein | schleifen,getriebe | Kugeln und Wellen werden genau geschliffen | Kugellager
+Normgewinde | M | stahl | regeln,messen | einheitliche Gewindemaße | Austauschbare Teile
+Revolverdrehbank | M | stahl | drehen | drehbarer Werkzeugkopf für schnelle Serien | Drehbank mit Leitspindel und Wechselrädern
+Druckluftbremse | V | stahl,luft | hydraulik | Druckluft bremst alle Wagen eines Zuges zugleich | Eisenbahn
+Streckenblock-Signale | V | eisen,kupfer | gleichstrom,regeln | nur ein Zug in jedem Streckenabschnitt | Elektrischer Telegraf; Eisenbahn
+Schlafwagen | V | holz,stahl | fahrzeug | Betten im fahrenden Zug | Eisenbahn
+Zahnradbahn | V | stahl | getriebe,fahrzeug | Zahnrad greift in eine Zahnstange am steilen Berg | Zahnstangenwinde; Dampflokomotive
+Untergrundbahn | V | stahl,ziegel | stollen,fahrzeug | Bahn in Tunneln unter der Stadt | Eisenbahn
+Elektrische Straßenbahn | V | stahl,kupfer | elektromotor,fahrzeug | Straßenbahn mit Strom aus Oberleitung | Elektromotor; Pferdebahn
+Elektrische Lokomotive | V | stahl,kupfer | elektromotor,fahrzeug | Lokomotive mit Elektromotor | Elektrische Straßenbahn
+Alpentunnel | V | stein | stollen,bauen_gemeinsam,bohren | Eisenbahntunnel von vielen Kilometern | Kanaltunnel
+Pressluftbohrer | B | stahl,luft | bohren,hydraulik | Druckluft schlägt den Bohrer im Tunnel | Alpentunnel
+Seekanal ohne Schleusen | V | wasser,erde | graben,bauen_gemeinsam | Kanal verbindet zwei Meere | Industriekanal
+Drahtseil-Hängebrücke | V | stahl,stein | tragwerk,bauen_gemeinsam | Brücke an Kabeln aus vielen Stahldrähten | Kettenhängebrücke; Drahtseil
+Auslegerbrücke aus Stahl | V | stahl | tragwerk,bauen_gemeinsam | Kragarme überspannen weite Meeresarme | Drahtseil-Hängebrücke
+Eisenrumpf-Dampfer | V | eisen,kohle | dampf,auftrieb | großer Dampfer mit Eisenrumpf | Dampfschiff
+Turbinenschiff | V | stahl,kohle | turbine,auftrieb | Dampfturbine macht Schiffe sehr schnell | Dampfturbine
+Kühlschiff | L | stahl,nahrung | kaelte,auftrieb | gekühlte Laderäume transportieren Fleisch über Ozeane | Kältemaschine
+Kältemaschine | E | stahl,chemikalie | kaelte | Verdichter und Verdampfer erzeugen Kälte zuverlässig | Kompressions-Kältemaschine (Entwurf)
+Kühlhaus | L | ziegel,nahrung | kaelte | gekühlte Lager für Lebensmittel | Kältemaschine
+Lenkbares Luftschiff | V | textil,gas | auftrieb,aerodynamik | Ballon mit Motor und Ruder | Gasballon
+Starrluftschiff | V | aluminium,textil,wasserstoff | auftrieb,verbrennungsmotor | Gerüst aus Aluminium mit Gaszellen | Lenkbares Luftschiff
+Gleitflug | V | holz,textil | aerodynamik | Gleiter mit gewölbten Flügeln trägt einen Menschen | Fallschirm
+Unterseeboot | V | stahl | auftrieb,elektromotor | Boot taucht durch Fluten von Tanks | Taucherglocke mit Luftnachschub
+Telefon | C | kupfer,eisen,stromquelle | gleichstrom,klang,magnetismus | Sprache wird in Strom verwandelt und wieder hörbar | Elektrischer Telegraf
+Kohlemikrofon | C | kohle,kupfer | gleichstrom,klang | Kohlekörner ändern bei Schall ihren Widerstand | Telefon
+Telefonvermittlung | C | kupfer | gleichstrom,magnetismus,regeln | Vermittlungsstelle verbindet Teilnehmer | Telefon
+Selbstwählamt | C | kupfer,eisen | magnetismus,getriebe | Wähler verbinden ohne Vermittlungskraft | Telefonvermittlung; Relais
+Seekabel über den Ozean | C | kupfer,kautschuk | gleichstrom,bauen_gemeinsam | Telegrafenkabel verbindet Kontinente | Kabelisolierung mit Guttapercha
+Fernschreiber | C | kupfer,eisen | gleichstrom,druck | Telegraf druckt Buchstaben | Elektrischer Telegraf
+Funktelegrafie | C | kupfer,stromquelle | funk | Nachrichten ohne Draht über das Meer | Elektromagnetische Wellen nachweisen
+Phonograph | C | zinn,stahl | klang | Nadel ritzt Schallwellen in eine Walze und spielt sie ab | Telefon
+Schallplatte und Grammofon | C | kautschuk,stahl | klang,giessen | gepresste Scheiben vervielfältigen Musik | Phonograph
+Rollfilm | C | kunststoff,silber | chemie,optik | biegsamer Film statt Glasplatten | Negativ-Positiv-Verfahren
+Handkamera für alle | C | holz,glas | optik | einfache Kamera, Entwicklung beim Händler | Rollfilm
+Kinematograph | C | kunststoff,glas | optik,getriebe | Bildfolge wird projiziert und bewegt sich | Rollfilm
+Farbfotografie | C | glas,silber | optik,chemie | drei Farbauszüge ergeben ein Farbbild | Fotografie
+Rotationsdruckmaschine | C | stahl,papier | druck,getriebe | Druck von der Rolle in sehr hoher Auflage | Schnellpresse
+Zeilensetzmaschine | C | blei,stahl | giessen,druck | Tastatur gießt ganze Zeilen | Buchdruck mit beweglichen Metalllettern
+Schreibmaschine | C | stahl | getriebe,druck | Tasten schlagen Typen auf Papier | Zeilensetzmaschine
+Füllfederhalter | C | kautschuk,gold | hydraulik | Feder mit eingebautem Tintenvorrat | Stahlschreibfeder
+Postkarte | C | papier | druck,regeln | offene Karte zum günstigen Porto | Briefmarke
+Weltpostverein | C | - | regeln | einheitliche Regeln für die Post zwischen Staaten | Postkarte
+Papier aus Holz | C | holz,chemikalie | papier,chemie | Holzschliff und Zellstoff ersetzen Lumpen | Papiermaschine | | Pflanzenfasern als Rohstoff
+Wellpappe | T | papier | papier,walzen | gewellte Lage macht Pappe stabil | Papier aus Holz
+Registrierkasse | G | stahl | getriebe,zaehlen | Kasse zeigt und speichert Beträge | Mechanische Rechenmaschine
+Sprossenrad-Rechenmaschine | W | stahl | getriebe,zaehlen | handliche Maschine für alle vier Grundrechenarten | Staffelwalzen-Rechenmaschine
+Lochkarten-Zählmaschine | W | papier,kupfer | gleichstrom,zaehlen | elektrische Kontakte zählen gelochte Karten | Lochkarten-Webstuhl; Volkszählung
+Programmgesteuerte Rechenmaschine (Entwurf) | W | messing | getriebe,digital | Entwurf einer frei programmierbaren mechanischen Rechenmaschine | Lochkarten-Webstuhl | entw | gebaut erst viel später
+Logik-Algebra | W | papier | zaehlen | Logik mit 0 und 1 als Rechnung | Binäres Zahlensystem
+Teerfarbstoffe | B | kohle,chemikalie | chemie,farbe | künstliche Farbstoffe aus Steinkohlenteer | Gaswerk
+Künstliches Indigo | B | chemikalie | chemie,farbe | Indigo ohne Pflanzen | Teerfarbstoffe
+Zelluloid | T | kunststoff,faser | chemie | erster halbsynthetischer Kunststoff aus Pflanzenfasern | Vulkanisierter Kautschuk | | Rohstoff aus Pflanzen
+Kunstseide | T | faser,chemikalie | chemie,weben | Faser aus aufgelöster Zellulose | Zelluloid | | Rohstoff aus Pflanzen
+Linoleum | A | oel,textil | chemie | Bodenbelag aus Leinöl und Kork | Zelluloid
+Margarine | L | oel | chemie | Speisefett aus Pflanzen- und Tierfett | Seifensieden
+Kondensmilch | L | tier,eisen | kochen,trocknen | eingedickte Milch in Dosen | Konservendose
+Milchzentrifuge | L | stahl | rad_achse | Fliehkraft trennt Rahm von Milch | Butter
+Erdölbohrung | B | erdoel,stahl | bohren,winde | Bohrung fördert Erdöl aus der Tiefe | Soletiefbohrung
+Erdölraffinerie | B | erdoel,stahl | destillieren | Rohöl wird in Lampenöl und andere Teile getrennt | Erdölbohrung
+Petroleumlampe | E | glas,erdoel | licht_feuer | helle, billige Lampe | Erdölraffinerie; Rundbrenner
+Paraffinkerze | E | erdoel | giessen,licht_feuer | Kerze aus Erdölwachs | Kerzengießerei
+Dynamit | B | - | sprengen | handhabbarer Sprengstoff für Bergbau und Tunnel | Sprengarbeit im Bergbau | | Projektregel: keine Stoffangaben
+Superphosphat-Dünger | L | duenger,saeure | chemie,landbau | aufgeschlossenes Phosphat wirkt schnell | Mineralstofftheorie der Pflanzenernährung
+Kalidünger | L | duenger | graben,landbau | Kalisalze aus Lagerstätten | Superphosphat-Dünger
+Dampfpflug | L | stahl,kohle | dampf,landbau | Dampfmaschinen ziehen Pflüge mit Seilen | Stahlpflug
+Bindemäher | L | stahl,seil | getriebe,landbau | Maschine mäht und bindet Garben | Mähmaschine
+Mähdrescher | L | stahl,tier | getriebe,landbau | mähen und dreschen in einem Arbeitsgang | Bindemäher; Dreschmaschine
+Stacheldraht | L | stahl | drahtziehen | Draht mit Stacheln hält Vieh | Drahtseil
+Saatgutzüchtung | L | samen,pflanze | zucht | Sorten werden nach Leistung ausgelesen | Vererbungsregeln an Erbsen | | für Pflanzenwesen besonders bedeutsam
+Landwirtschaftliche Versuchsstation | L | pflanze | landbau,messen | Felddüngungsversuche über Jahrzehnte | Lehrbuch der rationellen Landwirtschaft
+Pflanzenschutz gegen Pilze | L | kupfer,kalk,wasser | chemie | kupferhaltige Spritzbrühe schützt Reben | Landwirtschaftliche Versuchsstation | | für Pflanzenwesen ein Thema der eigenen Gesundheit
+Veredelung auf widerstandsfähige Unterlage | L | pflanze | zucht | Reben auf Unterlagen, die Schädlingen widerstehen | Pfropfen
+Botanische Expedition | W | pflanze,papier | sammeln,buch | Pflanzen aus aller Welt werden gesammelt | Botanischer Garten
+Glashaus für Tropenpflanzen | L | stahl,glas,pflanze | tragwerk,feuer_nutzen | große beheizte Palmenhäuser | Vorgefertigter Glas-Eisen-Bau | | für Pflanzenwesen besonders bedeutsam
+Trinkwasserchlorung | D | chemikalie,wasser | hygiene,chemie | Chlor tötet Keime im Trinkwasser | Chlorkalk
+Seismograph | W | stahl,geologie | messen | Pendel zeichnet Erdbebenwellen auf | Erdbebenanzeiger
+Meeresforschungsfahrt | W | papier | messen,beobachten | Tiefen, Temperaturen und Leben der Ozeane vermessen | Theodolit
+Wetterdienst mit Telegraf | W | kupfer,papier | signal,messen | Messwerte vieler Orte werden täglich gemeldet | Wettervorhersage-Karte; Elektrischer Telegraf
+Zeitzonen | W | - | regeln,zaehlen | einheitliche Zonenzeit für Bahn und Telegraf | Wetterdienst mit Telegraf
+Nullmeridian | W | - | regeln,navigation | gemeinsamer Bezugsmeridian für Karten und Zeit | Zeitzonen
+Panzerschiff | K | stahl,kohle | dampf,auftrieb | Dampfschiff mit Eisenpanzer | Eisenrumpf-Dampfer
+Drehturm für Geschütze | K | stahl | rad_achse | drehbarer Panzerturm | Panzerschiff
+Torpedo | K | - | sprengen,auftrieb | selbstfahrender Unterwasserkörper | Unterseeboot | | Projektregel: keine Stoffangaben
+Maschinengewehr | K | - | sprengen,getriebe | Waffe lädt sich durch den Rückstoß selbst | Hinterlader | | Projektregel: keine Stoffangaben
+Genfer Abkommen | G | papier | regeln | Schutz von Verwundeten und Helfern im Krieg | Rotes Kreuz
+Genossenschaft | G | - | handel,regeln | Mitglieder wirtschaften gemeinsam und teilen Gewinne | Gewerkschaft
+Sozialversicherung | G | papier | regeln,zaehlen | Kranken-, Unfall- und Rentenversicherung für Arbeiter | Lebensversicherung
+Allgemeine Wahl | G | - | regeln | alle Männer, später alle Bürger wählen | Geschriebene Verfassung
+Kaufhaus | G | glas,stahl | handel | großes Geschäft mit festen Preisen | Vorgefertigter Glas-Eisen-Bau
+Versandhandel mit Katalog | G | papier | handel,druck | Bestellung nach Katalog, Lieferung per Post | Kaufhaus; Postkarte
+Weltausstellung | G | glas,stahl | lehren,handel | Länder zeigen ihre Technik | Gewerbeausstellung
+Olympische Spiele der Neuzeit | G | - | regeln | internationale Wettkämpfe | Sportwettkampf
+Öffentliche Bibliothek | C | papier | buch,lehren | kostenlose Bibliothek für alle | Leihbibliothek
+Technische Hochschule | G | papier | lehren | Hochschule für Ingenieure | Bergakademie
+Forschungslabor in der Industrie | W | glas | beobachten,siedlung | Firmen forschen planmäßig | Technische Hochschule
+Verkehrsampel mit Gaslicht | V | gas,glas | licht_feuer,regeln | Signale regeln den Verkehr an Kreuzungen | Streckenblock-Signale
+Asphaltstraße | V | erdoel,sand | verdichten | glatte, staubfreie Fahrbahn | Schotterstraße mit Bindung
+Rettungsweste aus Kork | V | rinde,textil | auftrieb,naehen | Weste hält Menschen über Wasser | Rettungsboje aus Kork
+Gaswarmwasserbereiter | E | kupfer,gas | feuer_nutzen | warmes Wasser auf Abruf | Gasherd
+Elektrischer Heizer | E | kupfer,stromquelle | gleichstrom | Widerstandsdraht erzeugt Wärme | Glühlampe | | im Spiel ab Prompt 12 (einfacher Heizer)
+Elektrisches Bügeleisen | E | eisen,kupfer | gleichstrom | Heizdraht im Bügeleisen | Elektrischer Heizer
+Staubsauger mit Handpumpe | G | holz,leder | vakuum | Unterdruck saugt Staub auf | Vakuumpumpe
+Konservenfabrik | L | eisen,nahrung | kochen,siedlung | Konserven in großen Mengen | Konservendose
+Großbäckerei mit Maschinen | L | stahl,samen | getriebe,kochen | Teigknetmaschinen und Öfen | Dampfkochtopf

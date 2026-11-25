@@ -1,0 +1,122 @@
+# Zeitalter 24 – Zukunft / Singularität (nach ca. 2040): alles hier ist SPEKULATIV – physikalisch begründete Annahmen, keine Tatsachen.
+# Für Pflanzenwesen: Pflanzen als Lebenserhaltung im All, lebende Gebäude, Gewebe-Regeneration nach pflanzlichem Vorbild.
+Fusionskraftwerk | E | wasserstoff,supraleiter | kernfusion,generator | Fusionsplasma liefert dauerhaft Strom ins Netz | Zündung in der Laserfusion; Fusionsforschung mit Magnetfeld
+Kompakter Fusionsreaktor | E | supraleiter,wasserstoff | kernfusion | Hochtemperatur-Supraleiter machen Fusionsanlagen klein | Fusionskraftwerk
+Raumtemperatur-Supraleiter | W | supraleiter | gleichstrom | verlustfreie Leitung ohne Kühlung | Hochtemperatur-Supraleiter
+Verlustfreies Weltstromnetz | E | supraleiter | gleichstrom,bauen_gemeinsam | Sonnenstrom wird rund um die Erde verteilt | Raumtemperatur-Supraleiter
+Solarkraftwerk im Weltraum | E | silizium,aluminium | photovoltaik,funk | Satelliten sammeln Sonnenlicht und senden Energie per Mikrowelle | Photovoltaik in Massenfertigung; Satelliteninternet-Konstellation
+Sonnenkollektor-Schwarm um die Sonne | E | silizium | photovoltaik,raumfahrt | unzählige Kollektoren fangen einen Teil der Sonnenleistung | Solarkraftwerk im Weltraum | | sehr spekulativ
+Künstliche Photosynthese im Industriemaßstab | E | silizium,wasser,sonne | photovoltaik,chemie | Anlagen machen aus Licht, Wasser und CO₂ Kraftstoffe | Künstliches Blatt | | Kern der Pflanzenwesen
+Kohlenstoff-Supersammler-Pflanzen | L | pflanze,erbgut | gentechnik | Pflanzen speichern mehr Kohlenstoff dauerhaft in tiefen Wurzeln | Verbesserte Photosynthese im Feld | | Kern der Pflanzenwesen
+Photosynthese mit erweitertem Lichtspektrum | L | pflanze,erbgut | gentechnik | Pflanzen nutzen auch Infrarotlicht | Kohlenstoff-Supersammler-Pflanzen | | Kern der Pflanzenwesen
+Pflanzen mit eigener Stickstoffversorgung überall | L | pflanze,erbgut | gentechnik | alle Hauptkulturen brauchen keinen Stickstoffdünger mehr | Getreide, das Stickstoff selbst bindet | | für Pflanzenwesen zentral
+Pflanzen, die Schadstoffe abbauen | L | pflanze,erbgut | gentechnik,zersetzen | Pflanzen reinigen Böden von Metallen und Giften | Pflanzen als Sensoren | | für Pflanzenwesen bedeutsam
+Gewebe-Regeneration nach Pflanzenvorbild | D | zellen,erbgut | gentechnik,zellkultur | verlorene Gliedmaßen wachsen nach, wie Pflanzen Triebe ersetzen | Induzierte Stammzellen | | Pflanzenwesen können das vielleicht von Natur aus
+Gezüchtete Ersatzorgane | D | zellen | zellkultur,robotik | Organe aus eigenen Zellen werden gedruckt und herangezogen | Gewebedruck
+Nanoroboter in der Medizin | D | nanomaterial,elektronik | nano,robotik | winzige Maschinen reparieren Gewebe von innen | Gewebedruck
+Altern deutlich verlangsamen | D | erbgut | gentechnik,arznei | Ursachen des Alterns werden behandelt | Gentherapie
+Universeller Grippeimpfstoff | D | erbgut | impfen | ein Impfstoff schützt vor allen Grippeviren | mRNA-Impfstoff
+Personalisierte Medizin für alle | D | erbgut,silizium | gentechnik,ki | Behandlung nach dem eigenen Erbgut und Zustand | Genomweite Krankheitsstudien
+Krankheitsüberträger gezielt verdrängen | D | erbgut,tier | gentechnik | Erbgutänderungen verbreiten sich in Mückenbeständen | Genschere | | ökologisch umstritten
+Wiederherstellung ausgestorbener Arten | L | erbgut,tier | gentechnik | Merkmale ausgestorbener Arten werden in Verwandte zurückgebracht | Genschere
+Protozelle aus dem Baukasten | W | chemikalie,erbgut | gentechnik | Leben wird aus unbelebten Bausteinen aufgebaut | Synthetische Minimalzelle
+Allgemeine künstliche Intelligenz | W | silizium | ki | System lernt jede geistige Aufgabe so gut wie ein Mensch | Großes Sprachmodell | | sehr spekulativ; im Spiel bleibt jedes Modell nur Vorschlaggeber
+Autonomes Forschungslabor | W | silizium,stahl | ki,robotik | Roboter planen, führen aus und werten Versuche aus | Allgemeine künstliche Intelligenz
+KI-gestützte Werkstoffentdeckung | W | silizium | ki,chemie | neue Werkstoffe werden am Rechner gefunden und automatisch erprobt | Autonomes Forschungslabor
+Fehlertoleranter Quantencomputer | W | supraleiter | quanten,kaelte | viele verbundene Qubits rechnen ohne störende Fehler | Quantenrechner mit Dutzenden Qubits
+Quanteninternet | C | glas,silizium | quanten,netz | verschränkte Verbindungen zwischen Quantenrechnern | Quantenkommunikation per Satellit
+Molekulare Fertigung | M | nanomaterial | nano,robotik | Maschinen setzen Stoffe Atom für Atom zusammen | Kohlenstoff-Nanoröhren | | sehr spekulativ
+Programmierbare Materie | M | nanomaterial | nano,robotik | Stoff ändert Form und Eigenschaften auf Befehl | Molekulare Fertigung | | sehr spekulativ
+Selbstreparierende Werkstoffe | T | kunststoff,nanomaterial | nano,chemie | Risse schließen sich selbst | Selbstheilender Beton
+Vollautomatische Fabrik | M | stahl,silizium | robotik,ki | Fertigung ohne menschliche Arbeit vor Ort | Humanoider Roboter
+Haushaltsroboter für alle Arbeiten | G | lithium,silizium | robotik,ki | Roboter kocht, putzt und pflegt | Humanoider Roboter
+Gehirn-Computer-Schnittstelle für alle | C | silizium | ki,chirurgie | Gedanken steuern Geräte ohne Operation | Gehirn-Computer-Schnittstelle
+Gedächtnisunterstützung durch Implantat | D | silizium | ki,chirurgie | Implantat stützt geschwächtes Gedächtnis | Gehirn-Computer-Schnittstelle für alle | | sehr spekulativ
+Bemannte Marsmission | V | stahl,aluminium | raumfahrt,rakete | Menschen landen auf dem Mars und kehren zurück | Wiederverwendbare Rakete im Regelbetrieb; Mondbasis-Vorbereitung
+Dauerhafte Mondbasis | V | aluminium,stein | raumfahrt,bauen_gemeinsam | ständig bewohnte Station am Mondpol | Mondbasis-Vorbereitung
+Bauen mit Mondgestein | A | stein,stromquelle | robotik,schmelzen | Roboter drucken Wände aus geschmolzenem Regolith | Metall-3D-Druck; Dauerhafte Mondbasis
+Wasser aus Mondeis | B | wasser | graben,elektrolyse | Eis an den Polen liefert Wasser, Sauerstoff und Treibstoff | Dauerhafte Mondbasis
+Marsstation | V | aluminium,kunststoff | raumfahrt,bauen_gemeinsam | dauerhaft bewohntes Habitat auf dem Mars | Bemannte Marsmission
+Geschlossene Lebenserhaltung mit Pflanzen | L | pflanze,wasser,luft | landbau,zersetzen,raumfahrt | Pflanzen liefern Sauerstoff, Nahrung und reinigen Wasser in der Station | Pflanzenanbau im All; Aquaponik | | Kern der Pflanzenwesen: Pflanzen halten Leben fern der Erde
+Pflanzen für Marsböden | L | pflanze,erbgut | gentechnik,landbau | Pflanzen vertragen salzige, giftige Marsböden | Salztolerante Pflanzen; Pflanzen, die Schadstoffe abbauen | | für Pflanzenwesen besonders bedeutsam
+Kuppelgärten auf dem Mars | L | pflanze,glas | landbau,bauen_gemeinsam | Gewächshäuser unter Druckkuppeln | Geschlossene Lebenserhaltung mit Pflanzen; Marsstation | | für Pflanzenwesen besonders bedeutsam
+Terraforming des Mars | W | gas | raumfahrt | Atmosphäre und Klima eines Planeten werden über Jahrhunderte verändert | Kuppelgärten auf dem Mars | | sehr spekulativ
+Asteroidenbergbau | B | erz,nickel | raumfahrt,robotik | Metalle und Wasser aus Asteroiden | Asteroidenablenkung; Tiefseebergbau (Erkundung)
+Raumwerft im Orbit | V | aluminium,stahl | raumfahrt,robotik | große Raumschiffe werden im All gebaut | Asteroidenbergbau
+Weltraumlift | V | nanomaterial | raumfahrt,winde | Kabel vom Äquator in die Umlaufbahn trägt Kabinen | Kohlenstoff-Nanoröhren | | sehr spekulativ – Material reicht heute nicht
+Rotierendes Raumhabitat | A | aluminium,stahl | raumfahrt,rad_achse | Drehung ersetzt die Schwerkraft | Raumwerft im Orbit
+Kernfusionsantrieb | V | wasserstoff | kernfusion,rakete | Fusionsplasma treibt Raumschiffe zwischen Planeten | Kompakter Fusionsreaktor
+Lichtsegel-Sonde zu anderen Sternen | V | nanomaterial | raumfahrt,optik | winzige Sonden werden von Lasern beschleunigt | Laser | | sehr spekulativ
+Generationenschiff | V | stahl,pflanze | raumfahrt,siedlung | Raumschiff, in dem viele Generationen leben | Rotierendes Raumhabitat; Geschlossene Lebenserhaltung mit Pflanzen | | sehr spekulativ
+Planetare Abwehr von Asteroiden | G | - | raumfahrt,regeln | gemeinsame Überwachung und Ablenkung gefährlicher Asteroiden | Asteroidenablenkung
+Weltraumabfall räumen | V | lithium | robotik,raumfahrt | Satelliten fangen alten Schrott ein | Satelliteninternet-Konstellation
+Vakuumröhrenbahn | V | stahl,kupfer | vakuum,magnetismus | Kapseln fahren in Unterdruckröhren sehr schnell | Magnetschwebebahn im Linienbetrieb
+Wasserstoff-Verkehrsflugzeug | V | wasserstoff,faserverbund | aerodynamik,speicher | Langstrecke ohne fossilen Treibstoff | Wasserstoff-Brennstoffzellenfahrzeug
+Elektrisches Lufttaxi | V | lithium,faserverbund | aerodynamik,elektromotor | senkrecht startende Elektrofluggeräte in Städten | Elektroflugzeug für kurze Strecken
+Vollautonomer Verkehr | V | silizium | robotik,ki | alle Fahrzeuge fahren ohne Fahrer und stimmen sich ab | Robotertaxi
+Autonomes Frachtschiff | V | stahl,silizium | robotik,navigation | Schiff fährt ohne Besatzung | Automatisiertes Containerterminal
+Unterwassersiedlung | A | stahl,glas | tragwerk,auftrieb | dauerhaft bewohnte Station auf dem Meeresgrund | Rotierendes Raumhabitat
+Meeresalgen-Farm | L | pflanze,wasser | landbau | große Algenkulturen für Nahrung und Rohstoffe | Aquaponik | | für Pflanzenwesen bedeutsam
+Seegraswiesen und Tangwälder wiederherstellen | L | pflanze,wasser | landbau | Meerespflanzen binden Kohlenstoff und schützen Küsten | Meeresalgen-Farm | | für Pflanzenwesen bedeutsam
+Wüstenbegrünung mit entsalztem Meerwasser | L | pflanze,wasser,silizium | bewaessern,photovoltaik | Solarstrom entsalzt Wasser für Wüstenwälder | Agri-Photovoltaik | | für Pflanzenwesen besonders bedeutsam
+Vollautomatische Landwirtschaft | L | silizium,lithium | robotik,landbau | Roboter säen, pflegen und ernten jede Pflanze einzeln | Unkrautroboter | | für Pflanzenwesen bedeutsam
+Lebende Gebäude aus Bäumen | A | pflanze,holz | landbau,tragwerk | wachsende Bäume werden zum tragenden Gerüst | Holz-Hochhaus | | Kern der Pflanzenwesen: Bauen mit lebendem Holz
+Gebäude, die Licht in Nahrung wandeln | A | pflanze,glas | landbau,photovoltaik | Fassaden mit Algen und Pflanzen erzeugen Biomasse | Lebende Gebäude aus Bäumen | | für Pflanzenwesen besonders bedeutsam
+Pflanzliches Rechnen | W | pflanze,erbgut | gentechnik,digital | lebende Zellen verarbeiten Signale wie Schaltkreise | Biologisches Rechnen mit DNA | | sehr spekulativ – Pflanzenwesen könnten so „denken“
+Pflanzen-Netzwerk als Sensorfeld | W | pflanze,silizium | messen,netz | ganze Wälder melden Trockenheit und Feuer | Pflanzen als Sensoren | | für Pflanzenwesen eine verwandte Fähigkeit
+Brandsichere Landschaften durch Pflanzenwahl | L | pflanze | zucht,landbau | schwer entflammbare Pflanzen als Schutzgürtel | Brandschutz durch Landschaftsmosaik | | für Pflanzenwesen lebenswichtig
+Feuerfeste Pflanzengewebe | L | pflanze,erbgut | gentechnik | Pflanzen mit hitzebeständiger Rinde | Brandsichere Landschaften durch Pflanzenwahl | | sehr spekulativ – für Pflanzenwesen lebenswichtig
+Wälder als gezielter Kohlenstoffspeicher | L | pflanze | landbau,regeln | Wälder werden nach Kohlenstoffbindung geplant | Satellitengestützte Waldinventur | | für Pflanzenwesen bedeutsam
+Rechte der Natur weltweit | G | - | regeln | Flüsse, Wälder und Arten haben eigene Rechte | Biodiversitätskonvention | | für Pflanzenwesen bedeutsam
+Weltweite Kreislaufwirtschaft | G | - | regeln,handel | fast keine Rohstoffe gehen mehr verloren | Kreislaufwirtschaft
+Grundeinkommen | G | - | regeln | jeder erhält ein Einkommen ohne Bedingung | Vollautomatische Fabrik | | gesellschaftlich umstritten
+Digitale Direktdemokratie | G | - | netz,regeln | Bürger stimmen direkt über Netz ab | Digitale Signatur
+Rechtsstatus für künstliche Intelligenz | G | - | regeln,ki | Rechte und Pflichten fortgeschrittener KI-Systeme | Allgemeine künstliche Intelligenz | | sehr spekulativ
+Weltraumrecht für Siedlungen | G | - | regeln,raumfahrt | Regeln für Besitz und Zusammenleben im All | Dauerhafte Mondbasis
+Weltweite Wettersteuerung (lokal) | W | silizium | ki,messen | Niederschlag wird lokal gezielt beeinflusst | Wettervorhersage mit KI | | sehr spekulativ und umstritten
+Klimawiederherstellung | W | - | regeln,landbau,messen | CO₂ in der Luft sinkt zurück auf vorindustrielle Werte | Kohlendioxid direkt aus der Luft filtern; Wälder als gezielter Kohlenstoffspeicher | | für Pflanzenwesen bedeutsam
+Batterien ohne knappe Rohstoffe | E | chemikalie | speicher | Speicher aus Natrium, Eisen und Schwefel in großen Mengen | Natrium-Ionen-Akku
+Thermischer Speicher für ganze Städte | E | stein,wasser | lagern,hydraulik,siedlung | saisonale Wärmespeicher für Sommer- und Winterwärme | Wärmespeicher aus Stein oder Salz
+Betavoltaik-Batterie | E | uran | strahlung,speicher | winzige Strahlungsquelle liefert jahrzehntelang Strom | Sonde zu den äußeren Planeten
+Antimaterie als Energiespeicher | E | - | kernfusion | höchste Energiedichte überhaupt | Teilchenbeschleuniger | | sehr spekulativ
+Gedrucktes Haus in einem Tag | A | moertel | robotik,zement | Roboter drucken ganze Häuser | 3D-Drucker
+Biologisch gewachsene Baustoffe | A | mikroben,pflanze | zellkultur | Ziegel und Platten wachsen aus Pilzen und Bakterien | Baustoff aus Pilzgeflecht | | Pflanzen- und Pilzwelt als Baustoff
+Superfeste Holzwerkstoffe | A | holz,chemikalie | chemie | verdichtetes Holz fester als Stahl | Transparentes Holz | | aus Holz
+Selbstreinigende Fassade | A | nanomaterial,glas | nano | Oberfläche hält Schmutz fern | Selbstreparierende Werkstoffe
+Klimaneutraler Zement | A | moertel,chemikalie | zement,chemie | Zement ohne CO₂-Ausstoß | Kreislaufwirtschaft
+Wasser aus Luft gewinnen | E | nanomaterial | kaelte,nano | Material sammelt Wasser auch aus trockener Luft | Selbstreinigende Fassade
+Meerwasserentsalzung mit Membranen der Natur | E | wasser,nanomaterial | nano | Membranen nach biologischem Vorbild | Wasser aus Luft gewinnen
+Fusion für Wasserstoff | E | wasserstoff | kernfusion,elektrolyse | Fusionsstrom erzeugt Wasserstoff in Mengen | Fusionskraftwerk; Elektrolyseur im Großmaßstab
+Universalübersetzer | C | silizium | ki,klang | Verständigung in jeder Sprache ohne Verzögerung | Mehrsprachige Echtzeit-Übersetzung
+Verständigung mit Tieren und Pflanzen erforschen | W | silizium | ki,beobachten | Muster in Lauten und Signalen von Tieren und Pflanzen werden gedeutet | Universalübersetzer; Duftsignale zwischen Pflanzen | | Pflanzenwesen könnten so mit uns „sprechen“
+Wissen aller Menschen frei zugänglich | C | - | netz,buch | gesamtes Wissen frei, übersetzt und geprüft | Gemeinschaftliche Online-Enzyklopädie
+Langzeitarchiv für Jahrtausende | C | glas | optik,digital | Daten werden in Glas geschrieben und halten sehr lange | Biologisches Rechnen mit DNA
+Saatgut-Archiv auf dem Mond | L | samen | lagern,raumfahrt | Sicherheitskopie des Lebens fern der Erde | Saatguttresor im Permafrost; Dauerhafte Mondbasis | | für Pflanzenwesen besonders bedeutsam
+Ökosystem-Simulation in Echtzeit | W | silizium | software,ki | Rechenmodelle ganzer Ökosysteme helfen bei Entscheidungen | Digitale Zwillinge von Städten | | für Pflanzenwesen ein Spiegel ihrer eigenen Welt
+Gesteuerte Evolution von Nutzpflanzen | L | pflanze,erbgut | gentechnik,ki | KI schlägt Erbänderungen vor, Feldtests entscheiden | Ökosystem-Simulation in Echtzeit | | für Pflanzenwesen ein tiefer Eingriff
+Pflanzenwesen-artige Organismen (Gedankenspiel) | W | pflanze,erbgut | gentechnik | bewegliche Lebewesen, die Energie aus Licht gewinnen | Gesteuerte Evolution von Nutzpflanzen | | reines Gedankenspiel – genau die Spielwelt
+Raumhafen am Äquator | V | stahl | bauen_gemeinsam,rakete | regelmäßige Starts für Passagiere und Fracht | Wiederverwendbare Rakete im Regelbetrieb
+Interplanetares Internet | C | silizium | netz,raumfahrt | Datenverbindung zwischen Erde, Mond und Mars | Satelliteninternet-Konstellation
+Teleskop auf der Mondrückseite | W | aluminium | optik,raumfahrt | Radioteleskop ohne Störungen der Erde | Dauerhafte Mondbasis
+Sternwarte im Lagrange-Punkt | W | aluminium,gold | optik,raumfahrt | riesige Spiegel suchen Leben auf fremden Planeten | Infrarot-Weltraumteleskop
+Lebensspuren auf anderen Planeten finden | W | silizium | optik,beobachten | Atemgase wie Sauerstoff in fremden Atmosphären | Sternwarte im Lagrange-Punkt | | Sauerstoff als Zeichen von Photosynthese
+Robotererkundung eisiger Monde | V | uran,lithium | raumfahrt,robotik | Tauchroboter unter Eispanzern | Marsrover
+Kryoschlaf für Raumreisen | D | zellen | kaelte | Stoffwechsel wird für lange Reisen gesenkt | Generationenschiff | | sehr spekulativ
+Unbegrenzte Lebensdauer von Zellen | D | zellen,erbgut | gentechnik | Zellalterung wird umkehrbar | Altern deutlich verlangsamen | | sehr spekulativ
+Gedanken-Upload | W | silizium | ki | Bewusstsein wird in einen Rechner übertragen | Gehirn-Computer-Schnittstelle für alle | | äußerst spekulativ
+Technologische Singularität | W | - | ki | Technik verbessert sich schneller, als Menschen folgen können | Allgemeine künstliche Intelligenz | | Hypothese, keine Vorhersage
+Wetterfeste Kulturpflanzen für jede Klimazone | L | pflanze,erbgut | gentechnik,zucht | Sorten für Hitze, Kälte, Salz und Dürre zugleich | Dürretolerante Sorten | | für Pflanzenwesen besonders bedeutsam
+Nährstoffkreislauf in Städten schließen | A | wasser,mikroben | zersetzen,regeln | Abwasser und Abfall werden vollständig zu Dünger | Schwammstadt | | für Pflanzenwesen bedeutsam
+Holz aus dem Bioreaktor | T | zellen,pflanze | zellkultur | Holzgewebe wächst ohne Baum | Fleisch aus Zellkultur | | für Pflanzenwesen ein seltsamer Gedanke
+Biologisch angetriebene Maschinen | M | zellen,kunststoff | zellkultur,robotik | Muskel- oder Pflanzenzellen bewegen kleine Maschinen | Holz aus dem Bioreaktor | | sehr spekulativ
+Pflanzliche Solarzellen | E | pflanze,silizium | photovoltaik,gentechnik | Strom direkt aus lebenden Pflanzen | Künstliche Photosynthese im Industriemaßstab | | Kern der Pflanzenwesen
+Energie aus Wurzelbakterien | E | mikroben,erde | zersetzen,gleichstrom | Bakterien an Pflanzenwurzeln liefern geringe Ströme | Pflanzliche Solarzellen | | für Pflanzenwesen eine verwandte Fähigkeit
+Atmosphärische Kohlenstoffbindung im Gestein | B | stein,gas | chemie,graben | zermahlenes Gestein bindet CO₂ dauerhaft | Klimawiederherstellung
+Ozeankalkung gegen Versauerung | W | kalk,wasser | chemie | Kalk gleicht die Versauerung der Meere aus | Atmosphärische Kohlenstoffbindung im Gestein | | ökologisch umstritten
+Wiederaufbau von Korallenriffen | L | tier,wasser | zucht | widerstandsfähige Korallen werden gezüchtet und ausgesetzt | Seegraswiesen und Tangwälder wiederherstellen
+Globale Frühwarnung für Pflanzenseuchen | L | silizium,erbgut | gentechnik,netz | Sensoren und Satelliten melden Krankheitsausbrüche sofort | Gentests für Pflanzenkrankheiten im Feld | | für Pflanzenwesen lebenswichtig
+Weltweites Feuerwarnnetz | G | silizium | netz,raumfahrt | Brände werden in Minuten erkannt und gemeldet | Waldbrandüberwachung per Satellit | | für Pflanzenwesen lebenswichtig
+Löschroboter-Schwärme | G | lithium,wasser | robotik | Roboter bekämpfen Brände gemeinsam | Weltweites Feuerwarnnetz | | für Pflanzenwesen lebenswichtig
+Lernende Städte | G | silizium | ki,regeln | Städte passen Verkehr, Energie und Grün selbst an | Digitale Zwillinge von Städten
+Bildung durch persönliche KI-Lehrer | G | silizium | ki,lehren | jeder Mensch hat einen geduldigen Lehrer | Fernlehre in Echtzeit
+Gemeinsames Menschheitsarchiv im All | C | glas | raumfahrt,buch | Wissen wird an mehreren Orten im Sonnensystem gesichert | Langzeitarchiv für Jahrtausende

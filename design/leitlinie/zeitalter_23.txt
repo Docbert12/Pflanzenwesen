@@ -1,0 +1,123 @@
+# Zeitalter 23 – Biotechnologie-Ära (ca. 2010–2040, Gegenwart und nahe Zukunft): Genschere, mRNA, synthetische Biologie, lernende Systeme.
+# Stand „entw“ = in Entwicklung oder erst teilweise verwirklicht (Stand 2026). Für Pflanzenwesen: bessere Photosynthese, künstliches Blatt, leuchtende Pflanzen.
+Genschere | W | erbgut,mikroben | gentechnik | programmierbares Enzym schneidet DNA an gewählter Stelle | RNA-Interferenz; Restriktionsenzyme
+Basen-Editierung | W | erbgut | gentechnik | einzelne DNA-Buchstaben werden ohne Doppelstrangbruch getauscht | Genschere
+Prime-Editierung | W | erbgut | gentechnik | gezieltes Umschreiben kurzer DNA-Abschnitte | Basen-Editierung
+Genomeditierte Kulturpflanze | L | pflanze,erbgut | gentechnik,zucht | z. B. pilzresistenter Weizen durch gezielte Änderung eigener Gene | Genschere; Markergestützte Züchtung | | für Pflanzenwesen ein tiefer Eingriff in die eigene Art
+Dürretolerante Sorten | L | pflanze,erbgut | gentechnik,zucht | Pflanzen kommen mit weniger Wasser aus | Genomeditierte Kulturpflanze | entw | für Pflanzenwesen besonders bedeutsam
+Salztolerante Pflanzen | L | pflanze,erbgut | zucht,gentechnik | Anbau auf versalzten Böden | Dürretolerante Sorten | entw
+Verbesserte Photosynthese im Feld | L | pflanze,erbgut | gentechnik | schnellere Anpassung an Lichtwechsel steigert den Ertrag | Licht- und Dunkelreaktion der Photosynthese; Genschere | entw | Kern der Pflanzenwesen
+Getreide mit effizienterer Kohlenstoffbindung | L | pflanze,erbgut | gentechnik | Reis soll einen effizienteren Photosyntheseweg erhalten | Verbesserte Photosynthese im Feld | entw | Kern der Pflanzenwesen
+Getreide, das Stickstoff selbst bindet | L | pflanze,mikroben,erbgut | gentechnik | Getreide arbeitet mit stickstoffbindenden Bakterien zusammen | Stickstoffbindung durch Knöllchenbakterien | entw | für Pflanzenwesen zentral
+Mehrjähriges Getreide | L | pflanze | zucht | Getreide treibt jedes Jahr neu aus, tiefe Wurzeln schützen den Boden | Saatgutzüchtung | entw | für Pflanzenwesen besonders bedeutsam
+Pilzresistente Rebsorten | L | pflanze | zucht | weniger Spritzmittel im Weinbau | Veredelung auf widerstandsfähige Unterlage
+Leuchtende Zierpflanze | L | pflanze,erbgut | gentechnik | Gene aus einem Leuchtpilz lassen die Pflanze schwach leuchten | Genschere | | Pflanzenwesen mit eigenem Licht – reizvolle Spielidee
+Pflanzen als Sensoren | W | pflanze,nanomaterial | nano,messen | Nanopartikel in Blättern melden Stoffe in der Umgebung | Leuchtende Zierpflanze | entw | für Pflanzenwesen eine verwandte Fähigkeit
+Elektrische Signale in Pflanzen messen | W | pflanze,elektronik | messen | Pflanzen leiten Reize als elektrische Signale weiter | Pflanzen als Sensoren | entw | für Pflanzenwesen eine verwandte Fähigkeit
+Duftsignale zwischen Pflanzen | W | pflanze | beobachten,messen | angegriffene Pflanzen warnen Nachbarn über Duftstoffe | Elektrische Signale in Pflanzen messen | | Pflanzenwesen-Kommunikation hat ein reales Vorbild
+Pilznetz zwischen Bäumen | W | pflanze,mikroben | beobachten | Wurzelpilze verbinden Bäume und tauschen Stoffe | Duftsignale zwischen Pflanzen | entw | Ausmaß in der Forschung umstritten
+Bodenmikrobiom-Präparate | L | mikroben,erde | zersetzen,landbau | nützliche Bodenbakterien und Pilze werden ausgebracht | Pilznetz zwischen Bäumen | entw | für Pflanzenwesen bedeutsam
+Künstliches Blatt | E | silizium,wasser,sonne | photovoltaik,elektrolyse | Lichtzelle spaltet Wasser direkt in Wasserstoff und Sauerstoff | Siliziumsolarzelle; Elektrolyse von Wasser | entw | technisches Gegenstück zum Blatt – Kern der Pflanzenwesen
+Stärke aus Kohlendioxid ohne Pflanze | W | gas,chemikalie | chemie,gentechnik | Enzymkette baut im Labor Stärke aus CO₂ | Calvin-Zyklus | entw | Kern der Pflanzenwesen
+Kohlendioxid direkt aus der Luft filtern | E | chemikalie,luft | chemie | Anlage entzieht der Luft CO₂ | CO₂-Speicherung im Untergrund | entw
+Pflanzenkohle für den Boden | L | holzkohle,erde | holzkohle,landbau | verkohlte Biomasse speichert Kohlenstoff im Boden | Holzkohlemeiler | | für Pflanzenwesen bedeutsam
+Synthetische Minimalzelle | W | erbgut,zellen | gentechnik | Bakterium mit vollständig künstlich hergestelltem Erbgut | Humangenomprojekt
+Hefe mit künstlichen Chromosomen | W | mikroben,erbgut | gentechnik | ganze Chromosomen werden neu geschrieben | Synthetische Minimalzelle
+Proteinstruktur-Vorhersage mit KI | W | silizium | ki | Faltung von Eiweißen wird aus der Sequenz vorhergesagt | Bilderkennung mit tiefen Netzen
+Eiweiß-Entwurf am Rechner | W | silizium | ki,gentechnik | neue Eiweiße mit gewünschter Funktion werden entworfen | Proteinstruktur-Vorhersage mit KI
+Nanoporen-Sequenzierung | W | erbgut,silizium | gentechnik,nano | DNA wird beim Durchtritt durch eine Pore gelesen | Hochdurchsatz-Sequenzierung
+Einzelzell-Sequenzierung | W | zellen,erbgut | gentechnik | Genaktivität jeder einzelnen Zelle | Nanoporen-Sequenzierung
+mRNA-Impfstoff | D | erbgut | impfen,gentechnik | Bauanleitung in Fettbläschen lässt Körperzellen ein Erregereiweiß bilden | Gentechnischer Impfstoff
+Zelltherapie gegen Blutkrebs | D | zellen,erbgut | gentechnik,zellkultur | eigene Immunzellen werden umprogrammiert | Gentherapie
+Zugelassene Genschere-Therapie | D | zellen | gentechnik | erbliche Blutkrankheit wird mit Genschere behandelt | Genschere; Zelltherapie gegen Blutkrebs
+Organoide | D | zellen | zellkultur | Mini-Organe aus Stammzellen für Forschung | Induzierte Stammzellen
+Gewebedruck | D | zellen,kunststoff | zellkultur,robotik | Zellen werden schichtweise zu Gewebe gedruckt | Organoide; 3D-Drucker | entw
+Schweineorgan für Menschen | D | tier,erbgut | gentechnik,chirurgie | gentechnisch angepasstes Tierorgan wird übertragen | Organverpflanzung | entw
+Geschlossene Insulinregelung | D | silizium | robotik,messen | Sensor und Pumpe regeln den Blutzucker selbst | Gesundheitssensor am Körper
+Gehirn-Computer-Schnittstelle | D | silizium | chirurgie,ki | Implantat übersetzt Hirnsignale in Befehle | Hirnstrommessung | entw
+Medizinisches Exoskelett | D | stahl,lithium | robotik | Gestell hilft Gelähmten beim Gehen | Laufroboter | entw
+KI-gestützte Wirkstoffsuche | D | silizium | ki,arznei | lernende Systeme finden neue Antibiotika-Kandidaten | Rechnergestützte Medikamentenentwicklung
+Flüssigbiopsie | D | erbgut | diagnose,gentechnik | Krebsspuren im Blut statt Gewebeprobe | Einzelzell-Sequenzierung | entw
+Fleisch aus Zellkultur | L | zellen | zellkultur | Fleisch wächst ohne Tier im Bioreaktor | Organoide | entw
+Präzisionsfermentation | L | mikroben,erbgut | gaeren,gentechnik | Mikroben bilden Milcheiweiß und andere Zutaten | Gentechnisch hergestelltes Insulin
+Fleischersatz aus Pflanzeneiweiß | L | pflanze | extrahieren,kochen | Pflanzeneiweiß wird zu fleischähnlicher Nahrung | Präzisionsfermentation | | aus Pflanzen
+Unkrautroboter | L | lithium,silizium | robotik,ki | Kamera erkennt Unkraut, Laser oder Werkzeug entfernt es | Bilderkennung mit tiefen Netzen; Automatische Lenkung für Landmaschinen | | erkennt Pflanzen einzeln – für Pflanzenwesen bemerkenswert
+Drohnen für Pflanzenschutz | L | lithium | robotik,aerodynamik | Drohne behandelt nur befallene Stellen | Multikopter-Drohne
+Ernteprognose aus dem All | L | silizium | raumfahrt,ki | Satellitendaten sagen Erträge voraus | Photosynthese-Leuchten aus dem All messen | | für Pflanzenwesen bedeutsam
+Agri-Photovoltaik | E | silizium,pflanze | photovoltaik,landbau | Solarmodule über Feldern spenden Schatten und Strom | Photovoltaik in Massenfertigung | | Pflanzen und Solarzellen teilen das Licht
+Schwimmende Solaranlage | E | silizium,kunststoff | photovoltaik,auftrieb | Solarmodule auf Seen | Photovoltaik in Massenfertigung
+Beidseitige Solarmodule | E | silizium,glas | photovoltaik | nutzen auch reflektiertes Licht | Photovoltaik in Massenfertigung
+Tandem-Solarzelle | E | silizium,chemikalie | photovoltaik | zwei Schichten nutzen mehr Farben des Lichts | Perowskit-Solarzelle | entw
+Natrium-Ionen-Akku | E | chemikalie | speicher | Akku ohne Lithium aus häufigen Stoffen | Lithium-Ionen-Akku
+Feststoffakku | E | lithium,keramik | speicher | fester Elektrolyt statt Flüssigkeit | Lithium-Ionen-Akku | entw
+Elektrolyseur im Großmaßstab | E | nickel,stromquelle | elektrolyse | Wasserstoff aus Ökostrom | Elektrolyse von Wasser | entw
+Wasserstoff-Brennstoffzellenfahrzeug | V | wasserstoff,platin | speicher,elektromotor | Auto oder Zug fährt mit Wasserstoff | Brennstoffzelle in der Raumfahrt
+Wärmespeicher aus Stein oder Salz | E | stein,salz | lagern,feuer_nutzen | überschüssiger Strom wird als Hochtemperaturwärme gespeichert | Batteriespeicher für das Netz | entw
+Zündung in der Laserfusion | E | wasserstoff,elektronik | kernfusion,optik | Fusion gibt erstmals mehr Energie ab, als das Brennstoffkügelchen erhielt | Fusionsforschung mit Magnetfeld | entw | noch kein Kraftwerk
+Kleiner modularer Reaktor | E | uran,stahl | kernspaltung | Reaktor in Serie aus der Fabrik | Druckwasserreaktor | entw
+Tiefe Geothermie überall | E | stahl,wasser | bohren,turbine | sehr tiefe Bohrungen erschließen Erdwärme fast überall | Geothermiekraftwerk | entw
+Elektroautos speisen zurück | E | lithium | speicher,netz | Autobatterien stützen das Stromnetz | Gesteuertes Laden von Elektroautos | entw
+Wärmepumpe im Massenmarkt | E | kupfer,chemikalie | kaelte | Wärmepumpen ersetzen Öl- und Gasheizungen | Erdwärmesonde
+Wiederverwendbare Rakete im Regelbetrieb | V | stahl,erdoel | rakete,robotik | erste Stufen fliegen Dutzende Male | Landung einer Raketenstufe
+Satelliteninternet-Konstellation | C | silizium,aluminium | raumfahrt,netz | Tausende Satelliten in niedriger Bahn liefern Internet | Satellitentelefon-Konstellation
+Infrarot-Weltraumteleskop | W | gold,aluminium | optik,raumfahrt | Teleskop sieht die ersten Galaxien | Weltraumteleskop
+Hubschrauber auf dem Mars | V | faserverbund,lithium | aerodynamik,robotik | erster gesteuerter Flug auf einem anderen Planeten | Marsrover
+Asteroidenablenkung | V | aluminium | raumfahrt | Aufprall einer Sonde verändert die Bahn eines Asteroiden | Raumsonde
+Pflanzenanbau im All | L | pflanze,silizium | landbau,raumfahrt | Salat wächst auf der Raumstation unter LED-Licht | LED-Pflanzenlicht; Internationale Raumstation | | Kern der Pflanzenwesen: Pflanzen fern der Erde
+Mondbasis-Vorbereitung | V | aluminium | raumfahrt,bauen_gemeinsam | Landefähren und Habitate für dauerhafte Mondaufenthalte | Mondlandung | entw
+Großes Sprachmodell | W | silizium | ki | Modell erzeugt und versteht Sprache aus riesigen Textmengen | Maschinelle Übersetzung mit Statistik; Grafikprozessor für Rechenaufgaben | | im Spiel: Ollama nutzt solche Modelle (Prompt 5)
+Aufmerksamkeitsbasierte Netzarchitektur | W | silizium | ki | Netz gewichtet Beziehungen zwischen allen Teilen der Eingabe | Großes Sprachmodell
+Bilderzeugung aus Text | C | silizium | ki | Bilder werden aus einer Beschreibung erzeugt | Aufmerksamkeitsbasierte Netzarchitektur
+KI schlägt Go-Meister | W | silizium | ki | lernendes System gewinnt das schwierigste Brettspiel | Rechner schlägt Schachweltmeister
+Selbstlernendes Spielsystem | W | silizium | ki | System lernt Spiele nur durch Spielen gegen sich selbst | KI schlägt Go-Meister
+Robotertaxi | V | silizium,lithium | robotik,ki | Taxi ohne Fahrer in ausgewählten Städten | Wettbewerb selbstfahrender Autos | entw
+Humanoider Roboter | M | stahl,lithium | robotik,ki | menschenähnlicher Roboter für Lager und Haushalt | Laufroboter | entw
+Lagerroboter-Schwarm | M | lithium | robotik | Hunderte Roboter bewegen Regale | Kollaborierender Roboter
+Quantenrechner mit Dutzenden Qubits | W | supraleiter,helium | quanten,kaelte | Rechenaufgabe jenseits klassischer Rechner (Laborbeispiel) | Supraleitung entdecken | entw
+Quantenkommunikation per Satellit | C | silizium | quanten,raumfahrt | abhörsichere Schlüssel über verschränkte Photonen | Quantenrechner mit Dutzenden Qubits | entw
+Quantensensor | W | elektronik | quanten,messen | sehr genaue Messung von Magnetfeldern und Zeit | Quantenkommunikation per Satellit | entw
+Selbstheilender Beton | A | moertel,mikroben | zement,zersetzen | Bakterien schließen Risse mit Kalk | Stahlbeton | entw
+Baustoff aus Pilzgeflecht | A | mikroben,pflanze | zellkultur | Pilzmyzel wächst zu leichten Dämmplatten | Biokunststoff aus Stärke | entw | Pflanzen- und Pilzwelt als Baustoff
+Transparentes Holz | A | holz,kunststoff | chemie | Holz ohne Lignin, mit Harz getränkt, lässt Licht durch | Brettsperrholz | entw | aus Holz
+Zellulose-Nanofasern | T | faser,nanomaterial | nano,papier | sehr feste Fasern aus Holz | Transparentes Holz | entw | aus Pflanzen
+Künstliche Spinnenseide | T | mikroben,erbgut | gaeren,gentechnik | Bakterien bilden Seideneiweiß | Präzisionsfermentation | entw
+Abbaubare Elektronik | C | kunststoff,silizium | halbleiter | Bauteile zersetzen sich nach Gebrauch | Biologisch abbaubarer Kunststoff | entw
+Batterierecycling | B | lithium,nickel | chemie | Metalle aus alten Akkus werden zurückgewonnen | Lithium-Ionen-Akku
+Urban Mining | B | kupfer,gold | sammeln,chemie | Rohstoffe aus Elektroschrott | Batterierecycling
+Tiefseebergbau (Erkundung) | B | erz | graben,robotik | Manganknollen am Meeresboden | Tiefbohrung auf See | entw
+Kreislaufwirtschaft | G | - | regeln | Produkte werden für Wiederverwendung entworfen | Wertstoffsammlung
+Recht auf Reparatur | G | - | regeln | Hersteller müssen Ersatzteile und Anleitungen liefern | Kreislaufwirtschaft
+Datenschutzrecht | G | - | regeln,netz | Rechte an den eigenen Daten | Digitale Patientenakte
+KI-Gesetz | G | - | regeln,ki | Regeln für lernende Systeme nach Risiko | Großes Sprachmodell
+Klimaneutralitätsziel | G | - | regeln,messen | Staaten wollen bis Mitte des Jahrhunderts netto null Emissionen | Weltklimaabkommen | | für Pflanzenwesen bedeutsam
+Wiedervernässung von Mooren | L | pflanze,wasser | bewaessern | nasse Moore binden Kohlenstoff | Klimaneutralitätsziel | | für Pflanzenwesen bedeutsam
+Stadtbäume als Klimaanlage | A | pflanze | landbau,regeln | Bäume kühlen Straßen durch Verdunstung | Fassadenbegrünung | | für Pflanzenwesen besonders bedeutsam
+Schwammstadt | A | erde,pflanze,wasser | graben,landbau | Böden und Grünflächen speichern Regen | Stadtbäume als Klimaanlage
+Waldumbau für das Klima | L | pflanze | landbau,zucht | trockenresistente Mischwälder ersetzen Monokulturen | Nachhaltige Forstwirtschaft | | für Pflanzenwesen bedeutsam
+Satellitengestützte Waldinventur | W | silizium | raumfahrt,messen | Biomasse ganzer Wälder wird aus dem All vermessen | Ernteprognose aus dem All | | für Pflanzenwesen bedeutsam
+Ökosystemleistungen bewerten | G | - | zaehlen,regeln | Nutzen von Wäldern und Mooren wird berechnet | Satellitengestützte Waldinventur
+Genetische Vielfalt sichern | L | samen,erbgut | lagern,gentechnik | Erbgut bedrohter Pflanzen wird gelesen und gespeichert | Saatguttresor im Permafrost | | für Pflanzenwesen besonders bedeutsam
+Umwelt-DNA aus Wasserproben | W | erbgut,wasser | gentechnik | Arten werden an DNA-Spuren im Wasser erkannt | Nanoporen-Sequenzierung
+Drohnen-Aufforstung | L | samen,lithium | robotik,landbau | Drohnen säen Samenkugeln in unzugängliches Gelände | Wiederaufforstung im großen Stil | entw | für Pflanzenwesen bedeutsam
+Waldbrandbekämpfung mit Löschflugzeugen und Drohnen | G | wasser,lithium | robotik,aerodynamik | Luftfahrzeuge und Drohnen bekämpfen Brände gemeinsam | Waldbrand-Frühwarnung mit Wetterdaten | entw | für Pflanzenwesen lebenswichtig
+Brandschutz durch Landschaftsmosaik | L | pflanze | landbau,regeln | Brandschneisen und gemischte Bestände bremsen Feuer | Waldumbau für das Klima | | für Pflanzenwesen lebenswichtig
+Digitale Zwillinge von Städten | W | - | software | Stadt als Rechenmodell für Planung | Wettermodell auf dem Großrechner | entw
+Wettervorhersage mit KI | W | silizium | ki | lernende Modelle sagen Wetter schneller voraus | Wettermodell auf dem Großrechner
+Erdbeben-Frühwarnung per Telefon | C | silizium,geologie | netz,messen | Sekunden Vorwarnung über das Mobilnetz | Seismograph
+Lieferdrohne | V | lithium | robotik,aerodynamik | Pakete kommen per Drohne | Multikopter-Drohne | entw
+Elektrische Kleinfahrzeuge zum Teilen | V | lithium | elektromotor,handel | Elektroroller und -räder per App | Fahrradverleihsystem
+Elektroflugzeug für kurze Strecken | V | lithium,faserverbund | aerodynamik,elektromotor | kleines Flugzeug mit Batterie | Elektroauto mit Lithium-Akku | entw
+Synthetischer Kraftstoff | E | wasserstoff,gas | chemie | Kraftstoff aus Wasserstoff und CO₂ | Elektrolyseur im Großmaßstab | entw
+Biologische Stickstoffdünger-Herstellung | L | mikroben | gaeren | Bakterien liefern Stickstoff direkt an die Wurzeln | Getreide, das Stickstoff selbst bindet | entw | für Pflanzenwesen zentral
+Phagentherapie | D | mikroben | zellkultur,arznei | Viren gegen resistente Bakterien | KI-gestützte Wirkstoffsuche | entw
+Malaria-Impfstoff | D | erbgut | impfen | erster wirksamer Impfstoff gegen einen Parasiten | mRNA-Impfstoff
+Biologisches Rechnen mit DNA | W | erbgut | gentechnik,digital | Daten werden in DNA gespeichert | Hefe mit künstlichen Chromosomen | entw
+Neuromorpher Chip | W | silizium | halbleiter,ki | Chip arbeitet nach dem Vorbild von Nervenzellen | Grafikprozessor für Rechenaufgaben | entw
+Photonischer Chip | W | silizium,glas | optik,halbleiter | Licht statt Elektronen überträgt Daten im Chip | Neuromorpher Chip | entw
+Mikro-LED-Bildschirm | C | silizium | licht_elektrisch,halbleiter | winzige LEDs als Bildpunkte | Organische Leuchtdiode | entw
+Erweiterte Realität | C | silizium,glas | optik,software | Brille blendet Informationen ins Sichtfeld | Tragbares Gerät am Handgelenk | entw
+Virtuelle Realität | C | silizium | optik,software | Brille versetzt in eine berechnete Welt | Erweiterte Realität
+Fernlehre in Echtzeit | G | - | netz,lehren | Unterricht über Videoverbindung für alle | Offene Onlinekurse
+Mehrsprachige Echtzeit-Übersetzung | C | silizium | ki,klang | gesprochene Sprache wird sofort übersetzt | Großes Sprachmodell | entw
+Barrierefreie Bedienung mit Sprache | C | silizium | ki,klang | Geräte werden ohne Bildschirm bedient | Sprachassistent
+Gentests für Pflanzenkrankheiten im Feld | L | erbgut,silizium | gentechnik,diagnose | Schnelltest erkennt Erreger an der Pflanze | Nanoporen-Sequenzierung | entw | für Pflanzenwesen bedeutsam

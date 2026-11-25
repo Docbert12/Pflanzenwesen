@@ -1,0 +1,75 @@
+# Zeitalter 11 – Frühmittelalter (ca. 600–1000): schwerer Pflug, Kummet, Dreifelderwirtschaft, Papier in der islamischen Welt.
+# Projektregel: Schießpulver und Brandwaffen nur als Name und Funktion, ohne Stoffe.
+Schwerer Räderpflug | L | eisen,holz,tier | landbau,fahrzeug | Pflug mit Rädern, Sech und Streichbrett wendet schwere Böden | Streichbrettpflug
+Kummet | V | holz,leder | naehen,tierhaltung | gepolsterter Kragen lässt Pferde mit voller Kraft ziehen | Brustblattgeschirr
+Genageltes Hufeisen | V | eisen | schmieden,tierhaltung | Eisen schützt Hufe auf hartem und nassem Boden | Hufschuh
+Dreifelderwirtschaft | L | pflanze,erde,jahreslauf | landbau | Winterfrucht, Sommerfrucht und Brache wechseln jährlich | Fruchtfolge mit Hülsenfrüchten
+Egge | L | holz,eisen,tier | landbau | Zinkenrahmen zerkleinert Schollen und deckt Saat ab | Schwerer Räderpflug
+Dreschflegel | L | holz,leder | schlagen | gelenkig verbundener Schlagstock drischt Getreide | Dreschschlitten
+Baumwollanbau im Westen | L | pflanze,faser | landbau | Baumwolle wird in neuen Regionen angebaut | Flachsanbau
+Zitrusgärten | L | pflanze | landbau,bewaessern | bewässerte Gärten mit Zitrusbäumen | Obstbäume pflanzen
+Zuckerrohrplantage | L | pflanze | landbau,bewaessern | großflächiger Anbau für Zucker | Kristallzucker
+Gezeitenmühle | E | holz,stein,wasser,jahreslauf | wasserkraft | aufgestautes Flutwasser treibt bei Ebbe das Mühlrad | Wassermühle
+Windmühle mit senkrechter Achse | E | holz,textil | windkraft,getriebe | Wind treibt Flügel um eine senkrechte Welle | Wassermühle | | zuerst in Persien
+Walkmühle | E | holz,wasser,wolle | wasserkraft,schlagen | Hämmer verdichten Wollstoff | Wassermühle
+Torfstechen | E | erde | graben,trocknen | getrockneter Torf als Brennstoff | Kohle als Brennstoff
+Papiermacherei in Bagdad | C | faser,wasser | papier | Papierherstellung in großen Werkstätten | Papier
+Blockdruck | C | holz,papier,tinte | schneiden,druck | ganze Seite in eine Holzplatte geschnitten und abgedruckt | Stempelsiegel; Papier | | zuerst in China
+Gedrucktes Buch | C | papier,tinte | druck,buch | vollständiges gedrucktes Buch | Blockdruck | | zuerst in China
+Karolingische Minuskel | C | tinte,papier | schrift | klare Kleinbuchstaben mit Wortabständen | Unzialschrift
+Buchmalerei | C | papier,tinte | farbe,buch | Bilder und Zierbuchstaben in Handschriften | Klosterskriptorium
+Indische Ziffern im Westen | W | papier | zaehlen,lehren | Dezimalziffern verbreiten sich über die arabische Welt | Dezimales Stellenwertsystem
+Lehrbuch der Algebra | W | papier | zaehlen,buch | systematisches Lösen von Gleichungen | Gleichungslehre
+Rechenverfahren in Schritten | W | papier | zaehlen,schrift | feste Schrittfolgen für Rechenaufgaben | Lehrbuch der Algebra
+Astrolabium | W | bronze,jahreslauf | messen,beobachten | Scheibeninstrument misst Sternhöhen und Uhrzeit | Vermessungsinstrument Dioptra
+Haus der Weisheit | W | papier | buch,lehren | Übersetzerschule sammelt Wissen vieler Sprachen | Große Bibliothek
+Sternwarte mit großen Instrumenten | W | stein,bronze | beobachten,messen | große feste Instrumente verbessern Messungen | Astrolabium
+Rosenwasser destillieren | D | blatt,wasser,keramik | destillieren | Duft der Blüten wird abdestilliert | Destillierhelm
+Kristallisieren reinigen | W | salz,wasser | kochen,trocknen | gelöste Stoffe kristallisieren rein aus | Salzsieden
+Apotheke | D | blatt,keramik | arznei,handel | eigener Laden für Heilmittel | Arzneimittellehre
+Lehrkrankenhaus | D | stein,papier | heilen,lehren | Krankenhaus mit Abteilungen und Ausbildung | Krankenhaus für alle
+Krankheiten unterscheiden | D | papier | diagnose,buch | ähnliche Krankheiten an Zeichen auseinanderhalten | Beobachtende Medizin
+Augenheilkunde-Buch | D | papier | buch,chirurgie | Bau des Auges und seine Behandlung beschrieben | Starstich
+Hufeisenbogen | A | stein | tragwerk | Bogen, der weiter als ein Halbkreis geführt ist | Rundbogen
+Spitzbogen | A | stein | tragwerk | spitzer Bogen leitet Lasten steiler ab | Rundbogen
+Turmhügelburg | K | erde,holz | aufschuetten,bauen_gemeinsam | Holzturm auf aufgeschüttetem Hügel mit Vorburg | Höhensiedlung mit Wall
+Klosterplan | A | papier | schrift,bauen_gemeinsam | gezeichneter Plan einer ganzen Klosteranlage | Kloster
+Badehaus mit Dampfraum | D | stein,wasser | hygiene,feuer_nutzen | Dampfbad nach antiker Art | Thermenbad
+Klinkerbau mit Kiel | V | holz,eisen | tragwerk,auftrieb | überlappende Planken auf einem Kiel – seetüchtig und leicht | Plankenboot
+Hochseeschiff mit Rahsegel | V | holz,textil,seil | segeln,auftrieb | offenes Schiff fährt über den Ozean | Klinkerbau mit Kiel
+Wollsegel | V | wolle,textil | weben | dicht gewebtes Segel | Hochseeschiff mit Rahsegel
+Panzerreiter mit eingelegter Lanze | K | eisen,holz,tier | konflikt,tierhaltung | Steigbügel erlauben den Stoß mit Pferdeschwung | Steigbügel; Kataphrakt
+Drachenschild | K | holz,leder,eisen | binden | langer Schild schützt Reiter und Bein | Holzschild
+Damaszierte Klinge | K | eisen,stahl | schmieden,loeten | Schichten aus hartem und weichem Eisen verschweißt | Feuerschweißen
+Schwarzpulver | K | - | sprengen | schnell abbrennende Mischung, zuerst für Feuerwerk und Brandwaffen | | | zuerst in China; Projektregel: keine Stoffangaben
+Feuerlanze | K | - | sprengen,konflikt | Rohr mit brennender Füllung als Nahkampfwaffe | Schwarzpulver | | Projektregel: keine Stoffangaben
+Brandwaffe zur See | K | - | chemie,konflikt | Brandflüssigkeit gegen Schiffe | | | Projektregel: keine Stoffangaben
+Lehenswesen | G | erde | regeln | Land gegen Treue und Kriegsdienst | Häuptlingstum
+Grundherrschaft | G | erde,nahrung | regeln,siedlung | Bauern bewirtschaften Land eines Herrn gegen Abgaben | Lehenswesen
+Marktrecht | G | - | handel,regeln | Recht, einen Markt abzuhalten, mit Marktfrieden | Getreideversorgung der Stadt
+Silberpfennig-Währung | G | silber | schlagen,regeln | einheitliche Silbermünze für ein großes Reich | Byzantinische Goldmünze
+Gottesfrieden | G | - | regeln,religion | Schutz von Wehrlosen und Kampfverbot an bestimmten Tagen | Klosterregel
+Thing | G | - | regeln | Versammlung freier Männer spricht Recht | Volksversammlung
+Kathedralschule | G | papier | lehren | höhere Schulen an Bischofskirchen | Schule an Bischofssitzen
+Wechsel und Schuldschein | G | papier | handel,schrift | schriftliche Zahlungsversprechen ersetzen Münztransporte | Geldwechsler und Banken
+Fernhandelshaus | G | papier | handel | Kaufleute mit festen Niederlassungen in fernen Städten | Seidenstraße
+Kompass mit schwimmender Nadel | V | eisen,wasser | magnetismus | magnetisierte Nadel auf Wasser zeigt Norden | Löffelkompass | | zuerst in China
+Seekarte mit Windrichtungen | V | papier | zeichen,navigation | Karte mit Kursen zwischen Häfen | Seefahrtshandbuch
+Erzgang verfolgen | B | erz | stollen,beobachten | Stollen folgen dem Erzgang in die Tiefe | Silberbergwerk mit Schächten
+Bergbausiedlung | B | erz | siedlung | Siedlung entsteht rund um ein Bergwerk | Erzgang verfolgen
+Teergewinnung | E | holz | holzkohle,destillieren | Holz unter Luftmangel erhitzen gibt Teer zum Abdichten | Holzkohle-Großmeiler
+Seifensieden | D | oel,saeure | chemie,kochen | gewerbliche Seifenherstellung | Seife aus Asche und Fett
+Klosterbrauerei | L | samen,mikroben | gaeren | geregeltes Brauen in großen Mengen | Bier
+Weinbau an Hängen | L | pflanze,stein | landbau,stapeln | Terrassen mit Rebstöcken | Terrassenfeld; Weinrebe kultivieren
+Fischräuchern in Häusern | L | nahrung,holz | trocknen,feuer_nutzen | Räucherhäuser für große Fänge | Räuchern
+Glocke im Lehmguss | B | bronze,ton | giessen,ton_formen | große Glocken in Lehmformen gegossen | Kirchenglocke
+Federkiel-Zeichnung | C | tinte | zeichen | feine Linien für Zeichnungen und Pläne | Tintenfass und Federkiel
+Musiknotation | C | tinte,papier | schrift,klang | Zeichen über dem Text zeigen die Tonhöhe | Karolingische Minuskel
+Hängebrücke aus Seilen | V | seil,holz | binden,tragwerk | Seile überspannen Schluchten | Pontonbrücke
+Steinbrücke mit flachem Bogen | V | stein | tragwerk | flacher Segmentbogen braucht weniger Pfeiler | Brücke mit Spitzpfeilern | | zuerst in China
+Porzellan | T | ton,keramik | ton_formen,ton_brennen | sehr hoch gebrannte, dichte weiße Keramik | Töpferofen | | zuerst in China
+Glasur | T | keramik,glas | glas,ton_brennen | glasige Schicht macht Keramik dicht und glatt | Fayence
+Teeanbau | L | pflanze | landbau,trocknen | Teesträucher werden angebaut und die Blätter getrocknet | Klostergarten | | zuerst in China
+Gekrümmter Säbel | K | stahl | schmieden,haerten | gebogene Klinge für den Hieb vom Pferd | Langschwert für Reiter
+Wasserrad-Hammerwerk | E | holz,eisen,wasser | wasserkraft,schlagen | Nockenwelle hebt schwere Hämmer | Walkmühle
+Nockenwelle | M | holz | getriebe,hebel | Nocken wandeln Drehung in Hub | Wasserrad-Hammerwerk

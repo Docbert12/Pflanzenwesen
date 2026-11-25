@@ -1,0 +1,134 @@
+# Zeitalter 16 – Aufklärung (ca. 1650–1780): Pendeluhr, Barometer, Vakuumpumpe, Dampfpumpe, Koksverhüttung.
+# Für Pflanzenwesen bemerkenswert: In dieser Zeit wird entdeckt, dass Pflanzen im Licht „gute Luft“ (Sauerstoff) abgeben.
+Pendeluhr | W | messing,blei,stahl | uhrwerk | Pendel als Taktgeber macht Uhren auf Sekunden genau | Gleichmäßige Pendelschwingung; Räderuhr mit Spindelhemmung
+Ankerhemmung | M | stahl | uhrwerk | ankerförmige Hemmung mit kleinem Pendelausschlag | Pendeluhr
+Unruh mit Spiralfeder | M | stahl,messing | uhrwerk,federn | schwingendes Rad mit Feder macht Taschenuhren genau | Taschenuhr; Ankerhemmung
+Schiffschronometer | V | messing,stahl | uhrwerk,navigation | seetaugliche Präzisionsuhr bestimmt die geografische Länge | Unruh mit Spiralfeder
+Längengradbestimmung | V | papier | navigation,zaehlen | Zeitunterschied zum Heimathafen ergibt die Länge | Schiffschronometer
+Sextant | V | messing,glas | optik,messen | Spiegel bringen Gestirn und Horizont zusammen | Rückstab
+Spiegelteleskop | W | bronze,glas | optik | Hohlspiegel statt Linse vermeidet Farbsäume | Fernrohr; Bronzespiegel
+Achromatisches Objektiv | W | glas | optik,glas | zwei Glassorten heben Farbfehler auf | Fernrohr
+Einlinsenmikroskop | W | glas,messing | optik,schleifen | winzige Glaskugel vergrößert über 200-fach | Mikroskop
+Zellen entdecken | W | rinde,glas | optik,beobachten | Kork besteht aus kleinen Kammern | Mikroskop | | Pflanzengewebe war das erste beschriebene „Zellgewebe“
+Mikroorganismen entdecken | W | wasser,glas | optik,beobachten | winzige Lebewesen in Wasser und Speichel | Einlinsenmikroskop
+Barometer | W | glas,quecksilber | vakuum,messen | Quecksilbersäule zeigt den Luftdruck | Thermoskop
+Vakuumpumpe | M | messing,leder | vakuum | Kolben pumpt Luft aus einem Gefäß | Druckpumpe
+Luftdruck-Versuch mit Halbkugeln | W | messing | vakuum | Pferde reißen leergepumpte Halbkugeln nicht auseinander | Vakuumpumpe
+Gasgesetz für Druck und Volumen | W | glas,quecksilber | vakuum,messen | Druck mal Volumen bleibt bei gleicher Temperatur gleich | Barometer
+Thermometer mit Skala | W | glas,quecksilber | messen | Quecksilber in Glasröhre mit festen Punkten | Thermoskop
+Feuchtemesser | W | glas,faser | messen | Haar oder Faser ändert mit der Feuchte die Länge | Thermometer mit Skala
+Windmesser | W | holz,messing | messen | Plattenauslenkung zeigt Windstärke | Feuchtemesser
+Wetterstationen-Netz | W | glas,papier | messen,signal | gleiche Instrumente an vielen Orten, Werte werden verglichen | Barometer; Thermometer mit Skala
+Lichtgeschwindigkeit bestimmen | W | - | beobachten,optik,zaehlen | Verspätungen der Jupitermonde ergeben eine endliche Lichtgeschwindigkeit | Jupitermonde und Sonnenflecken entdecken
+Spektrum des Lichts | W | glas,sonne | optik | Prisma zerlegt weißes Licht in Farben | Brennglas
+Bewegungsgesetze | W | papier | zaehlen,buch | Trägheit, Kraft und Gegenkraft | Fallgesetze
+Gravitationsgesetz | W | papier | zaehlen | dieselbe Kraft lässt Äpfel fallen und Planeten kreisen | Bewegungsgesetze; Planetengesetze
+Infinitesimalrechnung | W | papier | zaehlen | Änderungsraten und Flächen beliebiger Kurven berechnen | Analytische Geometrie
+Wahrscheinlichkeitsrechnung | W | papier | zaehlen | Chancen werden berechenbar | Analytische Geometrie
+Binäres Zahlensystem | W | papier | zaehlen | alle Zahlen mit 0 und 1 | Dezimales Stellenwertsystem
+Staffelwalzen-Rechenmaschine | W | messing | getriebe,zaehlen | Maschine multipliziert und dividiert | Mechanische Rechenmaschine
+Elektrisiermaschine | W | glas,leder | magnetismus | geriebene Glaskugel erzeugt elektrische Ladung | Reibungselektrizität beobachten
+Leiter und Nichtleiter | W | kupfer,seil | gleichstrom,beobachten | manche Stoffe leiten Elektrizität, andere nicht | Elektrisiermaschine
+Leidener Flasche | E | glas,zinn | gleichstrom,speicher | Glasflasche mit Metallbelag speichert Ladung | Elektrisiermaschine
+Blitzableiter | A | eisen,kupfer | gleichstrom | Metallstange leitet den Blitz sicher in die Erde | Leidener Flasche | | schützt brennbare Bauten – für Pflanzenwesen wichtig
+Latente Wärme | W | wasser,glas | messen | beim Schmelzen und Verdampfen wird Wärme ohne Temperaturanstieg aufgenommen | Thermometer mit Skala | | im Spiel bereits modelliert (Phasenwechsel, Prompt 1)
+Spezifische Wärme | W | wasser,eisen | messen | Stoffe brauchen unterschiedlich viel Wärme für dieselbe Erwärmung | Latente Wärme | | im Spiel bereits modelliert (Prompt 1)
+Kohlendioxid entdecken | W | kalk,saeure | chemie,beobachten | „fixe Luft“ entsteht beim Kalkbrennen und Atmen | Kalkbrennofen
+Wasserstoff entdecken | W | eisen,saeure | chemie | „brennbare Luft“ aus Metall und Säure | Kohlendioxid entdecken
+Sauerstoff entdecken | W | quecksilber,luft | chemie,oxidieren | ein Gas unterhält Verbrennung und Atmung besser als Luft | Wasserstoff entdecken
+Pflanzen erneuern verbrauchte Luft | W | pflanze,luft | beobachten | eine Pflanze macht Luft wieder atembar, in der eine Kerze erloschen war | Sauerstoff entdecken | | Grundlage der Photosynthese – Kern der Pflanzenwesen
+Pflanzen geben im Licht Sauerstoff ab | W | pflanze,sonne,wasser | beobachten,messen | nur grüne Teile im Licht erneuern die Luft | Pflanzen erneuern verbrauchte Luft | | Grundlage der Photosynthese – Kern der Pflanzenwesen
+Messung des Wasserhaushalts von Pflanzen | W | pflanze,wasser | messen | Pflanzen verdunsten über die Blätter gemessene Wassermengen | Pflanzenbuch mit Beobachtungen | | für Pflanzenwesen besonders wichtig
+Geschlechtlichkeit der Pflanzen | W | pflanze | beobachten,zucht | Pollen befruchtet die Samenanlage | Pflanzenbuch mit Beobachtungen
+Kreuzungsversuche mit Pflanzen | W | pflanze,samen | zucht | gezielte Bestäubung ergibt Mischlinge | Geschlechtlichkeit der Pflanzen
+System der Lebewesen | W | papier | buch | Doppelname aus Gattung und Art, feste Rangstufen | Pflanzenkunde als Wissenschaft
+Fossilien als Überreste deuten | W | stein,geologie | beobachten | versteinerte Reste früherer Lebewesen | Tierkunde
+Schichtenfolge im Gestein | W | stein,geologie | beobachten | untere Schichten sind älter | Fossilien als Überreste deuten
+Wissenschaftliche Zeitschrift | C | papier | druck | regelmäßige Berichte über Versuche und Entdeckungen | Wissenschaftliche Akademie
+Enzyklopädie | C | papier | buch,druck | umfassendes Nachschlagewerk mit Tafeln zu Handwerk und Technik | Wörterbuch
+Tageszeitung | C | papier | druck | täglich erscheinende Zeitung | Wöchentliche Zeitung
+Stadtpost zum Einheitspreis | C | papier | signal,regeln | Briefe innerhalb der Stadt zu festem, niedrigem Preis | Briefregister der Post
+Briefkasten | C | eisen | regeln | Briefe werden in einen Kasten eingeworfen | Stadtpost zum Einheitspreis
+Öffentliches Museum | G | stein | tragwerk,lagern,regeln,lehren | Sammlung für die Öffentlichkeit | Bibliothekskatalog
+Dampfpumpe | E | eisen,wasser | dampf,vakuum | kondensierender Dampf saugt Wasser aus Gruben | Vakuumpumpe
+Sicherheitsventil | M | messing,blei | hydraulik,dampf | Gewicht öffnet das Ventil, bevor der Kessel platzt | Dampfpumpe
+Dampfkochtopf | L | eisen,wasser | dampf,kochen | Druck hebt den Siedepunkt, Knochen werden weich | Sicherheitsventil
+Atmosphärische Dampfmaschine | E | eisen,messing,kohle | dampf,vakuum | Luftdruck drückt den Kolben nach unten, wenn Dampf im Zylinder kondensiert | Dampfpumpe
+Kokshochofen | B | kohle,erz | verhuetten,holzkohle | Koks statt Holzkohle befeuert den Hochofen | Hochofen in Europa
+Gussstahl aus dem Tiegel | B | stahl,keramik | schmelzen,haerten | Stahl wird im Tiegel geschmolzen und gleichmäßig | Tiegelstahl
+Zinkdestillation | B | zink,erz,holzkohle | verhuetten,destillieren | Zink verdampft im Ofen und wird kondensiert | Messingherstellung mit Galmei
+Schwefelsäure im Bleikammerverfahren | B | schwefel,blei,saeure | chemie | Grundchemikalie in großen Mengen | Alaunsieden
+Kobaltblau | C | erz,glas | glas,farbe | Kobalt färbt Glas und Glasur tiefblau | Glasur
+Porzellan in Europa | T | ton,keramik | ton_brennen | erstes europäisches Hartporzellan | Porzellan
+Steingut | T | ton,keramik | ton_brennen | helles, dichtes Geschirr in Serie | Steinzeug
+Schnellschütze | T | holz | weben | Schützen fliegt durch einen Zug quer durch das Fach | Trittwebstuhl
+Weberei-Zug mit Lochkarten | T | papier,holz | weben,getriebe | gelochte Karten steuern das Muster | Bandwebstuhl
+Feuerwehrschlauch | G | leder,wasser | naehen,hydraulik | genähter Schlauch bringt Wasser direkt ans Feuer | Feuerspritze | | für Pflanzenwesen lebenswichtig
+Windkessel | M | kupfer,luft | hydraulik | Luftpolster macht den Wasserstrahl gleichmäßig | Feuerwehrschlauch
+Feuerversicherung | G | papier | handel,regeln | Brandschäden werden aus gemeinsamen Beiträgen ersetzt | Seeversicherung
+Lebensversicherung | G | papier | handel,zaehlen | Beiträge nach Alter berechnet | Sterbetafel
+Sterbetafel | W | papier | zaehlen | Sterbewahrscheinlichkeit nach Alter | Wahrscheinlichkeitsrechnung
+Bevölkerungsstatistik | W | papier | zaehlen | Geburten und Todesfälle ausgewertet | Standesamtliches Register
+Zentralbank | G | papier,gold | handel,regeln | Bank des Staates gibt Noten aus und hält Reserven | Girobank
+Papiergeld | G | papier | druck,handel | gedruckte Scheine als Zahlungsmittel | Zentralbank
+Gewaltenteilung | G | papier | regeln | Gesetzgebung, Regierung und Gerichte getrennt | Parlament mit zwei Kammern
+Hausnummerierung | G | - | regeln,zeichen | Häuser erhalten Nummern | Stadtrat
+Straßenschilder | C | holz,eisen | zeichen | Namen an Straßenecken | Hausnummerierung
+Taucherglocke mit Luftnachschub | V | holz,blei,luft | auftrieb,vakuum | Glocke wird mit Fässern voll Luft versorgt | Luftdruck-Versuch mit Halbkugeln
+Industriekanal | V | erde,wasser | graben,bauen_gemeinsam | Kanal bringt Kohle günstig in die Stadt | Scheitelkanal
+Kanalbrücke | V | stein,wasser | tragwerk,bauen_gemeinsam | Kanal wird über einen Fluss geführt | Arkadenaquädukt; Industriekanal
+Kanaltunnel | V | stein,wasser | stollen | Kanal unterquert einen Berg | Industriekanal
+Großkanal mit Speicherbecken | V | erde,wasser | graben,bauen_gemeinsam | Stausee speist einen Kanal über die Wasserscheide | Scheitelkanal
+Chausseebau | V | stein,sand | verdichten,bauen_gemeinsam | Straße aus verdichteten Schotterschichten | Römerstraße
+Leuchtturm auf offener Klippe | V | stein,moertel | bauen_gemeinsam,licht_feuer | verzahnte Steine trotzen der Brandung | Leuchtturm
+Wasserfester Kalkmörtel | A | kalk,ton | kalk_brennen | Kalk mit Tonanteil härtet unter Wasser | Beton
+Massivbaupflicht nach dem Stadtbrand | A | ziegel,stein | regeln | nach Großbränden nur noch Stein und Ziegel | Bauordnung mit Brandmauern | | für Pflanzenwesen lebenswichtig
+Geruchsverschluss | D | wasser,blei | hydraulik,hygiene | Wasser im gebogenen Rohr hält Gestank zurück | Spültoilette
+Kontrollierter Vergleichsversuch | D | nahrung | beobachten,messen | Gruppen mit verschiedener Behandlung werden verglichen | Zitrusfrüchte gegen Skorbut
+Pockenschutz durch Einimpfen | D | - | impfen | schwache Ansteckung schützt vor schwerer | Lehre von der Ansteckung
+Blutdruckmessung im Versuch | D | glas | messen,diagnose | Steighöhe in einer Röhre zeigt den Druck im Gefäß | Blutkreislauf
+Zahnheilkunde-Lehrbuch | D | papier,stahl | chirurgie,buch | Zahnbehandlung als eigenes Fach | Chirurgie-Handbuch
+Lehrbuch der Geburtshilfe | D | papier | buch,heilen | Ausbildung von Hebammen und Ärzten | Hebammenordnung
+Saatmaschine mit Säschar | L | holz,eisen,tier | landbau,fahrzeug | Säen in Reihen mit gleichmäßiger Tiefe | Reihensämaschine
+Pferdehacke | L | eisen,holz,tier | landbau | Hacken zwischen den Reihen mit Pferdezug | Saatmaschine mit Säschar
+Vierfelder-Fruchtwechsel | L | pflanze | landbau | Getreide, Rüben, Gerste, Klee ohne Brache | Dreifelderwirtschaft
+Futterrübe | L | pflanze,jahreslauf | landbau | Rüben ernähren das Vieh im Winter | Vierfelder-Fruchtwechsel
+Planmäßige Tierzucht | L | tier | zucht,schrift | Leistungen werden festgehalten, beste Tiere gepaart | Tierzucht durch Auslese
+Leichter Eisenpflug | L | eisen,holz,tier | landbau,giessen | Pflug mit gegossenen Teilen braucht weniger Zugkraft | Schwerer Räderpflug
+Nachhaltige Forstwirtschaft | L | holz,pflanze | regeln,landbau | nur so viel Holz schlagen wie nachwächst | Forstordnung | | für Pflanzenwesen zentral
+Zucker in Rüben entdecken | W | pflanze | extrahieren,beobachten | Rübenzucker ist derselbe Zucker wie Rohrzucker | Futterrübe
+Kartoffel als Volksnahrung | L | pflanze | landbau,regeln | Kartoffelanbau wird staatlich gefördert | Kartoffelanbau in Europa
+Frühbeetkasten | L | glas,holz,pflanze | landbau | Glasdeckel und Mist wärmen Jungpflanzen | Gewächshaus mit Ofenheizung
+Geschützbohrmaschine | K | stahl,bronze | bohren,wasserkraft | Rohre werden massiv gegossen und ausgebohrt | Geschützgießerei
+Bajonett | K | stahl | schmieden | Klinge auf der Mündung einer Feuerwaffe | Muskete
+Festungsbau nach System | K | erde,stein | bauen_gemeinsam,zaehlen | Festungen nach berechneten Regeln | Sternschanze
+Wasserrad-Versuche mit Modell | E | holz,wasser | wasserkraft,messen | Wirkungsgrad wird am Modell gemessen | Wassermühle
+Windrose zur Selbstausrichtung | E | holz | windkraft,getriebe | kleines Hilfsrad dreht die Mühle in den Wind | Turmwindmühle
+Kohleabbau mit Dampfpumpen | B | kohle,wasser | dampf,stollen | Dampfmaschinen halten tiefe Gruben trocken | Atmosphärische Dampfmaschine
+Grubenpferde und Holzschienen | B | holz,tier | fahrzeug,tierhaltung | Pferde ziehen Kohlewagen auf Holzbahnen | Grubenhunt auf Holzschienen
+Sprengtechnik mit Bohrhammer | B | - | sprengen,schlagen | Bohrlöcher von Hand geschlagen | Sprengarbeit im Bergbau | | Projektregel: keine Stoffangaben
+Bergakademie | B | papier | lehren | Hochschule für Bergbau und Hüttenwesen | Lehrbuch des Bergbaus
+Geologische Karte | B | papier,geologie | zeichen | Karte zeigt Gesteinsarten im Untergrund | Schichtenfolge im Gestein
+Glaspresse | T | glas,eisen | glas,giessen | Glas wird in Formen gepresst | Glasgefäß aus der Form
+Spiegelglas gegossen | T | glas | glas,walzen | große gegossene und geschliffene Glasplatten | Spiegelglas mit Zinnfolie
+Bleikristallglas | T | glas,blei | glas | schweres, stark lichtbrechendes Glas | Hohlglas mit Kristallklarheit
+Fadenkreuz im Fernrohr | W | glas,faser | optik,messen | Fadenkreuz macht Winkelmessungen genau | Fernrohr
+Nonius | W | messing | messen | Hilfsskala liest Bruchteile eines Teilstrichs ab | Fadenkreuz im Fernrohr
+Theodolit | W | messing,glas | optik,messen | Fernrohr misst Horizontal- und Höhenwinkel | Nonius; Triangulation
+Gradmessung der Erde | W | messing | messen,zaehlen | Messungen zeigen die Abplattung der Erde | Theodolit
+Landesaufnahme | C | papier | messen,zeichen | Landeskarte aus einem Dreiecksnetz | Gradmessung der Erde
+Höhenlinien | C | papier | zeichen | Linien gleicher Höhe zeigen das Gelände | Landesaufnahme
+Längenmaß aus der Natur | W | messing | messen,regeln | Maßeinheit aus Erd- oder Pendelmaß abgeleitet | Gradmessung der Erde
+Mechanischer Webstuhl-Entwurf | T | holz,eisen | weben,getriebe | Webstuhl mit Antrieb über Kurbel | Weberei-Zug mit Lochkarten
+Spinnmaschine mit Walzen | T | holz,eisen | weben,getriebe | Walzen ziehen das Garn vor dem Drehen aus | Flügelspinnrad
+Kettenflaschenzug | M | eisen | winde | Kettenzug für sehr schwere Lasten | Flaschenzug; Gelenkkette
+Drehbank mit Support | M | eisen | drehen,getriebe | Werkzeughalter wird mechanisch geführt | Gewindeschneid-Drehbank
+Gummiradierer | C | kautschuk | schneiden | Kautschuk entfernt Bleistiftstriche | Kautschuk beobachten
+Bleistift | C | holz,erz | schneiden | Graphitmine in Holz | Federkiel-Zeichnung
+Blindenschrift-Vorläufer | C | papier | zeichen | tastbare Zeichen für Blinde | Allgemeine Schulpflicht
+Gehörlosenschule | G | - | lehren,signal,regeln | Unterricht mit Gebärden | Allgemeine Schulpflicht
+Heizung mit Warmwasser | E | kupfer,wasser | feuer_nutzen,hydraulik | warmes Wasser zirkuliert durch Rohre | Gewächshaus mit Ofenheizung
+Herdplatte aus Gusseisen | E | eisen | giessen,feuer_nutzen | geschlossener Herd spart Brennholz | Eisenguss in Formen
+Sparofen | E | eisen,ziegel | feuer_nutzen | Ofen mit Rauchzügen nutzt Wärme besser | Kachelofen
+Öllampe mit Glaszylinder | E | glas,oel | licht_feuer | Zylinder lässt die Flamme ruhiger und heller brennen | Gläserne Hängelampe
+Rundbrenner | E | messing,oel | licht_feuer,luftzufuhr | hohler Docht mit Luftzufuhr von innen | Öllampe mit Glaszylinder

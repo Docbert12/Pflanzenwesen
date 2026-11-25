@@ -11,3 +11,4 @@ Die Berichte v0.1.0 → v0.5.0 wurden nachträglich erstellt. Die dort als „en
 
 Ab v0.6.1:
 - v0.6.0 → v0.6.1 (Prompt 6B): zwei Testtexte geändert und im CHANGELOG begründet – Werkstatt-Griffpunkt (strengere Prüfung: Modell am Griffrahmen der animierten Hand) und Migrationsstufen (Kette 1→2→3→4→5). Die Prüfung „ausgelieferte Definitionen v0.6.0“ behält ihren Text und prüft jetzt den echten v0.6.0-Spielstand; neu ist „… v0.6.1“. Keine Datei, Klasse, Funktion oder kein Konfigurationsschlüssel entfernt.
+- v0.6.1 → Leitlinien-Excel (keine neue Version, 25.11.2026, `versionsvergleich_v0.6.1_zu_v0.6.1-leitlinie.md`): 33 neue Dateien (Excel, Quellen, Werkzeug, Tests, Doku), 6 geänderte Dokumente; nichts entfernt, keine Testprüfung geändert.

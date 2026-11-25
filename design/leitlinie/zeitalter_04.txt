@@ -1,0 +1,70 @@
+# Zeitalter 4 – Mittelsteinzeit (ca. 12.000–5500 v. Chr.): Mikrolithen, Pfeil und Bogen, Einbaum, Fischfang, Vorräte.
+Mikrolith | T | feuerstein | abschlagen | sehr kleine, genormte Steinstücke als Einsätze für Spitzen und Schneiden | Klinge
+Geometrischer Mikrolith | T | feuerstein | abschlagen | Dreiecke und Trapeze, die sich beliebig kombinieren lassen | Mikrolith
+Kerbtechnik | T | feuerstein | abschlagen | Klinge an einer Kerbe gezielt brechen, um genormte Stücke zu erhalten | Mikrolith
+Kernbeil | T | feuerstein,holz | abschlagen,binden | grobes Beil zum Fällen und Bearbeiten von Holz | Faustkeil
+Scheibenbeil | T | feuerstein | abschlagen | Beil aus einem breiten Abschlag mit scharfer Querschneide | Kernbeil
+Dechsel | T | feuerstein,holz | binden,abschlagen | quer geschäftete Klinge zum Aushöhlen von Holz | Kernbeil
+Geweihaxt | T | geweih,holz | bohren,binden | Axtkopf aus Geweih mit Stielloch | Retuscheur aus Geweih
+Pfeilschaftglätter | T | sandstein | schleifen | Stein mit Rille glättet und richtet Pfeilschäfte | Mahlstein
+Pfeil und Bogen | K | holz,seil | federn,werfen | gespannter Bogen speichert Energie und schießt Pfeile weit und genau | Speerschleuder
+Pfeilspitze | K | feuerstein | abschlagen | kleine, scharfe Spitze für Pfeile | Mikrolith
+Querschneider | K | feuerstein | abschlagen | Pfeilspitze mit breiter Schneide statt Spitze | Pfeilspitze
+Köcher | K | leder,rinde | naehen | Behälter für Pfeile | Tragebeutel
+Bogensehne | K | sehne,faser | schnur | zugfeste, gedrehte Sehne für den Bogen | Schnur aus Pflanzenfasern
+Leister | L | holz,geweih | binden | Fischspeer mit mehreren Zinken | Harpune
+Angelhaken | L | knochen | schleifen,bohren | gebogener Haken an einer Schnur | Ahle; Schnur aus Pflanzenfasern
+Fischreuse | L | holz,faser | flechten | Korbfalle, in die Fische hinein-, aber nicht hinausfinden | Tragekorb
+Fischzaun | L | holz | stapeln,flechten | Zaun aus Pfählen leitet Fische in eine Falle | Fischreuse
+Netzsenker | L | stein | bohren | gelochter Stein zieht das Netz nach unten | Netz
+Schwimmer aus Rinde | L | rinde | schneiden | Rindenstück hält das Netz oben | Netz
+Muschelsammeln | L | muschel | sammeln | Muscheln an Küsten und Flüssen sammeln
+Haselnuss-Röstgrube | L | nahrung,holz | graben,feuer_nutzen | große Mengen Nüsse in einer Grube rösten und haltbar machen | Nahrung rösten
+Vorratsgrube | L | nahrung,erde | graben,lagern | ausgekleidete Grube hält Vorräte kühl und trocken | Vorratsversteck
+Wildgetreide ernten | L | samen,feuerstein | schneiden,sammeln | Ähren wilder Gräser mit Klingen schneiden | Wildpflanzen ernten
+Sichel mit Feuersteinklingen | L | feuerstein,holz,harz | binden | Klingen in einen Griff eingesetzt – erntet viele Halme auf einmal | Wildgetreide ernten; Schäftung mit Pech
+Mörser und Stößel | L | stein | schlagen,schleifen | Körner in einer Steinmulde zerstoßen | Mahlstein
+Fladenbrot | L | samen,wasser | kochen | Mehlteig auf heißem Stein backen | Mörser und Stößel; Nahrung rösten
+Landschaft durch Feuer pflegen | L | holz | feuer_nutzen | kontrolliertes Abbrennen fördert junge Pflanzen | Feuer nutzen | | für Pflanzenwesen sehr riskant
+Hund als Begleiter | L | tier | tierhaltung | gezähmter Hund hilft bei Jagd und Wache
+Einbaum | V | holz | schneiden,auftrieb | ausgehöhlter Stamm als Boot | Dechsel; Floß
+Paddel | V | holz | schneiden | flaches Blatt am Stiel treibt das Boot an | Einbaum
+Schlitten | V | holz,seil | binden | Kufen tragen Lasten über Schnee und Gras | Schleppe
+Ski | V | holz | schneiden | lange Gleitbretter für Schnee | Schlitten
+Schneeschuh | V | holz,seil | flechten | breite Sohle verhindert Einsinken | Schlitten
+Rundhütte mit Pfosten | A | holz,rinde | graben,tragwerk | eingegrabene Pfosten tragen ein Dach | Stangenhütte
+Holzplattform am Ufer | A | holz | tragwerk | Bohlen auf Pfählen bilden einen trockenen Arbeitsplatz | Rundhütte mit Pfosten
+Ganzjährige Siedlung | A | holz | siedlung | Wohnplatz wird das ganze Jahr genutzt | Rundhütte mit Pfosten; Vorratsgrube
+Muschelhaufen | A | muschel | lagern | Abfall an fester Stelle wächst zu Hügeln | Abfall vom Rastplatz fernhalten
+Bastseil | T | rinde | schnur | starkes Seil aus Lindenbast | Schnur aus Pflanzenfasern
+Rindenbehälter | T | rinde,seil | naehen,flechten | genähte Gefäße aus Birkenrinde | Rindengefäß
+Korbflechterei | T | faser,holz | flechten | dichte Körbe für Vorräte | Tragekorb
+Holzschale | T | holz | schneiden | ausgehöhltes Holz als Ess- und Vorratsgefäß | Dechsel
+Bernsteinschmuck | G | harz | bohren,schleifen | fossiles Harz wird gebohrt und poliert | Perlenschmuck
+Gräberfeld | G | erde | graben,religion | Bestattungen an einem gemeinsamen Ort | Bestattung
+Grabbeigaben | G | stein,muschel | religion | Werkzeuge und Schmuck werden mitgegeben | Gräberfeld
+Kopfschmuck aus Geweih | G | geweih | schneiden,religion | getragener Geweihschmuck bei Ritualen | Rituale am Feuer
+Austausch über Wasserwege | G | feuerstein | handel | Waren reisen per Boot zwischen Gruppen | Tauschnetz; Einbaum
+Regeln für Fischgründe | G | - | regeln | Gruppen teilen Fangplätze nach festen Regeln | Gruppengrenzen
+Felsbilder | C | ocker | farbe | Szenen mit Booten, Tieren, Menschen | Höhlenmalerei
+Gravierte Geweihstücke | C | geweih | zeichen | Muster und Zeichen in Geweih geritzt | Felsgravur
+Zeichen auf Kieseln | C | stein,ocker | farbe | bemalte Kiesel mit wiederkehrenden Mustern | Ockerfarbe
+Rassel | C | rinde,samen | klang | Samen in einer Hülle als Rhythmusinstrument | Knochenflöte
+Fischwehr bauen | M | holz,stein | stapeln,tragwerk | Damm aus Steinen und Pfählen lenkt die Strömung | Fischzaun
+Hebel beim Baumfällen | M | holz | hebel | Stamm mit Stangen in die gewünschte Richtung drücken | Wippe zum Heben
+Rollen unter Lasten | M | holz | rad_achse | runde Hölzer unter schweren Lasten | Stein rollen
+Pfeilgift | K | blatt | extrahieren | Pflanzensaft an der Pfeilspitze wirkt auf Beute | Pfeil und Bogen | | nur Name und Funktion
+Hinterhalt | K | - | konflikt | Gruppe lauert an Wechseln und Furten | Treibjagd
+Palisade | K | holz | graben,tragwerk | Pfahlreihe schützt eine Siedlung | Dornenhecke um den Ruheplatz
+Feuerstein-Abbau mit Gruben | B | feuerstein,erde | graben,stollen | flache Gruben folgen der Feuersteinschicht | Feuersteinbergbau an der Oberfläche
+Steinsortieren nach Farbe | B | feuerstein | beobachten | Herkunft der Steine an Farbe und Struktur erkennen | Gesteinsauswahl nach Spaltbarkeit
+Salzlecke nutzen | B | salz | sammeln | salzhaltige Stellen werden aufgesucht | Wasserstellen merken
+Wundverband aus Moos | D | blatt | heilen | Moos saugt Blut auf und hält die Wunde sauber | Wunden auswaschen
+Zahnpflege mit Zweigen | D | holz | hygiene | gekaute Zweige reinigen die Zähne | Zahnstocher
+Schienen von Brüchen | D | holz,seil | binden,heilen | Holzschienen halten gebrochene Glieder ruhig | Verletzte Teile schonen
+Sonnenstand für Jahreszeiten | W | sonne,jahreslauf | beobachten | Aufgangspunkte der Sonne markieren Jahreszeiten | Sonnenlauf beobachten
+Wissen über Wanderzeiten | W | tier,jahreslauf | beobachten | Fisch- und Tierzüge werden vorhergesagt | Tierspuren lesen
+Holzarten unterscheiden | W | holz | beobachten | Holzarten nach Härte, Biegsamkeit und Brennwert wählen | Bruchkanten verstehen
+Wärmespeicher im Boden | E | stein,erde | graben,feuer_nutzen | heiße Steine in einer Grube geben lange Wärme ab | Kochen mit heißen Steinen
+Holzvorrat für den Winter | E | holz,jahreslauf | sammeln,lagern | großer, trockener Holzstapel | Brennholzvorrat
+Trockengestell | E | holz,seil | binden,trocknen | Gestell zum Trocknen von Fisch und Fasern in Sonne und Wind | Trocknen von Nahrung

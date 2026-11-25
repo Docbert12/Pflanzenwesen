@@ -1,0 +1,62 @@
+# Zeitalter 1 – Tierwelt: Fundstücke werden unverändert benutzt, Lernen durch Zusehen, Signale.
+# Für Pflanzenwesen der Ausgangszustand; vieles davon können die Wesen in v0.6.1 schon.
+Stein als Hammer | T | stein,nahrung | fund,schlagen | harte Schalen mit einem Stein auf festem Grund aufschlagen
+Amboss-Stein | T | stein | fund,schlagen | flacher Stein als feste Unterlage beim Aufschlagen | Stein als Hammer
+Stock als Sonde | T | holz | fund | dünnen Zweig in Spalten und Löcher stecken, um Nahrung herauszuholen
+Zweig zurechtbrechen | T | holz | fund,zerbrechen | Seitenzweige abbrechen, damit der Stock in eine Öffnung passt | Stock als Sonde
+Blatt als Schwamm | T | blatt,wasser | fund | zerknüllte Blätter saugen Wasser aus Mulden auf
+Blatt als Schöpfgefäß | T | blatt,wasser | fund | gefaltetes Blatt hält eine kleine Wassermenge
+Ast als Greifverlängerung | T | holz,nahrung | fund | mit langem Ast hoch hängende Früchte herabziehen
+Scharfkantiger Bruchstein | T | stein | fund,zerbrechen | zufällig entstandene Kante zum Ritzen und Zerteilen nutzen
+Grabstock | T | holz,erde | fund,graben | Wurzeln und Knollen mit einem kräftigen Ast freilegen
+Rinde als Unterlage | T | rinde | fund | Rindenstück als trockene Sitz- und Arbeitsunterlage
+Stock als Stütze | T | holz | fund | Ast als Stütze beim Gehen auf unebenem Boden
+Stein als Beschwerer | T | stein,blatt | fund | Blätter oder Äste mit Steinen gegen Verrutschen sichern
+Stock als Hebel | M | holz,stein | fund,hebel | mit einem Ast schwere Steine anheben oder umdrehen
+Stein rollen | M | stein | fund | runde Steine rollend statt tragend bewegen
+Ast spannen und schnellen lassen | M | holz | federn | gebogener Ast schnellt zurück – erste Erfahrung elastischer Kraft
+Früchte sammeln | L | nahrung | sammeln | reife Früchte finden, pflücken und tragen
+Vorratsversteck | L | nahrung | lagern | Nahrung an einem gemerkten Ort ablegen und später holen
+Nahrung abspülen | L | nahrung,wasser | fund | Erde von Wurzeln und Knollen im Wasser abspülen
+Nahrung zerklopfen | L | nahrung,stein | schlagen | harte Pflanzenteile mit einem Stein mürbe klopfen | Stein als Hammer
+Ergiebige Sammelplätze merken | L | nahrung | beobachten | Orte mit viel Nahrung im Gedächtnis behalten
+Reife prüfen | L | nahrung | beobachten | Früchte nach Farbe und Festigkeit auswählen
+Samen verschleppen | L | samen | sammeln | beim Sammeln fallen Samen an neuen Orten zu Boden
+Wasserstellen merken | L | wasser | beobachten | Wasserstellen im Gedächtnis behalten und wiederfinden 
+Schlafnest aus Zweigen | A | holz,blatt | sammeln,stapeln | Zweige und Blätter zu einer Liegemulde legen
+Windschutz aus Ästen | A | holz | sammeln,stapeln | gegeneinander gelehnte Äste brechen Wind und Regen
+Felsüberhang als Unterschlupf | A | stein | fund | natürlichen Überhang als Regenschutz nutzen
+Höhle als Ruheplatz | A | stein | fund | Höhle bietet gleichmäßige Temperatur und Schutz
+Laubpolster | A | blatt | sammeln,stapeln | weiche Unterlage aus Laub gegen kalten Boden
+Erdmulde als Liegeplatz | A | erde | graben | flache Mulde als geschützter Liegeplatz
+Nahrung teilen | G | nahrung | teilen | Nahrung an Gruppenmitglieder abgeben
+Um Nahrung bitten | G | nahrung | teilen,signal | durch Geste oder Mitteilung um Nahrung bitten
+Gemeinsamer Ruheplatz | G | blatt | stapeln | gemeinsames Ruhen an einem Ort schützt vor Angreifern
+Rangordnung | G | - | regeln | feste Reihenfolge beim Zugang zu Nahrung und Ruheplätzen
+Gegenseitige Pflege | G | blatt | hygiene | Blätter und Rinde des anderen von Schmutz und Schädlingen befreien | | | Pflanzenwesen: Pflege der Blattflächen erhält die Energiegewinnung
+Nachahmen | W | - | lehren | Handgriffe anderer beobachten und wiederholen
+Spielerisches Erkunden | W | - | beobachten | Gegenstände ohne Ziel ausprobieren und dabei Eigenschaften lernen
+Ursache und Wirkung erkennen | W | stein | beobachten,schlagen | bemerken, dass ein Schlag eine Schale öffnet | Stein als Hammer
+Härte vergleichen | W | stein | beobachten,schlagen | Steine gegeneinander schlagen und den härteren erkennen
+Gefahrenorte merken | W | - | beobachten | gefährliche Orte und Erlebnisse erinnern und meiden
+Warnsignal | C | - | signal | andere vor einer Gefahr warnen
+Lockruf | C | - | signal | Gruppenmitglieder zu einer Nahrungsquelle rufen
+Zeigen | C | - | signal | mit einer Gliedmaße auf einen Gegenstand oder Ort deuten
+Trommeln auf Holz | C | holz | schlagen,klang | Schlagen auf hohles Holz als weithin hörbares Signal
+Drohgebärde | K | - | signal,konflikt | sich groß machen, um einen Angreifer abzuschrecken
+Stock als Schlagwaffe | K | holz | fund,schlagen,konflikt | Ast zur Abwehr schwingen
+Steinwurf zur Abwehr | K | stein | werfen,konflikt | Steine nach Angreifern werfen
+Gemeinsame Abwehr | K | - | konflikt | die Gruppe stellt sich gemeinsam einem Angreifer
+Wunde mit Harz verschließen | D | harz | heilen | austretendes Harz verklebt eine Wunde und hält Schmutz fern | | | Pflanzenwesen: eigener Pflanzensaft könnte so wirken
+Geschädigte Blätter abwerfen | D | blatt | heilen | beschädigte Teile abstoßen, damit sie nicht weiter schaden | | | Pflanzenwesen-spezifisch
+Heilende Blätter verzehren | D | nahrung | arznei | bestimmte Pflanzen bei Beschwerden verzehren (wie bei Tieren beobachtet)
+Schatten aufsuchen | D | - | beobachten | Überhitzung durch Schattenplätze vermeiden
+Sonnenplatz suchen | E | sonne | beobachten | Blätter zur Sonne ausrichten, um Energie zu gewinnen | | | Pflanzenwesen gewinnen Energie über die Blätter (v0.6.1)
+Sonnenwarmer Stein | E | stein,sonne | fund | von der Sonne erwärmten Stein als Wärmequelle nutzen
+Trampelpfad | V | erde | verdichten | häufig begangene Wege werden fest und frei
+Baumstamm als Brücke | V | holz | fund | umgestürzten Stamm zum Überqueren eines Bachs nutzen
+Treibholz als Schwimmhilfe | V | holz,wasser | auftrieb | sich an treibendem Holz über Wasser halten
+Nahrung zum Ruheplatz tragen | V | nahrung | sammeln | Nahrung über Strecken zum sicheren Ruheplatz tragen
+Steine aufsammeln | B | stein | sammeln | geeignete Steine finden und mitnehmen
+Erde aufscharren | B | erde | graben | lockere Erde zur Seite scharren, um an Wurzeln zu gelangen
+Steine im Bachbett auswählen | B | stein,wasser | sammeln,beobachten | rund geschliffene harte Steine im Bachbett finden

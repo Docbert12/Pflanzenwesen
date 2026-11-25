@@ -1,5 +1,13 @@
 # Changelog
 
+## Leitlinien-Excel „Steinzeit → Zukunft“ (keine neue Version, Stand 0.6.1)
+- **Neu:** `design/Leitlinie_Steinzeit_bis_Zukunft.xlsx` – 24 Zeitalter (Namen wie in `Erfindungen_Echt_nach_Kategorien.xlsx`), **2.680 Erfindungen** (je Zeitalter 54–192), je Erfindung Materialien → Verfahren → Energie/Temperatur → Funktion, Vorläufer, Spielstand (A, WA, P7–P12, Lücke), „im normalen Spiel möglich ab“, Testbereich, was fehlt, Stand (historisch/in Entwicklung/spekulativ). Kein Technologiebaum, keine Boni; die Excel wird nicht ins Spiel importiert.
+- Blätter: Anleitung (Kennzahlen als Formeln), Zeitalter (mit Diagramm), Erfindungen (Filter, Farben, Auswahllisten), Zwischenschritte (gebündelte Lücken, Diagramm, **Auswahl zum Ausprobieren**), Lücken, Prompt-Abgleich, Verfahren, Materialien, Katalogabgleich (echte Namen der alten Excel → Leitlinie). 7.157 Formeln, nachgerechnet mit LibreOffice: 0 Fehler, alle Werte gleich der Python-Zählung.
+- Quellen `design/leitlinie/zeitalter_01.txt` … `24.txt` (+ `README.md`), Werkzeug `tools/build_leitlinie.py` mit `tools/leitlinie/` (Vokabular mit Physik und Spielstand je Verfahren/Material, Prüfungen, Katalogzuordnung), Doku `docs/leitlinie.md`.
+- **Tests:** `tools/tests/test_leitlinie.py` (15 neue Python-Tests: Anzahl je Zeitalter, eindeutige Namen, Vorläufer, keine Boni, Spielstand-Stichproben, Testbereich nur mit Testofen, Zeitalter 24 spekulativ, Sprengstoffe ohne Stoffangaben, keine Massenvernichtungswaffen, jede Lücke in genau einem Zwischenschritt, Entwicklungslinie Steinhammer → Schmelzen → Legieren → Bronzepickel, Excel-Aufbau und Formeln).
+- **Geändert:** `docs/HANDOVER.md` (Stand-Tabelle, Befehl, Schritt 4a „Leitlinie nachziehen“, offene Punkte), `README.md`, `docs/test_results.md`, `docs/plan_prompt_06b.md` (Abschnitt 8: Verweis), `docs/inventions_catalog.md` (Verweis). Am Spiel (Code, Daten, Szenen, Speicherformat) ist **nichts** geändert; die Original-Excel-Dateien sind unverändert.
+- **Entfernt:** nichts.
+
 ## 0.6.1-prototype – Prompt 6B (Excel-Abgleich, Arbeitsanimationen, Werkzeug- und Materialkette)
 - **Bestandsprüfung vor der Umsetzung** (aus Code und Tests, nicht aus der Doku): `docs/plan_prompt_06b.md` Abschnitt 3, `docs/implementation_status.md`. Ausgangsbasis v0.6.0: 432/432 auf Godot 4.7.2 und 4.5. Prüflinge Format 4 vor jeder Codeänderung erzeugt (`tests/fixtures/save_v4_prompt06*.json`, `tools/make_workshop_fixture.gd`).
 - **Werkzeug- und Materialkette** (`scripts/technology/work_chain.gd`, `work_system.gd`; `docs/work_chains.md`):

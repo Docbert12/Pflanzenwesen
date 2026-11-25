@@ -40,6 +40,18 @@ Alle Angaben stammen aus tatsächlich ausgeführten Läufen. Prompt 6B: 25.11.20
 - 3 bestehende Prüfungen angepasst und im CHANGELOG begründet: Werkstatt-Griffpunkt (strenger), Migrationsstufen (1→2→3→4→5), Fingerabdruck v0.6.0 (jetzt am echten v0.6.0-Spielstand geprüft).
 - Ein erster vollständiger Lauf auf 4.7.2 ergab 488/490: genau diese zwei veralteten Migrationsprüfungen schlugen fehl (Stufen 1→2→3→4 bzw. Fingerabdruck v0.6.0 gegen die neuen Definitionen). Sie wurden angepasst. Nach den Bildschirmfotos wurden noch die Knopfbeschriftungen und die Größe der schwebenden Beschriftungen geändert; die Läufe oben sind die vollständigen Läufe auf dem **ausgelieferten** Stand.
 
+## Leitlinien-Excel „Steinzeit → Zukunft“ (25.11.2026, keine neue Spielversion)
+| Lauf | Ergebnis |
+|---|---|
+| Python-Tests (`python3 -m unittest discover -s tools/tests`), davon 15 neu in `tools/tests/test_leitlinie.py` | **38/38** |
+| Quellenprüfung `python3 tools/build_leitlinie.py --pruefen` | 2.680 Erfindungen, 24 Zeitalter (54–192 je Zeitalter), 0 Fehler |
+| Nachrechnen der Excel mit LibreOffice (`recalc.py` des xlsx-Werkzeugs) | 7.157 Formeln, **0 Fehler** |
+| Formelwerte gegen die Python-Zählung (alle Zählspalten, Kennzahlen, Zwischenschritte, Lücken, Prompt-Abgleich, Katalog) | 0 Abweichungen |
+| Auswahl geändert (Werkzeugformen dazu, Erz ab, Großbuchstabe „X“) und neu gerechnet | Ergebnis gleich der Python-Zählung |
+| Sichtprüfung als PDF (Vorschau mit verkleinerter Erfindungsliste) | Kopfzeilen, Spaltenbreiten, Farben, Diagramme lesbar |
+
+Godot-Tests wurden nicht erneut ausgeführt: Am Spiel (Code, Daten, Szenen) hat sich nichts geändert.
+
 ## Prompt 6B – Werkzeug- und Materialkette (gezielt in der Testszene ausgelöst)
 Alle drei Ketten laufen über dieselben Handlungen wie im normalen Spiel (`WorkSystem` → `DecisionSystem`-Option bzw. `WorkSystem.tick` → `ActionExecutor`). Messwerte aus `tests/test_work_chain.gd` (Startwert fest) und `tools/probe_work_chain.gd`.
 

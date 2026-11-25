@@ -1,0 +1,159 @@
+# Zeitalter 19 – Moderne / Erster Weltkrieg (ca. 1900–1938): Flugzeug, Rundfunk, Fließband, Kunststoffe, Ammoniak für Dünger.
+# Für Pflanzenwesen: Pflanzenhormone, Licht- und Dunkelreaktion der Photosynthese, Mutationen durch Strahlung, Stickstoffdünger in Masse.
+Motorflugzeug | V | holz,textil,erdoel | aerodynamik,verbrennungsmotor | gesteuerter Motorflug mit Verwindung der Tragflächen | Gleitflug; Viertaktmotor
+Ganzmetallflugzeug | V | aluminium,stahl | aerodynamik,verbrennungsmotor | tragende Metallhaut statt Holz und Stoff | Motorflugzeug
+Leichtmetall-Legierung für Flugzeuge | B | aluminium,kupfer | legieren,haerten | aushärtbare Aluminiumlegierung, fest und leicht | Aluminium-Schmelzflusselektrolyse
+Hubschrauber | V | stahl,aluminium | aerodynamik,getriebe | drehende Flügel tragen und steuern das Fluggerät | Motorflugzeug
+Flüssigkeitsrakete | V | stahl,erdoel | rakete | Rakete mit flüssigem Treibstoff | Kriegsrakete
+Linienflugverkehr | V | aluminium,erdoel | aerodynamik,regeln | regelmäßige Flüge nach Plan | Ganzmetallflugzeug
+Flughafen | V | moertel,stahl | bauen_gemeinsam | Start- und Landebahnen mit Abfertigung | Linienflugverkehr
+Kreiselkompass | V | stahl,kupfer | elektromotor,navigation | schnell drehender Kreisel zeigt geografisch Nord | Trockenkompass mit Windrose
+Selbststeuerung mit Kreisel | V | stahl,kupfer | elektromotor,robotik | Kreisel hält Flugzeug oder Schiff auf Kurs | Kreiselkompass
+Echolot | V | stahl,elektronik | klang,messen | Schallimpulse messen die Wassertiefe | Kohlemikrofon
+Funkpeilung | V | kupfer,elektronik | funk,navigation | Richtung zu einem Sender ergibt den Standort | Funktelegrafie
+Radar | W | kupfer,elektronik | funk,messen | reflektierte Funkwellen orten Flugzeuge und Schiffe | Funkpeilung; Elektronenröhre-Verstärker
+Fließband | G | stahl | siedlung,getriebe | Werkstück wandert, jeder Arbeiter macht einen Handgriff | Austauschbare Teile; Fließfertigung von Seilrollenblöcken
+Arbeitsstudien | G | papier | messen,regeln | Arbeitsabläufe werden vermessen und verbessert | Fließband
+Industrienorm | G | papier | regeln,messen | einheitliche Maße für Papier, Schrauben und Teile | Normgewinde
+Elektrischer Anlasser | V | kupfer,blei | elektromotor,speicher | Elektromotor startet den Verbrennungsmotor | Automobil; Bleiakkumulator
+Scheibenwischer | V | stahl,kautschuk | getriebe | Wischerblatt hält die Scheibe frei | Automobil
+Sicherheitsglas | V | glas,kunststoff | glas | Verbundglas splittert nicht | Automobil
+Autobahn | V | moertel,stahl | verdichten,bauen_gemeinsam | kreuzungsfreie Straße nur für Kraftfahrzeuge | Asphaltstraße
+Elektrische Verkehrsampel | V | glas,kupfer | licht_elektrisch,regeln | rot, gelb, grün an Kreuzungen | Verkehrsampel mit Gaslicht
+Traktor | L | stahl,erdoel | verbrennungsmotor,landbau | Zugmaschine ersetzt Pferde auf dem Feld | Dampfpflug; Viertaktmotor
+Raupenfahrzeug | V | stahl | rad_achse,fahrzeug | Gleisketten verteilen das Gewicht auf weichem Boden | Traktor
+Motorisierter Mähdrescher | L | stahl,erdoel | verbrennungsmotor,landbau | selbstfahrende Erntemaschine | Mähdrescher; Traktor
+Dieselelektrische Lokomotive | V | stahl,erdoel,kupfer | verbrennungsmotor,generator | Dieselmotor treibt Generator, Elektromotoren treiben Räder | Dieselmotor; Elektrische Lokomotive
+Motorschiff | V | stahl,erdoel | verbrennungsmotor,auftrieb | Schiff mit Dieselmotor | Dieselmotor
+Luftseilbahn | V | stahl,seil | winde,elektromotor | Kabinen hängen an Tragseilen über Täler | Drahtseil; Elektromotor
+Hängebrücke mit sehr großer Spannweite | V | stahl | tragwerk,bauen_gemeinsam | Spannweite über einen Kilometer | Drahtseil-Hängebrücke
+Großstaudamm | E | moertel,stahl,wasser | bauen_gemeinsam,turbine | massiver Betondamm mit Kraftwerk | Wasserkraftwerk; Stahlbeton
+Verbundnetz | E | kupfer,stahl | wechselstrom,bauen_gemeinsam | Kraftwerke vieler Regionen speisen ein gemeinsames Netz | Fernübertragung von Strom
+Hochspannungsleitung | E | aluminium,stahl | wechselstrom | sehr hohe Spannung senkt die Übertragungsverluste | Verbundnetz
+Geothermiekraftwerk | E | stahl,wasser | dampf,turbine | heißer Dampf aus der Erde treibt Turbinen | Dampfturbine
+Windkraftanlage zur Stromerzeugung | E | stahl,kupfer | windkraft,generator | Windrad treibt einen Generator | Dynamo mit Selbsterregung; Turmwindmühle
+Haushaltskühlschrank | E | stahl,chemikalie | kaelte,elektromotor | elektrisch gekühlter Schrank für Lebensmittel | Kältemaschine
+Klimaanlage | E | stahl,chemikalie | kaelte | kühlt und entfeuchtet Raumluft | Haushaltskühlschrank
+Elektroherd | E | stahl,kupfer | gleichstrom | Kochplatten mit Heizdraht | Elektrischer Heizer
+Elektrische Waschmaschine | G | stahl,kupfer | elektromotor | Trommel wird von einem Motor bewegt | Elektromotor
+Elektrischer Staubsauger | G | stahl,kupfer | elektromotor,vakuum | Gebläse saugt Staub ab | Staubsauger mit Handpumpe
+Wolframglühfaden | E | wolfram,glas | licht_elektrisch,drahtziehen | Wolfram hält höhere Temperaturen aus – mehr Licht | Glühlampe
+Neonröhre | E | glas,helium | licht_elektrisch | Gasentladung in Edelgas leuchtet farbig | Elektron entdecken
+Leuchtstofflampe | E | glas,quecksilber | licht_elektrisch | Leuchtstoff wandelt UV-Licht in sichtbares Licht | Neonröhre
+Elektronenröhre-Diode | C | glas,wolfram | vakuum,halbleiter | Strom fließt nur in eine Richtung | Glühlampe
+Elektronenröhre-Verstärker | C | glas,wolfram | vakuum,halbleiter | Gitter steuert großen Strom mit kleiner Spannung | Elektronenröhre-Diode
+Rundfunk | C | kupfer,elektronik | funk | Sprache und Musik für alle per Funk | Elektronenröhre-Verstärker; Funktelegrafie
+Überlagerungsempfänger | C | elektronik | funk | trennscharfer Empfang vieler Sender | Rundfunk
+Dynamischer Lautsprecher | C | kupfer,eisen,papier | magnetismus,klang | Spule im Magnetfeld bewegt eine Membran | Rundfunk
+Tonfilm | C | kunststoff,elektronik | optik,klang | Ton als Lichtspur auf dem Film | Kinematograph
+Mechanisches Fernsehen | C | elektronik | optik,funk | rotierende Lochscheibe zerlegt Bilder in Zeilen | Rundfunk
+Elektronisches Fernsehen | C | glas,elektronik | vakuum,funk | Bildröhre und Bildaufnahmeröhre | Mechanisches Fernsehen
+Magnettonband | C | kunststoff,eisen | magnetismus,klang | Magnetisierung speichert Ton auf Band | Phonograph
+Bildtelegrafie | C | kupfer,elektronik | gleichstrom,optik | Bilder werden zeilenweise über Leitungen übertragen | Fernschreiber
+Kurzwellenfunk | C | elektronik | funk | Funkverbindungen um die Erde | Rundfunk
+Seenotruf per Funk | C | elektronik | funk,regeln | einheitliches Notsignal für Schiffe | Funktelegrafie
+Quarzuhr | W | elektronik | uhrwerk,halbleiter | schwingender Quarz als sehr genauer Taktgeber | Elektronenröhre-Verstärker
+Programmgesteuerter Binärrechner (mechanisch) | W | stahl | digital,getriebe | frei programmierbarer Rechner mit Binärzahlen | Logik-Algebra; Programmgesteuerte Rechenmaschine (Entwurf)
+Berechenbarkeitsmodell | W | papier | digital,zaehlen | gedachte Maschine beschreibt, was berechenbar ist | Logik-Algebra
+Quantenhypothese | W | papier | zaehlen | Energie wird in Paketen abgegeben | Kinetische Gastheorie
+Lichtquanten erklären den Photoeffekt | W | papier | zaehlen,photovoltaik | Licht besteht aus Energiepaketen | Quantenhypothese; Lichtelektrischer Effekt an Elektroden | | Grundlage der Solarzelle
+Spezielle Relativitätstheorie | W | papier | zaehlen | Lichtgeschwindigkeit ist für alle gleich; Masse ist Energie | Elektromagnetische Feldgleichungen
+Allgemeine Relativitätstheorie | W | papier | zaehlen | Schwerkraft als Krümmung von Raum und Zeit | Spezielle Relativitätstheorie
+Atomkern entdecken | W | gold,uran | strahlung,beobachten | fast die ganze Masse sitzt im winzigen Kern | Radioaktivität entdecken
+Schalenmodell des Atoms | W | papier | zaehlen | Elektronen auf festen Bahnen erklären Spektrallinien | Atomkern entdecken
+Neutron entdecken | W | - | strahlung,beobachten,messen | ungeladenes Kernteilchen | Atomkern entdecken
+Quantenmechanik | W | papier | zaehlen,quanten | Wellengleichung beschreibt Atome | Schalenmodell des Atoms
+Supraleitung entdecken | W | quecksilber,helium | kaelte,gleichstrom | Widerstand verschwindet nahe dem absoluten Nullpunkt | Absolute Temperaturskala
+Flüssiges Helium | W | helium | kaelte | Kühlung bis wenige Grad über dem Nullpunkt | Supraleitung entdecken
+Nebelkammer | W | glas,wasser | strahlung | Teilchenspuren werden als Nebelstreifen sichtbar | Atomkern entdecken
+Zählrohr | W | glas,gas | strahlung,gleichstrom | jedes Strahlungsteilchen erzeugt einen Stromstoß | Nebelkammer | | im Spiel ab Prompt 12 als Messgerät denkbar
+Teilchenbeschleuniger | W | kupfer,eisen | magnetismus,strahlung | Magnetfeld führt Teilchen auf Spiralbahnen zu hoher Energie | Zählrohr
+Elektronenmikroskop | W | eisen,elektronik | vakuum,magnetismus | Elektronenstrahl bildet viel feiner ab als Licht | Ölimmersions-Mikroskop; Elektron entdecken
+Röntgenbeugung an Kristallen | W | stein,stromquelle | strahlung,beobachten,messen | Beugungsmuster zeigen die Anordnung der Atome | Röntgenstrahlen
+Massenspektrometer | W | eisen,elektronik | magnetismus,messen | trennt Atome nach Masse | Teilchenbeschleuniger
+Ausdehnung des Weltalls | W | glas | optik,beobachten | ferne Galaxien entfernen sich | Spektralanalyse
+Kontinentalverschiebung | W | stein,geologie | beobachten | Kontinente bewegen sich langsam | Geologische Zeitskala
+Kosmische Strahlung entdecken | W | gas | strahlung,messen | Ballonmessungen zeigen Strahlung aus dem All | Zählrohr
+Wiederentdeckung der Vererbungsregeln | W | pflanze | zucht,buch | Kreuzungen bestätigen die Erbsenregeln | Vererbungsregeln an Erbsen | | Kern für Prompt 7
+Chromosomentheorie der Vererbung | W | glas | beobachten | Erbanlagen liegen auf den Chromosomen | Wiederentdeckung der Vererbungsregeln; Zellteilung beobachten
+Genkarte | W | tier | zucht,zaehlen | Lage von Genen aus Kopplung bestimmt | Chromosomentheorie der Vererbung
+Mutationen durch Röntgenstrahlen | W | tier,stromquelle | strahlung,zucht | Strahlung erhöht die Mutationsrate | Genkarte; Röntgenstrahlen | | entspricht Prompt 12 (Strahlung → Mutation)
+Hybridmais | L | pflanze,samen | zucht | Kreuzung reinerbiger Linien steigert den Ertrag | Saatgutzüchtung | | für Pflanzenwesen besonders bedeutsam
+Pflanzenhormon Auxin | W | pflanze | beobachten,chemie | Wuchsstoff lässt Pflanzen zum Licht wachsen | Stärkebildung im Blattgrün | | Kern der Pflanzenwesen
+Licht- und Dunkelreaktion der Photosynthese | W | pflanze,sonne | messen | Photosynthese hat einen lichtabhängigen und einen temperaturabhängigen Teil | Stärkebildung im Blattgrün | | Kern der Pflanzenwesen
+Aufbau des Blattgrüns aufklären | W | blatt,chemikalie | chemie | Struktur des Chlorophylls mit Magnesium im Zentrum | Blattgrün isolieren | | Kern der Pflanzenwesen
+Vitamine | D | nahrung | beobachten,chemie | Spurenstoffe in der Nahrung verhindern Mangelkrankheiten | Zitrusfrüchte gegen Skorbut
+Insulin als Arznei | D | tier | extrahieren,arznei | Hormon gegen Zuckerkrankheit | Vitamine
+Penicillin entdecken | D | mikroben | beobachten,zellkultur | Schimmelpilz hemmt Bakterien | Erreger in Reinkultur
+Sulfonamide | D | chemikalie | chemie,arznei | erste synthetische Mittel gegen Bakterien | Teerfarbstoffe
+Blutgruppen | D | - | beobachten,diagnose | Blut verschiedener Menschen verträgt sich nicht immer | Bluttransfusion
+Blutbank | D | glas | kaelte,lagern | gekühlt gelagertes Spenderblut | Blutgruppen
+Elektrokardiogramm | D | kupfer,elektronik | gleichstrom,diagnose | elektrische Herzströme werden aufgezeichnet | Galvanometer
+Hirnstrommessung | D | kupfer,elektronik | gleichstrom,diagnose | elektrische Hirnwellen werden aufgezeichnet | Elektrokardiogramm
+Eiserne Lunge | D | stahl | vakuum,elektromotor | Unterdruck hilft beim Atmen | Elektromotor
+Tuberkulose-Impfung | D | mikroben | impfen | abgeschwächter Erreger schützt | Tollwutimpfung
+Gelbfieber-Impfung | D | mikroben | impfen,zellkultur | Impfstoff aus gezüchtetem Virus | Tuberkulose-Impfung
+Strahlentherapie | D | stromquelle | strahlung,heilen | Strahlung zerstört Tumorgewebe | Röntgenstrahlen
+Hörgerät mit Verstärker | D | elektronik | halbleiter,klang | elektrischer Verstärker für Schwerhörige | Kohlemikrofon
+Ammoniaksynthese | B | luft,wasserstoff,stahl | chemie,hydraulik | Stickstoff aus der Luft wird unter Druck zu Ammoniak | Stickstoffbindung durch Knöllchenbakterien | | ermöglicht Stickstoffdünger in Masse – für Pflanzen zentral
+Stickstoffdünger in Masse | L | duenger | chemie,landbau | künstlicher Stickstoffdünger ernährt Milliarden | Ammoniaksynthese | | für Pflanzenwesen zentral
+Salpetersäure aus Ammoniak für Dünger | B | chemikalie | chemie | Ammoniak wird katalytisch zu Salpetersäure | Ammoniaksynthese
+Katalysator in der Industrie | B | platin,chemikalie | chemie | Stoff beschleunigt Reaktionen, ohne verbraucht zu werden | Ammoniaksynthese
+Bakelit | T | kunststoff,chemikalie | chemie | erster vollsynthetischer Kunststoff, hitzefest | Zelluloid
+PVC | T | kunststoff | chemie | vielseitiger Kunststoff für Rohre und Folien | Bakelit
+Polystyrol | T | kunststoff | chemie | leichter, formbarer Kunststoff | PVC
+Plexiglas | T | kunststoff | chemie | glasklarer, bruchsicherer Kunststoff | Polystyrol
+Polyethylen | T | kunststoff | chemie | biegsamer Kunststoff für Folien und Isolierungen | Polystyrol
+Nylon | T | kunststoff | chemie,weben | erste vollsynthetische Faser | Kunstseide
+Synthetischer Kautschuk | T | kautschuk,chemikalie | chemie | Kautschuk ohne Gummibäume | Vulkanisierter Kautschuk
+Zellglas | T | kunststoff,faser | chemie | durchsichtige Folie aus Zellulose | Kunstseide | | Rohstoff aus Pflanzen
+Rostfreier Stahl | B | stahl,nickel | legieren | Chrom und Nickel schützen vor Rost | Siemens-Martin-Ofen
+Elektrostahl | B | stahl,stromquelle | schmelzen,gleichstrom | Lichtbogenofen erschmilzt reinen Stahl | Bogenlampe; Siemens-Martin-Ofen
+Hartmetall | T | wolfram,chemikalie | chemie,schleifen | Werkzeuge aus Wolframkarbid schneiden Stahl | Wolframglühfaden
+Schnellarbeitsstahl | T | stahl,wolfram | legieren,haerten | Werkzeugstahl bleibt bei Rotglut hart | Gussstahl aus dem Tiegel
+Thermisches Cracken | B | erdoel | destillieren,chemie | schwere Ölanteile werden zu Benzin gespalten | Erdölraffinerie
+Kohleverflüssigung | B | kohle,wasserstoff | chemie,hydraulik | Treibstoff aus Kohle unter Druck | Thermisches Cracken
+Schaumflotation | B | erz,wasser,chemikalie | chemie | Erzteilchen haften an Luftblasen und werden abgeschöpft | Erzaufbereitung mit Wasser
+Grubenwehr mit Atemschutzgerät | B | stahl,luft | hygiene,regeln | Rettungstrupps mit Sauerstoffgeräten | Sicherheitslampe für Bergleute
+Atemschutzmaske | D | kautschuk,holzkohle | hygiene | Filter halten Rauch und Schadstoffe zurück | Grubenwehr mit Atemschutzgerät | | auch für Feuerwehr – für Pflanzenwesen wichtig
+Schaufelradbagger | B | stahl,kupfer | graben,elektromotor | riesiger Bagger für den Tagebau | Pressluftbohrer
+Elektrische Grubenlampe | B | blei,glas | licht_elektrisch,speicher | Akku-Lampe ohne offene Flamme | Sicherheitslampe für Bergleute
+Stahlhelm | K | stahl | walzen | gepresster Helm gegen Splitter | Topfhelm
+Panzerkampfwagen | K | stahl,erdoel | verbrennungsmotor,fahrzeug | gepanzertes Kettenfahrzeug | Raupenfahrzeug
+Flugzeugträger | K | stahl | auftrieb,bauen_gemeinsam | Schiff mit Flugdeck | Motorschiff; Ganzmetallflugzeug
+Unterwasser-Ortung mit Schall | K | elektronik | klang,messen | Schallimpulse orten Unterseeboote | Echolot
+Frauenwahlrecht | G | - | regeln | Frauen wählen und werden gewählt | Allgemeine Wahl
+Völkerbund | G | papier | regeln | Staaten sollen Konflikte gemeinsam lösen | Genfer Abkommen
+Achtstundentag | G | - | regeln | gesetzlich begrenzte Arbeitszeit | Arbeitsschutzgesetz für Kinder
+Arbeitslosenversicherung | G | papier | regeln,zaehlen | Unterstützung bei Arbeitslosigkeit | Sozialversicherung
+Supermarkt | G | stahl,glas | handel | Selbstbedienung mit Einkaufswagen | Kaufhaus
+Rundfunkanstalt | C | elektronik | funk,regeln | Sender mit Programm für ein ganzes Land | Rundfunk
+Zeitungsfotografie im Rasterdruck | C | papier,tinte | druck,optik | Fotos in Zeitungen durch Rasterpunkte | Fotografie; Rotationsdruckmaschine
+Kleinbildkamera | C | stahl,glas | optik,getriebe | handliche Kamera mit Kinofilm | Handkamera für alle
+Farbfilm | C | kunststoff,chemikalie | chemie,optik | mehrschichtiger Film zeichnet Farben auf | Farbfotografie
+Elektrische Schreibmaschine | C | stahl,kupfer | elektromotor | Motor unterstützt den Tastenanschlag | Schreibmaschine
+Kugelschreiber | C | messing,tinte | hydraulik | Kugel verteilt zähe Paste | Füllfederhalter
+Mikrofilm | C | kunststoff | optik | stark verkleinerte Aufnahmen für Archive | Kleinbildkamera
+Reißverschluss | G | messing,textil | getriebe | ineinandergreifende Zähne verschließen Kleidung | Knöpfe
+Druckknopf | G | messing | federn | federnder Verschluss | Reißverschluss
+Haftpflichtversicherung für Autos | G | papier | regeln | Schäden an Dritten werden versichert | Feuerversicherung
+Kreuzungsfreie Stadtbahn | V | stahl,moertel | tragwerk,elektromotor | Bahn auf eigenem Viadukt oder im Tunnel | Untergrundbahn
+Oberleitungsbus | V | stahl,kupfer | elektromotor,fahrzeug | Bus mit Strom aus zwei Fahrdrähten | Elektrische Straßenbahn
+Tankstelle | V | stahl,erdoel | lagern,handel | Kraftstoff für Autos an festen Stationen | Automobil
+Sanitätsflugzeug | D | aluminium | aerodynamik,heilen | Flugzeug bringt Kranke ins Krankenhaus | Ganzmetallflugzeug
+Wetterballon mit Funksender | W | kautschuk,elektronik | funk,messen | Ballon sendet Messwerte aus großer Höhe | Wetterdienst mit Telegraf
+Fluglinienwetterdienst | W | papier,elektronik | funk,regeln | Wetterberatung für den Luftverkehr | Wetterballon mit Funksender
+Kühlkette für Lebensmittel | L | stahl,nahrung | kaelte,handel | gekühlt von der Ernte bis zum Laden | Kühlhaus; Haushaltskühlschrank
+Tiefkühlen | L | nahrung | kaelte | schnelles Einfrieren erhält Geschmack und Nährstoffe | Kühlkette für Lebensmittel
+Schädlingsbekämpfung mit Mitteln | L | chemikalie | chemie,landbau | Mittel gegen Insekten an Pflanzen | Pflanzenschutz gegen Pilze | | für Pflanzenwesen zweischneidig
+Künstliche Besamung in der Tierzucht | L | tier | zucht | Zucht ohne Transport der Tiere | Planmäßige Tierzucht
+Genbank für Saatgut | L | samen | lagern,zucht | Sammlung von Sorten aus aller Welt wird erhalten | Botanische Expedition | | für Pflanzenwesen besonders bedeutsam
+Erosionsschutz durch Pflanzen | L | pflanze,erde | landbau | Windschutzstreifen und Konturpflügen halten den Boden | Hecken und Knicks | | für Pflanzenwesen bedeutsam
+Bodenkarte | L | erde,papier | zeichen,messen | Böden werden kartiert und eingeteilt | Geologische Karte
+Elektrische Melkmaschine | L | stahl,kautschuk | vakuum,elektromotor | Unterdruck melkt Kühe | Elektromotor
+Fertighaus | A | holz,stahl | tragwerk,siedlung | Häuser aus vorgefertigten Teilen | Vorgefertigter Glas-Eisen-Bau
+Spannbeton | A | stahl,moertel | zement,tragwerk | vorgespannter Stahl macht Beton tragfähiger | Stahlbeton
+Schalenbau aus Beton | A | moertel,stahl | tragwerk | dünne, gekrümmte Betonschalen überdecken große Hallen | Spannbeton
+Wärmedämmung mit Mineralwolle | A | stein,glas | tragwerk | Fasern dämmen Wärme und Schall | Fertighaus
+Feuerschutzwand aus Beton | A | moertel | tragwerk,regeln | nicht brennbare Trennwände | Massivbaupflicht nach dem Stadtbrand | | für Pflanzenwesen lebenswichtig
+Kläranlage mit Belebtschlamm | A | wasser,mikroben | zersetzen,hygiene | Bakterien reinigen Abwasser mit Luft | Rieselfeld

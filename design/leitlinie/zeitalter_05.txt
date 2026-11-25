@@ -1,0 +1,117 @@
+# Zeitalter 5 – Jungsteinzeit (ca. 10.000–3000 v. Chr.): Ackerbau, Viehhaltung, Keramik, geschliffene Beile, Weben, feste Häuser.
+# Für Pflanzenwesen: Anbau, Samen und Bewässerung kommen mit Prompt 8; Ton und Brennen fehlen in allen Prompts.
+Ackerbau | L | samen,erde,pflanze | landbau | Samen gezielt säen und die Pflanzen bis zur Ernte pflegen | Wildgetreide ernten
+Saatgut auswählen | L | samen | zucht,lagern | die besten Samen für die nächste Aussaat zurücklegen | Ackerbau
+Feldhacke | L | holz,geweih | binden,landbau | Hacke lockert den Boden für die Aussaat | Grabstock; Geweihaxt
+Holzspaten | L | holz | schneiden,graben | flaches Blatt zum Umgraben | Grabstock
+Brandrodung | L | holz | feuer_nutzen,landbau | Wald abbrennen, Asche düngt den Boden | Landschaft durch Feuer pflegen | | für Pflanzenwesen sehr riskant
+Einfache Bewässerung | L | wasser,erde | graben,bewaessern | Gräben leiten Wasser auf Felder | Ackerbau
+Hülsenfrüchte anbauen | L | samen,pflanze | landbau | Linsen und Erbsen ergänzen Getreide und verbessern den Boden | Ackerbau
+Flachsanbau | L | samen,pflanze | landbau | Faserpflanze für Schnüre und Stoffe | Ackerbau
+Obstbäume pflanzen | L | pflanze | landbau | Feigen und andere Fruchtbäume gezielt vermehren | Ackerbau
+Weinrebe kultivieren | L | pflanze | landbau | Reben werden gepflanzt und geerntet | Obstbäume pflanzen
+Worfeln | L | samen | sammeln | Spreu im Wind vom Korn trennen | Samen ausklopfen
+Dreschschlitten | L | holz,feuerstein | binden,landbau | Brett mit Steinsplittern löst Körner aus den Ähren | Sichel mit Feuersteinklingen
+Getreidespeicher | L | holz,ton | tragwerk,lagern | erhöhter Speicher schützt Korn vor Nässe und Tieren | Vorratsgrube
+Reibmühle | L | stein | schleifen | Läuferstein auf flacher Unterlage mahlt Mehl | Mahlstein
+Sauerteigbrot | L | samen,wasser,mikroben | gaeren,kochen | Teig gärt und wird locker gebacken | Fladenbrot
+Bier | L | samen,wasser,mikroben | gaeren | vergorenes Getreide als haltbares Getränk | Sauerteigbrot
+Wein | L | nahrung,mikroben | gaeren | vergorener Traubensaft | Weinrebe kultivieren
+Schafhaltung | L | tier | tierhaltung | Schafe liefern Milch, Fleisch und später Wolle | Hund als Begleiter
+Ziegenhaltung | L | tier | tierhaltung | genügsame Ziegen nutzen karge Weiden | Schafhaltung
+Rinderhaltung | L | tier | tierhaltung | Rinder liefern Milch, Fleisch und Zugkraft | Schafhaltung
+Schweinehaltung | L | tier | tierhaltung | Schweine verwerten Reste rund um das Dorf | Schafhaltung
+Milchnutzung | L | tier | tierhaltung | Tiere werden regelmäßig gemolken | Rinderhaltung
+Käse | L | tier,mikroben | gaeren | geronnene Milch wird haltbar gemacht | Milchnutzung
+Pferch | L | holz | graben,tragwerk | Zaun hält Tiere zusammen | Palisade
+Mist als Dünger | L | erde,tier | zersetzen | Tiermist verbessert den Ackerboden | Rinderhaltung
+Tierzucht durch Auslese | L | tier | zucht | ruhige, ertragreiche Tiere werden zur Zucht ausgewählt | Saatgut auswählen
+Geschliffenes Steinbeil | T | stein,holz | abschlagen,schleifen,binden | geschliffene Schneide bricht seltener und fällt Bäume schneller | Kernbeil
+Schleifplatte | T | sandstein,wasser | schleifen | Sandstein und Wasser schleifen Klingen | Pfeilschaftglätter
+Steinaxt mit Schaftloch | T | stein,holz | bohren,schleifen | gebohrtes Loch hält den Stiel sicher | Geschliffenes Steinbeil
+Hohlbohrung | T | stein,sand,holz | bohren | Rohrbohrer mit Sand bohrt Löcher in Stein | Bogenbohrer
+Feuersteinsäge | T | feuerstein,holz | abschlagen,schneiden | gezähnte Klinge sägt Knochen und Holz | Sichel mit Feuersteinklingen
+Spaltkeil aus Holz | T | holz | schlagen | Holzkeile spalten Stämme in Bretter | Steinkeil
+Brett und Bohle | T | holz | schlagen,schneiden | gespaltene und geglättete Bretter | Spaltkeil aus Holz
+Löffel aus Holz | T | holz | schneiden | geschnitzter Löffel | Holzschale
+Kamm | T | knochen,holz | schneiden | Zinken entwirren Fasern und Haare | Stichel
+Spindel mit Wirtel | T | holz,ton | schnur | Schwunggewicht hält die Spindel gleichmäßig in Drehung | Schnur aus Pflanzenfasern
+Gewichtswebstuhl | T | holz,ton,seil | weben | Kettfäden hängen an Gewichten, der Schuss wird eingeflochten | Spindel mit Wirtel
+Leinenstoff | G | faser | weben | gewebter Stoff aus Flachsfasern | Gewichtswebstuhl; Flachsanbau
+Filz | G | wolle | weben | verfilzte Wolle ergibt dichten Stoff | Schafhaltung
+Geflochtener Umhang | G | faser | flechten,kleidung | Umhang aus Gras und Bast gegen Regen | Korbflechterei
+Tongefäß | T | ton,wasser,holz | ton_formen,ton_brennen | gebranntes Gefäß für Wasser, Vorräte und Kochen | Feuerstelle
+Wulsttechnik | T | ton | ton_formen | Gefäß aus aufeinandergelegten Tonwülsten | Tongefäß
+Grubenbrand | T | ton,holz | ton_brennen,graben | Gefäße in einer Grube mit Holz brennen | Tongefäß
+Töpferofen | T | ton,holz,stein | ton_brennen,tragwerk | getrennte Feuer- und Brennkammer, gleichmäßigere Hitze | Grubenbrand
+Verzierte Keramik | C | ton | ton_formen,zeichen | Muster in den feuchten Ton gedrückt | Tongefäß
+Tonfigur | C | ton | ton_formen,ton_brennen | geformte und gebrannte Figur | Tongefäß
+Tonlampe | E | keramik,oel | licht_feuer | Schale mit Öl und Docht | Fettlampe; Tongefäß
+Kochgefäß über dem Feuer | L | keramik,wasser | kochen | Gefäß direkt ins Feuer stellen | Tongefäß
+Öl pressen | E | nahrung,stein | schlagen,extrahieren | Öl aus Oliven oder Samen pressen | Mörser und Stößel
+Backofen aus Lehm | E | ton,stein | ton_formen,feuer_nutzen | Kuppel speichert Wärme zum Backen | Töpferofen
+Herd im Haus | E | stein,ton | feuer_nutzen | feste Feuerstelle im Wohnraum | Feuerstelle
+Lehmziegel | A | ton,blatt,wasser | ton_formen,trocknen | luftgetrocknete Ziegel in Formen | Tongefäß
+Lehmhaus | A | ton,holz | tragwerk,bauen_gemeinsam | Wände aus Lehmziegeln, Dach aus Holz | Lehmziegel
+Rechteckhaus | A | holz,ton | tragwerk,bauen_gemeinsam | rechteckiger Grundriss lässt sich erweitern | Lehmhaus
+Langhaus | A | holz,ton,blatt | tragwerk,bauen_gemeinsam | großes Pfostenhaus mit Flechtwerkwänden | Rundhütte mit Pfosten
+Flechtwerkwand mit Lehm | A | holz,ton | flechten,ton_formen | Rutengeflecht mit Lehmbewurf | Korbflechterei; Lehmhaus
+Kalkputz | A | kalk,wasser | kalk_brennen | gebrannter Kalk ergibt harten, hellen Putz | Herd im Haus
+Terrazzoboden | A | kalk,stein | kalk_brennen,verdichten | Kalk mit Steinchen ergibt einen festen Boden | Kalkputz
+Stadtmauer | K | stein | bauen_gemeinsam,tragwerk | massive Mauer um eine Siedlung | Palisade
+Steinturm | A | stein | bauen_gemeinsam,tragwerk | Rundturm mit Innentreppe | Stadtmauer
+Pfeilerheiligtum | A | stein | bauen_gemeinsam,tragwerk | große behauene Pfeiler im Kreis | Steinkreis
+Dolmen | A | stein | bauen_gemeinsam,hebel | Steinplatten auf Tragsteinen bilden eine Grabkammer | Wippe zum Heben
+Menhir | A | stein | bauen_gemeinsam,hebel | aufgerichteter Einzelstein als Markierung | Dolmen
+Steinkreisanlage | A | stein,jahreslauf | bauen_gemeinsam,hebel | große Steine im Kreis, nach Sonnenständen ausgerichtet | Menhir; Sonnenstand für Jahreszeiten
+Grabenwerk | A | erde | graben,aufschuetten | Graben und Wall umschließen einen Platz | Fallgrube
+Pfahlbau | A | holz | tragwerk,bauen_gemeinsam | Häuser auf Pfählen am Seeufer | Holzplattform am Ufer
+Holzkastenbrunnen | A | holz,wasser | graben,tragwerk | ausgekleideter Schacht reicht bis ins Grundwasser | Vorratsgrube
+Abwasserrinne | A | stein | graben,stapeln | steinerne Rinne führt Abwasser aus dem Dorf | Holzkastenbrunnen
+Bohlenweg | V | holz | stapeln,verdichten | Bohlen machen sumpfigen Boden begehbar | Brett und Bohle
+Zugtier am Schlitten | V | tier,holz | tierhaltung | Rinder ziehen Lasten | Rinderhaltung; Schlitten
+Dorf | G | holz,ton | siedlung | mehrere Häuser mit gemeinsamen Flächen | Ganzjährige Siedlung
+Feldbesitz | G | erde | handel,regeln | Felder gehören Familien oder Gruppen | Dorf
+Handwerker | G | - | siedlung | einige Mitglieder spezialisieren sich auf ein Handwerk | Dorf
+Fernhandel mit Obsidian | G | obsidian | handel | Obsidian reist Hunderte Kilometer | Tauschnetz
+Zählsteine | W | ton | ton_formen,zaehlen | geformte Tonmarken stehen für Waren | Kerbholz
+Stempelsiegel | C | ton,stein | zeichen | eingedrücktes Zeichen kennzeichnet Besitz | Zählsteine
+Frühe Zeichen | C | ton | zeichen | wiederkehrende Zeichen auf Gefäßen und Figuren | Verzierte Keramik
+Sonnenobservatorium | W | holz,erde,jahreslauf | graben,beobachten | Kreisgraben mit Toren zeigt Sonnenwenden an | Sonnenstand für Jahreszeiten
+Saatkalender | W | jahreslauf | beobachten | Saat- und Erntezeiten nach Himmel und Wetter | Sonnenobservatorium
+Ahnenverehrung | G | - | religion | Verstorbene werden als Ahnen geehrt | Grabbeigaben
+Jahresfest | G | nahrung | religion,siedlung | gemeinsame Feste zu Saat und Ernte | Rituale am Feuer
+Dorfrat | G | - | regeln | Entscheidungen werden gemeinsam getroffen | Leitung durch Erfahrene
+Streitschlichtung | G | - | regeln,konflikt | feste Wege, Streit beizulegen | Dorfrat
+Steinkeule | K | stein,holz | bohren,binden | durchbohrter Steinkopf auf einem Stiel | Steinaxt mit Schaftloch
+Schleuder | K | seil,stein | werfen | Schlaufe beschleunigt den Wurfstein | Schnur aus Pflanzenfasern
+Geflügelte Pfeilspitze | K | feuerstein | abschlagen | Widerhaken halten die Spitze im Ziel | Pfeilspitze
+Befestigtes Dorf | K | holz,erde | graben,bauen_gemeinsam | Graben, Wall und Palisade um das Dorf | Grabenwerk
+Trepanation | D | feuerstein | chirurgie | Öffnen des Schädels mit Steinklingen | Pflege von Kranken
+Zahnbohrung | D | feuerstein | bohren,chirurgie | Bogenbohrer entfernt kranke Zahnsubstanz | Bogenbohrer
+Heilkräutergarten | D | pflanze | landbau,arznei | Heilpflanzen werden beim Haus angebaut | Heilpflanzen
+Feuersteinbergwerk | B | feuerstein,erde | stollen,graben | Schächte und Stollen zur Feuersteinschicht | Feuerstein-Abbau mit Gruben
+Geweihpicke | B | geweih | schlagen,graben | Geweihhacke lockert Kreide im Bergwerk | Geweihaxt
+Salzsieden | B | salz,wasser,keramik | feuer_nutzen,kochen | Salzwasser in Tongefäßen eindampfen | Tongefäß
+Tongrube | B | ton | graben | gezielter Abbau von Töpferton | Tongefäß
+Grünstein-Abbau | B | stein | graben,schlagen | zähes Gestein für Beile wird gezielt abgebaut | Geschliffenes Steinbeil
+Schwungmasse an der Spindel | M | holz,ton | drehen | Schwungmasse speichert die Drehbewegung | Spindel mit Wirtel
+Webgewichte | M | ton | ton_formen,ton_brennen | Gewichte spannen die Kettfäden gleichmäßig | Gewichtswebstuhl
+Sägen mit Sand | M | stein,sand,holz | schleifen | Holz- oder Steinstück mit Sand als Schleifmittel hin- und herziehen | Hohlbohrung
+Zaun aus Flechtwerk | A | holz | flechten,graben | geflochtener Zaun schützt Gärten | Flechtwerkwand mit Lehm
+Vorratskrug | L | keramik | lagern | großer Krug hält Vorräte trocken | Tongefäß
+Lehmverputzte Vorratsgrube | L | ton,erde | graben,ton_formen | Lehmschicht schützt vor Feuchtigkeit | Vorratsgrube
+Kalkbrennofen | B | kalk,holz,stein | kalk_brennen,tragwerk | Ofen brennt Kalkstein zu Branntkalk | Kalkputz
+Holzkohlemeiler | E | holz,erde | holzkohle | abgedeckter Holzstapel verkohlt unter Luftmangel | Herd im Haus
+Wassergefäß tragen | V | keramik,wasser | sammeln | Wasser im Krug vom Brunnen holen | Holzkastenbrunnen
+Rückentragegestell | V | holz,leder | binden | Gestell zum Tragen auf dem Rücken | Tragebeutel
+Rohstoffkarten im Gedächtnis | W | - | beobachten,lehren | Wissen über Ton-, Stein- und Salzstellen wird weitergegeben | Pflanzenkunde
+Färben mit Pflanzen | G | faser,blatt | extrahieren,farbe | Pflanzenfarbstoffe färben Fasern | Leinenstoff
+Perlen aus Stein | G | stein | bohren,schleifen | geschliffene und gebohrte Steinperlen | Perlenschmuck
+Spielsteine | G | knochen,stein | beobachten | Spielsteine und Knöchelchen für Spiele | Spielerisches Erkunden
+Zisterne | A | stein,ton,wasser | graben,ton_formen | abgedichtete Grube speichert Regenwasser | Holzkastenbrunnen
+Terrassenfeld | L | stein,erde | aufschuetten,stapeln | Stützmauern halten ebene Felder am Hang | Einfache Bewässerung
+Hirtenwanderung | V | tier,jahreslauf | tierhaltung | Herden werden zwischen Sommer- und Winterweiden geführt | Jahreszeiten-Wanderung
+Schattenstab | W | holz | beobachten | Schattenlänge eines Stabs zeigt Tageszeit | Sonnenlauf beobachten
+Grabhügel | A | erde,stein | aufschuetten,religion | aufgeschütteter Hügel über einem Grab | Dolmen
+Gerberei mit Rinde | T | leder,rinde | gerben | Rindengerbstoffe machen Häute haltbar | Genähte Kleidung

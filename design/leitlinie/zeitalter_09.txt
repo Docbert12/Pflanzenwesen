@@ -1,0 +1,147 @@
+# Zeitalter 9 – Klassische Antike (ca. 800 v. Chr.–300 n. Chr.): Ingenieurbau, Wasserräder, Zahnräder, Beton, Glasblasen, Geometrie.
+Hebelgesetz | W | holz,stein | hebel,zaehlen | Kraft mal Hebelarm ist auf beiden Seiten gleich | Wippe zum Heben
+Auftriebsprinzip | W | wasser | auftrieb,messen | ein Körper verliert so viel Gewicht, wie das verdrängte Wasser wiegt | Hebelgesetz
+Archimedische Schraube | M | holz,wasser | rad_achse,bewaessern | drehende Schraube in einem Rohr hebt Wasser | Hebelgesetz
+Flaschenzug | M | holz,seil | winde | mehrere Rollen teilen die Last auf viele Seilstränge | Seilrolle
+Tretradkran | M | holz,seil | winde,rad_achse | Menschen im Laufrad heben schwere Steine | Flaschenzug
+Zahnrad | M | bronze,holz | getriebe | Zähne übertragen Drehbewegung zwischen Achsen | Seilrolle
+Schneckengetriebe | M | bronze | getriebe | Schnecke treibt ein Zahnrad mit großer Untersetzung | Zahnrad
+Zahnradgetriebe für Himmelsbewegungen | W | bronze | getriebe,beobachten | Räderwerk zeigt Sonne, Mond und Finsternisse | Zahnrad; Finsternisvorhersage
+Wegmesser mit Zahnrädern | W | holz,bronze | getriebe,messen | Wagenrad zählt über Zahnräder die zurückgelegte Strecke | Zahnrad
+Schraube und Mutter | M | bronze,holz | getriebe | Gewinde wandelt Drehung in Längsbewegung | Archimedische Schraube
+Schraubenpresse | L | holz | getriebe,extrahieren | Gewindespindel presst Trauben und Oliven | Baumkelter; Schraube und Mutter
+Druckpumpe | M | bronze,wasser | vakuum,hydraulik | Kolben und Ventile drücken Wasser in eine Leitung | Archimedische Schraube
+Wasserorgel | C | bronze,wasser,luft | hydraulik,klang | Wasserdruck hält den Luftdruck für Pfeifen gleichmäßig | Druckpumpe
+Heronsball | E | bronze,wasser | dampf | Dampfstrahlen drehen eine Kugel – erste Dampfdrehung | Druckpumpe | | blieb ein Spielzeug
+Tempeltürautomat | M | bronze,wasser | dampf,winde | Wärme bewegt Wasser und öffnet Türen | Heronsball
+Verkaufsautomat für Weihwasser | M | bronze,wasser | hebel | Münze kippt einen Hebel und gibt Wasser frei | Münze
+Wasseruhr mit Schwimmer | W | bronze,wasser | messen,getriebe | Schwimmer treibt einen Zeiger | Wasseruhr
+Noria | E | holz,wasser | wasserkraft,bewaessern | Strömung dreht ein Rad mit Gefäßen, das Wasser hebt | Archimedische Schraube
+Wassermühle | E | holz,stein,wasser | wasserkraft,getriebe | Wasserrad treibt über Zahnräder einen Mahlstein | Noria; Zahnrad; Reibmühle
+Mühlenkaskade | E | stein,holz,wasser | wasserkraft,bauen_gemeinsam | viele Mühlen hintereinander am Hang | Wassermühle
+Wassergetriebener Blasebalg | E | holz,leder,wasser | wasserkraft,luftzufuhr | Wasserrad treibt den Blasebalg | Wassermühle; Doppelblasebalg | | zuerst in China
+Hochofen | B | erz,holzkohle,ton | verhuetten,luftzufuhr,giessen | hoher Schacht schmilzt Eisen flüssig | Gusseisen | | zuerst in China
+Tiegelstahl | B | eisen,holzkohle,keramik | schmelzen,haerten | Eisen im geschlossenen Tiegel mit Kohlenstoff zu Stahl schmelzen | Aufkohlen
+Messing | B | kupfer,zink,messing | legieren | Kupfer mit Zinkdampf zu goldgelbem Messing | Zinnbronze
+Großbronzeguss | B | bronze,ton,wachs | giessen,ton_formen | Statuen in vielen Teilen gegossen und zusammengesetzt | Verlorene Form
+Glasblasen | T | glas | glas | Glasblase an der Pfeife frei oder in Formen aufgeblasen | Glasgefäß aus der Form
+Fensterglas | A | glas | glas,walzen | flaches gegossenes Glas für Fenster | Glasblasen
+Glasmosaik | C | glas,moertel | glas,farbe | Bilder aus farbigen Glasstückchen | Glasblasen
+Brennglas | W | glas,sonne | optik | gewölbtes Glas bündelt Sonnenlicht und entzündet Zunder | Glasblasen
+Brennspiegel | W | bronze,sonne | optik | Hohlspiegel bündelt Sonnenlicht | Bronzespiegel
+Beton | A | moertel,stein,kalk | zement,kalk_brennen | Kalk mit Vulkanasche härtet auch unter Wasser | Kalkputz
+Rundbogen | A | stein | tragwerk | keilförmige Steine leiten Last seitlich ab | Kragsteingewölbe
+Tonnengewölbe aus Stein | A | stein,moertel | tragwerk | aneinandergereihte Bögen überdecken lange Räume | Rundbogen
+Kuppel aus Beton | A | moertel,stein | tragwerk,bauen_gemeinsam | große, freitragende Kuppel | Beton; Tonnengewölbe aus Stein
+Bogenbrücke | V | stein,moertel | tragwerk,bauen_gemeinsam | Steinbögen überspannen Flüsse | Rundbogen
+Fangedamm | A | holz,erde,wasser | aufschuetten,tragwerk | Spundwand hält Wasser fern, um Pfeiler im Fluss zu bauen | Bogenbrücke
+Arkadenaquädukt | A | stein,moertel,wasser | tragwerk,bauen_gemeinsam | Bögen tragen die Leitung über Täler | Aquädukt; Rundbogen
+Wasserverteiler | A | stein,blei,wasser | bauen_gemeinsam | Becken verteilt Wasser auf Brunnen, Bäder und Häuser | Arkadenaquädukt
+Bleirohr | A | blei,wasser | giessen,walzen | gebogenes Bleiblech als Wasserleitung | Wasserverteiler
+Großkanalisation | A | stein,wasser | stollen,bauen_gemeinsam | gewölbter Hauptkanal entwässert eine Großstadt | Kanalisation
+Fußbodenheizung | E | ziegel,holz | feuer_nutzen,tragwerk | heiße Luft strömt unter dem Boden und in Wandröhren | Ziegelgewölbe
+Thermenbad | D | ziegel,wasser,holz | hygiene,feuer_nutzen | öffentliches Bad mit kalten, warmen und heißen Räumen | Fußbodenheizung
+Mietshaus mit Stockwerken | A | ziegel,holz | tragwerk,bauen_gemeinsam | mehrgeschossige Wohnblöcke | Rasterstadt
+Amphitheater | A | stein,moertel | bauen_gemeinsam,tragwerk | ovale Arena mit Rängen | Theater
+Basilika | A | stein,holz | bauen_gemeinsam,tragwerk | große Halle für Markt und Gericht | Säulentempel
+Leuchtturm | V | stein,holz | bauen_gemeinsam,licht_feuer | hoher Turm mit Feuer weist Schiffen den Weg | Leuchtfeuer
+Schleuse im Kanal | V | holz,stein,wasser | bauen_gemeinsam,hydraulik | Tore halten Wasserstände für Schiffe | Schiffskanal
+Römerstraße | V | stein,sand,moertel | verdichten,bauen_gemeinsam | Unterbau aus Schichten, gewölbte Oberfläche, Gräben | Gepflasterte Straße
+Meilenstein | V | stein | zeichen,messen | Steinsäule zeigt Entfernungen | Römerstraße
+Reisekarte mit Stationen | V | papier | schrift,zeichen | Liste und Karte von Straßen und Rastorten | Weltkarte auf Ton
+Schubkarre | V | holz | rad_achse,fahrzeug | ein Rad trägt die Last, man schiebt nur noch | Scheibenrad | | zuerst in China
+Hufschuh | V | eisen,leder | schmieden,tierhaltung | Eisenschuh schützt Hufe auf Pflaster | Trense
+Heckruder | V | holz | hebel | Ruder in der Mittelachse am Heck | Steuerruder | | zuerst in China
+Getreidefrachter | V | holz,textil | segeln,auftrieb | großes Frachtschiff für Getreide | Rahsegelschiff
+Hafenkran | V | holz,seil | winde | Tretradkran entlädt Schiffe | Tretradkran
+Katapult | K | holz,sehne | federn,werfen | gespannte Bündel schleudern Steine | Armbrust
+Torsionsgeschütz | K | holz,sehne,eisen | federn,werfen | verdrillte Sehnenbündel speichern große Energie | Katapult
+Bauchspanner-Bogen | K | holz,geweih,sehne | federn | Armbrust wird mit dem Körpergewicht gespannt | Armbrust
+Kettenhemd | K | eisen | schmieden,kleidung | Panzer aus verflochtenen Eisenringen | Kettenglieder
+Wurfspeer mit Eisenschaft | K | eisen,holz | schmieden | weicher Hals biegt sich beim Aufprall | Eiserne Lanzenspitze
+Kurzschwert | K | stahl | schmieden,haerten | kurze Stichwaffe für enge Formation | Eisenschwert
+Legionslager | K | holz,erde | aufschuetten,regeln | genormtes befestigtes Lager in festem Raster | Höhensiedlung mit Wall
+Grenzwall | K | stein,erde,holz | bauen_gemeinsam,aufschuetten | befestigte Grenzlinie mit Türmen | Legionslager
+Lange Mauer | K | stein,erde | bauen_gemeinsam,verdichten | gestampfte Erde und Stein über Hunderte Kilometer | Grenzwall | | zuerst in China
+Schildkrötenformation | K | holz,leder | konflikt,regeln | Schilde bilden ein geschlossenes Dach | Geschlossene Schlachtreihe
+Militärlazarett | D | holz | heilen,siedlung | festes Krankenhaus im Lager | Legionslager
+Beobachtende Medizin | D | papier | beobachten,heilen,buch | Krankheitsverläufe werden beobachtet und aufgeschrieben | Chirurgische Lehrschrift
+Ärztlicher Eid | D | - | regeln | Verpflichtung der Ärzte zu Sorgfalt und Schweigen | Beobachtende Medizin
+Anatomie durch Sektion | D | - | chirurgie,beobachten | innerer Aufbau des Körpers wird untersucht | Beobachtende Medizin
+Pulsmessung | D | - | messen,diagnose | Pulsschlag gibt Auskunft über den Zustand | Anatomie durch Sektion
+Chirurgisches Besteck | D | bronze,eisen | schmieden,chirurgie | Skalpell, Zange, Haken und Spekulum | Starstich
+Abbinden von Blutgefäßen | D | seil | chirurgie | Gefäße werden abgebunden, um Blutungen zu stillen | Chirurgisches Besteck
+Wundnaht | D | seil,bronze | naehen,chirurgie | Wunde wird mit Faden verschlossen | Abbinden von Blutgefäßen
+Akupunktur | D | bronze | chirurgie | feine Nadeln an festgelegten Punkten | Pulsmessung | | zuerst in China
+Arzneimittellehre | D | papier,blatt | arznei,buch | Hunderte Heilpflanzen mit Wirkung beschrieben | Pflanzenheilkunde-Schrift
+Pflanzenkunde als Wissenschaft | W | blatt,papier | beobachten,buch | Pflanzen nach Bau, Wachstum und Nutzen geordnet | Pflanzenkunde | | für Pflanzenwesen besonders wichtig
+Tierkunde | W | papier | beobachten,buch | Tiere nach Merkmalen geordnet | Pflanzenkunde als Wissenschaft
+Logik | W | - | schrift,lehren | Regeln für gültige Schlüsse | Naturerklärung ohne Götter
+Geometrie mit Beweisen | W | papier | zaehlen,buch | Lehrsätze aus Grundannahmen streng bewiesen | Lehrsatz über rechtwinklige Dreiecke
+Kreiszahl annähern | W | papier | zaehlen | Kreis zwischen Vielecken eingeschlossen | Geometrie mit Beweisen
+Erdumfang messen | W | stein,sonne | messen,zaehlen | Schattenwinkel an zwei Orten ergeben den Erdumfang | Geometrie mit Beweisen; Schattenstab
+Sternkatalog | W | papier | beobachten,buch | Positionen und Helligkeiten von über tausend Sternen | Sternbeobachtung
+Sehnentafel | W | papier | zaehlen | Tabellen für Winkel und Strecken (Vorläufer der Trigonometrie) | Sternkatalog
+Präzession entdecken | W | papier | beobachten,zaehlen | Himmelspol wandert langsam | Sternkatalog
+Weltbild mit Epizyklen | W | papier | zaehlen,buch | Rechenmodell sagt Planetenpositionen voraus | Sternkatalog
+Sonne im Mittelpunkt (Hypothese) | W | papier | beobachten,zaehlen | Erde kreist um die Sonne – damals kaum angenommen | Erdumfang messen
+Atomlehre | W | - | beobachten,schrift | Stoffe bestehen aus unteilbaren Teilchen (Annahme) | Naturerklärung ohne Götter
+Geographie mit Koordinaten | W | papier | messen,schrift | Orte nach Länge und Breite verzeichnet | Reisekarte mit Stationen
+Vermessungsinstrument Dioptra | W | bronze | optik,messen | Visiergerät für Winkel und Höhen | Lot und Waage für den Bau
+Kreuzvisier für Straßen | W | holz,blei | messen | Kreuz mit Loten steckt gerade Linien ab | Lot und Waage für den Bau
+Nivellierbank | W | holz,wasser | messen | Wasserrinne prüft das Gefälle von Leitungen | Kreuzvisier für Straßen
+Zirkel | W | bronze | schmieden | Spitzzirkel überträgt Maße | Geometrie mit Beweisen
+Schnellwaage | W | eisen,holz | hebel,messen | Laufgewicht am ungleichen Hebel wiegt große Lasten | Balkenwaage
+Rechenbrett | W | holz,stein | zaehlen | Steine in Spalten erleichtern Rechnen | Zählsteine
+Sonnenkalender mit Schaltjahr | W | jahreslauf | zaehlen,regeln | 365 Tage, alle vier Jahre ein Schalttag | Schaltmonat
+Erdbebenanzeiger | W | bronze,geologie | beobachten | Kugel fällt aus der Richtung der Erschütterung | Zahnrad | | zuerst in China
+Löffelkompass | V | erz,bronze | magnetismus | Magnetstein in Löffelform zeigt nach Süden | Magnetstein beobachten | | zuerst in China
+Papier | C | faser,wasser | papier | Pflanzenfasern geschöpft und getrocknet | Papyrus | | zuerst in China
+Pergament | C | leder | gerben,schneiden | ungegerbte, gespannte und geschabte Tierhaut | Papyrus
+Buchrolle | C | papier | buch | lange Rolle aus geklebten Blättern | Papyrus
+Große Bibliothek | C | papier | buch | Hunderttausende Rollen gesammelt und abgeschrieben | Palastbibliothek; Buchrolle
+Kurzschrift | C | wachs | schrift | Kürzel erlauben schnelles Mitschreiben | Wachstafel
+Amtliche Tagesnachrichten | C | holz | schrift,regeln | öffentlich ausgehängte Mitteilungen | Kurzschrift
+Fackeltelegraf | C | holz | licht_feuer,signal,schrift | Buchstaben durch Fackelzahl übertragen | Leuchtfeuer
+Geheimschrift | C | - | schrift | Buchstaben verschieben verbirgt den Text | Alphabet mit Vokalen
+Staatspost | C | tier | signal,regeln | Kuriere mit Pferdewechsel | Reichspost
+Rhetorik | C | - | signal,regeln,schrift | Lehre von der überzeugenden Rede | Volksversammlung
+Leier | C | holz,sehne | klang | Saiteninstrument mit Klangkörper | Harfe
+Republik | G | - | regeln | gewählte Ämter auf Zeit mit Senat | Volksversammlung
+Geschriebenes Zivilrecht | G | stein | regeln,schrift | Gesetze für alle sichtbar aufgestellt | Gesetzessammlung
+Bürgerrecht | G | - | regeln | Rechte und Pflichten der Bürger | Republik
+Feuerwehr | G | wasser,leder | regeln,siedlung | organisierte Brandwache in der Stadt | Großkanalisation | | für Pflanzenwesen lebenswichtig
+Getreideversorgung der Stadt | G | nahrung | handel,regeln | Staat kauft und verteilt Getreide | Staatlicher Kornspeicher
+Geldwechsler und Banken | G | silber | handel | Einlagen, Kredite und Geldwechsel | Münze
+Seedarlehen | G | silber | handel,regeln | Kredit, der bei Schiffsverlust nicht zurückgezahlt wird | Geldwechsler und Banken
+Handwerkervereinigung | G | - | regeln,siedlung | Handwerker gleicher Arbeit schließen sich zusammen | Handwerker
+Philosophenschule | G | - | lehren,regeln,buch | dauerhafte Schulen für Lehre und Forschung | Logik
+Stadtplanung im Raster | A | stein | bauen_gemeinsam | Stadt mit Plätzen, Straßenraster und Vierteln geplant | Rasterstadt
+Gewächshaus | L | glas,pflanze | landbau | Glasabdeckung hält Pflanzen warm | Fensterglas | | für Pflanzenwesen besonders bedeutsam
+Fruchtfolge mit Hülsenfrüchten | L | pflanze,samen | landbau | Wechsel mit Hülsenfrüchten erhält die Bodenfruchtbarkeit | Hülsenfrüchte anbauen
+Gründüngung | L | pflanze | landbau,zersetzen | untergepflügte Pflanzen düngen den Boden | Mist als Dünger
+Streichbrettpflug | L | eisen,holz,tier | landbau,tierhaltung | gebogenes Brett wendet die Scholle | Eisenpflugschar | | zuerst in China
+Reihensämaschine | L | holz,samen | landbau,fahrzeug | Röhren legen Samen in gleichmäßigen Reihen | Saatpflug | | zuerst in China
+Mähwagen | L | holz,eisen,tier | landbau,fahrzeug | Kasten mit Zinken streift Ähren ab | Wagen mit Scheibenrädern
+Worfelmaschine mit Kurbel | L | holz | getriebe | Kurbel dreht einen Ventilator, der Spreu ausbläst | Worfeln | | zuerst in China
+Kettenpumpe | L | holz,wasser | getriebe,bewaessern | umlaufende Kette mit Brettern hebt Wasser | Noria | | zuerst in China
+Fischteich | L | tier,wasser | graben,tierhaltung | angelegte Teiche zur Fischhaltung | Fischzaun
+Lehrbuch der Landwirtschaft | L | papier | buch | Anleitung zu Böden, Saat, Tieren und Geräten | Rechenbuch
+Hydraulischer Bergbau | B | wasser,erde | graben,wasserkraft | aufgestautes Wasser spült Berge aus | Arkadenaquädukt
+Grubenwasserrad | B | holz,wasser | wasserkraft,stollen | Kette von Wasserrädern hebt Wasser aus tiefen Gruben | Noria
+Silberbergwerk mit Schächten | B | erz,holz | stollen | tiefe Schächte und Stollen zu silberhaltigem Bleierz | Bergbau mit Holzausbau
+Erzaufbereitung mit Wasser | B | erz,wasser | sammeln | Waschtische trennen Erz nach Dichte | Erzwäsche
+Soletiefbohrung | B | salz,wasser,holz | bohren,winde | Schlagbohrung mit Seil holt Salzwasser aus großer Tiefe | Salzsieden | | zuerst in China
+Erdgas mit Bambusrohren | E | gas,holz | bohren,feuer_nutzen | Erdgas aus Bohrlöchern wird in Rohren zum Salzsieden geleitet | Soletiefbohrung | | zuerst in China
+Quecksilbergewinnung | B | quecksilber,erz | verhuetten | Zinnober wird erhitzt, Quecksilber kondensiert | Erz rösten
+Wachskerze | E | wachs,faser | licht_feuer | Kerze aus Bienenwachs brennt sauber | Kerzen aus Talg
+Firmenlampen aus der Form | E | keramik,oel | ton_formen,ton_brennen,licht_feuer | Öllampen in großen Serien aus Gipsformen | Tonlampe
+Kohle als Brennstoff | E | kohle | graben,feuer_nutzen | Steinkohle wird gegraben und verbrannt | Holzkohle-Großmeiler
+Hobel | T | holz,eisen | schneiden | Klinge in einem Holzkörper glättet Bretter | Eisenmesser
+Drehbank mit Fußantrieb | M | holz,seil | drehen,federn | Seil und Federstange drehen das Werkstück | Bogendrehbank
+Zange mit Scharnier | T | eisen | schmieden | Zangenbacken an einem Bolzen | Schmiedezange
+Vorhängeschloss | M | eisen,bronze | schmieden,federn | Federn im Schloss sperren den Bügel | Schlüssel aus Bronze
+Schere mit Drehgelenk | T | stahl | schmieden | zwei Klingen an einem Gelenk | Bügelschere
+Seife aus Asche und Fett | D | oel,saeure | chemie | Lauge aus Asche verseift Fett | Seife
+Bodenmosaik | C | stein,moertel | schneiden,farbe | Bilder aus Steinchen im Fußboden | Terrazzoboden
+Kalender auf Stein | W | stein,jahreslauf | zeichen,zaehlen | Steintafel mit Monaten und Festen | Sonnenkalender mit Schaltjahr

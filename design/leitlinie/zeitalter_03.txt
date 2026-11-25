@@ -1,0 +1,91 @@
+# Zeitalter 3 – Altsteinzeit (ca. 1,7 Mio.–12.000 v. Chr.): Faustkeil, Feuer, geschäftete Werkzeuge, Kleidung, Kunst.
+# Hinweis: Pflanzenwesen sind brennbar – Feuer ist für sie Werkzeug und Gefahr zugleich.
+Faustkeil | T | feuerstein | abschlagen | beidseitig flächig behauenes Allzweckgerät mit langer Schneide | Zweiseitiges Geröllgerät
+Spalter | T | feuerstein | abschlagen | Faustkeil-Form mit breiter, gerader Schneide zum Spalten | Faustkeil
+Levallois-Technik | T | feuerstein | abschlagen | Kern so vorbereiten, dass ein Abschlag mit geplanter Form entsteht | Kernstein
+Klinge | T | feuerstein | abschlagen | langer, schmaler Abschlag mit parallelen Kanten | Levallois-Technik
+Klingenkern | T | feuerstein | abschlagen | Kern, von dem viele Klingen nacheinander gelöst werden | Klinge
+Kratzer | T | feuerstein | abschlagen,schneiden | steile Arbeitskante zum Abschaben von Häuten und Holz | Klinge
+Stichel | T | feuerstein | abschlagen,schneiden | meißelartige Spitze zum Einritzen von Holz, Knochen und Geweih | Klinge
+Steinbohrer | T | feuerstein | abschlagen,bohren | spitzes Gerät zum Lochen und Bohren | Klinge
+Rückenmesser | T | feuerstein | abschlagen,schneiden | Klinge mit abgestumpftem Rücken, sicher zu greifen | Klinge
+Blattspitze | T | feuerstein | abschlagen | dünne, flächig retuschierte Spitze in Blattform | Faustkeil
+Retuscheur aus Geweih | T | geweih | schlagen,abschlagen | weiches Schlaggerät zum feinen Nacharbeiten von Kanten | Hammerstein
+Holzspeer | K | holz,feuerstein | schneiden | gerader, angespitzter Speer aus einem Stamm | Angespitzter Stock
+Feuergehärtete Spitze | T | holz | feuer_nutzen | Holzspitze im Feuer trocknen und härten | Angespitzter Stock; Feuerstelle
+Geschäftete Steinspitze | K | holz,feuerstein,faser | binden,abschlagen | Steinspitze am Schaft festgebunden | Holzspeer; Blattspitze
+Birkenpech | T | rinde | feuer_nutzen,chemie | Birkenrinde unter Luftabschluss erhitzen, es entsteht ein Klebstoff | Feuerstelle | | ca. 340–400 °C ohne Luft
+Schäftung mit Pech | T | holz,feuerstein,harz | binden | Klinge mit Pech und Bindung fest in einen Griff setzen | Birkenpech
+Messer mit Griff | T | holz,feuerstein,harz | binden | Klinge mit Holzgriff für sicheren Kraftschluss | Schäftung mit Pech
+Knochennadel mit Öhr | T | knochen | schleifen,bohren | feine Nadel mit Öhr zum Nähen | Steinbohrer
+Ahle | T | knochen | schleifen | spitzer Dorn zum Vorstechen von Löchern | Steinbohrer
+Speerschleuder | K | holz | werfen,hebel | Wurfholz verlängert den Arm, Speer fliegt weiter | Holzspeer
+Harpune | K | geweih,holz | schneiden,binden | Spitze mit Widerhaken für die Jagd am Wasser | Geschäftete Steinspitze
+Feuer nutzen | E | holz | feuer_nutzen | natürliches Feuer erhalten und nähren | | | Pflanzenwesen: Feuer ist für brennbare Körper gefährlich
+Glut tragen | E | holz | feuer_nutzen,sammeln | Glut in Rinde oder Pilz zum neuen Lagerplatz tragen | Feuer nutzen
+Feuerstelle | E | holz,stein | feuer_nutzen,stapeln | Steinkranz hält das Feuer an einem festen Ort | Feuer nutzen; Steinkreis
+Schlagfeuer | E | feuerstein,stein | feuer_machen | Funken aus Feuerstein und Eisenkies entzünden Zunder | Feuerstelle
+Feuerbohren | E | holz | feuer_machen | Reibung eines drehenden Stabs erhitzt Holzmehl bis zur Glut | Feuerstelle
+Zunder | E | rinde,blatt | trocknen,sammeln | trockene, faserige Stoffe fangen Funken | Feuerbohren
+Brennholzvorrat | E | holz | sammeln,lagern,feuer_nutzen | trockenes Holz für die Nacht bereitlegen | Feuerstelle
+Fettlampe | E | stein,oel | licht_feuer | Fett in einer Steinmulde brennt mit Docht | Feuerstelle
+Fackel | E | holz,harz | licht_feuer | Holzstab mit brennbarem Kopf als tragbares Licht | Feuerstelle
+Schnur aus Pflanzenfasern | T | faser | schnur | verdrillte Fasern halten Zugkräfte aus | | | Bindematerial Fasern (v0.6.1) ist der Ausgangspunkt
+Netz | L | seil | flechten | Knotennetz zum Fangen und Tragen | Schnur aus Pflanzenfasern
+Tragebeutel | V | leder,seil | naehen | Beutel zum Tragen von Nahrung und Werkzeug | Knochennadel mit Öhr
+Fellkleidung | G | wolle,leder | kleidung | umgelegtes Fell schützt vor Kälte | Kratzer
+Genähte Kleidung | G | leder,sehne | naehen,kleidung | passgenau genähte Teile wärmen besser | Knochennadel mit Öhr; Fellkleidung
+Schuhwerk | G | leder,sehne | naehen,kleidung | Fußhülle gegen Kälte und Dornen | Genähte Kleidung
+Wohnplatz in der Höhle | A | stein,holz | feuer_nutzen | Höhle mit Feuerstelle als Wohnplatz | Höhle als Ruheplatz; Feuerstelle
+Stangenhütte | A | holz,leder | tragwerk,binden | Stangen im Kreis, mit Häuten bedeckt | Windschutz aus Ästen
+Grubenhütte | A | holz,erde | graben,tragwerk | eingetiefter Boden mit Dach aus Stangen | Stangenhütte
+Gepflasterter Wohnplatz | A | stein | stapeln,verdichten | flache Steine machen den Boden trocken | Steinkreis
+Windschirm am Feuer | A | holz,blatt | stapeln,feuer_nutzen | Schirm lenkt Wärme zum Lagerplatz | Feuerstelle
+Höhlenmalerei | C | ocker,holzkohle | farbe | Bilder mit Erdfarben und Kohle an Felswänden | Feuerstelle
+Felsgravur | C | stein | zeichen | Linien und Figuren in Fels ritzen | Stichel
+Handnegativ | C | ocker | farbe | Farbe um die aufgelegte Hand sprühen | Höhlenmalerei
+Ockerfarbe | C | ocker,stein | schlagen,farbe | Erdfarbe zerreiben und anrühren | Nahrung zerklopfen
+Figur aus Stein oder Elfenbein | C | geweih,stein | schneiden,schleifen | kleine geschnitzte Figuren | Stichel
+Perlenschmuck | G | muschel,seil | bohren | gelochte Muscheln an einer Schnur | Steinbohrer; Schnur aus Pflanzenfasern
+Knochenflöte | C | knochen | bohren,klang | Röhrenknochen mit Grifflöchern | Steinbohrer
+Kerbholz | W | holz,knochen | zeichen,zaehlen | Kerben zählen Dinge oder Tage | Stichel
+Komplexe Lautsprache | C | - | signal | viele Wörter für Dinge, Handlungen und Orte | Unterschiedliche Warnlaute
+Bestattung | G | erde | graben,religion | Verstorbene werden bestattet | Erdmulde als Liegeplatz
+Tauschnetz | G | feuerstein | handel | gute Steine wandern über weite Strecken von Gruppe zu Gruppe | Rohstein über weite Strecken tragen
+Pflege von Kranken | D | nahrung | teilen,heilen | Kranke über lange Zeit versorgen | Fürsorge für Verletzte
+Heilpflanzen | D | blatt,rinde | arznei | Rinden und Kräuter gegen Schmerzen und Entzündung | Heilende Blätter verzehren
+Zahnstocher | D | holz | fund,hygiene | dünnes Holz entfernt Reste zwischen Zähnen | | | Pflanzenwesen: als Reinigung der Blattachseln denkbar
+Treibjagd | L | holz | konflikt,signal | Gruppe treibt Wild in eine Engstelle | Gemeinsame Abwehr
+Fallgrube | L | erde,holz | graben | getarnte Grube fängt Tiere | Erdmulde als Liegeplatz
+Fischfang mit der Hand | L | wasser,tier | fund | Fische in seichtem Wasser greifen
+Nahrung rösten | L | nahrung | feuer_nutzen,kochen | Wärme macht Knollen weich und bekömmlich | Feuerstelle
+Kochen mit heißen Steinen | L | stein,wasser,leder | kochen | erhitzte Steine bringen Wasser in einem Hautbeutel zum Kochen | Nahrung rösten
+Räuchern | L | nahrung,holz | feuer_nutzen,trocknen | Rauch und Wärme machen Nahrung haltbar | Feuerstelle
+Trocknen von Nahrung | L | nahrung,sonne | trocknen | Wasserentzug macht Früchte haltbar | Vorratsversteck
+Mahlstein | L | stein,samen | schlagen,schleifen | Samen zwischen zwei Steinen zerreiben | Samen ausklopfen
+Wildpflanzen ernten | L | samen,feuerstein | schneiden,sammeln | Samenstände gezielt abschneiden | Abschlag als Messer
+Floß | V | holz,faser | binden,auftrieb | zusammengebundene Stämme tragen über Wasser | Treibholz als Schwimmhilfe
+Tragestange | V | holz | sammeln | Last an einer Stange zu zweit tragen | Zweihändiges Tragen
+Schleppe | V | holz,seil | binden | zwei Stangen mit Querholz schleifen Lasten über den Boden | Lange Äste schleifen
+Feuersteinbergbau an der Oberfläche | B | feuerstein,erde | graben | Feuersteinknollen aus Kreide und Schotter graben | Steinfundstelle
+Ockergewinnung | B | ocker | graben,sammeln | Erdfarbe an Fundstellen abbauen | Ockerfarbe
+Feuerstein erhitzen | B | feuerstein | feuer_nutzen | vorsichtiges Erhitzen verbessert die Spaltbarkeit | Feuerstelle
+Steinkeil | M | stein | abschlagen | keilförmiges Stück überträgt Schlagkraft in einen Spalt | Steinkeil zum Holzspalten
+Wippe zum Heben | M | holz,stein | hebel | langer Stamm über Drehpunkt hebt schwere Lasten | Stock als Hebel
+Bogenbohrer | M | holz,seil | bohren,federn | Sehne eines Bogens dreht den Bohrstab schnell | Steinbohrer; Schnur aus Pflanzenfasern
+Speerspitze aus Knochen | K | knochen | schleifen | geschliffene Knochenspitze | Ahle
+Schild aus Rinde | K | rinde,holz | binden | Rindenplatte fängt Stöße und Würfe ab | | |
+Sonnenlauf beobachten | W | sonne,jahreslauf | beobachten | Tageslänge und Sonnenstand über das Jahr verfolgen | Sonnenplatz suchen
+Mondphasen verfolgen | W | jahreslauf | beobachten,zaehlen | wiederkehrende Mondphasen zählen | Kerbholz
+Tierspuren lesen | W | erde,tier | beobachten | Spuren und Fährten deuten | Gefahrenorte merken
+Pflanzenkunde | W | blatt | beobachten,lehren | essbare, giftige und heilende Pflanzen unterscheiden und weitergeben | Giftige Pflanzen meiden
+Jahreszeiten-Wanderung | V | nahrung,jahreslauf | beobachten | Lager nach Jahreszeit an andere Orte verlegen | Feste Sammelrunde
+Erzählen | C | - | signal | Erlebnisse und Wissen als Geschichten weitergeben | Komplexe Lautsprache
+Rituale am Feuer | G | holz | religion | gemeinsame Handlungen festigen die Gruppe | Feuerstelle
+Leitung durch Erfahrene | G | - | regeln | erfahrene Mitglieder entscheiden über Lagerwechsel | Rangordnung
+Fremde aufnehmen | G | - | regeln | neue Mitglieder werden in die Gruppe aufgenommen | Gruppenwissen
+Gruppengrenzen | G | - | regeln,konflikt | Gebiete werden einer Gruppe zugeordnet | Fremde Gruppen meiden
+Lagerwechsel planen | W | - | beobachten,regeln | Zeitpunkt und Ziel des Lagerwechsels gemeinsam festlegen | Jahreszeiten-Wanderung
+Schlafmatte aus Gras | A | blatt | flechten | geflochtene Halme als trockene Unterlage | Laubpolster
+Tragekorb | V | rinde,faser | flechten | geflochtener Behälter für Sammelgut | Schnur aus Pflanzenfasern
+Rindengefäß | T | rinde,harz | binden | gefaltete und verklebte Rinde hält Wasser | Birkenpech

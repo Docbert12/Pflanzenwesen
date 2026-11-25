@@ -1,0 +1,81 @@
+# Zeitalter 6 – Kupferzeit (ca. 5000–3300 v. Chr.): Kupfer hämmern, schmelzen, gießen, erste Verhüttung.
+# Brücke zum Spiel: Kupfer kalt verformen kann ein Wesen in v0.6.1 schon; Schmelzen und Gießen nur im Testofen.
+Gediegenes Kupfer hämmern | B | kupfer,stein | kalt_verformen | reines Kupfer aus der Natur mit Steinen in Form schlagen | Hammerstein | | im Spiel vorhanden (Prompt 6)
+Kupferperle | G | kupfer | kalt_verformen | Kupferblech zu einer Perle gerollt | Gediegenes Kupfer hämmern
+Kupferahle | T | kupfer | kalt_verformen,schleifen | gehämmerte Kupferspitze zum Lochen | Gediegenes Kupfer hämmern; Ahle
+Kupfernadel | T | kupfer | kalt_verformen,schleifen | feine Nadel aus gehämmertem Draht | Kupferahle
+Glühen von Kupfer | B | kupfer,holz | feuer_nutzen | Erhitzen macht verhärtetes Kupfer wieder weich | Gediegenes Kupfer hämmern; Feuerstelle
+Schmelztiegel | T | ton | ton_formen,ton_brennen | hitzefestes Gefäß für flüssiges Metall | Tongefäß | | heute nur als Testausrüstung (Keramiktiegel)
+Blasrohr | E | holz | luftzufuhr | durch ein Rohr geblasene Luft heizt die Glut auf | Feuerstelle
+Grubenofen | E | ton,holzkohle | ton_formen,feuer_nutzen,luftzufuhr | Grube mit Holzkohle erreicht Schmelztemperatur | Blasrohr; Holzkohlemeiler
+Windofen | E | ton,stein,holzkohle | tragwerk,feuer_nutzen | Ofen nutzt Hangwind als Luftzufuhr | Grubenofen
+Kupfer schmelzen | B | kupfer,keramik,holzkohle | schmelzen,luftzufuhr | Kupfer im Tiegel verflüssigen | Schmelztiegel; Grubenofen | | im Testofen vorführbar (v0.6.1)
+Offene Gussform | T | stein | schleifen,bohren | ausgeschliffene Vertiefung im Stein nimmt flüssiges Metall auf | Kupfer schmelzen
+Kupferguss | B | kupfer,stein | giessen | flüssiges Kupfer in eine Form gießen | Offene Gussform | | im Testofen vorführbar (v0.6.1)
+Kupfer-Flachbeil | T | kupfer,holz | giessen,kalt_verformen,binden | gegossenes und nachgehämmertes Beil | Kupferguss; Geschliffenes Steinbeil
+Kupferaxt mit Schaftloch | T | kupfer,holz | giessen | Axt mit eingegossenem Schaftloch | Kupfer-Flachbeil
+Kupferdolch | K | kupfer | giessen,kalt_verformen,schleifen | Klinge aus Kupfer, Schneide durch Hämmern gehärtet | Kupferguss
+Kupfermeißel | T | kupfer | giessen,kalt_verformen | Meißel für Holz und weichen Stein | Kupferguss
+Kupfersäge | T | kupfer | kalt_verformen,schneiden | gehämmerte Blechsäge mit Sand für Stein | Sägen mit Sand
+Kupferhammer | T | kupfer,holz | giessen,binden | schwerer Hammerkopf aus Kupfer | Kupferguss
+Kupferspiegel | G | kupfer | giessen,schleifen | polierte Kupferscheibe spiegelt | Kupferguss
+Verlorene Form | T | kupfer,wachs,ton | giessen,ton_formen | Wachsmodell im Ton ausschmelzen, Hohlraum mit Metall füllen | Kupferguss
+Malachit erkennen | B | erz | beobachten | grünes Kupfererz an Farbe und Gewicht erkennen | Steinsortieren nach Farbe
+Kupferverhüttung | B | erz,holzkohle | verhuetten,luftzufuhr | Kupfer aus Erz in reduzierendem Feuer gewinnen | Malachit erkennen; Grubenofen
+Schlacke abtrennen | B | erz | verhuetten,zerbrechen | glasige Schlacke wird vom Metall getrennt | Kupferverhüttung
+Erz rösten | B | erz,holz | feuer_nutzen,oxidieren | Schwefel aus Erz durch Erhitzen an Luft austreiben | Kupferverhüttung
+Erz zerkleinern | B | erz,stein | schlagen,zerbrechen | Erz vor dem Schmelzen zerstoßen | Hammerstein
+Erzwäsche | B | erz,wasser | sammeln | leichtes Gestein im Wasser vom schweren Erz trennen | Erz zerkleinern
+Kupferbergbau | B | erz,stein | stollen,graben | Gänge folgen der Erzader | Feuersteinbergwerk
+Feuersetzen | B | stein,holz | feuer_nutzen,zerbrechen | Feuer an der Wand lässt Gestein mürbe werden | Kupferbergbau
+Rillenschlägel | B | stein,holz | binden,schlagen | Schlagstein mit Rille für die Schäftung | Hammerstein
+Arsenkupfer | B | kupfer,erz | legieren | arsenhaltiges Kupfer ist härter als reines | Kupferverhüttung
+Bleigewinnung | B | blei,erz | verhuetten | leicht schmelzbares Blei aus Bleiglanz | Kupferverhüttung
+Goldschmuck | G | gold | kalt_verformen | Gold aus Flusssand gehämmert und verziert | Gediegenes Kupfer hämmern
+Goldwaschen | B | gold,sand,wasser | sammeln | Goldflitter mit Wasser aus Sand trennen | Erzwäsche
+Silbergewinnung | B | silber,blei | verhuetten,oxidieren | Silber aus Blei durch Abtreiben trennen | Bleigewinnung
+Holzkohle für Metall | E | holzkohle | holzkohle | Holzkohle in Mengen für Öfen | Holzkohlemeiler
+Langsame Töpferscheibe | M | holz,stein,ton | drehen,ton_formen | drehbare Scheibe erleichtert das Formen | Wulsttechnik
+Hakenpflug | L | holz,tier | landbau,tierhaltung | von Ochsen gezogener Haken reißt den Boden auf | Feldhacke; Rinderhaltung
+Joch | L | holz,seil | binden,tierhaltung | Holzbalken verbindet zwei Zugtiere | Hakenpflug
+Wollschaf | L | tier,wolle | zucht | Schafe mit Wollvlies werden gezüchtet | Tierzucht durch Auslese
+Pferd zähmen | L | tier | tierhaltung | Pferde werden gehalten und genutzt | Hund als Begleiter
+Esel als Lasttier | V | tier | tierhaltung | Esel tragen Lasten über weite Strecken | Zugtier am Schlitten
+Bewässerungskanal | L | erde,wasser | graben,bewaessern | Kanäle verteilen Flusswasser auf weite Felder | Einfache Bewässerung
+Dattelpalme kultivieren | L | pflanze | landbau | Palmen werden bewässert und bestäubt | Obstbäume pflanzen
+Olivenanbau | L | pflanze | landbau | Ölbäume werden angebaut | Öl pressen
+Butter | L | tier | kalt_verformen | Rahm schlagen trennt Fett von Buttermilch | Milchnutzung
+Scheibenrad | V | holz | rad_achse,schneiden | massives Rad aus Bohlen | Rollen unter Lasten
+Wagen mit Scheibenrädern | V | holz,tier | rad_achse,fahrzeug | vierrädriger Wagen von Ochsen gezogen | Scheibenrad; Joch
+Schilfboot | V | blatt,seil | binden,auftrieb | Bündel aus Schilf tragen Boot und Last | Floß
+Segelboot | V | holz,textil | segeln,auftrieb | Mast und Segel nutzen den Wind | Einbaum; Leinenstoff
+Tempelplattform | A | ton | bauen_gemeinsam,tragwerk | erhöhte Plattform aus Lehmziegeln trägt einen Tempel | Lehmhaus
+Megalithtempel | A | stein | bauen_gemeinsam,tragwerk | Tempel aus großen Steinblöcken | Dolmen
+Schilfhaus | A | blatt,seil | binden,tragwerk | gebogene Schilfbündel bilden ein Gewölbe | Schilfboot
+Lehmmörtel | A | ton,wasser | ton_formen | Lehm verbindet Ziegel zu einer Wand | Lehmziegel
+Stadt | G | ton,holz | siedlung,bauen_gemeinsam | Tausende leben dicht beieinander, mit Tempel und Werkstätten | Dorf
+Bastionen | K | stein | bauen_gemeinsam,tragwerk | vorspringende Türme decken die Mauer | Stadtmauer
+Rollsiegel | C | stein | schneiden,zeichen | Zylinder mit Bild wird über Ton gerollt | Stempelsiegel
+Tonhülle mit Zählmarken | W | ton | ton_formen,zaehlen | versiegelte Hülle sichert Zählsteine | Zählsteine
+Zahlzeichen | W | ton | zeichen,zaehlen | Zeichen für Mengen statt einzelner Marken | Tonhülle mit Zählmarken
+Massenware Schalen | G | ton | ton_formen,siedlung | genormte Schalen in großen Mengen | Langsame Töpferscheibe
+Tempelwirtschaft | G | nahrung | siedlung,regeln | Tempel sammeln und verteilen Vorräte | Stadt
+Häuptlingstum | G | - | regeln | eine Person führt mehrere Dörfer | Dorfrat
+Prunkgrab | G | gold,kupfer | religion | Gräber mit Gold und Kupfer zeigen Rang | Goldschmuck
+Metallhandwerker | G | kupfer | siedlung | spezialisierte Schmelzer und Gießer | Handwerker
+Fernhandel mit Kupfer | G | kupfer | handel | Barren und Werkzeuge reisen weit | Fernhandel mit Obsidian
+Keulenkopf aus Kupfer | K | kupfer,holz | giessen,binden | gegossener Schlagkopf | Steinkeule
+Holzschild | K | holz,leder | binden | Schild aus Brettern mit Lederbespannung | Schild aus Rinde
+Birkenporling als Heilmittel | D | blatt | arznei | Baumpilz gegen Darmparasiten mitgeführt | Heilpflanzen
+Tätowierung | D | holzkohle | schneiden,farbe | Kohlenstaub in Hautschnitte, vermutlich als Behandlung | Höhlenmalerei
+Glühfarben deuten | W | kupfer | beobachten,feuer_nutzen | Farbe der Glut zeigt die Temperatur an | Glühen von Kupfer
+Erzwissen | W | erz | beobachten,lehren | Farbe, Gewicht und Fundort von Erzen werden weitergegeben | Malachit erkennen
+Gewichtssteine | W | stein | schleifen,messen | genormte Steine zum Wiegen von Metall | Zählsteine
+Bienenwachs sammeln | L | wachs | sammeln | Wachs aus Waben als Werkstoff | Verlorene Form
+Pech zum Abdichten | V | harz | feuer_nutzen | Pech dichtet Boote und Gefäße | Birkenpech
+Schmelzplatz | B | stein,holzkohle | lagern,siedlung | fester Platz mit Ofen, Tiegeln und Formen | Grubenofen
+Kupferblech treiben | T | kupfer | kalt_verformen | Kupfer zu dünnem Blech schlagen | Gediegenes Kupfer hämmern
+Kupfergefäß | T | kupfer | kalt_verformen,feuer_nutzen | getriebenes Gefäß aus Kupferblech | Kupferblech treiben
+Kupferdraht | T | kupfer | kalt_verformen,drahtziehen | dünner Draht aus gehämmertem Kupfer | Kupferblech treiben
+Spiralschmuck | G | kupfer | kalt_verformen | Armspiralen aus Kupferdraht | Kupferdraht
+Schärfen auf dem Schleifstein | T | kupfer,sandstein,wasser | schleifen | Schneide nachschleifen | Schleifplatte

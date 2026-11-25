@@ -1,0 +1,134 @@
+# Zeitalter 22 – Digitalzeitalter (ca. 1995–2015): Smartphone, Web, Cloud, Solar und Wind in Masse, Genomsequenzierung.
+# Für Pflanzenwesen: erstes Pflanzengenom, Photosynthese aus dem All messbar, Pflanzenlicht mit LED, Waldbrandüberwachung per Satellit.
+Smartphone | C | silizium,lithium,glas | halbleiter,funk | Telefon, Rechner, Kamera und Navigation in einem Gerät | Mobiltelefon; Touchscreen
+App-Laden | C | - | software,handel | Programme für Smartphones zentral beziehen | Smartphone
+Mobiles Internet | C | silizium | funk,netz | schneller Datenfunk für unterwegs | Digitaler Mobilfunk
+Funknetz im Haus | C | silizium | funk,netz | Geräte verbinden sich ohne Kabel | Lokales Rechnernetz
+Nahfunk für Geräte | C | silizium | funk | kurze Funkverbindung zu Kopfhörern und Zubehör | Funknetz im Haus
+Universeller Geräteanschluss | C | kupfer,kunststoff | gleichstrom,netz | eine Steckerart für viele Geräte, mit Stromversorgung | Personal Computer
+Flash-Speicher | W | silizium | halbleiter,digital | Daten bleiben ohne Strom erhalten | Programmierbarer Festwertspeicher
+Speicherstick | W | silizium,kunststoff | halbleiter | Datenspeicher im Taschenformat | Flash-Speicher; Universeller Geräteanschluss
+Halbleiterfestplatte | W | silizium | halbleiter,digital | schneller Speicher ohne bewegte Teile | Flash-Speicher
+DVD | C | kunststoff | optik,digital | Film in hoher Qualität auf einer Scheibe | CD-ROM
+Musikdatei-Abspieler | C | silizium,lithium | digital,klang | Tausende Lieder in der Hosentasche | Tonkompression; Flash-Speicher
+Flachbildschirm | C | glas,silizium | halbleiter,optik | dünne Bildschirme statt Bildröhren | Flüssigkristallanzeige
+Organische Leuchtdiode | C | kunststoff,glas | halbleiter,licht_elektrisch | selbstleuchtende, dünne Bildpunkte | Flachbildschirm
+Elektronisches Papier | C | kunststoff | halbleiter | Anzeige wie Papier, braucht nur beim Umblättern Strom | Flachbildschirm
+E-Book-Lesegerät | C | kunststoff,lithium | digital | Bücher als Dateien lesen | Elektronisches Papier
+Tablet-Rechner | C | silizium,glas,lithium | digital,halbleiter | flacher Rechner mit Touchscreen | Smartphone
+Digitales Fernsehen | C | elektronik | funk,digital | Fernsehen als Datenstrom | Bildkompression
+Videostreaming | C | - | netz,software | Filme werden über das Netz abgespielt | Digitales Fernsehen; Mobiles Internet
+Videotelefonie im Netz | C | - | netz,software | Gespräche mit Bild über das Internet | Videostreaming
+Soziales Netzwerk | G | - | netz,software | Menschen teilen Nachrichten, Bilder und Kontakte | World Wide Web
+Kurznachrichtendienst im Netz | C | - | netz,software | Textnachrichten über Datenverbindung | Soziales Netzwerk
+Weblog | C | - | netz,schrift | jeder veröffentlicht Texte im Netz | World Wide Web
+Gemeinschaftliche Online-Enzyklopädie | C | - | netz,buch | Freiwillige schreiben gemeinsam ein Nachschlagewerk | Enzyklopädie; Freie Software
+Freie Inhaltslizenzen | G | - | regeln,schrift | Werke dürfen unter Bedingungen frei genutzt werden | Freie Software
+Suchmaschine mit Verweisanalyse | C | - | software,ki | Seiten werden nach Verweisen gewichtet | Suchmaschine
+Onlinehandel | G | - | netz,handel | Waren werden im Netz bestellt und geliefert | Versandhandel mit Katalog
+Online-Zahlungsdienst | G | - | netz,handel | Bezahlen im Netz ohne Kartennummer beim Händler | Elektronischer Zahlungsverkehr
+Kryptowährung | G | - | software,netz | digitales Geld ohne Zentralbank, gesichert durch Rechenaufwand | Digitale Signatur
+Cloud-Rechenzentrum | W | silizium,kupfer | netz,software | Rechenleistung und Speicher als Dienst | Router; Virtualisierung
+Virtualisierung | W | - | software | ein Rechner verhält sich wie viele | Betriebssystem
+Großrechenzentrum mit Freikühlung | E | silizium,wasser | kaelte | Außenluft und Wasser kühlen Serverhallen | Cloud-Rechenzentrum
+Digitale Straßenkarte im Netz | C | - | netz,navigation | Karte mit Suche und Routen | Satellitennavigationssystem
+Satellitenbilder für alle | W | - | raumfahrt,netz | Luft- und Satellitenbilder im Browser | Erdbeobachtungssatellit
+Navigationsgerät im Auto | V | silizium | navigation,software | Ansage der Route aus Satellitenposition und Karte | Digitale Straßenkarte im Netz
+Satellitentelefon-Konstellation | C | silizium,aluminium | raumfahrt,funk | Dutzende Satelliten decken die ganze Erde ab | Nachrichtensatellit
+Rechner schlägt Schachweltmeister | W | silizium | ki,software | Suchprogramm gewinnt gegen den besten Menschen | Schachprogramm
+Bilderkennung mit tiefen Netzen | W | silizium | ki | mehrschichtige Netze erkennen Gegenstände auf Fotos | Lernverfahren für mehrschichtige Netze
+Grafikprozessor für Rechenaufgaben | W | silizium | halbleiter,digital | Tausende einfache Rechenkerne arbeiten parallel | Mikroprozessor
+Sprachassistent | C | silizium | ki,klang | Gerät versteht gesprochene Fragen | Spracherkennung (begrenzt); Smartphone
+Maschinelle Übersetzung mit Statistik | C | - | ki | Übersetzung aus großen Textsammlungen | Suchmaschine mit Verweisanalyse
+Roboterstaubsauger | G | kunststoff,lithium | robotik | fährt selbstständig durch die Wohnung | Industrieroboter
+Kollaborierender Roboter | M | stahl,elektronik | robotik | Roboter arbeitet sicher neben Menschen | Industrieroboter
+Laufroboter | M | stahl,elektronik | robotik | Roboter hält auf vier Beinen das Gleichgewicht | Kollaborierender Roboter | entw
+Multikopter-Drohne | V | kunststoff,lithium | aerodynamik,robotik | vier oder mehr Rotoren, elektronisch stabilisiert | Hubschrauber in Serie; Lithium-Ionen-Akku
+3D-Drucker | M | kunststoff,elektronik | robotik | Gegenstände werden Schicht für Schicht aufgebaut | Rechnergestütztes Konstruieren
+Metall-3D-Druck | M | stahl,titan | robotik,schmelzen | Laser schmilzt Metallpulver schichtweise | 3D-Drucker
+Laserschneiden | M | stahl,elektronik | optik,schneiden | Laser schneidet Bleche genau | Laser
+Wasserstrahlschneiden | M | wasser,sand | hydraulik,schneiden | Hochdruckwasser mit Sand schneidet fast alles | Laserschneiden
+Internationale Raumstation | V | aluminium,silizium | raumfahrt,bauen_gemeinsam | dauerhaft bewohnte Station vieler Länder | Raumstation
+Marsrover | V | aluminium,silizium | raumfahrt,robotik | fahrbares Labor auf dem Mars | Marslander
+Landung einer Raketenstufe | V | aluminium,erdoel | rakete,robotik | Raketenstufe landet senkrecht und wird wiederverwendet | Mehrstufenrakete
+Weltraum-Gravitationswellenforschung | W | - | messen | Messung winziger Raumzeit-Schwingungen | Allgemeine Relativitätstheorie | entw | Nachweis erst 2015
+Planeten anderer Sterne finden | W | glas,silizium | optik,messen | Lichtschwankungen verraten ferne Planeten | Weltraumteleskop
+Humangenomprojekt | W | erbgut | gentechnik,software | Erbgut des Menschen vollständig gelesen | DNA-Sequenzierung
+Erstes Pflanzengenom | W | pflanze,erbgut | gentechnik | Erbgut einer Modellpflanze vollständig gelesen | DNA-Sequenzierung | | Kern der Pflanzenwesen
+Reisgenom | W | pflanze,erbgut | gentechnik | Erbgut einer Hauptkulturpflanze | Erstes Pflanzengenom | | für Pflanzenwesen bedeutsam
+Hochdurchsatz-Sequenzierung | W | erbgut,silizium | gentechnik,digital | Millionen DNA-Stücke werden parallel gelesen | Humangenomprojekt
+Klonen eines Säugetiers | W | tier,zellen | zellkultur | Tier aus dem Zellkern einer Körperzelle | Pflanzen aus Einzelzellen
+Embryonale Stammzellen | D | zellen | zellkultur | Zellen, aus denen alle Gewebe werden können | Klonen eines Säugetiers
+Induzierte Stammzellen | D | zellen,erbgut | zellkultur,gentechnik | Körperzellen werden in Stammzellen zurückverwandelt | Embryonale Stammzellen
+RNA-Interferenz | W | erbgut | gentechnik | kurze RNA schaltet Gene gezielt ab | Genetischer Code | | zuerst an Pflanzen und Würmern beobachtet
+Gentherapie | D | erbgut,zellen | gentechnik | gesundes Gen wird in Zellen eingebracht | Rekombinante DNA
+Zielgerichtete Krebsmedikamente | D | chemikalie | arznei | Wirkstoff hemmt ein Eiweiß nur in Krebszellen | Monoklonale Antikörper
+Antikörpertherapie | D | zellen | zellkultur,arznei | Antikörper als Medikament | Monoklonale Antikörper
+Kombinationstherapie gegen Viren | D | chemikalie | arznei | mehrere Wirkstoffe verhindern Resistenzen | Antivirale Medikamente
+Impfstoff gegen krebsauslösende Viren | D | erbgut | impfen,gentechnik | schützt vor Viren, die Krebs verursachen | Gentechnischer Impfstoff
+Operationsroboter | D | stahl,elektronik | robotik,chirurgie | Chirurg steuert feine Instrumente über Konsole | Schlüssellochchirurgie
+Kapselendoskopie | D | silizium | optik,diagnose | schluckbare Kamera fotografiert den Darm | Bildsensor
+Telemedizin | D | - | netz,diagnose | Diagnose über Datenverbindung | Videotelefonie im Netz
+Insektenresistente Kulturpflanzen | L | pflanze,erbgut | gentechnik | Pflanze bildet ein Bakterieneiweiß gegen Fraßinsekten | Gentechnisch veränderte Pflanze
+Herbizidtolerante Kulturpflanzen | L | pflanze,erbgut | gentechnik | Pflanze übersteht ein bestimmtes Unkrautmittel | Gentechnisch veränderte Pflanze | | für Pflanzenwesen ein Spiegel der eigenen Verwundbarkeit
+Vitaminangereicherter Reis | L | pflanze,erbgut | gentechnik | Reis bildet eine Vitamin-Vorstufe | Insektenresistente Kulturpflanzen
+Markergestützte Züchtung | L | pflanze,erbgut | gentechnik,zucht | Erbmerkmale werden im Labor erkannt, bevor die Pflanze wächst | Saatgutzüchtung; DNA-Sequenzierung | | für Pflanzenwesen besonders bedeutsam
+Saatguttresor im Permafrost | L | samen | lagern,kaelte | Sicherheitskopien des Saatguts der Welt | Genbank für Saatgut | | für Pflanzenwesen besonders bedeutsam
+LED-Pflanzenlicht | L | silizium,pflanze | licht_elektrisch,landbau | Licht in genau den Farben, die Pflanzen nutzen | Blaue Leuchtdiode | | Kern der Pflanzenwesen: Licht nach Maß
+Vertikale Landwirtschaft | L | pflanze,stahl | landbau,licht_elektrisch | Pflanzen wachsen in Etagen unter Kunstlicht | LED-Pflanzenlicht; Hydrokultur | | für Pflanzenwesen besonders bedeutsam
+Aquaponik | L | pflanze,tier,wasser | landbau,tierhaltung | Fische düngen Pflanzen, Pflanzen reinigen das Wasser | Hydrokultur
+Bodenfeuchtesensor im Feld | L | elektronik | messen,funk | Funk meldet, wann bewässert werden muss | Tropfbewässerung
+Automatische Lenkung für Landmaschinen | L | stahl,elektronik | navigation,robotik | Traktor fährt zentimetergenau Spur | Präzisionslandwirtschaft (Anfänge)
+Pflanzenvermessung mit Kameras | W | silizium,pflanze | optik,messen | Wachstum vieler Pflanzen wird automatisch erfasst | Bildsensor | | für Pflanzenwesen bedeutsam
+Messnetz für Kohlendioxid-Austausch | W | elektronik | messen | Türme messen, wie viel CO₂ Wälder aufnehmen | Klimaforschung mit Messreihen | | Kern der Pflanzenwesen
+Photosynthese-Leuchten aus dem All messen | W | silizium | raumfahrt,optik | schwaches Fluoreszenzlicht der Pflanzen zeigt ihre Photosyntheseleistung | Vegetationsindex aus Satellitenbildern | | Kern der Pflanzenwesen
+Waldbrandüberwachung per Satellit | W | silizium | raumfahrt,messen | Wärmesensoren melden Brände weltweit | Wärmebildkamera; Erdbeobachtungssatellit | | für Pflanzenwesen lebenswichtig
+Waldbrand-Frühwarnung mit Wetterdaten | G | - | software,messen | Brandgefahr wird täglich berechnet | Waldbrandüberwachung per Satellit | | für Pflanzenwesen lebenswichtig
+Bürgerwissenschaft | W | - | netz,beobachten | Freiwillige erfassen Pflanzen, Vögel und Wetter | Soziales Netzwerk
+Photovoltaik in Massenfertigung | E | silizium,aluminium | photovoltaik,siedlung | Solarmodule werden billig wie nie | Photovoltaik auf Dächern
+Dünnschicht-Solarzelle | E | selten,glas | photovoltaik | hauchdünne Halbleiterschicht auf Glas | Photovoltaik in Massenfertigung
+Perowskit-Solarzelle | E | chemikalie,glas | photovoltaik | neuartiger Kristall, billig herzustellen | Dünnschicht-Solarzelle | entw
+Offshore-Windpark | E | stahl,faserverbund | windkraft,bauen_gemeinsam | Windräder auf See mit stetigem Wind | Windpark
+Hybridauto | V | stahl,lithium | verbrennungsmotor,elektromotor | Verbrennungs- und Elektromotor arbeiten zusammen | Automobil; Nickel-Metallhydrid-Akku
+Elektroauto mit Lithium-Akku | V | lithium,kupfer | elektromotor,speicher | alltagstaugliches Elektroauto | Hybridauto; Lithium-Ionen-Akku
+Elektronischer Stromzähler | E | silizium | messen,netz | Zähler meldet den Verbrauch über das Netz | Stromzähler
+Batteriespeicher für das Netz | E | lithium | speicher,wechselstrom | große Akkus gleichen Schwankungen aus | Elektroauto mit Lithium-Akku
+LED-Lampe für Haushalte | E | silizium | licht_elektrisch | sparsames, langlebiges Licht | Blaue Leuchtdiode
+CO₂-Speicherung im Untergrund | B | gas,geologie | stollen,hydraulik | Kohlendioxid wird in Gesteinsschichten gepresst | Tiefbohrung auf See | entw
+Horizontalbohrung mit Gesteinsaufbruch | B | erdoel,wasser,geologie | bohren,hydraulik | Wasser unter Druck öffnet dichtes Gestein für Gas und Öl | Bohrung mit Richtungssteuerung
+Graphen | W | nanomaterial | nano | einlagiges Kohlenstoffgitter, sehr fest und leitfähig | Kohlenstoff-Nanoröhren
+Metamaterial | W | nanomaterial | nano,optik | künstliche Strukturen lenken Licht ungewöhnlich | Graphen | entw
+Flugzeug aus Kohlefaser | V | faserverbund,titan | aerodynamik,turbine | Rumpf und Flügel überwiegend aus Verbundwerkstoff | Kohlenstofffaser; Großraumflugzeug
+Doppelstock-Großraumflugzeug | V | aluminium,faserverbund | aerodynamik | größtes Passagierflugzeug | Großraumflugzeug
+Magnetschwebebahn im Linienbetrieb | V | stahl,kupfer | magnetismus,elektromotor | kommerzielle Strecke mit über 400 km/h | Magnetschwebebahn (Erprobung)
+Fahrradverleihsystem | V | stahl | handel,software | Räder an Stationen per Karte oder Telefon | Sicherheitsfahrrad
+Carsharing | V | stahl | handel,software | Autos werden geteilt statt besessen | Fahrradverleihsystem
+Wettbewerb selbstfahrender Autos | V | elektronik | robotik,ki | Fahrzeuge finden ohne Fahrer durch die Wüste | Automatische Lenkung für Landmaschinen | entw
+Notbremsassistent | V | elektronik | robotik | Auto bremst selbst vor Hindernissen | Antiblockiersystem
+Gemeinsame Währung mehrerer Staaten | G | papier,kunststoff | handel,regeln | eine Währung für viele Länder | Europäische Wirtschaftsgemeinschaft
+Klimaschutzabkommen mit Zielen | G | - | regeln,messen | verbindliche Ziele für Treibhausgase | Klimarahmenkonvention | | für Pflanzenwesen bedeutsam
+Weltklimaabkommen | G | - | regeln,messen | fast alle Staaten verpflichten sich zu Klimazielen | Klimaschutzabkommen mit Zielen | | für Pflanzenwesen bedeutsam
+Offene Onlinekurse | G | - | netz,lehren | Hochschulkurse für alle im Netz | Videostreaming
+Schwarmfinanzierung | G | - | netz,handel | viele kleine Beträge finanzieren ein Vorhaben | Online-Zahlungsdienst
+Offener Zugang zu Forschung | W | - | netz,buch | Fachartikel frei lesbar | Wissenschaftliche Zeitschrift
+Podcast | C | - | netz,klang | Sendungen zum Abonnieren | Musikdatei-Abspieler
+Nachhaltigkeitszertifikat für Holz | L | holz | regeln | Siegel für Holz aus nachhaltig bewirtschafteten Wäldern | Nachhaltige Forstwirtschaft | | für Pflanzenwesen bedeutsam
+Biokunststoff aus Stärke | T | kunststoff,pflanze | gaeren,chemie | Kunststoff aus Maisstärke | Biologisch abbaubarer Kunststoff | | aus Pflanzen
+Holz-Hochhaus | A | holz,stahl | tragwerk,bauen_gemeinsam | Brettsperrholz trägt mehrgeschossige Bauten | Fertighaus | | für Pflanzenwesen bedeutsam: Holz als Baustoff
+Brettsperrholz | A | holz | tragwerk | kreuzweise verleimte Holzlagen | Holz-Hochhaus
+Gründach | A | pflanze,erde | landbau,tragwerk | bepflanztes Dach dämmt und hält Regen zurück | Passivhaus | | für Pflanzenwesen besonders bedeutsam
+Fassadenbegrünung | A | pflanze | landbau | Pflanzen an Hauswänden kühlen die Stadt | Gründach | | für Pflanzenwesen besonders bedeutsam
+Regenwassernutzung im Haus | A | wasser,kunststoff | lagern,hydraulik | Zisterne versorgt Toilette und Garten | Zisterne
+Mehrfachverglaste Solarfassade | A | glas,silizium | photovoltaik | Fassade erzeugt Strom | Photovoltaik in Massenfertigung
+Erdwärmesonde | E | kunststoff,wasser | bohren,kaelte | Wärmepumpe nutzt die Wärme aus 100 m Tiefe | Wärmepumpe
+Smart-Home-Steuerung | E | silizium | netz,robotik | Heizung und Licht werden über das Netz geregelt | Funknetz im Haus
+Vernetzter Rauchmelder | G | silizium | funk,halbleiter | Melder alarmieren sich gegenseitig | Rauchmelder für Haushalte | | für Pflanzenwesen lebenswichtig
+Brand-Erkundungsdrohne | G | lithium | robotik,optik | Drohne mit Wärmebildkamera erkundet Brände | Multikopter-Drohne; Wärmebildkamera | entw | für Pflanzenwesen wichtig
+Tragbares Gerät am Handgelenk | C | silizium,lithium | halbleiter,funk | Uhr mit Sensoren und Datenverbindung | Smartphone
+Gesundheitssensor am Körper | D | silizium | messen,funk | Puls und Bewegung werden laufend gemessen | Tragbares Gerät am Handgelenk
+Digitale Patientenakte | D | - | software,regeln | Befunde werden elektronisch gespeichert | Telemedizin
+Tragbares Ultraschallgerät | D | silizium | klang,diagnose | Ultraschall im Taschenformat | Ultraschalldiagnose
+Genomweite Krankheitsstudien | D | erbgut | gentechnik,zaehlen | Erbgut vieler Menschen wird mit Krankheiten verglichen | Hochdurchsatz-Sequenzierung
+Rechnergestützte Medikamentenentwicklung | D | - | software,chemie | Wirkstoffe werden am Rechner vorausgewählt | Grafikprozessor für Rechenaufgaben
+Elektronische Steuerung im Stromnetz | E | silizium | netz,wechselstrom | Netzbetrieb wird digital überwacht und gesteuert | Elektronischer Stromzähler
+Gesteuertes Laden von Elektroautos | E | silizium | netz,speicher | Autos laden, wenn viel Strom im Netz ist | Elektroauto mit Lithium-Akku; Elektronische Steuerung im Stromnetz | entw

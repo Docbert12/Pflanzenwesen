@@ -1,0 +1,102 @@
+# Zeitalter 12 – Hochmittelalter (ca. 1000–1250): Windmühle, Kompass in Europa, Gotik, Spinnrad, Universitäten.
+Bockwindmühle | E | holz,textil | windkraft,getriebe | ganzes Mühlenhaus dreht sich auf einem Bock in den Wind | Windmühle mit senkrechter Achse
+Kamin mit Rauchabzug | E | stein,ziegel | feuer_nutzen,tragwerk | Rauch zieht durch einen Schornstein ab, Räume bleiben rauchfrei | Herd im Haus | | senkt die Brandgefahr – wichtig für Pflanzenwesen
+Spinnrad | T | holz,seil | weben,getriebe | Rad treibt die Spindel über einen Riemen | Spindel mit Wirtel | | zuerst in Indien
+Treibriemen | M | leder,seil | getriebe | umlaufender Riemen überträgt Drehung zwischen Rädern | Spinnrad
+Trittwebstuhl | T | holz,seil | weben,hebel | Pedale heben die Kettfäden, beide Hände bleiben frei | Gewichtswebstuhl
+Kurbelwelle | M | bronze,eisen | getriebe | Welle mit Kröpfungen wandelt Drehung in Hin- und Herbewegung | Steinsäge mit Kurbel und Pleuel
+Wasserhebemaschine mit Kurbelwelle | M | holz,bronze,wasser | wasserkraft,getriebe,vakuum | Tier oder Wasser treibt Kolbenpumpen über eine Kurbelwelle | Kurbelwelle; Druckpumpe
+Musikautomat mit Stiftwalze | C | holz,bronze | getriebe,klang | austauschbare Stifte steuern die Abfolge der Töne | Wasserorgel
+Astronomischer Uhrturm mit Hemmung | W | holz,bronze,wasser | uhrwerk,wasserkraft | Wasserrad mit Hemmung treibt Himmelsmodell im festen Takt | Zahnradgetriebe für Himmelsbewegungen | | zuerst in China
+Kompass in Europa | V | eisen | magnetismus | Magnetnadel für die Seefahrt | Kompass mit schwimmender Nadel
+Heckruder am Achtersteven | V | holz,eisen | hebel,rad_achse | Ruder hängt in Angeln am Heck großer Schiffe | Heckruder
+Kogge | V | holz,textil | tragwerk,auftrieb | bauchiges Frachtschiff mit Heckruder und Rahsegel | Klinkerbau mit Kiel
+Kammerschleuse | V | holz,stein,wasser | hydraulik,bauen_gemeinsam | zwei Tore bilden eine Kammer, Schiffe werden gehoben oder gesenkt | Schleuse im Kanal | | zuerst in China
+Schubkarre in Europa | V | holz | rad_achse,fahrzeug | Rad vorne, Last in der Mitte | Schubkarre
+Steinbrücke mit vielen Bögen | V | stein,moertel | tragwerk,bauen_gemeinsam | lange Brücke über breite Flüsse | Bogenbrücke
+Seedeich | A | erde,holz | aufschuetten,verdichten | Deiche schützen Land vor Sturmfluten | Grabenwerk
+Deichsiel | A | holz,wasser | hydraulik | Klappe lässt Wasser hinaus, aber keine Flut hinein | Seedeich
+Rippengewölbe | A | stein | tragwerk | Rippen bündeln die Last, die Felder dazwischen werden leicht | Spitzbogen
+Strebewerk | A | stein | tragwerk | Strebebögen leiten den Gewölbeschub nach außen | Rippengewölbe
+Gotische Kathedrale | A | stein,glas | bauen_gemeinsam,tragwerk | hohe Halle mit großen Fenstern und schlanken Pfeilern | Strebewerk
+Bildfenster aus Buntglas | C | glas,blei | glas,loeten | farbige Glasstücke ergeben Bilder | Glasfenster in Bleiruten
+Maßwerk | A | stein | schneiden,tragwerk | steinerne Muster gliedern große Fenster | Gotische Kathedrale
+Fachwerkhaus | A | holz,ton | tragwerk,flechten | Holzgerüst mit ausgefachten Wänden | Flechtwerkwand mit Lehm
+Steinerner Bergfried | K | stein,moertel | bauen_gemeinsam,tragwerk | hoher Hauptturm als letzte Zuflucht | Turmhügelburg
+Ringmauer mit Zwinger | K | stein | bauen_gemeinsam | zweiter Mauerring vor der Hauptmauer | Doppelte Landmauer
+Fallgitter | K | eisen,holz | winde | schweres Gitter senkt sich vor das Tor | Flaschenzug
+Pechnase | K | stein | tragwerk | vorkragende Öffnung über dem Tor | Ringmauer mit Zwinger
+Gegengewichtsblide | K | holz,stein,seil | hebel,werfen | schweres Gegengewicht schleudert große Steine weit | Zugkraft-Blide
+Armbrust mit Spannbügel | K | holz,stahl,seil | federn,hebel | Fußbügel und Spanngürtel erleichtern das Spannen | Armbrust
+Langbogen | K | holz,seil | federn | sehr langer Bogen aus einem Stück mit großer Reichweite | Pfeil und Bogen
+Topfhelm | K | eisen | schmieden | geschlossener Helm schützt den ganzen Kopf | Bronzehelm
+Waffenrock mit Wappen | K | textil | naehen,zeichen | Wappen kennzeichnen gepanzerte Kämpfer | Topfhelm
+Wappenwesen | C | textil,tinte | zeichen,regeln | feste Zeichen für Familien und Orte | Waffenrock mit Wappen
+Universität | G | papier | lehren,regeln | Gemeinschaft von Lehrenden und Lernenden mit eigenen Rechten | Kathedralschule
+Übersetzerschule | W | papier | buch,lehren | Werke aus dem Arabischen und Griechischen ins Lateinische | Haus der Weisheit
+Experimentelle Optik | W | glas | optik,beobachten | Licht verläuft geradlinig, Sehen entsteht durch einfallendes Licht | Brennglas
+Lochkamera | W | holz | optik | kleines Loch bildet die Außenwelt auf der Wand ab | Experimentelle Optik
+Lesestein | W | glas | optik,schleifen | geschliffene Glaskugel vergrößert Schrift | Experimentelle Optik
+Erdradius aus Berghöhe | W | - | messen,zaehlen | Horizontsenkung vom Berg ergibt den Erdradius | Erdumfang messen
+Experimentelle Methode | W | papier | beobachten,schrift | Behauptungen werden durch Versuche geprüft | Experimentelle Optik
+Kanon der Medizin | D | papier | buch,arznei | umfassendes Lehrbuch der Medizin | Medizinische Sammelwerke
+Chirurgie-Lehrbuch mit Instrumenten | D | papier,stahl | buch,chirurgie | Hunderte Instrumente beschrieben und gezeichnet | Chirurgisches Besteck
+Medizinschule | D | papier | lehren,heilen | Ausbildung von Ärzten mit Prüfung | Lehrkrankenhaus
+Weingeist destillieren | D | nahrung,mikroben,keramik | gaeren,destillieren | Alkohol aus Wein als Lösemittel und Arznei | Rosenwasser destillieren
+Leprosorium | D | stein | hygiene,siedlung | abgesondertes Haus für Aussätzige | Pestbekämpfung durch Absonderung
+Krankenpflegeorden | D | - | heilen,regeln | Gemeinschaften widmen sich der Pflege | Krankenhaus für alle
+Zunft | G | - | regeln,siedlung | Handwerker regeln Ausbildung, Preise und Qualität | Handwerkervereinigung
+Stadtrecht | G | papier | regeln | Stadt erhält eigene Rechte und Selbstverwaltung | Marktrecht
+Städtebund | G | papier | handel,regeln | Handelsstädte schließen sich zu Schutz und Handel zusammen | Stadtrecht
+Messe | G | - | handel | große Märkte zu festen Zeiten mit Fernhändlern | Marktrecht
+Wechselbank | G | papier,gold | handel | Bank für Geldwechsel, Einlagen und Kredit | Wechsel und Schuldschein
+Verfassungsurkunde | G | papier | regeln,schrift | Rechte gegenüber dem Herrscher werden schriftlich festgelegt | Rechtssammlung des Reiches
+Ständeversammlung | G | - | regeln | Vertreter verschiedener Stände beraten den Herrscher | Thing
+Ritterorden | K | - | regeln,konflikt | Gemeinschaft mit eigenen Burgen und Regeln | Klosterregel
+Papiermühle | C | faser,wasser,holz | papier,wasserkraft | Wasserrad treibt Stampfer, die Lumpen zu Brei schlagen | Papiermacherei in Bagdad; Walkmühle
+Bewegliche Lettern aus Ton | C | ton,tinte | ton_brennen,druck | einzelne Schriftzeichen aus gebranntem Ton werden gesetzt | Blockdruck | | zuerst in China
+Notenlinien | C | tinte | schrift,klang | Linien zeigen die Tonhöhe genau an | Musiknotation
+Rechnen mit indischen Ziffern in Europa | W | papier | zaehlen,lehren | Lehrbuch verbreitet das Rechnen mit Ziffern im Handel | Indische Ziffern im Westen
+Landkarte mit Maßstab | C | papier,tinte | zeichen,messen | Entfernungen auf der Karte entsprechen der Wirklichkeit | Seekarte mit Windrichtungen
+Haspel | B | holz,seil | winde | Seilwinde über dem Schacht hebt Erz und Wasser | Flaschenzug
+Pochwerk | B | holz,eisen,erz | wasserkraft,schlagen | Wasserrad treibt Stampfer, die Erz zerkleinern | Wasserrad-Hammerwerk
+Bergrecht | B | papier | regeln | Rechte und Pflichten von Bergleuten und Grundherren | Bergbausiedlung
+Steinkohleabbau in Gruben | B | kohle | stollen,graben | Kohle wird in Gruben gefördert | Kohle als Brennstoff
+Salzpfanne aus Eisen | B | eisen,salz,wasser | kochen,schmieden | große Eisenpfannen dampfen Sole ein | Salzsieden
+Bleiglanz zu Silber | B | erz,silber,blei | verhuetten,oxidieren | Silber aus Bleierz durch Treibarbeit | Silbergewinnung
+Mergeln | L | kalk,erde | landbau | kalkhaltiger Mergel verbessert saure Böden | Mist als Dünger
+Mustergüter der Klöster | L | pflanze,tier | landbau,siedlung | große Klosterhöfe erproben Anbau und Zucht | Klostergarten
+Schafzucht für Wolle | L | tier,wolle | zucht | Rassen mit feiner Wolle für den Tuchhandel | Wollschaf
+Sense mit langem Blatt | L | stahl,holz | schmieden | lange Klinge mäht große Flächen | Eisensichel
+Heringsfang mit Salz | L | nahrung,salz | trocknen,handel | gesalzener Hering wird weit gehandelt | Fischräuchern in Häusern
+Getreidehandel über Wasser | L | nahrung | handel | Getreide reist auf Flüssen in Städte | Getreideversorgung der Stadt
+Kaninchenhaltung | L | tier | tierhaltung | Kaninchen in Gehegen | Hühnerhaltung
+Obstbaumschule | L | pflanze | zucht,landbau | Jungbäume werden veredelt und verkauft | Pfropfen
+Hopfen im Bier | L | pflanze | gaeren | Hopfen macht Bier haltbarer | Klosterbrauerei
+Tuchmacherei | G | wolle,textil | weben,siedlung | Wolltuch in städtischen Werkstätten | Walkmühle; Trittwebstuhl
+Färberzunft | G | textil | farbe,extrahieren | Waid und Krapp färben Tuch blau und rot | Purpurfärberei
+Gerberzunft | G | leder | gerben | Gerben im großen Maßstab | Gerberei mit Rinde
+Knöpfe | G | knochen,bronze | schneiden,giessen | Knopf und Knopfloch verschließen Kleidung | Fibel
+Spiegel aus Glas mit Metall | G | glas,blei | glas | Glas mit Metallrückseite spiegelt | Bronzespiegel
+Glasperlen-Rosenkranz | G | glas,seil | glas | gezählte Perlen für Gebete | Glasperle
+Pilgerkarte | V | papier | zeichen | Wegbeschreibung zu Pilgerzielen | Reisekarte mit Stationen
+Fährseil | V | seil,holz | binden,auftrieb | Seil über den Fluss führt die Fähre | Floß
+Lastwagen mit Langbaum | V | holz,eisen,tier | fahrzeug,rad_achse | vierrädriger Wagen für schwere Fracht | Wagen mit Scheibenrädern
+Herberge | V | holz | siedlung | Gasthäuser für Händler an Straßen | Pilgerherberge
+Gezeitenkalender | V | papier,jahreslauf | beobachten,zaehlen | Tabellen der Hochwasserzeiten für Häfen | Osterrechnung
+Glockengießerei | B | bronze | giessen,siedlung | spezialisierte Gießer für große Glocken | Glocke im Lehmguss
+Holzschnitzaltar | C | holz | schneiden | geschnitzte Bilderwand | Löffel aus Holz
+Wassergetriebene Säge | M | eisen,holz,wasser | wasserkraft,getriebe | Sägegatter schneidet Stämme zu Brettern | Steinsäge mit Kurbel und Pleuel
+Treträder für Kräne | M | holz | winde,rad_achse | Kräne an Baustellen von Kathedralen | Tretradkran
+Kalkmörtel in Großbauten | A | kalk,sand,wasser | kalk_brennen | Mörtel in großen Mengen für Kathedralen | Kalkputz
+Bauhütte | G | stein | bauen_gemeinsam,lehren | Werkstattgemeinschaft am Großbau mit eigenem Wissen | Gotische Kathedrale
+Bauriss | A | papier | zeichen,bauen_gemeinsam | maßstäbliche Zeichnung von Grundriss und Aufriss | Klosterplan
+Brunnenhaus mit Wasserleitung | A | stein,blei,wasser | bauen_gemeinsam | Quellwasser über Leitungen in Klöster und Städte | Bleirohr
+Stadtbach und Mühlgraben | A | erde,wasser | graben,wasserkraft | künstlicher Bach versorgt Mühlen und Gewerbe | Wassermühle
+Steinbruchkran | B | holz,seil | winde | Kran hebt Blöcke aus dem Bruch | Tretradkran
+Spinnwirtel aus Blei | T | blei | giessen | schweres Schwunggewicht für feines Garn | Spindel mit Wirtel
+Wollkämme | T | eisen,holz | schmieden | Kämme richten die Fasern vor dem Spinnen | Kamm
+Mühlenrecht | G | - | regeln | Mühlen gehören dem Grundherrn, Bauern müssen dort mahlen | Grundherrschaft
+Badestube | D | holz,wasser | hygiene,feuer_nutzen | öffentliche Bäder in Städten | Badehaus mit Dampfraum
+Wundarzt | D | stahl | chirurgie,regeln | Handwerkschirurgen behandeln Wunden und Brüche | Chirurgie-Lehrbuch mit Instrumenten
+Destillierte Arznei | D | blatt,keramik | destillieren,arznei | Kräuterauszüge durch Destillation | Weingeist destillieren

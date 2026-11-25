@@ -36,6 +36,7 @@ Erzeugt mit `python tools/import_inventions_real.py --write` → `data/generated
 Bericht: `reports/inventions_real_import_report.md`. Der ältere Ideenkatalog oben bleibt unverändert erhalten.
 Leitlinie des Nutzers: Die Excel ist eine **Leitlinie** – die Wesen sollen sich selbst von der Steinzeit zur Zukunft
 entwickeln (Stein → Werkzeug → Schmelzen → Legierung → Abbauwerkzeuge), nicht über einen Technologiebaum.
+Die daraus gebaute Leitlinie mit physikalischen Ketten (2.680 Erfindungen, 24 Zeitalter) steht in `design/Leitlinie_Steinzeit_bis_Zukunft.xlsx`; ihr Blatt „Katalogabgleich“ ordnet die echten Namen dieses Katalogs zu (`docs/leitlinie.md`). Der Katalog selbst bleibt unverändert.
 
 ## Übernommen
 - Name, Kategorie, Quellenzeile(n) (Blatt, Zeile), Beschreibung, Effekttext je Quellenzeile (nur Text), Stufe als **Metadatum**.

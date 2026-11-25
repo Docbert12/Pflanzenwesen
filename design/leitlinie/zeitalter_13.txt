@@ -1,0 +1,98 @@
+# Zeitalter 13 – Spätmittelalter (ca. 1250–1450): Hochofen in Europa, Räderuhr, Brille, Pulverwaffen (nur Namen).
+Räderuhr mit Spindelhemmung | W | eisen | uhrwerk,getriebe | Gewicht treibt Räder, die Hemmung teilt die Zeit in gleiche Schläge | Astronomischer Uhrturm mit Hemmung
+Turmuhr mit Schlagwerk | C | eisen,bronze | uhrwerk,klang | öffentliche Uhr schlägt die Stunden | Räderuhr mit Spindelhemmung; Kirchenglocke
+Gleichlange Stunden | W | - | uhrwerk,regeln | Tag und Nacht werden in gleich lange Stunden geteilt | Turmuhr mit Schlagwerk
+Federantrieb für Uhren | M | stahl | federn,uhrwerk | gespannte Stahlfeder ersetzt das Gewicht | Räderuhr mit Spindelhemmung
+Schnecke mit Kette | M | stahl,messing | getriebe,uhrwerk | kegelige Trommel gleicht die nachlassende Federkraft aus | Federantrieb für Uhren
+Brille | D | glas,holz | optik,schleifen | geschliffene Linsen gleichen Weitsichtigkeit aus | Lesestein
+Hochofen in Europa | B | erz,holzkohle,stein | verhuetten,luftzufuhr,wasserkraft | wassergetriebene Bälge schmelzen Eisen flüssig | Hochofen; Wassergetriebener Blasebalg
+Frischfeuer | B | eisen,holzkohle | oxidieren,schmieden | Gusseisen wird durch Luft entkohlt und schmiedbar | Hochofen in Europa
+Eisenguss in Formen | B | eisen,sand | giessen | Gusseisen für Töpfe, Platten und Kugeln | Hochofen in Europa
+Wassergetriebener Drahtzug | B | eisen,messing,wasser | drahtziehen,wasserkraft | Wasserrad zieht Draht durch Zieheisen | Kupferdraht
+Saigerverfahren | B | kupfer,blei,silber | schmelzen,legieren | Silber wird mit Blei aus Kupfer ausgeschmolzen | Bleiglanz zu Silber
+Erbstollen | B | stein,wasser | stollen | tiefer Stollen entwässert ein ganzes Grubenfeld | Grubenentwässerung
+Pferdegöpel | B | holz,tier,seil | winde,tierhaltung | Pferde im Kreis treiben eine Seiltrommel | Haspel
+Schmelzhütte mit Wasserrad | B | erz,holz,wasser | wasserkraft,verhuetten | Hütte mit wassergetriebenen Bälgen und Pochwerk | Pochwerk; Hochofen in Europa
+Wasserzeichen | C | papier,messing | papier | Drahtmuster im Schöpfsieb hinterlässt ein Zeichen im Papier | Papiermühle
+Holzschnitt-Bilddruck | C | holz,papier,tinte | schneiden,druck | Bilder werden aus Holz geschnitten und gedruckt | Blockdruck
+Spielkarten | G | papier,tinte | druck | gedruckte Karten für Spiele | Holzschnitt-Bilddruck
+Doppelte Buchführung | G | papier | zaehlen,schrift | jede Buchung erscheint als Soll und Haben | Rechnen mit indischen Ziffern in Europa
+Seeversicherung | G | papier | handel,regeln | Versicherer tragen gegen Prämie das Risiko einer Fahrt | Seedarlehen
+Bank mit Filialen | G | papier,gold | handel | Bankhaus mit Niederlassungen in vielen Städten | Wechselbank
+Stadtrat | G | - | regeln | gewählter Rat regiert die Stadt | Stadtrecht
+Parlament mit zwei Kammern | G | - | regeln | getrennte Versammlungen für Adel und Städte | Ständeversammlung
+Kaufmannspost | C | papier,tier | signal,handel | regelmäßige Botenkurse zwischen Handelsstädten | Staatspost
+Trockenkompass mit Windrose | V | eisen,holz | magnetismus | Nadel auf einer Achse über einer Windrose | Kompass in Europa
+Abhandlung über den Magneten | W | eisen,erz | magnetismus,buch | Pole, Anziehung und Abstoßung beschrieben | Magnetstein beobachten
+Portolankarte | V | papier,tinte | zeichen,navigation | genaue Küstenkarte mit Kurslinien | Seekarte mit Windrichtungen
+Weltatlas mit Kartenblättern | C | papier,tinte | zeichen,buch | Atlas der bekannten Welt | Portolankarte
+Holk | V | holz,textil | tragwerk,auftrieb | größeres Frachtschiff als die Kogge | Kogge
+Treidelpfad | V | erde,tier | verdichten,tierhaltung | Zugtiere ziehen Lastkähne am Ufer flussaufwärts | Schiffskanal
+Anatomie-Lehrbuch nach Sektion | D | papier | buch,chirurgie | Lehrbuch auf Grundlage eigener Sektionen | Anatomie durch Sektion
+Quarantäne | D | - | hygiene,regeln | Schiffe und Reisende werden 40 Tage abgesondert | Pestbekämpfung durch Absonderung
+Pesthaus | D | stein | hygiene,siedlung | eigenes Haus für Seuchenkranke | Quarantäne
+Trennung von Arzt und Apotheker | D | - | regeln,arznei | Ärzte verschreiben, Apotheker stellen her | Apotheke
+Chirurgie-Handbuch | D | papier | chirurgie,buch | umfassendes Lehrbuch der Wundbehandlung | Chirurgie-Lehrbuch mit Instrumenten
+Hebammenordnung | D | - | regeln,heilen | geregelte Ausbildung und Pflichten der Hebammen | Medizinschule
+Impetuslehre | W | - | beobachten,werfen,schrift | ein Wurf bleibt in Bewegung, weil ihm Schwung mitgegeben wurde | Experimentelle Methode
+Mittlere-Geschwindigkeit-Regel | W | papier | zaehlen | gleichmäßig beschleunigte Bewegung entspricht der mittleren Geschwindigkeit | Impetuslehre
+Grafische Darstellung von Größen | W | papier | zeichen,zaehlen | Größen als Strecken aufgetragen | Mittlere-Geschwindigkeit-Regel
+Astronomische Tafeln | W | papier | zaehlen,buch | Tafeln für Planetenpositionen | Weltbild mit Epizyklen
+Pflanzenbuch mit Beobachtungen | W | papier,blatt | beobachten,buch | Pflanzen nach eigenen Beobachtungen beschrieben | Pflanzenkunde als Wissenschaft | | für Pflanzenwesen besonders wichtig
+Kräuterbuch mit Bildern | D | papier,tinte | buch,farbe | Heilpflanzen mit Abbildungen zum Erkennen | Pflanzenbuch mit Beobachtungen
+Steinbüchse | K | - | sprengen,giessen | Rohr verschießt Steinkugeln | Schwarzpulver | | Projektregel: keine Stoffangaben
+Handbüchse | K | - | sprengen | kleine Pulverwaffe für eine Person | Steinbüchse | | Projektregel: keine Stoffangaben
+Bombarde | K | - | sprengen,schmieden | großes Geschütz aus geschmiedeten Stäben mit Reifen | Steinbüchse | | Projektregel: keine Stoffangaben
+Plattenpanzer | K | stahl | schmieden,kleidung | Rüstung aus geformten Stahlplatten | Kettenhemd; Topfhelm
+Hellebarde | K | stahl,holz | schmieden | Stangenwaffe mit Beil, Spitze und Haken | Eiserne Lanzenspitze
+Langspieß | K | eisen,holz | schmieden | sehr lange Stangenwaffe gegen Reiter | Hellebarde
+Armbrust mit Kurbelwinde | K | stahl,holz,seil | federn,winde | Winde spannt einen Stahlbogen | Armbrust mit Spannbügel
+Wagenburg | K | holz,tier | fahrzeug,konflikt | Ring aus verketteten Wagen als Festung | Lastwagen mit Langbaum
+Stadtbefestigung mit Geschütztürmen | K | stein | bauen_gemeinsam | dicke, niedrige Türme für Geschütze | Ringmauer mit Zwinger
+Hallenkirche | A | stein,ziegel | bauen_gemeinsam,tragwerk | Schiffe gleich hoch unter einem Dach | Gotische Kathedrale
+Backsteingotik | A | ziegel | ziegel,bauen_gemeinsam | gotische Großbauten aus gebranntem Ziegel | Gebrannter Ziegel; Gotische Kathedrale
+Rathaus | A | stein,holz | bauen_gemeinsam | Gebäude für Rat, Gericht und Markt | Stadtrat
+Kachelofen | E | keramik,ziegel | ton_brennen,feuer_nutzen | Keramikkacheln speichern Wärme lange | Kamin mit Rauchabzug
+Butzenscheibe | A | glas,blei | glas | runde, mundgeblasene Scheiben in Bleifassung | Glasfenster in Bleiruten
+Turmwindmühle | E | stein,holz,textil | windkraft,getriebe | fester Turm, nur die Kappe dreht sich in den Wind | Bockwindmühle
+Schleifmühle | E | sandstein,wasser | wasserkraft,schleifen | Wasserrad dreht große Schleifsteine | Wassermühle
+Bohrwinde mit Kurbel | T | eisen,holz | bohren,getriebe | Kurbel dreht den Bohrer gleichmäßig | Löffelbohrer
+Schraubstock | T | eisen | getriebe,schmieden | Spindel klemmt Werkstücke fest | Schraube und Mutter
+Gestellsäge | T | eisen,holz,seil | schneiden | dünnes Blatt in gespanntem Rahmen | Eiserne Säge
+Drehbank mit Wippe und Pedal | M | holz,seil | drehen,federn | Fußpedal und federnde Stange treiben das Werkstück | Drehbank mit Fußantrieb
+Teichwirtschaft | L | tier,wasser | tierhaltung,graben | Karpfen in abgestuften Teichen | Fischteich
+Weidewirtschaft für Fleisch | L | tier | tierhaltung,handel | Rinder werden über weite Wege zu Märkten getrieben | Hirtenwanderung
+Viehtrieb mit Grenzstationen | L | tier | regeln,handel | Zölle und Rastplätze auf Viehwegen | Weidewirtschaft für Fleisch
+Rinderzucht für Zugkraft | L | tier | zucht | kräftige Ochsenrassen | Tierzucht durch Auslese
+Schäferei mit Wanderherden | L | tier,wolle | tierhaltung | große Schafherden ziehen saisonal | Schafzucht für Wolle
+Buchweizenanbau | L | pflanze | landbau | genügsame Frucht für arme Böden | Dreifelderwirtschaft
+Hecken und Knicks | L | pflanze,holz | landbau,flechten | lebende Zäune begrenzen Felder | Zaun aus Flechtwerk
+Zuckerraffinade | L | nahrung,keramik | kochen,trocknen | Zucker in Kegelformen gereinigt | Kristallzucker
+Branntwein | L | nahrung,mikroben | destillieren | destillierter Wein als Genussmittel | Weingeist destillieren
+Tuchhandel | G | textil | handel | Tuch wird über ganz Europa gehandelt | Tuchmacherei
+Tuchschau | G | textil | regeln,messen | Zunft prüft Maße und Qualität mit Siegel | Tuchhandel
+Lehrlingswesen | G | - | lehren,regeln | Lehrling, Geselle, Meister mit Prüfung | Zunft
+Meisterstück | G | - | lehren,regeln | Prüfungsarbeit zum Nachweis des Könnens | Lehrlingswesen
+Zollstation | G | - | regeln,handel | Abgabe an Brücken, Pässen und Flüssen | Marktrecht
+Stadtwaage | G | eisen,holz | messen,regeln | amtliche Waage für Handelsgüter | Schnellwaage
+Eichmaß | W | bronze | messen,regeln | amtliche Vergleichsmaße für Länge und Volumen | Normgewichte
+Stadtarzt | D | - | heilen,regeln | von der Stadt bezahlter Arzt | Medizinschule
+Spital in der Stadt | D | stein | heilen,siedlung | Bürgerspital für Kranke und Alte | Krankenhaus für alle
+Badeordnung | D | - | hygiene,regeln | Regeln für öffentliche Badestuben | Badestube
+Rauchfang aus Ziegeln | A | ziegel | ziegel,tragwerk | gemauerter Schornstein über Dachhöhe | Kamin mit Rauchabzug
+Brandschutzordnung | G | - | regeln | Feuerleitern, Wasserfässer und Bauvorschriften | Feuerwehr | | für Pflanzenwesen lebenswichtig
+Ziegeldach | A | keramik | ton_brennen,tragwerk | Dachziegel statt Stroh gegen Brand | Gebrannter Ziegel
+Lederfeuereimer | G | leder,wasser | naehen | genähte Eimer für die Löschkette | Brandschutzordnung
+Glasmacherhütte im Wald | B | glas,holz,sand | glas,holzkohle | Glashütte nahe am Holz und Quarzsand | Glasblasen
+Pottasche sieden | B | holz,saeure | kochen,extrahieren | Holzasche wird ausgelaugt und eingedampft | Seifensieden
+Alaunsieden | B | erz,wasser | kochen,extrahieren | Beizmittel für Färber aus Alaunschiefer | Pottasche sieden
+Wollfärben mit Beize | G | wolle,erz | farbe,extrahieren | Metallsalze machen Farben waschecht | Färberzunft
+Tafelmalerei mit Öl | C | oel,holz | farbe | Ölfarben auf Holztafeln | Holzschnitzaltar
+Steinmetzzeichen | C | stein | zeichen | Zeichen der Steinmetze an Werksteinen | Bauhütte
+Lesbare Seekarte für Küstenfahrt | V | papier | zeichen | Karte mit Tiefen und Gefahren | Portolankarte
+Geschützgießerei | K | bronze,ton | giessen | Geschütze aus Bronze gegossen | Glockengießerei
+Pulvermühle | K | - | sprengen,wasserkraft | wassergetriebene Herstellung von Pulver | Schwarzpulver | | Projektregel: keine Stoffangaben
+Zeughaus | K | stein | lagern,siedlung | städtisches Lager für Waffen | Stadtbefestigung mit Geschütztürmen
+Lastenkran am Hafen | V | holz,seil | winde | großer Tretradkran an Kais | Hafenkran
+Lotsenwesen | V | - | navigation,regeln | ortskundige Lotsen führen Schiffe in den Hafen | Gezeitenkalender
+Leuchtfeuer an der Küste | V | stein,holz | licht_feuer | Feuertürme an Hafeneinfahrten | Leuchtturm

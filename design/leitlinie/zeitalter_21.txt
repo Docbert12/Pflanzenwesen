@@ -1,0 +1,142 @@
+# Zeitalter 21 – Informationszeitalter (ca. 1970–1995): Mikroprozessor, PC, Internet, Glasfaser, Mobilfunk.
+# Für Pflanzenwesen: Struktur des Photosynthese-Reaktionszentrums, erste gentechnisch veränderte Pflanzen, Energie aus Pflanzen.
+Mikroprozessor | W | silizium | halbleiter,digital | ganzer Rechenkern auf einem Chip | Integrierter Schaltkreis
+Halbleiter-Arbeitsspeicher | W | silizium | halbleiter,digital | Kondensatorzellen speichern Bits auf einem Chip | Mikroprozessor
+Programmierbarer Festwertspeicher | W | silizium | halbleiter,digital | löschbarer Speicher für Programme | Halbleiter-Arbeitsspeicher
+Taschenrechner | W | silizium,kunststoff | halbleiter,digital | Rechnen mit einem Gerät in der Hand | Mikroprozessor
+Flüssigkristallanzeige | C | glas,chemikalie | optik,halbleiter | Kristalle drehen das Licht, Ziffern werden sichtbar | Taschenrechner
+Digitaluhr | W | silizium | halbleiter,uhrwerk | Quarz und Anzeige ohne bewegte Teile | Quarzuhr; Flüssigkristallanzeige
+Personal Computer | W | silizium,kunststoff | digital,software | Rechner für einzelne Menschen | Mikroprozessor
+Diskette | W | kunststoff,eisen | magnetismus,digital | austauschbarer Magnetspeicher | Festplattenspeicher
+Grafische Benutzeroberfläche | C | silizium | software | Fenster, Symbole und Maus für alle | Grafische Bildschirmarbeit; Personal Computer
+Textverarbeitung | C | - | software | Texte schreiben, ändern und drucken am Bildschirm | Personal Computer
+Tabellenkalkulation | W | - | software | Rechenblätter mit Formeln am PC | Tabellenkalkulation (Großrechner); Personal Computer
+Rechnergestütztes Konstruieren | M | - | software,zeichen | Konstruktionszeichnungen am Rechner | Ingenieurzeichnung; Personal Computer
+Computerspiel | G | silizium | software | Spiel auf dem Bildschirm | Personal Computer
+Laserdrucker | C | selten,elektronik | optik,druck | Laser belichtet eine Trommel, Toner wird übertragen | Xerografie; Laser
+Tintenstrahldrucker | C | tinte,elektronik | druck,digital | winzige Tröpfchen bilden Schrift und Bild | Personal Computer
+Bildsensor | C | silizium | halbleiter,optik | Halbleiterchip wandelt Licht in Bildpunkte | Siliziumsolarzelle
+Digitalkamera | C | silizium,glas | halbleiter,optik | Bilder als Daten statt auf Film | Bildsensor
+Compact Disc | C | kunststoff,aluminium | optik,digital | Laser liest Daten aus winzigen Vertiefungen | Laser; Langspielplatte
+CD-ROM | W | kunststoff | optik,digital | Datenspeicher auf CD | Compact Disc
+Verlustarme Glasfaser | C | glas | optik,glas | Licht läuft kilometerweit durch dünne Fasern | Laser
+Glasfasernetz | C | glas,elektronik | netz,optik | Telefon und Daten über Licht | Verlustarme Glasfaser
+Elektronische Post | C | - | netz,software | Nachrichten über das Rechnernetz | Erstes Rechnernetz
+Internetprotokoll | C | - | netz,software | gemeinsame Regeln verbinden verschiedene Netze | Paketvermittlung
+Lokales Rechnernetz | C | kupfer,elektronik | netz | Rechner im Gebäude teilen Daten und Drucker | Internetprotokoll
+Router | C | silizium | netz,halbleiter | leitet Datenpakete zwischen Netzen | Lokales Rechnernetz
+Namensdienst für Rechner | C | - | netz,software | Namen statt Zahlenadressen | Internetprotokoll
+World Wide Web | C | - | netz,software | verknüpfte Seiten mit Adressen | Internetprotokoll; Namensdienst für Rechner
+Webbrowser | C | - | software,netz | Programm zeigt Webseiten mit Bildern | World Wide Web
+Suchmaschine | C | - | software,netz | findet Seiten im Netz | Webbrowser
+Freie Software | G | - | software,regeln | Quelltext darf jeder nutzen und ändern | Betriebssystem
+Freies Betriebssystem | W | - | software | Betriebssystem als gemeinsame offene Arbeit | Freie Software
+Mobilfunknetz | C | elektronik | funk,netz | Zellennetz für Telefone unterwegs | Telefonvermittlung; Transistorradio
+Digitaler Mobilfunk | C | silizium | funk,digital | Sprache digital, mit Kurznachrichten | Mobilfunknetz
+Kurznachricht | C | - | funk,software | kurze Textnachrichten zwischen Mobiltelefonen | Digitaler Mobilfunk
+Satellitennavigationssystem | V | elektronik | raumfahrt,navigation | Laufzeiten von Satellitensignalen bestimmen den Ort auf Meter | Satellitennavigation (erste Form)
+Geostationärer Satellitenrundfunk | C | elektronik | raumfahrt,funk | Fernsehen direkt vom Satelliten | Nachrichtensatellit
+Raumstation | V | aluminium,silizium | raumfahrt | dauerhaft bewohntes Labor im Orbit | Bemannte Raumfahrt
+Wiederverwendbare Raumfähre | V | aluminium,keramik | raumfahrt,aerodynamik | gleitet nach dem Flug zur Landebahn zurück | Raumstation | | Hitzeschild aus Keramikkacheln
+Weltraumteleskop | W | glas,aluminium | optik,raumfahrt | Teleskop oberhalb der Atmosphäre | Raumsonde; Spiegelteleskop
+Marslander | V | aluminium,elektronik | raumfahrt | Sonde landet und misst auf dem Mars | Raumsonde
+Sonde zu den äußeren Planeten | V | aluminium,uran | raumfahrt,strahlung | Radionuklidbatterie liefert Strom fern der Sonne | Raumsonde
+Computertomograf | D | elektronik | strahlung,diagnose | Röntgenschnittbilder werden berechnet | Computertomografie (Theorie)
+Magnetresonanztomograf | D | supraleiter,elektronik | magnetismus,diagnose | Bilder ohne Röntgenstrahlen | Kernspinresonanz
+Positronen-Emissions-Tomograf | D | elektronik | strahlung,diagnose | zeigt Stoffwechsel im Körper | Nuklearmedizinische Bildgebung
+Ballonkatheter | D | kunststoff | chirurgie | Ballon weitet verengte Gefäße | Herz-Lungen-Maschine
+Künstliche Befruchtung im Glas | D | zellen,glas | zellkultur | Befruchtung außerhalb des Körpers | Organverpflanzung
+Ausrottung der Pocken | D | - | impfen,regeln | eine Krankheit ist weltweit verschwunden | Weltweite Pockenbekämpfung
+Restriktionsenzyme | W | erbgut,mikroben | gentechnik | Enzyme schneiden DNA an bestimmten Stellen | Genetischer Code
+Rekombinante DNA | W | erbgut,mikroben | gentechnik | Gene werden zwischen Lebewesen übertragen | Restriktionsenzyme
+Gentechnisch hergestelltes Insulin | D | mikroben,erbgut | gentechnik,zellkultur | Bakterien produzieren menschliches Insulin | Rekombinante DNA
+DNA-Sequenzierung | W | erbgut,chemikalie | gentechnik,chemie | Reihenfolge der Basen wird gelesen | Rekombinante DNA
+Polymerase-Kettenreaktion | W | erbgut,chemikalie | gentechnik,kochen | DNA wird in Temperaturzyklen milliardenfach vervielfältigt | DNA-Sequenzierung
+Genetischer Fingerabdruck | W | erbgut | gentechnik,diagnose | DNA-Muster unterscheidet Menschen | Polymerase-Kettenreaktion
+Monoklonale Antikörper | D | zellen | zellkultur,impfen | identische Antikörper aus einer Zelllinie | Rekombinante DNA
+Gentechnisch veränderte Pflanze | L | pflanze,erbgut | gentechnik,zellkultur | Bodenbakterium überträgt ein Gen in eine Pflanze | Rekombinante DNA; Pflanzengewebekultur | | für Pflanzenwesen ein tiefer Eingriff – Prompt 7 kennt nur natürliche Vererbung
+Struktur des Photosynthese-Reaktionszentrums | W | pflanze,mikroben | beobachten,chemie | atomgenaue Struktur des Lichtsammelkomplexes | Zwei Lichtsysteme der Photosynthese | | Kern der Pflanzenwesen
+Augenlaserbehandlung | D | elektronik | optik,chirurgie | Laser formt die Hornhaut | Laser
+Schlüssellochchirurgie | D | glas,stahl | chirurgie,optik | Operation durch kleine Schnitte mit Kamera | Glasfasernetz
+Innenohrimplantat | D | silizium,elektronik | halbleiter,chirurgie | elektrische Reize lassen Gehörlose hören | Herzschrittmacher
+Antivirale Medikamente | D | chemikalie | arznei | Wirkstoffe hemmen die Vermehrung von Viren | Pflanzenvirus entdecken
+Gentechnischer Impfstoff | D | mikroben,erbgut | gentechnik,impfen | Impfstoff aus gentechnisch gebildetem Eiweiß | Gentechnisch hergestelltes Insulin
+Integrierter Pflanzenschutz | L | tier,chemikalie | zucht,beobachten | Nützlinge, Fruchtfolge und wenig Mittel kombiniert | Biologische Schädlingsbekämpfung | | für Pflanzenwesen bedeutsam
+Ökologischer Landbau mit Richtlinien | L | pflanze,erde | landbau,regeln | Landbau ohne synthetische Dünger und Mittel nach festen Regeln | Integrierter Pflanzenschutz
+Agroforstwirtschaft | L | pflanze,holz | landbau | Bäume und Feldfrüchte auf derselben Fläche | Ökologischer Landbau mit Richtlinien | | für Pflanzenwesen besonders bedeutsam
+Bioethanol als Kraftstoff | E | pflanze,mikroben | gaeren,destillieren | Alkohol aus Zuckerrohr treibt Autos an | Branntwein | | Energie aus Pflanzen
+Biodiesel | E | oel,chemikalie | chemie | Kraftstoff aus Pflanzenöl | Bioethanol als Kraftstoff | | Energie aus Pflanzen
+Biogasanlage | E | pflanze,mikroben | zersetzen,gaeren | Bakterien bilden aus Biomasse brennbares Gas | Kläranlage mit Belebtschlamm | | Energie aus Pflanzen
+Moderne Windkraftanlage | E | faserverbund,kupfer | windkraft,generator | dreiflügeliger Rotor mit Generator in der Gondel | Windkraftanlage zur Stromerzeugung
+Windpark | E | faserverbund,stahl | windkraft,bauen_gemeinsam | viele Anlagen speisen gemeinsam ins Netz | Moderne Windkraftanlage
+Solarwärmekraftwerk | E | glas,stahl,sonne | optik,turbine | Spiegelrinnen erhitzen Öl, Dampf treibt Turbinen | Sonnenwärmekollektor
+Photovoltaik auf Dächern | E | silizium,aluminium | photovoltaik | Solarmodule erzeugen Strom am Haus | Siliziumsolarzelle | | technisches Gegenstück zum Blatt
+Wechselrichter | E | silizium | halbleiter,wechselstrom | wandelt Solar-Gleichstrom in Netzstrom | Photovoltaik auf Dächern
+Lithium-Ionen-Akku | E | lithium,chemikalie | speicher | leichter, wiederaufladbarer Akku mit hoher Energiedichte | Bleiakkumulator
+Nickel-Metallhydrid-Akku | E | nickel,selten | speicher | Akku ohne giftiges Cadmium | Bleiakkumulator
+Energiesparlampe | E | glas,quecksilber | licht_elektrisch | kompakte Leuchtstofflampe | Leuchtstofflampe
+Blaue Leuchtdiode | E | selten,elektronik | halbleiter,licht_elektrisch | ermöglicht weißes LED-Licht | Leuchtdiode
+Gas-und-Dampf-Kraftwerk | E | stahl,gas | turbine,dampf | Abwärme der Gasturbine erzeugt zusätzlich Dampf | Dampfturbine; Strahltriebwerk
+Blockheizkraftwerk | E | stahl,gas | verbrennungsmotor,generator | Motor erzeugt Strom und nutzt die Abwärme | Gas-und-Dampf-Kraftwerk
+Passivhaus | A | holz,glas | tragwerk | sehr gute Dämmung und Lüftung mit Wärmerückgewinnung | Wärmedämmung mit Mineralwolle
+Dreischeiben-Isolierglas | A | glas,gas | glas | Edelgas zwischen Scheiben dämmt | Passivhaus
+Abgaskatalysator | V | platin,keramik | chemie | wandelt Schadstoffe im Abgas um | Katalysator in der Industrie
+Antiblockiersystem | V | elektronik | robotik | Bremse regelt, damit Räder nicht blockieren | Druckluftbremse
+Airbag | V | kunststoff,elektronik | robotik | Luftsack bläst sich beim Aufprall auf | Dreipunkt-Sicherheitsgurt
+Elektronische Motorsteuerung | V | silizium | robotik,verbrennungsmotor | Mikrochip regelt Einspritzung und Zündung | Mikroprozessor
+Großraumflugzeug | V | aluminium,erdoel | aerodynamik,turbine | Flugzeug für Hunderte Fahrgäste | Düsenverkehrsflugzeug
+Überschall-Verkehrsflugzeug | V | aluminium,titan | aerodynamik,turbine | Linienflug mit doppelter Schallgeschwindigkeit | Überschallflug
+Hochgeschwindigkeitsnetz | V | stahl,kupfer | elektromotor,bauen_gemeinsam | Netz von Strecken für 300 km/h | Hochgeschwindigkeitszug
+Magnetschwebebahn (Erprobung) | V | stahl,kupfer | magnetismus,elektromotor | Zug schwebt berührungslos im Magnetfeld | Hochgeschwindigkeitsnetz | entw
+Unterseetunnel zwischen Ländern | V | moertel,stahl | stollen,bauen_gemeinsam | Eisenbahntunnel unter dem Meer | Tunnelvortrieb mit Schildmaschine
+Automatisiertes Containerterminal | V | stahl,elektronik | robotik,lagern | Kräne und Fahrzeuge arbeiten ohne Fahrer | Normcontainer
+Hochtemperatur-Supraleiter | W | keramik,selten | kaelte,gleichstrom | Keramik leitet verlustfrei schon mit Stickstoffkühlung | Supraleitung entdecken
+Fullerene | W | nanomaterial | chemie,nano | Kohlenstoffmoleküle in Fußballform | Spektralanalyse
+Kohlenstoff-Nanoröhren | W | nanomaterial | nano | Röhren aus Kohlenstoffatomen, extrem fest | Fullerene
+Rastertunnelmikroskop | W | elektronik | quanten,nano | Abtastspitze bildet einzelne Atome ab | Rasterelektronenmikroskop
+Rasterkraftmikroskop | W | silizium,elektronik | nano,messen | Federbalken tastet Oberflächen atomgenau ab | Rastertunnelmikroskop
+Biologisch abbaubarer Kunststoff | T | kunststoff,mikroben | gaeren,chemie | Bakterien bilden Kunststoff, der wieder zerfällt | Polyethylen | | aus nachwachsenden Rohstoffen
+Wertstoffsammlung | G | kunststoff,glas | regeln,sammeln | Verpackungen werden getrennt gesammelt und verwertet | Umweltbewegung
+Altpapierrecycling | C | papier | papier,regeln | aus altem Papier wird neues | Wertstoffsammlung | | schont Bäume
+Ozonschutz-Abkommen | G | - | regeln,messen | Verbot ozonschädlicher Stoffe | Ozonschicht erkennen
+Klimarahmenkonvention | G | - | regeln,messen | Staaten vereinbaren, Treibhausgase zu begrenzen | Klimaforschung mit Messreihen | | für Pflanzenwesen bedeutsam
+Biodiversitätskonvention | G | - | regeln | Schutz der Artenvielfalt als Ziel der Staaten | Rote Liste gefährdeter Arten | | für Pflanzenwesen bedeutsam
+Umweltverträglichkeitsprüfung | G | papier | regeln | Großprojekte werden auf Umweltfolgen geprüft | Umweltbewegung
+Geldautomat mit Geheimzahl | G | stahl,elektronik | digital,handel | Bargeld rund um die Uhr | Kreditkarte
+Elektronischer Zahlungsverkehr | G | - | netz,handel | Überweisungen zwischen Banken über Netze | Geldautomat mit Geheimzahl
+Strichcode-Scanner an der Kasse | G | elektronik | optik,digital | Laser liest Preise automatisch | Strichcode; Laser
+Tragbares Kassettenabspielgerät | C | kunststoff,elektronik | klang,magnetismus | Musik zum Mitnehmen | Magnettonband
+Videorekorder für zu Hause | C | kunststoff,elektronik | magnetismus | Fernsehsendungen aufnehmen | Videoaufzeichnung
+Spielkonsole | G | silizium | software | Spielgerät am Fernseher | Computerspiel
+Videotext | C | elektronik | funk,digital | Textseiten im Fernsehsignal | Farbfernsehen
+Fax im Büro | C | elektronik | optik,netz | Dokumente über die Telefonleitung | Bildtelegrafie
+Funkrufempfänger | C | elektronik | funk | kleines Gerät empfängt Rufsignale | Mobilfunknetz
+Expertensystem | W | - | ki,software | Regeln von Fachleuten im Rechner | Datenbank
+Lernverfahren für mehrschichtige Netze | W | - | ki | Fehler wird rückwärts verteilt, Netz lernt Muster | Lernende Schaltung | | Grundlage heutiger lernender Systeme
+Spracherkennung (begrenzt) | W | - | ki,klang | Rechner erkennt gesprochene Wörter | Lernverfahren für mehrschichtige Netze
+Computergrafik in 3D | C | - | software,optik | Räume werden am Rechner berechnet | Rechnergestütztes Konstruieren
+Computeranimation | C | - | software | ganze Filme aus dem Rechner | Computergrafik in 3D
+Wettermodell auf dem Großrechner | W | - | software,zaehlen | Gleichungen der Atmosphäre werden numerisch gelöst | Wetterdienst mit Telegraf; Datenbank
+Klimamodell | W | - | software,zaehlen | Rechenmodell der Erde über Jahrzehnte | Wettermodell auf dem Großrechner | | für Pflanzenwesen bedeutsam
+Ozonloch messen | W | elektronik | messen,raumfahrt | Satellit und Bodenstationen messen Ozon | Ozonschicht erkennen
+Erdbeobachtungssatellit | W | elektronik,silizium | raumfahrt,optik | Bilder der Erdoberfläche für Karten, Wald und Ernte | Wettersatellit | | Pflanzenbewuchs wird aus dem All messbar
+Vegetationsindex aus Satellitenbildern | W | elektronik | optik,zaehlen | Pflanzen reflektieren Nahinfrarot – Wachstum wird kartiert | Erdbeobachtungssatellit | | Kern der Pflanzenwesen: Blattgrün aus dem All sichtbar
+Datenkompression | W | - | software,zaehlen | Daten werden ohne oder mit geringem Verlust verkleinert | Informationstheorie
+Bildkompression | C | - | software | Fotos werden stark verkleinert | Datenkompression
+Tonkompression | C | - | software,klang | Musik wird auf ein Zehntel verkleinert | Datenkompression
+Verschlüsselung mit öffentlichem Schlüssel | W | - | software,zaehlen | Schlüssel zum Verschlüsseln darf jeder kennen | Geheimschrift
+Digitale Signatur | W | - | software | prüft, ob eine Nachricht echt ist | Verschlüsselung mit öffentlichem Schlüssel
+Notebook | W | silizium,lithium | digital,speicher | tragbarer Rechner mit Akku | Personal Computer; Lithium-Ionen-Akku
+Touchscreen | C | glas,elektronik | halbleiter | berührungsempfindlicher Bildschirm | Flüssigkristallanzeige
+Glasfaser-Unterseekabel | C | glas,stahl | optik,netz | Daten über Licht zwischen Kontinenten | Verlustarme Glasfaser; Seekabel über den Ozean
+Mobiltelefon | C | silizium,lithium | funk,halbleiter | Telefon zum Tragen | Mobilfunknetz
+Rauchmelder für Haushalte | G | elektronik | strahlung,halbleiter | billiger Melder in jeder Wohnung | Rauchmelder | | für Pflanzenwesen lebenswichtig
+Wärmebildkamera | W | elektronik | optik,halbleiter | macht Wärmestrahlung sichtbar | Bildsensor | | findet Glutnester – für Pflanzenwesen wichtig
+Lasermessung von Entfernungen | W | elektronik | optik,messen | Laufzeit von Licht misst Entfernungen | Laser
+Bohrung mit Richtungssteuerung | B | stahl,elektronik | bohren,robotik | Bohrung kann um Kurven gelenkt werden | Tiefbohrung auf See
+Erzlaugung mit Bakterien | B | erz,mikroben | extrahieren | Bakterien lösen Metalle aus armen Erzen | Schaumflotation
+Rekultivierung von Tagebauen | B | erde,pflanze | aufschuetten,landbau | ausgekohlte Flächen werden wieder begrünt | Tagebau mit Großgeräten | | für Pflanzenwesen bedeutsam
+Wiederaufforstung im großen Stil | L | pflanze | landbau,regeln | großflächige Pflanzung von Wäldern | Nachhaltige Forstwirtschaft | | für Pflanzenwesen bedeutsam
+Saatgutbeschichtung | L | samen,chemikalie | chemie | Samen mit Schutz- und Nährstoffhülle | Hochertragssorten
+Gentechnisch veränderte Tomate im Handel | L | pflanze,erbgut | gentechnik | erste zugelassene gentechnisch veränderte Frucht | Gentechnisch veränderte Pflanze
+Präzisionslandwirtschaft (Anfänge) | L | elektronik | navigation,landbau | Satellitennavigation steuert Dünger und Saat nach Teilflächen | Satellitennavigationssystem | entw | für Pflanzenwesen bedeutsam

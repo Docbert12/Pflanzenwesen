@@ -1,0 +1,55 @@
+# Zeitalter 2 – Frühe Steinzeit (ca. 3,3–1,7 Mio. Jahre, Lomekwi und Oldowan): erste geschlagene Steinwerkzeuge.
+Hammerstein | T | stein | fund,schlagen | runder, harter Stein zum Abschlagen anderer Steine | Stein als Hammer
+Amboss-Schlagtechnik | T | stein | schlagen,zerbrechen | großen Stein auf einen Amboss schlagen, um Stücke abzusprengen | Amboss-Stein
+Kernstein | T | feuerstein | abschlagen | Rohstück, von dem gezielt scharfe Stücke gelöst werden | Hammerstein
+Abschlag als Messer | T | feuerstein | abschlagen,schneiden | dünner, scharfer Abschlag zum Zerteilen von Pflanzenteilen | Kernstein
+Geröllgerät | T | stein | abschlagen | Geröll mit einseitig geschlagener Kante zum Hacken | Hammerstein
+Zweiseitiges Geröllgerät | T | stein | abschlagen | beidseitig geschlagene Kante, stabiler beim Hacken | Geröllgerät
+Bipolare Spaltung | T | stein | schlagen,zerbrechen | Stein auf einen Amboss legen und von oben spalten | Amboss-Stein
+Einfacher Schaber | T | feuerstein | abschlagen,schneiden | Kante zum Abschaben von Rinde und Fasern | Abschlag als Messer
+Vielflächiger Schlagstein | T | stein | abschlagen,schlagen | kantiger Schlagstein mit mehreren Arbeitsflächen | Hammerstein
+Angespitzter Stock | T | holz,feuerstein | schneiden | mit Steinkante angespitzter Stock zum Stochern und Graben | Abschlag als Messer; Grabstock
+Werkzeug aufbewahren | T | stein | lagern | gutes Werkzeug behalten statt jedes Mal neu zu suchen
+Rohsteindepot | T | stein | lagern | Rohsteine an häufig genutzten Arbeitsplätzen bereitlegen | Werkzeug aufbewahren
+Steinkeil zum Holzspalten | M | stein,holz | schlagen,zerbrechen | Steinkeil in einen Holzspalt treiben, bis das Holz reißt | Hammerstein
+Ast über Kante brechen | M | holz,stein | hebel,zerbrechen | Ast über eine Steinkante hebeln, bis er bricht | Stock als Hebel
+Rohstein über weite Strecken tragen | V | stein | sammeln | gute Steine über Kilometer zum Arbeitsplatz tragen | Steine aufsammeln
+Zweihändiges Tragen | V | stein | sammeln | schwere oder breite Stücke mit beiden Händen tragen | | | in v0.6.1 vorhanden
+Lange Äste schleifen | V | holz | sammeln | lange Äste über den Boden ziehen statt sie zu tragen
+Feste Sammelrunde | V | nahrung | beobachten | wiederkehrender Weg zwischen Sammel-, Wasser- und Ruheplätzen | Ergiebige Sammelplätze merken
+Gesteinsauswahl nach Spaltbarkeit | B | feuerstein | beobachten | feinkörnige, gut spaltbare Gesteine erkennen und bevorzugen | Härte vergleichen
+Steinfundstelle | B | stein | sammeln,beobachten | bekannte Fundstelle guter Steine wiederholt aufsuchen | Steine aufsammeln
+Steine aus dem Hang hebeln | B | stein,erde | graben,hebel | Steine mit einem Ast aus lockerem Boden lösen | Stock als Hebel
+Quarzit als Schlagstein | B | stein | beobachten | zähes, schwer spaltbares Gestein bewusst als Schlagstein wählen | Hammerstein
+Knollen zerstampfen | L | nahrung,stein | schlagen | stärkehaltige Knollen weich klopfen | Nahrung zerklopfen
+Pflanzen zerlegen | L | nahrung,feuerstein | schneiden | große Pflanzen mit scharfem Abschlag zerteilen | Abschlag als Messer
+Rinde abschälen | L | rinde,feuerstein | schneiden | Rinde und Bast mit einer Steinkante lösen | Einfacher Schaber
+Mark aus Stängeln holen | L | nahrung,stein | zerbrechen | dicke Stängel aufbrechen, um an weiches Mark zu kommen
+Samen ausklopfen | L | samen,stein | schlagen | reife Samenstände auf einem Stein ausklopfen
+Gemeinsames Sammeln | L | nahrung | sammeln,teilen | in der Gruppe sammeln und das Gefundene teilen | Nahrung teilen
+Nüsse lagern | L | nahrung | lagern | haltbare Nüsse und Samen für karge Zeiten zurücklegen | Vorratsversteck
+Arbeitsplatz | A | stein | lagern | wiederholt genutzter Platz mit Amboss, Rohsteinen und Abfall | Amboss-Stein
+Rastplatz am Wasser | A | wasser | beobachten | geschützter Rastplatz in Reichweite einer Wasserstelle | Wasserstellen merken
+Dornenhecke um den Ruheplatz | A | holz | sammeln,stapeln | dornige Zweige um den Ruheplatz legen | Windschutz aus Ästen
+Steinkreis | A | stein | stapeln | Steine im Kreis legen, um einen Platz abzugrenzen | | | Einzelbau wie die Steinreihe (v0.6.1)
+Vorführen des Abschlagens | G | stein | lehren | geschickte Gruppenmitglieder zeigen, wie man Steine schlägt | Nachahmen
+Wachen und Sammeln aufteilen | G | nahrung | siedlung | einige sammeln, andere halten Wache
+Fürsorge für Verletzte | G | nahrung | teilen | verletzten Gruppenmitgliedern Nahrung bringen | Nahrung teilen
+Gruppenwissen | G | - | lehren | Verfahren bleiben erhalten, weil viele in der Gruppe sie können | Vorführen des Abschlagens
+Fremde Gruppen meiden | G | - | beobachten,konflikt | fremde Gruppen beobachten und Abstand halten
+Bruchkanten verstehen | W | feuerstein | beobachten,zerbrechen | lernen, wie Schlagwinkel und Kraft die Kante formen | Kernstein
+Werkzeuge vergleichen | W | stein | beobachten | zwei Werkzeuge an derselben Aufgabe vergleichen
+Werkzeug vorausschauend mitnehmen | W | stein | beobachten | Werkzeug mitnehmen, bevor es gebraucht wird | Werkzeug aufbewahren
+Mengen unterscheiden | W | nahrung | beobachten | wenige und viele Früchte sicher unterscheiden
+Gesten beim Vorführen | C | - | signal,lehren | Handgriffe mit Gesten erklären | Zeigen
+Hinweis auf entfernten Fundort | C | - | signal | auf einen nicht sichtbaren Fundort hinweisen | | | strukturierte Mitteilung (v0.6.1)
+Erlebnis mitteilen | C | - | signal | von einem Fund oder einer Gefahr berichten | | | strukturierte Mitteilung (v0.6.1)
+Unterschiedliche Warnlaute | C | - | signal | verschiedene Signale für verschiedene Gefahren | Warnsignal
+Spitzer Stock zur Abwehr | K | holz | fund,konflikt | angespitzter Stock hält Angreifer auf Abstand | Angespitzter Stock
+Wurfsteinvorrat | K | stein | sammeln,werfen | Wurfsteine am Ruheplatz bereitlegen | Steinwurf zur Abwehr
+Wache halten | K | - | siedlung | einige Gruppenmitglieder beobachten die Umgebung | Wachen und Sammeln aufteilen
+Wunden auswaschen | D | wasser | heilen | Wunden mit Wasser von Schmutz befreien | Nahrung abspülen
+Verletzte Teile schonen | D | - | beobachten | verletzte Teile nicht belasten, bis sie verheilt sind
+Giftige Pflanzen meiden | D | nahrung | beobachten | bittere oder giftige Pflanzen erkennen und meiden | Reife prüfen
+Windgeschützte Sonnenmulde | E | sonne,erde | beobachten | Mulde mit Sonne und ohne Wind zum Aufwärmen nutzen | Sonnenplatz suchen
+Abfall vom Rastplatz fernhalten | D | nahrung | lagern | Reste abseits des Ruheplatzes ablegen | Arbeitsplatz

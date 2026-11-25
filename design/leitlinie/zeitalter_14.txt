@@ -1,0 +1,102 @@
+# Zeitalter 14 – Renaissance (ca. 1400–1520): Buchdruck, Perspektive, Ingenieurzeichnungen, Taschenuhr.
+Buchdruck mit beweglichen Metalllettern | C | blei,zinn,papier,tinte | giessen,druck | einzeln gegossene Buchstaben werden gesetzt, gedruckt und wiederverwendet | Bewegliche Lettern aus Ton; Papiermühle
+Handgießinstrument | T | messing,blei | giessen | verstellbare Form gießt Lettern gleicher Höhe in Serie | Buchdruck mit beweglichen Metalllettern
+Druckerpresse | M | holz,eisen | getriebe,druck | Spindelpresse drückt Papier gleichmäßig auf die Form | Schraubenpresse
+Druckerschwärze auf Ölbasis | C | oel,holzkohle | chemie,farbe | haftet auf Metalllettern und trocknet fest | Tinte aus Ruß
+Flugblatt | C | papier,tinte | druck | einseitig bedrucktes Blatt verbreitet Nachrichten schnell | Druckerpresse
+Notendruck mit beweglichen Typen | C | blei,papier | druck,klang | Musik in großer Auflage | Notenlinien; Druckerpresse
+Kupferstich | C | kupfer,stahl,tinte | schneiden,druck | Linien in Kupferplatte gestochen und gedruckt | Holzschnitt-Bilddruck
+Radierung | C | kupfer,saeure,wachs | chemie,druck | Säure ätzt die freigelegten Linien in die Platte | Kupferstich
+Seitenzählung und Titelblatt | C | papier | druck,buch | Bücher erhalten Titelblatt, Seitenzahlen und Register | Buchdruck mit beweglichen Metalllettern
+Zentralperspektive | W | papier | zeichen,optik | Raum auf der Fläche mit Fluchtpunkt darstellen | Landkarte mit Maßstab; Lochkamera
+Ingenieurzeichnung | M | papier | zeichen | Maschinen in Ansichten und Schnitten gezeichnet | Bauriss; Zentralperspektive
+Maschinenbuch | M | papier | zeichen,buch | Sammlungen von Maschinen mit Zeichnungen | Ingenieurzeichnung
+Anatomische Zeichnung | D | papier | zeichen,chirurgie | genaue Zeichnungen von Muskeln, Knochen und Organen | Anatomie-Lehrbuch nach Sektion
+Kuppel ohne Lehrgerüst | A | ziegel,moertel | tragwerk,bauen_gemeinsam | doppelschalige Kuppel mit Fischgrätverband trägt sich im Bau selbst | Kuppel aus Beton; Gotische Kathedrale
+Ochsenwinde mit Wendegetriebe | M | holz,tier,seil | winde,getriebe | Hebewerk hebt und senkt ohne Umspannen der Tiere | Pferdegöpel
+Auslegerkran | M | holz,seil | winde,hebel | drehbarer Ausleger setzt Lasten genau ab | Tretradkran
+Taschenuhr | W | messing,stahl | uhrwerk,federn | kleine federgetriebene Uhr zum Tragen | Federantrieb für Uhren
+Flügelspinnrad | T | holz | weben,getriebe | Spinnen und Aufwickeln gleichzeitig | Spinnrad
+Wasserturm mit Pumpwerk | A | stein,holz,wasser | wasserkraft,vakuum | Pumpen heben Flusswasser in Türme, die Häuser versorgen | Wasserhebemaschine mit Kurbelwelle
+Stemmtor | V | holz,eisen,wasser | hydraulik,tragwerk | zwei Torflügel stemmen sich gegen den Wasserdruck | Kammerschleuse
+Karavelle | V | holz,textil | segeln,tragwerk | wendiges Schiff mit Lateinersegeln für Entdeckungsfahrten | Lateinersegel; Kogge
+Karacke | V | holz,textil | segeln,tragwerk | großes Hochseeschiff mit mehreren Masten | Karavelle
+Jakobsstab | V | holz | messen,navigation | verschiebbarer Querstab misst Sternhöhen | Astrolabium
+Seeastrolabium | V | messing | messen,navigation | schweres Ringinstrument misst auf See die Sonnenhöhe | Astrolabium
+Breitenbestimmung mit Sonnentafeln | V | papier | navigation,zaehlen | Mittagshöhe der Sonne und Tafeln ergeben die Breite | Seeastrolabium; Astronomische Tafeln
+Erdglobus | C | papier,holz | zeichen | Karte der Erde auf einer Kugel | Weltatlas mit Kartenblättern
+Lehrbuch der Trigonometrie | W | papier | zaehlen,buch | Dreiecksrechnung als eigenes Fach | Sinustafel
+Ephemeriden | W | papier | zaehlen,druck | gedruckte Tafeln der Gestirnspositionen für Jahre im Voraus | Astronomische Tafeln
+Plus- und Minuszeichen | W | papier | zaehlen,schrift | Zeichen für Addition und Subtraktion | Rechnen mit indischen Ziffern in Europa
+Rechenbuch für Kaufleute | W | papier | zaehlen,druck | gedruckte Anleitung zu Zinsen, Dreisatz und Buchführung | Doppelte Buchführung
+Destillierbuch | D | papier | destillieren,druck | gedruckte Anleitung zur Destillation von Arzneien | Destillierte Arznei
+Feldchirurgie-Buch | D | papier | chirurgie,druck | Behandlung von Schuss- und Hiebwunden | Chirurgie-Handbuch
+Leihhaus | G | - | handel,regeln | Kredite gegen Pfand zu geringem Zins | Bank mit Filialen
+Erfindungsschutz | G | papier | regeln | Erfinder erhält für Jahre ein Alleinrecht | Zunft
+Handelsbörse | G | - | handel | regelmäßiger Treffpunkt für Wechsel- und Warengeschäfte | Messe
+Postnetz mit Stafetten | C | tier,papier | signal,regeln | feste Postlinien mit Pferdewechsel quer durch Europa | Kaufmannspost
+Ständige Gesandtschaft | G | - | regeln | dauerhafte Vertretungen bei fremden Herrschern | Botenwesen
+Akademie der Gelehrten | G | papier | lehren | freie Gemeinschaft für Studium und Gespräch | Universität
+Humanistenschule | G | papier | lehren | Schulen mit antiken Sprachen und Wissenschaften | Kathedralschule
+Grubenhunt auf Holzschienen | B | holz,eisen | rad_achse,fahrzeug | Förderwagen läuft auf Bohlen mit Spurnagel | Schubkarre in Europa
+Bewetterung mit Blasebalg | B | leder,holz,luft | luftzufuhr,stollen | Frischluft wird in die Grube geblasen | Blasebalg
+Markscheidekunst | B | seil,messing | messen,stollen | Grubenbaue werden über und unter Tage vermessen | Landvermessung
+Bergbaurevier mit Silbergruben | B | erz,holz | stollen,siedlung | Bergstädte mit Hunderten Gruben | Bergbausiedlung
+Kunstgezeug | B | holz,wasser,eisen | wasserkraft,vakuum | Wasserrad treibt Pumpensätze in tiefen Schächten | Pferdegöpel
+Erzprobe | B | erz,keramik | schmelzen,messen | kleine Probeschmelzen bestimmen den Metallgehalt | Saigerverfahren
+Renaissancegarten | L | pflanze,stein | landbau,bauen_gemeinsam | geometrisch angelegter Garten | Klostergarten
+Zitruskübel und Orangerie | L | pflanze,glas,jahreslauf | landbau | Pflanzen überwintern in Glashäusern | Gewächshaus
+Wiesenbewässerung | L | wasser,erde | bewaessern,graben | Gräben überrieseln Wiesen für mehr Heu | Einfache Bewässerung
+Pflanzen sammeln und pressen | W | papier,blatt | trocknen,buch | getrocknete Pflanzen im Herbarium | Pflanzenbuch mit Beobachtungen
+Schwungrad | M | eisen,holz | rad_achse | schwere Scheibe glättet ungleichmäßige Antriebe | Schwungmasse an der Spindel
+Zahnstangenwinde | M | eisen | getriebe | Kurbel treibt eine Zahnstange und hebt Lasten | Zahnrad
+Kettentrieb | M | eisen | getriebe | Kette überträgt Kraft zwischen Zahnrädern | Treibriemen
+Gelenkkette | M | eisen | schmieden,getriebe | gleiche Glieder mit Bolzen | Kettenglieder
+Arkebuse | K | - | sprengen | tragbare Pulverwaffe mit Schaft | Handbüchse | | Projektregel: keine Stoffangaben
+Luntenschloss | K | - | sprengen,hebel | Hebel senkt glimmende Lunte auf die Zündpfanne | Arkebuse | | Projektregel: keine Stoffangaben
+Radschloss | K | - | sprengen,federn | Federgetriebenes Rad schlägt Funken | Luntenschloss | | Projektregel: keine Stoffangaben
+Fahrbare Geschützlafette | K | holz,eisen | fahrzeug,rad_achse | Geschütz auf Rädern, schnell in Stellung zu bringen | Wagenburg
+Stückpforten im Schiffsrumpf | K | holz | tragwerk | verschließbare Öffnungen für Geschütze an der Bordwand | Karacke
+Bastionärbefestigung | K | erde,stein | aufschuetten,bauen_gemeinsam | niedrige, eckige Bollwerke ohne toten Winkel | Stadtbefestigung mit Geschütztürmen
+Laufgräben | K | erde | graben | Gräben nähern sich der Festung gedeckt | Bastionärbefestigung
+Harnisch mit beweglichen Gelenken | K | stahl | schmieden,kleidung | Platten mit Schiebenieten folgen der Bewegung | Plattenpanzer
+Fechtbuch | K | papier | buch,lehren | Kampftechniken mit Bildern | Feldchirurgie-Buch
+Brillenmacher | D | glas | optik,siedlung | Handwerk schleift Gläser für verschiedene Augen | Brille
+Hohlglas mit Kristallklarheit | T | glas | glas | besonders klares, farbloses Glas | Glasblasen
+Spiegelglas mit Zinnfolie | G | glas,zinn,quecksilber | glas,chemie | Zinnfolie mit Quecksilber auf Glas – sehr klare Spiegel | Spiegel aus Glas mit Metall
+Majolika | T | keramik | ton_brennen,farbe | zinnglasierte, bemalte Keramik | Glasur
+Steinzeug | T | ton | ton_brennen | sehr hoch gebrannte, wasserdichte Keramik | Töpferofen
+Seidenweberei mit Mustern | G | textil | weben | gemusterte Seidenstoffe | Seidenherstellung im Mittelmeerraum
+Strickerei | G | wolle | weben | Maschen aus einem Faden | Spinnrad
+Uhrmacherzunft | G | messing | uhrwerk,regeln | spezialisiertes Handwerk für Uhren | Taschenuhr
+Hausuhr mit Gewicht | W | eisen | uhrwerk | Uhr für Wohnräume | Räderuhr mit Spindelhemmung
+Sonnenuhr für die Tasche | W | messing | beobachten | Klappsonnenuhr mit Kompass | Sonnenuhr; Trockenkompass mit Windrose
+Bauordnung mit Brandmauern | A | ziegel | regeln,bauen_gemeinsam | Brandmauern zwischen Häusern | Brandschutzordnung
+Stadtpalast | A | stein | bauen_gemeinsam | Wohnpalast mit Innenhof und Fassade nach Regeln | Rathaus
+Säulenordnungen als Regelwerk | A | papier | buch,bauen_gemeinsam | Proportionen für Säulen werden gelehrt | Säulentempel
+Architekturtraktat | A | papier | buch | Lehrbuch der Baukunst | Säulenordnungen als Regelwerk
+Lehrgerüst aus Holz | A | holz | tragwerk | Gerüst trägt Bögen bis zum Schlussstein | Rundbogen
+Pfahlrost unter Gebäuden | A | holz,stein | tragwerk | Pfähle tragen Bauten auf weichem Grund | Pfahlbau
+Kanalnetz einer Lagunenstadt | V | wasser,stein | graben,bauen_gemeinsam | Kanäle als Straßen | Pfahlrost unter Gebäuden
+Gondel | V | holz | auftrieb | flaches Ruderboot für Kanäle | Kanalnetz einer Lagunenstadt
+Schiffbauwerft | V | holz | bauen_gemeinsam,siedlung | Werft mit genormten Teilen und Arbeitsteilung | Karacke
+Seemannshandbuch | V | papier | navigation,druck | gedruckte Segelanweisungen | Seefahrtshandbuch
+Rettungsboje aus Kork | V | rinde | auftrieb | schwimmender Ring rettet Ertrinkende | Schwimmer aus Rinde
+Kutsche | V | holz,eisen,tier | fahrzeug,rad_achse | leichter Personenwagen | Lastwagen mit Langbaum
+Bergwerksrecht in Büchern | B | papier | regeln,druck | gedruckte Bergordnungen | Bergrecht
+Probierofen | B | ton,holzkohle | schmelzen | kleiner Ofen für Erzproben | Erzprobe
+Pfannenhaus mit Bleipfannen | B | blei,salz | kochen | Siedehaus für Sole | Salzpfanne aus Eisen
+Hammerschmiede für Sensen | T | stahl,wasser | wasserkraft,schmieden | Sensen in Serie | Wasserrad-Hammerwerk; Sense mit langem Blatt
+Nähnadel aus Stahl | T | stahl | drahtziehen,schleifen | feine Nadeln aus Stahldraht | Knochennadel mit Öhr
+Stecknadel | T | messing | drahtziehen | Nadeln mit Kopf in großen Mengen | Wassergetriebener Drahtzug
+Schere für Tuch | T | stahl | schmieden | große Bügelschere für Tuchmacher | Bügelschere
+Hobelbank | T | holz | tragwerk | Arbeitstisch mit Zangen für Holzwerker | Hobel
+Zirkel mit Feststellschraube | W | messing | getriebe | Zirkel hält eingestellte Maße | Zirkel
+Proportionalzirkel | W | messing | messen | Maßstab zum Übertragen in andere Größen | Zirkel mit Feststellschraube
+Linearperspektive in der Kartografie | C | papier | zeichen | Gelände in Vogelschau | Zentralperspektive
+Weltkarte mit neuen Kontinenten | C | papier | zeichen,druck | gedruckte Weltkarte mit neu entdeckten Ländern | Erdglobus
+Lehrbuch der Proportionen | W | papier | buch,zaehlen | Proportionen in Kunst und Mathematik | Lehrbuch der Trigonometrie
+Anatomisches Studium von Pflanzen | W | blatt,papier | beobachten,zeichen | genaue Zeichnungen von Blättern, Blüten und Wurzeln | Anatomische Zeichnung | | für Pflanzenwesen besonders wichtig
+Glockengießen mit Schablone | B | bronze,ton | giessen | Schablone dreht die Glockenform genau | Glocke im Lehmguss
+Kerzengießerei | E | wachs,oel | giessen,licht_feuer | Kerzen in Formen gegossen | Wachskerze
+Straßenbeleuchtung mit Laternen | E | glas,oel | licht_feuer,regeln | Laternen an Häusern auf Anordnung | Kerzengießerei

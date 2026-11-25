@@ -1,0 +1,108 @@
+# Zeitalter 15 – Zeitalter der Entdeckungen (ca. 1490–1650): Hochseeschiffe, Navigation, Fernrohr, Mikroskop.
+Kardanische Aufhängung | V | messing | rad_achse | zwei Drehringe halten Kompass und Lampe trotz Seegang waagerecht | Trockenkompass mit Windrose
+Logscheit mit Knotenleine | V | holz,seil | messen,navigation | Fahrt wird an abgelaufenen Knoten pro Zeit gemessen | Messschnur mit Knoten
+Stundenglas an Bord | W | glas,sand | glas,messen | Sanduhr misst Wachen und Fahrtzeiten | Glasblasen
+Mercator-Projektion | V | papier | zeichen,zaehlen | winkeltreue Karte: Kurslinien sind gerade | Weltkarte mit neuen Kontinenten
+Kartenatlas in Buchform | C | papier | zeichen,druck | Sammlung einheitlicher Karten | Mercator-Projektion
+Rückstab | V | holz | messen,navigation | Sonnenhöhe messen, ohne in die Sonne zu blicken | Jakobsstab
+Galeone | V | holz,textil | segeln,tragwerk | großes, bewaffnetes Hochseeschiff | Karacke
+Fleute | V | holz,textil | segeln,tragwerk | billiges Frachtschiff mit kleiner Mannschaft | Galeone
+Zitrusfrüchte gegen Skorbut | D | nahrung | arznei | frische Zitrusfrüchte verhindern Skorbut auf langen Fahrten | Zitrusgärten
+Austausch von Nutzpflanzen zwischen Kontinenten | L | pflanze,samen | landbau,handel | Kartoffel, Mais, Tomate und andere wandern um die Welt | Seidenstraße | | für Pflanzenwesen besonders bedeutsam
+Kartoffelanbau in Europa | L | pflanze | landbau | ertragreiche Knolle für kühle Gebiete | Austausch von Nutzpflanzen zwischen Kontinenten
+Maisanbau in der Alten Welt | L | pflanze | landbau | Mais als neue Hauptfrucht | Austausch von Nutzpflanzen zwischen Kontinenten
+Kakao und Schokolade | L | pflanze,nahrung | gaeren,kochen | fermentierte Bohnen werden geröstet und gemahlen | Austausch von Nutzpflanzen zwischen Kontinenten
+Kaffeehaus | G | pflanze | handel,siedlung | öffentlicher Ort für Kaffee, Nachrichten und Geschäfte | Teeanbau
+Chinarinde gegen Fieber | D | rinde | arznei | Rinde des Chinarindenbaums wirkt gegen Wechselfieber | Heilpflanzen
+Botanischer Garten | W | pflanze | landbau,lehren | Garten zur Lehre und Forschung über Pflanzen | Klostergarten; Pflanzen sammeln und pressen | | für Pflanzenwesen besonders wichtig
+Kräuterbuch mit naturgetreuen Holzschnitten | W | papier | druck,buch | genaue Abbildungen machen Pflanzen sicher bestimmbar | Kräuterbuch mit Bildern
+Sonnenzentriertes Weltbild | W | papier | zaehlen,buch | Erde und Planeten kreisen um die Sonne | Sonne im Mittelpunkt (Hypothese); Ephemeriden
+Planetengesetze | W | papier | zaehlen | Ellipsenbahnen und Flächensatz beschreiben Planetenbewegungen | Sonnenzentriertes Weltbild
+Großsternwarte mit Mauerquadrant | W | messing,stein | messen,beobachten | sehr genaue Messungen ohne Fernrohr | Sternwarte mit großen Instrumenten
+Fernrohr | W | glas | optik,schleifen | zwei Linsen vergrößern ferne Gegenstände | Brille
+Jupitermonde und Sonnenflecken entdecken | W | glas | optik,beobachten | Fernrohrbeobachtungen widerlegen alte Annahmen | Fernrohr
+Mikroskop | W | glas,messing | optik,schleifen | Linsensystem vergrößert winzige Dinge | Fernrohr
+Fallgesetze | W | holz,wasser | messen,zaehlen | Wege wachsen mit dem Quadrat der Fallzeit | Mittlere-Geschwindigkeit-Regel
+Gleichmäßige Pendelschwingung | W | blei,seil | messen,uhrwerk | Schwingungsdauer hängt von der Länge, nicht vom Ausschlag ab | Fallgesetze
+Thermoskop | W | glas,wasser,luft | messen | Luft im Glaskolben zeigt Wärme und Kälte an | Experimentelle Methode
+Erde als Magnet | W | eisen,erz | magnetismus,buch | die Erde selbst ist ein großer Magnet | Abhandlung über den Magneten
+Logarithmen | W | papier | zaehlen,buch | Multiplizieren wird zu Addieren | Lehrbuch der Trigonometrie
+Rechenstäbchen | W | holz | zaehlen | beschriftete Stäbe erleichtern Multiplikation | Logarithmen
+Rechenschieber | W | holz | zaehlen | logarithmische Skalen gegeneinander verschieben | Logarithmen
+Mechanische Rechenmaschine | W | messing | getriebe,zaehlen | Zahnräder addieren mit Zehnerübertrag | Rechenstäbchen; Räderuhr mit Spindelhemmung
+Dezimalbrüche | W | papier | zaehlen | Brüche als Dezimalzahlen geschrieben | Dezimales Stellenwertsystem
+Gleichheitszeichen | W | papier | zaehlen | zwei Striche stehen für „ist gleich“ | Plus- und Minuszeichen
+Buchstaben für Größen | W | papier | zaehlen | Variable und Konstanten als Buchstaben | Gleichheitszeichen
+Analytische Geometrie | W | papier | zaehlen,zeichen | Kurven werden durch Gleichungen beschrieben | Buchstaben für Größen; Grafische Darstellung von Größen
+Anatomie des Menschen in Büchern | D | papier | chirurgie,druck | großes, genau bebildertes Lehrbuch nach eigenen Sektionen | Anatomische Zeichnung
+Blutkreislauf | D | - | beobachten,messen | das Herz pumpt Blut im Kreislauf | Anatomie des Menschen in Büchern
+Anatomisches Theater | D | holz | lehren,chirurgie | Rundbau für öffentliche Sektionen | Anatomie des Menschen in Büchern
+Gefäßunterbindung statt Ausbrennen | D | seil | chirurgie | Blutungen werden abgebunden statt mit Eisen verbrannt | Abbinden von Blutgefäßen
+Mechanische Prothese | D | eisen,leder | getriebe,chirurgie | Hand mit Federn und Gelenken | Prothese aus Holz
+Amtliches Arzneibuch | D | papier | arznei,regeln | verbindliche Liste von Arzneien und Zubereitungen | Trennung von Arzt und Apotheker
+Lehre von der Ansteckung | D | papier | hygiene,beobachten | Krankheiten werden durch winzige Keime übertragen (Annahme) | Quarantäne
+Fieberthermometer | D | glas,wasser | messen,diagnose | Körperwärme wird gemessen | Thermoskop
+Pulsmesser mit Pendel | D | blei,seil | messen,diagnose | Pendellänge wird dem Puls angepasst | Gleichmäßige Pendelschwingung
+Geburtszange | D | stahl | schmieden,chirurgie | Zange hilft bei schweren Geburten | Chirurgisches Besteck
+Lehrbuch des Bergbaus | B | papier | buch,druck | umfassendes, bebildertes Werk über Bergbau und Hüttenwesen | Bergwerksrecht in Büchern
+Feldgestänge | B | holz,eisen,wasser | hebel,wasserkraft | lange Gestänge übertragen Wasserkraft zu entfernten Schächten | Kunstgezeug
+Sprengarbeit im Bergbau | B | - | sprengen,bohren | Bohrlöcher werden geladen und gesprengt | Pulvermühle | | Projektregel: keine Stoffangaben
+Silbergewinnung mit Quecksilber | B | erz,quecksilber,silber | chemie | Silber verbindet sich mit Quecksilber und wird abgedampft | Quecksilbergewinnung
+Gradierwerk | B | holz,salz,wasser | trocknen | Sole rieselt über Reisigwände, Wasser verdunstet | Salzpfanne aus Eisen
+Forstordnung | L | holz,pflanze | regeln | Holzeinschlag wird begrenzt, Wald wird nachgepflanzt | Klostergarten | | Vorläufer der Nachhaltigkeit – für Pflanzenwesen zentral
+Windsägemühle | E | holz,eisen,textil | windkraft,getriebe | Windkraft treibt über eine Kurbelwelle Sägegatter | Wassergetriebene Säge; Turmwindmühle
+Entwässerungsmühle für Polder | E | holz,wasser | windkraft,bewaessern | Windmühle hebt Wasser aus eingedeichtem Land | Turmwindmühle; Seedeich
+Polder | L | erde,wasser | aufschuetten,bewaessern | trockengelegtes Land hinter Deichen | Entwässerungsmühle für Polder
+Feuerspritze | G | holz,leder,wasser | vakuum,hydraulik | Druckpumpe auf Wagen spritzt Löschwasser | Druckpumpe | | für Pflanzenwesen lebenswichtig
+Strumpfwirkstuhl | T | eisen,holz | weben,getriebe | Maschine wirkt Maschenreihen | Strickerei
+Bandwebstuhl | T | holz | weben,getriebe | mehrere Bänder gleichzeitig | Trittwebstuhl
+Münzspindelpresse | M | eisen | getriebe,schlagen | Schraubenpresse prägt Münzen gleichmäßig | Druckerpresse
+Walzprägewerk | M | stahl | walzen,getriebe | Walzen prägen Münzen aus Blechstreifen | Münzspindelpresse
+Gewindeschneid-Drehbank | M | eisen,holz | drehen,getriebe | Leitspindel führt den Stahl entlang des Werkstücks | Drehbank mit Wippe und Pedal
+Aktiengesellschaft | G | papier | handel,regeln | Anteile verteilen Kapital und Risiko auf viele | Seeversicherung
+Aktienbörse | G | papier | handel | Anteile werden täglich gehandelt | Aktiengesellschaft; Handelsbörse
+Girobank | G | papier | handel | Zahlungen durch Umbuchung zwischen Konten | Bank mit Filialen
+Wöchentliche Zeitung | C | papier | druck | regelmäßig erscheinende gedruckte Nachrichten | Flugblatt
+Völkerrecht | G | papier | regeln,buch | Regeln für das Verhältnis zwischen Staaten | Ständige Gesandtschaft
+Allgemeine Schulpflicht | G | - | lehren,regeln | alle Kinder müssen eine Schule besuchen | Humanistenschule
+Patentgesetz | G | papier | regeln | allgemeines Gesetz für Erfindungsschutz | Erfindungsschutz
+Wissenschaftliche Akademie | W | papier | lehren,buch | Gesellschaft zur Förderung der Naturforschung | Akademie der Gelehrten
+Wörterbuch | C | papier | buch,druck | alphabetisches Verzeichnis von Wörtern und Bedeutungen | Seitenzählung und Titelblatt
+Scheitelkanal | V | wasser,stein | graben,bauen_gemeinsam | Kanal über eine Wasserscheide mit Schleusentreppe | Stemmtor
+Treckschute | V | holz,tier | auftrieb,tierhaltung | Linienboot nach Fahrplan, vom Pferd gezogen | Treidelpfad
+Postkutschenlinie | V | holz,tier | fahrzeug,regeln | feste Kutschenlinien für Reisende | Kutsche; Postnetz mit Stafetten
+Schlittschuh mit Eisenkufe | V | eisen,holz | schmieden | schmale Kufe gleitet auf Eis | Ski
+Segelwagen | V | holz,textil | windkraft,fahrzeug | Wagen fährt mit Segeln am Strand | Kutsche
+Rialtobrücke mit einem Bogen | V | stein | tragwerk,bauen_gemeinsam | flacher Steinbogen überspannt einen Kanal | Steinbrücke mit flachem Bogen
+Kuppel mit Rippen und Laterne | A | ziegel,stein | tragwerk,bauen_gemeinsam | Riesige Doppelkuppel | Kuppel ohne Lehrgerüst
+Grachtenhaus | A | ziegel,holz | tragwerk | schmales, hohes Haus mit Lastenbalken | Pfahlrost unter Gebäuden
+Ziegelei in Serie | A | ton,holz | ziegel,siedlung | große Ziegeleien für Städte | Gebrannter Ziegel
+Kohleheizung in Städten | E | kohle | feuer_nutzen | Steinkohle ersetzt knappes Holz | Steinkohleabbau in Gruben
+Muskete | K | - | sprengen | schwere Pulverwaffe mit Gabelstütze | Arkebuse | | Projektregel: keine Stoffangaben
+Steinschloss | K | - | sprengen,federn | Feuerstein schlägt Funken in die Zündpfanne | Radschloss | | Projektregel: keine Stoffangaben
+Sternschanze | K | erde | aufschuetten,bauen_gemeinsam | Erdwerk mit vielen Spitzen | Bastionärbefestigung
+Exerzierreglement | K | papier | regeln,lehren | einheitliche Bewegungen und Befehle | Fechtbuch
+Galeerenhafen | K | stein,holz | bauen_gemeinsam | befestigter Hafen mit Arsenal | Schiffbauwerft
+Stehendes Heer | K | - | regeln | dauerhaft bezahlte Truppen | Berufsheer
+Uniform | K | textil | naehen,regeln | einheitliche Kleidung erkennt Zugehörige | Waffenrock mit Wappen
+Druck von Seekarten auf Kupfer | C | kupfer,papier | druck | genaue Karten in Auflage | Kupferstich; Portolankarte
+Flugschrift | C | papier | druck | kurze Streitschrift für viele Leser | Flugblatt
+Bibliothekskatalog | C | papier | buch | gedrucktes Verzeichnis aller Bücher einer Sammlung | Große Bibliothek
+Briefregister der Post | C | papier | schrift,regeln | Ein- und Ausgang von Briefen wird verzeichnet | Postnetz mit Stafetten
+Zuckermühle mit Walzen | L | holz,eisen,tier | getriebe,tierhaltung | drei Walzen pressen Zuckerrohr | Zuckerrohrplantage
+Tabakanbau | L | pflanze | landbau,trocknen | Tabakblätter werden angebaut und getrocknet | Austausch von Nutzpflanzen zwischen Kontinenten
+Indigo-Färberei | G | pflanze,textil | gaeren,farbe | blauer Farbstoff aus fermentierten Blättern | Färberzunft
+Cochenille-Rot | G | tier,textil | extrahieren,farbe | roter Farbstoff aus Schildläusen | Indigo-Färberei
+Gummiball | G | kautschuk | trocknen | elastischer Ball aus Baumsaft | Austausch von Nutzpflanzen zwischen Kontinenten
+Kautschuk beobachten | W | kautschuk | beobachten | elastischer Baumsaft wird untersucht | Gummiball
+Taschenkompass | V | messing,eisen | magnetismus | kleiner Kompass für Landreisen | Trockenkompass mit Windrose
+Messtisch | W | holz,papier | messen,zeichen | Karte wird direkt im Gelände gezeichnet | Landvermessung
+Triangulation | W | messing,papier | messen,zaehlen | Landesvermessung über ein Netz von Dreiecken | Messtisch; Lehrbuch der Trigonometrie
+Wasserwaage mit Luftblase | W | glas,wasser | messen | Luftblase zeigt die Waagerechte | Lot und Waage für den Bau | | um 1660; hier wegen des Zusammenhangs
+Baumschule im großen Stil | L | pflanze | zucht,handel | Jungpflanzen für Gärten und Wälder | Obstbaumschule
+Gewächshaus mit Ofenheizung | L | glas,ziegel,pflanze | feuer_nutzen,landbau | beheiztes Glashaus für exotische Pflanzen | Zitruskübel und Orangerie | | für Pflanzenwesen besonders bedeutsam
+Tulpenzucht | L | pflanze | zucht,handel | Zwiebelpflanzen in vielen Sorten | Baumschule im großen Stil
+Kunstgärtnerei | L | pflanze | landbau,lehren | Gärtner als eigenes Handwerk | Renaissancegarten
+Waisenhaus | G | stein | siedlung,regeln | Einrichtung für elternlose Kinder | Spital in der Stadt
+Armenordnung | G | - | regeln | geregelte Unterstützung Bedürftiger | Waisenhaus
+Standesamtliches Register | G | papier | schrift,regeln | Geburten, Ehen und Todesfälle werden verzeichnet | Volkszählung

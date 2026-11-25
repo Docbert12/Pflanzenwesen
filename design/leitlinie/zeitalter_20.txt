@@ -1,0 +1,150 @@
+# Zeitalter 20 – Atomzeitalter (ca. 1938–1970): Kernenergie, Transistor, Computer, Raumfahrt, Antibiotika.
+# Massenvernichtungswaffen sind bewusst nicht aufgenommen. Für Pflanzenwesen: Calvin-Zyklus, Solarzelle, Grüne Revolution, Unkrautvernichter als Gefahr.
+Kernspaltung entdecken | W | uran | kernspaltung,beobachten | schwere Kerne zerfallen nach Neutronenbeschuss in zwei Teile | Neutron entdecken
+Kettenreaktion im Versuchsreaktor | E | uran,holzkohle | kernspaltung,strahlung | gesteuerte Kettenreaktion mit Moderator und Steuerstäben | Kernspaltung entdecken
+Kernkraftwerk | E | uran,stahl,wasser | kernspaltung,dampf,turbine | Spaltungswärme erzeugt Dampf für Turbinen | Kettenreaktion im Versuchsreaktor; Dampfturbine
+Druckwasserreaktor | E | uran,stahl,wasser | kernspaltung,hydraulik | Wasser unter hohem Druck kühlt und bremst Neutronen | Kernkraftwerk
+Strahlenschutz mit Dosimeter | D | kunststoff,elektronik | strahlung,messen | Strahlenbelastung wird gemessen und begrenzt | Zählrohr | | im Spiel ab Prompt 12 als einfaches Modell
+Radioaktive Markierung | W | uran,chemikalie | strahlung,messen | Stoffwege werden mit strahlenden Isotopen verfolgt | Massenspektrometer
+Radiokarbondatierung | W | holz,elektronik | strahlung,messen | Zerfall von Kohlenstoff-14 datiert organische Reste | Radioaktive Markierung | | Pflanzen nehmen Kohlenstoff-14 aus der Luft auf
+Nuklearmedizinische Bildgebung | D | chemikalie,elektronik | strahlung,diagnose | Strahlung schwacher Marker zeigt Organfunktionen | Radioaktive Markierung
+Fusionsforschung mit Magnetfeld | E | kupfer,wasserstoff | kernfusion,magnetismus | Plasma wird in einem ringförmigen Magnetfeld eingeschlossen | Kernkraftwerk | entw | bis heute kein Kraftwerk
+Transistor | C | silizium,elektronik | halbleiter | Halbleiter verstärkt und schaltet ohne Glühkathode | Elektronenröhre-Verstärker; Quantenmechanik
+Siliziumtransistor | C | silizium | halbleiter | Transistor aus Silizium hält höhere Temperaturen aus | Transistor
+Integrierter Schaltkreis | C | silizium | halbleiter,nano | viele Bauelemente auf einem Chip | Siliziumtransistor
+Planartechnik | B | silizium,chemikalie | halbleiter,chemie | Fotolithografie und Oxidschichten fertigen Chips in Serie | Integrierter Schaltkreis
+Siliziumsolarzelle | E | silizium,sonne | photovoltaik,halbleiter | Licht erzeugt in dotiertem Silizium Strom | Lichtquanten erklären den Photoeffekt; Transistor | | technisches Gegenstück zum Blatt
+Leuchtdiode | E | silizium,elektronik | licht_elektrisch,halbleiter | Halbleiter leuchtet beim Stromfluss | Transistor
+Maser | W | elektronik | funk,quanten | gebündelte Mikrowellen durch angeregte Moleküle | Quantenmechanik
+Laser | W | glas,elektronik | optik,quanten | gebündeltes, einfarbiges Licht | Maser
+Elektronenrechner mit Röhren | W | elektronik | digital | Tausende Röhren rechnen elektronisch | Programmgesteuerter Binärrechner (mechanisch)
+Speicherprogrammierter Rechner | W | elektronik | digital,software | Programm und Daten im selben Speicher | Elektronenrechner mit Röhren; Berechenbarkeitsmodell
+Ferritkernspeicher | W | eisen,kupfer | magnetismus,digital | magnetische Ringe speichern Bits | Speicherprogrammierter Rechner
+Festplattenspeicher | W | aluminium,eisen | magnetismus,digital | rotierende Magnetplatten speichern Daten | Magnettonband
+Transistorrechner | W | silizium | digital,halbleiter | Rechner mit Transistoren statt Röhren | Speicherprogrammierter Rechner; Transistor
+Programmiersprache | W | - | software | Programme in lesbarer Sprache statt Maschinencode | Speicherprogrammierter Rechner
+Übersetzerprogramm | W | - | software | wandelt Programmtext in Maschinenbefehle | Programmiersprache
+Betriebssystem | W | - | software | verwaltet Speicher, Geräte und Programme | Übersetzerprogramm
+Mehrbenutzerbetrieb | W | - | software,netz | viele Nutzer arbeiten gleichzeitig an einem Rechner | Betriebssystem
+Informationstheorie | W | papier | digital,zaehlen | Information wird in Bit gemessen | Logik-Algebra
+Regelungstechnik mit Rückkopplung | M | elektronik | robotik | Messwert wird ständig mit dem Sollwert verglichen | Fliehkraftregler
+Industrieroboter | M | stahl,elektronik | robotik,hydraulik | programmierbarer Arm schweißt und setzt Teile | Regelungstechnik mit Rückkopplung
+Numerisch gesteuerte Werkzeugmaschine | M | stahl,elektronik | robotik,schneiden | Lochstreifen steuert die Fräsmaschine | Fräsmaschine; Industrieroboter
+Computermaus | C | kunststoff,elektronik | digital | Zeigegerät bewegt einen Zeiger auf dem Bildschirm | Mehrbenutzerbetrieb
+Grafische Bildschirmarbeit | C | glas,elektronik | digital | Fenster, Text und Grafik auf dem Bildschirm | Computermaus
+Paketvermittlung | C | elektronik | netz | Daten werden in Paketen über wechselnde Wege geschickt | Mehrbenutzerbetrieb
+Erstes Rechnernetz | C | kupfer,elektronik | netz | Großrechner an mehreren Orten werden verbunden | Paketvermittlung
+Modem | C | elektronik | netz,klang | Daten werden als Töne über Telefonleitungen gesendet | Telefon; Erstes Rechnernetz
+Künstlicher Erdsatellit | V | aluminium,elektronik | raumfahrt,rakete | Satellit umkreist die Erde | Flüssigkeitsrakete
+Mehrstufenrakete | V | stahl,aluminium | rakete | abgeworfene Stufen erreichen die Umlaufbahn | Flüssigkeitsrakete
+Bemannte Raumfahrt | V | aluminium,stahl | raumfahrt | Mensch umkreist die Erde und kehrt zurück | Künstlicher Erdsatellit
+Raumanzug | V | kunststoff,textil | raumfahrt,kleidung | Druckanzug für den Außeneinsatz | Bemannte Raumfahrt
+Mondlandung | V | aluminium,titan | raumfahrt | Menschen landen auf dem Mond und kehren zurück | Bemannte Raumfahrt
+Raumsonde | V | aluminium,elektronik | raumfahrt,funk | unbemannte Sonde erkundet andere Planeten | Künstlicher Erdsatellit
+Nachrichtensatellit | C | elektronik,silizium | funk,raumfahrt | Satellit überträgt Fernsehen und Telefon über Ozeane | Künstlicher Erdsatellit; Siliziumsolarzelle
+Wettersatellit | W | elektronik | raumfahrt,messen | Wolkenbilder aus der Umlaufbahn | Künstlicher Erdsatellit
+Satellitennavigation (erste Form) | V | elektronik | raumfahrt,navigation | Standort aus Funksignalen von Satelliten | Wettersatellit
+Brennstoffzelle in der Raumfahrt | E | wasserstoff,platin | speicher | liefert Strom und Wasser aus Wasserstoff und Sauerstoff | Gasbatterie
+Strahltriebwerk | V | stahl,titan,erdoel | turbine,rakete | Gasturbine stößt heißes Gas aus | Dampfturbine
+Düsenverkehrsflugzeug | V | aluminium,erdoel | aerodynamik,turbine | Verkehrsflugzeug mit Strahltriebwerken | Strahltriebwerk
+Überschallflug | V | aluminium,titan | aerodynamik,rakete | Flug schneller als der Schall | Strahltriebwerk
+Hubschrauber in Serie | V | aluminium | aerodynamik,verbrennungsmotor | Hubschrauber mit Heckrotor für Rettung und Transport | Hubschrauber
+Luftkissenfahrzeug | V | aluminium,kautschuk | aerodynamik,auftrieb | Fahrzeug schwebt auf einem Luftpolster | Hubschrauber in Serie
+Hochgeschwindigkeitszug | V | stahl,kupfer | elektromotor,fahrzeug | Elektrozug auf eigener Trasse mit über 200 km/h | Elektrische Lokomotive
+Normcontainer | V | stahl | lagern,handel | genormte Stahlkisten für Schiff, Bahn und Lkw | Industrienorm
+Supertanker | V | stahl,erdoel | auftrieb,bauen_gemeinsam | sehr großes Tankschiff | Motorschiff
+Rohrfernleitung | V | stahl,erdoel | hydraulik,bauen_gemeinsam | Pipeline transportiert Öl und Gas über Tausende Kilometer | Erdölbohrung
+Dreipunkt-Sicherheitsgurt | V | textil,stahl | naehen | Gurt hält Brust und Becken | Automobil
+Kreiskolbenmotor | E | stahl,erdoel | verbrennungsmotor | Kolben dreht sich statt hin und her | Viertaktmotor
+Gezeitenkraftwerk | E | moertel,wasser,jahreslauf | turbine,bauen_gemeinsam | Damm nutzt Ebbe und Flut | Gezeitenmühle; Wasserkraftwerk
+Mikrowellenherd | E | elektronik,stahl | funk | Mikrowellen erwärmen Wasser in der Speise | Radar
+Farbfernsehen | C | glas,elektronik | funk,optik | Bildröhre mit drei Farben | Elektronisches Fernsehen
+Videoaufzeichnung | C | kunststoff,eisen | magnetismus | Bilder auf Magnetband | Magnettonband
+Transistorradio | C | silizium,kunststoff | funk,halbleiter | kleines Radio mit Batterie | Transistor; Rundfunk
+Langspielplatte | C | kunststoff | klang | lange Spielzeit durch feine Rillen | Schallplatte und Grammofon
+Xerografie | C | selten,papier | gleichstrom,optik | elektrostatisches Kopieren auf Normalpapier | Fotografie
+Strichcode | C | papier | zeichen,digital | Striche kodieren Zahlen für Maschinen | Lochkarten-Zählmaschine
+Holografie | W | glas,silber | optik | räumliches Bild durch Lichtinterferenz | Laser
+Kreditkarte | G | kunststoff | handel | Zahlen ohne Bargeld | Papiergeld
+Teflon | T | kunststoff | chemie | Kunststoff, an dem fast nichts haftet | Polyethylen
+Polyesterfaser | T | kunststoff | chemie,weben | strapazierfähige Kunstfaser | Nylon
+Silikon | T | silizium,chemikalie | chemie | hitzefester, elastischer Kunststoff | Teflon
+Epoxidharz | T | kunststoff | chemie | sehr fester Klebstoff und Gießharz | Bakelit
+Kohlenstofffaser | T | faserverbund | chemie,feuer_nutzen | sehr feste, leichte Faser für Verbundwerkstoffe | Polyesterfaser
+Aramidfaser | T | kunststoff | chemie | Faser fünfmal fester als Stahl bei gleichem Gewicht | Nylon
+Glasfaserverstärkter Kunststoff | T | faserverbund,glas | chemie | Glasfasern in Harz für Boote und Rotoren | Epoxidharz
+Sekundenkleber | T | kunststoff | chemie | Kleber härtet in Sekunden aus | Epoxidharz
+Klettverschluss | G | kunststoff | weben | Häkchen und Schlaufen haften aneinander | Reißverschluss | | einer Pflanzenfrucht nachempfunden
+Titanmetallurgie | B | titan,chemikalie | verhuetten,chemie | Titan wird in größeren Mengen gewonnen | Leichtmetall-Legierung für Flugzeuge
+Sauerstoffblasstahl | B | stahl,luft | oxidieren,luftzufuhr | reiner Sauerstoff macht Stahl in Minuten | Bessemer-Verfahren
+Stranggießen | B | stahl | giessen | Stahl wird ohne Unterbrechung zu Strängen gegossen | Sauerstoffblasstahl
+Floatglas | B | glas,zinn | glas | Glas schwimmt auf flüssigem Zinn und wird plan | Spiegelglas gegossen
+Penicillin in Massenproduktion | D | mikroben | zellkultur,gaeren | Antibiotikum aus großen Gärtanks | Penicillin entdecken
+Antibiotikum gegen Tuberkulose | D | mikroben | zellkultur,arznei | Wirkstoff aus Bodenbakterien | Penicillin in Massenproduktion
+Kinderlähmungs-Impfung | D | zellen | impfen,zellkultur | Impfstoff aus Zellkulturen | Gelbfieber-Impfung
+Weltweite Pockenbekämpfung | D | - | impfen,regeln | Impfprogramm für alle Länder | Schutzimpfung mit Kuhpocken
+Dialyse | D | kunststoff,wasser | hygiene | Maschine reinigt das Blut | Eiserne Lunge
+Herz-Lungen-Maschine | D | kunststoff,elektronik | hydraulik,chirurgie | übernimmt Herz und Lunge während der Operation | Dialyse
+Organverpflanzung | D | zellen | chirurgie | Niere oder Herz wird übertragen | Herz-Lungen-Maschine
+Herzschrittmacher | D | silizium,elektronik | halbleiter,chirurgie | elektrische Impulse halten den Herzschlag | Transistor
+Ultraschalldiagnose | D | elektronik | klang,diagnose | Schallechos bilden innere Organe ab | Echolot
+Empfängnisverhütung mit Hormonen | D | chemikalie | arznei | Hormonpräparat verhindert Schwangerschaft | Insulin als Arznei
+Doppelhelix der Erbsubstanz | W | erbgut | beobachten,chemie | Erbsubstanz als Doppelstrang mit Basenpaaren | Röntgenbeugung an Kristallen; Chromosomentheorie der Vererbung | | Grundlage für Prompt 7 und spätere Gentechnik
+Genetischer Code | W | erbgut | chemie,zaehlen | je drei Basen stehen für einen Baustein der Eiweiße | Doppelhelix der Erbsubstanz
+Papierchromatografie | W | papier,chemikalie | extrahieren | Stoffgemische trennen sich beim Wandern auf Papier | Blattgrün isolieren
+Calvin-Zyklus | W | pflanze,chemikalie | strahlung,chemie | markierter Kohlenstoff zeigt den Weg des CO₂ in Zucker | Papierchromatografie; Radioaktive Markierung | | Kern der Pflanzenwesen
+Zwei Lichtsysteme der Photosynthese | W | pflanze,sonne | messen | zwei hintereinander geschaltete Lichtreaktionen | Calvin-Zyklus | | Kern der Pflanzenwesen
+Pflanzen aus Einzelzellen | W | pflanze,zellen | zellkultur | aus einer Zelle wächst eine ganze Pflanze | Zelltheorie | | für Pflanzenwesen besonders bedeutsam (Vermehrung)
+Pflanzengewebekultur | L | pflanze,zellen | zellkultur | Pflanzen werden steril im Glas vermehrt | Pflanzen aus Einzelzellen | | für Pflanzenwesen besonders bedeutsam
+Mutationszüchtung | L | pflanze,uran | strahlung,zucht | Bestrahlung erzeugt neue Sorten | Mutationen durch Röntgenstrahlen | | entspricht Prompt 12 (Strahlung → Mutation)
+Hochertragssorten | L | pflanze,samen | zucht | kurzstrohige Sorten tragen mit Dünger viel mehr | Hybridmais; Stickstoffdünger in Masse | | für Pflanzenwesen besonders bedeutsam
+Grüne Revolution | L | pflanze,duenger,wasser | landbau,bewaessern | Hochertragssorten, Dünger und Bewässerung vervielfachen die Ernten | Hochertragssorten
+Kreisberegnung | L | stahl,wasser | bewaessern,elektromotor | fahrbare Leitung dreht sich um einen Brunnen | Wasserleitung unter Druck
+Tropfbewässerung | L | kunststoff,wasser | bewaessern | Wasser tropft direkt an die Wurzel | Kreisberegnung | | für Pflanzenwesen besonders bedeutsam
+Unkrautvernichtungsmittel | L | chemikalie | chemie | Wirkstoffe töten bestimmte Pflanzen | Schädlingsbekämpfung mit Mitteln | | für Pflanzenwesen eine direkte Gefahr
+Insektenvernichtungsmittel mit Langzeitwirkung | L | chemikalie | chemie | Mittel wirkt lange, reichert sich aber in Nahrungsketten an | Schädlingsbekämpfung mit Mitteln
+Biologische Schädlingsbekämpfung | L | tier,mikroben | zucht | natürliche Feinde werden gezielt eingesetzt | Insektenvernichtungsmittel mit Langzeitwirkung
+Hydrokultur | L | pflanze,wasser,duenger | landbau | Pflanzen wachsen ohne Erde in Nährlösung | Mineralstofftheorie der Pflanzenernährung | | für Pflanzenwesen bedeutsam
+Gewächshaus aus Kunststofffolie | L | kunststoff,pflanze | landbau | billige Folientunnel | Polyethylen; Gewächshaus
+Massentierhaltung | L | tier | tierhaltung,siedlung | sehr viele Tiere auf engem Raum | Künstliche Besamung in der Tierzucht
+Gefriertrocknung | L | nahrung | kaelte,vakuum | Wasser verdampft aus dem gefrorenen Zustand | Tiefkühlen
+Konservierung durch Bestrahlung | L | nahrung | strahlung | Strahlung tötet Keime in Lebensmitteln | Strahlentherapie
+Rote Liste gefährdeter Arten | W | papier | beobachten,regeln | Verzeichnis bedrohter Tiere und Pflanzen | System der Lebewesen | | für Pflanzenwesen bedeutsam
+Umweltbewegung | G | - | regeln,chemie | öffentlicher Einsatz gegen Gift in der Umwelt | Insektenvernichtungsmittel mit Langzeitwirkung
+Vereinte Nationen | G | papier | regeln | Weltorganisation für Frieden und Zusammenarbeit | Völkerbund
+Allgemeine Erklärung der Menschenrechte | G | papier | regeln | Rechte aller Menschen weltweit | Erklärung der Menschenrechte
+Weltgesundheitsorganisation | G | - | regeln,heilen | gemeinsame Gesundheitspolitik der Staaten | Vereinte Nationen
+Welthandelsabkommen | G | papier | handel,regeln | Zölle werden gemeinsam gesenkt | Vereinte Nationen
+Europäische Wirtschaftsgemeinschaft | G | papier | handel,regeln | gemeinsamer Markt mehrerer Staaten | Welthandelsabkommen
+Sozialer Wohnungsbau | A | moertel,stahl | bauen_gemeinsam,siedlung | günstige Wohnungen in großer Zahl | Fertighaus
+Plattenbau | A | moertel,stahl | tragwerk,bauen_gemeinsam | Häuser aus vorgefertigten Betonplatten | Sozialer Wohnungsbau
+Vorhangfassade aus Glas | A | glas,aluminium | tragwerk | nichttragende Glasfassade vor dem Skelett | Hochhaus
+Seilnetzdach | A | stahl,kunststoff | tragwerk | leichtes Dach aus gespannten Seilnetzen | Schalenbau aus Beton
+Leichtbeton | A | moertel | zement | poriger Beton mit guter Dämmung | Spannbeton
+Rauchmelder | G | elektronik | strahlung,gleichstrom | Sensor meldet Rauch | Zählrohr | | für Pflanzenwesen lebenswichtig
+Löschschaum | G | chemikalie,wasser | chemie | Schaum erstickt Flüssigkeitsbrände | Tragbarer Feuerlöscher | | für Pflanzenwesen lebenswichtig
+Feuerwiderstandsklassen | A | moertel | regeln,messen | Bauteile werden auf Brandverhalten geprüft | Feuerschutzwand aus Beton | | für Pflanzenwesen lebenswichtig
+Erdbebensicheres Bauen | A | stahl,moertel,geologie | tragwerk,regeln | Bauten weichen Schwingungen elastisch aus | Seismograph
+Tunnelvortrieb mit Schildmaschine | B | stahl | stollen,elektromotor | rotierender Bohrkopf und Schild bauen den Tunnel | Alpentunnel
+Tiefbohrung auf See | B | stahl,erdoel | bohren,auftrieb | Bohrinsel fördert Öl aus dem Meeresboden | Erdölbohrung
+Tagebau mit Großgeräten | B | stahl,kohle | graben,elektromotor | Großbagger fördern Kohle und Erz | Schaufelradbagger
+Uranbergbau | B | uran,erz | graben,strahlung | Abbau von Uranerz mit Strahlenschutz | Strahlenschutz mit Dosimeter
+Erdgas als Hauptbrennstoff | E | gas,stahl | feuer_nutzen,bauen_gemeinsam | Erdgasnetze versorgen Städte | Rohrfernleitung
+Flüssigerdgas | E | gas | kaelte,auftrieb | tiefgekühltes Gas wird verschifft | Erdgas als Hauptbrennstoff
+Hochspannungs-Gleichstromübertragung | E | kupfer,elektronik | gleichstrom,halbleiter | Gleichstrom über sehr weite Strecken | Hochspannungsleitung
+Kühlturm | E | moertel,wasser | kaelte,tragwerk | Verdunstung kühlt Kraftwerkswasser | Kernkraftwerk
+Solarkocher | E | aluminium,sonne | optik | Hohlspiegel bündelt Sonnenlicht zum Kochen | Brennspiegel
+Sonnenwärmekollektor | E | kupfer,glas,sonne | optik,hydraulik | Sonne erwärmt Wasser in dunklen Rohren | Solarkocher
+Wärmepumpe | E | stahl,chemikalie | kaelte | Kältekreis pumpt Umweltwärme ins Haus | Haushaltskühlschrank
+Rasterelektronenmikroskop | W | elektronik | vakuum,optik | Oberflächen werden räumlich abgebildet | Elektronenmikroskop
+Kernspinresonanz | W | elektronik | magnetismus,quanten | Atomkerne im Magnetfeld verraten chemische Strukturen | Quantenmechanik
+Computertomografie (Theorie) | D | papier | diagnose,zaehlen | Schnittbilder aus vielen Röntgenprojektionen berechnen | Röntgenstrahlen | entw | Gerät erst ab 1971
+Plattentektonik | W | stein,geologie | beobachten,messen | Erdplatten bewegen sich, Ozeanböden wachsen | Kontinentalverschiebung
+Urknall-Hintergrundstrahlung | W | elektronik | funk,beobachten | schwache Strahlung aus allen Richtungen | Ausdehnung des Weltalls
+Radioastronomie | W | stahl,elektronik | funk,beobachten | Teleskope empfangen Radiowellen aus dem All | Radar
+Klimaforschung mit Messreihen | W | glas,elektronik | messen | Kohlendioxid in der Luft wird fortlaufend gemessen | Treibhauswirkung von Gasen | | für Pflanzenwesen bedeutsam
+Ozonschicht erkennen | W | elektronik | messen,strahlung | Ozon schirmt UV-Strahlung ab | Klimaforschung mit Messreihen
+Datenbank | W | - | software,digital | geordnete Datensammlung mit Abfragen | Festplattenspeicher
+Tabellenkalkulation (Großrechner) | W | - | software | Rechenblätter auf dem Rechner | Datenbank
+Lernende Schaltung | W | elektronik | ki | künstliches Neuron lernt einfache Muster | Informationstheorie | entw | erste lernende Maschine
+Schachprogramm | W | - | software,ki | Rechner spielt Schach | Lernende Schaltung

@@ -1,0 +1,64 @@
+# Zeitalter 10 – Spätantike (ca. 300–600 n. Chr.): Wassermühlen in Serie, Kodex, Schiffsmühlen, Steigbügel.
+Kodex | C | papier,leder | buch,naehen | gefaltete und gebundene Seiten statt einer Rolle | Buchrolle; Pergament
+Klosterskriptorium | C | papier,tinte | buch,schrift | Schreibstube vervielfältigt Bücher durch Abschreiben | Kodex
+Unzialschrift | C | tinte | schrift | gut lesbare Buchschrift in großen Rundformen | Alphabet mit Vokalen
+Ziffer Null mit Stellenwert | W | - | zaehlen | ein Zeichen für „nichts“ macht das Stellenwertsystem vollständig | Rechenbrett | | zuerst in Indien
+Dezimales Stellenwertsystem | W | - | zaehlen | zehn Ziffern schreiben jede Zahl | Ziffer Null mit Stellenwert
+Sinustafel | W | papier | zaehlen | Tabelle von Halbsehnen für die Sternkunde | Sehnentafel
+Gleichungslehre | W | papier | zaehlen,buch | unbekannte Größen aus Gleichungen bestimmen | Geometrie mit Beweisen
+Destillierhelm | W | keramik,glas,wasser | destillieren | Dampf kondensiert im Helm und tropft ab | Glasblasen
+Wasserbad | W | keramik,wasser | kochen | gleichmäßige, begrenzte Erwärmung im Wasserbad | Destillierhelm
+Schiffsmühle | E | holz,wasser | wasserkraft,auftrieb | Mühlrad zwischen verankerten Booten im Fluss | Wassermühle; Pontonbrücke
+Steinsäge mit Kurbel und Pleuel | M | eisen,holz,wasser | wasserkraft,getriebe | Wasserrad treibt über Kurbel und Pleuelstangen Sägen | Wassermühle
+Horizontales Wasserrad | E | holz,wasser | wasserkraft | Rad dreht sich waagrecht, Mühlstein sitzt direkt auf der Welle | Wassermühle
+Steigbügel | V | eisen,leder | schmieden,tierhaltung | Fußstütze gibt dem Reiter festen Halt | Satteldecke | | zuerst in China
+Sattel mit festem Gerüst | V | holz,leder | naehen,tierhaltung | Holzgerüst verteilt Last auf den Pferderücken | Satteldecke
+Brustblattgeschirr | V | leder | naehen,tierhaltung | Gurt über der Brust behindert die Atmung des Zugtiers nicht | Joch | | zuerst in China
+Lateinersegel | V | textil,holz | segeln | dreieckiges Segel erlaubt Fahrt näher am Wind | Rahsegelschiff
+Kuppel auf Hängezwickeln | A | ziegel,moertel | tragwerk,bauen_gemeinsam | runde Kuppel über quadratischem Grundriss | Kuppel aus Beton
+Doppelte Landmauer | K | stein,ziegel | bauen_gemeinsam,tragwerk | zwei Mauerringe mit Graben und Türmen | Grenzwall
+Zisternenhalle | A | stein,ziegel,wasser | tragwerk,bauen_gemeinsam | unterirdische Säulenhalle speichert Wasser für die Stadt | Zisterne
+Kloster | G | stein,holz | siedlung,religion | Gemeinschaft mit Regel, Werkstätten, Garten und Bibliothek | Philosophenschule
+Klosterregel | G | papier | regeln,schrift | geschriebene Tagesordnung für Arbeit, Gebet und Lernen | Kloster
+Klostergarten | L | pflanze | landbau | Kräuter-, Obst- und Gemüsegarten mit festem Plan | Heilkräutergarten | | für Pflanzenwesen besonders bedeutsam
+Krankenhaus für alle | D | stein | heilen,siedlung | Haus zur Pflege Kranker und Armer | Militärlazarett
+Medizinische Sammelwerke | D | papier | buch,arznei | Zusammenfassungen des ärztlichen Wissens | Arzneimittellehre
+Pilgerherberge | G | stein | siedlung | Unterkunft für Reisende an Wegen | Kloster
+Rechtssammlung des Reiches | G | papier | regeln,buch | ältere Gesetze und Urteile gesammelt und geordnet | Geschriebenes Zivilrecht
+Jahreszählung ab festem Jahr | W | jahreslauf | zaehlen,regeln | Jahre werden fortlaufend ab einem Ereignis gezählt | Sonnenkalender mit Schaltjahr
+Osterrechnung | W | papier,jahreslauf | zaehlen | Tabellen berechnen bewegliche Feste | Jahreszählung ab festem Jahr
+Kirchenglocke | C | bronze,keramik | giessen,klang | gegossene Glocke ruft weithin hörbar | Großbronzeguss
+Schachspiel | G | holz | schneiden | Brettspiel mit Figuren unterschiedlicher Zugarten | Brettspiel | | zuerst in Indien
+Kristallzucker | L | pflanze,nahrung | kochen,trocknen | Zuckerrohrsaft eindicken und auskristallisieren | Salzsieden | | zuerst in Indien
+Seidenherstellung im Mittelmeerraum | L | tier,textil | tierhaltung,weben | Seidenraupen und Maulbeerbäume werden außerhalb Chinas gehalten | Seidenraupenzucht
+Maulbeerplantage | L | pflanze | landbau | Bäume als Futter für Seidenraupen | Seidenherstellung im Mittelmeerraum
+Kataphrakt | K | eisen,tier | kleidung,tierhaltung | Reiter und Pferd vollständig gepanzert | Kettenhemd; Steigbügel
+Langschwert für Reiter | K | stahl | schmieden,haerten | lange Klinge für den Kampf zu Pferd | Kurzschwert
+Wurfaxt | K | eisen,holz | schmieden | kurze Axt zum Werfen | Eisenaxt
+Bleibeschwerter Wurfpfeil | K | blei,eisen,holz | giessen,werfen | Bleigewicht gibt dem Pfeil Wucht | Schleuderblei
+Zugkraft-Blide | K | holz,seil | hebel,werfen | Mannschaft zieht an Seilen, langer Arm schleudert Steine | Torsionsgeschütz | | zuerst in China
+Mauerturm mit Schießscharten | K | stein | bauen_gemeinsam | Öffnungen erlauben Schießen aus Deckung | Doppelte Landmauer
+Zeigerpflanzen für Erz | B | pflanze,erz | beobachten | bestimmte Pflanzen wachsen auf erzhaltigem Boden | Erzwissen | | für Pflanzenwesen ein naheliegender Zugang
+Messingherstellung mit Galmei | B | kupfer,erz,holzkohle | legieren,schmelzen | Kupfer nimmt im Tiegel Zink aus Galmei auf | Messing
+Glasfenster in Bleiruten | A | glas,blei | glas,loeten | kleine Glasscheiben in Bleistreifen gefasst | Fensterglas
+Wandmosaik in Kuppeln | C | glas,moertel | farbe,bauen_gemeinsam | goldene und farbige Glassteine an Gewölben | Glasmosaik
+Seidenstraße | G | tier,textil | handel | Handelswege verbinden China mit dem Mittelmeer | Kamelkarawane im Fernhandel
+Hospiz an Gebirgspässen | V | stein | siedlung | Rasthaus sichert den Übergang | Pilgerherberge
+Byzantinische Goldmünze | G | gold | schlagen,regeln | Münze mit über Jahrhunderte gleichem Goldgehalt | Münze
+Notariat | G | papier | schrift,regeln | amtlich beglaubigte Urkunden | Rechtssammlung des Reiches
+Schule an Bischofssitzen | G | papier | lehren,schrift | Unterricht in Lesen, Schreiben und Rechnen | Schreiberschule
+Klosteruniversität | G | papier | lehren,buch | große Lehrstätte mit Bibliothek und Wohnheimen | Philosophenschule | | zuerst in Indien
+Feuersignal-Kette | C | holz | licht_feuer,signal | Feuerstellen auf Bergen melden Angriffe über Hunderte Kilometer | Leuchtfeuer
+Wassergetriebene Orgel in Kirchen | C | bronze,holz,luft | hydraulik,klang | Orgel mit Blasebalg für große Räume | Wasserorgel
+Kerzenleuchter | E | bronze,wachs | giessen,licht_feuer | Halter für viele Kerzen | Wachskerze
+Gläserne Hängelampe | E | glas,oel | glas,licht_feuer | Öl schwimmt auf Wasser im Glas, Docht brennt ruhig | Glasblasen
+Schwimmendes Getreidemagazin | V | holz,nahrung | auftrieb,lagern | Getreideschiffe als bewegliche Speicher | Getreidefrachter
+Brücke mit Spitzpfeilern | V | stein | tragwerk | spitze Pfeiler brechen Strömung und Eis | Bogenbrücke
+Höhlenkloster | A | stein | stollen,religion | in den Fels gehauene Klosteranlage | Grabkammer mit Felsgängen
+Steuerkataster | G | papier | zaehlen,regeln | Land und Ertrag werden für die Steuer verzeichnet | Volkszählung
+Seefahrtshandbuch | V | papier | buch,navigation | Beschreibung von Häfen, Küsten und Entfernungen | Reisekarte mit Stationen
+Pestbekämpfung durch Absonderung | D | - | hygiene,regeln | Kranke werden getrennt untergebracht | Krankenhaus für alle
+Mönchsmedizin | D | blatt,papier | arznei,lehren | Klöster bewahren und lehren Heilkunde | Medizinische Sammelwerke; Klostergarten
+Glockenturm | A | stein,holz | tragwerk,bauen_gemeinsam | Turm trägt schwere Glocken | Kirchenglocke
+Tintenfass und Federkiel | C | tinte | schneiden | Vogelfeder als biegsames Schreibgerät | Schreibrohr
+Buchdeckel aus Holz und Leder | C | holz,leder | naehen,buch | feste Deckel schützen den Kodex | Kodex
