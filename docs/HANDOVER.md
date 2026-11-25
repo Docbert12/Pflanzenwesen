@@ -21,7 +21,7 @@ Godot-4-Spiel „Pflanzenwesen“: 3D-Voxelwelt mit 50 individuellen Pflanzenwes
 | v0.5.1 | 2668786 (+ Doku-Nachtrag Repository) |
 | v0.6.0 | 50bc72c (+ Nachtrag Commit-Hash) – altes Repository |
 | v0.6.0 (Übernahme) | 2e60241 – neues Repository `Docbert12/Pflanzenwesen`, inhaltlich identisch |
-| v0.6.1 | (wird beim Ausliefern eingetragen) |
+| v0.6.1 | 3a968e9 (+ Nachtrag Commit-Hash) – Prompt 6B |
 
 **Arbeitszweige:** `wip/prompt-06b` = Arbeitsverlauf von Prompt 6B (Zwischenstände vom 24./25.11.2026); abgeschlossen und als v0.6.1 ausgeliefert. Der Zweig bleibt als Verlauf erhalten, weitergearbeitet wird auf `main`. Entscheidungen und Begründungen von 6B: `docs/plan_prompt_06b.md`.
 
