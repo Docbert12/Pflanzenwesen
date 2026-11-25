@@ -19,6 +19,9 @@ static func decide(cr: Creature, ctx: LifeContext) -> void:
 		if r["ok"]:
 			if ctx.experiments != null and not str(o["id"]).begins_with("tech:") and ctx.experiments.active(cr) != null:
 				ctx.experiments.abort(cr, "zugunsten von „%s“ (Nutzwert %.2f)" % [o["id"], float(o["u"])], ctx)
+			# Prompt 6B: Arbeitskette wird bei anderen Zielen (Hunger, Gefahr …) PAUSIERT, nicht abgebrochen
+			if ctx.work != null and not str(o["id"]).begins_with("work:") and ctx.work.active(cr) != null:
+				ctx.work.pause(cr, "zugunsten von „%s“ (Nutzwert %.2f)" % [o["id"], float(o["u"])], ctx)
 			GoalManager.commit(cr, o["goal"], int(o.get("target", 0)), float(o["u"]), ctx)
 			cr.behavior_state = r["state"]
 			cr.behavior_reason = r["reason"]
@@ -176,6 +179,9 @@ static func evaluate(cr: Creature, ctx: LifeContext) -> Array:
 		# ── Technik (Prompt 6): Versuch fortsetzen/beginnen, vorführen, zusehen, erklären, üben ──
 		if ctx.experiments != null:
 			options.append_array(ctx.experiments.options(cr, ctx, free, critical))
+		# ── Arbeitsketten aus eigenem Bedarf (Prompt 6B) ──
+		if ctx.work != null:
+			options.append_array(ctx.work.options(cr, ctx, free, critical))
 		# ── Erkunden ──
 		options.append(_opt("explore", "explore", {"neugier": float(dc.get("explore_weight", 0.45)) * pers.v("neugier") * free}))
 		# ── Gelernte Handlung wiederholen ──
@@ -311,6 +317,11 @@ static func _execute(cr: Creature, o: Dictionary, ctx: LifeContext) -> Dictionar
 			claim["status"] = "wird_geprüft"
 			claim["status_t"] = ctx.now()
 			return {"ok": true, "state": "prüft_hinweis", "reason": "Prüft gehörten Hinweis von #%d auf Nahrung #%d (%.0f m, geäußerte Sicherheit %.0f %%, Vertrauen %.2f) – Hörensagen, noch nicht selbst gesehen. %s" % [int(claim["speaker"]), int(claim["subject"]["id"]), float(o["dist"]), float(claim["certainty"]) * 100, float(claim["trust_at_hearing"]), why]}
+	if str(o["id"]).begins_with("work:"):
+		var wr := ctx.work.execute_option(cr, o, ctx)
+		if wr["ok"]:
+			wr["reason"] = "%s %s" % [wr["reason"], why]
+		return wr
 	if str(o["id"]).begins_with("tech:"):
 		var tr := ctx.experiments.execute_option(cr, o, ctx)
 		if tr["ok"]:

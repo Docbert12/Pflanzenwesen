@@ -104,6 +104,8 @@ func on_action_finished(a: GameAction, ctx: LifeContext) -> void:
 	PlanManager.on_action_finished(self, a, ctx)
 	if ctx.experiments != null:
 		ctx.experiments.on_action_finished(self, a, ctx)
+	if ctx.work != null:
+		ctx.work.on_action_finished(self, a, ctx)
 	last_result = {"type": a.type, "status": a.status, "code": a.result_code, "message": a.result_message, "t": ctx.now(), "target": a.target_id}
 	next_decision_t = minf(next_decision_t, ctx.now() + 0.1)
 	if a.type == "move_to" and goal.get("type", "") == "food":

@@ -74,6 +74,7 @@ func setup(p_sim: Simulation, p_db: DefinitionDB, p_world: VoxelWorld, p_objects
 	ctx.comm = CommunicationSystem.new()
 	ctx.ai = AISystem.new(ctx, ai_service)
 	ctx.experiments = ExperimentSystem.new()
+	ctx.work = WorkSystem.new()
 	ctx.nav = NavigationService.new()
 	return true
 
@@ -228,8 +229,11 @@ func dispose() -> void:
 	ctx.material_pieces.clear()
 	ctx.assemblies.clear()
 	ctx.heaters.clear()
+	ctx.storages.clear()
+	ctx.structures.clear()
 	workshop = {}
 	ctx.experiments = null
+	ctx.work = null
 	ctx._hash.clear()
 	plant_nodes.clear()
 	_plants_cache = []
@@ -287,6 +291,10 @@ func step(dt: float) -> void:
 			ClaimEvaluator.on_perception(cr, ctx)
 			LearningSystem.tick(cr, ctx)
 			ExperimentSystem.perceive_objects(cr, ctx)
+			if not ctx.storages.is_empty() or not ctx.structures.is_empty():
+				var prad := float(ctx.c("perception").get("radius_m", 10.0)) * float(cr.caps.get("perception", 1.0))
+				StorageSystem.perceive(cr, ctx, prad)
+				StructureSystem.perceive(cr, ctx, prad)
 			cr.next_perception_t = now + pi
 		if cr.behavior_enabled and now >= cr.next_decision_t:
 			cr.next_decision_t = now + di
@@ -294,6 +302,7 @@ func step(dt: float) -> void:
 	ctx.social.tick(now, float(ctx.m("social").get("request_expire_s", 10.0)))
 	ctx.interventions.tick()
 	ctx.experiments.tick(ctx)
+	ctx.work.tick(ctx)
 	ctx.ai.update(false)
 	if ctx.refill_enabled and now >= next_refill_t:
 		refill_test(float(ctx.c("food").get("test_refill_kg", 0.5)))
@@ -389,6 +398,10 @@ func audit() -> Array:
 				or cr.relations.rel.size() > int(ctx.m("relationships").get("capacity", 24)):
 			p.append("Wesen #%d: Geistesspeicher über Kapazität" % id)
 	p.append_array(ConstructionSystem.audit(ctx))
+	p.append_array(StorageSystem.audit(ctx))
+	p.append_array(StructureSystem.audit(ctx))
+	if ctx.work != null:
+		p.append_array(ctx.work.audit(ctx))
 	for iid in ctx.items:
 		var it: FoodItem = ctx.items[iid]
 		if it.reserved_by != 0 and not ctx.executor.reservations.has(it.reserved_by):
