@@ -22,6 +22,7 @@
       "description": "Einfaches Werkzeug",
       "_excel_row": 2,
       "game_status": "data_only",
+      "game_status_note": "Steinbeil: keine Freischaltung. Wesen können seit Prompt 6 aus Holzstiel, Steinkopf und Fasern einen Schlagverbund herstellen; seit Prompt 6B auch aus eigenem Bedarf in einer Arbeitskette (binden → aufnehmen → schlagen → Bruchstücke weiterverwenden). Das ist ein aus Material und Geometrie entstehendes Objekt und wird NICHT dem Excel-Eintrag I001 zugeordnet (kein Technologiebaum).",
       "import_warnings": [
         "11_Werkzeuge_Items!Zeile 2: Rohstoff 'Stein' ist ein Name, keine ID, und existiert nicht in 02_Rohstoffe."
       ]
@@ -62,6 +63,7 @@
       "description": "Einfacher Speer",
       "_excel_row": 4,
       "game_status": "data_only",
+      "game_status_note": "Holzspeer: nicht implementiert (Prompt 6 kennt nur Schlagwerkzeuge).",
       "import_warnings": [
         "11_Werkzeuge_Items!Zeile 4: Rohstoff 'Stein' ist ein Name, keine ID, und existiert nicht in 02_Rohstoffe."
       ]

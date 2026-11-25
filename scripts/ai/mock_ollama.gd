@@ -142,6 +142,42 @@ static func default_answer(c: Dictionary) -> Dictionary:
 		var t: Dictionary = topics[0]
 		return {"request_id": rid, "speaker_id": aid, "listener_id": lid, "intent": str(t.get("absicht", "none")), "subject_id": int(t.get("thema_id", 0)),
 			"referenced_memory_ids": [], "expressed_certainty": float(t.get("eigene_sicherheit", 0.5)), "optional_text": "(simuliert) Hinweis"}
+	if kind == "work":
+		# Prompt 6B: einfacher, deterministischer Arbeitsvorschlag nur aus angebotenen Kandidaten
+		var ar: Dictionary = c.get("arbeit", {})
+		var tkw: Dictionary = c.get("technik", {})
+		var last: Dictionary = ar.get("letzte_kette", {})
+		var excl := {}
+		var rx := RegEx.create_from_string("#(\\d+)")
+		for mt in rx.search_all(str(last.get("grund", ""))):
+			excl[int(mt.get_string(1))] = true
+		var dest := 0
+		var mode := "deposit"
+		var goal := "lagern"
+		for b in ar.get("baustellen", []):
+			if str(last.get("ziel", "")) == "bauen" and int(b.get("plaetze_frei", 0)) > 0:
+				dest = int(b["id"])
+				mode = "place"
+				goal = "bauen"
+				break
+		if dest == 0:
+			for l in ar.get("lager", []):
+				if bool(l.get("platz_frei", true)):
+					dest = int(l["id"])
+					break
+		var wsteps: Array = []
+		if dest != 0:
+			for o in tkw.get("bekannte_gegenstaende", []):
+				if wsteps.size() >= 2:
+					break
+				if str(o.get("form", "")) in ["lump", "block"] and not o.has("teile") and not excl.has(int(o["id"])):
+					wsteps.append({"op": "carry", "object_id": int(o["id"]), "dest_id": dest, "mode": mode})
+		if wsteps.is_empty():
+			return {"request_id": rid, "actor_id": aid, "goal": "keep_current", "proposed_steps": [], "uncertainty": 0.9,
+				"short_explanation": "(simuliert) Kein anderer Ablauf erkennbar."}
+		wsteps.append({"op": "check"})
+		return {"request_id": rid, "actor_id": aid, "goal": goal, "proposed_steps": wsteps, "uncertainty": 0.5,
+			"short_explanation": "(simuliert) Andere, tragbare Stücke statt des gescheiterten Gegenstands."}
 	if kind == "experiment":
 		var tk: Dictionary = c.get("technik", {})
 		var objs: Array = tk.get("bekannte_gegenstaende", [])

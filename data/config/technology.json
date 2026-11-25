@@ -207,6 +207,8 @@
     "need_cast": 0.35,
     "need_start_site": 0.2,
     "need_start_site_known": 0.6,
+    "need_model": 0.7,
+    "proposal_ttl_s": 180.0,
     "resume_after_s": 2.0,
     "start_site_min_persistence": 0.55,
     "start_site_min_stones": 1,

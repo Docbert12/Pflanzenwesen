@@ -22,20 +22,103 @@
       "game_status": "data_only"
     },
     {
+      "id": "V002",
+      "name": "Erde",
+      "solid": true,
+      "transparent": false,
+      "collision": true,
+      "material_ref": null,
+      "hardness": 2.0,
+      "special": "Boden",
+      "_excel_row": 3,
+      "physics_material_id": "soil",
+      "import_corrections": [
+        {
+          "id": "K3",
+          "field": "material_ref",
+          "excel_value": "MAT_Erde",
+          "value": null,
+          "physics_material_id": "soil",
+          "reason": "MAT_Erde existiert in 03_Materialien nicht (kein Material mit „Erde“ im Namen). Direkt dem Physikmaterial soil zugeordnet; kein Excel-Material.",
+          "source": "design/import_config/datenbasis_korrekturen.json"
+        }
+      ],
+      "game_status": "implemented",
+      "game_status_note": "Prompt 6B: Excel-Verweis MAT_Erde existiert nicht; per Importkonfiguration direkt dem Physikmaterial zugeordnet (design/import_config/datenbasis_korrekturen.json)."
+    },
+    {
+      "id": "V003",
+      "name": "Gras",
+      "solid": true,
+      "transparent": false,
+      "collision": true,
+      "material_ref": null,
+      "hardness": 1.0,
+      "special": "Oberfläche",
+      "_excel_row": 4,
+      "physics_material_id": "plant_tissue",
+      "import_corrections": [
+        {
+          "id": "K4",
+          "field": "material_ref",
+          "excel_value": "MAT_Gras",
+          "value": null,
+          "physics_material_id": "plant_tissue",
+          "reason": "MAT_Gras existiert in 03_Materialien nicht. Direkt dem Physikmaterial plant_tissue zugeordnet (Gras = Pflanzengewebe); kein Excel-Material.",
+          "source": "design/import_config/datenbasis_korrekturen.json"
+        }
+      ],
+      "game_status": "implemented",
+      "game_status_note": "Prompt 6B: Excel-Verweis MAT_Gras existiert nicht; per Importkonfiguration direkt dem Physikmaterial zugeordnet (design/import_config/datenbasis_korrekturen.json)."
+    },
+    {
       "id": "V004",
       "name": "Wasser",
       "solid": false,
       "transparent": true,
       "collision": false,
-      "material_ref": "MAT004",
+      "material_ref": "MAT206",
       "hardness": 0.0,
       "special": "Flüssigkeit",
       "_excel_row": 5,
+      "import_corrections": [
+        {
+          "id": "K2",
+          "field": "material_ref",
+          "excel_value": "MAT004",
+          "value": "MAT206",
+          "physics_material_id": null,
+          "reason": "Voxeltyp „Wasser“ verweist auf MAT004 = „Holz_gehärtet“ (bei der Prüfung gefunden, nicht im Prompt genannt). Zuordnung über den Namen zu MAT206 „Wasser_gebunden“ (Physikmaterial water).",
+          "source": "design/import_config/datenbasis_korrekturen.json"
+        }
+      ],
       "game_status": "partial",
-      "game_status_note": "Wasser ist kein Voxel, sondern ein mengenbasiertes Höhenmodell.",
-      "import_warnings": [
-        "17_Voxel_Typen!Zeile 5: Voxeltyp 'Wasser' verweist auf Material MAT004 = 'Holz_gehärtet' (Name passt nicht)."
-      ]
+      "game_status_note": "Wasser ist kein Voxel, sondern ein mengenbasiertes Höhenmodell. Prompt 6B: Excel-Verweis MAT004 (Holz_gehärtet) per Importkonfiguration auf MAT206 Wasser_gebunden korrigiert."
+    },
+    {
+      "id": "V005",
+      "name": "Holz",
+      "solid": true,
+      "transparent": false,
+      "collision": true,
+      "material_ref": null,
+      "hardness": 3.0,
+      "special": "Baumstamm",
+      "_excel_row": 6,
+      "physics_material_id": "wood",
+      "import_corrections": [
+        {
+          "id": "K5",
+          "field": "material_ref",
+          "excel_value": "MAT_Holz",
+          "value": null,
+          "physics_material_id": "wood",
+          "reason": "MAT_Holz existiert in 03_Materialien nicht (nur „Holz_gehärtet“ und Prothesenholz). Direkt dem Physikmaterial wood zugeordnet; kein Excel-Material.",
+          "source": "design/import_config/datenbasis_korrekturen.json"
+        }
+      ],
+      "game_status": "implemented",
+      "game_status_note": "Prompt 6B: Excel-Verweis MAT_Holz existiert nicht; per Importkonfiguration direkt dem Physikmaterial zugeordnet (design/import_config/datenbasis_korrekturen.json)."
     },
     {
       "id": "V006",
@@ -55,37 +138,24 @@
       "solid": true,
       "transparent": false,
       "collision": true,
-      "material_ref": "MAT002",
+      "material_ref": "MAT111",
       "hardness": 6.0,
       "special": "Prothese",
       "_excel_row": 8,
+      "import_corrections": [
+        {
+          "id": "K1",
+          "field": "material_ref",
+          "excel_value": "MAT002",
+          "value": "MAT111",
+          "physics_material_id": null,
+          "reason": "Voxeltyp „Kupfer“ verweist auf MAT002 = „Cellulose_rein“. Zuordnung über den Namen zum Material MAT111 „Kupfer_rein“ (Physikmaterial copper).",
+          "source": "design/import_config/datenbasis_korrekturen.json"
+        }
+      ],
       "game_status": "implemented",
-      "import_warnings": [
-        "17_Voxel_Typen!Zeile 8: Voxeltyp 'Kupfer' verweist auf Material MAT002 = 'Cellulose_rein' (Name passt nicht)."
-      ]
+      "game_status_note": "Prompt 6B: Excel-Verweis MAT002 (Cellulose_rein) per Importkonfiguration auf MAT111 Kupfer_rein korrigiert."
     }
   ],
-  "rejected": [
-    {
-      "excel_row": 3,
-      "id": "V002",
-      "errors": [
-        "17_Voxel_Typen!F3: Ungültiger Verweis ['MAT_Erde'] auf 03_Materialien (ID existiert dort nicht)."
-      ]
-    },
-    {
-      "excel_row": 4,
-      "id": "V003",
-      "errors": [
-        "17_Voxel_Typen!F4: Ungültiger Verweis ['MAT_Gras'] auf 03_Materialien (ID existiert dort nicht)."
-      ]
-    },
-    {
-      "excel_row": 6,
-      "id": "V005",
-      "errors": [
-        "17_Voxel_Typen!F6: Ungültiger Verweis ['MAT_Holz'] auf 03_Materialien (ID existiert dort nicht)."
-      ]
-    }
-  ]
+  "rejected": []
 }

@@ -50,6 +50,7 @@ DEFAULT_EXCEL = ROOT / "design" / "Pflanzenwesen_Voxel_Datenbasis.xlsx"
 DEFAULT_OUT = ROOT / "data" / "generated" / "excel"
 DEFAULT_REPORT = ROOT / "reports" / "import_report.md"
 CONFIG_DIR = ROOT / "data" / "config"
+CORRECTIONS_PATH = ROOT / "design" / "import_config" / "datenbasis_korrekturen.json"   # Prompt 6B
 SCHEMA_VERSION = 1
 NA = object()      # Marker "-"
 MISSING = object() # Marker leere Zelle
@@ -451,6 +452,43 @@ def run_import(excel_path: Path, out_dir: Path, report_path: Path, write: bool, 
             out_rows.append((r_idx, entry, row_issues))
         parsed[name] = out_rows
 
+    # Importkonfiguration (Prompt 6B): dokumentierte Korrekturen und Projektentscheidungen ───
+    corr_cfg = load_json(CORRECTIONS_PATH) or {"corrections": [], "project_decisions": []}
+    applied_corrections, applied_decisions = [], []
+    def _row_id(sheet, e):
+        sp_ = S[sheet]
+        if sp_["id_col"]:
+            return e.get(sp_["cols"][sp_["id_col"]][0])
+        return slugify(str(e.get(sp_["cols"][sp_["id_from"]][0], "")))
+    for c in corr_cfg.get("corrections", []):
+        hit = None
+        for r_idx, e, ri in parsed.get(c["sheet"], []):
+            if _row_id(c["sheet"], e) == c["row_id"]:
+                hit = (r_idx, e)
+                break
+        if hit is None:
+            applied_corrections.append({**c, "applied": False, "why": "Zeile nicht gefunden"})
+            continue
+        r_idx, e = hit
+        if e.get(c["field"]) != c["excel_value"]:
+            applied_corrections.append({**c, "applied": False, "why": f"Excel-Wert ist jetzt {e.get(c['field'])!r} (erwartet {c['excel_value']!r}) – Korrektur nicht angewendet"})
+            continue
+        e[c["field"]] = c.get("value")
+        if c.get("physics_material_id"):
+            e["physics_material_id"] = c["physics_material_id"]
+        e.setdefault("import_corrections", []).append({"id": c["id"], "field": c["field"], "excel_value": c["excel_value"], "value": c.get("value"),
+            "physics_material_id": c.get("physics_material_id"), "reason": c["reason"], "source": "design/import_config/datenbasis_korrekturen.json"})
+        applied_corrections.append({**c, "applied": True, "excel_row": r_idx})
+    for d in corr_cfg.get("project_decisions", []):
+        hit = None
+        for r_idx, e, ri in parsed.get(d["sheet"], []):
+            if _row_id(d["sheet"], e) == d["row_id"]:
+                hit = (r_idx, e)
+                break
+        if hit is not None:
+            hit[1]["project_decision"] = {"id": d["id"], "decision": d["decision"], "reason": d["reason"], "source": "design/import_config/datenbasis_korrekturen.json"}
+        applied_decisions.append({**d, "found": hit is not None, "excel_row": hit[0] if hit is not None else None})
+
     # IDs ────────────────────────────────────────────
     for name, rows in parsed.items():
         sp = S[name]
@@ -677,7 +715,7 @@ def run_import(excel_path: Path, out_dir: Path, report_path: Path, write: bool, 
         (out_dir / "_manifest.json").write_text(dump_json(manifest), encoding="utf-8")
         id_registry_path.write_text(dump_json(id_registry), encoding="utf-8")
 
-    write_report(report_path, excel_path, sha, formula_count, outputs, issues, diffs, write and not fatal)
+    write_report(report_path, excel_path, sha, formula_count, outputs, issues, diffs, write and not fatal, applied_corrections, applied_decisions)
     if not quiet:
         print(f"Excel: {excel_path}")
         for fname in sorted(outputs):
@@ -721,7 +759,7 @@ def diff_entries(old, new):
     return res
 
 
-def write_report(path: Path, excel_path, sha, formula_count, outputs, issues, diffs, written):
+def write_report(path: Path, excel_path, sha, formula_count, outputs, issues, diffs, written, corrections=None, decisions=None):
     path.parent.mkdir(parents=True, exist_ok=True)
     L = ["# Import-Bericht Excel → JSON", "",
          f"- Quelle: `{excel_path.name}` (SHA-256 `{sha[:16]}…`), nur lesend geöffnet",
@@ -736,6 +774,17 @@ def write_report(path: Path, excel_path, sha, formula_count, outputs, issues, di
     cnt = {s: sum(1 for i in issues if i.severity == s) for s in ("FATAL", "ERROR", "WARNING", "INFO")}
     L += ["", f"**Fehler: {cnt['ERROR'] + cnt['FATAL']} · Warnungen: {cnt['WARNING']} · Hinweise: {cnt['INFO']}**", "",
           "Fehler führen dazu, dass die betroffene Zeile **nicht** übernommen wird (sie steht unter `rejected` in der JSON-Datei). Warnungen werden am Eintrag unter `import_warnings` mitgeführt.", ""]
+    if corrections is not None or decisions is not None:
+        L += ["## Importkonfiguration (Prompt 6B)", "",
+              "Quelle: `design/import_config/datenbasis_korrekturen.json`. Die Excel bleibt unverändert; Korrekturen greifen nur, solange der Excel-Wert dem dokumentierten Wert entspricht.", "",
+              "### Korrekturen", "", "| ID | Blatt | Zeile | Feld | Excel | jetzt | angewendet | Begründung |", "|---|---|---|---|---|---|---|---|"]
+        for c in corrections or []:
+            now = c.get("value") if c.get("value") is not None else f"Physikmaterial {c.get('physics_material_id')}"
+            L.append(f"| {c['id']} | {c['sheet']} | {c['row_id']} | {c['field']} | `{c['excel_value']}` | `{now}` | {'ja' if c.get('applied') else 'NEIN – ' + str(c.get('why', ''))} | {c['reason']} |")
+        L += ["", "### Projektentscheidungen (Vorrang vor widersprüchlichen Tabelleneinträgen)", "", "| ID | Blatt | Zeile | Entscheidung | Begründung |", "|---|---|---|---|---|"]
+        for d in decisions or []:
+            L.append(f"| {d['id']} | {d['sheet']} | {d['row_id']}{'' if d.get('found') else ' (nicht gefunden/abgewiesen)'} | {d['decision']} | {d['reason']} |")
+        L.append("")
     changed = [(f, d) for f, d in diffs.items() if d["changed"] or d["removed"]]
     if changed:
         L += ["## Unterschiede zu vorhandenen Definitionen", ""]

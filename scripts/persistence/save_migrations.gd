@@ -50,7 +50,7 @@ const V3_KNOWN_DEFINITIONS := [V3_SHIPPED_DEFINITIONS]
 const V4_SHIPPED_DEFINITIONS := "6303a08db5144550e5a2944e7ad3e1cdc0a499ef45646d45ad81e06332b21136"
 const V4_KNOWN_DEFINITIONS := [V4_SHIPPED_DEFINITIONS]
 ## Wird beim Abschluss von v0.6.1 mit dem Fingerabdruck der ausgelieferten Definitionen gesetzt.
-const V5_SHIPPED_DEFINITIONS := "f67011acc69c70beeb2cc4e008808b95b9add135d9f679e7aae995a5f32144d5"
+const V5_SHIPPED_DEFINITIONS := "011a6f986667927a42a7b454e6d747ff04089272d0390f3b71f53380bd433c0c"
 
 
 ## Rückgabe {"ok", "payload", "steps": Array, "code", "message"}

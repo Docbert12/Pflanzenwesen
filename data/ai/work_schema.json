@@ -1,0 +1,29 @@
+{
+  "type": "object",
+  "properties": {
+    "request_id": {"type": "integer"},
+    "actor_id": {"type": "integer"},
+    "goal": {"type": "string", "enum": ["lagern", "bauen", "schmelzen", "keep_current"]},
+    "proposed_steps": {
+      "type": "array", "maxItems": 10,
+      "items": {
+        "type": "object",
+        "properties": {
+          "op": {"type": "string", "enum": ["bring", "connect", "check_tool", "equip", "release", "break", "work_copper", "collect", "carry", "heat", "wait_molten", "pour", "check"]},
+          "object_id": {"type": "integer"},
+          "target_id": {"type": "integer"},
+          "dest_id": {"type": "integer"},
+          "mode": {"type": "string", "enum": ["deposit", "place", "put_in", "bring"]},
+          "head_id": {"type": "integer"},
+          "fiber_id": {"type": "integer"},
+          "heater_id": {"type": "integer"},
+          "mold_id": {"type": "integer"}
+        },
+        "required": ["op"]
+      }
+    },
+    "uncertainty": {"type": "number", "minimum": 0, "maximum": 1},
+    "short_explanation": {"type": "string", "maxLength": 200}
+  },
+  "required": ["request_id", "actor_id", "goal", "proposed_steps", "uncertainty", "short_explanation"]
+}

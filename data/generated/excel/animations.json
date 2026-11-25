@@ -38,7 +38,7 @@
       "special_case": "Bei fehlendem Bein: Hinken",
       "_excel_row": 3,
       "game_status": "partial",
-      "game_status_note": "Gehen in der Lebenssimulation an echte Bewegung (move_to) gekoppelt, Takt ∝ tatsächlicher Geschwindigkeit. Hinken: nicht implementiert."
+      "game_status_note": "Gehen in der Lebenssimulation an echte Bewegung (move_to) gekoppelt, Takt ∝ tatsächlicher Geschwindigkeit. Prompt 6B: kurzer Anlauf zum Arbeitsplatz (walk_short) und Gehen mit gehaltenem Gegenstand (carry, carry_two) mit derselben Beinbewegung; während der Arbeitsphase steht das Wesen (kein Fußgleiten). Hinken: nicht implementiert."
     },
     {
       "id": "A003",
@@ -54,7 +54,7 @@
       "special_case": "Einarmig möglich",
       "_excel_row": 4,
       "game_status": "partial",
-      "game_status_note": "Greifen während pick_up, nur mit vorhandener Greiffähigkeit (Hand oder Kupferhaken)."
+      "game_status_note": "Greifen während pick_up, nur mit vorhandener Greiffähigkeit (Hand oder Kupferhaken). Prompt 6B: Aufnehmen von Gegenständen mit Anlauf, Bücken (Rumpfneigung + Kniebeugung) und Griff am tatsächlichen Gegenstand (Oberkante); schwere bzw. breite Stücke mit beiden Händen (carry_two); fehlt die gewünschte Hand, greift die andere."
     },
     {
       "id": "A004",

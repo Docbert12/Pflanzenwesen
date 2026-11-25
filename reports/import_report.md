@@ -4,55 +4,83 @@
 - Werkzeug: `tools/import_definitions.py`, openpyxl 3.1.5
 - Formelzellen: 0 (openpyxl berechnet keine Formeln; gelesen werden gespeicherte Ergebnisse)
 - Ergebnis: **geschrieben** nach `data/generated/excel/`
-- Erstellt: 2026-11-19 14:55 UTC
+- Erstellt: 2026-11-25 07:57 UTC
 
 ## Übersicht
 
 | Datei | Blatt | übernommen | abgewiesen | neu | entfernt | geändert |
 |---|---|---|---|---|---|---|
-| `animations.json` | 08_Animationen | 5 | 0 | 0 | 0 | 0 |
+| `animations.json` | 08_Animationen | 5 | 0 | 0 | 0 | 2 |
 | `balancing.json` | 21_Balancing_Statistik | 7 | 0 | 0 | 0 | 0 |
 | `behaviors.json` | 15_Verhalten_KI | 5 | 0 | 0 | 0 | 2 |
 | `biomes.json` | 10_Biome_Gelände | 5 | 0 | 0 | 0 | 0 |
 | `body_parts.json` | 05_Körperteile | 80 | 0 | 0 | 0 | 0 |
-| `breeding.json` | 19_Zucht_Fortpflanzung | 2 | 1 | 0 | 0 | 0 |
+| `breeding.json` | 19_Zucht_Fortpflanzung | 2 | 1 | 0 | 0 | 2 |
 | `components.json` | 04_Komponenten | 300 | 0 | 0 | 0 | 0 |
 | `elements.json` | 01_Elemente | 55 | 0 | 0 | 0 | 0 |
 | `environment_effects.json` | 20_Umwelt_Effekte | 5 | 0 | 0 | 0 | 0 |
 | `food.json` | 14_Nahrung_Konsum | 5 | 0 | 0 | 0 | 0 |
-| `generator_parameters.json` | 09_Generator_Parameter | 8 | 0 | 0 | 0 | 0 |
+| `generator_parameters.json` | 09_Generator_Parameter | 8 | 0 | 0 | 0 | 1 |
 | `genetics.json` | 13_Vererbung_Genetik | 6 | 0 | 0 | 0 | 0 |
 | `injuries.json` | 12_Verletzungen_Prothesen | 5 | 0 | 0 | 0 | 0 |
 | `interactions.json` | 18_Interaktionen | 5 | 0 | 0 | 0 | 0 |
-| `items.json` | 11_Werkzeuge_Items | 5 | 0 | 0 | 0 | 0 |
+| `items.json` | 11_Werkzeuge_Items | 5 | 0 | 0 | 0 | 2 |
 | `material_catalog.json` | 03_Materialien | 300 | 0 | 0 | 0 | 0 |
 | `palettes.json` | 16_Farben_Paletten | 6 | 0 | 0 | 0 | 0 |
 | `plants.json` | 07_Pflanzen_Bäume | 20 | 0 | 0 | 0 | 0 |
 | `raw_materials.json` | 02_Rohstoffe | 300 | 0 | 0 | 0 | 0 |
 | `species.json` | 06_Kreaturen | 108 | 0 | 0 | 0 | 1 |
-| `voxel_types.json` | 17_Voxel_Typen | 4 | 3 | 0 | 0 | 0 |
+| `voxel_types.json` | 17_Voxel_Typen | 7 | 0 | 3 | 0 | 2 |
 
-**Fehler: 4 · Warnungen: 321 · Hinweise: 1**
+**Fehler: 1 · Warnungen: 319 · Hinweise: 1**
 
 Fehler führen dazu, dass die betroffene Zeile **nicht** übernommen wird (sie steht unter `rejected` in der JSON-Datei). Warnungen werden am Eintrag unter `import_warnings` mitgeführt.
 
+## Importkonfiguration (Prompt 6B)
+
+Quelle: `design/import_config/datenbasis_korrekturen.json`. Die Excel bleibt unverändert; Korrekturen greifen nur, solange der Excel-Wert dem dokumentierten Wert entspricht.
+
+### Korrekturen
+
+| ID | Blatt | Zeile | Feld | Excel | jetzt | angewendet | Begründung |
+|---|---|---|---|---|---|---|---|
+| K1 | 17_Voxel_Typen | V007 | material_ref | `MAT002` | `MAT111` | ja | Voxeltyp „Kupfer“ verweist auf MAT002 = „Cellulose_rein“. Zuordnung über den Namen zum Material MAT111 „Kupfer_rein“ (Physikmaterial copper). |
+| K2 | 17_Voxel_Typen | V004 | material_ref | `MAT004` | `MAT206` | ja | Voxeltyp „Wasser“ verweist auf MAT004 = „Holz_gehärtet“ (bei der Prüfung gefunden, nicht im Prompt genannt). Zuordnung über den Namen zu MAT206 „Wasser_gebunden“ (Physikmaterial water). |
+| K3 | 17_Voxel_Typen | V002 | material_ref | `MAT_Erde` | `Physikmaterial soil` | ja | MAT_Erde existiert in 03_Materialien nicht (kein Material mit „Erde“ im Namen). Direkt dem Physikmaterial soil zugeordnet; kein Excel-Material. |
+| K4 | 17_Voxel_Typen | V003 | material_ref | `MAT_Gras` | `Physikmaterial plant_tissue` | ja | MAT_Gras existiert in 03_Materialien nicht. Direkt dem Physikmaterial plant_tissue zugeordnet (Gras = Pflanzengewebe); kein Excel-Material. |
+| K5 | 17_Voxel_Typen | V005 | material_ref | `MAT_Holz` | `Physikmaterial wood` | ja | MAT_Holz existiert in 03_Materialien nicht (nur „Holz_gehärtet“ und Prothesenholz). Direkt dem Physikmaterial wood zugeordnet; kein Excel-Material. |
+
+### Projektentscheidungen (Vorrang vor widersprüchlichen Tabelleneinträgen)
+
+| ID | Blatt | Zeile | Entscheidung | Begründung |
+|---|---|---|---|---|
+| P1 | 09_Generator_Parameter | voxel_groesse | überstimmt | Voxel_Größe 0,1 m für die gesamte Welt widerspricht der Projektentscheidung, Körper- und Geländeauflösung getrennt zu konfigurieren: Gelände 0,5 m (data/config/world.json cell_size_m), Körper 0,02 m, Bäume 0,2 m, Pflanzen 0,05 m (voxel_sizes_m), Gegenstände 0,005 m (ObjectGenerator). Der Excel-Wert bleibt als Designangabe erhalten und hat keine Wirkung. |
+| P2 | 19_Zucht_Fortpflanzung | Z001 | nicht übernommen | Zwei-Wesen-Regel („Zwei Wesen, Energie hoch“) widerspricht der Projektentscheidung: Nachwuchs entsteht über den Lebensbaum (Prompt 7). Außerdem verweist der Text auf „12_Vererbung“ statt „13_Vererbung_Genetik“. Nur als Designnotiz erhalten. |
+| P3 | 19_Zucht_Fortpflanzung | Z002 | nicht übernommen | Nachkommen = −1 ist unklar (Fehlwert oder „keine“?). Zeile bleibt abgewiesen; es wird KEINE Regel daraus abgeleitet. |
+| P4 | 19_Zucht_Fortpflanzung | Z003 | nicht übernommen | „Prothese nicht vererbt“ ist inhaltlich plausibel, gehört aber zur Fortpflanzung über den Lebensbaum (Prompt 7) und wird erst dort als Regel geprüft. |
+| P5 | 06_Kreaturen | KR002 | dokumentiert, nicht aktiviert | Ernährung „Pflanzen“ für den Pflanzenwesen-Setzling widerspricht dem bisherigen Spielkonzept: Pflanzenwesen gewinnen Energie über ihre Blattfläche (Licht) und essen Früchte bzw. Pilze von Nahrungspflanzen (14_Nahrung_Konsum N001 Beeren, N002 Pilz); ganze Pflanzen werden nicht gefressen. Bis zu einer Nutzerentscheidung gilt das Spielkonzept. |
+
 ## Unterschiede zu vorhandenen Definitionen
 
-- `species.json`: `KR002` geändert in game_status_note
+- `species.json`: `KR002` geändert in game_status_note, project_decision
+- `animations.json`: `A002` geändert in game_status_note
+- `animations.json`: `A003` geändert in game_status_note
+- `generator_parameters.json`: `voxel_groesse` geändert in game_status_note, project_decision
+- `items.json`: `I001` geändert in game_status_note
+- `items.json`: `I003` geändert in game_status_note
 - `behaviors.json`: `KI004` geändert in game_status_note
-- `behaviors.json`: `KI005` geändert in game_status, game_status_note
+- `behaviors.json`: `KI005` geändert in game_status_note
+- `voxel_types.json`: `V004` geändert in game_status_note, import_corrections, import_warnings, material_ref
+- `voxel_types.json`: `V007` geändert in game_status_note, import_corrections, import_warnings, material_ref
+- `breeding.json`: `Z001` geändert in project_decision
+- `breeding.json`: `Z003` geändert in project_decision
 
-## Fehler (Zeile abgewiesen) (4)
-
-### 17_Voxel_Typen (3)
-- `17_Voxel_Typen!F3` Ungültiger Verweis ['MAT_Erde'] auf 03_Materialien (ID existiert dort nicht).
-- `17_Voxel_Typen!F4` Ungültiger Verweis ['MAT_Gras'] auf 03_Materialien (ID existiert dort nicht).
-- `17_Voxel_Typen!F6` Ungültiger Verweis ['MAT_Holz'] auf 03_Materialien (ID existiert dort nicht).
+## Fehler (Zeile abgewiesen) (1)
 
 ### 19_Zucht_Fortpflanzung (1)
 - `19_Zucht_Fortpflanzung!D3` Nachkommen: Wert darf nicht negativ sein (gefunden -1)
 
-## Warnungen (321)
+## Warnungen (319)
 
 ### 12_Verletzungen_Prothesen, 17_Voxel_Typen (5)
 - `12_Verletzungen_Prothesen, 17_Voxel_Typen` ID 'V001' existiert in mehreren Blättern. Im Spiel sind IDs je Definitionsart getrennt; Verweise müssen das Zielblatt eindeutig festlegen.
@@ -146,10 +174,6 @@ Fehler führen dazu, dass die betroffene Zeile **nicht** übernommen wird (sie s
 ### 12_Verletzungen_Prothesen (2)
 - `12_Verletzungen_Prothesen!Zeile 2` Prothese_Typ 'M_PROTHESE_KUPFER' verweist auf keinen Eintrag in 11_Werkzeuge_Items (uneinheitlich: Code vs. Name).
 - `12_Verletzungen_Prothesen!Zeile 3` Prothese_Typ 'Holzprothese' verweist auf keinen Eintrag in 11_Werkzeuge_Items (uneinheitlich: Code vs. Name).
-
-### 17_Voxel_Typen (2)
-- `17_Voxel_Typen!Zeile 5` Voxeltyp 'Wasser' verweist auf Material MAT004 = 'Holz_gehärtet' (Name passt nicht).
-- `17_Voxel_Typen!Zeile 8` Voxeltyp 'Kupfer' verweist auf Material MAT002 = 'Cellulose_rein' (Name passt nicht).
 
 ### 19_Zucht_Fortpflanzung (1)
 - `19_Zucht_Fortpflanzung!Zeile 2` Text verweist auf '12_Vererbung'; das Blatt heißt '13_Vererbung_Genetik'.

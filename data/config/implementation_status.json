@@ -8,7 +8,7 @@
     },
     "KR002": {
       "status": "partial",
-      "note": "Lebenssimulation mit Persönlichkeit, Erinnerungen, Überzeugungen, Beziehungen, sozialen Handlungen, Lernen aus Eingriffen (Prompt 3+4), kurzen strukturierten Gesprächen mit Hörensagen und optionalen Modellvorschlägen über Ollama (Prompt 5, echte Verbindung noch nicht verifiziert). Prompt 6: eigenständige, begrenzte Versuche mit Gegenständen, Werkzeuggebrauch, Verbinden mit Fasern, Verfahrenswissen mit Erfahrungsstufen, Erklären/Vorführen/Üben. Keine freie Sprache, keine Fortpflanzung, keine Religion."
+      "note": "Lebenssimulation mit Persönlichkeit, Erinnerungen, Überzeugungen, Beziehungen, sozialen Handlungen, Lernen aus Eingriffen (Prompt 3+4), kurzen strukturierten Gesprächen mit Hörensagen und optionalen Modellvorschlägen über Ollama (Prompt 5, echte Verbindung noch nicht verifiziert). Prompt 6: eigenständige, begrenzte Versuche mit Gegenständen, Werkzeuggebrauch, Verbinden mit Fasern, Verfahrenswissen mit Erfahrungsstufen, Erklären/Vorführen/Üben. Prompt 6B: Arbeitsketten aus eigenem Bedarf (Hammer binden, Stein zerschlagen, Stücke tragen, lagern/verbauen/im Testofen schmelzen) mit sichtbaren Arbeitsposen. Ernährung „Pflanzen“ aus der Excel nicht übernommen (Projektentscheidung P5: Licht + Früchte/Pilze). Keine freie Sprache, keine Fortpflanzung, keine Religion."
     }
   },
   "plants": {
@@ -40,11 +40,11 @@
     },
     "A002": {
       "status": "partial",
-      "note": "Gehen in der Lebenssimulation an echte Bewegung (move_to) gekoppelt, Takt ∝ tatsächlicher Geschwindigkeit. Hinken: nicht implementiert."
+      "note": "Gehen in der Lebenssimulation an echte Bewegung (move_to) gekoppelt, Takt ∝ tatsächlicher Geschwindigkeit. Prompt 6B: kurzer Anlauf zum Arbeitsplatz (walk_short) und Gehen mit gehaltenem Gegenstand (carry, carry_two) mit derselben Beinbewegung; während der Arbeitsphase steht das Wesen (kein Fußgleiten). Hinken: nicht implementiert."
     },
     "A003": {
       "status": "partial",
-      "note": "Greifen während pick_up, nur mit vorhandener Greiffähigkeit (Hand oder Kupferhaken)."
+      "note": "Greifen während pick_up, nur mit vorhandener Greiffähigkeit (Hand oder Kupferhaken). Prompt 6B: Aufnehmen von Gegenständen mit Anlauf, Bücken (Rumpfneigung + Kniebeugung) und Griff am tatsächlichen Gegenstand (Oberkante); schwere bzw. breite Stücke mit beiden Händen (carry_two); fehlt die gewünschte Hand, greift die andere."
     },
     "A004": {
       "status": "partial",
@@ -101,7 +101,7 @@
     },
     "I001": {
       "status": "data_only",
-      "note": "Steinbeil: keine Freischaltung. Wesen können seit Prompt 6 aus Holzstiel, Steinkopf und Fasern einen Schlagverbund herstellen; das ist ein aus Material und Geometrie entstehendes Objekt und wird NICHT dem Excel-Eintrag I001 zugeordnet (kein Technologiebaum)."
+      "note": "Steinbeil: keine Freischaltung. Wesen können seit Prompt 6 aus Holzstiel, Steinkopf und Fasern einen Schlagverbund herstellen; seit Prompt 6B auch aus eigenem Bedarf in einer Arbeitskette (binden → aufnehmen → schlagen → Bruchstücke weiterverwenden). Das ist ein aus Material und Geometrie entstehendes Objekt und wird NICHT dem Excel-Eintrag I001 zugeordnet (kein Technologiebaum)."
     },
     "I003": {
       "status": "data_only",
@@ -165,7 +165,7 @@
     },
     "voxel_groesse": {
       "status": "partial",
-      "note": "0,1 m gilt für Bäume/Pflanzen-Voxel nicht; siehe world.json. Terrain 0,5 m, Lebensbaum 0,2 m, Pflanzen 0,05 m, Wesen 0,02 m."
+      "note": "Projektentscheidung P1 (Importkonfiguration): 0,1 m gilt nicht für die ganze Welt; Gelände 0,5 m, Lebensbaum 0,2 m, Pflanzen 0,05 m, Wesen 0,02 m, Gegenstände 0,005 m (getrennt konfigurierbar)."
     }
   },
   "biomes": {
@@ -188,23 +188,27 @@
   },
   "voxel_types": {
     "V002": {
-      "status": "implemented"
+      "status": "implemented",
+      "note": "Prompt 6B: Excel-Verweis MAT_Erde existiert nicht; per Importkonfiguration direkt dem Physikmaterial zugeordnet (design/import_config/datenbasis_korrekturen.json)."
     },
     "V003": {
-      "status": "implemented"
+      "status": "implemented",
+      "note": "Prompt 6B: Excel-Verweis MAT_Gras existiert nicht; per Importkonfiguration direkt dem Physikmaterial zugeordnet (design/import_config/datenbasis_korrekturen.json)."
     },
     "V004": {
       "status": "partial",
-      "note": "Wasser ist kein Voxel, sondern ein mengenbasiertes Höhenmodell."
+      "note": "Wasser ist kein Voxel, sondern ein mengenbasiertes Höhenmodell. Prompt 6B: Excel-Verweis MAT004 (Holz_gehärtet) per Importkonfiguration auf MAT206 Wasser_gebunden korrigiert."
     },
     "V005": {
-      "status": "implemented"
+      "status": "implemented",
+      "note": "Prompt 6B: Excel-Verweis MAT_Holz existiert nicht; per Importkonfiguration direkt dem Physikmaterial zugeordnet (design/import_config/datenbasis_korrekturen.json)."
     },
     "V006": {
       "status": "implemented"
     },
     "V007": {
-      "status": "implemented"
+      "status": "implemented",
+      "note": "Prompt 6B: Excel-Verweis MAT002 (Cellulose_rein) per Importkonfiguration auf MAT111 Kupfer_rein korrigiert."
     }
   },
   "food": {

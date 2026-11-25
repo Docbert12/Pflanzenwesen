@@ -31,6 +31,7 @@ var next_id: int = 1
 var last_end_t: Dictionary = {}  # actor_id -> Zeitpunkt des letzten Kettenendes (Abklingzeit)
 var last_site_t: Dictionary = {} # actor_id -> Zeitpunkt, an dem das Wesen zuletzt selbst eine Baustelle anlegte
 var pending_drops: Array = []     # Wesen, die nach Kettenende Getragenes ablegen sollen (Hände frei)
+var proposals: Dictionary = {}    # actor_id -> geprüfter Modellvorschlag {goal, plan, source, explanation, uncertainty, request_id, t}
 var stats := {"started": 0, "completed": 0, "failed": 0, "aborted": 0, "autonomous_started": 0, "autonomous_completed": 0, "paused": 0, "resumed": 0}
 
 
@@ -368,8 +369,17 @@ func options(cr: Creature, ctx: LifeContext, free: float, critical: bool) -> Arr
 		return [o]
 	if cr.metabolism.hunger() > float(c.get("max_hunger", 0.5)):
 		return []
+	# Geprüfter Modellvorschlag (Prompt 6B): konkurriert wie jede Option; verfällt nach proposal_ttl_s
+	var out_model: Array = []
+	if proposals.has(cr.id):
+		var pr: Dictionary = proposals[cr.id]
+		if ctx.now() - float(pr["t"]) > float(c.get("proposal_ttl_s", 180.0)):
+			proposals.erase(cr.id)
+		else:
+			var um := float(c.get("weight", 0.55)) * float(c.get("need_model", 0.4)) * (1.0 - 0.5 * float(pr["uncertainty"])) * free
+			out_model.append({"id": "work:model", "goal": "work", "u": um, "parts": {"modellvorschlag": um}, "why": str(pr["explanation"])})
 	if ctx.now() - float(last_end_t.get(cr.id, -1.0e9)) < float(c.get("cooldown_s", 20.0)):
-		return []
+		return out_model
 	var best := {}
 	var best_u := -1.0e9
 	for n in needs(cr, ctx):
@@ -378,13 +388,23 @@ func options(cr: Creature, ctx: LifeContext, free: float, critical: bool) -> Arr
 			best_u = u
 			best = n
 	if best.is_empty() or best_u <= 0.02:
-		return []
-	return [{"id": "work:start", "goal": "work", "u": best_u, "parts": {"bedarf": best_u}, "need": best, "why": str(best["why"])}]
+		return out_model
+	return out_model + [{"id": "work:start", "goal": "work", "u": best_u, "parts": {"bedarf": best_u}, "need": best, "why": str(best["why"])}]
 
 
 func execute_option(cr: Creature, o: Dictionary, ctx: LifeContext) -> Dictionary:
 	if str(o["id"]) == "work:continue":
 		return advance(cr, ctx)
+	if str(o["id"]) == "work:model":
+		var pr: Dictionary = proposals.get(cr.id, {})
+		proposals.erase(cr.id)
+		if pr.is_empty():
+			return {"ok": false, "state": "", "reason": "kein Modellvorschlag mehr"}
+		var stm := start(cr, str(pr["goal"]), pr["plan"], str(pr["source"]), true, ctx, str(pr["explanation"]))
+		if not stm["ok"]:
+			return {"ok": false, "state": "", "reason": stm["message"]}
+		var am := advance(cr, ctx)
+		return {"ok": true, "state": "arbeitet", "reason": "Arbeitskette #%d nach %s: %s. %s" % [stm["chain"].id, str(pr["source"]), str(pr["explanation"]), am["reason"]]}
 	var n: Dictionary = o.get("need", {})
 	var opts: Dictionary = (n.get("opts", {}) as Dictionary).duplicate(true)
 	if opts.get("start_site", false):
@@ -1153,6 +1173,16 @@ func validate_model_plan(cr: Creature, proposal: Dictionary, ctx: LifeContext) -
 		"message": "Modellvorschlag (%d Schritte, geprüft)" % clean.size()}, "errors": []}
 
 
+## Geprüften Modellvorschlag ablegen (aus AISystem). Ausführung erst, wenn das Wesen ihn als Option wählt.
+func add_proposal(cr: Creature, goal: String, p: Dictionary, source: String, explanation: String, uncertainty: float, request_id: int, ctx: LifeContext) -> Dictionary:
+	if active(cr) != null:
+		return {"ok": false, "message": "Wesen arbeitet bereits an einer Kette."}
+	proposals[cr.id] = {"goal": goal, "plan": p.duplicate(true), "source": source, "explanation": explanation, "uncertainty": uncertainty,
+		"request_id": request_id, "t": ctx.now()}
+	ctx.log_event("work_proposal", [cr.id], {"goal": goal, "steps": (p.get("steps", []) as Array).size(), "source": source, "request_id": request_id})
+	return {"ok": true, "as": "work_proposal", "message": "Arbeitsvorschlag (%s, %d Schritte) geprüft und als Option abgelegt: %s" % [GOAL_LABEL.get(goal, goal), (p.get("steps", []) as Array).size(), explanation]}
+
+
 # ── Speichern ─────────────────────────
 
 func to_dict() -> Dictionary:
@@ -1170,7 +1200,14 @@ func to_dict() -> Dictionary:
 	var ls := {}
 	for k in last_site_t:
 		ls[str(k)] = last_site_t[k]
-	return {"chains": arr, "by_actor": be, "next_id": next_id, "last_end_t": le, "last_site_t": ls, "stats": stats.duplicate(), "pending_drops": pending_drops.duplicate()}
+	return {"chains": arr, "by_actor": be, "next_id": next_id, "last_end_t": le, "last_site_t": ls, "stats": stats.duplicate(), "pending_drops": pending_drops.duplicate(), "proposals": _proposals_dict()}
+
+
+func _proposals_dict() -> Dictionary:
+	var out := {}
+	for k in proposals:
+		out[str(k)] = (proposals[k] as Dictionary).duplicate(true)
+	return out
 
 
 func from_dict(d: Dictionary) -> void:
@@ -1191,6 +1228,9 @@ func from_dict(d: Dictionary) -> void:
 	pending_drops.clear()
 	for x in d.get("pending_drops", []):
 		pending_drops.append(int(x))
+	proposals.clear()
+	for k in d.get("proposals", {}):
+		proposals[int(k)] = (d["proposals"][k] as Dictionary).duplicate(true)
 	var st: Dictionary = d.get("stats", {})
 	for k in st:
 		stats[k] = st[k]

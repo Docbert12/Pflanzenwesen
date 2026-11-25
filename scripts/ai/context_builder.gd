@@ -115,6 +115,20 @@ static func build(cr: Creature, ctx: LifeContext, kind: String, request_id: int,
 			"vertrauen": snappedf(cr.relations.trust(listener_id), 0.01)}
 	elif kind == "interpret":
 		allowed = []
+	elif kind == "work":
+		# Prompt 6B: Arbeitsvorschlag nach gescheiterter Kette – nur eigenes Wissen des Wesens
+		allowed = []
+		var tkw := tech_context(cr, ctx)
+		c["technik"] = tkw["context"]
+		cand["objects"] = tkw["objects"]
+		cand["heaters"] = tkw["heaters"]
+		var wk := work_context(cr, ctx)
+		c["arbeit"] = wk["context"]
+		cand["storages"] = wk["storages"]
+		cand["sites"] = wk["sites"]
+		c["kandidaten"] = {"erinnerungen": []}
+		cand["memories"] = []
+		c["erinnerungen"] = []
 	elif kind == "experiment":
 		allowed = []
 		var tk := tech_context(cr, ctx)
@@ -126,7 +140,7 @@ static func build(cr: Creature, ctx: LifeContext, kind: String, request_id: int,
 		cand["memories"] = []
 		c["erinnerungen"] = []
 	c["erlaubte_handlungen"] = allowed
-	if kind != "experiment":
+	if kind != "experiment" and kind != "work":
 		c["erlaubte_zieltypen"] = GOAL_TYPES if kind == "plan" else ["keep_current"]
 	# Größe begrenzen
 	var js := JSON.stringify(c)
@@ -205,6 +219,34 @@ static func _v(a) -> Vector3:
 	return Vector3(float(a[0]), float(a[1]), float(a[2]))
 
 
+## Arbeitskontext (Prompt 6B): letzte eigene Kette (Ziel, Status, Grund), bekannte Lager/Baustellen,
+## erlaubte Arbeitsschritte. Nur Wahrgenommenes; keine fremden Gegenstände, keine exakten Messwerte.
+static func work_context(cr: Creature, ctx: LifeContext) -> Dictionary:
+	var storages: Array = []
+	var sites: Array = []
+	var ls: Array = []
+	var bs: Array = []
+	for id in cr.tech.get("objects", {}):
+		var e: Dictionary = cr.tech["objects"][id]
+		if e.get("lager", false) and ctx.storages.has(int(id)):
+			storages.append(int(id))
+			ls.append({"id": int(id), "platz_frei": bool(e.get("platz_frei", true)), "entfernung_m": snappedf(float(e.get("d", 0.0)), 0.1)})
+		if e.get("bauwerk", false) and ctx.structures.has(int(id)):
+			var st: Structure = ctx.structures[int(id)]
+			sites.append(int(id))
+			bs.append({"id": int(id), "bauplan": st.blueprint, "plaetze_frei": st.slots.size() - st.filled(), "eigene": st.initiator == cr.id})
+	var last := {}
+	if ctx.work != null:
+		var past := ctx.work.of_creature(cr.id)
+		if not past.is_empty():
+			var w: WorkChain = past[0]
+			last = {"kette": w.id, "ziel": w.goal, "status": w.status, "grund": w.abort_reason.substr(0, 160), "werkzeug": w.tool_id}
+	var ops: Array = WorkSystem.OPS.duplicate()
+	ops.erase("mark_site")
+	return {"context": {"letzte_kette": last, "lager": ls.slice(0, 3), "baustellen": bs.slice(0, 3), "erlaubte_schritte": ops},
+		"storages": storages.slice(0, 3), "sites": sites.slice(0, 3)}
+
+
 ## Erlaubte Planhandlungen nach eigenen Fähigkeiten.
 static func allowed_actions(cr: Creature) -> Array:
 	var out: Array = ["wait"]
@@ -223,7 +265,7 @@ static func allowed_actions(cr: Creature) -> Array:
 
 ## Nachrichten für /api/chat: Systemanweisung (Datei) + Kontext als JSON + Schema als Text (Empfehlung der Ollama-Doku).
 static func messages(kind: String, context_json: String, schema: Dictionary) -> Array:
-	var f := "res://data/ai/prompts/%s_system.txt" % ("talk" if kind == "talk" else ("experiment" if kind == "experiment" else "plan"))
+	var f := "res://data/ai/prompts/%s_system.txt" % ("talk" if kind == "talk" else ("experiment" if kind == "experiment" else ("work" if kind == "work" else "plan")))
 	var sys := FileAccess.get_file_as_string(f) if FileAccess.file_exists(f) else "Antworte nur mit JSON nach Schema."
 	sys += "\n\nSchema:\n" + JSON.stringify(schema)
 	return [{"role": "system", "content": sys}, {"role": "user", "content": context_json}]

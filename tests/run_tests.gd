@@ -18,6 +18,12 @@ func _initialize() -> void:
 
 func _run() -> void:
 	var t0 := Time.get_ticks_msec()
+	if "--nur-werkzeugkette-szene" in OS.get_cmdline_user_args():
+		await _scene_tests_work_chain()
+		for r in results:
+			print("%s %s%s" % ["PASS" if r["ok"] else "FAIL", r["name"], (" | " + str(r["detail"])) if str(r["detail"]) != "" else ""])
+		quit(0 if results.all(func(r): return r["ok"]) else 1)
+		return
 	if "--nur-werkstatt-szene" in OS.get_cmdline_user_args():
 		# Entwicklerschalter: nur der Szenentest der Testwerkstatt (kein vollständiger Lauf, kein Bericht)
 		await _scene_tests_workshop()
@@ -57,6 +63,10 @@ func _run() -> void:
 	var tt := TestTechnology.new()
 	results.append_array(tt.run_all("--quick" in OS.get_cmdline_user_args()))
 	notes.append_array(tt.notes)
+	print("== Arbeitsketten und Arbeitsposen (Prompt 6B, Testszene Werkzeugkette; Modell nur SIMULIERT) ==")
+	var twc := TestWorkChain.new()
+	results.append_array(twc.run_all("--quick" in OS.get_cmdline_user_args()))
+	notes.append_array(twc.notes)
 	print("== Szenentests (Physiklabor) ==")
 	await _scene_tests()
 	print("== Szenentests (Startbildschirm, Welt, Kreaturen) ==")
@@ -65,6 +75,8 @@ func _run() -> void:
 	await _scene_tests_living()
 	print("== Szenentests (Testwerkstatt) ==")
 	await _scene_tests_workshop()
+	print("== Szenentests (Testszene Werkzeugkette) ==")
+	await _scene_tests_work_chain()
 	var passed := 0
 	var lines: Array = []
 	lines.append("Pflanzenwesen – Testbericht")
@@ -466,9 +478,13 @@ func _scene_tests_workshop() -> void:
 	if asm_node != null:
 		parts_drawn = asm_node.get_child_count()
 	var hp = ctx.position_of(aid)
-	_check("Werkstatt-Szene: Verbund aus Stiel, Kopf und Fasern wird mit allen Teilen gezeichnet und in der Hand gehalten",
-		r["ok"] and ctx.assemblies.has(aid) and parts_drawn >= 3 and hp != null and asm_node.position.distance_to(hp) < 1e-4 and (hp as Vector3).distance_to(a.position) < 1.5,
-		"Teile gezeichnet %d, Halter #%d" % [parts_drawn, ConstructionSystem.carrier_of(ctx, aid)])
+	# Prompt 6B: Modell sitzt am Griffpunkt der tatsächlich animierten Hand (nicht an einem festen Punkt)
+	var va: CreatureView = lw.views[a.id]["view"] if lw.views.has(a.id) else null
+	var gf := va.animator.grip_frame(a.hold_side if a.hold_side != "" else "r") if va != null else {"ok": false}
+	var grip_w: Vector3 = (va.global_transform * (gf["xform"] as Transform3D)).origin if gf["ok"] else Vector3(INF, INF, INF)
+	_check("Werkstatt-Szene: Verbund aus Stiel, Kopf und Fasern wird mit allen Teilen gezeichnet und am Griffpunkt der Hand gehalten",
+		r["ok"] and ctx.assemblies.has(aid) and parts_drawn >= 3 and hp != null and asm_node != null and asm_node.global_position.distance_to(grip_w) < 1e-3 and grip_w.distance_to(a.position) < 1.5,
+		"Teile gezeichnet %d, Halter #%d, Abstand Griff %.4f m" % [parts_drawn, ConstructionSystem.carrier_of(ctx, aid), asm_node.global_position.distance_to(grip_w) if asm_node != null else -1.0])
 	# Formänderung sichtbar: Signatur ändert sich, Modell wird neu aufgebaut
 	var cu: MaterialPiece = ctx.material_pieces[int(lw.life.workshop["copper_sample3"])]
 	var n0: Node3D = lw.piece_nodes.get(cu.id, null)
@@ -496,6 +512,68 @@ func _scene_tests_workshop() -> void:
 	_check("Werkstatt-Szene: Wissensansicht zeigt Verfahren mit Stufe und Herkunft; Hypothese als ungeprüft, nirgends „erfunden“",
 		kt.find("Praktisches Wissen") >= 0 and kt.find("Herkunft") >= 0 and kt.find("ungeprüft") >= 0 and et.find("HYPOTHESE") >= 0
 		and et.find("erfunden") < 0 and kt.find("erfunden") < 0, kt.substr(0, 200))
+	lw.queue_free()
+	await process_frame
+	LivingWorld.pending = {}
+
+
+## Testszene Werkzeugkette in der echten Spielszene (Prompt 6B): Bedienfeld, Lager/Baustelle sichtbar,
+## Hammer am Griffpunkt, sichtbarer Kontakt am Ziel, Arbeitsanzeige im Wesenfenster und über dem Wesen.
+func _scene_tests_work_chain() -> void:
+	LivingWorld.ai_service_override = AIService.disabled()
+	LivingWorld.pending = {"mode": "werkzeugkette"}
+	var lw: LivingWorld = load(Nav.LIVING).instantiate()
+	lw.save_path = "user://saves/_test_werkzeugkette.json"
+	root.add_child(lw)
+	await process_frame
+	await process_frame
+	var ctx := lw.life.ctx
+	_check("Werkzeugkette-Szene: startet mit einem Testwesen, Lager, Baustelle, Testofen und Bedienfeld", lw.start_ok and ctx.creatures.size() == 1
+		and lw.life.workshop.has("work_scene") and lw._work_panel.visible and not lw._ws_panel.visible and lw.storage_nodes.size() == 1 and lw.site_nodes.size() == 1
+		and lw.heater_nodes.size() == 1, str(lw.errors))
+	if not lw.start_ok:
+		lw.queue_free()
+		return
+	var a := WorkChainScene.actor(lw.life)
+	lw.select(a.id)
+	var r := WorkChainScene.trigger(lw.life, "lagern")
+	var grip_err := -1.0
+	var head_errs: Array = []
+	var poses := {}
+	var hud_ok := false
+	var label_ok := false
+	for i in 4800:
+		await physics_frame
+		var ra: GameAction = ctx.executor.running.get(a.id, null)
+		var an: Dictionary = ra.state.get("anim", {}) if ra != null else {}
+		if not an.is_empty():
+			poses[str(an.get("pose", ""))] = true
+		if a.held_object_id != 0 and ctx.assemblies.has(a.held_object_id) and str(an.get("phase", "")) == "contact" and head_errs.size() < 3:
+			await process_frame
+			var asm: Assembly = ctx.assemblies.get(a.held_object_id, null)
+			var node: Node3D = lw.piece_nodes.get(a.held_object_id, null)
+			var view: CreatureView = lw.views[a.id]["view"]
+			var gf := view.animator.grip_frame(a.hold_side if a.hold_side != "" else "r")
+			if asm != null and node != null and gf["ok"]:
+				grip_err = node.global_position.distance_to((view.global_transform * (gf["xform"] as Transform3D)).origin)
+				var head_w := node.global_transform * Vector3(float(asm.offsets.get(asm.head_part_id, 0.0)), 0.0, 0.0)
+				var tg: Array = an["target"]
+				head_errs.append(head_w.distance_to(Vector3(float(tg[0]), float(tg[1]), float(tg[2]))))
+			lw._refresh_ui()
+			var it: String = lw._inspector.text.text
+			hud_ok = it.find("ARBEIT") >= 0 and it.find("Werkzeug:") >= 0 and it.find("#%d" % a.held_object_id) >= 0 and it.find("Fortschritt") >= 0
+			label_ok = lw.work_labels.has(a.id)
+		if head_errs.size() >= 3:
+			break
+	var worst := 0.0
+	for e in head_errs:
+		worst = maxf(worst, float(e))
+	_check("Werkzeugkette-Szene: Hammer-Modell sitzt am Griffpunkt der animierten Hand; Hammerkopf trifft beim Kontakt das Ziel (≤ 8 cm)",
+		r["ok"] and grip_err >= 0.0 and grip_err < 1e-3 and head_errs.size() == 3 and worst <= 0.08, "Griff %.4f m, Kopf %s" % [grip_err, str(head_errs)])
+	_check("Werkzeugkette-Szene: Arbeitsposen aus der Handlung (Anlauf, Tragen/Ablegen, Verbinden, Greifen, Schlagen)",
+		poses.has("walk_short") and poses.has("assemble") and poses.has("strike") and (poses.has("grasp") or poses.has("carry_two")), str(poses.keys()))
+	_check("Werkzeugkette-Szene: Wesenfenster zeigt ARBEIT (Ziel, Handlung, Werkzeug-ID, Fortschritt); Arbeitsanzeige über dem Wesen", hud_ok and label_ok,
+		lw._inspector.text.text.substr(lw._inspector.text.text.find("ARBEIT"), 200))
 	lw.queue_free()
 	await process_frame
 	LivingWorld.pending = {}

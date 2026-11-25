@@ -50,7 +50,7 @@
       "description": "Welt entdecken",
       "_excel_row": 5,
       "game_status": "partial",
-      "game_status_note": "Erkunden ∝ Neugier, begrenzt; gelegentlich „Arme heben“ als Ausprobieren (Prompt 4)."
+      "game_status_note": "Erkunden ∝ Neugier, begrenzt; gelegentlich „Arme heben“ als Ausprobieren (Prompt 4). Prompt 6: Neugier wirkt zusätzlich auf Versuche mit wahrgenommenen Gegenständen (begrenzt durch Zeitbudget, Hunger und Risiko)."
     },
     {
       "id": "KI005",
@@ -62,7 +62,7 @@
       "description": "Kommunikation",
       "_excel_row": 6,
       "game_status": "partial",
-      "game_status_note": "Annäherung, um Nahrung bitten, anbieten, geben, ablehnen (Prompt 4) – über DecisionSystem mit Persönlichkeit und Beziehungen."
+      "game_status_note": "Annäherung, um Nahrung bitten, anbieten, geben, ablehnen (Prompt 4); kurze Mitteilungen (Hinweis auf Nahrung, Erlebnis, Vermutung) mit Hörensagen und Vertrauen (Prompt 5) – alles über DecisionSystem. Prompt 6: Verfahren erklären und Vorführung anbieten."
     }
   ],
   "rejected": []

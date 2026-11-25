@@ -65,8 +65,14 @@
       "special": "Modular, verliert/bekommt Teile",
       "description": "Kleines Pflanzenwesen (Seedling)",
       "_excel_row": 3,
+      "project_decision": {
+        "id": "P5",
+        "decision": "dokumentiert, nicht aktiviert",
+        "reason": "Ernährung „Pflanzen“ für den Pflanzenwesen-Setzling widerspricht dem bisherigen Spielkonzept: Pflanzenwesen gewinnen Energie über ihre Blattfläche (Licht) und essen Früchte bzw. Pilze von Nahrungspflanzen (14_Nahrung_Konsum N001 Beeren, N002 Pilz); ganze Pflanzen werden nicht gefressen. Bis zu einer Nutzerentscheidung gilt das Spielkonzept.",
+        "source": "design/import_config/datenbasis_korrekturen.json"
+      },
       "game_status": "partial",
-      "game_status_note": "Lebenssimulation mit Persönlichkeit, Erinnerungen, Überzeugungen, Beziehungen, sozialen Handlungen und Lernen aus Eingriffen (Prompt 3+4). Keine Fortpflanzung, keine Sprache, keine Religion."
+      "game_status_note": "Lebenssimulation mit Persönlichkeit, Erinnerungen, Überzeugungen, Beziehungen, sozialen Handlungen, Lernen aus Eingriffen (Prompt 3+4), kurzen strukturierten Gesprächen mit Hörensagen und optionalen Modellvorschlägen über Ollama (Prompt 5, echte Verbindung noch nicht verifiziert). Prompt 6: eigenständige, begrenzte Versuche mit Gegenständen, Werkzeuggebrauch, Verbinden mit Fasern, Verfahrenswissen mit Erfahrungsstufen, Erklären/Vorführen/Üben. Prompt 6B: Arbeitsketten aus eigenem Bedarf (Hammer binden, Stein zerschlagen, Stücke tragen, lagern/verbauen/im Testofen schmelzen) mit sichtbaren Arbeitsposen. Ernährung „Pflanzen“ aus der Excel nicht übernommen (Projektentscheidung P5: Licht + Früchte/Pilze). Keine freie Sprache, keine Fortpflanzung, keine Religion."
     },
     {
       "id": "KR003",

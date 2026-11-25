@@ -19,6 +19,10 @@ const TALK_REQUIRED := ["request_id", "speaker_id", "listener_id", "intent", "su
 const INTERPRETATIONS := ["none", "zufall", "zusammenhang_vermutet", "nicht_entscheidbar"]
 const INTENTS := ["none", "ask_food", "offer_help", "point_food", "share_experience", "share_guess", "explain_procedure"]
 const EXPERIMENT_KEYS := ["request_id", "actor_id", "question", "expected_effect", "proposed_steps", "uncertainty", "short_explanation"]
+const WORK_KEYS := ["request_id", "actor_id", "goal", "proposed_steps", "uncertainty", "short_explanation"]
+const WORK_GOALS := ["lagern", "bauen", "schmelzen", "keep_current"]
+const WORK_STEP_FIELDS := ["op", "object_id", "target_id", "dest_id", "mode", "head_id", "fiber_id", "heater_id", "mold_id"]
+const WORK_MODES := ["deposit", "place", "put_in", "bring"]
 const EXPECTED_EFFECTS := ["form_change", "breaks", "tool_holds", "melts", "cast_piece", "properties", "unknown"]
 const EXPERIMENT_OPS := ["inspect", "equip", "release", "strike", "deform", "connect", "disconnect", "heat", "wait_molten", "pour"]
 const STEP_FIELDS := ["op", "object_id", "target_id", "head_id", "fiber_id", "heater_id", "mold_id", "strikes"]
@@ -353,3 +357,96 @@ static func validate_experiment(content: String, entry: Dictionary, session: int
 	return {"ok": true, "stage": 7, "stage_name": "", "code": "ok", "message": "gültig (als ungeprüfte Hypothese)",
 		"value": {"question": OllamaClient.sanitize(str(d["question"]), 160), "expected": str(d["expected_effect"]), "steps": steps,
 			"uncertainty": float(d["uncertainty"]), "explanation": OllamaClient.sanitize(str(d["short_explanation"]), 200)}}
+
+
+## Prompt 6B: Arbeitsvorschlag nach gescheiterter Kette. Stufen wie bei den übrigen Antworten; zusätzlich
+## prüft WorkSystem.validate_model_plan das Wissen des Wesens. Ergebnis ist nur ein VORSCHLAG, der über den
+## Entscheider als Option konkurriert; jeder Schritt läuft später über geprüfte Spielhandlungen.
+static func validate_work(content: String, entry: Dictionary, session: int, ctx: LifeContext, max_chars: int, _max_state_age_s: float) -> Dictionary:
+	var p := _parse(content, max_chars, WORK_KEYS, WORK_KEYS)
+	if not p["ok"]:
+		return p
+	var d: Dictionary = p["data"]
+	if not _is_int(d["request_id"]) or not _is_int(d["actor_id"]):
+		return _fail(2, "schema", "request_id/actor_id müssen ganze Zahlen sein.")
+	if typeof(d["goal"]) != TYPE_STRING or not d["goal"] in WORK_GOALS:
+		return _fail(2, "schema", "Unbekanntes Ziel „%s“." % OllamaClient.sanitize(str(d["goal"]), 40))
+	if typeof(d["short_explanation"]) != TYPE_STRING:
+		return _fail(2, "schema", "short_explanation muss Text sein.")
+	if not _is_num(d["uncertainty"]) or float(d["uncertainty"]) < 0.0 or float(d["uncertainty"]) > 1.0:
+		return _fail(2, "schema", "uncertainty muss eine Zahl von 0 bis 1 sein.")
+	if typeof(d["proposed_steps"]) != TYPE_ARRAY or d["proposed_steps"].size() > 10 or (d["goal"] != "keep_current" and d["proposed_steps"].is_empty()):
+		return _fail(2, "schema", "proposed_steps muss 1–10 Schritte enthalten.")
+	var raw: Array = []
+	for s in d["proposed_steps"]:
+		if typeof(s) != TYPE_DICTIONARY or not s.has("op") or typeof(s["op"]) != TYPE_STRING:
+			return _fail(2, "schema", "Ungültiger Schritt (op fehlt).")
+		for k in s:
+			if not str(k) in WORK_STEP_FIELDS:
+				return _fail(2, "schema", "Unbekanntes Schrittfeld „%s“." % OllamaClient.sanitize(str(k), 40))
+			if str(k) == "mode":
+				if typeof(s[k]) != TYPE_STRING or not s[k] in WORK_MODES:
+					return _fail(2, "schema", "Unbekannte Ablageart „%s“." % OllamaClient.sanitize(str(s[k]), 20))
+			elif str(k) != "op" and not _is_int(s[k]):
+				return _fail(2, "schema", "Schrittfeld „%s“ muss eine ganze Zahl sein." % str(k))
+		raw.append(s)
+	var w := _check_actor(int(d["request_id"]), int(d["actor_id"]), entry, session, ctx)
+	if not w.is_empty():
+		return w
+	var explanation := OllamaClient.sanitize(str(d["short_explanation"]), 200)
+	if d["goal"] == "keep_current":
+		return {"ok": true, "value": {"goal": "keep_current", "explanation": explanation, "uncertainty": float(d["uncertainty"])}}
+	# 3 IDs: nur angebotene Gegenstände, Heizungen, Lager, Baustellen
+	var cand: Dictionary = entry["cand"]
+	var objs: Array = cand.get("objects", [])
+	var heaters: Array = cand.get("heaters", [])
+	var dests: Array = cand.get("storages", []) + cand.get("sites", []) + objs
+	for s2 in raw:
+		for f in ["object_id", "target_id", "head_id", "fiber_id", "mold_id"]:
+			if s2.has(f) and int(s2[f]) != 0 and not int(s2[f]) in objs:
+				return _fail(3, "unknown_id", "%s %d ist kein angebotener, dem Wesen bekannter Gegenstand." % [f, int(s2[f])])
+		if s2.has("heater_id") and int(s2["heater_id"]) != 0 and not int(s2["heater_id"]) in heaters:
+			return _fail(3, "unknown_id", "Heizung %d wurde nicht angeboten." % int(s2["heater_id"]))
+		if s2.has("dest_id") and int(s2["dest_id"]) != 0 and not int(s2["dest_id"]) in dests:
+			return _fail(3, "unknown_id", "Ziel %d (Lager/Baustelle/Tiegel) wurde nicht angeboten." % int(s2["dest_id"]))
+	# 5 erlaubte Schritte
+	for s3 in raw:
+		if not str(s3["op"]) in WorkSystem.OPS or str(s3["op"]) == "mark_site":
+			return _fail(5, "forbidden_action", "Schritt „%s“ ist nicht erlaubt." % OllamaClient.sanitize(str(s3["op"]), 40))
+	# Übersetzung ins WorkSystem-Format
+	var steps: Array = []
+	var dest := 0
+	var target := 0
+	for s4 in raw:
+		var st := {"op": str(s4["op"])}
+		for pair in [["object_id", "obj"], ["target_id", "target"], ["dest_id", "dest"], ["head_id", "head"], ["fiber_id", "fiber"], ["heater_id", "heater"], ["mold_id", "mold"]]:
+			if s4.has(pair[0]):
+				st[pair[1]] = int(s4[pair[0]])
+		if s4.has("mode"):
+			st["mode"] = str(s4["mode"])
+		if st["op"] == "carry" and not st.has("mode"):
+			st["mode"] = "deposit"
+		if st["op"] == "collect":
+			st["pieces"] = []
+		if dest == 0 and st.has("dest"):
+			dest = int(st["dest"])
+		if target == 0 and st.has("target") and st["op"] in ["break", "work_copper"]:
+			target = int(st["target"])
+		steps.append(st)
+	# 6 Wissen und Fähigkeiten des Wesens
+	var cr := ctx.creature(int(entry["actor"]))
+	if float(cr.caps.get("grasp", 0.0)) <= 0.0:
+		return _fail(6, "capability", "Wesen kann nicht greifen – kein Arbeitsablauf möglich.")
+	var vm := ctx.work.validate_model_plan(cr, {"goal": str(d["goal"]), "dest": dest, "target": target, "steps": steps}, ctx)
+	if not vm["ok"]:
+		return _fail(6, "knowledge", "; ".join((vm["errors"] as Array).slice(0, 2)))
+	# 7 aktuelle Voraussetzungen: keine laufende Kette; Ziele existieren noch
+	if ctx.work.active(cr) != null:
+		return _fail(7, "busy", "Wesen arbeitet bereits an einer Kette.")
+	for st2 in steps:
+		if st2.has("dest") and ctx.position_of(int(st2["dest"])) == null:
+			return _fail(7, "target_lost", "Ziel %d existiert nicht mehr." % int(st2["dest"]))
+		if st2.has("heater") and not ctx.heaters.has(int(st2["heater"])):
+			return _fail(7, "no_heater", "Heizung %d existiert nicht mehr." % int(st2["heater"]))
+	var plan: Dictionary = vm["plan"]
+	return {"ok": true, "value": {"goal": str(d["goal"]), "plan": plan, "explanation": explanation, "uncertainty": float(d["uncertainty"])}}

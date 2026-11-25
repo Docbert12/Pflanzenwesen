@@ -34,7 +34,7 @@ func _init(p_ctx: LifeContext, p_service: AIService) -> void:
 	ctx = p_ctx
 	service = p_service if p_service != null else AIService.disabled()
 	rng.seed = 7151 + session
-	for k in ["decision", "conversation", "experiment"]:
+	for k in ["decision", "conversation", "experiment", "work"]:
 		var j = JSON.parse_string(FileAccess.get_file_as_string("res://data/ai/%s_schema.json" % k))
 		schemas[k] = j if typeof(j) == TYPE_DICTIONARY else {}
 	service.register(self)
@@ -109,6 +109,11 @@ func consider(cr: Creature, options: Array) -> void:
 	if int(cr.ai.get("fail_streak", 0)) >= int(tc.get("fail_streak", 3)):
 		trig = "failure"
 		reason = "wiederholtes Scheitern (%d Fehlschläge in Folge, zuletzt: %s)" % [int(cr.ai["fail_streak"]), str(cr.last_result.get("message", "")).substr(0, 80)]
+	elif _failed_work(cr) != 0:
+		var fw := _failed_work(cr)
+		trig = "work"
+		reason = "Arbeitskette #%d gescheitert – Vorschlag für einen anderen Ablauf" % fw
+		cr.tech["model_asked_work"] = fw
 	elif _failed_experiment(cr) != 0:
 		var fe := _failed_experiment(cr)
 		trig = "experiment"
@@ -139,7 +144,7 @@ func consider(cr: Creature, options: Array) -> void:
 					reason = "Gesprächsgelegenheit mit #%d" % opp
 	if trig == "":
 		return
-	var kind := "talk" if trig == "talk" else ("interpret" if trig == "interpret" else ("experiment" if trig == "experiment" else "plan"))
+	var kind := "talk" if trig == "talk" else ("interpret" if trig == "interpret" else ("experiment" if trig == "experiment" else ("work" if trig == "work" else "plan")))
 	var e := {"id": next_request_id, "session": session, "actor": cr.id, "kind": kind, "trigger": trig, "reason": reason,
 		"priority": int(pr.get(trig, 1)), "created_t": now, "expires_t": now + float(service.settings.g("request_ttl_s", 60.0)),
 		"attempts": 0, "next_try_ms": 0, "listener": listener, "state": "wartend"}
@@ -184,6 +189,19 @@ func request_now(cr: Creature, kind: String = "plan", reason: String = "Entwickl
 	local["enqueued"] += 1
 	local["by_trigger"]["manual"] = int(local["by_trigger"].get("manual", 0)) + 1
 	return {"ok": true, "message": "Anfrage %d für #%d eingereiht (%s)." % [int(e["id"]), cr.id, kind], "request_id": int(e["id"])}
+
+
+## Prompt 6B: jüngste eigene gescheiterte Arbeitskette (≤ 60 s), zu der noch kein Vorschlag erbeten wurde.
+func _failed_work(cr: Creature) -> int:
+	if ctx.work == null or cr.tech.is_empty() or ctx.work.active(cr) != null or ctx.work.proposals.has(cr.id):
+		return 0
+	var past := ctx.work.of_creature(cr.id)
+	if past.is_empty():
+		return 0
+	var w: WorkChain = past[0]
+	if w.status != "fehlgeschlagen" or ctx.now() - w.ended_t > 60.0 or int(cr.tech.get("model_asked_work", 0)) == w.id:
+		return 0
+	return w.id
 
 
 ## Jüngster misslungener eigener Versuch (≤ 60 s), zu dem noch kein Vorschlag erbeten wurde.
@@ -253,7 +271,7 @@ func _dispatch_one() -> void:
 	e["allowed"] = b["allowed"]
 	e["state_t"] = b["state_t"]
 	e["context_chars"] = b["chars"]
-	var schema: Dictionary = schemas["conversation" if e["kind"] == "talk" else ("experiment" if e["kind"] == "experiment" else "decision")]
+	var schema: Dictionary = schemas["conversation" if e["kind"] == "talk" else ("experiment" if e["kind"] == "experiment" else ("work" if e["kind"] == "work" else "decision"))]
 	var h := service.send_chat(session, int(e["id"]), ContextBuilder.messages(str(e["kind"]), b["json"], schema), schema)
 	if h < 0:
 		queue._drop(e, "Senden nicht möglich: " + service.client.config_error)
@@ -320,6 +338,8 @@ func _apply(r: Dictionary) -> void:
 		v = ResponseValidator.validate_talk(str(r["content"]), e, session, ctx, mx, age)
 	elif e["kind"] == "experiment":
 		v = ResponseValidator.validate_experiment(str(r["content"]), e, session, ctx, mx, age)
+	elif e["kind"] == "work":
+		v = ResponseValidator.validate_work(str(r["content"]), e, session, ctx, mx, age)
 	else:
 		v = ResponseValidator.validate_decision(str(r["content"]), e, session, ctx, mx, age)
 	last["raw_chars"] = str(r["content"]).length()
@@ -343,6 +363,13 @@ func _apply(r: Dictionary) -> void:
 		var h := ProceduralKnowledge.add_hypothesis(ctx, cr, {"kind": "modellvorschlag", "question": val["question"], "expected": val["expected"],
 			"steps": val["steps"], "source": src, "uncertainty": val["uncertainty"], "explanation": val["explanation"], "request_id": rid, "risk": 0.2})
 		acc = {"ok": true, "as": "hypothesis", "message": "Als ungeprüfte Hypothese #%d gespeichert (%s): %s" % [int(h["id"]), src, val["question"]]}
+	elif e["kind"] == "work":
+		# Nur als geprüfter VORSCHLAG ablegen; ob er ausgeführt wird, entscheidet das Wesen (Option „work:model“)
+		var srcw := "Modellvorschlag (SIMULIERT, geprüft)" if r["simulated"] else "Modellvorschlag (Ollama, geprüft)"
+		if str(val["goal"]) == "keep_current":
+			acc = {"ok": true, "as": "nothing", "message": "Modell schlägt keinen anderen Ablauf vor."}
+		else:
+			acc = ctx.work.add_proposal(cr, str(val["goal"]), val["plan"], srcw, str(val["explanation"]), float(val["uncertainty"]), rid, ctx)
 	elif e["kind"] == "talk":
 		if val["intent"] == "none":
 			acc = {"ok": true, "as": "nothing", "message": "Modell schlägt vor, nichts zu sagen."}

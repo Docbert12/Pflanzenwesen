@@ -14,6 +14,7 @@ var sc: MindScenarios
 var world_seed: int = 12345
 var quick: bool = false
 var only: String = ""
+var clock := {"ms": 0.0}
 
 
 func run_all(p_quick: bool = false, p_only: String = "") -> Array:
@@ -26,7 +27,7 @@ func run_all(p_quick: bool = false, p_only: String = "") -> Array:
 	sc = MindScenarios.new(db)
 	world_seed = int(db.config("world").get("seed", 12345))
 	for f in [_t01_pose_geometry, _t02_body_limits, _t03_chain_store, _t04_chain_build, _t05_chain_melt, _t06_failure_cases,
-			_t07_interrupt, _t08_save_load, _t09_contact_sync, _t10_normal_game, _t11_model_plan, _t12_autonomous_run]:
+			_t07_interrupt, _t08_save_load, _t09_contact_sync, _t10_normal_game, _t11_model_plan, _t11b_model_request, _t12_autonomous_run, _t13_definitions, _t14_migration_v4]:
 		if only != "" and not str(f.get_method()).contains(only):
 			continue
 		print("  Arbeits-Test: %s (%.1f s)" % [str(f.get_method()), Time.get_ticks_msec() / 1000.0])
@@ -41,7 +42,26 @@ func _check(name: String, ok: bool, detail: String = "") -> void:
 
 # ── Hilfen ────────────────────────────────────────
 
-func _scene(behavior: bool = false) -> LifeSimulation:
+## SIMULIERTER Modelldienst (MockOllama) mit Testuhr – keine echte Ollama-Verbindung.
+func _svc() -> AIService:
+	var s := AISettings.new()
+	s.user_path = ""
+	s.reload()
+	s.set_value("enabled", true)
+	s.set_value("use_mock", true)
+	s.set_value("model", MockOllama.MODEL)
+	s.set_value("eligible_share", 0.0)
+	s.set_value("per_creature_min_interval_s", 5.0)
+	s.set_value("global_rate_per_min", 600)
+	var svc := AIService.new(s, MockOllama.new())
+	svc.client.clock = func(): return int(clock["ms"])
+	svc.test_connection()
+	for i in 4:
+		svc.poll()
+	return svc
+
+
+func _scene(behavior: bool = false, svc: AIService = null) -> LifeSimulation:
 	var sim := Simulation.new()
 	var world := VoxelWorld.new()
 	var objs := Node3D.new()
@@ -50,7 +70,7 @@ func _scene(behavior: bool = false) -> LifeSimulation:
 	world.set_physics_process(false)
 	sc.nodes.append_array([sim, world, objs])
 	var life := LifeSimulation.new()
-	life.setup(sim, db, world, objs, AIService.disabled())
+	life.setup(sim, db, world, objs, svc if svc != null else AIService.disabled())
 	var r := life.new_work_scene(world_seed, behavior)
 	if not r.get("ok", false):
 		push_error("Testszene: " + str(r.get("message", "")))
@@ -60,6 +80,7 @@ func _scene(behavior: bool = false) -> LifeSimulation:
 
 func _run(life: LifeSimulation, secs: float) -> void:
 	for i in int(round(secs / DT)):
+		clock["ms"] = float(clock["ms"]) + 1000.0 / 60.0
 		life.step(DT)
 
 
@@ -68,6 +89,7 @@ func _run_chain(life: LifeSimulation, cr: Creature, max_s: float, sampler: Calla
 	var t := 0.0
 	var w: WorkChain = life.ctx.work.active(cr)
 	while t < max_s:
+		clock["ms"] = float(clock["ms"]) + 1000.0 / 60.0
 		life.step(DT)
 		t += DT
 		if sampler.is_valid():
@@ -605,6 +627,70 @@ func _t11_model_plan() -> void:
 			and (ctx.material_pieces[_id(life, "stone_medium")] as MaterialPiece).storage_id == _id(life, "storage"), w.abort_reason if w != null else "-")
 
 
+# ── 11b. Anfrageart „work“ über den SIMULIERTEN Modelldienst ────────
+
+func _t11b_model_request() -> void:
+	var svc := _svc()
+	var life := _scene(false, svc)
+	var ctx := life.ctx
+	var cr := WorkChainScene.actor(life)
+	var st_id := _id(life, "storage")
+	# Ausgangslage: Kette scheitert („zu schwer“)
+	WorkChainScene.trigger_case(life, "schwer")
+	var w0 := _run_chain(life, cr, 60.0)
+	var rq := ctx.ai.request_now(cr, "work", "Test: Arbeitsvorschlag nach gescheiterter Kette")
+	_run(life, 3.0)
+	var last: Dictionary = cr.ai.get("last", {})
+	var prop: Dictionary = ctx.work.proposals.get(cr.id, {})
+	_check("Modellanfrage „work“ (SIMULIERT): Vorschlag geprüft und nur als Option abgelegt – noch keine Handlung, kein Gegenstand verändert",
+		w0 != null and w0.status == "fehlgeschlagen" and rq["ok"] and str(last.get("status", "")) == "angenommen" and not prop.is_empty()
+		and ctx.work.active(cr) == null and not ctx.executor.running.has(cr.id), "%s · %s" % [str(last.get("why", "")), str(prop.get("plan", {}).get("steps", []))])
+	# Der Entscheider wählt den Vorschlag (eigenes Verhalten an); Ausführung über geprüfte Handlungen
+	cr.behavior_enabled = true
+	var t := 0.0
+	var wm: WorkChain = null
+	while t < 240.0:
+		_run(life, 1.0)
+		t += 1.0
+		for wch in ctx.work.of_creature(cr.id):
+			if str((wch as WorkChain).source).begins_with("Modellvorschlag"):
+				wm = wch
+		if wm != null and not wm.is_open():
+			break
+	var stored := 0
+	if wm != null:
+		for pid in wm.delivered:
+			var p: MaterialPiece = ctx.material_pieces.get(int(pid), null)
+			if p != null and p.storage_id == st_id:
+				stored += 1
+	_check("Modellvorschlag ausgeführt nur über Spielhandlungen (Stücke real eingelagert), Herkunft sichtbar",
+		wm != null and wm.status == "abgeschlossen" and stored >= 1 and wm.autonomous, "%s · %s · eingelagert %d" % [wm.status if wm != null else "keine Kette", wm.source if wm != null else "", stored])
+	# Abweisungen: erfundener Schritt, unbekannte ID, erfundenes Feld
+	var mock := svc.client.transport as MockOllama
+	var bad := [
+		[{"op": "teleport", "object_id": _id(life, "stone_medium")}, 5],
+		[{"op": "carry", "object_id": 999999, "dest_id": st_id, "mode": "deposit"}, 3],
+		[{"op": "carry", "object_id": _id(life, "stone_medium"), "dest_id": st_id, "material": "Bronze"}, 2],
+	]
+	var stages: Array = []
+	for b in bad:
+		var step: Dictionary = b[0]
+		mock.responder = func(_body, c): return {"request_id": int(c["anfrage"]["request_id"]), "actor_id": cr.id, "goal": "lagern",
+			"proposed_steps": [step], "uncertainty": 0.2, "short_explanation": "x"}
+		cr.ai["next_request_t"] = 0.0
+		ctx.work.proposals.erase(cr.id)
+		cr.behavior_enabled = false
+		ctx.ai.request_now(cr, "work", "Test: ungültiger Arbeitsvorschlag")
+		_run(life, 3.0)
+		var l: Dictionary = cr.ai.get("last", {})
+		stages.append([str(l.get("status", "")), int(l.get("stage", 0)), int(b[1])])
+	var ok := true
+	for x in stages:
+		if x[0] != "abgelehnt" or int(x[1]) != int(x[2]):
+			ok = false
+	_check("Modellvorschlag: erfundener Schritt (Stufe 5), unbekannte ID (Stufe 3), erfundenes Feld (Stufe 2) abgewiesen", ok and not ctx.work.proposals.has(cr.id), str(stages))
+
+
 # ── 12. Beobachtungslauf: eigenständige Wahl (Messwert, getrennt dokumentiert) ────────
 
 func _t12_autonomous_run() -> void:
@@ -633,3 +719,169 @@ func _t12_autonomous_run() -> void:
 		"; ".join(auto) if not auto.is_empty() else "keine eigenständige Kette beobachtet", str(cr.alive), cr.metabolism.hunger() * 100.0])
 	_check("Beobachtungslauf: Wesen lebt, Konsistenz (Audit leer); eigenständige Ketten werden als Messwert protokolliert", cr.alive and life.audit().is_empty(),
 		"%d autonom gestartet · %s" % [n_auto, str(life.audit().slice(0, 2))])
+
+
+# ── 13. Excel-Abgleich: Importkonfiguration, Erfindungskatalog, aktivierte Definitionen ────────
+
+static func _json(path: String):
+	var f := FileAccess.open(path, FileAccess.READ)
+	if f == null:
+		return null
+	return JSON.parse_string(f.get_as_text())
+
+
+func _cfg_has(tech: Dictionary, path: String) -> bool:
+	var cur = tech
+	for part in path.split("."):
+		if typeof(cur) != TYPE_DICTIONARY or not (cur as Dictionary).has(part):
+			return false
+		cur = cur[part]
+	return true
+
+
+func _t13_definitions() -> void:
+	var root := ProjectSettings.globalize_path("res://")
+	# Importkonfiguration: jede Korrektur ist am erzeugten Eintrag gekennzeichnet, die Excel bleibt unverändert
+	var corr = _json(root + "design/import_config/datenbasis_korrekturen.json")
+	var vox = _json(root + "data/generated/excel/voxel_types.json")
+	var missing: Array = []
+	if corr == null or vox == null:
+		missing.append("Datei fehlt")
+	else:
+		for c in corr["corrections"]:
+			var found := false
+			for e in vox["entries"]:
+				if str(e["id"]) == str(c["row_id"]):
+					for ic in e.get("import_corrections", []):
+						if str(ic["id"]) == str(c["id"]):
+							found = true
+			if not found:
+				missing.append(str(c["id"]))
+	_check("Excel-Abgleich: dokumentierte Korrekturen (Kupfer/Wasser-Verweis, MAT_Erde/Gras/Holz) am Eintrag gekennzeichnet", missing.is_empty() and vox != null and (vox["rejected"] as Array).is_empty(),
+		"fehlend: %s" % str(missing))
+	# Aktivierte Definitionen: Handlungen, Materialien, Animationen, Konfigschlüssel, Katalogverweise existieren
+	var act = _json(root + "data/config/inventions_activated.json")
+	var cat = _json(root + "data/generated/ideas/inventions_real_catalog.json")
+	var sim := Simulation.new()
+	sim.initialize()
+	sc.nodes.append(sim)
+	var tech: Dictionary = db.config("technology")
+	var cat_ids := {}
+	var all_catalog := true
+	if cat != null:
+		for e in cat["inventions"]:
+			cat_ids[str(e["id"])] = true
+			if str(e["game_status"]) != "catalog":
+				all_catalog = false
+	var errs: Array = []
+	if act == null:
+		errs.append("inventions_activated.json fehlt")
+	else:
+		var statuses: Dictionary = act["status_values"]
+		for inv in act["inventions"]:
+			var iid := str(inv["id"])
+			if not statuses.has(str(inv["status"])):
+				errs.append("%s: Status %s" % [iid, inv["status"]])
+			for t in inv["actions"]:
+				if not ActionDefinition.has_type(str(t)):
+					errs.append("%s: Handlung %s fehlt" % [iid, t])
+			for m in inv["materials"]:
+				if str(m["material"]) != "*" and not sim.materials.has_material(str(m["material"])):
+					errs.append("%s: Material %s fehlt" % [iid, m["material"]])
+			for an in inv["animations"]:
+				if not (str(an) in CreatureAnimator.ANIMS) or CreatureAnimator.PREPARED_ONLY.has(str(an)):
+					errs.append("%s: Animation %s nicht aktiv" % [iid, an])
+			for k in inv["time_energy"]["config"]:
+				if not _cfg_has(tech, str(k)):
+					errs.append("%s: Konfiguration %s fehlt" % [iid, k])
+			for ref in inv["catalog_refs"]:
+				if not cat_ids.has(str(ref["id"])):
+					errs.append("%s: Katalogeintrag %s fehlt" % [iid, ref["id"]])
+		for p in act["prepared_not_active"]:
+			if not CreatureAnimator.PREPARED_ONLY.has(str(p["animation"])):
+				errs.append("%s: vorbereitete Animation nicht abgewiesen" % p["id"])
+	_check("Aktivierte Erfindungen: Handlungen, Materialien, aktive Animationen, Spielparameter und Katalogverweise existieren", errs.is_empty() and act != null,
+		"%d Definitionen · %s" % [(act["inventions"] as Array).size() if act != null else 0, str(errs.slice(0, 4))])
+	# Katalog: kein Startwissen, keine Freischaltung; Herkunft je Quellenzeile erhalten
+	var rows := 0
+	var merged_ok := true
+	if cat != null:
+		for e in cat["inventions"]:
+			rows += (e["sources"] as Array).size()
+			if (e["sources"] as Array).size() != int(e["merged_rows"]):
+				merged_ok = false
+	var life := _scene()
+	var cr := WorkChainScene.actor(life)
+	_check("Erfindungskatalog: 5.862 Quellenzeilen erhalten, nur gleicher Name + Kategorie zusammengefasst, alles „catalog“, kein Startwissen",
+		cat != null and rows == 5862 and merged_ok and all_catalog and bool(cat["rules"]["start_knowledge"]) == false and (cr.tech["procedures"] as Dictionary).is_empty(),
+		"%d Einträge, %d Quellenzeilen, Startverfahren %d" % [cat_ids.size(), rows, (cr.tech["procedures"] as Dictionary).size()])
+
+
+# ── 14. Migration Format 4 → 5 mit echten Spielständen aus v0.6.0 (normales Spiel und Testwerkstatt) ────────
+
+func _t14_migration_v4() -> void:
+	for fx in [["save_v4_prompt06.json", "normales Spiel"], ["save_v4_prompt06_werkstatt.json", "Testwerkstatt"]]:
+		var path := "user://saves/_test_mig_v4_%s.json" % str(fx[1]).replace(" ", "_")
+		DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path("user://saves"))
+		for ext in ["", ".bak", ".v4.vor_migration"]:
+			if FileAccess.file_exists(path + ext):
+				DirAccess.remove_absolute(ProjectSettings.globalize_path(path + ext))
+		DirAccess.copy_absolute(ProjectSettings.globalize_path("res://tests/fixtures/" + str(fx[0])), ProjectSettings.globalize_path(path))
+		var orig := FileAccess.get_file_as_string(path)
+		var raw = JSON.parse_string(orig.substr(orig.find("\n") + 1))
+		var sim := Simulation.new()
+		var world := VoxelWorld.new()
+		var objs := Node3D.new()
+		sim.initialize()
+		sim.set_physics_process(false)
+		world.set_physics_process(false)
+		sc.nodes.append_array([sim, world, objs])
+		var life := LifeSimulation.new()
+		life.setup(sim, db, world, objs, AIService.disabled())
+		sc.lives.append(life)
+		var calls := PopulationSpawner.spawn_calls
+		var r := SaveManager.load_into(life, path)
+		_check("Migration 4 → 5 (%s, echter Spielstand v0.6.0): lädt, Original gesichert, Spawner nicht aufgerufen" % fx[1],
+			r["ok"] and int(r.get("migrated_from", 0)) == 4 and FileAccess.file_exists(path + ".v4.vor_migration") and PopulationSpawner.spawn_calls == calls,
+			str(r.get("message", "")).substr(0, 200))
+		if not r["ok"]:
+			continue
+		var ctx := life.ctx
+		var mass_raw := 0.0
+		for md in raw["material_pieces"]:
+			mass_raw += float(md["mass_kg"])
+		var hold_ok := true
+		for id in ctx.creatures:
+			var cr: Creature = ctx.creatures[id]
+			if (cr.held_object_id != 0) != (cr.hold_mode == "one"):
+				hold_ok = false
+		var free_ok := true
+		for pid in ctx.material_pieces:
+			var mp: MaterialPiece = ctx.material_pieces[pid]
+			if mp.storage_id != 0 or mp.structure_id != 0:
+				free_ok = false
+		_check("Migration 4 → 5 (%s): Stücke, Masse, Verbünde und Wesen unverändert; Halten einhändig; kein Lager, keine Baustelle, keine Kette" % fx[1],
+			ctx.material_pieces.size() == (raw["material_pieces"] as Array).size() and absf(_total_mass(life) - mass_raw) < 1e-9 and ctx.assemblies.size() == (raw.get("assemblies", []) as Array).size()
+			and ctx.creatures.size() == (raw["creatures"] as Array).size() and hold_ok and free_ok and ctx.storages.is_empty() and ctx.structures.is_empty() and ctx.work.chains.is_empty(),
+			"%d Stücke, %.4f kg, %d Verbünde, %d Wesen" % [ctx.material_pieces.size(), _total_mass(life), ctx.assemblies.size(), ctx.creatures.size()])
+		_run(life, 10.0)
+		var sv := SaveManager.save(life, path)
+		var snap := SaveManager.snapshot(life)
+		var sim2 := Simulation.new()
+		var world2 := VoxelWorld.new()
+		var objs2 := Node3D.new()
+		sim2.initialize()
+		sim2.set_physics_process(false)
+		world2.set_physics_process(false)
+		sc.nodes.append_array([sim2, world2, objs2])
+		var life2 := LifeSimulation.new()
+		life2.setup(sim2, db, world2, objs2, AIService.disabled())
+		sc.lives.append(life2)
+		var r2 := SaveManager.load_into(life2, path)
+		var rt := func(v): return JSON.parse_string(JSON.stringify(v))
+		var d := TestTechnology.first_diff(rt.call(snap["material_pieces"]), rt.call(SaveManager.snapshot(life2)["material_pieces"]), "Stücke")
+		_check("Migration 4 → 5 (%s): danach im Format 5 gespeichert und unverändert wieder geladen; Audit leer" % fx[1],
+			sv["ok"] and r2["ok"] and int(r2.get("migrated_from", 0)) == 0 and d == "" and life.audit().is_empty() and life2.audit().is_empty(), d + " " + str(life2.audit().slice(0, 2)))
+		for ext in ["", ".bak", ".v4.vor_migration"]:
+			if FileAccess.file_exists(path + ext):
+				DirAccess.remove_absolute(ProjectSettings.globalize_path(path + ext))
