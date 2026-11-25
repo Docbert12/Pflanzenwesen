@@ -170,6 +170,16 @@ func new_workshop(world_seed: int, behavior: bool = false) -> Dictionary:
 	return r
 
 
+## Prompt 6B: Testszene „Werkzeugkette“ (ein Testwesen, Material, Lager, Baustelle, Testofen).
+func new_work_scene(world_seed: int, behavior: bool = false) -> Dictionary:
+	var r := WorkChainScene.setup(self, world_seed, behavior)
+	if r.get("ok", false):
+		ctx.log_event("new_game", [], {"seed": world_seed, "creatures": ctx.creatures.size(), "mode": "werkzeugkette"})
+	else:
+		errors.append(str(r.get("message", "")))
+	return r
+
+
 func _create_food_sources(world_seed: int) -> void:
 	var fc: Dictionary = ctx.c("food")
 	var kinds: Dictionary = fc.get("kinds", {})
@@ -471,10 +481,18 @@ func after_body_change(cr: Creature, reason: String) -> void:
 			it.position = cr.position + Vector3(0, 0.05, 0)
 			ctx.log_event("item_dropped", [cr.id, it.id], {"reason": "Greiffähigkeit verloren"}, "warning")
 		cr.carried_item_id = 0
-	if cr.held_object_id != 0 and float(cr.caps.get("grasp", 0.0)) <= 0.0:
-		if ctx.executor.running.has(cr.id):
-			ctx.executor.cancel(cr.id, "body_changed", "Körperänderung: " + reason)
-		ToolUseSystem.release(ctx, cr, "Greiffähigkeit verloren")
+	if cr.held_object_id != 0:
+		# Prompt 6B: auch die haltende Seite bzw. die zweite Hand beim Tragen mit beiden Händen prüfen
+		var gs: Dictionary = cr.caps.get("grasp_by_side", {})
+		var lost := float(cr.caps.get("grasp", 0.0)) <= 0.0
+		if cr.hold_mode == "two" and ToolUseSystem.grasp_hands(cr) < 2:
+			lost = true
+		elif cr.hold_mode != "two" and cr.hold_side != "" and float(gs.get(cr.hold_side, 0.0)) <= 0.0:
+			lost = true
+		if lost:
+			if ctx.executor.running.has(cr.id):
+				ctx.executor.cancel(cr.id, "body_changed", "Körperänderung: " + reason)
+			ToolUseSystem.release(ctx, cr, "Greiffähigkeit verloren")
 	if ctx.executor.running.has(cr.id):
 		var a: GameAction = ctx.executor.running[cr.id]
 		var v := ctx.executor.validator.check_capabilities(a, cr)

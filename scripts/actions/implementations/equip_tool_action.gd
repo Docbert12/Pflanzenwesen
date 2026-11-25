@@ -54,7 +54,7 @@ func step(a: GameAction, ctx: LifeContext, dt: float) -> ActionResult:
 		else:
 			var tp = ctx.position_of(top)
 			var tt := WorkMotion.target_height(ctx, cr, top, tp)
-			var ap := WorkMotion.approach(a, ctx, dt, tt, "place", 0.0)
+			var ap := WorkMotion.approach(a, ctx, dt, tt, "place", 0.0, str(a.state.get("mode", "one")) == "two")
 			if ap["blocked"]:
 				return ActionResult.fail("blocked", str(ap["reason"]))
 			if not ap["done"]:
@@ -63,8 +63,12 @@ func step(a: GameAction, ctx: LifeContext, dt: float) -> ActionResult:
 			a.state["t0"] = a.elapsed_s
 	var work_s := float(ctx.tc("hands").get("equip_s", 1.0))
 	var ph := WorkMotion.phase_at(a.elapsed_s, float(a.state["t0"]), float(mc.get("prepare_s", 0.25)), work_s, float(mc.get("recover_s", 0.3)))
-	var tgt = ctx.position_of(top)
-	WorkMotion.set_anim(a, pose, str(ph["phase"]), float(ph["u"]), tgt, {"object": top})
+	# Animationsziel = Griffpunkt (Oberkante des Gegenstands); nach der Übernahme liegt er in der Hand
+	if not a.state.has("grip_target"):
+		var gt := WorkMotion.target_height(ctx, cr, top, ctx.position_of(top) if ctx.position_of(top) != null else cr.position)
+		a.state["grip_target"] = [gt.x, gt.y, gt.z]
+	var gta: Array = a.state["grip_target"]
+	WorkMotion.set_anim(a, pose, str(ph["phase"]), float(ph["u"]), Vector3(float(gta[0]), float(gta[1]), float(gta[2])), {"object": top})
 	a.progress = clampf((a.elapsed_s - float(a.state["t0"])) / (work_s + float(mc.get("prepare_s", 0.25))), 0.0, 1.0)
 	if str(ph["phase"]) != "recover":
 		return ActionResult.success()

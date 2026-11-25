@@ -30,6 +30,7 @@ var by_actor: Dictionary = {}    # actor_id -> chain id (offen)
 var next_id: int = 1
 var last_end_t: Dictionary = {}  # actor_id -> Zeitpunkt des letzten Kettenendes (Abklingzeit)
 var last_site_t: Dictionary = {} # actor_id -> Zeitpunkt, an dem das Wesen zuletzt selbst eine Baustelle anlegte
+var pending_drops: Array = []     # Wesen, die nach Kettenende Getragenes ablegen sollen (Hände frei)
 var stats := {"started": 0, "completed": 0, "failed": 0, "aborted": 0, "autonomous_started": 0, "autonomous_completed": 0, "paused": 0, "resumed": 0}
 
 
@@ -119,17 +120,41 @@ static func find_tool_parts(cr: Creature, ctx: LifeContext, exclude: Array = [])
 	return {"handle": handle, "head": head, "fiber": fiber}
 
 
-## Bekannte Steine, die zu groß sind (für eine Hand zu schwer oder größer als ein Bauplatz erlaubt).
+## Welche Hammerbauteile dem Wesen fehlen (für eine verständliche Begründung).
+static func missing_tool_parts(cr: Creature, ctx: LifeContext) -> Array:
+	var have := {"Stiel": false, "Steinkopf": false, "Fasern": false}
+	for id in _known(cr):
+		var p: MaterialPiece = ctx.material_pieces.get(int(id), null)
+		if p == null or not p.is_free() or p.storage_id != 0:
+			continue
+		if p.shape == "rod" and p.dims_m.x >= 0.25 and p.material_id in ["wood", "plant_tissue"]:
+			have["Stiel"] = true
+		elif p.material_id == "stone" and p.shape in ["lump", "block"] and p.mass_kg >= 0.08 and p.mass_kg <= 1.0:
+			have["Steinkopf"] = true
+		elif p.material_id == "plant_fiber":
+			have["Fasern"] = true
+	var out: Array = []
+	for k in have:
+		if not have[k]:
+			out.append(k)
+	return out
+
+
+## Bekannter Stein, der zu groß ist (für eine Hand zu schwer oder größer als ein Bauplatz erlaubt).
+## Gewählt wird der KLEINSTE solche Stein (wenigste Schläge, Bruchstücke am ehesten passend), bei
+## gleicher Masse der nähere. 0 = keiner bekannt.
 static func find_breakable(cr: Creature, ctx: LifeContext, max_kg: float) -> int:
 	var best := 0
-	var bm := 0.0
+	var bm := INF
 	for id in _known(cr):
 		var p: MaterialPiece = ctx.material_pieces.get(int(id), null)
 		if p == null or not p.is_free() or p.material_id != "stone" or p.storage_id != 0:
 			continue
-		if p.mass_kg > max_kg and p.mass_kg > bm:
-			bm = p.mass_kg
-			best = p.id
+		if p.mass_kg > max_kg:
+			var score := p.mass_kg + 0.01 * ctx.distance_xz(cr.position, p.position)
+			if score < bm:
+				bm = score
+				best = p.id
 	return best
 
 
@@ -157,7 +182,7 @@ static func tool_steps(cr: Creature, ctx: LifeContext, force: bool) -> Dictionar
 		return {"ok": false, "steps": [], "tool": 0, "message": "kein Schlagwerkzeug bekannt und kein Verfahren zum Binden bekannt"}
 	var parts := find_tool_parts(cr, ctx)
 	if parts.is_empty():
-		return {"ok": false, "steps": [], "tool": 0, "message": "Bauteile für einen Hammer fehlen (Stiel, Steinkopf, Fasern)"}
+		return {"ok": false, "steps": [], "tool": 0, "message": "Bauteile für einen Hammer fehlen: %s nicht bekannt" % ", ".join(missing_tool_parts(cr, ctx))}
 	return {"ok": true, "tool": 0, "message": "bindet einen Hammer aus #%d, #%d, #%d" % [parts["handle"], parts["head"], parts["fiber"]],
 		"steps": [{"op": "bring", "obj": parts["head"], "target": parts["handle"]}, {"op": "bring", "obj": parts["fiber"], "target": parts["handle"]},
 			{"op": "connect", "obj": parts["handle"], "head": parts["head"], "fiber": parts["fiber"]}, {"op": "check_tool"}, {"op": "equip", "obj": -1}]}
@@ -216,8 +241,12 @@ static func plan(goal: String, cr: Creature, ctx: LifeContext, opts: Dictionary)
 			var cru := int(opts.get("crucible", 0))
 			var hid := int(opts.get("heater", 0))
 			var mold := int(opts.get("mold", 0))
-			if cru == 0 or not ctx.heaters.has(hid) or not ctx.material_pieces.has(mold):
-				return {"ok": false, "message": "Tiegel, Ofen oder Form fehlt"}
+			if not ctx.heaters.has(hid):
+				return {"ok": false, "message": "keine Wärmequelle: Ofen #%d fehlt" % hid if hid != 0 else "keine Wärmequelle bekannt"}
+			if cru == 0:
+				return {"ok": false, "message": "kein Tiegel bekannt"}
+			if not ctx.material_pieces.has(mold):
+				return {"ok": false, "message": "keine Gussform bekannt"}
 			var cup := PutIntoContainerAction.cup_of(ctx, cru)
 			if cup == null:
 				return {"ok": false, "message": "kein Tiegel"}
@@ -279,8 +308,10 @@ func needs(cr: Creature, ctx: LifeContext) -> Array:
 		var cast := _cast_setup(cr, ctx)
 		if not cast.is_empty():
 			out.append({"goal": "schmelzen", "need": float(c.get("need_cast", 0.35)), "opts": cast, "why": "kennt das Gießen; Kupfer, Tiegel, Ofen und Form bekannt"})
-	# eigenes Einzelbauwerk beginnen (selten, nur beharrliche Wesen mit bekanntem Stein)
-	if cr.personality.v("beharrlichkeit") >= float(c.get("start_site_min_persistence", 0.55)) and _own_open_site(cr, ctx) == null \
+	# eigenes Einzelbauwerk beginnen: wer schon selbst erfolgreich gebaut hat, will es eher wieder
+	# (Kompetenzerleben); sonst selten und nur beharrliche Wesen. Immer nur mit bekanntem Stein.
+	var built_before := knows_procedure(cr, "bauen:steinreihe", "erfolgreich")
+	if (built_before or cr.personality.v("beharrlichkeit") >= float(c.get("start_site_min_persistence", 0.55))) and _own_open_site(cr, ctx) == null \
 			and ctx.now() - float(last_site_t.get(cr.id, -1.0e9)) > float(c.get("start_site_cooldown_s", 600.0)):
 		var stones := 0
 		for id2 in known:
@@ -288,7 +319,8 @@ func needs(cr: Creature, ctx: LifeContext) -> Array:
 			if p2 != null and p2.material_id == "stone" and p2.is_free() and p2.mass_kg >= 0.12:
 				stones += 1
 		if stones >= int(c.get("start_site_min_stones", 1)):
-			out.append({"goal": "bauen", "need": float(c.get("need_start_site", 0.2)), "opts": {"start_site": true}, "why": "möchte eine eigene Steinreihe anlegen (%d bekannte Steine)" % stones})
+			out.append({"goal": "bauen", "need": float(c.get("need_start_site_known" if built_before else "need_start_site", 0.2)), "opts": {"start_site": true},
+				"why": "möchte eine eigene Steinreihe anlegen (%d bekannte Steine%s)" % [stones, "; hat schon selbst erfolgreich gebaut" if built_before else ""]})
 	return out
 
 
@@ -475,6 +507,9 @@ func _finish(cr: Creature, w: WorkChain, status: String, reason: String, ctx: Li
 		_:
 			stats["aborted"] += 1
 	ctx.log_event("work_finished", [w.actor_id], {"chain": w.id, "status": status, "reason": reason, "moved_kg": snappedf(w.moved_kg, 0.001), "delivered": w.delivered.size()})
+	# Getragenes Material (kein Werkzeug) nach dem Ende ablegen – über eine normale Ablegehandlung im nächsten Takt
+	if cr != null and cr.alive and cr.held_object_id != 0 and not ctx.assemblies.has(cr.held_object_id) and not (w.actor_id in pending_drops):
+		pending_drops.append(w.actor_id)
 	return {"ok": status == "abgeschlossen", "state": status, "reason": "Arbeitskette #%d %s: %s" % [w.id, status, reason]}
 
 
@@ -495,6 +530,16 @@ func _done(w: WorkChain, s: Dictionary, note: String, ctx: LifeContext) -> void:
 # ── Ausführung ─────────────────────────
 
 func tick(ctx: LifeContext) -> void:
+	for aid in pending_drops.duplicate():
+		var c := ctx.creature(int(aid))
+		if c == null or not c.alive or c.held_object_id == 0 or ctx.assemblies.has(c.held_object_id) or active(c) != null:
+			pending_drops.erase(aid)
+			continue
+		if not ctx.executor.running.has(c.id):
+			pending_drops.erase(aid)
+			var rd := ctx.executor.request(c.id, "drop", 0, null, {"object": true})
+			if not rd["result"].ok:
+				ToolUseSystem.release_at(ctx, c, DropAction.put_down_point(ctx, c, c.held_object_id), "nach Kettenende abgelegt")
 	var ids := by_actor.keys()
 	ids.sort()
 	for aid in ids:
@@ -509,8 +554,10 @@ func tick(ctx: LifeContext) -> void:
 		if w.status == "pausiert" and ctx.now() - w.paused_t > float(wc(ctx).get("pause_max_s", 240.0)):
 			_finish(cr, w, "abgebrochen", "zu lange unterbrochen (%s)" % w.pause_reason, ctx)
 			continue
-		if not cr.behavior_enabled and not ctx.executor.running.has(cr.id) and w.status == "läuft":
-			advance(cr, ctx)
+		if not cr.behavior_enabled and not ctx.executor.running.has(cr.id):
+			# gezielt ausgelöste Ketten: nach einer Unterbrechung kurz innehalten, dann fortsetzen
+			if w.status == "läuft" or (w.status == "pausiert" and ctx.now() - w.paused_t >= float(wc(ctx).get("resume_after_s", 2.0))):
+				advance(cr, ctx)
 
 
 func advance(cr: Creature, ctx: LifeContext) -> Dictionary:
@@ -719,7 +766,8 @@ func _move_near(cr: Creature, w: WorkChain, s: Dictionary, p: Vector3, dist: flo
 	var ang := float(int(s.get("move_fail", 0))) * PI * 0.5
 	var dir := away.normalized().rotated(Vector3.UP, ang)
 	var dest: Vector3 = p + dir * dist
-	var res := ctx.executor.request(cr.id, "move_to", 0, dest, {"arrive_radius_m": 0.3})
+	# Ankunftsradius kleiner als der Wunschabstand, sonst „kommt“ das Wesen an, ohne sich zu bewegen
+	var res := ctx.executor.request(cr.id, "move_to", 0, dest, {"arrive_radius_m": clampf(dist * 0.5, 0.08, 0.3)})
 	if not res["result"].ok:
 		s["move_fail"] = int(s.get("move_fail", 0)) + 1
 		if int(s["move_fail"]) > int(wc(ctx).get("move_retries", 2)):
@@ -973,7 +1021,7 @@ func _check(cr: Creature, w: WorkChain, s: Dictionary, ctx: LifeContext) -> Dict
 	w.result = res
 	_done(w, s, "Ergebnis: %s" % JSON.stringify(res).left(160), ctx)
 	if not ok:
-		return _finish(cr, w, "fehlgeschlagen", "kein verwertbares Ergebnis", ctx)
+		return _finish(cr, w, "fehlgeschlagen", "kein verwertbares Ergebnis%s" % ((" (abgewiesen: %s)" % _rejected_text(w)) if not w.rejected.is_empty() else ""), ctx)
 	return {"next": true}
 
 
@@ -1090,7 +1138,7 @@ func validate_model_plan(cr: Creature, proposal: Dictionary, ctx: LifeContext) -
 			continue
 		for f in ["obj", "target", "dest", "head", "fiber", "heater", "mold"]:
 			var id := int(s.get(f, 0))
-			if id > 0 and not known.has(id) and ConstructionSystem.top_id(ctx, id) != cr.held_object_id:
+			if id > 0 and not known.has(id) and not (cr.held_object_id != 0 and ConstructionSystem.top_id(ctx, id) == cr.held_object_id):
 				errors.append("Schritt %s: #%d ist dem Wesen nicht bekannt" % [s.get("op", ""), id])
 	if not errors.is_empty():
 		return {"ok": false, "errors": errors}
@@ -1122,7 +1170,7 @@ func to_dict() -> Dictionary:
 	var ls := {}
 	for k in last_site_t:
 		ls[str(k)] = last_site_t[k]
-	return {"chains": arr, "by_actor": be, "next_id": next_id, "last_end_t": le, "last_site_t": ls, "stats": stats.duplicate()}
+	return {"chains": arr, "by_actor": be, "next_id": next_id, "last_end_t": le, "last_site_t": ls, "stats": stats.duplicate(), "pending_drops": pending_drops.duplicate()}
 
 
 func from_dict(d: Dictionary) -> void:
@@ -1140,6 +1188,9 @@ func from_dict(d: Dictionary) -> void:
 	for k in d.get("last_site_t", {}):
 		last_site_t[int(k)] = float(d["last_site_t"][k])
 	next_id = int(d.get("next_id", chains.size() + 1))
+	pending_drops.clear()
+	for x in d.get("pending_drops", []):
+		pending_drops.append(int(x))
 	var st: Dictionary = d.get("stats", {})
 	for k in st:
 		stats[k] = st[k]

@@ -226,6 +226,47 @@ static func fracture_piece(ctx: LifeContext, mp: MaterialPiece) -> Dictionary:
 ## Gießen: flüssigen Inhalt eines Tiegels in eine Form. Prüft Flüssiganteil, Form, Kapazität und
 ## Restmengen. Der Guss behält Masse und spezifische Enthalpie; ein Überschuss bleibt im Tiegel.
 ## Rückgabe {ok, cast, poured_kg, rest_kg, energy_before_j, energy_after_j, message}.
+## Prompt 6B: Vollständig flüssige Stücke GLEICHEN Materials im selben Behälter fließen zu einer Schmelze
+## zusammen (Masse und Wärmeenergie werden addiert, Herkunft bleibt in parent_ids/Verlauf erhalten).
+## Nur vollständig flüssige Stücke; feste Reste bleiben eigene Stücke. Rückgabe {merged: [ids], into: {mat: id}}.
+static func merge_melts(ctx: LifeContext, container_id: int) -> Dictionary:
+	var groups := {}
+	for c in ConstructionSystem.contents_of(ctx, container_id):
+		var p := c as MaterialPiece
+		if p.liquid_fraction() >= 1.0 - 1e-9:
+			if not groups.has(p.material_id):
+				groups[p.material_id] = []
+			groups[p.material_id].append(p)
+	var merged: Array = []
+	var into := {}
+	for mat in groups:
+		var arr: Array = groups[mat]
+		if arr.size() < 2:
+			continue
+		arr.sort_custom(func(a, b): return a.id < b.id)
+		var keep: MaterialPiece = arr[0]
+		var m0 := keep.mass_kg
+		var e0 := keep.thermal_energy_j
+		for i in range(1, arr.size()):
+			var o: MaterialPiece = arr[i]
+			keep.mass_kg += o.mass_kg
+			keep.thermal_energy_j += o.thermal_energy_j
+			m0 += o.mass_kg
+			e0 += o.thermal_energy_j
+			if not (o.id in keep.parent_ids):
+				keep.parent_ids.append(o.id)
+			keep.add_history(ctx.now(), "Schmelze vereinigt mit #%d (%.4f kg)" % [o.id, o.mass_kg])
+			merged.append(o.id)
+			StorageSystem.forget_piece(ctx, o.id)
+			StructureSystem.forget_piece(ctx, o.id)
+			ConstructionSystem.remove_piece(ctx, o.id)
+		keep.rescale_to_mass()
+		keep.visual_version += 1
+		into[mat] = keep.id
+		ctx.log_event("melt_merged", [keep.id] + merged, {"container": container_id, "material": mat, "mass_kg": keep.mass_kg, "check_mass_kg": m0, "energy_j": keep.thermal_energy_j})
+	return {"merged": merged, "into": into}
+
+
 static func pour(ctx: LifeContext, sample: MaterialPiece, mold: MaterialPiece) -> Dictionary:
 	var cc: Dictionary = ctx.tc("casting")
 	if sample == null or mold == null:

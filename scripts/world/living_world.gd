@@ -60,7 +60,11 @@ var heater_nodes: Dictionary = {}    # Testheizung -> MeshInstance3D
 var _exp: ExperimentInspector
 var _know: KnowledgeViewer
 var _ws_panel: PanelContainer
+var _work_panel: PanelContainer
+var work_labels: Dictionary = {}     # Wesen-ID -> Label3D (Arbeitsanzeige über dem Wesen, Prompt 6B)
 var effect_nodes: Dictionary = {}    # Eingriffs-ID -> MeshInstance3D (Leuchten)
+var storage_nodes: Dictionary = {}   # Lager-ID -> Node3D (Bodenrahmen + Beschriftung)
+var site_nodes: Dictionary = {}      # Bauwerk-ID -> Node3D (Platzmarken + Beschriftung)
 var social_labels: Dictionary = {}   # Wesen-ID -> Label3D (Symbol der sozialen Handlung)
 var effect_root: Node3D
 ## Für Tests: feste KI-Anbindung statt der Anwendungseinstellungen (z. B. AIService.disabled()).
@@ -120,6 +124,14 @@ func _ready() -> void:
 			_fail("Testwerkstatt konnte nicht erzeugt werden:\n" + str(rw.get("message", "")))
 			return
 		start_message = "TESTWERKSTATT (Testausrüstung, nicht im normalen Spiel): %s" % rw["message"]
+	elif mode == "werkzeugkette":
+		var seed_k := int(pending.get("seed", db.config("world").get("seed", 12345)))
+		save_path = SaveManager.path_for("werkzeugkette")
+		var rk := life.new_work_scene(seed_k, bool(pending.get("behavior", false)))
+		if not rk.get("ok", false):
+			_fail("Testszene Werkzeugkette konnte nicht erzeugt werden:\n" + str(rk.get("message", "")))
+			return
+		start_message = "TESTSZENE WERKZEUGKETTE (Testausrüstung, nicht im normalen Spiel): %s Ketten unten links gezielt auslösen." % rk["message"]
 	else:
 		var seed_value := int(pending.get("seed", db.config("world").get("seed", 12345)))
 		var r2 := life.new_game(seed_value)
@@ -226,33 +238,65 @@ func _sync_views(delta: float) -> void:
 		var anim := "idle"
 		var side := "r"
 		var rate := 1.0
+		var drive := {}
+		var holding := cr.held_object_id != 0
+		var hold_mode := (cr.hold_mode if cr.hold_mode != "" else "one") if holding else ""
+		var hold_side := cr.hold_side if cr.hold_side != "" else str(cr.caps.get("grasp_side", "r"))
+		var walk_rate := clampf(cr.speed_now / float(ctx.c("locomotion").get("base_speed_m_s", 1.0)), 0.2, 1.5)
 		e["anim_src"] = ""
 		if ctx.executor.running.has(id):
 			var a: GameAction = ctx.executor.running[id]
 			e["anim_src"] = a.type          # Handlung, aus der die Animation in diesem Bild abgeleitet wurde
-			match a.type:
-				"move_to":
-					if cr.speed_now > 0.05:
-						anim = "walk"
-						rate = clampf(cr.speed_now / float(ctx.c("locomotion").get("base_speed_m_s", 1.0)), 0.2, 1.5)
-				"pick_up":
-					anim = "grasp"
-					side = str(a.state.get("side", cr.caps.get("grasp_side", "r")))
-				"eat":
-					if a.state.get("mode", "") == "carried":
-						anim = "eat"
-						side = str(a.state.get("side", cr.caps.get("feeding_side", "r")))
-				"raise_arms":
-					anim = "raise_arms"
-				"give_food", "offer_food":
-					anim = "grasp"
-					side = str(cr.caps.get("grasp_side", "r"))
+			var ad: Dictionary = a.state.get("anim", {})
+			if str(ad.get("pose", "")) != "":
+				# Prompt 6B: Arbeitshandlung liefert Pose, Phase und Fortschritt (nur lesend)
+				anim = str(ad["pose"])
+				side = hold_side
+				drive = ad
+				if anim == "walk_short" and cr.speed_now > 0.05:
+					rate = walk_rate
+			else:
+				match a.type:
+					"move_to":
+						if holding:
+							anim = "carry_two" if hold_mode == "two" else "carry"
+							side = hold_side
+							drive = {"pose": anim, "phase": "approach", "u": 0.0}
+							rate = walk_rate if cr.speed_now > 0.05 else 1.0
+						elif cr.speed_now > 0.05:
+							anim = "walk"
+							rate = walk_rate
+					"pick_up":
+						anim = "grasp"
+						side = str(a.state.get("side", cr.caps.get("grasp_side", "r")))
+					"eat":
+						if a.state.get("mode", "") == "carried":
+							anim = "eat"
+							side = str(a.state.get("side", cr.caps.get("feeding_side", "r")))
+					"raise_arms":
+						anim = "raise_arms"
+					"give_food", "offer_food":
+						anim = "grasp"
+						side = str(cr.caps.get("grasp_side", "r"))
+		if anim == "idle" and holding:
+			# Gehaltenes bleibt sichtbar in der Hand (Haltepose statt Ruhehaltung)
+			anim = "carry_two" if hold_mode == "two" else "carry"
+			side = hold_side
+			drive = {"pose": anim, "phase": "hold", "u": 0.0}
 		if anim != e["anim"]:
 			var r := view.animator.request(anim, side)
 			if not r.get("ok", false):
 				view.animator.request("idle")   # Bewegung für diesen Körper nicht implementiert → Ruhehaltung
 				anim = "idle"
+				drive = {}
 			e["anim"] = anim
+		var info := {"tool_h": WorkPose.tool_reach(ctx, cr.held_object_id) if holding else 0.0, "hold_mode": hold_mode,
+			"moving": cr.speed_now > 0.05, "target_local": null}
+		if drive.has("target"):
+			var tg: Array = drive["target"]
+			info["target_local"] = WorkPose.to_local(cr.position, cr.heading, Vector3(float(tg[0]), float(tg[1]), float(tg[2])))
+		view.animator.drive_data = drive
+		view.animator.drive_info = info
 		view.animator.update(delta * rate)
 	# Nahrungsquellen: Größe zeigt Restmenge
 	for fid in life.plant_nodes:
@@ -288,6 +332,7 @@ func _sync_views(delta: float) -> void:
 			item_nodes[iid].queue_free()
 			item_nodes.erase(iid)
 	_sync_social_labels()
+	_sync_work_labels()
 	_sync_pieces_and_effects()
 	if selected_id != 0 and ctx.creatures.has(selected_id):
 		_marker.visible = true
@@ -327,6 +372,46 @@ func _sync_social_labels() -> void:
 		l.position = ctx.creatures[id].position + Vector3(0, 1.25, 0)
 
 
+## Prompt 6B: kurze Arbeitsanzeige über Wesen mit laufender Arbeitskette (Ziel, Handlung, Werkzeug, Last).
+func _sync_work_labels() -> void:
+	var ctx := life.ctx
+	var want := {}
+	if ctx.work != null:
+		for aid in ctx.work.by_actor:
+			var cr := ctx.creature(int(aid))
+			if cr == null or not cr.alive:
+				continue
+			var v := ctx.work.status_view(cr, ctx)
+			if v.is_empty():
+				continue
+			var line := "%s · %s" % [str(v["ziel"]), str(v["handlung"])]
+			var extra: Array = []
+			if int(v["werkzeug"]) != 0:
+				extra.append("Werkzeug #%d" % int(v["werkzeug"]))
+			if float(v["getragen_kg"]) > 0.0:
+				extra.append("trägt %.2f kg" % float(v["getragen_kg"]))
+			extra.append("%.0f %%" % (float(v["fortschritt"]) * 100.0))
+			want[int(aid)] = line + "\n" + " · ".join(extra)
+	for id in work_labels.keys():
+		if not want.has(id):
+			work_labels[id].queue_free()
+			work_labels.erase(id)
+	for id in want:
+		var l: Label3D = work_labels.get(id, null)
+		if l == null:
+			l = Label3D.new()
+			l.billboard = BaseMaterial3D.BILLBOARD_ENABLED
+			l.font_size = 34
+			l.pixel_size = 0.0035
+			l.outline_size = 8
+			l.no_depth_test = true
+			l.modulate = Color(0.75, 0.95, 1.0)
+			add_child(l)
+			work_labels[id] = l
+		l.text = want[id]
+		l.position = ctx.creatures[id].position + Vector3(0, 1.45, 0)
+
+
 func _sync_pieces_and_effects() -> void:
 	var ctx := life.ctx
 	# Gegenstände (Prompt 6): einzelne Stücke und Verbünde aus den tatsächlichen Daten (ObjectGenerator)
@@ -352,11 +437,13 @@ func _sync_pieces_and_effects() -> void:
 			continue
 		if carrier != 0 and ctx.creatures.has(carrier):
 			var cr: Creature = ctx.creatures[carrier]
-			n.position = pos
-			n.rotation = Vector3(0.0, cr.heading - PI * 0.5, 0.35)
+			if not _place_held(n, cr, id):
+				n.position = pos
+				n.rotation = Vector3(0.0, cr.heading - PI * 0.5, 0.35)
 		else:
 			n.position = pos
 			n.rotation = Vector3.ZERO
+	_sync_storages_and_sites()
 	for pid in piece_nodes.keys():
 		if not want.has(pid):
 			piece_nodes[pid].queue_free()
@@ -407,6 +494,120 @@ func _sync_pieces_and_effects() -> void:
 		if not live.has(k):
 			effect_nodes[k].queue_free()
 			effect_nodes.erase(k)
+
+
+## Prompt 6B: gehaltenen Gegenstand an den Griffpunkt der tatsächlich animierten Hand setzen
+## (einhändig: Griffrahmen der Hand bzw. des Hakens; zweihändig: zwischen beiden Händen, mittig).
+## false → kein passendes Gelenk (Ersatzdarstellung an der Simulationsposition).
+func _place_held(n: Node3D, cr: Creature, id: int) -> bool:
+	var e: Dictionary = views.get(cr.id, {})
+	if e.is_empty() or not cr.alive or cr.held_object_id != id:
+		return false
+	var view: CreatureView = e["view"]
+	if not view.is_inside_tree():
+		return false
+	var half_h := 0.0
+	var rod_len := 0.0
+	for p in ConstructionSystem.parts_of(life.ctx, id):
+		half_h = maxf(half_h, (p as MaterialPiece).dims_m.y * 0.5)
+	if life.ctx.material_pieces.has(id) and (life.ctx.material_pieces[id] as MaterialPiece).shape == "rod":
+		rod_len = (life.ctx.material_pieces[id] as MaterialPiece).dims_m.x
+	if cr.hold_mode == "two":
+		var gl := view.animator.grip_frame("l")
+		var gr := view.animator.grip_frame("r")
+		if not gl["ok"] or not gr["ok"]:
+			return false
+		var mid: Vector3 = ((gl["xform"] as Transform3D).origin + (gr["xform"] as Transform3D).origin) * 0.5
+		n.global_transform = view.global_transform * Transform3D(Basis.IDENTITY, mid + Vector3(0.0, -half_h, 0.0))
+		return true
+	var s := cr.hold_side if cr.hold_side != "" else str(cr.caps.get("grasp_side", "r"))
+	var g := view.animator.grip_frame(s)
+	if not g["ok"]:
+		return false
+	# Verbund: Ursprung = Griffpunkt; Stab: am Ende gegriffen; sonstiges Stück: mittig in der Hand
+	var off := Vector3.ZERO
+	if not life.ctx.assemblies.has(id):
+		off = Vector3(rod_len * 0.5, -half_h, 0.0)
+	n.global_transform = view.global_transform * (g["xform"] as Transform3D) * Transform3D(Basis.IDENTITY, off)
+	return true
+
+
+## Prompt 6B: Lagerplätze (Bodenrahmen) und Baustellen (Platzmarken: leer/belegt) sichtbar machen.
+func _sync_storages_and_sites() -> void:
+	var ctx := life.ctx
+	for sid in ctx.storages:
+		var s: StoragePlace = ctx.storages[sid]
+		var sn: Node3D = storage_nodes.get(sid, null)
+		if sn == null:
+			sn = Node3D.new()
+			sn.name = "Lager_%d" % sid
+			var mat := StandardMaterial3D.new()
+			mat.albedo_color = Color(0.55, 0.42, 0.25)
+			for k in 4:
+				var bar := MeshInstance3D.new()
+				var bm := BoxMesh.new()
+				var along_x := k < 2
+				bm.size = Vector3(s.size_m.x if along_x else 0.03, 0.025, 0.03 if along_x else s.size_m.y)
+				bar.mesh = bm
+				bar.material_override = mat
+				var sgn := -1.0 if k % 2 == 0 else 1.0
+				bar.position = Vector3(0.0, 0.0125, sgn * s.size_m.y * 0.5) if along_x else Vector3(sgn * s.size_m.x * 0.5, 0.0125, 0.0)
+				sn.add_child(bar)
+			var lbl := Label3D.new()
+			lbl.billboard = BaseMaterial3D.BILLBOARD_ENABLED
+			lbl.font_size = 32
+			lbl.pixel_size = 0.004
+			lbl.position = Vector3(0, 0.35, 0)
+			lbl.name = "Text"
+			sn.add_child(lbl)
+			effect_root.add_child(sn)
+			storage_nodes[sid] = sn
+		sn.position = s.position
+		var u := StorageSystem.used(ctx, s)
+		(sn.get_node("Text") as Label3D).text = "%s #%d · %.1f/%.0f kg" % [s.label, s.id, float(u.get("kg", 0.0)), s.capacity_kg]
+	for sid in storage_nodes.keys():
+		if not ctx.storages.has(sid):
+			storage_nodes[sid].queue_free()
+			storage_nodes.erase(sid)
+	for bid in ctx.structures:
+		var st: Structure = ctx.structures[bid]
+		var bn: Node3D = site_nodes.get(bid, null)
+		if bn == null or int(bn.get_meta("slots", -1)) != st.slots.size():
+			if bn != null:
+				bn.queue_free()
+			bn = Node3D.new()
+			bn.name = "Baustelle_%d" % bid
+			bn.set_meta("slots", st.slots.size())
+			for i in st.slots.size():
+				var mk := MeshInstance3D.new()
+				var cm := CylinderMesh.new()
+				cm.top_radius = 0.07
+				cm.bottom_radius = 0.07
+				cm.height = 0.008
+				mk.mesh = cm
+				mk.material_override = StandardMaterial3D.new()
+				mk.name = "Platz_%d" % i
+				bn.add_child(mk)
+			var lb := Label3D.new()
+			lb.billboard = BaseMaterial3D.BILLBOARD_ENABLED
+			lb.font_size = 32
+			lb.pixel_size = 0.004
+			lb.name = "Text"
+			bn.add_child(lb)
+			effect_root.add_child(bn)
+			site_nodes[bid] = bn
+		for i in st.slots.size():
+			var mk2: MeshInstance3D = bn.get_node("Platz_%d" % i)
+			mk2.position = StructureSystem.slot_world(st, i) + Vector3(0, 0.004, 0)
+			var full := int(st.slots[i].get("part_id", 0)) != 0
+			(mk2.material_override as StandardMaterial3D).albedo_color = Color(0.35, 0.75, 0.35) if full else Color(0.95, 0.85, 0.3)
+		var lb2: Label3D = bn.get_node("Text")
+		lb2.position = st.position + Vector3(0, 0.4, 0)
+		lb2.text = "%s #%d · %d/%d · %s" % [st.label if st.label != "" else st.blueprint, st.id, st.filled(), st.slots.size(), st.status]
+	for bid in site_nodes.keys():
+		if not ctx.structures.has(bid):
+			site_nodes[bid].queue_free()
+			site_nodes.erase(bid)
 
 
 func _update_light() -> void:
@@ -606,7 +807,8 @@ func toggle_conversations() -> void:
 		_exp.refresh(life, selected_id)
 	if _know.visible:
 		_know.refresh(life, selected_id)
-	_ws_panel.visible = not life.workshop.is_empty()
+	_ws_panel.visible = not life.workshop.is_empty() and not life.workshop.has("work_scene")
+	_work_panel.visible = life.workshop.has("work_scene")
 
 
 func _dev(op: String, material_id: String = "wood") -> void:
@@ -771,6 +973,7 @@ func _build_ui() -> void:
 	_know.position = Vector2(650, 510)   # unten Mitte: neben der Ereignisliste (bis x ≈ 640), unter der Versuchsansicht
 	_know.visible = false
 	_build_workshop_panel(root)
+	_build_work_panel(root)
 	# Vergleichsansicht
 	_compare = PanelContainer.new()
 	var cs := StyleBoxFlat.new()
@@ -832,7 +1035,8 @@ func _refresh_ui() -> void:
 		_exp.refresh(life, selected_id)
 	if _know.visible:
 		_know.refresh(life, selected_id)
-	_ws_panel.visible = not life.workshop.is_empty()
+	_ws_panel.visible = not life.workshop.is_empty() and not life.workshop.has("work_scene")
+	_work_panel.visible = life.workshop.has("work_scene")
 	if _god.visible:
 		_god.refresh_preview()
 		_god_ev_accum += 1
@@ -877,6 +1081,45 @@ func _build_workshop_panel(root: Control) -> void:
 			on = cr.behavior_enabled
 		_msg.text = "Eigenständiges Verhalten der Testwesen %s (Versuche nur aus eigenem Antrieb)." % ("AN" if on else "AUS – nur gezielte Versuche")))
 	_ws_panel.visible = false
+
+
+## Testszene Werkzeugkette (Prompt 6B): Ketten und Fehlerfälle gezielt auslösen. Alles läuft über
+## dieselben Systeme wie im normalen Spiel; die Knöpfe richten nur die Ausgangslage ein.
+func _build_work_panel(root: Control) -> void:
+	_work_panel = PanelContainer.new()
+	var sb := StyleBoxFlat.new()
+	sb.bg_color = Color(0.06, 0.1, 0.12, 0.93)
+	sb.set_content_margin_all(6)
+	_work_panel.add_theme_stylebox_override("panel", sb)
+	root.add_child(_work_panel)
+	_work_panel.position = Vector2(10, 416)
+	_work_panel.custom_minimum_size = Vector2(330, 0)
+	var v := VBoxContainer.new()
+	v.add_theme_constant_override("separation", 1)
+	_work_panel.add_child(v)
+	Nav.label(v, "WERKZEUGKETTE – gezielt ausgelöst (Testwesen)", 11, true)
+	for goal in ["lagern", "bauen", "schmelzen"]:
+		var g: String = goal
+		_small(Nav.button(v, WorkChainScene.GOALS[g], func():
+			var r := WorkChainScene.trigger(life, g)
+			_msg.text = str(r.get("message", ""))
+			_refresh_ui()))
+	Nav.label(v, "Fehlerfälle", 11, true)
+	for case in ["material", "weg", "arm", "schwer", "unterbrechen", "ungeeignet", "ohne_ofen"]:
+		var c: String = case
+		_small(Nav.button(v, WorkChainScene.CASES[c], func():
+			var r2 := WorkChainScene.trigger_case(life, c)
+			_msg.text = str(r2.get("message", ""))
+			_refresh_ui()))
+	_small(Nav.button(v, "Speichern (F5) – später Laden (F9) setzt die Kette fort", func(): do_save()))
+	_small(Nav.button(v, "Beobachtungslauf: eigenes Verhalten an/aus (autonom)", func():
+		var on := false
+		for id in life.ctx.creatures:
+			var cr: Creature = life.ctx.creatures[id]
+			cr.behavior_enabled = not cr.behavior_enabled
+			on = cr.behavior_enabled
+		_msg.text = "Eigenständiges Verhalten %s – Ketten nur noch aus eigenem Bedarf (Anzeige „autonom“)." % ("AN" if on else "AUS")))
+	_work_panel.visible = false
 
 
 func _small(b: Button) -> void:

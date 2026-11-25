@@ -39,19 +39,21 @@ static func target_height(ctx: LifeContext, cr: Creature, id: int, fallback: Vec
 	return fallback
 
 
-## Standabstand für eine Kontaktpose: (reach_z, sx, pose). kind "strike" oder "place".
-static func contact_geometry(ctx: LifeContext, cr: Creature, target_top: Vector3, kind: String, tool_h: float) -> Dictionary:
+## Standabstand für eine Kontaktpose: (reach_z, sx, pose). kind "strike", "place" oder "pour".
+## two_handed: Gegenstand zwischen beiden Händen → Kontaktpunkt mittig (sx = 0).
+static func contact_geometry(ctx: LifeContext, cr: Creature, target_top: Vector3, kind: String, tool_h: float, two_handed: bool = false) -> Dictionary:
 	var side := cr.hold_side if cr.hold_side != "" else str(cr.caps.get("grasp_side", "r"))
 	var b := WorkPose.body(cr.plan, side)
 	var pose := WorkPose.contact(b, tool_h, target_top.y - cr.position.y, kind)
-	return {"body": b, "pose": pose, "reach_z": float(pose.get("reach_z", 0.3)), "sx": float(b["sx"]), "side": side}
+	var two := two_handed or cr.hold_mode == "two"
+	return {"body": b, "pose": pose, "reach_z": float(pose.get("reach_z", 0.3)), "sx": 0.0 if two else float(b["sx"]), "side": side, "two": two}
 
 
 ## Anlaufphase: geht in gerader Linie (mit Voxelprüfung) zum Standpunkt vor dem Ziel und dreht sich
 ## zum Ziel. Rückgabe {done, blocked, reason}. Höchstens approach_max_m Weg je Handlung.
-static func approach(a: GameAction, ctx: LifeContext, dt: float, target_top: Vector3, kind: String, tool_h: float) -> Dictionary:
+static func approach(a: GameAction, ctx: LifeContext, dt: float, target_top: Vector3, kind: String, tool_h: float, two_handed: bool = false) -> Dictionary:
 	var cr := ctx.creature(a.actor_id)
-	var g := contact_geometry(ctx, cr, target_top, kind, tool_h)
+	var g := contact_geometry(ctx, cr, target_top, kind, tool_h, two_handed)
 	if not a.state.has("stand"):
 		var sp := WorkPose.stand_point(target_top, cr.position, float(g["reach_z"]), float(g["sx"]))
 		a.state["stand"] = [sp["pos"].x, sp["pos"].z, sp["heading"]]

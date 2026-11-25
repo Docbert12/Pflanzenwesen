@@ -124,8 +124,37 @@ static func describe(life: LifeSimulation, id: int) -> String:
 	L.append("Position (%.1f, %.1f, %.1f)" % [cr.position.x, cr.position.y, cr.position.z])
 	L.append_array(mind_lines(ctx, cr, 5))
 	L.append_array(ai_lines(ctx, cr))
+	L.append_array(work_lines(ctx, cr))
 	L.append_array(tech_lines(ctx, cr))
 	return "\n".join(L)
+
+
+## Arbeitskette (Prompt 6B): Ziel, laufende Handlung, Werkzeug-ID, Zielobjekt, getragene Masse,
+## Fortschritt, Abbruch-/Pausegrund – Spieleranzeige aus dem tatsächlichen Zustand der Kette.
+static func work_lines(ctx: LifeContext, cr: Creature) -> Array:
+	var L: Array = []
+	if ctx.work == null:
+		return L
+	var v := ctx.work.status_view(cr, ctx)
+	if v.is_empty():
+		return L
+	L.append("")
+	var col := "#8f8" if str(v["status"]) == "abgeschlossen" else ("#fc6" if str(v["status"]) in ["läuft", "pausiert"] else "#f88")
+	L.append("[b]ARBEIT[/b] Kette #%d – [b]Ziel:[/b] %s · [color=%s]%s[/color] · %s%s" % [int(v["chain"]), str(v["ziel"]), col, str(v["status"]),
+		"[color=#9cf]autonom (eigener Bedarf)[/color]" if v["autonom"] else "gezielt ausgelöst", (" – " + str(v["herkunft"])) if not v["autonom"] else ""])
+	L.append("[b]Handlung:[/b] %s · [b]Schritt:[/b] %s · Pose %s · Kontakte %d" % [str(v["handlung"]), str(v["schritt"]), str(v["pose"]) if str(v["pose"]) != "" else "–", int(v["kontakte"])])
+	L.append("[b]Werkzeug:[/b] %s · [b]Zielobjekt:[/b] %s · Bestimmung %s" % ["#%d" % int(v["werkzeug"]) if int(v["werkzeug"]) != 0 else "–",
+		_obj_text(ctx, int(v["zielobjekt"])) if int(v["zielobjekt"]) != 0 else "–", ("#%d" % int(v["bestimmung"])) if int(v["bestimmung"]) != 0 else "–"])
+	L.append("[b]Getragen:[/b] %s · [b]transportiert gesamt:[/b] %.2f kg (%d Stücke abgeliefert) · [b]Fortschritt:[/b] %.0f %%" % [
+		("#%d, %.2f kg" % [int(v["getragen_id"]), float(v["getragen_kg"])]) if float(v["getragen_kg"]) > 0.0 else "nichts", float(v["transportiert_kg"]), int(v["abgeliefert"]), float(v["fortschritt"]) * 100.0])
+	if str(v["abbruchgrund"]) != "":
+		L.append("[color=#f88][b]Abbruchgrund:[/b] %s[/color]" % str(v["abbruchgrund"]))
+	if str(v["pausegrund"]) != "":
+		L.append("[color=#fc6][b]Pause:[/b] %s[/color]" % str(v["pausegrund"]))
+	var lg: Array = v.get("log", [])
+	for e in lg.slice(maxi(0, lg.size() - 3)):
+		L.append("  · t=%.0f s %s" % [float(e.get("t", 0.0)), str(e.get("text", e.get("what", "")))])
+	return L
 
 
 ## Werkzeug, laufender Versuch, praktisches Wissen (Prompt 6) – Details in E (Versuche) und W (Wissen).

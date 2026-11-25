@@ -87,6 +87,19 @@ func _process(delta: float) -> void:
 		animator.update(delta)
 
 
+## Lage eines Gelenks relativ zu dieser Ansicht (Produkt der lokalen Transformationen bis zur Ansicht).
+## Funktioniert auch ohne Szenenbaum (Tests). Unbekanntes Gelenk → Identität.
+func chain_transform(pid: String) -> Transform3D:
+	if not pivots.has(pid):
+		return Transform3D.IDENTITY
+	var n: Node3D = pivots[pid]
+	var t := Transform3D.IDENTITY
+	while n != null and n != self:
+		t = n.transform * t
+		n = n.get_parent() as Node3D
+	return t
+
+
 func standing_height() -> float:
 	var top := 0.0
 	if pivots.has("head"):

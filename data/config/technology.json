@@ -4,6 +4,7 @@
   "hands": {
     "_note": "Greifen und Halten von Gegenständen (nicht Nahrung).",
     "grasp_max_width_m": 0.1,
+    "carry_two_max_width_m": 0.4,
     "carry_kg_per_body_kg": 0.15,
     "swing_kg_per_body_kg": 0.07,
     "reach_m": 1.1,
@@ -152,7 +153,7 @@
     "approach_speed_factor": 0.6,
     "approach_max_m": 1.4,
     "approach_budget_s": 2.5,
-    "stand_tolerance_m": 0.04,
+    "stand_tolerance_m": 0.02,
     "prepare_s": 0.25,
     "recover_s": 0.3,
     "put_down_s": 0.7,
@@ -205,11 +206,13 @@
     "need_store": 0.3,
     "need_cast": 0.35,
     "need_start_site": 0.2,
+    "need_start_site_known": 0.6,
+    "resume_after_s": 2.0,
     "start_site_min_persistence": 0.55,
     "start_site_min_stones": 1,
     "start_site_cooldown_s": 600.0,
     "tool_min_level": "gehört",
     "move_retries": 2,
-    "_need_note": "Bedarf je Anlass: eigene Baustelle mit freien Plätzen (need_site), selbst erzeugte lose Stücke + bekanntes Lager mit Platz (need_store), bekanntes Gießverfahren + Kupfer + Tiegel + Ofen + Form (need_cast), eigenes Einzelbauwerk beginnen (need_start_site, nur beharrliche Wesen, selten)."
+    "_need_note": "Bedarf je Anlass: eigene Baustelle mit freien Plätzen (need_site), selbst erzeugte lose Stücke + bekanntes Lager mit Platz (need_store), bekanntes Gießverfahren + Kupfer + Tiegel + Ofen + Form (need_cast), eigenes Einzelbauwerk beginnen (need_start_site, nur beharrliche Wesen, selten; need_start_site_known, wenn das Wesen schon selbst erfolgreich gebaut hat – Kompetenzerleben). resume_after_s: gezielt ausgelöste Ketten setzen nach einer Unterbrechung nach dieser Zeit fort."
   }
 }

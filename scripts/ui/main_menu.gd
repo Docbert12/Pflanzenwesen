@@ -37,6 +37,8 @@ func _ready() -> void:
 	_entry(box, "Physiklabor", "Fall, Wärme, Schmelzen, Bruch und Massenerhaltung", Nav.LAB)
 	var ws := _entry(box, "Testwerkstatt (Testbereich)", "Werkzeuge, Verbinden, Kaltverformung, Gießen mit Testheizung, Vorführen – 2 Testwesen, gezielte Versuche", Nav.LIVING)
 	ws.pressed.connect(func(): LivingWorld.pending = {"mode": "workshop"}, CONNECT_ONE_SHOT)
+	var wk := _entry(box, "Testszene Werkzeugkette (Testbereich)", "Hammer bauen → Stein zerschlagen → Stücke tragen → lagern, verbauen oder im Testofen schmelzen; Fehlerfälle", Nav.LIVING)
+	wk.pressed.connect(func(): LivingWorld.pending = {"mode": "werkzeugkette"}, CONNECT_ONE_SHOT)
 	_entry(box, "Geistlabor (Testbereich)", "Kontrollierte Versuche zu Erfahrung, Hilfe, Belohnung, Widerspruch, Speichern", Nav.MIND_LAB)
 	_entry(box, "Weltvorschau", "Voxelwelt bearbeiten, Wasser, abbrechende Teile, Lebensbaum, Pflanzen und Pilze", Nav.WORLD)
 	_entry(box, "Kreaturenvorschau", "Pflanzenwesen erzeugen, verändern, animieren, speichern; 10er- und 50er-Ansicht", Nav.CREATURES)

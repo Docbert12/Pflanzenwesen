@@ -101,18 +101,27 @@ static func check_carry(ctx: LifeContext, cr: Creature, id: int) -> Dictionary:
 	var g := check_grasp(ctx, cr, id)
 	if g.ok:
 		return {"ok": true, "mode": "one", "code": "ok", "message": g.message}
-	if g.code != "too_heavy":
-		return {"ok": false, "mode": "", "code": g.code, "message": g.message}
 	var top := ConstructionSystem.top_id(ctx, id)
+	var grip := ConstructionSystem.grip_piece(ctx, top) if top != 0 else null
+	var too_wide := g.code == "no_grip" and grip != null and grip.liquid_fraction() <= 0.0
+	if g.code != "too_heavy" and not too_wide:
+		return {"ok": false, "mode": "", "code": g.code, "message": g.message}
+	# Zwei Hände: schwerer bzw. breiter Gegenstand zwischen beiden Händen (Breite bis carry_two_max_width_m)
 	var mass := ConstructionSystem.mass_of(ctx, top)
 	var lim2 := carry_limit_two_kg(cr, ctx)
+	var why_one := "Zu schwer für eine Hand (%.2f kg > %.2f kg)" % [mass, carry_limit_kg(cr, ctx)] if g.code == "too_heavy" else "Für eine Hand zu breit (%.2f m)" % grip.grip_width_m()
 	if grasp_hands(cr) < 2:
-		return {"ok": false, "mode": "", "code": "too_heavy", "message": "Zu schwer für eine Hand (%.2f kg > %.2f kg); eine zweite greiffähige Hand fehlt." % [mass, carry_limit_kg(cr, ctx)]}
+		return {"ok": false, "mode": "", "code": g.code, "message": "%s; eine zweite greiffähige Hand fehlt." % why_one}
 	if cr.carried_item_id != 0 or cr.held_object_id != 0:
-		return {"ok": false, "mode": "", "code": "hands_full", "message": "Für %.2f kg werden beide Hände gebraucht – erst ablegen." % mass}
+		return {"ok": false, "mode": "", "code": "hands_full", "message": "Für #%d werden beide Hände gebraucht – erst ablegen." % top}
+	var w2 := float(cfg(ctx, "hands").get("carry_two_max_width_m", 0.4))
+	if grip != null and grip.grip_width_m() > w2:
+		return {"ok": false, "mode": "", "code": "no_grip", "message": "Auch mit beiden Händen zu breit (%.2f m > %.2f m)." % [grip.grip_width_m(), w2]}
 	if mass > lim2:
 		return {"ok": false, "mode": "", "code": "too_heavy", "message": "Auch mit beiden Händen zu schwer (%.2f kg > %.2f kg)." % [mass, lim2]}
-	return {"ok": true, "mode": "two", "code": "ok", "message": "mit beiden Händen"}
+	if grip != null and grip.temperature_k() > safe_k(ctx):
+		return {"ok": false, "mode": "", "code": "too_hot", "message": "Zu heiß zum Anfassen (%s)." % temperature_category(ctx, grip.temperature_k())}
+	return {"ok": true, "mode": "two", "code": "ok", "message": "mit beiden Händen (%s)" % why_one.to_lower()}
 
 
 # ── Temperatur (wahrnehmbar vs. exakt) ───────────

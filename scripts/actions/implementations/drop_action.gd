@@ -53,7 +53,15 @@ func step(a: GameAction, ctx: LifeContext, _dt: float) -> ActionResult:
 		var ph := WorkMotion.phase_at(a.elapsed_s, 0.0, float(mc.get("prepare_s", 0.25)), work_s, float(mc.get("recover_s", 0.3)))
 		var pt: Vector3 = put_down_point(ctx, cr, a.target_id) if not a.state.has("pt") else Vector3(a.state["pt"][0], a.state["pt"][1], a.state["pt"][2])
 		a.state["pt"] = [pt.x, pt.y, pt.z]
-		WorkMotion.set_anim(a, "put_down" if cr.hold_mode != "two" or a.state.get("released", false) else "put_down_two", str(ph["phase"]), float(ph["u"]), pt, {"object": a.target_id})
+		if not a.state.has("half_h"):
+			var hh := 0.0
+			for p in ConstructionSystem.parts_of(ctx, a.target_id):
+				hh = maxf(hh, (p as MaterialPiece).dims_m.y)
+			a.state["half_h"] = hh * 0.5
+			a.state["two"] = cr.hold_mode == "two"
+		# Animationsziel = Griffpunkt über dem Ablagepunkt (Gegenstandsmitte liegt im Griff)
+		var grip_t := pt + Vector3(0.0, float(a.state["half_h"]) + 0.01, 0.0)
+		WorkMotion.set_anim(a, "put_down_two" if bool(a.state["two"]) else "put_down", str(ph["phase"]), float(ph["u"]), grip_t, {"object": a.target_id})
 		a.progress = clampf(a.elapsed_s / (work_s + float(mc.get("prepare_s", 0.25)) + float(mc.get("recover_s", 0.3))), 0.0, 1.0)
 		if str(ph["phase"]) == "recover" and not a.state.get("released", false):
 			var oid := ToolUseSystem.release_at(ctx, cr, pt, "abgelegt")

@@ -75,6 +75,12 @@ func step(a: GameAction, ctx: LifeContext, dt: float) -> ActionResult:
 	a.progress = clampf(a.elapsed_s / d, 0.0, 1.0)
 	if a.elapsed_s < d:
 		return ActionResult.success()
+	# Gleichartige vollständig flüssige Stücke im Tiegel sind eine gemeinsame Schmelze (Masse/Energie erhalten)
+	for p in ConstructionSystem.parts_of(ctx, a.target_id):
+		if (p as MaterialPiece).shape == "cup":
+			var mg := MaterialProcessSystem.merge_melts(ctx, p.id)
+			if not mg["merged"].is_empty():
+				a.state["merged"] = mg["merged"]
 	var melt := _melt(ctx, a.target_id)
 	var mold: MaterialPiece = ctx.material_pieces[int(a.params["mold"])]
 	var hid := ToolUseSystem.heater_of(ctx, a.target_id)
@@ -91,7 +97,7 @@ func step(a: GameAction, ctx: LifeContext, dt: float) -> ActionResult:
 	var cast: MaterialPiece = r["cast"]
 	var key := ProceduralKnowledge.cast_key(cast.material_id)
 	a.consumed = {"cast": cast.id, "poured_kg": r["poured_kg"], "rest_kg": r["rest_kg"], "energy_before_j": r["energy_before_j"],
-		"energy_after_j": r["energy_after_j"], "key": key}
+		"energy_after_j": r["energy_after_j"], "key": key, "merged": a.state.get("merged", [])}
 	ctx.publish({"type": "metal_poured", "actor": cr.id, "target": 0, "position": mold.position,
 		"consequences": {"cast": cast.id, "mold": mold.id, "verfahren": key, "glühend": true},
 		"visibility_m": float(ctx.tc("teaching").get("demo_visibility_m", 6.0))})
