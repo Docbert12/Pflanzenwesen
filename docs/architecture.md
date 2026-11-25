@@ -1,5 +1,7 @@
 # Architektur (Stand 0.6.0-prototype)
 
+> **Zielarchitektur ab Alpha 1.1** (Modulvertrag, Weltkarte → Region → Chunk, Streaming, Simulationszonen, Speicherformat 6): `docs/ROADMAP_ALPHA.md` Abschnitt 8. Dieses Dokument beschreibt den Ist-Stand und wird mit jeder Alpha-Version nachgezogen.
+
 ## Grundsätze
 1. **Eine Quelle der Wahrheit je Größe.** Physikalische Materialeigenschaften kommen ausschließlich aus `data/materials/*.json` (MaterialRegistry). Die Excel-Materialien sind Designdaten und haben keine eigene Physik.
 2. **Simulationsdaten, Darstellung, Kollision und Animation sind getrennt.**

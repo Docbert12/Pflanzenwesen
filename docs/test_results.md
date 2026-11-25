@@ -40,6 +40,16 @@ Alle Angaben stammen aus tatsächlich ausgeführten Läufen. Prompt 6B: 25.11.20
 - 3 bestehende Prüfungen angepasst und im CHANGELOG begründet: Werkstatt-Griffpunkt (strenger), Migrationsstufen (1→2→3→4→5), Fingerabdruck v0.6.0 (jetzt am echten v0.6.0-Spielstand geprüft).
 - Ein erster vollständiger Lauf auf 4.7.2 ergab 488/490: genau diese zwei veralteten Migrationsprüfungen schlugen fehl (Stufen 1→2→3→4 bzw. Fingerabdruck v0.6.0 gegen die neuen Definitionen). Sie wurden angepasst. Nach den Bildschirmfotos wurden noch die Knopfbeschriftungen und die Größe der schwebenden Beschriftungen geändert; die Läufe oben sind die vollständigen Läufe auf dem **ausgelieferten** Stand.
 
+## Roadmap und Alpha-Plan der Leitlinie (25.11.2026, keine neue Spielversion)
+| Lauf | Ergebnis |
+|---|---|
+| Python-Tests (`python3 -m unittest discover -s tools/tests`), davon 16 in `tools/tests/test_leitlinie.py` | **39/39** |
+| Nachrechnen der Leitlinien-Excel mit LibreOffice (inkl. Blätter „Alpha-Plan“, „Alpha-Zeitalter“) | 7.779 Formeln, **0 Fehler** |
+| Formelwerte gegen die Python-Zählung (zusätzlich: Alpha-Spalte, Alpha-Rang, Alpha-Plan je Version, Matrix Zeitalter × Version) | 0 Abweichungen |
+| Sichtprüfung der neuen Blätter als PDF | lesbar, Farbskala der Matrix korrekt |
+
+Godot-Tests wurden nicht erneut ausgeführt: Am Spiel hat sich nichts geändert.
+
 ## Leitlinien-Excel „Steinzeit → Zukunft“ (25.11.2026, keine neue Spielversion)
 | Lauf | Ergebnis |
 |---|---|

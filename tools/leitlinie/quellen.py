@@ -154,6 +154,12 @@ def leite_ab(e: dict) -> None:
         if not (st == "A" or m in ersetzt_m):
             ok = False
     e["testbereich"] = ok and e["status"] != "A"
+    # Geplante Alpha-Version (Planung, keine Freischaltung): spätester Plan-Stand aller Verfahren und Materialien
+    plan = [V.alpha_von("v", v) for v in e["verfahren"]] + [V.alpha_von("m", m) for m in e["materialien"]]
+    e["alpha"] = max(plan, key=V.ALPHA_RANG.get) if plan else "0.6.1"
+    e["alpha_rang"] = V.ALPHA_RANG[e["alpha"]]
+    e["alpha_offen"] = sorted({V.VERFAHREN[v][0] for v in e["verfahren"] if V.alpha_von("v", v) in ("offen", "nie")} |
+                              {V.MATERIALIEN[m][0] for m in e["materialien"] if V.alpha_von("m", m) in ("offen", "nie")})
     # Energie/Temperatur: gleiche Angaben zusammenfassen („Muskelkraft“ statt „Schlagen: Muskelkraft; Binden: …“)
     je_energie: dict[str, list[str]] = {}
     for v in e["verfahren"]:

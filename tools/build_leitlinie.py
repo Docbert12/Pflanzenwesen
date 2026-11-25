@@ -45,16 +45,19 @@ SPALTEN = [
     ("L", "Vorläufer-IDs", 15, True),
     ("M", "Spielstand-Code", 10, False),
     ("N", "Im normalen Spiel möglich ab", 22, True),
-    ("O", "Heute im Testbereich vorführbar", 11, False),
-    ("P", "Was fehlt (Lücken)", 38, True),
-    ("Q", "Stand", 16, True),
-    ("R", "Im alten Excel", 24, True),
-    ("S", "Hinweis", 34, True),
-    ("T", "Verfahren-Codes (Hilfsspalte)", 22, False),
-    ("U", "Material-Codes (Hilfsspalte)", 22, False),
-    ("V", "Lücken-Gruppen (Hilfsspalte)", 28, False),
-    ("W", "mit gewählten Zwischenschritten möglich (Hilfsspalte)", 16, False),
+    ("O", "geplant möglich ab (Alpha-Plan)", 16, True),
+    ("P", "Heute im Testbereich vorführbar", 11, False),
+    ("Q", "Was fehlt (Lücken)", 38, True),
+    ("R", "Stand", 16, True),
+    ("S", "Im alten Excel", 24, True),
+    ("T", "Hinweis", 34, True),
+    ("U", "Verfahren-Codes (Hilfsspalte)", 22, False),
+    ("V", "Material-Codes (Hilfsspalte)", 22, False),
+    ("W", "Lücken-Gruppen (Hilfsspalte)", 28, False),
+    ("X", "mit gewählten Zwischenschritten möglich (Hilfsspalte)", 16, False),
+    ("Y", "Alpha-Rang (Hilfsspalte)", 10, False),
 ]
+HILFSSPALTEN = ("U", "V", "W", "X", "Y")
 # Vorausgewählte Zwischenschritte (Vorschlag aus docs/plan_prompt_06b.md Abschnitt 8) – im Blatt änderbar
 VORGESCHLAGEN = ["Feuer, Ton und eigener Ofen", "Erz und Legierungen"]
 E = "'Erfindungen'!"
@@ -131,7 +134,7 @@ def zeilen_noetig(text, breite, fett=False):
 def schreibe_excel(erfindungen, alt, pfad):
     from openpyxl import Workbook
     from openpyxl.chart import BarChart, Reference
-    from openpyxl.formatting.rule import FormulaRule
+    from openpyxl.formatting.rule import ColorScaleRule, FormulaRule
     from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
     from openpyxl.utils import get_column_letter
     from openpyxl.worksheet.datavalidation import DataValidation
@@ -220,7 +223,12 @@ def schreibe_excel(erfindungen, alt, pfad):
         ("Blätter", None),
         ("Zeitalter", "24 Zeitalter mit Zeitraum, Kennzeichen, Energiequellen, Temperatur und Zählungen (Formeln), "
                       "dazu ein Diagramm."),
-        ("Erfindungen", "Alle Erfindungen, eine je Zeile, mit Filtern. Graue Hilfsspalten T–W dienen den Zählformeln."),
+        ("Alpha-Plan", "Die geplanten Spielversionen Alpha 1.1 bis 1.21: was jede Version an Physik und Handlungen "
+                       "bringt und wie viele Erfindungen danach möglich wären (Planung, keine Freischaltung; "
+                       "Einzelheiten in docs/ROADMAP_ALPHA.md)."),
+        ("Alpha-Zeitalter", "Je Zeitalter der Anteil der Erfindungen, die bis zu einer Alpha-Version möglich wären "
+                            "(farbig: weiß = nichts, dunkelgrün = alles)."),
+        ("Erfindungen", "Alle Erfindungen, eine je Zeile, mit Filtern. Graue Hilfsspalten U–Y dienen den Zählformeln. Spalte O zeigt den Alpha-Plan."),
         ("Zwischenschritte", "Fehlende Grundlagen nach möglichem Zwischenschritt gebündelt: wie viele Erfindungen jeweils "
                              "betroffen sind und wie viele allein an diesem Schritt hängen. Mit Auswahl zum "
                              "Ausprobieren (Spalte B)."),
@@ -269,12 +277,16 @@ def schreibe_excel(erfindungen, alt, pfad):
         ("spaeter", "Später möglich (Weltarchitektur bis Prompt 12)", "=B{gesamt}-B{a}-B{l}", "#,##0"),
         ("l", "Lücke – in keinem Prompt vorgesehen", '=COUNTIF(%s$M:$M,"L")' % E, "#,##0"),
         ("anteil", "Anteil bis Prompt 12 möglich", "=IF(B{gesamt}=0,0,(B{a}+B{spaeter})/B{gesamt})", "0.0%"),
-        ("auswahl", "Mit den gewählten Zwischenschritten zusätzlich möglich", "=SUM(%s$W:$W)" % E, "#,##0"),
+        ("auswahl", "Mit den gewählten Zwischenschritten zusätzlich möglich", "=SUM(%s$X:$X)" % E, "#,##0"),
         ("anteil_auswahl", "Anteil bis Prompt 12 + gewählte Zwischenschritte",
          "=IF(B{gesamt}=0,0,(B{a}+B{spaeter}+B{auswahl})/B{gesamt})", "0.0%"),
-        ("test", "Heute im Testbereich vorführbar", '=COUNTIF(%s$O:$O,"ja")' % E, "#,##0"),
-        ("spek", "Spekulativ", '=COUNTIF(%s$Q:$Q,"spekulativ")' % E, "#,##0"),
-        ("entw", "In Entwicklung", '=COUNTIF(%s$Q:$Q,"in Entwicklung")' % E, "#,##0"),
+        ("bis116", "Nach Alpha-Plan bis Alpha 1.16 möglich",
+         '=COUNTIF(%s$Y:$Y,"<="&%d)' % (E, V.ALPHA_RANG["1.16"]), "#,##0"),
+        ("bis121", "Nach Alpha-Plan bis Alpha 1.21 möglich",
+         '=COUNTIF(%s$Y:$Y,"<="&%d)' % (E, V.ALPHA_RANG["1.21"]), "#,##0"),
+        ("test", "Heute im Testbereich vorführbar", '=COUNTIF(%s$P:$P,"ja")' % E, "#,##0"),
+        ("spek", "Spekulativ", '=COUNTIF(%s$R:$R,"spekulativ")' % E, "#,##0"),
+        ("entw", "In Entwicklung", '=COUNTIF(%s$R:$R,"in Entwicklung")' % E, "#,##0"),
     ]
     for j, (schluessel, _k, _f, _fmt) in enumerate(kennzahlen):
         kz_zeile[schluessel] = r + j
@@ -303,10 +315,10 @@ def schreibe_excel(erfindungen, alt, pfad):
         zelle(wz, i, 10, '=COUNTIFS(%s$B:$B,$A%d,%s$M:$M,"L")' % (E, i, E), fmt="#,##0")
         zelle(wz, i, 9, "=G%d-H%d-J%d" % (i, i, i), fmt="#,##0")
         zelle(wz, i, 11, "=IF(G%d=0,0,(H%d+I%d)/G%d)" % (i, i, i, i), fmt="0.0%")
-        zelle(wz, i, 12, '=COUNTIFS(%s$B:$B,$A%d,%s$O:$O,"ja")' % (E, i, E), fmt="#,##0")
-        zelle(wz, i, 13, '=COUNTIFS(%s$B:$B,$A%d,%s$Q:$Q,"spekulativ")' % (E, i, E), fmt="#,##0")
-        zelle(wz, i, 14, '=COUNTIFS(%s$B:$B,$A%d,%s$Q:$Q,"in Entwicklung")' % (E, i, E), fmt="#,##0")
-        zelle(wz, i, 15, "=SUMIFS(%s$W:$W,%s$B:$B,$A%d)" % (E, E, i), fmt="#,##0")
+        zelle(wz, i, 12, '=COUNTIFS(%s$B:$B,$A%d,%s$P:$P,"ja")' % (E, i, E), fmt="#,##0")
+        zelle(wz, i, 13, '=COUNTIFS(%s$B:$B,$A%d,%s$R:$R,"spekulativ")' % (E, i, E), fmt="#,##0")
+        zelle(wz, i, 14, '=COUNTIFS(%s$B:$B,$A%d,%s$R:$R,"in Entwicklung")' % (E, i, E), fmt="#,##0")
+        zelle(wz, i, 15, "=SUMIFS(%s$X:$X,%s$B:$B,$A%d)" % (E, E, i), fmt="#,##0")
         zelle(wz, i, 16, "=IF(G%d=0,0,(H%d+I%d+O%d)/G%d)" % (i, i, i, i, i), fmt="0.0%")
         wz.row_dimensions[i].height = 40
     s = len(V.ZEITALTER) + 2
@@ -350,30 +362,90 @@ def schreibe_excel(erfindungen, alt, pfad):
     ch.y_axis.delete = False
     wz.add_chart(ch, "B%d" % (s + 3))
 
+    # ------------------------------------------------------------ Alpha-Plan
+    wap = wb.create_sheet("Alpha-Plan")
+    kopf = ["Version", "Inhalt der Version", "ab dann verfügbare Grundlagen (Verfahren, Materialien, Weltmodell)",
+            "ab dieser Version möglich", "kumuliert möglich", "Anteil kumuliert", "Beispiele", "Rang"]
+    kopfzeile(wap, kopf, [16, 46, 62, 12, 11, 10, 62, 6])
+    r_121 = V.ALPHA_RANG["1.21"]
+    for i, (vid, titel) in enumerate(V.ALPHA_VERSIONEN, start=2):
+        grundlagen = [V.VERFAHREN[c][0] for c in V.VERFAHREN if V.alpha_von("v", c) == vid] + \
+                     [V.MATERIALIEN[c][0] for c in V.MATERIALIEN if V.alpha_von("m", c) == vid]
+        beispiele = [e["name"] for e in erfindungen if e["alpha"] == vid][:6]
+        zelle(wap, i, 1, V.alpha_text(vid), arial_b, wrap=True)
+        zelle(wap, i, 2, titel, wrap=True)
+        zelle(wap, i, 3, ", ".join(grundlagen) if grundlagen else "— (Grundlage für spätere Versionen)", wrap=True)
+        zelle(wap, i, 4, "=COUNTIF(%s$Y:$Y,$H%d)" % (E, i), fmt="#,##0")
+        if V.ALPHA_RANG[vid] <= r_121:
+            zelle(wap, i, 5, "=SUM($D$2:D%d)" % i, fmt="#,##0")
+            zelle(wap, i, 6, "=IF(COUNTA(%s$A:$A)-1=0,0,E%d/(COUNTA(%s$A:$A)-1))" % (E, i, E), fmt="0.0%")
+        zelle(wap, i, 7, "; ".join(beispiele) or "—", wrap=True)
+        zelle(wap, i, 8, V.ALPHA_RANG[vid], hilfs_font, fmt="0")
+        hoehe = max(zeilen_noetig(", ".join(grundlagen), 62), zeilen_noetig("; ".join(beispiele), 62), 2)
+        wap.row_dimensions[i].height = min(120, 13 * hoehe + 4)
+        if vid == "0.6.1":
+            wap.cell(row=i, column=1).fill = status_fill["A"]
+        elif V.ALPHA_RANG[vid] <= r_121:
+            wap.cell(row=i, column=1).fill = PatternFill("solid", fgColor="DDEBF7")
+    s_ap = len(V.ALPHA_VERSIONEN) + 2
+    zelle(wap, s_ap + 1, 1, "Planung, keine Freischaltung: Ab der genannten Version bietet das normale Spiel die Physik und "
+                            "Handlungen – entdecken müssen die Wesen die Erfindung weiterhin selbst. Die Reihenfolge kann "
+                            "sich ändern; maßgeblich ist docs/ROADMAP_ALPHA.md. Eine Erfindung ist ab der spätesten Version "
+                            "ihrer Verfahren und Materialien eingeplant.", arial_i)
+    wap.freeze_panes = "B2"
+
+    # ------------------------------------------------------------ Alpha-Zeitalter (Matrix)
+    waz = wb.create_sheet("Alpha-Zeitalter")
+    plan_ids = [vid for vid, _t in V.ALPHA_VERSIONEN if V.ALPHA_RANG[vid] <= r_121]
+    kopf = ["Nr", "Zeitalter", "Erfindungen"] + [("heute" if v == "0.6.1" else v) for v in plan_ids]
+    kopfzeile(waz, kopf, [5, 26, 11] + [7] * len(plan_ids))
+    zelle(waz, 2, 2, "Rang (Hilfszeile)", hilfs_font)
+    for j, vid in enumerate(plan_ids, start=4):
+        zelle(waz, 2, j, V.ALPHA_RANG[vid], hilfs_font, fmt="0")
+    for i, (nr, name, *_rest) in enumerate(V.ZEITALTER, start=3):
+        zelle(waz, i, 1, nr, fmt="0")
+        zelle(waz, i, 2, name, arial_b)
+        zelle(waz, i, 3, "=COUNTIF(%s$B:$B,$A%d)" % (E, i), fmt="#,##0")
+        for j in range(4, 4 + len(plan_ids)):
+            sp = get_column_letter(j)
+            zelle(waz, i, j, '=IF($C%d=0,0,COUNTIFS(%s$B:$B,$A%d,%s$Y:$Y,"<="&%s$2)/$C%d)' % (i, E, i, E, sp, i),
+                  fmt="0%")
+    letzte_z = len(V.ZEITALTER) + 2
+    letzte_sp = get_column_letter(3 + len(plan_ids))
+    waz.conditional_formatting.add("D3:%s%d" % (letzte_sp, letzte_z),
+                                   ColorScaleRule(start_type="num", start_value=0, start_color="FFFFFF",
+                                                  mid_type="num", mid_value=0.5, mid_color="C6E0B4",
+                                                  end_type="num", end_value=1, end_color="548235"))
+    zelle(waz, letzte_z + 2, 2, "Anteil der Erfindungen je Zeitalter, die nach dem Alpha-Plan bis einschließlich der "
+                                "jeweiligen Version physikalisch möglich wären (kumuliert, Formeln über „Erfindungen“).",
+          arial_i)
+    waz.freeze_panes = "D3"
+
     # ------------------------------------------------------------ Erfindungen
     we = wb.create_sheet("Erfindungen")
     kopfzeile(we, [t for _, t, _, _ in SPALTEN], [b for _, _, b, _ in SPALTEN])
     for idx in range(len(SPALTEN)):
-        if SPALTEN[idx][0] in ("T", "U", "V", "W"):
+        if SPALTEN[idx][0] in HILFSSPALTEN:
             we.cell(row=1, column=idx + 1).fill = PatternFill("solid", fgColor="808080")
     g_ende = len(V.LUECKEN_GRUPPEN) + 1
     for i, e in enumerate(erfindungen, start=2):
         mit_auswahl = ("=IF($M{i}=\"L\",IF(SUMPRODUCT(--ISNUMBER(SEARCH(\";\"&'Zwischenschritte'!$A$2:$A${g}&\";\","
-                       "$V{i})),--('Zwischenschritte'!$B$2:$B${g}<>\"x\"))=0,1,0),0)").format(i=i, g=g_ende)
+                       "$W{i})),--('Zwischenschritte'!$B$2:$B${g}<>\"x\"))=0,1,0),0)").format(i=i, g=g_ende)
         werte = [e["id"], e["zeitalter"], e["zeitalter_name"], e["t_kategorie"], e["name"], e["funktion"],
                  e["t_materialien"], e["t_verfahren"], e["energie"], e["t_kette"], e["t_vorl"], e["t_vorl_ids"],
                  e["status"],
                  "=IFERROR(INDEX('Prompt-Abgleich'!$B$2:$B$10,MATCH(M%d,'Prompt-Abgleich'!$A$2:$A$10,0)),\"?\")" % i,
+                 V.alpha_text(e["alpha"]),
                  "ja" if e["testbereich"] else "nein", e["t_luecken"], e["t_stand"], e["t_alt"], e["hinweis"],
-                 e["h_verf"], e["h_mat"], e["h_gruppen"], mit_auswahl]
+                 e["h_verf"], e["h_mat"], e["h_gruppen"], mit_auswahl, e["alpha_rang"]]
         zeilen = 1
         for j, (wert, (buchst, _t, breite, wrap)) in enumerate(zip(werte, SPALTEN), start=1):
             font = arial
             if buchst == "E":
                 font = arial_b
-            elif buchst in ("T", "U", "V", "W"):
+            elif buchst in HILFSSPALTEN:
                 font = hilfs_font
-            elif buchst == "Q" and e["stand"] == "spek":
+            elif buchst == "R" and e["stand"] == "spek":
                 font = arial_i
             z = zelle(we, i, j, wert, font, wrap=wrap, fmt="0" if buchst == "B" else None)
             z.border = rahmen
@@ -381,17 +453,20 @@ def schreibe_excel(erfindungen, alt, pfad):
                 zeilen = max(zeilen, zeilen_noetig(wert, breite, fett=(buchst == "E")))
         we.row_dimensions[i].height = min(120, 13 * zeilen + 3)
     we.freeze_panes = "F2"
-    we.auto_filter.ref = "A1:W%d" % letzte
+    we.auto_filter.ref = "A1:Y%d" % letzte
     for code, fill in [("A", status_fill["A"]), ("WA", status_fill["WA"]), ("L", status_fill["L"])]:
         we.conditional_formatting.add("M2:N%d" % letzte, FormulaRule(formula=['$M2="%s"' % code], fill=fill))
     we.conditional_formatting.add("M2:N%d" % letzte, FormulaRule(formula=['LEFT($M2,1)="P"'], fill=status_fill["P"]))
-    we.conditional_formatting.add("O2:O%d" % letzte, FormulaRule(formula=['$O2="ja"'], fill=status_fill["WA"]))
+    we.conditional_formatting.add("P2:P%d" % letzte, FormulaRule(formula=['$P2="ja"'], fill=status_fill["WA"]))
+    we.conditional_formatting.add("O2:O%d" % letzte, FormulaRule(formula=['$Y2=0'], fill=status_fill["A"]))
+    we.conditional_formatting.add("O2:O%d" % letzte, FormulaRule(formula=['AND($Y2>0,$Y2<=%d)' % V.ALPHA_RANG["1.21"]],
+                                                                  fill=PatternFill("solid", fgColor="DDEBF7")))
     dv_kat = DataValidation(type="list", formula1='"%s"' % ",".join(V.KATEGORIEN.values()), allow_blank=False)
     dv_status = DataValidation(type="list", formula1='"%s"' % ",".join(V.STATUS_ORDER), allow_blank=False)
     dv_test = DataValidation(type="list", formula1='"ja,nein"', allow_blank=False)
     dv_stand = DataValidation(type="list", formula1='"historisch belegt,in Entwicklung,spekulativ"', allow_blank=False)
-    for dv, rng in [(dv_kat, "D2:D%d" % letzte), (dv_status, "M2:M%d" % letzte), (dv_test, "O2:O%d" % letzte),
-                    (dv_stand, "Q2:Q%d" % letzte)]:
+    for dv, rng in [(dv_kat, "D2:D%d" % letzte), (dv_status, "M2:M%d" % letzte), (dv_test, "P2:P%d" % letzte),
+                    (dv_stand, "R2:R%d" % letzte)]:
         we.add_data_validation(dv)
         dv.add(rng)
 
@@ -412,9 +487,9 @@ def schreibe_excel(erfindungen, alt, pfad):
         auswahl = zelle(wsz, i, 2, "x" if g in VORGESCHLAGEN else None, arial_b)
         auswahl.fill = eingabe_fill
         auswahl.alignment = Alignment(horizontal="center", vertical="top")
-        zelle(wsz, i, 3, '=COUNTIF(%s$V:$V,"*;"&$A%d&";*")' % (E, i), fmt="#,##0")
-        zelle(wsz, i, 4, '=COUNTIF(%s$V:$V,";"&$A%d&";")' % (E, i), fmt="#,##0")
-        zelle(wsz, i, 5, '=IF(C%d=0,"",_xlfn.MINIFS(%s$B:$B,%s$V:$V,"*;"&$A%d&";*"))' % (i, E, E, i), fmt="0")
+        zelle(wsz, i, 3, '=COUNTIF(%s$W:$W,"*;"&$A%d&";*")' % (E, i), fmt="#,##0")
+        zelle(wsz, i, 4, '=COUNTIF(%s$W:$W,";"&$A%d&";")' % (E, i), fmt="#,##0")
+        zelle(wsz, i, 5, '=IF(C%d=0,"",_xlfn.MINIFS(%s$B:$B,%s$W:$W,"*;"&$A%d&";*"))' % (i, E, E, i), fmt="0")
         zelle(wsz, i, 6, "=IF(E%d=\"\",\"\",INDEX('Zeitalter'!$B$2:$B$25,E%d))" % (i, i))
         zelle(wsz, i, 7, ", ".join(V.VERFAHREN[c][0] for c in verf) or "—", wrap=True)
         zelle(wsz, i, 8, ", ".join(V.MATERIALIEN[c][0] for c in mats) or "—", wrap=True)
@@ -430,7 +505,7 @@ def schreibe_excel(erfindungen, alt, pfad):
                          "Prompts bis 12 möglich wäre.", arial_i)
     summe = [
         ("ausgewählte Zwischenschritte", '=COUNTIF($B$2:$B$%d,"x")' % (s - 1), "0"),
-        ("mit der Auswahl zusätzlich möglich", "=SUM(%s$W:$W)" % E, "#,##0"),
+        ("mit der Auswahl zusätzlich möglich", "=SUM(%s$X:$X)" % E, "#,##0"),
         ("dann insgesamt möglich (bis Prompt 12 + Auswahl)",
          '=COUNTA(%s$A:$A)-1-COUNTIF(%s$M:$M,"L")+C%d' % (E, E, s + 4), "#,##0"),
         ("Anteil aller Erfindungen", "=IF(COUNTA(%s$A:$A)-1=0,0,C%d/(COUNTA(%s$A:$A)-1))" % (E, s + 5, E), "0.0%"),
@@ -475,7 +550,7 @@ def schreibe_excel(erfindungen, alt, pfad):
             luecken.append(("Material", c, m[0], m[4], V.gruppe_von("m", c), betroffen))
     luecken.sort(key=lambda x: (-len(x[5]), x[2]))
     for i, (art, code, name, was, gruppe, betroffen) in enumerate(luecken, start=2):
-        spalte = "T" if art == "Verfahren" else "U"
+        spalte = "U" if art == "Verfahren" else "V"
         zelle(wl, i, 1, art)
         zelle(wl, i, 2, code, hilfs_font)
         zelle(wl, i, 3, name, arial_b, wrap=True)
@@ -533,7 +608,7 @@ def schreibe_excel(erfindungen, alt, pfad):
         zelle(wv, i, 7, luecke or "—", wrap=True)
         zelle(wv, i, 8, "ja (Testofen)" if test else "nein")
         zelle(wv, i, 9, V.gruppe_von("v", code) if st == "L" else "—", wrap=True)
-        zelle(wv, i, 10, '=COUNTIF(%s$T:$T,"*;"&$A%d&";*")' % (E, i), fmt="#,##0")
+        zelle(wv, i, 10, '=COUNTIF(%s$U:$U,"*;"&$A%d&";*")' % (E, i), fmt="#,##0")
         wv.row_dimensions[i].height = 30
     lv = len(V.VERFAHREN) + 1
     for code, fill in [("A", status_fill["A"]), ("WA", status_fill["WA"]), ("L", status_fill["L"])]:
@@ -559,7 +634,7 @@ def schreibe_excel(erfindungen, alt, pfad):
         zelle(wm, i, 7, gew or "—", wrap=True)
         zelle(wm, i, 8, smp if smp is not None else "—", fmt="#,##0")
         zelle(wm, i, 9, V.gruppe_von("m", code) if st == "L" else "—", wrap=True)
-        zelle(wm, i, 10, '=COUNTIF(%s$U:$U,"*;"&$A%d&";*")' % (E, i), fmt="#,##0")
+        zelle(wm, i, 10, '=COUNTIF(%s$V:$V,"*;"&$A%d&";*")' % (E, i), fmt="#,##0")
         wm.row_dimensions[i].height = 28
     lm = len(V.MATERIALIEN) + 1
     for code, fill in [("A", status_fill["A"]), ("WA", status_fill["WA"]), ("L", status_fill["L"])]:
@@ -617,7 +692,7 @@ def schreibe_excel(erfindungen, alt, pfad):
         blatt.page_setup.paperSize = blatt.PAPERSIZE_A4
         if blatt.title == "Erfindungen":
             # zu breit für eine Seite: in Originalgröße über mehrere Seiten, ohne die grauen Hilfsspalten
-            blatt.print_area = "A1:S%d" % letzte
+            blatt.print_area = "A1:T%d" % letzte
         else:
             blatt.page_setup.fitToWidth = 1
             blatt.page_setup.fitToHeight = 0

@@ -145,6 +145,8 @@ Ziel des Nutzers: Die Wesen entwickeln sich **selbst** (kein Technologiebaum). J
 
 **Umgesetzt (25.11.2026):** Leitlinien-Excel `design/Leitlinie_Steinzeit_bis_Zukunft.xlsx` mit 2.680 Erfindungen, Spielstand je Erfindung und den Zwischenschritten als Auswahl zum Ausprobieren – `docs/leitlinie.md`. Zusätzlich gefundene Lücken: gezieltes Abschlagen/Formen (ab der Frühen Steinzeit), Jahreszeiten/Mond/Sterne und Erdgeschichte im Weltmodell.
 
+**Entschieden (25.11.2026):** Der Nutzer hat die Einordnung Claude überlassen (D1). Die Zwischenschritte stehen jetzt im Plan Alpha 1.1–1.21 (`docs/ROADMAP_ALPHA.md` Abschnitte 5 und 10): Steinwerkzeuge/Fasern 1.8, Feuer 1.10, Ton und eigener Ofen 1.13, Erz und Bronze 1.15.
+
 ## 9. Zusatz Weltarchitektur (`prompt_zusatz_weltarchitektur_abbau_bauen.txt`)
 
-Noch nicht eingeordnet. Inhalt: 20-fache Grundfläche (Seiten × √20), Blockgröße 0,25 m (Vergleich mit 0,5 m), Abbau/Bau mit Massenbilanz, Einsturz, Wasser in Gruben/Tunneln, Navigation nach Körpergröße, Speicherformat für Chunk-Änderungen. Der Nutzer entscheidet, wann er kommt.
+**Eingeordnet (25.11.2026):** Alpha 1.1 (Vorbereitung), 1.2 (große Welt), 1.4 (Abbau, Bau, Geologie), Weltkarte 1.17 – `docs/ROADMAP_ALPHA.md`. Inhalt: 20-fache Grundfläche (Seiten × √20), Blockgröße 0,25 m (Vergleich mit 0,5 m), Abbau/Bau mit Massenbilanz, Einsturz, Wasser in Gruben/Tunneln, Navigation nach Körpergröße, Speicherformat für Chunk-Änderungen. Der Nutzer entscheidet, wann er kommt.

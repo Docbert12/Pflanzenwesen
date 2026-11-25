@@ -26,3 +26,5 @@ Materialien der Art „Weltmodell“ (`jahreslauf`, `geologie`) sind keine Stoff
 (Jahreszeiten, Mond, Sterne, Gezeiten; Gesteinsschichten, Fossilien, Erdbeben).
 
 Wie Spielstand, Lücken und Testbereich abgeleitet werden, Zahlen und offene Entscheidungen: `docs/leitlinie.md`.
+
+Der **Alpha-Plan** (ab welcher Alpha-Version ein Verfahren oder Material im normalen Spiel verfügbar sein soll) steht nicht in diesen Textdateien, sondern in `tools/leitlinie/vokabular.py` (`ALPHA_PLAN_VERFAHREN`, `ALPHA_PLAN_MATERIALIEN`); Reihenfolge und Begründung: `docs/ROADMAP_ALPHA.md`.

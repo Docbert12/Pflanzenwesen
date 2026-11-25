@@ -22,7 +22,7 @@ Dazu kommen die Vorläufer (was vorher da sein muss), der **Spielstand** (ab wan
 | `tools/leitlinie/quellen.py` | Einlesen, Prüfen, Ableiten (Spielstand, Lücken, Testbereich, Energie/Temperatur) |
 | `tools/leitlinie/katalog_abgleich.py` | Zuordnung der echten Namen aus der alten Erfindungs-Excel |
 | `tools/build_leitlinie.py` | erzeugt die Excel |
-| `tools/tests/test_leitlinie.py` | 15 Python-Tests (Quellen und Excel) |
+| `tools/tests/test_leitlinie.py` | 16 Python-Tests (Quellen, Alpha-Plan und Excel) |
 
 ## Befehle
 ```
@@ -47,7 +47,9 @@ openpyxl speichert nur Formeln, keine Ergebnisse. Excel und LibreOffice rechnen 
 |---|---|
 | Anleitung | Zweck, Regeln, Legenden, Kennzahlen (Formeln) |
 | Zeitalter | 24 Zeitalter mit Zeitraum, Kennzeichen, Energiequellen und höchster nutzbarer Temperatur. Zählungen nach Spielstand und mit Auswahl, dazu ein Diagramm. |
-| Erfindungen | eine Erfindung je Zeile mit Filter. Spielstand farbig, „Im normalen Spiel möglich ab“ per Formel. Graue Hilfsspalten T–W. |
+| Alpha-Plan | die geplanten Spielversionen Alpha 1.1–1.21 (`docs/ROADMAP_ALPHA.md`): Inhalt, ab dann verfügbare Grundlagen, Erfindungen ab dieser Version, kumuliert, Beispiele |
+| Alpha-Zeitalter | Matrix Zeitalter × Alpha-Version: Anteil der Erfindungen, die bis zu dieser Version physikalisch möglich wären (Farbskala) |
+| Erfindungen | eine Erfindung je Zeile mit Filter. Spielstand farbig, „Im normalen Spiel möglich ab“ per Formel, **„geplant möglich ab (Alpha-Plan)“** (Spalte O). Graue Hilfsspalten U–Y. |
 | Zwischenschritte | Lücken, gebündelt zu möglichen Zwischenschritten: wie viele Erfindungen betroffen sind und wie viele **nur** an diesem Schritt hängen. Mit Diagramm und **Auswahl zum Ausprobieren** (Spalte B, gelb). |
 | Lücken | jedes fehlende Verfahren und Material mit Zahl der betroffenen Erfindungen, frühestem Zeitalter und Beispielen |
 | Prompt-Abgleich | was jede Stufe physikalisch bringt; Anzahl und Anteil der Erfindungen, auch kumuliert |
@@ -55,6 +57,14 @@ openpyxl speichert nur Formeln, keine Ergebnisse. Excel und LibreOffice rechnen 
 | Katalogabgleich | die echten Namen der alten Erfindungs-Excel und wo sie in der Leitlinie stehen |
 
 **Ausprobieren:** Im Blatt „Zwischenschritte“, Spalte B, wird ein Schritt mit `x` markiert. Die Blätter „Zeitalter“ (Spalten O/P), „Zwischenschritte“ und „Anleitung“ zeigen dann, wie viele Erfindungen damit zusätzlich möglich wären. Vorausgewählt sind die beiden Vorschläge aus `docs/plan_prompt_06b.md` Abschnitt 8.
+
+## Alpha-Plan (seit 25.11.2026)
+Seit den Entscheidungen des Nutzers vom 25.11.2026 sortiert die Leitlinie zusätzlich, **ab welcher Alpha-Version** eine Erfindung im normalen Spiel physikalisch möglich sein soll.
+- Jedes Verfahren und Material hat eine geplante Version (`ALPHA_PLAN_VERFAHREN`, `ALPHA_PLAN_MATERIALIEN` in `tools/leitlinie/vokabular.py`); was schon im Spiel ist, zählt als „heute (v0.6.1)“, Ungeplantes als „noch nicht eingeplant“, Sprengen als „nicht vorgesehen“.
+- Eine Erfindung ist ab der **spätesten** Version ihrer Verfahren und Materialien eingeplant.
+- Ergebnis: nach Alpha 1.16 **989 (36,9 %)**, nach 1.21 **1.248 (46,6 %)**; 1.413 sind noch nicht eingeplant, 19 nie (Sprengen).
+- Das ist Planung, keine Freischaltung: Entdecken müssen die Wesen die Erfindung weiterhin selbst. Reihenfolge und Begründung: `docs/ROADMAP_ALPHA.md` Abschnitte 5 und 10.
+- Nach jeder gelieferten Version werden die tatsächlich spielbaren Codes auf `A` gesetzt (HANDOVER Schritt 4a); Abweichungen vom Plan kommen ins Änderungsprotokoll der Roadmap.
 
 ## Wie der Spielstand abgeleitet wird
 - Jedes Verfahren und jedes Material hat einen Spielstand:
@@ -189,8 +199,9 @@ Aus `Erfindungen_Echt_nach_Kategorien.xlsx` sind 85 echte Namen und 92 Varianten
 - Die Codes sind grob: Ein Verfahren steht für viele Varianten. Ein paar zu optimistische Einordnungen wurden beim Bau korrigiert. Dazu gehören Kalender (Jahreszeiten fehlen), geologische Theorien (Weltmodell), Klimaabkommen (Messen) und Institutionen wie der Kindergarten (Nachwuchs erst ab Prompt 7, Gemeinschaften ab Prompt 10).
 - Die Stufen P7–P12 sind aus den Prompt-Texten abgeleitet. Was diese Prompts am Ende umsetzen, kann davon abweichen; nach jedem Prompt sollte der Spielstand im Vokabular nachgezogen werden.
 
-## Offene Entscheidungen (beim Nutzer)
-1. **Zwischenschritte:** Kommen „Feuer, Ton und eigener Ofen“ und „Erz und Legierungen“ dazu, und wann? Weitere Kandidaten mit großer Wirkung auf die Frühzeit sind „Werkzeugformen und spanende Bearbeitung“ und „Fasern, Seil und Textil“.
-2. Einordnung des **Zusatzes Weltarchitektur**.
-3. Sollen **Jahreszeiten** ins Weltmodell? Sie sind die Grundlage für Kalender, Wanderungen und Fruchtwechsel.
-4. Soll die Leitlinie später **ins Spiel** einfließen, etwa als Ideenkatalog für Modellvorschläge? Das wäre nur Information, keine Freischaltung. Bisher ist sie nur ein Designdokument.
+## Entscheidungen (25.11.2026)
+Die vier offenen Fragen hat der Nutzer am 25.11.2026 beantwortet; Wortlaut und Umsetzung stehen in `docs/ROADMAP_ALPHA.md` Abschnitt 1:
+1. **Zwischenschritte:** Claude ordnet sie organisch ein (D1). Werkzeugformen, Schnur, Flechten und Werfen kommen in Alpha 1.8, Feuer in 1.10, Ton und eigener Ofen in 1.13, Erz und Bronze in 1.15, Eisen in 1.19.
+2. **Zusatz Weltarchitektur:** Alpha 1.1 (Vorbereitung), 1.2 (große Welt), 1.4 (Abbau, Bau, Geologie); Weltkarte mit Regionen in 1.17 (D3).
+3. **Jahreszeiten, Mond und Sterne:** ja, Alpha 1.3 (D2).
+4. **Leitlinie im Spiel:** ab Alpha 1.8 als Erfindungs-Chronik und Ideenkatalog, ohne Freischaltung (D4).

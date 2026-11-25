@@ -17,8 +17,8 @@ from leitlinie import katalog_abgleich as K  # noqa: E402
 from leitlinie import quellen as Q  # noqa: E402
 from leitlinie import vokabular as V  # noqa: E402
 
-BLAETTER = ["Anleitung", "Zeitalter", "Erfindungen", "Zwischenschritte", "Lücken", "Prompt-Abgleich", "Verfahren",
-            "Materialien", "Katalogabgleich"]
+BLAETTER = ["Anleitung", "Zeitalter", "Alpha-Plan", "Alpha-Zeitalter", "Erfindungen", "Zwischenschritte", "Lücken",
+            "Prompt-Abgleich", "Verfahren", "Materialien", "Katalogabgleich"]
 MASSENVERNICHTUNG = re.compile(r"atom(bombe|waffe)|kernwaffe|wasserstoffbombe|neutronenbombe|nervengas|nervenkampf|"
                                r"senfgas|giftgas|chemiewaffe|biowaffe|kampfstoff|sarin|milzbrand|anthrax", re.I)
 BONUS = re.compile(r"[+\-±]\s*\d+([.,]\d+)?\s*%")
@@ -107,6 +107,32 @@ class LeitlinieQuellenTest(unittest.TestCase):
         self.assertEqual(self.nach_name["Bronzepickel"]["zeitalter"], 7)
         self.assertEqual(set(self.nach_name["Bronzepickel"]["gruppen"]), set(B.VORGESCHLAGEN))
 
+    def test_alpha_plan(self):
+        ids = [vid for vid, _t in V.ALPHA_VERSIONEN]
+        self.assertEqual(len(ids), len(set(ids)))
+        self.assertEqual(ids[0], "0.6.1")
+        self.assertIn("1.16", ids)
+        for plan, tabelle in ((V.ALPHA_PLAN_VERFAHREN, V.VERFAHREN), (V.ALPHA_PLAN_MATERIALIEN, V.MATERIALIEN)):
+            for code, vid in plan.items():
+                self.assertIn(code, tabelle, code)
+                self.assertIn(vid, ids, code)
+                self.assertNotEqual(tabelle[code][3], "A", "%s ist schon im Spiel und braucht keinen Plan" % code)
+        # Alles, was ein vorliegender Prompt (WA, P7–P12) bringt, ist eingeplant
+        for art, tabelle in (("v", V.VERFAHREN), ("m", V.MATERIALIEN)):
+            for code, eintrag in tabelle.items():
+                if eintrag[3] not in ("A", "L"):
+                    self.assertNotIn(V.alpha_von(art, code), ("offen", "nie"), code)
+        self.assertEqual(V.alpha_von("v", "sprengen"), "nie")
+        erwartet = {"Gediegenes Kupfer hämmern": "0.6.1", "Malachit erkennen": "1.4", "Faustkeil": "1.8",
+                    "Ackerbau": "1.11", "Tongefäß": "1.13", "Kupfer schmelzen": "1.13", "Bronzepickel": "1.15",
+                    "Sonnenkalender": "1.16", "Spitzhacke aus Eisen": "1.19", "Schwarzpulver": "nie"}
+        for name, vid in erwartet.items():
+            self.assertEqual(self.nach_name[name]["alpha"], vid, name)
+        for e in self.erf:
+            self.assertEqual(e["alpha_rang"], V.ALPHA_RANG[e["alpha"]], e["name"])
+            if e["status"] == "A":
+                self.assertEqual(e["alpha"], "0.6.1", e["name"])
+
     def test_spielstand_ist_spaetester_teil(self):
         for e in self.erf:
             codes = [V.VERFAHREN[v][3] for v in e["verfahren"]] + [V.MATERIALIEN[m][3] for m in e["materialien"]]
@@ -183,7 +209,7 @@ class LeitlinieExcelTest(unittest.TestCase):
         self.assertEqual(wz["B26"].value, "Summe")
         self.assertEqual(len(wz._charts), 1)
         self.assertEqual(len(wb["Zwischenschritte"]._charts), 1)
-        self.assertEqual(wz["O2"].value, "=SUMIFS('Erfindungen'!$W:$W,'Erfindungen'!$B:$B,$A2)")
+        self.assertEqual(wz["O2"].value, "=SUMIFS('Erfindungen'!$X:$X,'Erfindungen'!$B:$B,$A2)")
         wp = wb["Prompt-Abgleich"]
         self.assertEqual([wp.cell(r, 1).value for r in range(2, 11)], V.STATUS_ORDER)
         # Auswahl zum Ausprobieren: einzige Eingabespalte, vorausgewählt sind die vorgeschlagenen Zwischenschritte
@@ -192,9 +218,18 @@ class LeitlinieExcelTest(unittest.TestCase):
         self.assertEqual(sorted(wsz.cell(r, 1).value for r in zeilen), sorted(g[0] for g in V.LUECKEN_GRUPPEN))
         gewaehlt = sorted(wsz.cell(r, 1).value for r in zeilen if wsz.cell(r, 2).value == "x")
         self.assertEqual(gewaehlt, sorted(B.VORGESCHLAGEN))
-        self.assertIn("SEARCH(", str(we["W2"].value))
-        self.assertIn("'Zwischenschritte'!$B$2:$B$%d" % (len(V.LUECKEN_GRUPPEN) + 1), str(we["W2"].value))
-        self.assertEqual(we.auto_filter.ref, "A1:W%d" % (len(self.erf) + 1))
+        self.assertIn("SEARCH(", str(we["X2"].value))
+        self.assertIn("'Zwischenschritte'!$B$2:$B$%d" % (len(V.LUECKEN_GRUPPEN) + 1), str(we["X2"].value))
+        self.assertEqual(we.auto_filter.ref, "A1:Y%d" % (len(self.erf) + 1))
+        # Alpha-Plan: Spalte O (Text) und Y (Rang), eigene Blätter mit Zählformeln
+        self.assertEqual(we["O1"].value, "geplant möglich ab (Alpha-Plan)")
+        self.assertEqual(we["O2"].value, "heute (v0.6.1)")
+        self.assertEqual(we["Y2"].value, 0)
+        wap = wb["Alpha-Plan"]
+        self.assertEqual([wap.cell(r, 8).value for r in range(2, len(V.ALPHA_VERSIONEN) + 2)],
+                         list(range(len(V.ALPHA_VERSIONEN))))
+        self.assertEqual(wap["D2"].value, "=COUNTIF('Erfindungen'!$Y:$Y,$H2)")
+        self.assertTrue(str(wb["Alpha-Zeitalter"]["D3"].value).startswith("=IF($C3=0,0,COUNTIFS("))
         # Zählformeln statt fester Zahlen
         for blatt, zelle in (("Zwischenschritte", "C2"), ("Zwischenschritte", "D2"), ("Lücken", "F2"), ("Verfahren", "J2"),
                              ("Materialien", "J2"), ("Zeitalter", "P2")):

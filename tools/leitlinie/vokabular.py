@@ -532,3 +532,108 @@ def gruppe_von(art: str, code: str) -> str:
             return name
     return ""
 
+
+
+# ---------------------------------------------------------------------------------------------------------------------
+# Alpha-Plan (Stand 25.11.2026, Einzelheiten: docs/ROADMAP_ALPHA.md)
+# Ab welcher Alpha-Version ein Verfahren oder Material im NORMALEN Spiel physikalisch verfügbar sein soll.
+# Das ist eine Planung, keine Freischaltung: Auch danach müssen die Wesen eine Erfindung selbst entdecken.
+# „offen“ = noch nicht eingeplant, „nie“ = nicht vorgesehen (Projektregel).
+# Nach jeder gelieferten Version: Spielstand der tatsächlich spielbaren Codes in VERFAHREN/MATERIALIEN auf "A" setzen
+# und diesen Plan prüfen (HANDOVER Schritt 4a).
+# ---------------------------------------------------------------------------------------------------------------------
+ALPHA_VERSIONEN = [
+    # (ID, Kurztitel)
+    ("0.6.1", "heute im Spiel (v0.6.1)"),
+    ("1.1", "Fundament: modulare Architektur, Speicherformat 6, Kartenvorlagen"),
+    ("1.2", "Große Welt I: Chunk-Streaming, große Karte, Biome"),
+    ("1.3", "Zeit, Himmel und Klima: Kalender, Jahreszeiten, Mond, Sterne, Wetter"),
+    ("1.4", "Gelände und Geologie: Abbau, Bau, Einsturz, Gesteinsschichten, Ton, Erz"),
+    ("1.5", "Ökosystem I: Pflanzen und Pilze"),
+    ("1.6", "Lebensbaum und Nachwuchs (Prompt 7, Teil 1)"),
+    ("1.7", "Vererbung und Mutationen (Prompt 7, Teil 2)"),
+    ("1.8", "Steinwerkzeuge, Schneiden, Fasern, Werfen; Erfindungs-Chronik"),
+    ("1.9", "Ökosystem II: Tiere, Jagd, tierische Werkstoffe"),
+    ("1.10", "Feuer: Verbrennung, Kochen, Licht, Wärme, Holzkohle"),
+    ("1.11", "Zähmung, Zucht, Landwirtschaft, Haltbarmachen (Prompt 8, Teil 3)"),
+    ("1.12", "Siedlungen und gemeinsames Bauen (Prompt 9), Hebel, Spinnen und Weben"),
+    ("1.13", "Ton, Keramik, eigener Ofen: Kupfer selbst schmelzen"),
+    ("1.14", "Gemeinschaften, Regeln, Religion, Konflikte (Prompt 10)"),
+    ("1.15", "Erz, Verhüttung, Bronze, Metallwerkzeuge, Bergbau"),
+    ("1.16", "Zeichen, Zählen, Maße, Schrift und Bücher (Prompt 11)"),
+    ("1.17", "Große Welt II: Weltkarte mit Regionen, Reisen, Wasserwege"),
+    ("1.18", "Mechanik II: Rad und Achse, Wagen, Winde, Getriebe (Prompt 12)"),
+    ("1.19", "Eisen und Stahl: Rennofen, Schmieden, Härten"),
+    ("1.20", "Strahlung und Elektrik (Prompt 12)"),
+    ("1.21", "Gesamtaudit, Balance, Leistung, Windows-Export (Prompt 13)"),
+    ("offen", "noch nicht eingeplant"),
+    ("nie", "nicht vorgesehen (Projektregel)"),
+]
+ALPHA_RANG = {vid: i for i, (vid, _t) in enumerate(ALPHA_VERSIONEN)}
+
+ALPHA_PLAN_VERFAHREN = {
+    # Zusatz Weltarchitektur
+    "graben": "1.4", "verdichten": "1.4", "aufschuetten": "1.4", "stollen": "1.4", "behaelter": "1.4",
+    # Prompt 7 / 8
+    "fortpflanzung": "1.6", "zersetzen": "1.5",
+    "landbau": "1.11", "bewaessern": "1.11", "tierhaltung": "1.11", "zucht": "1.11",
+    # Prompt 9 / 10 / 11
+    "bauen_gemeinsam": "1.12", "tragwerk": "1.12", "siedlung": "1.12", "handel": "1.12",
+    "regeln": "1.14", "religion": "1.14", "konflikt": "1.14",
+    "zeichen": "1.16", "schrift": "1.16", "buch": "1.16", "zaehlen": "1.16",
+    # Prompt 12, teils vorgezogen
+    "feuer_machen": "1.10", "feuer_nutzen": "1.10", "kochen": "1.10", "licht_feuer": "1.10", "oxidieren": "1.10",
+    "hebel": "1.12",
+    "rad_achse": "1.18", "winde": "1.18", "getriebe": "1.18", "fahrzeug": "1.18",
+    "gleichstrom": "1.20", "elektromotor": "1.20", "strahlung": "1.20",
+    # Zwischenschritte aus der Leitlinie
+    "abschlagen": "1.8", "schneiden": "1.8", "bohren": "1.8", "schleifen": "1.8", "schnur": "1.8", "flechten": "1.8",
+    "werfen": "1.8", "farbe": "1.8", "klang": "1.8",
+    "federn": "1.9", "naehen": "1.9", "kleidung": "1.9",
+    "holzkohle": "1.10",
+    "trocknen": "1.11", "gerben": "1.11",
+    "weben": "1.12",
+    "ton_formen": "1.13", "ton_brennen": "1.13", "luftzufuhr": "1.13", "ziegel": "1.13", "kalk_brennen": "1.13",
+    "schmelzen": "1.13", "giessen": "1.13", "drehen": "1.13",
+    "heilen": "1.14", "hygiene": "1.14",
+    "verhuetten": "1.15", "legieren": "1.15",
+    "messen": "1.16",
+    "auftrieb": "1.17",
+    "schmieden": "1.19", "haerten": "1.19",
+    "arznei": "1.5",
+    "sprengen": "nie",
+}
+ALPHA_PLAN_MATERIALIEN = {
+    "sand": "1.4", "erz": "1.4", "ton": "1.4", "kalk": "1.4", "ocker": "1.4", "geologie": "1.4",
+    "jahreslauf": "1.3",
+    "samen": "1.5", "pflanze": "1.5", "harz": "1.5",
+    "seil": "1.8",
+    "tier": "1.9", "knochen": "1.9", "geweih": "1.9", "leder": "1.9", "sehne": "1.9", "wolle": "1.9",
+    "muschel": "1.9",
+    "holzkohle": "1.10", "luft": "1.10",
+    "oel": "1.11",
+    "textil": "1.12",
+    "keramik": "1.13", "ziegel": "1.13", "moertel": "1.13",
+    "zinn": "1.15", "bronze": "1.15", "gold": "1.15", "silber": "1.15", "blei": "1.15",
+    "tinte": "1.16",
+    "eisen": "1.19", "stahl": "1.19",
+    "schwefel": "1.20", "titan": "1.20", "stromquelle": "1.20",
+}
+
+
+def alpha_von(art: str, code: str) -> str:
+    """Geplante Alpha-Version, ab der ein Verfahrens- (art='v') oder Material-Code (art='m') verfügbar sein soll."""
+    eintrag = (VERFAHREN if art == "v" else MATERIALIEN)[code]
+    if eintrag[3] == "A":
+        return "0.6.1"
+    plan = ALPHA_PLAN_VERFAHREN if art == "v" else ALPHA_PLAN_MATERIALIEN
+    return plan.get(code, "offen")
+
+
+def alpha_text(vid: str) -> str:
+    """Anzeigetext einer Alpha-Version für die Excel."""
+    if vid == "0.6.1":
+        return "heute (v0.6.1)"
+    if vid in ("offen", "nie"):
+        return dict(ALPHA_VERSIONEN)[vid]
+    return "Alpha " + vid

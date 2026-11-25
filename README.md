@@ -12,6 +12,8 @@ Spielbar ist eine **erste Lebenssimulation**: kleine Voxelwelt, Lebensbaum mit W
 - **Excel-Abgleich:** dokumentierte Importkonfiguration `design/import_config/datenbasis_korrekturen.json` (Kupfer-/Wasser-Verweis, MAT_Erde/Gras/Holz, Voxelgröße, Fortpflanzung, Setzling-Ernährung); Erfindungskatalog aus `Erfindungen_Echt_nach_Kategorien.xlsx` (5.862 Zeilen → 2.785 Einträge, Stufe nur Metadatum, Effekte nie angewendet, kein Startwissen); strukturierte Definitionen der tatsächlich umgesetzten Verfahren in `data/config/inventions_activated.json`. Berichte: `reports/import_report.md`, `reports/inventions_real_import_report.md`.
 - Speicherformat 5 (Lager, Bauwerke, Arbeitsketten, zweihändiges Halten) mit Migration aus v0.6.0 und älter.
 
+**Plan ab jetzt: Alpha 1.1, 1.2, … – `docs/ROADMAP_ALPHA.md`** (Entscheidungen des Nutzers vom 25.11.2026, Reihenfolge Alpha 1.1–1.21, Zielarchitektur für große Welten und Weltkarten, lebendige Welt). Nächste Version: **Alpha 1.1 – Fundament** (modulare Architektur, Speicherformat 6, Kartenvorlagen).
+
 **Leitlinie „Steinzeit → Zukunft“ (Designdokument, kein Spielinhalt, 25.11.2026):** `design/Leitlinie_Steinzeit_bis_Zukunft.xlsx` – 24 Zeitalter, 2.680 Erfindungen mit physikalischer Kette (Material → Verfahren → Energie/Temperatur → Funktion), Vorläufern und Spielstand (heute / ab welchem Prompt / Lücke); kein Technologiebaum, keine Boni. Erzeugt aus `design/leitlinie/*.txt` mit `python3 tools/build_leitlinie.py`. Details und offene Entscheidungen: `docs/leitlinie.md`.
 
 **Aus 0.6.0 (Prompt 6):**
