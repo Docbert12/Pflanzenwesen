@@ -118,6 +118,12 @@ static func snapshot(life: LifeSimulation) -> Dictionary:
 	var heaters: Array = []
 	for id in _sorted(ctx.heaters):
 		heaters.append(ctx.heaters[id].to_dict())
+	var storages: Array = []
+	for id in _sorted(ctx.storages):
+		storages.append(ctx.storages[id].to_dict())
+	var structures: Array = []
+	for id in _sorted(ctx.structures):
+		structures.append(ctx.structures[id].to_dict())
 	var th := life.sim.thermal
 	var running: Array = []
 	for id in _sorted(ctx.executor.running):
@@ -151,6 +157,9 @@ static func snapshot(life: LifeSimulation) -> Dictionary:
 		"material_pieces": pieces,
 		"assemblies": assemblies,
 		"heaters": heaters,
+		"storages": storages,
+		"structures": structures,
+		"work": ctx.work.to_dict() if ctx.work != null else {},
 		"workshop": life.workshop.duplicate(),
 		"experiments": ctx.experiments.to_dict(),
 		"thermal": {"environment_energy_j": th.environment_energy_j, "body_energy_j": th.body_energy_j,
@@ -327,6 +336,16 @@ static func apply(life: LifeSimulation, p: Dictionary) -> Dictionary:
 		if life.sim.add_entity(hh, "test_heater") < 0:
 			return {"ok": false, "code": "invalid", "message": "Testheizung #%d: ID-Konflikt." % hh.id}
 		ctx.heaters[hh.id] = hh
+	for sd in p.get("storages", []):
+		var sp := StoragePlace.from_dict(sd)
+		if life.sim.add_entity(sp, "storage_place") < 0:
+			return {"ok": false, "code": "invalid", "message": "Lager #%d: ID-Konflikt." % sp.id}
+		ctx.storages[sp.id] = sp
+	for std in p.get("structures", []):
+		var stc := Structure.from_dict(std)
+		if life.sim.add_entity(stc, "structure") < 0:
+			return {"ok": false, "code": "invalid", "message": "Bauwerk #%d: ID-Konflikt." % stc.id}
+		ctx.structures[stc.id] = stc
 	var thd: Dictionary = p.get("thermal", {})
 	var th := life.sim.thermal
 	th.environment_energy_j = float(thd.get("environment_energy_j", 0.0))
@@ -342,6 +361,8 @@ static func apply(life: LifeSimulation, p: Dictionary) -> Dictionary:
 		h2["target_id"] = int(h2["target_id"])
 		th.heaters[str(n)] = h2
 	ctx.experiments = ExperimentSystem.from_dict(p.get("experiments", {}))
+	ctx.work = WorkSystem.new()
+	ctx.work.from_dict(p.get("work", {}))
 	life.workshop = {}
 	for k in p.get("workshop", {}):
 		life.workshop[str(k)] = int(p["workshop"][k])
@@ -386,6 +407,7 @@ static func apply(life: LifeSimulation, p: Dictionary) -> Dictionary:
 			cr2.next_decision_t = ctx.now()
 	var plan_notes := ctx.ai.after_load()
 	plan_notes.append_array(ctx.experiments.after_load(ctx))
+	ctx.work.after_load(ctx)
 	# Gehaltenes, Reservierungen technischer Gegenstände und Schritte: konsistent herstellen
 	for cid in ctx.creatures:
 		var crx: Creature = ctx.creatures[cid]

@@ -6,7 +6,7 @@ extends RefCounted
 ## Dateien werden erkannt. Es werden nur Daten gespeichert, keine Node-Referenzen.
 
 const MAGIC := "pflanzenwesen_save"
-const FORMAT_VERSION := 4   # 1 = v0.3.0 (Prompt 3), 2 = v0.4.0 (Prompt 4: Geist, Soziales, Eingriffe), 3 = v0.5.0 (Prompt 5: Pläne, Gespräche, Hörensagen),
+const FORMAT_VERSION := 5   # 1 = v0.3.0 (Prompt 3), 2 = v0.4.0 (Prompt 4: Geist, Soziales, Eingriffe), 3 = v0.5.0 (Prompt 5: Pläne, Gespräche, Hörensagen), 5 = v0.6.1 (Prompt 6B: Lager, Baustellen, Arbeitsketten, Haltemodus)
                             # 4 = v0.6.0 (Prompt 6: Gegenstände mit Wärme, Verbünde, Testheizung, Versuche, Verfahrenswissen)
 
 ## Dateien, deren Inhalt die Spieldefinitionen bildet. Jede Änderung → Spielstand wird abgewiesen
@@ -22,7 +22,7 @@ const REQUIRED := {"format_version": TYPE_FLOAT, "game_version": TYPE_STRING, "d
 	"world": TYPE_DICTIONARY, "world_objects": TYPE_DICTIONARY, "foods": TYPE_ARRAY, "items": TYPE_ARRAY, "creatures": TYPE_ARRAY,
 	"actions": TYPE_DICTIONARY, "ledger": TYPE_DICTIONARY, "social": TYPE_DICTIONARY, "interventions": TYPE_DICTIONARY,
 	"material_pieces": TYPE_ARRAY, "communication": TYPE_DICTIONARY, "assemblies": TYPE_ARRAY, "heaters": TYPE_ARRAY,
-	"experiments": TYPE_DICTIONARY, "thermal": TYPE_DICTIONARY}
+	"experiments": TYPE_DICTIONARY, "thermal": TYPE_DICTIONARY, "storages": TYPE_ARRAY, "structures": TYPE_ARRAY, "work": TYPE_DICTIONARY}
 
 
 ## Fingerabdruck aller Definitionsdateien: {"hash": Gesamt-SHA-256, "files": {Pfad: SHA-256}}

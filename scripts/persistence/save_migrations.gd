@@ -36,7 +36,7 @@ extends RefCounted
 ##   macht die letzte Stufe – sonst wäre ein alter Stand nach jeder Definitionsänderung unladbar.
 ##   Vor dem Laden einer zu migrierenden Datei legt SaveManager eine Kopie „…vN.vor_migration“ an.
 
-const MIGRATIONS := {1: "_migrate_1_to_2", 2: "_migrate_2_to_3", 3: "_migrate_3_to_4"}
+const MIGRATIONS := {1: "_migrate_1_to_2", 2: "_migrate_2_to_3", 3: "_migrate_3_to_4", 4: "_migrate_4_to_5"}
 
 ## Fingerabdruck der Definitionsdateien von v0.3.0 (so ausgeliefert; gemessen beim Erstellen der Migration).
 const V1_KNOWN_DEFINITIONS := ["8a3b9a3f99b43ba042a505802a769f01b458cc648abf5aa8fe30a0d1af1063e1"]
@@ -48,6 +48,9 @@ const V3_SHIPPED_DEFINITIONS := "2c041e8df09e35f85d822207ba54f6e44925f4537172ecf
 const V3_KNOWN_DEFINITIONS := [V3_SHIPPED_DEFINITIONS]
 ## Fingerabdruck der Definitionsdateien von v0.6.0 (Test „Migration: ausgelieferte Definitionen“ prüft ihn).
 const V4_SHIPPED_DEFINITIONS := "6303a08db5144550e5a2944e7ad3e1cdc0a499ef45646d45ad81e06332b21136"
+const V4_KNOWN_DEFINITIONS := [V4_SHIPPED_DEFINITIONS]
+## Wird beim Abschluss von v0.6.1 mit dem Fingerabdruck der ausgelieferten Definitionen gesetzt.
+const V5_SHIPPED_DEFINITIONS := "f67011acc69c70beeb2cc4e008808b95b9add135d9f679e7aae995a5f32144d5"
 
 
 ## Rückgabe {"ok", "payload", "steps": Array, "code", "message"}
@@ -143,9 +146,11 @@ static func _migrate_3_to_4(p: Dictionary) -> Dictionary:
 		return {"ok": false, "code": "definitions_changed",
 			"message": "Der Spielstand (Format 3) wurde mit veränderten Definitionen gespeichert, nicht mit denen von v0.5.x. Eine Migration ist dafür nicht vorgesehen."}
 	var cur_fp := SaveSchema.definitions_fingerprint()
-	if cur_fp["hash"] != V4_SHIPPED_DEFINITIONS:
+	if SaveSchema.FORMAT_VERSION == 4 and cur_fp["hash"] != V4_SHIPPED_DEFINITIONS:
 		return {"ok": false, "code": "definitions_changed",
 			"message": "Die aktuellen Definitionen weichen von den mit v0.6.0 ausgelieferten ab (Excel neu importiert oder Konfiguration geändert). Migration nur mit den ausgelieferten Definitionen."}
+	if SaveSchema.FORMAT_VERSION > 4:
+		cur_fp = {"hash": V4_SHIPPED_DEFINITIONS, "files": {}, "note": "per Migration 3→4 gesetzt (entspricht v0.6.0); Kette läuft weiter"}
 	var t := float(p["simulation"]["time_s"])
 	var mats := MaterialRegistry.new()
 	mats.load_directory("res://data/materials")
@@ -185,4 +190,37 @@ static func _migrate_3_to_4(p: Dictionary) -> Dictionary:
 	p["format_version"] = 4
 	p["migration_3_4"] = {"from": 3, "to": 4, "at_time_s": t, "definitions_v3": old_fp.get("hash", ""), "pieces": p.get("material_pieces", []).size(),
 		"note": "Kein Verfahrenswissen, keine Versuche, keine Werkzeuge vor t=%.1f s – nichts erfunden oder geschenkt." % t}
+	return {"ok": true, "payload": p}
+
+
+## Format 4 → 5 (v0.6.0 → v0.6.1, Prompt 6B):
+##   - Voraussetzung: Spielstand mit den ausgelieferten Definitionen von v0.6.0 (V4_KNOWN_DEFINITIONS) und
+##     aktuelle Definitionen = die von v0.6.1 (V5_SHIPPED_DEFINITIONS). Sonst keine Migration.
+##   - Materialstücke: nicht eingelagert, nicht verbaut (storage_id = structure_id = 0).
+##   - Wesen: Haltemodus aus dem vorhandenen Gegenstand in der Hand („one“, wenn etwas gehalten wird).
+##   - Neue leere Bereiche: Lager, Baustellen, Arbeitsketten. Es werden KEINE Lager, Bauwerke oder
+##     Arbeitsabsichten erfunden. Alles andere (Versuche, Verbünde, Wärme, Wissen) bleibt unverändert.
+static func _migrate_4_to_5(p: Dictionary) -> Dictionary:
+	var old_fp: Dictionary = p.get("definitions", {})
+	if not str(old_fp.get("hash", "")) in V4_KNOWN_DEFINITIONS:
+		return {"ok": false, "code": "definitions_changed",
+			"message": "Der Spielstand (Format 4) wurde mit veränderten Definitionen gespeichert, nicht mit denen von v0.6.0. Eine Migration ist dafür nicht vorgesehen."}
+	var cur_fp := SaveSchema.definitions_fingerprint()
+	if SaveSchema.FORMAT_VERSION == 5 and cur_fp["hash"] != V5_SHIPPED_DEFINITIONS:
+		return {"ok": false, "code": "definitions_changed",
+			"message": "Die aktuellen Definitionen weichen von den mit v0.6.1 ausgelieferten ab (Excel neu importiert oder Konfiguration geändert). Migration nur mit den ausgelieferten Definitionen."}
+	var t := float(p["simulation"]["time_s"])
+	for mp in p.get("material_pieces", []):
+		mp["storage_id"] = 0
+		mp["structure_id"] = 0
+	for c in p["creatures"]:
+		c["hold_mode"] = "one" if int(c.get("held_object_id", 0)) != 0 else ""
+		c["hold_side"] = ""
+	p["storages"] = []
+	p["structures"] = []
+	p["work"] = {"chains": [], "by_actor": {}, "next_id": 1, "last_end_t": {}, "last_site_t": {}, "stats": {}}
+	p["definitions"] = cur_fp
+	p["format_version"] = 5
+	p["migration_4_5"] = {"from": 4, "to": 5, "at_time_s": t, "definitions_v4": old_fp.get("hash", ""),
+		"note": "Keine Lager, Baustellen oder Arbeitsketten vor t=%.1f s – nichts erfunden." % t}
 	return {"ok": true, "payload": p}
