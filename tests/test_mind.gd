@@ -6,6 +6,7 @@ extends RefCounted
 const SEEDS := [101, 202, 303]
 const FIXTURE := "res://tests/fixtures/save_v1_prompt03.json"
 const MIG_PATH := "user://saves/_test_migration.json"
+const V4_FIXTURE := "res://tests/fixtures/save_v4_prompt06.json"   # echter Spielstand v0.6.0
 
 var results: Array = []
 var notes: Array = []
@@ -273,7 +274,15 @@ func _test_privacy_and_pause() -> void:
 
 func _test_migration() -> void:
 	var fp := SaveSchema.definitions_fingerprint()
-	_check("Migration: ausgelieferte Definitionen v0.6.0 entsprechen dem eingetragenen Fingerabdruck", fp["hash"] == SaveMigrations.V4_SHIPPED_DEFINITIONS,
+	# Seit v0.6.1 sind die aktuellen Definitionen die von v0.6.1. Die von v0.6.0 ausgelieferten stehen im echten
+	# v0.6.0-Spielstand (Prüfling, vor jeder 6B-Änderung erzeugt) – dagegen wird die Konstante weiter geprüft.
+	var v4_text := FileAccess.get_file_as_string(V4_FIXTURE)
+	var v4 = JSON.parse_string(v4_text.substr(v4_text.find("\n") + 1))
+	var v4_hash: String = str(v4["definitions"]["hash"]) if typeof(v4) == TYPE_DICTIONARY and v4.has("definitions") else ""
+	var v4_ver: String = str(v4.get("game_version", "")) if typeof(v4) == TYPE_DICTIONARY else ""
+	_check("Migration: ausgelieferte Definitionen v0.6.0 entsprechen dem eingetragenen Fingerabdruck", v4_hash == SaveMigrations.V4_SHIPPED_DEFINITIONS and v4_ver == "0.6.0-prototype",
+		"v0.6.0-Prüfling %s (%s)" % [v4_hash.substr(0, 16), v4_ver])
+	_check("Migration: ausgelieferte Definitionen v0.6.1 entsprechen dem eingetragenen Fingerabdruck", fp["hash"] == SaveMigrations.V5_SHIPPED_DEFINITIONS,
 		"aktuell %s" % fp["hash"])
 	DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path("user://saves"))
 	for ext in ["", ".bak", ".v1.vor_migration"]:

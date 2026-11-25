@@ -284,3 +284,44 @@ Fachdokumente:
 - `GodCommands`/`InterventionSystem`/`god_menu.gd`: Formen, Pflanzenfasern.
 - `LivingWorld`/`main_menu.gd`: Modus Testwerkstatt, Gegenstandsdarstellung, Auswahl per Klick, Tasten E/W.
 - Speichern: Format 4, Migration 3→4; Kette 1→2→3→4.
+
+---
+
+# Prompt 6B – Arbeitsposen und Werkzeug-/Materialkette (v0.6.1)
+
+## Zuordnung der Zielmodule
+| Modul | Aufgabe |
+|---|---|
+| `scripts/animation/work_pose.gd` | Geometrie der Arbeitsbewegung aus Körperplan und gehaltenem Werkzeug (Schulter, Arm bis Handgelenk, Griff, Griffwinkel 45°, Kopfabstand); Kontaktpose (Arm-/Werkzeugwinkel, Rumpfneigung, Hocke), Standpunkt, Körper↔Welt, Werkzeugrahmen |
+| `scripts/animation/creature_animator.gd` | antriebsgesteuerte Arbeitsposen aus `a.state["anim"]` (nur lesend), Zweihand-/Einarmprüfung, vorbereitete abgewiesene Posen, weiches Zurückblenden, Vorführung ohne Handlung, `grip_frame` |
+| `scripts/actions/work_motion.gd` | Phasen approach → prepare → work/contact → recover, Anlauf mit Voxelprüfung, Animationsangabe, Händeprüfung |
+| `scripts/technology/work_chain.gd`, `work_system.gd` | Arbeitsketten (`ctx.work`): Planung, Bedarf, Optionen, Ausführung, Rückmeldungen, Anzeige, Modellvorschläge, Speichern |
+| `scripts/settlement/storage_place.gd`, `storage_system.gd` | reale Lagerplätze (`ctx.storages`) |
+| `scripts/settlement/structure.gd`, `structure_system.gd` | Baustellen/Einzelbauwerke (`ctx.structures`), Bauplan Steinreihe |
+| `scripts/actions/implementations/deposit_in_storage_action.gd`, `place_building_part_action.gd`, `put_into_container_action.gd` | 3 neue Handlungen |
+| `scripts/lab/work_chain_scene.gd` | Testszene Werkzeugkette (Modus `werkzeugkette` in `LivingWorld`) |
+| `data/ai/work_schema.json`, `data/ai/prompts/work_system.txt`, `ResponseValidator.validate_work` | Anfrageart `work` (nur geprüfter Vorschlag) |
+| `design/import_config/datenbasis_korrekturen.json`, `tools/import_inventions_real.py`, `data/config/inventions_activated.json` | Excel-Abgleich: Korrekturen, Erfindungskatalog, aktivierte Definitionen |
+
+## Wiederverwendet statt dupliziert
+- **Ein Entscheider:** Arbeitsketten sind Optionen `work:start` / `work:continue` / `work:model` im `DecisionSystem`. Andere Ziele pausieren eine Kette (nicht abbrechen). Gezielt ausgelöste Ketten (Testszene) treibt `WorkSystem.tick` nur bei Wesen mit abgeschaltetem Verhalten – wie beim Versuchssystem.
+- **Eine Handlungsausführung:** jeder Kettenschritt ist eine normale Handlung über `ActionExecutor` (`dry_run` vor dem Anfordern). Schlag, Bruch und Gießen nutzen die vorhandenen `ToolUseSystem.strike`, `MaterialProcessSystem.work_piece/fracture_piece/pour`.
+- **Eine Geometrie:** `WorkPose` bestimmt Standpunkt (Handlung) und Gelenkwinkel (Animation). Die Darstellung setzt gehaltene Gegenstände an den Griffrahmen der animierten Hand.
+- **Wahrnehmung:** Lager und Baustellen über den Wahrnehmungstakt (`StorageSystem.perceive`, `StructureSystem.perceive`) in dasselbe `cr.tech.objects`.
+- **Wissen:** Ergebnisse über `ProceduralKnowledge.record_own` (Schlüssel `lagern:stone`, `bauen:steinreihe:stone`, vorhandene Verbinde-/Schlag-/Gießschlüssel).
+
+## Datenfluss einer Arbeitskette
+Bedarf (`WorkSystem.needs`) → `DecisionSystem` wählt `work:start` → `WorkSystem.plan` → `start` → `advance` → `_step` (zustandsbasiert: erledigt? sonst Teilhandlung) → `_request_with_prep` (`dry_run`, ggf. `move_to`/`drop`) → `ActionExecutor.request` → Handlung (z. B. `deform_material` mit Anlauf, Ausholen, genau einem Kontakt je Schlag) → `Creature.on_action_finished` → `WorkSystem.on_action_finished` (Werkzeug-ID, Bruchstücke, Gießen) → nächster Schritt … → `_check` (messen, Wissen verbuchen) → `_finish`. Darstellung: `LivingWorld._sync_views` liest `a.state.anim`, `CreatureAnimator` setzt Gelenke, `_place_held` setzt den Gegenstand an den Griffpunkt.
+
+## Änderungen an bestehendem Code (mit Grund)
+- `Creature`: `hold_mode` ("" / "one" / "two"), `hold_side`; Tod bricht die Arbeitskette ab.
+- `MaterialPiece`: `storage_id`, `structure_id`; `is_free()` berücksichtigt Verbautes.
+- `ToolUseSystem`: Zweihandtragen (`check_carry`, `carry_limit_two_kg`, `carry_two_max_width_m`), `release_at`, verbaute Stücke nicht greifbar, Heizung prüft Schmelzeignung.
+- `MaterialProcessSystem`: `melt_support` (Schmelzen ist keine Recyclingaktion), `merge_melts` (gleichartige Schmelzen vereinigen sich vor dem Gießen; Masse/Energie exakt), Bruch überträgt Testausrüstung/Behälter/Verlauf.
+- `tech_action_util.strike_series`, `equip_tool`, `drop`, `connect_parts` (einarmige Variante), `place_in_heater`, `pour_into_mold`: Bewegungsphasen und Animationsangaben; Wirkung weiterhin genau einmal in der Handlung.
+- `LifeSimulation.after_body_change`: prüft auch die haltende Seite bzw. die zweite Hand beim Zweihandtragen.
+- `LivingWorld`: Animation aus `a.state.anim`, gehaltene Gegenstände am Griffpunkt, Lager/Baustellen, Arbeitsanzeige, Modus und Bedienfeld Werkzeugkette.
+- `CreatureInspector`: Abschnitt ARBEIT; Gegenstände/Lager/Bauwerke als Zielobjekt lesbar.
+- `ContextBuilder`/`ResponseValidator`/`AISystem`/`MockOllama`: Art `work`.
+- `tools/import_definitions.py`: liest die Importkonfiguration.
+- Speichern: Format 5 (Lager, Bauwerke, Arbeitsketten, Haltemodus), Migration 4→5; Kette 1→2→3→4→5.

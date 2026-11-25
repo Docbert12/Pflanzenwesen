@@ -21,8 +21,9 @@ Godot-4-Spiel „Pflanzenwesen“: 3D-Voxelwelt mit 50 individuellen Pflanzenwes
 | v0.5.1 | 2668786 (+ Doku-Nachtrag Repository) |
 | v0.6.0 | 50bc72c (+ Nachtrag Commit-Hash) – altes Repository |
 | v0.6.0 (Übernahme) | 2e60241 – neues Repository `Docbert12/Pflanzenwesen`, inhaltlich identisch |
+| v0.6.1 | (wird beim Ausliefern eingetragen) |
 
-**Arbeitszweige:** `wip/prompt-06b` = laufende Arbeit an Prompt 6B (Pause am 2026-11-24; **kompiliert noch nicht vollständig**, nicht ausgeliefert). Fortsetzung: `docs/plan_prompt_06b.md` lesen (Stand, Entscheidungen, Reihenfolge der offenen Schritte).
+**Arbeitszweige:** `wip/prompt-06b` = Arbeitsverlauf von Prompt 6B (Zwischenstände vom 24./25.11.2026); abgeschlossen und als v0.6.1 ausgeliefert. Der Zweig bleibt als Verlauf erhalten, weitergearbeitet wird auf `main`. Entscheidungen und Begründungen von 6B: `docs/plan_prompt_06b.md`.
 
 **Neuer Chat:** Der Nutzer schreibt „Pflanzenwesen, Repository Docbert12/Pflanzenwesen, hier ist Prompt N“ bzw. „… weiter mit Prompt 6B (Zweig wip/prompt-06b)“. Dann: Repository anbinden, klonen, diese Datei lesen. Für den Versionsvergleich die letzte Version holen: `git fetch --depth=1 origin version/vX.Y.Z` und `python3 tools/compare_versions.py git:FETCH_HEAD .` (oder `git:origin/version/vX.Y.Z`).
 
@@ -36,7 +37,7 @@ Godot-4-Spiel „Pflanzenwesen“: 3D-Voxelwelt mit 50 individuellen Pflanzenwes
 | 5 | Ollama-Anbindung, Pläne, Gespräche, Hörensagen | v0.5.0 | fertig – **echte Ollama-Verbindung noch nicht verifiziert** |
 | – | HANDOVER, Versionsvergleich, Git-Verlauf | v0.5.1 | fertig |
 | 6 | Experimente, Werkzeugherstellung, praktisches Wissen, Testwerkstatt | v0.6.0 | fertig – Modellvorschläge für Versuche **mit echtem Ollama nicht verifiziert** |
-| 6B | Excel-Abgleich, Arbeitsanimationen, eigenständige Herstellung + verbindlicher Zusatz Werkzeug- und Materialkette (Hammer bauen → schlagen → Bruchstücke sammeln → lagern / verbauen / schmelzen) | (v0.6.1 geplant) | **in Arbeit** – Zweig `wip/prompt-06b`, Plan und Zwischenstand: `docs/plan_prompt_06b.md`; Texte: `design/prompts/prompt_06b_*.txt` |
+| 6B | Excel-Abgleich, Arbeitsanimationen, eigenständige Herstellung + verbindlicher Zusatz Werkzeug- und Materialkette (Hammer bauen → schlagen → Bruchstücke sammeln → lagern / verbauen / schmelzen) | v0.6.1 | fertig – Gegenstandsherstellung und **ein** einfaches Einzelbauwerk (Steinreihe); **Siedlungsbau nicht** (Prompt 9); Graben/Verdichten nur vorbereitet; Ollama-Anfrageart `work` **mit echtem Ollama nicht verifiziert**; Animationen nur als Standbilder geprüft. Texte: `design/prompts/prompt_06b_*.txt`, Doku: `docs/work_chains.md`, `docs/animations.md` |
 | Zusatz | Weltarchitektur: 20-fache Fläche, 0,25-m-Blöcke, Abbau und Bau mit Massenbilanz – `design/prompts/prompt_zusatz_weltarchitektur_abbau_bauen.txt` | – | offen, **Einordnung entscheidet der Nutzer** (Vorschlag: direkt nach 6B) |
 | 7 | Lebensbaum, Fortpflanzung, Vererbung, Mutationen, weitere Bäume – `prompt_07_…` | – | offen (Text liegt vor) |
 | 8 | Ökosystem, Wildtiere, Zähmung, Zucht, Landwirtschaft – `prompt_08_…` | – | offen (Text liegt vor) |
@@ -76,7 +77,7 @@ Alle Prompt-Texte werden in `design/prompts/prompt_NN_*.txt` abgelegt, sobald si
 
 **Ende**
 1. Vollständige Tests auf 4.7.2 und 4.5, Szenenstart (`tools/scene_smoke.gd`), Python-Tests (`python3 -m unittest discover -s tools/tests`).
-2. `python3 tools/compare_versions.py git:vX.Y.Z . --md reports/versionsvergleich_vX.Y.Z_zu_neu.md` – jede Entfernung begründen oder rückgängig machen.
+2. `python3 tools/compare_versions.py git:origin/version/vX.Y.Z . --md reports/versionsvergleiche/versionsvergleich_vX.Y.Z_zu_vNEU.md` – jede Entfernung begründen (CHANGELOG und `reports/versionsvergleiche/README.md`) oder rückgängig machen.
 3. Definitionsfingerabdruck neu eintragen, falls `data/config/*.json` o. ä. geändert (`tools/print_definitions_fingerprint.gd`, Konstante in `save_migrations.gd`).
 4. Doku: README, CHANGELOG (mit „Entfernt/Geändert“), `docs/architecture.md`, `docs/implementation_status.md`, `docs/test_results.md`, betroffene Fachdokumente, **dieses HANDOVER** (Stand-Tabelle, neue Regeln, offene Punkte).
 5. Version in `project.godot` erhöhen; Commit mit Nachricht „vX.Y.Z – Prompt N“; lokal Tag `vX.Y.Z`; Push nach `main` **und** als Versionszweig: `git push origin HEAD:main` und `git push origin HEAD:refs/heads/version/vX.Y.Z`; Commit-Tabelle in Abschnitt 1a ergänzen.
@@ -92,13 +93,19 @@ Alle Prompt-Texte werden in `design/prompts/prompt_NN_*.txt` abgelegt, sobald si
 ## 7. Wichtige Werkzeuge und Befehle
 ```
 godot --headless --path . --import                                 # nach neuen class_name-Skripten nötig
-godot --headless --path . -s res://tests/run_tests.gd              # alles (ca. 6 min, inkl. 10-min-Dauerlauf)
+godot --headless --path . -s res://tests/run_tests.gd              # alles (ca. 10 min auf 2 Kernen, inkl. 10-min-Dauerlauf und Beobachtungsläufen)
 godot --headless --path . -s res://tests/run_tests.gd -- --quick   # schneller (60-s-Dauerlauf)
 godot --headless --path . -s res://tools/run_life_tests.gd -- 60   # nur Lebenssimulation
 godot --headless --path . -s res://tools/run_mind_tests.gd         # nur Geist/Soziales/Migration
 godot --headless --path . -s res://tools/run_ai_tests.gd           # nur KI/Gespräche (SIMULIERT)
 godot --headless --path . -s res://tools/run_tech_tests.gd -- --quick [--only=_t07]   # nur Technik (Prompt 6)
 godot --headless --path . -s res://tests/run_tests.gd -- --nur-werkstatt-szene          # nur Szenentest Werkstatt
+godot --headless --path . -s res://tools/run_work_tests.gd -- [--quick] [--only=_t03]   # nur Werkzeug-/Materialkette (Prompt 6B)
+godot --headless --path . -s res://tests/run_tests.gd -- --nur-werkzeugkette-szene      # nur Szenentest Testszene Werkzeugkette
+godot --headless --path . -s res://tools/probe_work_chain.gd -- --goal=lagern|bauen|schmelzen [--case=material|weg|arm|schwer|unterbrechen|ungeeignet|ohne_ofen] [--auto] [--verbose] [--secs=N]   # eine Kette mit Protokoll
+xvfb-run -a -s "-screen 0 1600x900x24" godot --rendering-driver opengl3 --path . -s res://tools/capture_work_chain.gd   # Bildschirmfotos Testszene Werkzeugkette
+python3 tools/import_definitions.py --write                        # Excel-Datenbasis neu importieren (liest design/import_config/datenbasis_korrekturen.json)
+python3 tools/import_inventions_real.py                            # Erfindungskatalog aus Erfindungen_Echt_nach_Kategorien.xlsx
 godot --headless --path . -s res://tools/check_scripts.gd          # alle Skripte kompilieren (schnell, vor Testläufen)
 godot --headless --path . -s res://tools/observe_workshop.gd -- 1800   # Werkstatt 30 min eigenständig beobachten (Messwerte)
 godot --headless --path . -s res://tools/scene_smoke.gd            # alle 6 Szenen + Testwerkstatt starten
@@ -119,7 +126,8 @@ Benutzerdaten von Godot (Linux): `~/.local/share/godot/app_userdata/Pflanzenwese
 - `scripts/social/` – Bitten/Geben (Prompt 4), Gespräche, Hörensagen (Prompt 5).
 - `scripts/ai/` – Ollama-Anbindung (Prompt 5); `scripts/god/` – Göttermenü.
 - `scripts/technology/` – Gegenstände, Verbünde, Werkzeuggebrauch, Bewertung, Versuche, Verfahrenswissen (Prompt 6); `scripts/social/teaching_system.gd`; `scripts/lab/test_workshop.gd`; `scripts/generation/object_generator.gd`; Parameter `data/config/technology.json`, Materialabschnitt `working`.
-- `scripts/persistence/` – Format 4, Migrationen 1→2→3→4 (nur die letzte Stufe vergleicht mit den aktuellen Definitionen).
+- Prompt 6B: `scripts/technology/work_system.gd` + `work_chain.gd` (Arbeitsketten lagern/bauen/schmelzen; Optionen `work:start/continue/model` im `DecisionSystem`; ohne Verhalten treibt `WorkSystem.tick`), `scripts/settlement/` (Lager, Baustelle „Steinreihe“ – Namen wie in Prompt 9, dort erweitern statt ersetzen), `scripts/actions/work_motion.gd` (Phasen Anlauf→Ausgangspose→Arbeit/Kontakt→Rückkehr, `a.state.anim`), `scripts/animation/work_pose.gd` (Geometrie: Schulter, Handgelenk, Griffwinkel 45°, Kontaktposen-Suche) + `creature_animator.gd` (liest nur), `scripts/lab/work_chain_scene.gd` (Testszene). Details: `docs/work_chains.md`, `docs/animations.md`.
+- `scripts/persistence/` – Format 5, Migrationen 1→2→3→4→5 (nur die letzte Stufe vergleicht mit den aktuellen Definitionen, `V5_SHIPPED_DEFINITIONS`).
 - Konfiguration: `data/config/*.json` (Spieldefinitionen, Fingerabdruck), `data/settings/*.json` (Anwendungseinstellungen; `simulation.json` gehört zum Fingerabdruck, `ai.json` nicht).
 
 ## 9. Bekannte Stolperfallen (GDScript/Godot)
@@ -134,13 +142,18 @@ Benutzerdaten von Godot (Linux): `~/.local/share/godot/app_userdata/Pflanzenwese
 - `String %` kennt kein `%e` → `str(x)` verwenden.
 - `JSON.stringify`-Vergleich hängt von der Schlüsselreihenfolge ab → inhaltlich vergleichen (`TestTechnology.first_diff`).
 - Testläufe auf 4.7.2 und 4.5 **nacheinander**, nie parallel: beide nutzen denselben `user://`-Ordner (Spielstände, Bericht).
-- Neue Materialien/Konfigurationsdateien ändern den Definitionsfingerabdruck → `V*_SHIPPED_DEFINITIONS` neu setzen, und die vorige Migrationsstufe darf dann nicht mehr gegen die aktuellen Definitionen prüfen.
+- Neue Materialien/Konfigurationsdateien ändern den Definitionsfingerabdruck → `V*_SHIPPED_DEFINITIONS` neu setzen, und die vorige Migrationsstufe darf dann nicht mehr gegen die aktuellen Definitionen prüfen. Das gilt auch für einen Neuimport der Excel (`data/generated/excel/*.json`).
+- Werkstatt-/Szenenangaben in `life.workshop` werden als Ganzzahlen gespeichert → Kennzeichen wie `work_scene` als `1`, nicht als Text/Wahrheitswert.
+- Bewegungsziel: Ankunftsradius nie größer als der Restweg (`WorkSystem._move_near`), sonst endlose Anlaufschleife.
+- Bildschirmfotos von Bewegungen: Simulation während der Aufnahme anhalten (`capture_work_chain.gd`), sonst liegt das Bild Bilder hinter dem Zustand.
+- Arbeitsposen: Winkel und Standpunkt kommen aus derselben `WorkPose`-Geometrie wie die Handlung – wer Körperproportionen, Griffwinkel oder Werkzeuglänge ändert, prüft `TestWorkChain._t01/_t09` (Kontaktabstand) und den Szenentest Werkzeugkette.
 
-## 10. Offene Punkte (Stand v0.6.0, ergänzt 2026-11-24)
-- **Prompt 6B in Arbeit** (Zweig `wip/prompt-06b`): Fortsetzung nach `docs/plan_prompt_06b.md` Abschnitt 5. Ausgangsbasis v0.6.0 am 2026-11-24 bestätigt: 432/432 auf 4.7.2 und 4.5; Prüflinge Format 4 liegen in `tests/fixtures/save_v4_prompt06*.json` (vor jeder Codeänderung erzeugt).
-- **Leitlinie Steinzeit → Zukunft (Wunsch des Nutzers):** Die Wesen sollen sich selbst entwickeln (Steinhammer → Schmelzen → Legieren → Abbauwerkzeuge). Abgleich aller Prompts in `docs/plan_prompt_06b.md` Abschnitt 8: **Feuer erst in Prompt 12; Holzkohle/Luftzufuhr, Ton brennen/eigener Ofen, Erz im Gelände, Zinn/Legierungen fehlen in allen Prompts.** Vorschlag an den Nutzer: Zwischenschritte „Feuer, Ton und eigener Ofen“ sowie „Erz und Legierungen“. Leitlinien-Excel (physikalische Ketten statt Bonus-Effekte) nach 6B bauen.
-- Neue Erfindungs-Excel des Nutzers liegt unverändert in `design/Erfindungen_Echt_nach_Kategorien.xlsx` (noch nicht importiert; Befund in `docs/plan_prompt_06b.md` Abschnitt 3). Die alte Datei `Erfindungen_nach_Kategorien_und_Stufen.xlsx` bleibt erhalten.
-- **Echte Ollama-Tests** (Plan, Gespräch, 50 Wesen, Ausfall, Wiederkehr, **Versuchsvorschläge**) beim Nutzer ausstehend → danach Rate/Zeitlimit/Modellempfehlung anpassen und hier eintragen.
+## 10. Offene Punkte (Stand v0.6.1, 2026-11-25)
+- **Nächster Schritt:** Prompt 7 (Lebensbaum, Fortpflanzung, Vererbung) – **oder** zuerst der Zusatz Weltarchitektur (Vorschlag: direkt nach 6B, weil 6B Graben/Verdichten nur vorbereitet; würde v0.6.2). **Entscheidung beim Nutzer.** Vor Prompt 7: Prüflinge Format 5 aus v0.6.1 erzeugen (`tools/make_save_fixture.gd`, `tools/make_workshop_fixture.gd`; zusätzlich ein Spielstand der Testszene Werkzeugkette mitten in einer Kette).
+- **Leitlinie Steinzeit → Zukunft (Wunsch des Nutzers):** Die Wesen sollen sich selbst entwickeln (Steinhammer → Schmelzen → Legieren → Abbauwerkzeuge). Abgleich aller Prompts in `docs/plan_prompt_06b.md` Abschnitt 8: **Feuer erst in Prompt 12; Holzkohle/Luftzufuhr, Ton brennen/eigener Ofen, Erz im Gelände, Zinn/Legierungen fehlen in allen Prompts.** Vorschlag an den Nutzer: Zwischenschritte „Feuer, Ton und eigener Ofen“ sowie „Erz und Legierungen“ – noch nicht entschieden. Leitlinien-Excel (physikalische Ketten statt Bonus-Effekte) steht noch aus.
+- Erfindungs-Excel `design/Erfindungen_Echt_nach_Kategorien.xlsx` ist seit v0.6.1 als **Katalog** importiert (`data/generated/ideas/inventions_real_catalog.json`, 2.785 Einträge, Stufe nur Metadatum, Effekte nie angewendet). Aktiv sind nur die 8 Verfahren in `data/config/inventions_activated.json`. Die alte Datei `Erfindungen_nach_Kategorien_und_Stufen.xlsx` und ihr Katalog bleiben erhalten.
+- Prompt 6B, Grenzen: Wesen schmelzen nur im **Testofen** der Testszene (eigener Ofen braucht Feuer/Ton); eigenständig beobachtet wurde bisher nur „bauen“ (nach einer gezielt ausgelösten Kette, siehe `docs/test_results.md`); eine Kette je Wesen; Lager/Baustelle nur durch Wesen oder Testaufbau; kein gemeinsames Bauen; Animationen headless und als Standbilder geprüft, **nicht** als bewegte Bilder auf einer Grafikkarte.
+- **Echte Ollama-Tests** (Plan, Gespräch, 50 Wesen, Ausfall, Wiederkehr, **Versuchsvorschläge**, **Arbeitsvorschläge `work`**) beim Nutzer ausstehend → danach Rate/Zeitlimit/Modellempfehlung anpassen und hier eintragen.
 - Prompt 6, Grenzen: nur Schlagwerkzeuge, nur Umwickeln, Gießen nur Tiegel → offene Form, keine Schmelzströmung, eine Temperatur je Teil, Zusammentragen nur vor dem Verbinden, Fasern nur Werkstatt/Göttermenü. Versuchsgewicht 0,6 ist kalibriert an 2 Werkstattwesen; im 50-Wesen-Spiel mit Göttermaterial beobachten.
 - Strategische Täuschung bewusst nicht implementiert.
 - Manuelle Prüfschritte für den Nutzer: `docs/implementation_status.md`.

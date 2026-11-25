@@ -402,7 +402,9 @@ func _sync_work_labels() -> void:
 			l = Label3D.new()
 			l.billboard = BaseMaterial3D.BILLBOARD_ENABLED
 			l.font_size = 34
-			l.pixel_size = 0.0035
+			# feste Bildschirmgröße (≈ 16 px), damit die Anzeige nah nicht das Bild verdeckt und fern lesbar bleibt
+			l.fixed_size = true
+			l.pixel_size = 0.0008
 			l.outline_size = 8
 			l.no_depth_test = true
 			l.modulate = Color(0.75, 0.95, 1.0)
@@ -555,9 +557,11 @@ func _sync_storages_and_sites() -> void:
 				sn.add_child(bar)
 			var lbl := Label3D.new()
 			lbl.billboard = BaseMaterial3D.BILLBOARD_ENABLED
-			lbl.font_size = 32
-			lbl.pixel_size = 0.004
-			lbl.position = Vector3(0, 0.35, 0)
+			lbl.font_size = 24
+			lbl.fixed_size = true    # feste Bildschirmgröße (≈ 14 px)
+			lbl.pixel_size = 0.001
+			lbl.outline_size = 6
+			lbl.position = Vector3(0, 0.3, 0)
 			lbl.name = "Text"
 			sn.add_child(lbl)
 			effect_root.add_child(sn)
@@ -590,8 +594,10 @@ func _sync_storages_and_sites() -> void:
 				bn.add_child(mk)
 			var lb := Label3D.new()
 			lb.billboard = BaseMaterial3D.BILLBOARD_ENABLED
-			lb.font_size = 32
-			lb.pixel_size = 0.004
+			lb.font_size = 24
+			lb.fixed_size = true     # feste Bildschirmgröße (≈ 14 px)
+			lb.pixel_size = 0.001
+			lb.outline_size = 6
 			lb.name = "Text"
 			bn.add_child(lb)
 			effect_root.add_child(bn)
@@ -602,7 +608,7 @@ func _sync_storages_and_sites() -> void:
 			var full := int(st.slots[i].get("part_id", 0)) != 0
 			(mk2.material_override as StandardMaterial3D).albedo_color = Color(0.35, 0.75, 0.35) if full else Color(0.95, 0.85, 0.3)
 		var lb2: Label3D = bn.get_node("Text")
-		lb2.position = st.position + Vector3(0, 0.4, 0)
+		lb2.position = StructureSystem.slot_world(st, st.slots.size() / 2) + Vector3(0, 0.3, 0) if not st.slots.is_empty() else st.position + Vector3(0, 0.3, 0)
 		lb2.text = "%s #%d · %d/%d · %s" % [st.label if st.label != "" else st.blueprint, st.id, st.filled(), st.slots.size(), st.status]
 	for bid in site_nodes.keys():
 		if not ctx.structures.has(bid):
@@ -1093,25 +1099,44 @@ func _build_work_panel(root: Control) -> void:
 	_work_panel.add_theme_stylebox_override("panel", sb)
 	root.add_child(_work_panel)
 	_work_panel.position = Vector2(10, 416)
-	_work_panel.custom_minimum_size = Vector2(330, 0)
+	_work_panel.custom_minimum_size = Vector2(610, 0)
 	var v := VBoxContainer.new()
 	v.add_theme_constant_override("separation", 1)
 	_work_panel.add_child(v)
-	Nav.label(v, "WERKZEUGKETTE – gezielt ausgelöst (Testwesen)", 11, true)
+	Nav.label(v, "WERKZEUGKETTE – gezielt ausgelöst (Testwesen) · links Ketten, rechts Fehlerfälle", 11, true)
+	# zwei Spalten, damit das Feld die Ereignisliste unten links nicht verdeckt
+	var grid := GridContainer.new()
+	grid.columns = 2
+	grid.add_theme_constant_override("h_separation", 4)
+	grid.add_theme_constant_override("v_separation", 1)
+	v.add_child(grid)
+	# Knöpfe: [kurze Beschriftung, Aufruf, ausführlicher Hinweis]
+	var left: Array = []
 	for goal in ["lagern", "bauen", "schmelzen"]:
 		var g: String = goal
-		_small(Nav.button(v, WorkChainScene.GOALS[g], func():
+		left.append([WorkChainScene.GOAL_BUTTONS[g], func():
 			var r := WorkChainScene.trigger(life, g)
 			_msg.text = str(r.get("message", ""))
-			_refresh_ui()))
-	Nav.label(v, "Fehlerfälle", 11, true)
+			_refresh_ui(), WorkChainScene.GOALS[g]])
+	left.append(["Speichern (F5) · Laden (F9) setzt fort", func(): do_save(), "Speichern mitten in der Kette; nach dem Laden (F9) wird die Kette beim nächsten offenen Schritt fortgesetzt"])
+	var right: Array = []
 	for case in ["material", "weg", "arm", "schwer", "unterbrechen", "ungeeignet", "ohne_ofen"]:
 		var c: String = case
-		_small(Nav.button(v, WorkChainScene.CASES[c], func():
+		right.append([WorkChainScene.CASE_BUTTONS[c], func():
 			var r2 := WorkChainScene.trigger_case(life, c)
 			_msg.text = str(r2.get("message", ""))
-			_refresh_ui()))
-	_small(Nav.button(v, "Speichern (F5) – später Laden (F9) setzt die Kette fort", func(): do_save()))
+			_refresh_ui(), WorkChainScene.CASES[c]])
+	for i in maxi(left.size(), right.size()):
+		for col in [left, right]:
+			if i < (col as Array).size():
+				var b := Nav.button(grid, str(col[i][0]), col[i][1])
+				_small(b)
+				b.custom_minimum_size = Vector2(300, 21)
+				b.alignment = HORIZONTAL_ALIGNMENT_LEFT
+				b.clip_text = true
+				b.tooltip_text = str(col[i][2])
+			else:
+				grid.add_child(Control.new())
 	_small(Nav.button(v, "Beobachtungslauf: eigenes Verhalten an/aus (autonom)", func():
 		var on := false
 		for id in life.ctx.creatures:

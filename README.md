@@ -1,10 +1,18 @@
 # Pflanzenwesen – 3D-Voxel-Zivilisationssimulation
 
-**Stand: 0.6.0-prototype – Prompt 1 (Physiklabor) + 2 (Voxelwelt, Modelle, Excel-Import) + 3 (Lebenssimulation) + 4 (Persönlichkeit, Erinnerung, Lernen, Beziehungen, Göttermenü) + 5 (Ollama-Anbindung, Pläne, Gespräche, Hörensagen) + 6 (Experimente, Werkzeuge, praktisches Wissen)**
+**Stand: 0.6.1-prototype – Prompt 1 (Physiklabor) + 2 (Voxelwelt, Modelle, Excel-Import) + 3 (Lebenssimulation) + 4 (Persönlichkeit, Erinnerung, Lernen, Beziehungen, Göttermenü) + 5 (Ollama-Anbindung, Pläne, Gespräche, Hörensagen) + 6 (Experimente, Werkzeuge, praktisches Wissen) + 6B (Excel-Abgleich, Arbeitsanimationen, Werkzeug- und Materialkette)**
 
 Spielbar ist eine **erste Lebenssimulation**: kleine Voxelwelt, Lebensbaum mit Wurzelbeet, genau 50 Pflanzenwesen, endliche Nahrung, Tag und Nacht. Die Wesen nehmen ihre Umgebung wahr, suchen Nahrung, gehen hin, greifen, essen, gewinnen Energie über ihre Blätter, verbrauchen Energie und Nährstoffe, reagieren auf Verletzungen und können sterben. Du kannst beobachten, einzelne Wesen untersuchen, pausieren, speichern und laden sowie im Entwicklermodus Körperveränderungen testen.
 
-**Neu in 0.6.0 (Prompt 6):**
+**Neu in 0.6.1 (Prompt 6B):**
+- **Werkzeug- und Materialkette:** Ein Wesen bindet einen Hammer aus vorhandenem Holzstiel, Steinkopf und Fasern, nimmt **genau diesen Hammer** (eigene ID, keine Kopie) in die Hand, zerschlägt damit einen Stein (oder verformt Kupfer), sammelt die tatsächlich entstandenen Bruchstücke, trägt sie (schwere oder breite mit beiden Händen) und **lagert** sie in einem realen Lagerplatz ein, **verbaut** sie in einer Steinreihe (einfaches Einzelbauwerk) oder legt Kupfer in einen Tiegel, **schmilzt** es im Testofen und gießt es. Masse, Material und Wärme bleiben erhalten; Ungeeignetes (z. B. Holz zum Schmelzen) wird mit Grund abgewiesen. Gemeinsames Siedlungsbauen ist **nicht** umgesetzt (Prompt 9). `docs/work_chains.md`
+- **Arbeitsanimationen aus der Handlung:** Anlauf, Greifen/Bücken, Tragen (eine/zwei Hände), Ablegen, Einsetzen, Hämmern (Ausholen → Kontakt → Rückkehr), Zusammenfügen (auch einarmig), Erhitzen bedienen, vorsichtiges Gießen. Gelenkwinkel aus Körperproportionen und Werkzeuglänge; der Hammerkopf trifft das Ziel sichtbar (≈ 2 cm), jeder Schlag zählt genau einmal; gehaltene Gegenstände sitzen am Griffpunkt der Hand. Graben/Verdichten sind vorbereitet, aber abgewiesen. `docs/animations.md`
+- **Aus eigenem Bedarf:** Wesen beginnen Arbeitsketten aus eigenem Wissen (eigene Baustelle, lose eigene Stücke + Lager, bekanntes Gießen; wer schon selbst gebaut hat, beginnt eher eine neue Steinreihe). Hunger oder Gefahr pausieren die Kette. Nach einer gescheiterten Kette kann ein Modell (Ollama, Anfrageart `work`) einen Ablauf **vorschlagen** – nur als geprüfte Option, ausgeführt nur über Spielhandlungen.
+- **Testszene Werkzeugkette (Testbereich):** ein Testwesen, Material, Lager, Baustelle, Testofen; drei Ketten und sieben Fehlerfälle (fehlendes Material, blockierter Weg, fehlender Arm, zu schwer, Unterbrechung, ungeeignetes Schmelzgut, fehlende Wärmequelle) per Knopf; Wesenfenster-Abschnitt **ARBEIT** (Ziel, Handlung, Werkzeug-ID, Zielobjekt, getragene Masse, Fortschritt, Abbruchgrund).
+- **Excel-Abgleich:** dokumentierte Importkonfiguration `design/import_config/datenbasis_korrekturen.json` (Kupfer-/Wasser-Verweis, MAT_Erde/Gras/Holz, Voxelgröße, Fortpflanzung, Setzling-Ernährung); Erfindungskatalog aus `Erfindungen_Echt_nach_Kategorien.xlsx` (5.862 Zeilen → 2.785 Einträge, Stufe nur Metadatum, Effekte nie angewendet, kein Startwissen); strukturierte Definitionen der tatsächlich umgesetzten Verfahren in `data/config/inventions_activated.json`. Berichte: `reports/import_report.md`, `reports/inventions_real_import_report.md`.
+- Speicherformat 5 (Lager, Bauwerke, Arbeitsketten, zweihändiges Halten) mit Migration aus v0.6.0 und älter.
+
+**Aus 0.6.0 (Prompt 6):**
 - **Gegenstände benutzen und Versuche:** Wesen untersuchen wahrgenommene Gegenstände, nehmen sie in die Hand, schlagen damit, verformen Kupfer und verbinden Holzstiel und Steinkopf mit Pflanzenfasern. Was dabei herauskommt, folgt nur aus Material, Geometrie, Energie und Körper; Namen haben keine Wirkung. Verbindungen können bei Überlast brechen, heiße Gegenstände verbrennen die Hand. Versuche sind begrenzt (Neugier, Hunger, Risiko, Zeitbudget). Es gibt **keinen Technologiebaum** und keine Garantie einer Entdeckung.
 - **Praktisches Wissen:** jedes Wesen für sich, mit den Stufen *gehört < zugesehen < versucht < erfolgreich*, mit Herkunft, Sicherheit und Versionen. Wesen erklären Verfahren, führen sie vor, sehen zu und üben. Unterricht überträgt Information, keine Praxiserfahrung. Wissen geht beim Tod nicht auf andere über.
 - **Testwerkstatt (Testbereich):** 2 Testwesen mit Testausrüstung (Steine, Stiele, Fasern, Kupferproben, Keramiktiegel, Form, extern versorgte Testheizung). 6 Versuche lassen sich gezielt auslösen, darunter Kupfer schmelzen und gießen. Ein Beobachtungslauf zeigt eigenständiges Verhalten. Im normalen Spiel gibt es keine Testausrüstung; Material (jetzt auch Fasern und Stäbe) kommt nur über das Göttermenü.
@@ -21,7 +29,7 @@ Spielbar ist eine **erste Lebenssimulation**: kleine Voxelwelt, Lebensbaum mit W
 - **Soziales:** Wesen bitten um Nahrung, teilen oder lehnen ab.
 - **Göttermenü:** Du kannst Nahrung schenken, Material platzieren und Verletzungen heilen, auch gezielt als Reaktion auf eine beobachtete Handlung. Jedes Wesen, das den Eingriff sieht, deutet ihn nach seinen eigenen Erfahrungen. Ein einzelnes Geschenk erzeugt keine Gewissheit, und ausbleibende Bestätigung schwächt Erwartungen wieder ab.
 
-Noch **nicht** enthalten: freie Sprache (nur strukturierte Mitteilungen), strategische Täuschung, Technologiebaum, Feuer und Öfen, weitere Werkzeugarten außer Schlagen, Schrift/Bücher, Religion, Fortpflanzung, Tiere, Landwirtschaft, Gesellschaft.
+Noch **nicht** enthalten: freie Sprache (nur strukturierte Mitteilungen), strategische Täuschung, Technologiebaum, Feuer und selbst gebaute Öfen (nur Testofen), Erz und Legierungen, Graben/Abbau aus dem Gelände, weitere Werkzeugarten außer Schlagen, gemeinsames Bauen/Siedlungen, Schrift/Bücher, Religion, Fortpflanzung, Tiere, Landwirtschaft, Gesellschaft.
 
 | Bereich (Startbildschirm) | Inhalt |
 |---|---|
@@ -32,6 +40,7 @@ Noch **nicht** enthalten: freie Sprache (nur strukturierte Mitteilungen), strate
 | **Kreaturenvorschau** | Pflanzenwesen erzeugen und variieren, Unterarm entfernen, Holz-/Kupferprothese, Blätter, Animationen, Speichern/Laden, 10 Varianten, 50-Figuren-Leistungstest |
 | **Geistlabor (Testbereich)** | kontrollierte Versuche A–G (Erfahrung, Hilfe, verdecktes Ereignis, Belohnung, Widerspruch, Ähnlichkeit, Speichern) – Ereignisse werden dort gezielt ausgelöst |
 | **Testwerkstatt (Testbereich)** | 2 Testwesen, Testausrüstung, 6 gezielt auslösbare Versuche (Stein als Werkzeug, Verbinden, Werkzeug testen, Kupfer verformen, Schmelzen und Gießen, Vorführen/Üben), Beobachtungslauf; eigener Spielstand (`docs/experimentation.md`) |
+| **Testszene Werkzeugkette (Testbereich)** | 1 Testwesen, Material, Lager, Baustelle, Testofen; Ketten lagern / bauen / schmelzen und 7 Fehlerfälle per Knopf, Beobachtungslauf; eigener Spielstand (`docs/work_chains.md`) |
 
 ## Voraussetzungen
 - **Godot 4** Standard (GDScript, nicht .NET). Geprüft mit **4.7.2** und **4.5**.
@@ -83,7 +92,7 @@ Gelbe Markierung = Zelle unter der Maus. Wird eine Stütze unter einem kleinen �
 - Ansicht: **Einzeln**, **10 Varianten**, **50 Figuren (Test)**. Startwert eingeben + „Erzeugen“ oder „Zufall“.
 - Regler: Größe, Rumpfproportion, Arm- und Beinlänge (beim Loslassen wird neu erzeugt); Körperfarbe (Excel F001/F002/F005); Blattform.
 - Körperveränderungen: Seite wählen → „Unterarm entfernen“; Prothesenmaterial (Holz/Kupfer) → „Anbringen“; „Blatt +“/„Blatt −“; „Körper zurücksetzen“.
-- Animation: Ruhe, Gehen, Greifen, Zum Mund. Fehlt die Hand auf der gewählten Seite, nimmt das Wesen die andere Hand oder lehnt verständlich ab.
+- Animation: Ruhe, Gehen, Greifen, Zum Mund; Arbeitsposen als Vorführung (Schlagen, Einsetzen, Ablegen 2H, Verbinden, Verbinden 1H, Gießen; Graben wird abgewiesen). Fehlt die Hand auf der gewählten Seite, nimmt das Wesen die andere Hand oder lehnt verständlich ab.
 - „Speichern“/„Laden“: Körperkonfiguration im Benutzerdatenordner (`user://creature_configs/kreatur.json`).
 - Rechts: alle Körperteile mit Masse, Modell- und Voxelvolumen, Material, Status; Gesamtmasse.
 
@@ -93,9 +102,10 @@ Gelbe Markierung = Zelle unter der Maus. Wird eine Stütze unter einem kleinen �
 ```
 python -m pip install -r tools/requirements.txt
 python tools/import_definitions.py            # nur prüfen, Unterschiede melden
-python tools/import_definitions.py --write    # prüfen und data/generated/excel/ schreiben
+python tools/import_definitions.py --write    # prüfen und data/generated/excel/ schreiben (wendet design/import_config/datenbasis_korrekturen.json an)
+python tools/import_inventions_real.py --write   # Erfindungskatalog (echte Namen) → data/generated/ideas/inventions_real_catalog.json
 ```
-Bericht: `reports/import_report.md`. Zuordnung und Unklarheiten: `docs/excel_mapping.md`.
+Berichte: `reports/import_report.md` (mit Abschnitt „Importkonfiguration“), `reports/inventions_real_import_report.md`. Zuordnung und Unklarheiten: `docs/excel_mapping.md`, `docs/inventions_catalog.md`.
 Die Excel liegt unter `design/` und wird nie verändert.
 
 ## Tests
@@ -107,6 +117,9 @@ godot --headless --path . -s res://tools/run_mind_tests.gd          # nur Geist/
 godot --headless --path . -s res://tools/run_ai_tests.gd            # nur KI/Gespräche/Hörensagen/Format 3 – SIMULIERTER Testdienst, kein Ollama
 godot --headless --path . -s res://tools/run_tech_tests.gd -- [--quick] [--only=_t07]   # nur Technik-Abnahmetests (1)–(15) + Werkstattbeobachtung
 godot --headless --path . -s res://tests/run_tests.gd -- --nur-werkstatt-szene   # nur Szenentest der Testwerkstatt
+godot --headless --path . -s res://tools/run_work_tests.gd -- [--quick] [--only=_t03]   # nur Arbeitsketten/Arbeitsposen (Prompt 6B)
+godot --headless --path . -s res://tests/run_tests.gd -- --nur-werkzeugkette-szene   # nur Szenentest der Testszene Werkzeugkette
+godot --headless --path . -s res://tools/probe_work_chain.gd -- --goal=lagern|bauen|schmelzen [--case=weg] [--auto]   # Kette mit Verlauf protokollieren
 godot --headless --path . -s res://tools/ollama_live_test.gd -- --model=NAME [--minutes=3] [--unterbrechung]   # ECHTER Ollama-Live-Test (eigener Rechner)
 python -m unittest discover -s tools/tests -v                         # 17 Python-Prüfungen (Importer, Erfindungskatalog, Versionsvergleich)
 godot --headless --path . -s res://tools/scene_smoke.gd              # alle 6 Szenen + Testwerkstatt je 240 Bilder starten
@@ -117,6 +130,8 @@ Ergebnisse und Messwerte: `docs/test_results.md`, Protokolle in `docs/test_repor
 ## Dokumentation
 - `docs/HANDOVER.md` – **zuerst lesen** bei Weiterentwicklung: Stand, feste Regeln, Ablauf je Prompt, Schutz vor Verlust (Git, `tools/compare_versions.py`)
 - `docs/progress_audit.md` – Bestandsprüfung vor Prompt 6 (Code und Tests, nicht Doku) und Stand danach
+- `docs/work_chains.md` – Arbeitsketten (Prompt 6B): Hammer → Schlag → Bruchstücke → Lager/Baustelle/Testofen, Hände, Autonomie, Modellvorschläge, Testszene, Fehlerfälle
+- `docs/animations.md` – vorhandene und fehlende Animationen, Arbeitsposen, Kontaktgeometrie
 - `docs/experimentation.md` – Versuche: Protokoll, Vorgänge, Bearbeiten, Heizen und Gießen, Begrenzung, Modellvorschläge, Testwerkstatt
 - `docs/tools_and_construction.md` – Greifen, Schlagmodell, Verbindungen, Bruch, funktionale Bewertung, Modelle
 - `docs/practical_knowledge.md` – Verfahrenswissen, Stufen, Unterricht, Tod, Unterricht beobachten
@@ -125,7 +140,7 @@ Ergebnisse und Messwerte: `docs/test_results.md`, Protokolle in `docs/test_repor
 - `docs/communication.md` – Gespräche, Hörensagen, Prüfstatus, Vertrauen
 - `docs/mind_and_learning.md` – Persönlichkeit, Beobachtung, Erinnerung, Lernmodell, Beziehungen, Entscheidungen, Grenzen kausalen Schließens
 - `docs/god_interactions.md` – Göttermenü: Bedienung, Prüfungen, Bilanz, Deutung durch Wesen
-- `docs/inventions_catalog.md` – Ideenkatalog aus der Erfindungs-Excel (nichts aktiv)
+- `docs/inventions_catalog.md` – Erfindungskataloge aus beiden Erfindungs-Excels (nichts aktiv) und aktivierte Definitionen
 - `docs/life_simulation.md` – Lebenssimulation: Handlungen, Körper, Stoffwechsel, Licht, Wahrnehmung, Verhalten, Navigation, Bedienung
 - `docs/save_format.md` – Spielstand: Inhalt, Schreiben/Laden, Ladeverhalten, Definitionsänderungen, Migrationen
 - `docs/test_results.md` – tatsächlich ausgeführte Prüfungen, Dauerlauf, Leistungsmessung

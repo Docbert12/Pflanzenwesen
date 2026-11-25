@@ -25,7 +25,7 @@ Scheitert Schritt 2, bleibt die alte Datei unberührt. Scheitert Schritt 4, lieg
 ## Inhalt
 | Feld | Inhalt |
 |---|---|
-| `format_version` | Speicherformat (4) |
+| `format_version` | Speicherformat (5) |
 | `game_version` | Programmversion (`application/config/version`) |
 | `definitions` | Fingerabdruck aller Definitionsdateien: Gesamt-SHA-256 + SHA-256 je Datei |
 | `saved_at_real` | reale Uhrzeit – **nur zur Anzeige** |
@@ -47,6 +47,10 @@ Scheitert Schritt 2, bleibt die alte Datei unberührt. Scheitert Schritt 4, lieg
 | `experiments` | **(neu in 4)** Versuchsprotokolle (Ausgangslage Simulation und Wahrnehmung, Schritte geplant/ausgeführt, Aufwand, Ergebnisse, Fehlschläge, Herkunft), nächste ID, Statistik |
 | `workshop` | **(neu in 4)** nur in der Testwerkstatt: Rollen → IDs der Testausrüstung; im normalen Spiel leer |
 | `creatures[].held_object_id`, `creatures[].mind.tech` | **(neu in 4)** gehaltener Gegenstand; **Verfahrenswissen** (Stufe, Herkunft, Voraussetzungen, Schritte, Materialbereich, eigene/beobachtete/gehörte Fälle mit Quellen, Sicherheit, Versionen), Hypothesen, bekannte Gegenstände (wahrgenommene Eigenschaften), Versuchsbudget, **Unterrichtsfortschritt** (angeboten, erklärt, gelehrt, zusehend) |
+| `storages` | **(neu in 5)** Lagerplätze: Position, Größe, Kapazität (kg, m³), Inhalt (Stück-IDs), Herkunft, Verlauf |
+| `structures` | **(neu in 5)** Baustellen/Einzelbauwerke: Bauplan, Position, Richtung, Plätze mit Bauteil-ID, Initiator, Status, Verlauf |
+| `work` | **(neu in 5)** Arbeitsketten (Ziel, Herkunft, autonom, Schritte mit Status, Werkzeug, Zielobjekt, Bestimmung, erzeugte/abgelieferte Stücke, Masse, Abweisungen, Abbruch-/Pausegrund, Verlauf), offene Kette je Wesen, Abklingzeiten, Statistik, geprüfte Modellvorschläge, ausstehendes Ablegen |
+| `material_pieces[].storage_id/structure_id`, `creatures[].hold_mode/hold_side` | **(neu in 5)** eingelagert in / verbaut in; Halten mit einer oder beiden Händen und Seite |
 | `observation_stats` | Zähler der Ereignisverteilung (nur Leistung/Diagnose) |
 | `creatures[].mind.ai` | **(neu in 3)** angenommener Plan (Schritte mit Status/Ergebnis, Quelle Ollama/SIMULIERT, Unsicherheit, Modellbegründung), letzte 5 Pläne mit Ergebnis, gesperrte gescheiterte Plansignaturen, Modelldeutungen (≤ 8), **Hörensagen** mit Sprecher, Ursprung, Kette, Vertrauen beim Hören, Status, Widersprüchen; leer gesehene Quellen, Gesprächs-Wartezeiten, Mindestabstand bis zur nächsten Anfrage, Fehlschlagserie, letzte Anfrage (nur Diagnose) |
 | `communication` | **(neu in 3)** Gesprächsprotokoll (≤ 200 Äußerungen), nächste Äußerungs-ID, Zähler |
@@ -114,7 +118,7 @@ Die Meldung nennt die geänderten Dateien.
 **Folge für dich:** Nach einem erneuten Excel-Import mit inhaltlichen Änderungen sind alte Spielstände nicht mehr ladbar. Das ist so gewollt.
 
 ## Migrationen
-`SaveMigrations.MIGRATIONS = {1: "_migrate_1_to_2", 2: "_migrate_2_to_3", 3: "_migrate_3_to_4"}`. Stufen werden nacheinander angewendet (1 → 2 → 3 → 4); nur die **letzte** Stufe vergleicht mit den aktuellen Definitionen, die Zwischenstufen setzen den Fingerabdruck der jeweils ausgelieferten Version; fehlt eine, wird abgewiesen. Vor jeder Migration entsteht eine unveränderte Kopie `spielstand.json.vN.vor_migration` (N = Ausgangsformat).
+`SaveMigrations.MIGRATIONS = {1: "_migrate_1_to_2", 2: "_migrate_2_to_3", 3: "_migrate_3_to_4", 4: "_migrate_4_to_5"}`. Stufen werden nacheinander angewendet (1 → 2 → 3 → 4 → 5); nur die **letzte** Stufe vergleicht mit den aktuellen Definitionen, die Zwischenstufen setzen den Fingerabdruck der jeweils ausgelieferten Version; fehlt eine, wird abgewiesen. Vor jeder Migration entsteht eine unveränderte Kopie `spielstand.json.vN.vor_migration` (N = Ausgangsformat).
 
 ### Format 1 (v0.3.0) → Format 2 (v0.4.0)
 **Vor dem Laden** legt `SaveManager.load_into` eine unveränderte Kopie `spielstand.json.v1.vor_migration` an. Gelingt das nicht, wird nichts geladen.
@@ -171,10 +175,20 @@ Seit 0.5.0 setzt die Stufe 1→2 den Fingerabdruck auf den von v0.4.0 (`V2_SHIPP
 
 v1- und v2-Prüflinge laufen durch die ganze Kette 1→2→3→4.
 
-**Für spätere Versionen:** `V4_SHIPPED_DEFINITIONS` bei Definitionsänderungen neu eintragen (`tools/print_definitions_fingerprint.gd`) und eine Stufe 4→5 ergänzen.
+Seit 0.6.1 prüft die Stufe 3→4 die aktuellen Definitionen nicht mehr (sie setzt den Fingerabdruck auf `V4_SHIPPED_DEFINITIONS`); die Stufe 4→5 übernimmt danach.
+
+### Format 4 (v0.6.0) → Format 5 (v0.6.1)
+**Voraussetzungen:** Spielstand mit den ausgelieferten v0.6.0-Definitionen (`V4_KNOWN_DEFINITIONS`), aktuelle Definitionen = ausgelieferte v0.6.1-Definitionen (`V5_SHIPPED_DEFINITIONS`, per Test geprüft). Geändert haben sich `technology.json` (Abschnitte `motion`, `storage`, `structures`, `containers`, `work`, `hands.carry_two_max_width_m`), `mind.json` (Auslöserpriorität `work`), die neu importierten Excel-Definitionen (Importkonfiguration: Voxeltyp-Verweise, Projektentscheidungen, Statusnotizen) und `implementation_status.json`.
+
+**Ablauf:** Materialstücke erhalten `storage_id = 0`, `structure_id = 0`; Wesen erhalten `hold_mode = "one"`, wenn sie etwas halten (sonst leer), und `hold_side`; neu und leer: Lager, Bauwerke, Arbeitsketten. Vermerk `migration_4_5`. **Nichts wird erfunden** (keine Lager, keine Baustellen, keine Ketten).
+
+**Getestet** mit zwei echten v0.6.0-Spielständen, die vor jeder 6B-Codeänderung erzeugt wurden: `tests/fixtures/save_v4_prompt06.json` (normales Spiel, 50 Wesen, Göttermenü-Material) und `tests/fixtures/save_v4_prompt06_werkstatt.json` (Testwerkstatt mit Verbünden, Heizung, Versuchen; `tools/make_workshop_fixture.gd`). Beide laden, das Original ist gesichert (`.v4.vor_migration`), Stücke, Masse, Verbünde und Wesen sind unverändert, danach wird im Format 5 gespeichert und unverändert wieder geladen; Prüfung ohne Befund. v1-, v2- und v3-Prüflinge laufen durch die ganze Kette.
+
+**Für spätere Versionen:** `V5_SHIPPED_DEFINITIONS` bei Definitionsänderungen neu eintragen (`tools/print_definitions_fingerprint.gd`) und eine Stufe 5→6 ergänzen.
 
 ## Bekannte Grenzen
 - **Bruchstücke** (abgelöste Terrainteile als Godot-Körper) werden nicht gespeichert. Ihre Anzahl steht in `fragments_not_saved`. In der Lebenssimulation gibt es keine Terrainbearbeitung durch den Spieler, daher entstehen dort keine.
 - **Ereignisprotokoll:** Es wird nicht gespeichert, nach dem Laden beginnt es neu mit `game_loaded`. Die letzten 50 Handlungsergebnisse bleiben erhalten.
 - **Spielstand:** Es gibt genau einen Spielstand (keine Spielstandauswahl). Die Testwerkstatt speichert getrennt unter `user://saves/werkstatt.json`.
 - **Laufende Versuche** werden beim Laden nicht fortgesetzt, sondern als „unterbrochen“ abgeschlossen. Der physikalische Zustand (z. B. Tiegel in der Heizung) läuft weiter.
+- **Laufende Arbeitsketten** werden nach dem Laden **fortgesetzt**: Die vor dem Speichern laufende Handlung wird wie jede Handlung abgebrochen, der aktuelle Schritt wird aus dem Weltzustand neu geprüft (nichts wird doppelt ausgeführt). Die Testszene Werkzeugkette speichert getrennt unter `user://saves/werkzeugkette.json`.

@@ -764,7 +764,7 @@ func _test_corrupt_saves() -> void:
 	var ar3 := SaveManager.apply(life3, p3)
 	_check("(14) Abweichendes Grundgelände (Generator geändert) erkannt", not ar3["ok"] and ar3["code"] == "world_mismatch")
 	var mig := SaveMigrations.migrate({}, SaveSchema.FORMAT_VERSION)
-	_check("Migrationsschnittstelle: aktuelles Format ohne Migration; nur die tatsächlich vorhandenen Stufen 1→2→3→4", mig["ok"] and mig["steps"].is_empty() and SaveMigrations.MIGRATIONS.keys() == [1, 2, 3])
+	_check("Migrationsschnittstelle: aktuelles Format ohne Migration; nur die tatsächlich vorhandenen Stufen 1→2→3→4→5", mig["ok"] and mig["steps"].is_empty() and SaveMigrations.MIGRATIONS.keys() == [1, 2, 3, 4])
 	var bl := _env()
 	var br := SaveManager.load_into(bl, TEST_SAVE + ".bak")
 	_check("Sicherung (.bak) ist ladbar", br["ok"], br["message"])

@@ -24,7 +24,7 @@ func _ready() -> void:
 	title.modulate = Color(0.7, 0.95, 0.6)
 	box.add_child(title)
 	var sub := Label.new()
-	sub.text = "Entwicklungsstand %s – Lebenssimulation mit Persönlichkeit, Erinnerung, Lernen, Göttermenü, Gesprächen und ersten Werkzeugen (Prototyp)" % ProjectSettings.get_setting("application/config/version", "?")
+	sub.text = "Entwicklungsstand %s – Lebenssimulation mit Persönlichkeit, Erinnerung, Lernen, Göttermenü, Gesprächen, ersten Werkzeugen und Arbeitsketten (Prototyp)" % ProjectSettings.get_setting("application/config/version", "?")
 	sub.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	sub.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	sub.modulate = Color(0.8, 0.85, 0.8)

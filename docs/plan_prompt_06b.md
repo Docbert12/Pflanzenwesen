@@ -1,8 +1,15 @@
-# Prompt 6B – Zwischenstand und Arbeitsplan (Pause am 2026-11-24, 23:10)
+# Prompt 6B – Arbeitsplan, Entscheidungen und Abschluss
 
-Dieses Dokument hält **alles** fest, was für die Fortsetzung von Prompt 6B nötig ist: Stand, Entscheidungen, offene Schritte, Abgleich aller Prompts mit der Leitlinie „Steinzeit → Zukunft“. Zuerst `docs/HANDOVER.md` lesen, dann dieses Dokument.
+> **Abgeschlossen am 2026-11-25 – ausgeliefert als v0.6.1.** Dieses Dokument bleibt als Begründung der Entscheidungen erhalten (Abschnitte 1–3, 6–9). Die Abschnitte 0, 4 und 5 beschreiben den Zwischenstand der Pause am 2026-11-24 und sind **erledigt**; was tatsächlich umgesetzt wurde, steht in `CHANGELOG.md` (0.6.1), `docs/work_chains.md`, `docs/animations.md` und `docs/test_results.md`.
+>
+> Abweichungen vom Plan bei der Umsetzung:
+> - Tragen mit zwei Händen gilt jetzt auch für zu **breite** Stücke (`carry_two_max_width_m` 0,4 m), nicht nur für zu schwere.
+> - Vor dem Gießen vereinigen sich gleichartige, vollständig flüssige Stücke im Tiegel (`MaterialProcessSystem.merge_melts`), sonst blieb ein Teil der Schmelze zurück.
+> - Gehaltene Gegenstände sitzen am **Griffpunkt** der animierten Hand (Griffrahmen aus `WorkPose.tool_frame`), nicht am Handgelenk-Pivot.
+> - Modellvorschläge (`work`) werden zur Option `work:model`, die das `DecisionSystem` wie jede andere abwägt.
+> - Unterbrochene, gezielt ausgelöste Ketten setzen nach `resume_after_s` (2 s) selbst fort.
 
-## 0. So geht es weiter (neuer Chat)
+## 0. So ging es weiter (Zwischenstand 2026-11-24 – erledigt)
 
 1. Nutzer schreibt: „Pflanzenwesen, Repository Docbert12/Pflanzenwesen, weiter mit Prompt 6B (Zweig wip/prompt-06b)“.
 2. Repository anbinden und klonen; danach den Arbeitszweig holen:
@@ -46,7 +53,7 @@ Der Zweig `main` ist unverändert v0.6.0 (plus Dokumente, Prompt-Texte, Prüflin
 
 **Excel `Erfindungen_Echt_nach_Kategorien.xlsx`** (neu, Original des Nutzers unverändert in `design/` abgelegt, MD5 914666d6…; vom Importer noch nicht verarbeitet): 12 Kategorien, 5.862 Zeilen, nur 2.774 verschiedene Namen; dieselben Erfindungen bis zu 18-mal über die Zeitalter; ab der Mitte erzeugte Fantasienamen („Quanten- Kupferaxt 6“, „KI-gestützt Hochofen 22“); falsche Zeitalter (Dampfmaschine/Hochofen in der Bronzezeit, Buchdruck in der Kupferzeit, Rad/Kalender in der frühen Steinzeit, Bronzelegierung in der Mittelsteinzeit); Effekte sind Zufallsboni (55 verschiedene, z. B. „+70 % alle Ressourcen“); alle Beschreibungen derselbe Mustersatz; es fehlen Hammer, Töpferei/Keramik, Blasebalg, Seil/Schnur, Guss, Lager, Korb. → Als **Katalog** importieren (Name, Kategorie, Quellenzeile, Beschreibung, Stufe als Metadatum), Effekte nie anwenden, nur gleichwertige Einträge zusammenfassen (gleicher Name **und** gleiche Kategorie), erzeugte Namen kennzeichnen.
 
-## 4. Bereits umgesetzt (Zweig `wip/prompt-06b`)
+## 4. Umgesetzt bis zur Pause am 2026-11-24 (Zweig `wip/prompt-06b`)
 
 | Datei | Inhalt |
 |---|---|
@@ -69,9 +76,9 @@ Der Zweig `main` ist unverändert v0.6.0 (plus Dokumente, Prompt-Texte, Prüflin
 | `action_definition.gd`, `action_executor.gd` | drei neue Handlungstypen registriert (TECH_TYPES, Labels, on_load cancel) |
 | `data/config/technology.json` | neue Abschnitte `motion`, `storage`, `structures`, `containers`, `work` (alle Spielparameter dokumentiert) |
 
-**Kompiliert noch nicht:** `LifeContext` und `Creature` verweisen auf die Klasse `WorkSystem`, die als Nächstes geschrieben wird. Neue `class_name`-Dateien erfordern `--import`.
+**Stand der Pause (erledigt):** `LifeContext` und `Creature` verwiesen auf die damals noch fehlende Klasse `WorkSystem`; sie ist inzwischen geschrieben (`scripts/technology/work_system.gd`).
 
-## 5. Noch offen – Reihenfolge für die Fortsetzung
+## 5. Reihenfolge nach der Pause (alle Schritte erledigt, v0.6.1)
 
 1. **`scripts/technology/work_chain.gd` + `work_system.gd`** (Arbeitsketten; Entwurf in Abschnitt 6.4). Danach sofort `tools/check_scripts.gd` und die Prompt-6-Tests (`tools/run_tech_tests.gd -- --quick`) – die neuen Anlauf-/Rückkehrphasen verändern Zeiten.
 2. **Einbindung:** `LifeSimulation.setup` (`ctx.work = WorkSystem.new()`), `step` (`ctx.work.tick`), Wahrnehmung (`StorageSystem.perceive`, `StructureSystem.perceive` im Wahrnehmungstakt), `audit` (beide Audits + Lager/Bauwerk-Teile in `ConstructionSystem.audit`), `dispose`; `DecisionSystem.evaluate` (`ctx.work.options`) und `_execute` (`work:`-Optionen; andere Option gewählt → Kette **pausieren**, nicht abbrechen); `Creature.on_action_finished` → `ctx.work.on_action_finished`; `after_body_change` (Greifhand weg → Kette prüfen).

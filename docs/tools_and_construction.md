@@ -122,3 +122,11 @@ Der **Name spielt keine Rolle**. Ein „Hammer“ mit weichem Kopf bekommt diese
 - Das gehaltene Objekt sitzt an der Hand (`ToolUseSystem.hand_position`).
 - Gussstücke liegen in der Form.
 - Ein Modell wird **nur** neu aufgebaut, wenn sich seine Signatur ändert (Maße, ε, Schaden, Phase, Teile). Die Darstellung folgt also den Daten. Ein Modellname ändert nichts am Modell.
+
+## 7. Prompt 6B: Tragen mit zwei Händen, Griffpunkt, Schlag mit Kontaktphase
+- **Zwei Hände** (`ToolUseSystem.check_carry`): Ein Stück, das für eine Hand zu schwer (> `carry_kg_per_body_kg · Körpermasse · Greifwert`) oder zu breit (> `grasp_max_width_m`) ist, wird mit beiden freien Händen getragen – bis `carry_limit_two_kg` (Summe beider Greifwerte) und `carry_two_max_width_m`. Fehlt die zweite Hand: „… eine zweite greiffähige Hand fehlt“. Zweihändiges Halten (`hold_mode = "two"`) ist nur zum Tragen, nicht zum Werkzeuggebrauch.
+- **Griffpunkt:** Gehaltenes sitzt am Griffrahmen der animierten Hand (`CreatureAnimator.grip_frame`, `WorkPose.tool_frame`): Verbund mit Ursprung am Griffpunkt, Stab am Ende gegriffen, Stück mittig; zweihändig mittig zwischen beiden Händen. Es gibt kein zweites Modell am Boden.
+- **Schlag:** Standpunkt so, dass der Werkzeugkopf beim Kontakt auf der Oberkante des Ziels liegt (`WorkPose.contact`, `stand_point`); Ausholen über die Schwungdauer, am Ende genau **ein** Kontakt (`a.state.contacts`), danach Rückkehr. Schaden, Verschleiß und Verbindungsbelastung berechnet `ToolUseSystem.strike` nur am Kontakt.
+- **Lösen nach Kettenende:** Getragenes Material wird abgelegt; Werkzeuge dürfen in der Hand bleiben.
+- **Schmelzeignung** (`MaterialProcessSystem.melt_support`): Stein „nur fest“, Holz/Fasern brennbar (Verbrennung nicht simuliert), Behältergrenzen → abgewiesen. Gleichartige, vollständig flüssige Stücke in einem Tiegel vereinigen sich vor dem Gießen (`merge_melts`, Masse und Wärmeenergie exakt).
+Mehr: `docs/work_chains.md`, `docs/animations.md`.

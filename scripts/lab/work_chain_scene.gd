@@ -25,6 +25,13 @@ const CASES := {
 	"ungeeignet": "Ungeeignetes Schmelzgut: Holz in den Tiegel → abgewiesen",
 	"ohne_ofen": "Fehlende Wärmequelle: Ofen entfernt → Kette stoppt",
 }
+## Kurze Knopfbeschriftungen (die langen Texte oben stehen als Hinweis am Knopf)
+const GOAL_BUTTONS := {"lagern": "▶ lagern: Stein zerschlagen → Lager", "bauen": "▶ bauen: Stein zerschlagen → Steinreihe",
+	"schmelzen": "▶ schmelzen: Kupfer → Tiegel → Testofen → Guss"}
+const CASE_BUTTONS := {"material": "Fehler: Fasern fehlen", "weg": "Fehler: Weg zum Lager blockiert",
+	"arm": "Fehler: rechter Unterarm fehlt", "schwer": "Fehler: Block zu schwer (17,5 kg)",
+	"unterbrechen": "Fehler: Unterbrechung (pausiert → weiter)", "ungeeignet": "Fehler: Holz in den Tiegel",
+	"ohne_ofen": "Fehler: Testofen fehlt"}
 
 
 ## Baut Welt, Nahrung, das Testwesen und die Ausrüstung. Rückgabe {ok, ids, center, a, message}.
@@ -129,6 +136,11 @@ static func _flat_spot(life: LifeSimulation, near: Vector3) -> Vector3:
 						dev += absf(nav.ground_y(cc) - gy)
 				if dev * 10.0 >= best_score:
 					break
+			# Nahrungspflanzen im Aufbaubereich vermeiden (Lager/Baustelle nicht in einen Busch legen)
+			for fid in life.ctx.foods:
+				var fp: Vector3 = (life.ctx.foods[fid] as FoodSource).position
+				if fp.x > q.x - 2.9 and fp.x < q.x + 2.9 and fp.z > q.z - 1.9 and fp.z < q.z + 2.9:
+					dev += 5.0
 			var score := dev * 10.0 + Vector2(q.x - near.x, q.z - near.z).length() * 0.05
 			if score < best_score:
 				best_score = score

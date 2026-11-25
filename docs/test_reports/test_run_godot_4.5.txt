@@ -1,5 +1,5 @@
 Pflanzenwesen – Testbericht
-Godot 4.5-stable (official) · Linux · 2026-11-22T19:24:36
+Godot 4.5-stable (official) · Linux · 2026-11-25T10:56:23
 PASS 1 Materialdefinitionen laden und validieren | IDs: ["ceramic", "copper", "plant_fiber", "plant_tissue", "soil", "stone", "water", "wood"] Fehler: []
 PASS 1 Kupfer: Schmelzmodell vorhanden
 PASS 1 Holz: kein erfundener Schmelzpunkt
@@ -201,7 +201,7 @@ PASS Zweites Speichern behält vorherige Datei als Sicherung
 PASS (14) Beschädigte/inkompatible Dateien kontrolliert abgewiesen (abgeschnitten, verändert, fremd, neuer, alt, unvollständig) | []
 PASS (14) Geänderte Excel-Definitionen erkannt, Spielstand nicht still übernommen | Die Spieldefinitionen (Excel-Import/Konfiguration) wurden seit dem Speichern geändert. Der Spielstand wird nicht mit veränderten Definitionen geladen. Änderunge
 PASS (14) Abweichendes Grundgelände (Generator geändert) erkannt
-PASS Migrationsschnittstelle: aktuelles Format ohne Migration; nur die tatsächlich vorhandenen Stufen 1→2→3→4
+PASS Migrationsschnittstelle: aktuelles Format ohne Migration; nur die tatsächlich vorhandenen Stufen 1→2→3→4→5
 PASS Sicherung (.bak) ist ladbar | Geladen (Simulationszeit 2.0 s, 50 Wesen).
 PASS Dauerlauf 600 s mit 50 Wesen: keine Laufzeit-/Bilanzfehler, keine Reservierungen ohne Besitzer | []
 PASS Dauerlauf: keine feststeckenden Handlungen (Zeitlimit greift), keine Dauerschleife von Fehlschlägen | festgesteckt 0; max. 3 Fehlschläge eines Wesens in den letzten 500 Ergebnissen
@@ -241,8 +241,9 @@ PASS Erinnerungen tragen eigene Daten (Protokoll geleert → Geist unverändert,
 PASS Pause stoppt Lernen (Erwartungen, Erinnerungsverfall, Entscheidungen)
 PASS Erinnerungsspeicher begrenzt (Kapazität, Vergessen gezählt) | 64 Einträge, 238 vergessen
 PASS Verdichtung: Zähler statt neuer Ereignisse, Sicherheit nie höher als die unsicherste Beobachtung
-PASS Migration: ausgelieferte Definitionen v0.6.0 entsprechen dem eingetragenen Fingerabdruck | aktuell 6303a08db5144550e5a2944e7ad3e1cdc0a499ef45646d45ad81e06332b21136
-PASS Migration Format 1 → 2 → 3: Spielstand aus v0.3.0 lädt, Original vorher gesichert | Geladen (Simulationszeit 45.5 s, 50 Wesen). Migriert: 1→2, 2→3, 3→4; Original gesichert: user://saves/_test_migration.json.v1.vor_migration
+PASS Migration: ausgelieferte Definitionen v0.6.0 entsprechen dem eingetragenen Fingerabdruck | v0.6.0-Prüfling 6303a08db5144550 (0.6.0-prototype)
+PASS Migration: ausgelieferte Definitionen v0.6.1 entsprechen dem eingetragenen Fingerabdruck | aktuell 011a6f986667927a42a7b454e6d747ff04089272d0390f3b71f53380bd433c0c
+PASS Migration Format 1 → 2 → 3: Spielstand aus v0.3.0 lädt, Original vorher gesichert | Geladen (Simulationszeit 45.5 s, 50 Wesen). Migriert: 1→2, 2→3, 3→4, 4→5; Original gesichert: user://saves/_test_migration.json.v1.vor_migration
 PASS Migration: Körper, Verletzungen und Prothesen unverändert; Anzahl gleich; Spawner nicht aufgerufen
 PASS Migration: reproduzierbare Persönlichkeit aus Körper-Startwert
 PASS Migration: keine erfundenen Erinnerungen/Überzeugungen/Beziehungen; Vergangenheit vor dem Laden unbekannt
@@ -306,13 +307,13 @@ PASS [KI/SIMULIERT] Widerspruch: eigene Beobachtung zur gleichen Zeit sagt „le
 PASS [KI/SIMULIERT] Fehler: Angabe passt nicht zur selbst gesehenen Quelle → FEHLER (getrennt von veraltet/widersprochen)
 PASS [KI/SIMULIERT] Gehörter Hinweis wird bei Hunger selbst geprüft (Option „check_hint“) und mit eigener Wahrnehmung aufgelöst | Status nicht_prüfbar, gewählt check_hint, Optionen [{ "id": "check_hint", "u": 0.654, "parts": { "bedarf": 0.711, "vertrauen": 0.025, "unabhängig": 0.0, "weg": -0.082, "überleben": 0.0 } }, { "id": "search_food", "u": 0.533, "parts": { "bedarf": 0.533, "überleben": 0.0 } }, { "id": "rest", "u": 0.168, "parts": { "ruhe": 0.168 } }, { "id": "explore",, Hunger 0.71
 PASS [KI/SIMULIERT] Format 3: Pläne, Hörensagen (Herkunft, Vertrauen), Gesprächsprotokoll und Wartezeiten gespeichert und geladen; Pläne nach dem Laden neu geprüft | Geladen (Simulationszeit 1.5 s, 3 Wesen). | Pläne: ["#141: Plan 1 gültig, weiter ab Schritt 1"]
-PASS [KI/SIMULIERT] Migration Format 2 → 3: echter Spielstand aus v0.4.0 lädt, Original vorher gesichert, Spawner nicht aufgerufen | Geladen (Simulationszeit 90.0 s, 50 Wesen). Migriert: 2→3, 3→4; Original gesichert: user://saves/_test_mig_v2.json.v2.vor_migration
+PASS [KI/SIMULIERT] Migration Format 2 → 3: echter Spielstand aus v0.4.0 lädt, Original vorher gesichert, Spawner nicht aufgerufen | Geladen (Simulationszeit 90.0 s, 50 Wesen). Migriert: 2→3, 3→4, 4→5; Original gesichert: user://saves/_test_mig_v2.json.v2.vor_migration
 PASS [KI/SIMULIERT] Migration 2 → 3: Geist (Erinnerungen, Persönlichkeit) unverändert; keine erfundenen Pläne, Gespräche oder Hörensagen
 PASS [KI/SIMULIERT] Migration 2 → 3: Simulation läuft danach weiter
 PASS [KI/SIMULIERT] Migration verweigert Format-2-Stände mit veränderten Definitionen | Der Spielstand (Format 2) wurde mit veränderten Definitionen gespeichert, nicht mit denen von v0.4.0. Eine Migration ist dafür nicht vorgesehen.
 PASS [KI/SIMULIERT] Ohne Ollama (ausgeschaltet): Welt läuft, keine Anfragen, lokale Gespräche möglich | Gespräche lokal: 0
 PASS [KI/SIMULIERT] Kein Dienst erreichbar (echter HTTP-Weg, Port geschlossen): verständliche Diagnose, Welt läuft lokal weiter, keine Anfragen | Ollama nicht erreichbar unter http://127.0.0.1:9: Verbindung abgelehnt (Dienst läuft nicht oder falscher Port). Läuft Ollama (Ollama-App bzw. „ollama serve“)?
-PASS [KI/SIMULIERT] 50 Wesen mit Ratenbegrenzung (SIMULIERT, 180 s): höchstens 8 Anfragen/min, Abstand je Wesen, Warteschlange begrenzt, Welt konsistent | gesendet 24, Anlässe { "talk": 23, "hard_choice": 8 }, KI-fähig 25/50, max. Warteschlange 7, 26.6 s Rechenzeit
+PASS [KI/SIMULIERT] 50 Wesen mit Ratenbegrenzung (SIMULIERT, 180 s): höchstens 8 Anfragen/min, Abstand je Wesen, Warteschlange begrenzt, Welt konsistent | gesendet 24, Anlässe { "talk": 23, "hard_choice": 8 }, KI-fähig 25/50, max. Warteschlange 7, 35.8 s Rechenzeit
 PASS [KI/SIMULIERT] HTTP-Weg gegen lokale ATTRAPPE (Python, kein Ollama): Version, Modelliste, strukturierte Chat-Antwort über echten HTTP-Transport | Ollama 0.0.0-ATTRAPPE, Modell „attrappe:klein“. | angenommen | Plan mit 3 Schritten angenommen (Unsicherheit 0.30).
 PASS [Technik] (1) „Hammer“-Name ändert nichts: identische Bewertung mit anderem Namen
 PASS [Technik] (1) Weicher Kopf: als Schlagwerkzeug für Kupfer ungeeignet, Steinkopf geeignet | Stauchung/Schlag: „Hammer“ 0.00320, Steinkopf 0.01060
@@ -323,7 +324,7 @@ PASS [Technik] (1) Gesamtzustand konsistent | []
 PASS [Technik] (2) Versuch 1 über das Handlungssystem ausgeführt (untersuchen, nehmen, schlagen) | abgeschlossen []
 PASS [Technik] (2) Stein in der Hand verformt Kupfer messbar (ε > 0, Höhe kleiner, Volumen und Masse gleich) | ε 0.0371, Höhe 19.27 mm
 PASS [Technik] (2) Vergleich: bloße Hand wirkt viel schwächer und verletzt die Hand | ε Hand 0.0083 vs Stein 0.0371, Handschaden 0.093
-PASS [Technik] (2) Wahrnehmung: Wesen kennt die Wirkung nur als Kategorie, Verfahren aus eigenem Versuch | [{ "t": 2.03333333333333, "text": "Untersucht: hart, mittel, kühl" }, { "t": 10.6333333333334, "text": "8 Schläge: kaum eine Veränderung zu sehen" }]
+PASS [Technik] (2) Wahrnehmung: Wesen kennt die Wirkung nur als Kategorie, Verfahren aus eigenem Versuch | [{ "t": 2.03333333333333, "text": "Untersucht: hart, mittel, kühl" }, { "t": 12.2833333333335, "text": "8 Schläge: kaum eine Veränderung zu sehen" }]
 PASS [Technik] (3) Verbinden ohne echtes Verbindungsmittel abgewiesen | Umwickeln braucht Pflanzenfasern – #145 ist Stein (Modell: Granit).
 PASS [Technik] (3) Nicht unterstützte Verbindungsmethode abgewiesen
 PASS [Technik] (3) Verbund aus Stiel, Kopf und verbrauchten Fasern entstanden (Teil des Gegenstands) | Versuch Versuch #1 begonnen: Hält der Stein am Stiel, wenn ich Fasern darum wickle?
@@ -331,7 +332,7 @@ PASS [Technik] (3) Masse erhalten: Verbund = Stiel + Kopf + Faseranteil, Restfas
 PASS [Technik] (3) Kein Teil gleichzeitig einzeln und im Verbund; Audit leer | []
 PASS [Technik] (3b) Verstreute Teile: Wesen trägt Kopf und Fasern zum Stiel (aufnehmen → gehen → ablegen, automatisch ergänzt) und verbindet | abgeschlossen / Werkzeug zusammengesetzt / Schritte ["bring:succeeded", "bring:succeeded", "connect:succeeded"] / Fehler []
 PASS [Technik] (3b) Zusammentragen erhält Masse, keine doppelten Teile | []
-PASS [Technik] (3b) Gescheiterter Versuch wird gemerkt (Neuheit gedämpft für eine Weile) | { "Test: unmöglich": 14.1166666666669 }
+PASS [Technik] (3b) Gescheiterter Versuch wird gemerkt (Neuheit gedämpft für eine Weile) | { "Test: unmöglich": 20.4000000000001 }
 PASS [Technik] (4) Überlastete Verbindung bricht (schwerer Kopf, wenig Fasern) | Belastbarkeit 0.109 J, vorhergesagter Rückprall 1.417 J
 PASS [Technik] (5) Bruch: alle Teile bleiben genau einmal als Weltobjekte erhalten, Fasern zerrissen, Masse gleich | []
 PASS [Technik] (5) Beim Bruch bleibt der Stiel in der Hand
@@ -343,7 +344,7 @@ PASS [Technik] (6) Spröder Stein: Schaden = W / (m · Zähigkeit)
 PASS [Technik] (7) Kupfer schmilzt NICHT bei zu geringer Energiezufuhr (40 W, 120 s) | T 307 K
 PASS [Technik] (7) Schmelzen erst nach ausreichender Energiezufuhr (zugeführt ≥ Bedarf der Probe) | Bedarf Probe 86597 J, zugeführt bis flüssig 464042 J (Tiegel und Verluste eingeschlossen)
 PASS [Technik] (8) Versuch 5: geschmolzen und gegossen, Gussstück in der Form | abgeschlossen Gussstück in der Form []
-PASS [Technik] (8) Gießen erhält Masse und thermische Energie exakt | { "cast": 156, "poured_kg": 0.14000000625849, "rest_kg": 0.0, "energy_before_j": 106557.888943773, "energy_after_j": 106557.888943773, "key": "giessen:copper:Tiegel>Form" }
+PASS [Technik] (8) Gießen erhält Masse und thermische Energie exakt | { "cast": 156, "poured_kg": 0.14000000625849, "rest_kg": 0.0, "energy_before_j": 106557.888943773, "energy_after_j": 106557.888943773, "key": "giessen:copper:Tiegel>Form", "merged": [] }
 PASS [Technik] (8) Wärmebilanz über Heizen, Gießen, Abkühlen geschlossen (Objekte + Umgebung + Körper − Heizung = konstant) | Abweichung -0.00000095367432 J bei 476878 J Heizzufuhr
 PASS [Technik] (8) Guss kühlt ab und erstarrt (Phasenmodell) | T 509 K
 PASS [Technik] (9) Heißer Stein (420 K): Greifen abgewiesen nach Temperaturprüfung, kurze Berührung verbrennt, Wärme in die Hand bilanziert | Handschaden 0.020, Körperwärme 6.9 J
@@ -351,7 +352,7 @@ PASS [Technik] (9) Das Wesen merkt sich „heiß“ als wahrgenommene Kategorie 
 PASS [Technik] (9) Schmelze ohne Behälter: nicht greifbar | Flüssiges Material lässt sich nicht greifen.
 PASS [Technik] (9) Heißer Tiegelgriff: Gießen wird nicht begonnen | Griff zu heiß (heiß).
 PASS [Technik] (9) Gehaltenes wird heiß → lokaler Reflex: loslassen (keine Modellanfrage)
-PASS [Technik] (10) Abbruch beim Verformen: ausgeführte Schläge bleiben wirksam (ε > 0), nichts zurückgesetzt | ε 0.0148 nach 3 Schlägen
+PASS [Technik] (10) Abbruch beim Verformen: ausgeführte Schläge bleiben wirksam (ε > 0), nichts zurückgesetzt | ε 0.0100 nach 2 Schlägen
 PASS [Technik] (10) Verbrauchte Energie wird nicht erstattet (Stoffwechselbilanz geschlossen)
 PASS [Technik] (10) Abbruch beim Verbinden vor Abschluss: kein Verbund, Fasern unverändert, Reservierungen frei | ok true, eigene Verbünde 0, Fasern 0.31680→0.31680, reserviert 0, Audit []
 PASS [Technik] (10) Abgebrochener Versuch: Status „abgebrochen“, Zwischenstand der Probe bleibt | abgebrochen
@@ -369,13 +370,13 @@ PASS [Technik] (13) Vorführung tatsächlich ausgeführt (echter Verbund entsteh
 PASS [Technik] (13) Unterricht überträgt Information, aber keine Praxiserfahrung (B: 0 eigene Versuche, keine Lehrerdaten)
 PASS [Technik] (13) Üben: erst ein eigener Versuch hebt B auf „versucht“/„erfolgreich“ | Versuch #3 begonnen: Gelingt mir das Verbinden selbst? → erfolgreich; Versuch: abgeschlossen / Werkzeug zusammengesetzt / Schritte ["release:übersprungen", "practice:succeeded"] / Fehler []; B läuft: nichts
 PASS [Technik] (12) Stirbt das einzige sachkundige Wesen, geht sein ungeteiltes Wissen nicht auf andere über
-PASS [Technik] (14) Speichern und Laden mit Werkzeug, Versuchen und Wissen gelingt (Audit leer) | Geladen (Simulationszeit 38.3 s, 2 Wesen).
+PASS [Technik] (14) Speichern und Laden mit Werkzeug, Versuchen und Wissen gelingt (Audit leer) | Geladen (Simulationszeit 39.3 s, 2 Wesen).
 PASS [Technik] (14) Gegenstände, Verbindungen, Verschleiß, Formänderungen und Wärme exakt erhalten (Werte gleich) |  
 PASS [Technik] (14) Verfahrenswissen, Hypothesen, bekannte Gegenstände, Versuchsbudget und Halten erhalten |  gehalten 0/0
 PASS [Technik] (14) Laufender Versuch beim Laden sicher als „unterbrochen“ abgeschlossen (keine rückwirkende Auswertung)
 PASS [Technik] (14) Wärmezustand und Testheizung wiederhergestellt: Erhitzen läuft nach dem Laden weiter
-PASS [Technik] (14) Nach dem Laden: Probe wird weiter erhitzt, Bilanz geschlossen, Audit leer | 430.3 → 532.2 K
-PASS [Technik] (14) Migration Format 3 → 4: echter Spielstand aus v0.5.1 lädt, Original gesichert, Spawner nicht aufgerufen | Geladen (Simulationszeit 90.0 s, 50 Wesen). Migriert: 3→4; Original gesichert: user://saves/_test_mig_v3.json.v3.vor_migration
+PASS [Technik] (14) Nach dem Laden: Probe wird weiter erhitzt, Bilanz geschlossen, Audit leer | 422.9 → 523.9 K
+PASS [Technik] (14) Migration Format 3 → 4: echter Spielstand aus v0.5.1 lädt, Original gesichert, Spawner nicht aufgerufen | Geladen (Simulationszeit 90.0 s, 50 Wesen). Migriert: 3→4, 4→5; Original gesichert: user://saves/_test_mig_v3.json.v3.vor_migration
 PASS [Technik] (14) Migration: Materialstücke mit gleicher Masse bei Umgebungstemperatur übernommen
 PASS [Technik] (14) Migration: keine rückwirkend geschenkten Entdeckungen, kein Werkzeug, keine Versuche
 PASS [Technik] (14) Migration: Versuchsstatistik vollständig mit Nullen angelegt | { "started": 0, "completed": 0, "failed": 0, "aborted": 0, "by_source": {  } }
@@ -385,6 +386,60 @@ PASS [Technik] (15) Göttermenü platziert Fasern und Holzstab als normale Welto
 PASS [Technik] (15) Lebens-, Lern-, Physik- und KI-Funktionen laufen weiter (Audit leer, Wesen essen) | 1.30 kg gegessen
 PASS [Technik] Beobachtungslauf: Versuche begrenzt (Zeitanteil ≤ Budget + eine Versuchsdauer), Wesen leben | A 0 %, B 8 %
 PASS [Technik] Beobachtungslauf: Konsistenz (Audit leer) bei eigenständigem Verhalten | []
+PASS [Arbeit] Arbeitsposen: Gelenkkette der Animation trifft die WorkPose-Kontaktpunkte (beide Seiten, Schlag/Einsetzen/Gießen) | 42 Posen, größte Abweichung 0.0000 m (r strike h=0.18 y=0.02: erwartet (0.126174, 0.02, 0.278958), Gelenke (0.126174, 0.02, 0.278958))
+PASS [Arbeit] Kontaktposen erreichen Ziele von Bodenhöhe bis 0,2 m (Schlag mit 0,3-m-Werkzeug, Greifen/Ablegen mit der Hand) | nicht erreichbar: []
+PASS [Arbeit] Fehlender rechter Unterarm: Schlag weicht auf die linke Hand aus, entfernte Teile werden nie bewegt | Schlagen mit linker Hand · bewegt: ["leaf_1", "arm_l_upper", "arm_r_upper", "torso", "leg_l_upper", "leg_l_lower", "foot_l", "leg_r_upper", "leg_r_lower", "foot_r", "arm_l_lower", "hand_l", "head"]
+PASS [Arbeit] Zweihandposen ohne zweite Hand abgelehnt; einarmiges Verbinden als Variante erlaubt | Einsetzen braucht zwei greiffähige Hände (vorhanden: 1). | Verbinden braucht zwei greiffähige Hände (vorhanden: 1). | Verbinden mit linker Hand (einarmige Variante)
+PASS [Arbeit] Graben/Verdichten vorbereitet, aber nachvollziehbar abgewiesen (keine Abbau-Mengenbilanz) | Graben ist als Pose vorbereitet, aber nicht freigegeben: es gibt noch keine Grabhandlung (Weltarchitektur-Zusatz). | Verdichten ist als Pose vorbereitet, aber nicht freigegeben: es gibt noch keine Verdichtungshandlung (Weltarchitektur-Zusatz).
+PASS [Arbeit] Einarmig: zu breites Stück wird mit Begründung nicht getragen (zweite Hand fehlt) | Für eine Hand zu breit (0.11 m); eine zweite greiffähige Hand fehlt.
+PASS [Arbeit] Sehr schwerer Block auch mit zwei Händen abgewiesen (Masse > Tragegrenze beider Hände) | Auch mit beiden Händen zu schwer (17.50 kg > 4.60 kg).
+PASS [Arbeit] (lagern) Kette gezielt ausgelöst und abgeschlossen | Arbeitskette #1 gestartet · abgeschlossen · 
+PASS [Arbeit] (lagern) Hammer aus den vorhandenen Teilen gebunden: eigene eindeutige ID, besteht aus Stiel, Steinkopf und Fasern | Hammer #159, Teile [142, 143, 158]
+PASS [Arbeit] (lagern) Ausrüsten ohne Kopie: genau dieser Hammer in der Hand, Teile nur im Verbund, Lage = Hand | 0 Abweichungen
+PASS [Arbeit] (lagern) Schlag: Stein zerbricht nach mehreren Schlägen; jeder Schlag genau EIN Kontakt | 16 Schläge, 16 Kontakte
+PASS [Arbeit] (lagern) Bruchstücke: gleiches Material, Gesamtmasse und Wärmeenergie erhalten | 2 Stücke, 2.700000 kg von 2.700000 kg
+PASS [Arbeit] (lagern) Bruchstücke getragen (eine Hand bzw. beide Hände) und real eingelagert | 2/2 im Lager, transportiert 2.700 kg, max. getragen 1.80 kg, zweihändig true
+PASS [Arbeit] (lagern) Nichts verschwindet: Gesamtmasse und Masse je Material unverändert | 23.135787 → 23.135787 kg
+PASS [Arbeit] (lagern) Anzeige: Ziel, Handlung, Werkzeug-ID, Zielobjekt, getragene Masse, Fortschritt, Abbruchgrund vorhanden
+PASS [Arbeit] (lagern) Wissen verbucht: Binden, Schlagen, Lagern als eigene Erfahrung | ["verbinden:lashing:wood+stone", "schlagen:stone:Stiel+Kopf>stone", "lagern:stone"]
+PASS [Arbeit] (lagern) Konsistenz (Audit leer) | []
+PASS [Arbeit] (bauen) Steinreihe vollständig aus realen Steinen gebaut (Bruchstücke + vorhandener Stein) | abgeschlossen · 3/3 · markiert eine Linie am Boden (Höhe 0.11 m); kein Hindernis für die Wegsuche, da niedriger als eine Geländezelle (0.50 m)
+PASS [Arbeit] (bauen) Verbaute Teile sind fest: nicht mehr greifbar, Funktion messbar aus den Teilen (kein Name als Nachweis) | #146 ist in Bauwerk #152 verbaut. · {"fertig":true,"funktion":"markiert eine Linie am Boden (Höhe 0.11 m); kein Hindernis für die Wegsuche, da niedriger als eine Geländezelle (
+PASS [Arbeit] (bauen) Masse erhalten, Audit leer | []
+PASS [Arbeit] (schmelzen) Kupfer mit dem Hammer kalt verformt (Verformung statt Bruch) | Dehnung 0.042
+PASS [Arbeit] (schmelzen) Stücke im Tiegel, im Testofen geschmolzen und vollständig gegossen (Schmelzen vereinigt, Masse erhalten) | abgeschlossen ·  · Guss 0.1671 kg von 0.1671 kg
+PASS [Arbeit] (schmelzen) Kupfermasse gesamt erhalten; Testofen ist Testausrüstung (kein selbst gebauter Ofen) | []
+PASS [Arbeit] Fehlendes Material: Kette nicht planbar, Begründung nennt das fehlende Bauteil | Fasern entfernt. Auslösen: Nicht planbar: Bauteile für einen Hammer fehlen: Fasern nicht bekannt
+PASS [Arbeit] Blockierter Weg: Kette stoppt nachvollziehbar („Weg blockiert“), Getragenes wird danach abgelegt | fehlgeschlagen · Weg blockiert: Wegsuche nach 2500 Knoten abgebrochen (Ziel zu weit oder unerreichbar). · hält #0
+PASS [Arbeit] Fehlender Arm: Hammer einarmig gebunden (Variante), zu breites Stück mit Begründung liegen gelassen | Variante einarmig · abgeschlossen · abgewiesen: Für eine Hand zu breit (0.11 m); eine zweite greiffähige Hand fehlt.
+PASS [Arbeit] Zu schwerer Gegenstand: nicht getragen, Kette endet mit Begründung (keine Teleportation) | Block #150 (17.5 kg) soll getragen werden – Tragprüfung: Auch mit beiden Händen zu schwer (17.50 kg > 4.60 kg).. Auslösen: Arbeitskette #1 gestartet · kein verwertbares Ergebnis (abgewiesen: #150: Auch mit beiden Händen zu schwer (17.50 kg > 4.60 kg).)
+PASS [Arbeit] Ungeeignetes Material: Holz wird nicht in den Tiegel gelegt (brennbar, nicht schmelzbar), Kupfer wird geschmolzen | abgeschlossen · abgewiesen [{ "id": 149, "reason": "Holz (Modell: trockenes Hartholz) ist brennbar; Verbrennung ist noch nicht simuliert – Schmelzen abgewiesen." }]
+PASS [Arbeit] Fehlende Wärmequelle: Schmelzkette nicht planbar, Begründung „keine Wärmequelle“ | Testofen entfernt. Auslösen: Nicht planbar: keine Wärmequelle: Ofen #157 fehlt
+PASS [Arbeit] Unterbrechung: Schlagfolge abgebrochen, Kette pausiert; bereits ausgeführte Schläge bleiben wirksam | Kette #1 unterbrochen; sie wird beim nächsten Schritt fortgesetzt. · Schaden 0.132 → 0.132
+PASS [Arbeit] Unterbrechung: Kette wird fortgesetzt und abgeschlossen, ohne Schritte zu verdoppeln (ein Hammer, Stücke einmal eingelagert) | abgeschlossen · fortgesetzt 1 · Verbünde 2 · 2/2
+PASS [Arbeit] Speichern/Laden mitten in der Kette: Kette, Werkzeug und Gehaltenes erhalten (Speicherformat 5) | Geladen (Simulationszeit 44.9 s, 1 Wesen). · hält #160/#160 · Kette läuft
+PASS [Arbeit] Speichern/Laden: Arbeitsketten-Zustand identisch (bis auf Fortsetzungsvermerk) | Arbeit.chains[0].log: Länge 9≠10
+PASS [Arbeit] Nach dem Laden: Kette läuft weiter und wird abgeschlossen (keine Verdopplung, Masse erhalten, Audit leer) | abgeschlossen ·  · []
+PASS [Arbeit] Schlag: sichtbarer Kontakt des Hammerkopfs liegt am Ziel (≤ 8 cm), nicht daneben | 6 Kontakte gemessen, größte Abweichung 0.022 m · Abweichungen (Körperrahmen) [(0.01488, -0.015615, -0.006001), (0.01488, -0.015615, -0.006001), (0.01488, -0.015615, -0.006001)]
+PASS [Arbeit] Schlag: Phasen Anlauf → Ausholen/Arbeit → Kontakt → Rückkehr; während der Arbeit kein Fußgleiten | ["", "approach", "work", "contact", "work", "contact", "work", "contact"] · max. Verschiebung 0.0000 m
+PASS [Arbeit] Normales Spiel: Arbeitssystem aktiv, aber keine Testausrüstung, kein Lager, keine Baustelle, keine Kette beim Start
+PASS [Arbeit] Normales Spiel: dieselbe Kette (WorkSystem → Handlungen) läuft mit Göttermenü-Material | Platzieren ["ok", "ok", "ok", "ok"] · Arbeitskette #1 gestartet · abgeschlossen · 
+PASS [Arbeit] Normales Spiel: Audit leer | []
+PASS [Arbeit] Modellvorschlag: unbekannte Schritte und unbekannte Gegenstände abgewiesen, gültiger Plan nur mit bekannten IDs | ["unzulässiger Schritt { \"op\": \"teleport\", \"obj\": 1 }", "Schritt carry: #999999 ist dem Wesen nicht bekannt"] | []
+PASS [Arbeit] Modellvorschlag: ausgeführt nur über geprüfte Spielhandlungen (Stück real eingelagert)
+PASS [Arbeit] Modellanfrage „work“ (SIMULIERT): Vorschlag geprüft und nur als Option abgelegt – noch keine Handlung, kein Gegenstand verändert | Arbeitsvorschlag (Bruchstücke einlagern, 3 Schritte) geprüft und als Option abgelegt: (simuliert) Andere, tragbare Stücke statt des gescheiterten Gegenstands. · [{ "op": "carry", "obj": 145, "dest": 151, "mode": "deposit" }, { "op": "carry", "obj": 147, "dest": 151, "mode": "deposit" }, { "op": "check" }]
+PASS [Arbeit] Modellvorschlag ausgeführt nur über Spielhandlungen (Stücke real eingelagert), Herkunft sichtbar | abgeschlossen · Modellvorschlag (SIMULIERT, geprüft) · eingelagert 2
+PASS [Arbeit] Modellvorschlag: erfundener Schritt (Stufe 5), unbekannte ID (Stufe 3), erfundenes Feld (Stufe 2) abgewiesen | [["abgelehnt", 5, 5], ["abgelehnt", 3, 3], ["abgelehnt", 2, 2]]
+PASS [Arbeit] Beobachtungslauf: Wesen lebt, Konsistenz (Audit leer); eigenständige Ketten werden als Messwert protokolliert | 1 autonom gestartet · []
+PASS [Arbeit] Excel-Abgleich: dokumentierte Korrekturen (Kupfer/Wasser-Verweis, MAT_Erde/Gras/Holz) am Eintrag gekennzeichnet | fehlend: []
+PASS [Arbeit] Aktivierte Erfindungen: Handlungen, Materialien, aktive Animationen, Spielparameter und Katalogverweise existieren | 8 Definitionen · []
+PASS [Arbeit] Erfindungskatalog: 5.862 Quellenzeilen erhalten, nur gleicher Name + Kategorie zusammengefasst, alles „catalog“, kein Startwissen | 2785 Einträge, 5862 Quellenzeilen, Startverfahren 0
+PASS [Arbeit] Migration 4 → 5 (normales Spiel, echter Spielstand v0.6.0): lädt, Original gesichert, Spawner nicht aufgerufen | Geladen (Simulationszeit 90.0 s, 50 Wesen). Migriert: 4→5; Original gesichert: user://saves/_test_mig_v4_normales_Spiel.json.v4.vor_migration
+PASS [Arbeit] Migration 4 → 5 (normales Spiel): Stücke, Masse, Verbünde und Wesen unverändert; Halten einhändig; kein Lager, keine Baustelle, keine Kette | 3 Stücke, 6.3283 kg, 0 Verbünde, 50 Wesen
+PASS [Arbeit] Migration 4 → 5 (normales Spiel): danach im Format 5 gespeichert und unverändert wieder geladen; Audit leer |  []
+PASS [Arbeit] Migration 4 → 5 (Testwerkstatt, echter Spielstand v0.6.0): lädt, Original gesichert, Spawner nicht aufgerufen | Geladen (Simulationszeit 21.0 s, 2 Wesen). Migriert: 4→5; Original gesichert: user://saves/_test_mig_v4_Testwerkstatt.json.v4.vor_migration
+PASS [Arbeit] Migration 4 → 5 (Testwerkstatt): Stücke, Masse, Verbünde und Wesen unverändert; Halten einhändig; kein Lager, keine Baustelle, keine Kette | 15 Stücke, 2.7446 kg, 2 Verbünde, 2 Wesen
+PASS [Arbeit] Migration 4 → 5 (Testwerkstatt): danach im Format 5 gespeichert und unverändert wieder geladen; Audit leer |  []
 PASS Physiklabor-Szene lädt
 PASS Labor initialisiert ohne Fehler | []
 PASS Labor enthält Testobjekte (erwartet 11) | Objekte 11, Körper 11
@@ -406,14 +461,14 @@ PASS 10 Zurücksetzen: Startwert wiederhergestellt
 PASS C Heizung im Labor: Leistung · Simulationszeit seit Einschalten | zugeführt 3000.000 J, P·t 3000.000 J
 PASS Fehlerfall: Heizungsziel entfernt → Heizung meldet es, kein Absturz
 PASS Schnappschuss als reines JSON lesbar
-PASS Startbildschirm: Neues Spiel, Fortsetzen/Laden, Vorschau-/Testbereiche (inkl. Geistlabor), Beenden | ["Neues Spiel", "Fortsetzen / Laden", "Physiklabor", "Testwerkstatt (Testbereich)", "Geistlabor (Testbereich)", "Weltvorschau", "Kreaturenvorschau", "Beenden"]
+PASS Startbildschirm: Neues Spiel, Fortsetzen/Laden, Vorschau-/Testbereiche (inkl. Geistlabor), Beenden | ["Neues Spiel", "Fortsetzen / Laden", "Physiklabor", "Testwerkstatt (Testbereich)", "Testszene Werkzeugkette (Testbereich)", "Geistlabor (Testbereich)", "Weltvorschau", "Kreaturenvorschau", "Beenden"]
 PASS Weltvorschau startet ohne Fehler
 PASS Weltbearbeitung aktualisiert die Kollision (Physik-Strahl) | Treffer y: 9.00 → 9.50 → 8.50 m (erwartet 9.00 / 9.50 / 8.50)
 PASS Welt zurücksetzen mit gleichem Startwert stellt Ursprungszustand her
 PASS Erneutes Zurücksetzen liefert identische Daten, keine doppelten Weltobjekte
 PASS Kreaturenvorschau startet mit einem Wesen
 PASS 10 Varianten nebeneinander
-PASS 50 Figuren erzeugt, alte Entitäten entfernt | Aufbau 260 ms
+PASS 50 Figuren erzeugt, alte Entitäten entfernt | Aufbau 412 ms
 PASS Vorschau: Konfiguration mit Prothese speichern und wiederherstellen
 PASS Lebenswelt: Neues Spiel startet ohne Fehler mit 50 Wesen und 50 Darstellungen | []
 PASS Lebenswelt: Simulation läuft im festen Physiktakt | 0.18 s → 4.17 s
@@ -427,15 +482,15 @@ PASS Göttermenü in der Szene: Gabe beim Wesen ausgeführt, bilanziert, sichtba
 PASS Göttermenü: Position per Klick (Strahl auf Gelände), Materialstück erscheint | Eingriff #2 ausgeführt: Material platzieren. Wahrgenommen von 19 Wesen.
 PASS Vergleichsansicht zeigt zwei Wesen mit gerichteten Beziehungen
 PASS Beobachtungsfenster trennt Weltfakt, Beobachtung, Erinnerung, Vermutung, Entscheidung
-PASS Speichern aus der Szene | Gespeichert: user://saves/_test_szene.json (Simulationszeit 5.1 s).
+PASS Speichern aus der Szene | Gespeichert: user://saves/_test_szene.json (Simulationszeit 5.2 s).
 PASS (12) Laden über die Szene: gleiche Wesen, keine zusätzlichen, Spawner nicht aufgerufen | []
-PASS Keine Offline-Zeit beim Laden über die Szene | 5.1000 / 5.1000
+PASS Keine Offline-Zeit beim Laden über die Szene | 5.2000 / 5.2000
 PASS Körperveränderung übersteht Speichern/Laden (Darstellung)
 PASS Eingriffe und Materialstück überstehen Speichern/Laden (Szene)
 PASS (14) Beschädigter Spielstand: Szene meldet Fehler verständlich, keine Wesen erzeugt | ["Spielstand konnte nicht geladen werden:\nPrüfsumme stimmt nicht – die Datei ist beschädigt oder unvollständig."]
 PASS Werkstatt-Szene: startet mit 2 Testwesen, Testausrüstung, Heizung und Werkstattfeld | []
 PASS Werkstatt-Szene: jedes Weltobjekt (Stück oder Verbund) hat genau ein Modell aus dem Generator | 13 Modelle / 13 Objekte
-PASS Werkstatt-Szene: Verbund aus Stiel, Kopf und Fasern wird mit allen Teilen gezeichnet und in der Hand gehalten | Teile gezeichnet 3, Halter #141
+PASS Werkstatt-Szene: Verbund aus Stiel, Kopf und Fasern wird mit allen Teilen gezeichnet und am Griffpunkt der Hand gehalten | Teile gezeichnet 3, Halter #141, Abstand Griff 0.0000 m
 PASS Werkstatt-Szene: Formänderung der Kupferprobe baut deren Modell neu auf (Darstellung folgt Daten) | ε 0.071, Signatur vorher copper|block|0|0||0, jetzt copper|block|1|0||0
 PASS Werkstatt-Szene: Versuchsansicht zeigt Ausgangslage, Schritte, Ergebnis, Bauteile/Verbindungen und Bewertung | [b]Gegenstand #160 Verbund[/b] · 0.353 kg · gehalten von #141
 [bgcolor=#5a2e2e] SPIELERDIAGNOSE (Debug-Wissen, das Wesen kennt diese Werte nicht) [/bgcolor]
@@ -444,6 +499,11 @@ PASS Werkstatt-Szene: Spielerdiagnose und Wahrnehmung des Wesens getrennt gekenn
 PASS Werkstatt-Szene: Wissensansicht zeigt Verfahren mit Stufe und Herkunft; Hypothese als ungeprüft, nirgends „erfunden“ | [b]Praktisches Wissen von #141 Wesen 01[/b]
 Eigene Versuche 1 · Erfolge 1 · Fehlschläge 0 · bekannte Gegenstände 14
 [b]Stiel (Holz) und Kopf (Stein) mit Fasern umwickeln[/b]  [color=#8f8]selbst erfolg
+PASS Werkzeugkette-Szene: startet mit einem Testwesen, Lager, Baustelle, Testofen und Bedienfeld | []
+PASS Werkzeugkette-Szene: Hammer-Modell sitzt am Griffpunkt der animierten Hand; Hammerkopf trifft beim Kontakt das Ziel (≤ 8 cm) | Griff 0.0000 m, Kopf [0.0223887860775, 0.0223887860775, 0.0223887860775]
+PASS Werkzeugkette-Szene: Arbeitsposen aus der Handlung (Anlauf, Tragen/Ablegen, Verbinden, Greifen, Schlagen) | ["walk_short", "grasp", "put_down", "assemble", "strike"]
+PASS Werkzeugkette-Szene: Wesenfenster zeigt ARBEIT (Ziel, Handlung, Werkzeug-ID, Fortschritt); Arbeitsanzeige über dem Wesen | ARBEIT[/b] Kette #1 – [b]Ziel:[/b] Bruchstücke einlagern · [color=#fc6]läuft[/color] · gezielt ausgelöst – Testszene Werkzeugkette (gezielt ausgelöst)
+[b]Handlung:[/b] Verformen (work) · [b]Schritt:[/
 
 Messwerte:
 - Geschlossener Austausch (Cu/Stein/Wasser, 600 s, dt=1/60 s): max. relative Energieabweichung 3.53e-15
@@ -457,15 +517,15 @@ Messwerte:
 - Heizen 1000 W mit Umgebungsverlust, dt=0.0167 s: T(60 s)=926.268090 K (Δ zu 1/120: -1.53e-3 K), Flüssiganteil(150 s)=0.893888 (Δ -4.74e-6)
 - Heizen 1000 W mit Umgebungsverlust, dt=0.0333 s: T(60 s)=926.265031 K (Δ zu 1/120: -4.59e-3 K), Flüssiganteil(150 s)=0.893878 (Δ -1.42e-5)
 - Welt: 64×32×64 Zellen à 0.50 m, Chunks (16, 32, 16), Startwert 12345 → SHA-256 b54f34964bfa264b…
-- Weltgenerierung inkl. Netz und Kollision aller 16 Chunks: 143 ms
+- Weltgenerierung inkl. Netz und Kollision aller 16 Chunks: 191 ms
 - Wasser (Startwert 12345): 90.500 m³ = 90337 kg; nach Kanalgrabung 600 Schritte: rel. Abweichung 3.14e-16
 - Lebensbaum 8 m (0,2-m-Voxel): Holz 5191 kg, Laub 971 kg (Laub-Füllanteil 2 %)
-- Einzelfigur: 17 Körperteile, 2239 Voxel à 20 mm, Masse 16.665 kg, Aufbau 6.7 ms
+- Einzelfigur: 17 Körperteile, 2239 Voxel à 20 mm, Masse 16.665 kg, Aufbau 17.0 ms
 - Prothesen (Startwert 1001): Holz 0.208 kg, Kupfer 2.793 kg (Excel I002 nennt 3,5 kg – im Spiel gilt Material · Volumen)
 - Neues Spiel: 50 Wesen, 45 Nahrungsquellen (36.1 kg), Baum belegt 9 Spalten, Schatten 108 Spalten
 - Speichern/Laden: Zustand gleich innerhalb 1e-12 relativ (einzelne Gleitkommawerte in der letzten Binärstelle verschieden)
 - Laden: fortgesetzt 47; abgebrochen 1
-- Dauerlauf: 600 s Simulationszeit, 36000 Takte in 96.6 s Rechenzeit → 2.684 ms/Takt (max 17.31 ms); lebend 50, tot 0; Handlungen { "requested": 6803, "rejected": 15, "succeeded": 6711, "failed": 28, "cancelled": 0 }; Wegsuchen { "requests": 2892, "found": 2892, "failed": 0, "expansions": 76441, "column_updates": 0 }
+- Dauerlauf: 600 s Simulationszeit, 36000 Takte in 129.1 s Rechenzeit → 3.586 ms/Takt (max 83.49 ms); lebend 50, tot 0; Handlungen { "requested": 6803, "rejected": 15, "succeeded": 6711, "failed": 28, "cancelled": 0 }; Wegsuchen { "requests": 2892, "found": 2892, "failed": 0, "expansions": 76441, "column_updates": 0 }
 -   t=60 lebend 50, tot 0, Hunger Ø 0.48, Nahrung 35.3 kg, Handlungen 49
 -   t=120 lebend 50, tot 0, Hunger Ø 0.50, Nahrung 34.3 kg, Handlungen 50
 -   t=180 lebend 50, tot 0, Hunger Ø 0.48, Nahrung 32.1 kg, Handlungen 48
@@ -510,14 +570,15 @@ Messwerte:
 -   [G] ok G: Eingriffsprotokoll, Materialstücke, soziale Bitten und Bilanz identisch | []
 -   [G] ok G: gelernte Bewertung nach dem Laden gleich (Wiederholungsschätzung)
 -   [G] ok G: Konsistenzprüfung ohne Befund | []
-- 50-Wesen-Lauf mit SIMULIERTEM Dienst (1,5 s Antwortzeit, Echtzeit = Simulationszeit): gesendet 24, angenommen 23, abgelehnt 1, Anlässe { "talk": 23, "hard_choice": 8 }, Rechenzeit 26.6 s für 180 s.
+- 50-Wesen-Lauf mit SIMULIERTEM Dienst (1,5 s Antwortzeit, Echtzeit = Simulationszeit): gesendet 24, angenommen 23, abgelehnt 1, Anlässe { "talk": 23, "hard_choice": 8 }, Rechenzeit 35.8 s für 180 s.
 - HTTP-Attrappe ist KEIN Ollama: sie prüft nur den Netzwerkweg (Verbindung, Kopfzeilen, JSON-Antworten).
 - Technik: Stein in der Hand, 16 Schläge auf 20-mm-Kupferwürfel: ε = 0.0371 (Höhe 19.27 mm); bloße Hand 16 Schläge: ε = 0.0083
 - Technik: Umwicklung (erster Versuch, Geschick „none“) 0.0160 kg Fasern → Belastbarkeit 3.24 J/Schlag (Passung 100 %, Geschick 45 %)
 - Technik: schwerer Kopf (0.58 kg) mit 5 g Fasern: Belastbarkeit 0.109 J < Rückprall 1.417 J → Bruch beim 1. Schlag; Stein allein: Stauchung 0.0114/Schlag
 - Technik: Testheizung 3500 W: Probe 0.140 kg Kupfer braucht 86597 J bis flüssig; zugeführt bis flüssig 464042 J; Versuch 5 dauerte 138 s
 - Technik-Beobachtungslauf 600 s (Verhalten AN, keine gezielten Auslöser): Versuche nach Herkunft { "eigene Idee": 4 }, abgeschlossen 4, fehlgeschlagen 0, abgebrochen 0; Versuchszeit A 0 %, B 8 %; gegessen 0.60 kg; Verfahren: keine
+- Arbeits-Beobachtungslauf 600 s (Verhalten AN nach einer gezielt ausgelösten Steinreihe): autonom gestartete Ketten 1, abgeschlossen 1; #2 bauen: abgeschlossen (3 Stücke); Wesen lebt true, Hunger 23 %
 - Falltest: gemessene Fallzeiten [0.8, 0.8, 0.8, 0.8] s, erwartet 0.7755 s, Tick 0.0167 s
-- 50 Figuren (headless, ohne Grafik): Aufbau 260 ms, 795 Netze, 104092 Voxel
+- 50 Figuren (headless, ohne Grafik): Aufbau 412 ms, 795 Netze, 104092 Voxel
 
-ERGEBNIS: 432 von 432 bestanden (335.8 s)
+ERGEBNIS: 491 von 491 bestanden (582.1 s)

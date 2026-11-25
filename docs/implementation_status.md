@@ -1,4 +1,4 @@
-# Implementierungsstand (0.6.0-prototype – Prompt 1 bis 6)
+# Implementierungsstand (0.6.1-prototype – Prompt 1 bis 6B)
 
 Statuswerte: **fertig + getestet** · **fertig, Sichtprüfung** · **teilweise** · **nicht implementiert (bewusst)**
 
@@ -170,18 +170,50 @@ Ausführlich, mit Dateien, Evidenz und Blockern: **`docs/progress_audit.md`**. A
 | Göttermenü: Pflanzenfasern, Formen (kleiner Block, Stab, Faserbündel) | fertig und getestet | `god/god_commands.gd`, `ui/god_menu.gd` | Technik (15) |
 | Speicherformat 4, Migration 3→4 (echter v0.5.1-Stand), Kette 1→2→3→4 | fertig und getestet | `persistence/*`, `tests/fixtures/save_v3_prompt05.json` | Technik (14) |
 
+## Prompt 6B – Bestandsprüfung (vor der Umsetzung)
+Aus dem Code gelesen (nicht aus der Doku), Ausgangsbasis v0.6.0: 432/432 auf Godot 4.7.2 und 4.5. Befund
+(ausführlich in `docs/plan_prompt_06b.md`, Abschnitt 3): Technikhandlungen zeigten nur die Ruhehaltung; gehaltene
+Gegenstände saßen an einem festen Punkt vor dem Körper; Schaden kam am Ende der Schwungdauer ohne sichtbare
+Kontaktphase, 1,1 m Reichweite erlaubte „Hämmern neben dem Ziel“; nur einhändiges Halten; kein Lager, keine Baustelle,
+keine Arbeitskette aus Bedarf; Bruchstücke verloren Testausrüstungs-Kennzeichen; Heizung hätte Stein/Holz „erhitzt“.
+
+## Prompt 6B – Excel-Abgleich, Arbeitsanimationen, Werkzeug- und Materialkette
+| Funktion | Status | Dateien | Nachweis |
+|---|---|---|---|
+| Hammer aus vorhandenen Teilen binden; eigene eindeutige ID; Ausrüsten ohne Kopie | fertig und getestet | `technology/work_system.gd`, `connect_parts`, `equip_tool` | Arbeit (lagern) |
+| Sichtbarer Griffpunkt (Gegenstand an der animierten Hand, zweihändig mittig) | fertig und getestet (Zahlen); **Aussehen nur mit Software-Rendering gesehen** | `living_world.gd` `_place_held`, `creature_animator.gd` `grip_frame` | Szenentests Werkstatt + Werkzeugkette, Bildschirmfotos |
+| Schlag synchron mit sichtbarem Kontakt, genau ein Schaden je Schlag, Kopf trifft das Ziel | fertig und getestet (Abweichung ≈ 2 cm) | `work_pose.gd`, `work_motion.gd`, `tech_action_util.gd` | Arbeit (lagern), Schlag-Kontakt, Szenentest |
+| Bruchstücke mit Masse, Material, Wärme; Verformung statt Bruch bei Kupfer | fertig und getestet | `material_process_system.gd` | Arbeit (lagern), (schmelzen) |
+| Aufnehmen, Tragen (eine/zwei Hände), Ablegen | fertig und getestet | `tool_use_system.gd`, `equip_tool`, `drop` | Arbeit (lagern), Fehlerfälle |
+| Realer Lagerplatz (Kapazität, Platzraster, Temperaturgrenze) | fertig und getestet | `settlement/storage_*` | Arbeit (lagern) |
+| Einfaches Einzelbauwerk „Steinreihe“ mit messbarer Funktion | fertig und getestet | `settlement/structure_*` | Arbeit (bauen) |
+| Schmelzen im Testofen, ungeeignete Materialien abgewiesen, gleichartige Schmelzen vereinigt | fertig und getestet; **nur mit Testausrüstung** | `MaterialProcessSystem.melt_support/merge_melts`, `put_into_container` | Arbeit (schmelzen), Fehlerfall ungeeignet |
+| Arbeitsanimationen: Tragen, Ablegen, Hämmern, Zusammenfügen (auch einarmig), Einsetzen, Erhitzen bedienen, Gießen, Anlauf | fertig; Geometrie getestet; **Bewegung nur als Standbilder gesehen** | `creature_animator.gd`, `work_pose.gd` | Arbeitsposen-Tests, `docs/animations.md` |
+| Graben / Erde verdichten | **vorbereitet, abgewiesen** (keine Abbau-Mengenbilanz) | `creature_animator.gd` | Test Körpergrenzen |
+| Fehlender Arm: einarmige Variante oder Ablehnung; keine Animation nutzt entfernte Teile | fertig und getestet | `creature_animator.gd`, `work_motion.gd` | Test Körpergrenzen, Fehlerfall Arm |
+| Arbeitsketten aus eigenem Bedarf (eigenes Wissen, Pause bei Hunger, Umplanen) | fertig; **eigenständige Wahl beobachtet** (nach gezielter Vorgeschichte) | `WorkSystem.needs/options`, `DecisionSystem` | Beobachtungslauf Arbeit |
+| Ollama-Anfrageart `work` (nur geprüfter Vorschlag, Ausführung über Handlungen) | fertig und getestet (**SIMULIERT**); echtes Ollama **nicht verifiziert** | `ai/*`, `data/ai/work_schema.json` | Arbeit (Modellanfrage) |
+| Testszene Werkzeugkette mit Anzeige (Ziel, Handlung, Werkzeug-ID, Zielobjekt, Masse, Fortschritt, Abbruchgrund) und 7 Fehlerfällen | fertig und getestet; **Bedienung von Hand ungeprüft** | `lab/work_chain_scene.gd`, `living_world.gd`, `creature_inspector.gd` | Szenentest Werkzeugkette, Fehlerfälle |
+| Unterbrechung, Speichern/Laden während der Herstellung | fertig und getestet | `WorkSystem.pause/after_load`, Format 5 | Arbeit (Unterbrechung, Speichern/Laden) |
+| Normaler Spielmodus nutzt denselben Code | fertig und getestet | – | Arbeit (Normales Spiel) |
+| Excel-Importkonfiguration (Korrekturen, Projektentscheidungen) | fertig und getestet | `design/import_config/`, `tools/import_definitions.py` | Arbeit (Excel-Abgleich), `reports/import_report.md` |
+| Erfindungskatalog „echte Namen“ (nur Katalog, kein Startwissen) + aktivierte Definitionen | fertig und getestet | `tools/import_inventions_real.py`, `data/config/inventions_activated.json` | Arbeit (Erfindungen), `reports/inventions_real_import_report.md` |
+| Speicherformat 5, Migration 4→5 (echte v0.6.0-Stände) | fertig und getestet | `persistence/*`, `tests/fixtures/save_v4_prompt06*.json` | Arbeit (Migration) |
+| Gemeinsames Siedlungsbauen | **nicht implementiert** (Prompt 9) | – | – |
+
 ## Weitere Ergänzungen in 0.4.0
 - **Ideenkatalog aus der Erfindungs-Excel:** `docs/inventions_catalog.md`. 5498 Einträge und 96 Grundbegriffe, **nichts davon aktiv**, keine globalen Boni.
 - **Prompt 11** (Schrift, Bücher, Wissen) ist unter `design/prompts/` aufbewahrt. Er setzt Prompt 5–10 voraus und wird erst danach umgesetzt.
 
-## Bewusst nicht implementiert (Stand Prompt 6)
+## Bewusst nicht implementiert (Stand Prompt 6B)
 - Freie Sprache (nur strukturierte Mitteilungen), Bücher/Schrift, Religion, politische Institutionen.
 - Strategische Täuschung/Lügen (Sprecher können nur eigenes Wissen mitteilen).
 - Ausführung generierten Codes, neue Physik oder Technik aus Modellbehauptungen, Modelltraining/Fine-Tuning.
 - Persönlichkeitsentwicklung über die Zeit. Fertigkeiten gibt es nur als Verfahrenswissen aus Prompt 6 (Stufe wirkt auf das Geschick beim Umwickeln).
 - Kausales Schließen über zeitliche Häufigkeiten hinaus (siehe `docs/mind_and_learning.md`).
 - Fortpflanzung, Baumgründung, Kriege, Institutionen.
-- Technologiebaum, Freischaltungen, Produktionsketten, weitere Werkzeugtypen (Schneiden, Bohren …), weitere Verbindungsmethoden für Wesen, Feuer, Öfen, Erzabbau, Legierungen, Schmelzströmung, Temperaturverteilung in einem Gegenstand; Zusammentragen außer beim Verbinden.
+- Technologiebaum, Freischaltungen, weitere Werkzeugtypen (Schneiden, Bohren …), weitere Verbindungsmethoden für Wesen, Feuer, selbst gebaute Öfen (nur Testofen), Erzabbau, Legierungen, Schmelzströmung, Temperaturverteilung in einem Gegenstand.
+- Graben/Abbau aus dem Gelände und Erde verdichten (Posen vorbereitet, abgewiesen); gemeinsames Bauen, Siedlungen, Aufgabenverteilung (Prompt 9); Ellbogenbeugung in Arbeitsposen; Hinken.
 - Fasern gewinnen (Pflanzen zerlegen). Fasern gibt es nur in der Testwerkstatt und über das Göttermenü.
 - Weitere Eingriffe (Wetter, Strafe); Fliehen (KI003), Durst (KI002).
 - Aus Prompt 3 weiterhin: Regeneration, Pflanzenwachstum, Hinken, mehrere Spielstände, Zeitbeschleunigung.
@@ -191,11 +223,11 @@ Umgebung: Linux-Container, Xeon 2,1 GHz (2 Kerne), **keine GPU**.
 
 | Prüfung | Godot 4.7.2 | Godot 4.5 |
 |---|---|---|
-| `tests/run_tests.gd` (inkl. 10-Minuten-Dauerlauf, Szenarien A–G, Migrationen 1→2→3→4, KI-Prüfungen mit SIMULIERTEM Dienst, Technik-Abnahmetests (1)–(15), 10-Minuten-Werkstattbeobachtung, Werkstatt-Szene) | **432/432** | **432/432** |
-| Ausgangsbasis v0.5.1 vor Prompt 6 | 354/354 | 354/354 |
-| Start aller 6 Szenen + Testwerkstatt (headless, je 240 Bilder) | 0 Fehler/Warnungen | 0 Fehler/Warnungen |
-| Python-Importertests | **17/17** | – |
-| Grafik mit Software-Rendering, 13 Bildschirmfotos (KI-Panel SIMULIERT) + 6 Werkstattbilder | durchgeführt | – |
+| `tests/run_tests.gd` (inkl. 10-Minuten-Dauerlauf, Szenarien A–G, Migrationen 1→2→3→4→5 mit echten Spielständen, KI-Prüfungen mit SIMULIERTEM Dienst, Technik-Abnahmetests (1)–(15), 10-Minuten-Werkstattbeobachtung, Arbeitsketten und Arbeitsposen, 10-Minuten-Arbeitsbeobachtung, Szenentests Werkstatt und Werkzeugkette) | **491/491** | **491/491** |
+| Ausgangsbasis v0.6.0 vor Prompt 6B | 432/432 | 432/432 |
+| Start aller 6 Szenen + Testwerkstatt + Testszene Werkzeugkette (headless, je 240 Bilder) | 0 Fehler/Warnungen | 0 Fehler/Warnungen |
+| Python-Tests (Importer, Importkonfiguration, Erfindungskataloge, Versionsvergleich) | **23/23** | – |
+| Grafik mit Software-Rendering: 13 Bildschirmfotos (KI-Panel SIMULIERT) + 6 Werkstattbilder (Prompt 6) + Bildschirmfotos Testszene Werkzeugkette (Prompt 6B) | durchgeführt | – |
 | Live-Tests mit **echtem Ollama** | **nicht ausgeführt** (nicht erreichbar) | – |
 | 30-Minuten-Lauf (Prompt 4) | durchgeführt | – |
 
@@ -226,10 +258,26 @@ Messdatei: `docs/test_reports/perf_50_figuren_llvmpipe.json`. Auf deinem PC schr
 - **Windows-HTTP-Weg:** der Transport wurde unter Linux gegen eine Python-Attrappe getestet.
 - **Windows und echte Grafikkarte:** nicht gestartet. Alle Bildzeiten stammen aus Software-Rendering.
 - **Bedienung:** Maus und Tastatur wurden nicht von Hand geprüft (Göttermenü-Klick nur über denselben Strahlaufruf).
-- **Animationen** („Arme heben“, Gehen, Greifen): nur als Standbilder gesehen.
+- **Animationen** („Arme heben“, Gehen, Greifen und alle Arbeitsanimationen aus Prompt 6B): nur als Standbilder mit Software-Rendering gesehen; Geometrie (Griffpunkt, Kontaktabstand) ist durch Tests gemessen, der **Bewegungseindruck nicht**.
+- **Prompt 6B, Eigenständigkeit:** Eigenständig gewählt wurde in den Messläufen nur „bauen“ (nach einer gezielt ausgelösten ersten Steinreihe). Eigenständiges Lagern und Schmelzen wurde nicht beobachtet; im normalen Spiel (ohne Testofen) gibt es kein Schmelzen.
 - **Spielgefühl:** Ob die Entscheidungen „natürlich“ wirken, ist ungeprüft. Gemessen sind Regeln und Häufigkeiten.
 - **Ökologie:** Nach etwa 20 Minuten ist die Nahrung aufgebraucht, dann verhungern Wesen (wie in Prompt 3).
 - **Spontanes Teilen:** Es ist selten (in 10 Minuten 2 Gaben auf Bitte und 6 angenommene Angebote), weil reichlich Nahrung in der Nähe liegt.
+
+## Manuelle Prüfschritte Prompt 6B auf deinem PC (ca. 20 Minuten)
+1. **Startbildschirm → „Testszene Werkzeugkette (Testbereich)“.** Ein Testwesen steht zwischen Holzstiel, Steinkopf, Fasern, zwei großen Steinen, Kupferstücken, einem Lager (Bodenrahmen), einer Baustelle „Steinreihe“ (drei Platzmarken) und dem Testofen (Heizung, Tiegel, Form).
+2. **Wesen anklicken.** Im Wesenfenster steht der Abschnitt **ARBEIT**: Ziel, laufende Handlung mit Phase, Werkzeug-ID, Zielobjekt, getragene Masse, Fortschritt, Abbruch-/Pausegrund, Herkunft.
+3. **Linke Knopfspalte, oben: „… Stücke einlagern“.** Beobachten:
+   - Teile werden zum Stiel getragen, der Hammer wird gebunden und bekommt eine eigene ID (steht im Wesenfenster).
+   - Der Hammer sitzt **in der Hand** (nicht vor dem Körper). Beim Schlagen holt das Wesen aus, neigt sich vor, der Hammerkopf trifft den Stein; je Schlag genau ein Treffer im Ereignisprotokoll.
+   - Bruchstücke liegen sichtbar da; das Wesen legt den Hammer ab, trägt das kleinere Stück mit einer Hand, das größere mit **beiden** Händen ins Lager. Die Belegung erscheint am Lager.
+4. **„… Steinreihe bauen“** (danach oder in einer neuen Testszene): der große Stein wird zerschlagen, dann werden drei Steine nacheinander auf die Platzmarken gelegt; am Ende hat die Baustelle den Status „fertig“.
+5. **„… Testofen → gießen“**: Kupfer wird mit dem Hammer bearbeitet (verformt, nicht zerbrochen), in den Tiegel gelegt, im Testofen geschmolzen (dauert ca. 3 Minuten Spielzeit) und in die Form gegossen.
+6. **Rechte Spalte (Fehlerfälle), je in einer frischen Testszene:** fehlendes Material, blockierter Weg, fehlender Arm, zu schwer, Unterbrechung, ungeeignetes Schmelzgut, fehlende Wärmequelle. Jeder Fall muss im Wesenfenster einen **verständlichen Grund** zeigen; „Unterbrechung“ pausiert und setzt nach ca. 2 s fort.
+7. **Speichern/Laden mitten in einer Kette:** F5, kurz warten, F9 → die Kette läuft beim nächsten offenen Schritt weiter (kein doppelter Schritt, kein zweiter Hammer).
+8. **„Beobachtungslauf: eigenes Verhalten an/aus (autonom)“:** Danach entstehen Ketten nur noch aus eigenem Bedarf (Anzeige „autonom“). Es gibt **keine** Pflicht, dass in kurzer Zeit etwas passiert – ein Messwert, kein Fehler.
+9. **Kreaturen-Werkzeug** (Startbildschirm): Knöpfe für die Arbeitsposen (Tragen, Hämmern, Zusammenfügen, Gießen …) und ein Wesen ohne Unterarm ausprobieren.
+10. Bitte melde: ob die Bewegungen auf deiner Grafikkarte flüssig und glaubwürdig aussehen (bisher nur als Standbilder geprüft), ob der Hammer sichtbar in der Hand sitzt, und ob die Knöpfe/Texte lesbar sind.
 
 ## Manuelle Prüfschritte Prompt 5 auf deinem PC (ca. 20 Minuten)
 1. **Ollama prüfen:** PowerShell `ollama list` und `Invoke-RestMethod http://127.0.0.1:11434/api/version`.

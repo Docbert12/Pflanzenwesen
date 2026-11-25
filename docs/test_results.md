@@ -1,10 +1,10 @@
-# Testergebnisse (0.6.0-prototype – Prompt 6)
+# Testergebnisse (0.6.1-prototype – Prompt 6B)
 
-Alle Angaben stammen aus tatsächlich ausgeführten Läufen am 22.11.2026; die Abschnitte zu Prompt 5 und Prompt 4 weiter unten sind vom 21.11. bzw. 19.11.2026. Protokolle liegen in `docs/test_reports/`.
+Alle Angaben stammen aus tatsächlich ausgeführten Läufen. Prompt 6B: 25.11.2026; Prompt 6: 22.11.2026; die Abschnitte zu Prompt 5 und Prompt 4 weiter unten sind vom 21.11. bzw. 19.11.2026. Protokolle liegen in `docs/test_reports/`.
 
-> **Wichtig:** Alle Modellantworten in diesen Tests stammen vom **SIMULIERTEN Testdienst** (`MockOllama`) oder einer lokalen **HTTP-Attrappe** (`tools/ollama_attrappe.py`). **Mit einem echten Ollama-Modell wurde nichts getestet**, auch keine Versuchsvorschläge aus Prompt 6.
+> **Wichtig:** Alle Modellantworten in diesen Tests stammen vom **SIMULIERTEN Testdienst** (`MockOllama`) oder einer lokalen **HTTP-Attrappe** (`tools/ollama_attrappe.py`). **Mit einem echten Ollama-Modell wurde nichts getestet**, auch keine Versuchsvorschläge aus Prompt 6 und keine Arbeitsvorschläge (`work`) aus Prompt 6B.
 >
-> **Gezielt ausgelöst ≠ entdeckt:** Die Technik-Abnahmetests (1)–(15) lösen Vorgänge in der Testwerkstatt gezielt aus. Sie beweisen, dass die Regeln funktionieren, nicht, dass Wesen etwas von selbst entdecken. Eigenständiges Verhalten steht unter „Beobachtungsläufe“ und ist ein Messwert.
+> **Gezielt ausgelöst ≠ entdeckt:** Die Technik-Abnahmetests (1)–(15) und die Arbeitsketten (lagern, bauen, schmelzen) werden gezielt ausgelöst. Sie beweisen, dass die Regeln funktionieren, nicht, dass Wesen etwas von selbst entdecken. Eigenständiges Verhalten steht unter „Beobachtungsläufe“ und ist ein Messwert.
 
 ## Testumgebung
 | | |
@@ -19,6 +19,68 @@ Alle Angaben stammen aus tatsächlich ausgeführten Läufen am 22.11.2026; die A
 - echte Grafikkarte;
 - Bedienung mit Maus und Tastatur von Hand. Die Szenentests rufen dieselben Funktionen auf, die auch die Knöpfe auslösen.
 - **echtes Ollama** (nicht erreichbar, kein Modell, keine GPU).
+
+## Gesamtergebnis (Prompt 6B)
+| Lauf | Godot 4.7.2 | Godot 4.5 |
+|---|---|---|
+| Ausgangsbasis v0.6.0 vor jeder Änderung (24.11.2026) | **432/432** | **432/432** |
+| Projektimport | ohne Fehler | ohne Fehler |
+| `tests/run_tests.gd` vollständig (inkl. 10-Minuten-Dauerlauf, 10-Minuten-Werkstattbeobachtung, 10-Minuten-Arbeitsbeobachtung) | **491/491** (566 s) | **491/491** (582 s, frischer Ordner) |
+| davon Arbeitsketten und Arbeitsposen (`tests/test_work_chain.gd`, neu) | **54/54** | **54/54** |
+| davon Szenentest Testszene Werkzeugkette (neu) | **4/4** | **4/4** |
+| davon Technik (`tests/test_technology.gd`, Prompt 6, unverändert) | **71/71** | **71/71** |
+| Start aller 6 Szenen + Testwerkstatt + Testszene Werkzeugkette headless, je 240 Bilder (`tools/scene_smoke.gd`) | 8/8, 0 Fehler, 0 Warnungen | 8/8, 0 Fehler, 0 Warnungen (frischer Ordner, Import ohne Fehler) |
+| Python-Tests (Importer, Importkonfiguration, beide Erfindungskataloge, Versionsvergleich) | **23/23** | – |
+| Versionsvergleich gegen v0.6.0 (`tools/compare_versions.py`) | 0 Dateien, Klassen, Funktionen oder Schlüssel entfernt; 2 Testprüfungs-Texte geändert (begründet); 51 neue Dateien, 63 geänderte (`reports/versionsvergleiche/versionsvergleich_v0.6.0_zu_v0.6.1.md`) | – |
+| Bildschirmfotos Testszene Werkzeugkette (`tools/capture_work_chain.gd`, Software-Rendering) | 15 Bilder (lagern, bauen, schmelzen), ohne Fehler (nur fehlende Audioausgabe der Umgebung gemeldet); 10 davon in `docs/screenshots/` | – |
+
+**Neue und geänderte Prüfungen:**
+- `tests/test_work_chain.gd` (neu, 54 Prüfungen): Arbeitsposen-Geometrie, Körpergrenzen, die drei Ketten, sieben Fehlerfälle, Unterbrechung, Speichern/Laden, Schlagkontakt, normales Spiel, Modellvorschlag und Modellanfrage (SIMULIERT), Beobachtungslauf, Excel-Abgleich, aktivierte Erfindungen, Erfindungskatalog, Migration 4→5 mit beiden echten v0.6.0-Spielständen.
+- Szenentest Testszene Werkzeugkette (neu, 4 Prüfungen); eine neue Prüfung „ausgelieferte Definitionen v0.6.1“.
+- 3 bestehende Prüfungen angepasst und im CHANGELOG begründet: Werkstatt-Griffpunkt (strenger), Migrationsstufen (1→2→3→4→5), Fingerabdruck v0.6.0 (jetzt am echten v0.6.0-Spielstand geprüft).
+- Ein erster vollständiger Lauf auf 4.7.2 ergab 488/490: genau diese zwei veralteten Migrationsprüfungen schlugen fehl (Stufen 1→2→3→4 bzw. Fingerabdruck v0.6.0 gegen die neuen Definitionen). Sie wurden angepasst. Nach den Bildschirmfotos wurden noch die Knopfbeschriftungen und die Größe der schwebenden Beschriftungen geändert; die Läufe oben sind die vollständigen Läufe auf dem **ausgelieferten** Stand.
+
+## Prompt 6B – Werkzeug- und Materialkette (gezielt in der Testszene ausgelöst)
+Alle drei Ketten laufen über dieselben Handlungen wie im normalen Spiel (`WorkSystem` → `DecisionSystem`-Option bzw. `WorkSystem.tick` → `ActionExecutor`). Messwerte aus `tests/test_work_chain.gd` (Startwert fest) und `tools/probe_work_chain.gd`.
+
+| Kette | Ergebnis | Messwerte |
+|---|---|---|
+| **lagern** | abgeschlossen | Hammer #159 aus Stiel, Steinkopf und Fasern gebunden (eigene ID); ausgerüstet ohne Kopie; großer Stein 2,7 kg nach **16 Schlägen mit genau 16 Kontakten** zerbrochen; 2 Bruchstücke, Masse 2,700000 kg von 2,700000 kg, Wärmeenergie erhalten; beide Stücke eingelagert, das schwerere (1,80 kg) **zweihändig** getragen; Gesamtmasse der Welt 23,135787 → 23,135787 kg; Wissen verbucht (Binden, Schlagen, Lagern); Audit leer. Probe: abgeschlossen nach **59,5 s** Spielzeit. |
+| **bauen** | abgeschlossen | Steinreihe 3/3 aus realen Steinen (Bruchstücke + vorhandener Stein), zusammenhängend; Funktion aus den Teilen gemessen („markiert eine Linie am Boden, Höhe 0,11 m; kein Hindernis für die Wegsuche“); verbaute Teile nicht mehr greifbar; Masse erhalten. Probe: **66,9 s** Spielzeit; Reihe 0,44 m lang, 0,108 m hoch, 3,839 kg. |
+| **schmelzen** | abgeschlossen | Kupfer mit dem Hammer **kalt verformt** (Dehnung 0,042, kein Bruch); Stücke in den Tiegel, im Testofen geschmolzen, vor dem Gießen vereinigt; **Guss 0,1671 kg von 0,1671 kg**; Kupfermasse gesamt erhalten. Testofen = Testausrüstung. Probe: **185,0 s** Spielzeit. |
+
+**Sichtbarkeit (Geometrie gemessen, Aussehen nur als Standbild):**
+- Arbeitsposen: Die Gelenkkette der Animation trifft die `WorkPose`-Kontaktpunkte in 42 Posen (beide Seiten, Schlag/Einsetzen/Gießen) mit größter Abweichung 0,0000 m. Ziele von Bodenhöhe bis 0,2 m sind erreichbar.
+- Schlag in der Simulation: 6 Kontakte gemessen, sichtbarer Hammerkopf höchstens **0,022 m** vom Ziel (Grenze 8 cm); Phasen Anlauf → Ausholen → Kontakt → Rückkehr; **0,0000 m** Fußgleiten während der Arbeit.
+- Szene: Hammer-Modell sitzt am Griffpunkt der animierten Hand (Abweichung 0,0000 m), Kopf beim Kontakt 0,022 m vom Ziel.
+
+## Prompt 6B – Fehlerfälle (gezielt ausgelöst)
+| Fall | Verhalten (gemessen) |
+|---|---|
+| Fehlendes Material | Fasern entfernt → „Nicht planbar: Bauteile für einen Hammer fehlen: Fasern nicht bekannt“ |
+| Blockierter Weg | Lager ummauert → Kette „fehlgeschlagen“, Grund „Weg blockiert: Wegsuche … abgebrochen“; Getragenes danach abgelegt |
+| Fehlender Arm | rechter Unterarm entfernt → Hammer **einarmig** gebunden (Variante, länger, weniger straff); zu breites Stück (0,11 m) mit Begründung „eine zweite greiffähige Hand fehlt“ liegen gelassen; Schlag weicht auf die linke Hand aus; entfernte Teile werden nie bewegt |
+| Zu schwer | Block 17,5 kg → „Auch mit beiden Händen zu schwer (17,50 kg > 4,60 kg)“, kein Tragen, keine Teleportation |
+| Unterbrechung | Schlagfolge abgebrochen, ausgeführte Schläge bleiben wirksam (Schaden 0,132 bleibt), Kette pausiert, nach 2 s fortgesetzt und abgeschlossen – ein Hammer, Stücke genau einmal eingelagert |
+| Ungeeignetes Schmelzgut | Holz nicht in den Tiegel („brennbar; Verbrennung ist noch nicht simuliert – Schmelzen abgewiesen“), Kupfer wird geschmolzen |
+| Fehlende Wärmequelle | Testofen entfernt → „Nicht planbar: keine Wärmequelle: Ofen #157 fehlt“ |
+| Speichern/Laden mitten in der Kette | Kette, Werkzeug und Gehaltenes erhalten (Format 5); Zustand identisch bis auf den Fortsetzungsvermerk; danach abgeschlossen ohne Verdopplung, Masse erhalten |
+| Graben/Verdichten | als Pose vorbereitet, Handlung abgewiesen („es gibt noch keine Grabhandlung (Weltarchitektur-Zusatz)“) |
+
+**Normales Spiel:** Arbeitssystem aktiv, aber ohne Testausrüstung, Lager, Baustelle oder Kette beim Start. Mit Göttermenü-Material läuft dieselbe Kette (WorkSystem → Handlungen) und wird abgeschlossen; Audit leer.
+
+**Modell (SIMULIERT):** Eine gescheiterte eigene Kette löst eine Anfrage `work` aus. Der Vorschlag wird geprüft und nur als Option abgelegt (noch keine Handlung). Gewählt wird er wie jede andere Option; ausgeführt nur über Spielhandlungen (2 Stücke real eingelagert, Herkunft „Modellvorschlag (SIMULIERT, geprüft)“). Abgewiesen: erfundener Schritt (Stufe 5), unbekannte ID (Stufe 3), erfundenes Feld (Stufe 2), `teleport`, unbekannter Gegenstand #999999.
+
+## Prompt 6B – Beobachtungslauf (eigenständiges Verhalten, Messwert)
+**Arbeits-Beobachtungslauf 600 s** in `run_tests.gd` (Testszene, ein Wesen, Verhalten AN **nach** einer gezielt ausgelösten ersten Steinreihe und neu hingelegten Steinen): autonom gestartete Ketten **1**, abgeschlossen **1** (#2 „bauen“, 3 Stücke verbaut); Wesen lebt, Hunger am Ende 23 %.
+- Das Wesen hat **von selbst** eine Kette „bauen“ gewählt (Anlass: eigene Erfahrung mit Steinreihen, Kompetenzerleben) und abgeschlossen.
+- **Nicht beobachtet:** eigenständiges Lagern, eigenständiges Schmelzen, ein ganz ohne Vorgeschichte begonnenes Bauwerk. Das ist ein Messwert, kein Fehler – es gibt keine Pflicht zur Entdeckung.
+- Gezielt ausgelöste Ketten (Tabelle oben) und dieser Lauf sind getrennt ausgewiesen; die Herkunft steht an jeder Kette („gezielt ausgelöst“ / „eigener Bedarf“ / „Modellvorschlag“).
+
+## Prompt 6B – Excel-Abgleich
+- Importkonfiguration `design/import_config/datenbasis_korrekturen.json`: 5 Korrekturen (Kupfer-Voxeltyp → MAT111, Wasser-Voxeltyp → MAT206, MAT_Erde/Gras/Holz → soil/plant_tissue/wood) und Projektentscheidungen (Voxelgröße überstimmt, Fortpflanzungszeilen nicht übernommen, Setzling-Ernährung dokumentiert). Neuimport: **1 Fehler** (vorher 4 abgewiesene Zeilen), 319 Warnungen (`reports/import_report.md`). Die Original-Excel wurde nicht verändert.
+- Erfindungskatalog „echte Namen“: 5.862 Quellenzeilen → 2.785 Einträge (nur gleicher Name + gleiche Kategorie zusammengefasst), alles „catalog“, **0 Startverfahren** (`reports/inventions_real_import_report.md`).
+- Aktivierte Erfindungen: 8 Definitionen, alle Handlungen, Materialien, aktiven Animationen, Spielparameter und Katalogverweise existieren (Konsistenztest).
 
 ## Gesamtergebnis (Prompt 6)
 | Lauf | Godot 4.7.2 | Godot 4.5 |
@@ -249,6 +311,20 @@ Gesehen wurden Standbilder; die Animation „Arme heben“ in Bewegung ist **ung
 - 6 glühendes Gussstück in der Form.
 
 Die Bilder zeigten drei Darstellungsfehler, die behoben sind (CHANGELOG). Schlagbewegung, Gießen und Abkühlen in Bewegung sind **ungeprüft** (nur Standbilder).
+
+**Neu in Prompt 6B:** `docs/screenshots/screenshot_werkzeugkette_*.png` (`tools/capture_work_chain.gd`, Ketten gezielt ausgelöst, ohne Ollama; die Simulation wird für jedes Bild angehalten, damit Bild und Zustand übereinstimmen). Ausgewählt (alle 15 Bilder entstehen beim Lauf im Benutzerordner):
+- 1 Ausgangslage der Testszene mit Bedienfeld;
+- 3 Hammer binden (Haltung „Zusammenfügen“);
+- 4 Ausholen mit dem Hammer in der Hand;
+- 5 Kontakt: Hammerkopf am großen Stein;
+- 7 Bruchstück zweihändig tragen (Hammer liegt sichtbar abgelegt);
+- 10 Stein in die Steinreihe setzen;
+- 11 fertige Steinreihe (3/3);
+- 13 Tiegel in den Testofen setzen;
+- 14 Gießen;
+- 15 Guss in der Form.
+
+Die Bilder zeigten zwei Darstellungsmängel, die behoben sind: abgeschnittene, kaum unterscheidbare Knopftexte im Bedienfeld (jetzt kurze Beschriftungen) und schwebende Beschriftungen, die in Nahansichten das Bild verdeckten (jetzt feste Bildschirmgröße). Bild 7 wirkt aus der Kameraperspektive einhändig; nachgemessen sitzt das Stück mittig zwischen beiden Griffpunkten (seitlich 0,000 m, Griffe bei ±0,126 m, 0,21 m vor dem Körper). Bewegungsabläufe sind **ungeprüft** (nur Standbilder).
 
 ## Was nicht geprüft werden konnte
 - Windows, echte GPU, Bildrate auf deiner Hardware.

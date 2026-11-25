@@ -418,6 +418,12 @@ func _build_ui() -> void:
 	Nav.button(ar, "Gehen", func(): play("walk"))
 	Nav.button(ar, "Greifen", func(): play("grasp"))
 	Nav.button(ar, "Zum Mund", func(): play("eat"))
+	# Prompt 6B: Arbeitsposen als Vorführung (zyklisch, ohne Handlung und ohne Gegenstand; Ziel 30 cm vor dem Wesen)
+	var wr := HBoxContainer.new()
+	single.add_child(wr)
+	for pair in [["Schlagen", "strike"], ["Einsetzen", "place"], ["Ablegen 2H", "put_down_two"], ["Verbinden", "assemble"], ["Verbinden 1H", "assemble_one"], ["Gießen", "pour"], ["Graben", "dig"]]:
+		var an: String = pair[1]
+		Nav.button(wr, pair[0], func(): play(an))
 	_ui_anim = Nav.label(single, "", 12)
 	_ui_anim.modulate = Color(0.8, 0.95, 1)
 	_header(single, "Speichern / Laden")
@@ -425,7 +431,7 @@ func _build_ui() -> void:
 	single.add_child(sl)
 	Nav.button(sl, "Speichern", func(): save_config())
 	Nav.button(sl, "Laden", func(): load_config())
-	var hints := Nav.label(v, "Maus: rechts ziehen = drehen · Mitte/Umschalt+rechts = verschieben · Rad = zoomen\nTasten: WASD/QE bewegen · Leertaste Pause der Animation\nGreifen/Zum Mund nutzen die bei „Seite“ gewählte Hand; fehlt sie, wird die andere Seite verwendet oder die Animation abgelehnt.", 12)
+	var hints := Nav.label(v, "Maus: rechts ziehen = drehen · Mitte/Umschalt+rechts = verschieben · Rad = zoomen\nTasten: WASD/QE bewegen · Leertaste Pause der Animation\nGreifen/Zum Mund nutzen die bei „Seite“ gewählte Hand; fehlt sie, wird die andere Seite verwendet oder die Animation abgelehnt.\nArbeitsposen (Prompt 6B) laufen hier als Vorführung ohne Handlung; im Spiel steuert die Handlung Phase und Ziel. Graben ist vorbereitet, aber abgewiesen.", 12)
 	hints.modulate = Color(0.8, 0.85, 0.9)
 	var right := Nav.panel(root)
 	right.anchor_left = 1.0

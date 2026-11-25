@@ -1,11 +1,38 @@
 # Changelog
 
-## Arbeitsstand Prompt 6B (nicht ausgeliefert, Zweig `wip/prompt-06b`)
-- Alle Prompt-Texte (6B, Zusatz Weltarchitektur, 7–10, 12, 13) in `design/prompts/` abgelegt.
-- Ausgangsbasis v0.6.0 bestätigt: 432/432 Tests auf Godot 4.7.2 und 4.5.
-- Prüflinge Format 4 aus unverändertem v0.6.0-Code: `tests/fixtures/save_v4_prompt06.json`, `tests/fixtures/save_v4_prompt06_werkstatt.json`; neues Werkzeug `tools/make_workshop_fixture.gd`.
-- Zwischenstand, Entscheidungen und offene Schritte: `docs/plan_prompt_06b.md`. Der Code von 6B liegt nur auf dem Arbeitszweig und kompiliert dort noch nicht vollständig.
-- Entfernt/Geändert: nichts am Spiel auf `main`.
+## 0.6.1-prototype – Prompt 6B (Excel-Abgleich, Arbeitsanimationen, Werkzeug- und Materialkette)
+- **Bestandsprüfung vor der Umsetzung** (aus Code und Tests, nicht aus der Doku): `docs/plan_prompt_06b.md` Abschnitt 3, `docs/implementation_status.md`. Ausgangsbasis v0.6.0: 432/432 auf Godot 4.7.2 und 4.5. Prüflinge Format 4 vor jeder Codeänderung erzeugt (`tests/fixtures/save_v4_prompt06*.json`, `tools/make_workshop_fixture.gd`).
+- **Werkzeug- und Materialkette** (`scripts/technology/work_chain.gd`, `work_system.gd`; `docs/work_chains.md`):
+  - Hammer aus vorhandenem Holzstiel, Steinkopf und Fasern binden (Teile werden erst hingetragen) → genau dieser Hammer (eigene ID) wird aufgenommen → Stein zerschlagen bzw. Kupfer verformen → tatsächliche Bruchstücke sammeln → tragen → **lagern**, **verbauen** oder im **Testofen schmelzen und gießen**.
+  - Jeder Schritt ist eine normale Handlung über den `ActionExecutor`; zustandsbasiert (kein doppelter Schritt nach Unterbrechung oder Laden); Umplanen (weiteren Stein zerschlagen, anderer Zugang), nachvollziehbarer Abbruch mit Grund.
+  - Aus eigenem Bedarf und eigenem Wissen (`DecisionSystem`-Optionen `work:start/continue/model`); Hunger und andere Ziele pausieren; wer schon selbst erfolgreich gebaut hat, beginnt eher eine eigene Steinreihe (Kompetenzerleben).
+  - Nach Kettenende wird getragenes Material abgelegt.
+- **Lager und Baustelle** (`scripts/settlement/`): reale Lagerplätze (Kapazität Masse/Volumen, Platzraster, Temperaturgrenze); Baustelle mit Bauplan „Steinreihe“ (3 Plätze) und messbarer Funktion. Einfaches Einzelbauwerk – gemeinsames Siedlungsbauen ist **nicht** umgesetzt (Prompt 9).
+- **3 neue Handlungen:** `deposit_in_storage`, `place_building_part`, `put_into_container`.
+- **Arbeitsanimationen** (`scripts/animation/work_pose.gd`, `creature_animator.gd`; `docs/animations.md`): `walk_short`, `carry`, `carry_two`, `put_down(_two)`, `place(_two)`, `strike` (Ausholen → Kontakt → Rückkehr), `assemble`, `assemble_one`, `operate_heater`, `pour`; `dig`/`compact` vorbereitet, abgewiesen. Phasen kommen aus der Handlung (`a.state.anim`), die Animation liest nur; Gelenkwinkel aus Körperproportionen und Werkzeuglänge (gleiche Geometrie wie der Standpunkt der Handlung), Rumpfneigung mit Gegensteuern der Beine, Hocke über die Knie, Griffwinkel 45°, weiches Zurückblenden nach Abbruch, Vorführung im Kreaturen-Werkzeug.
+- **Schlag synchronisiert:** Anlauf zum Standpunkt, an dem der Werkzeugkopf das Ziel trifft; genau ein Kontakt (= ein Schaden) je Schlag; gemessen ≈ 2 cm Abstand zwischen sichtbarem Hammerkopf und Ziel. Während der Arbeit kein Fußgleiten.
+- **Gehaltene Gegenstände am Griffpunkt** der animierten Hand (zweihändig mittig zwischen den Händen); Lager (Bodenrahmen, Belegung) und Baustellen (Platzmarken) sichtbar; Arbeitsanzeige über dem Wesen (schwebende Beschriftungen mit fester Bildschirmgröße).
+- **Hände:** Tragen mit zwei Händen für zu schwere oder zu breite Stücke (`check_carry`, `carry_two_max_width_m`); ohne zweite Hand nachvollziehbar abgelehnt; einarmige Variante beim Verbinden (Dauer ×1,8, Passung ×0,8); verliert die haltende Hand ihre Greiffähigkeit, wird abgelegt.
+- **Schmelzen ist keine Recyclingaktion:** `melt_support` weist Stein, brennbares Holz/Fasern und unverträgliche Behälter ab; gleichartige vollständig flüssige Stücke vereinigen sich vor dem Gießen (`merge_melts`, Masse und Energie exakt). Bruchstücke übertragen Testausrüstungs-Kennzeichen, Behälter und Verlauf.
+- **Testszene Werkzeugkette** (Startbildschirm, `scripts/lab/work_chain_scene.gd`): ein Testwesen, Material, Lager, Baustelle, Testofen; drei Ketten und sieben Fehlerfälle per Knopf (kurze Beschriftung, ausführlicher Hinweis beim Darüberfahren); eigener Spielstand `user://saves/werkzeugkette.json`; Wesenfenster-Abschnitt **ARBEIT** (Ziel, Handlung, Werkzeug-ID, Zielobjekt, getragene/transportierte Masse, Fortschritt, Abbruch-/Pausegrund); Zielobjekte zeigen jetzt auch Gegenstände, Lager und Bauwerke.
+- **Ollama:** Anfrageart `work` nach einer gescheiterten eigenen Kette (`data/ai/work_schema.json`, `data/ai/prompts/work_system.txt`, `ResponseValidator.validate_work`, SIMULIERTER Testdienst). Ergebnis nur geprüfter Vorschlag als Option; Ausführung nur über Handlungen. Echte Verbindung **nicht verifiziert**.
+- **Excel-Abgleich:**
+  - Importkonfiguration `design/import_config/datenbasis_korrekturen.json` (vom Importer gelesen, im Bericht und am Eintrag gekennzeichnet): Kupfer-Voxeltyp → MAT111, Wasser-Voxeltyp → MAT206, MAT_Erde/Gras/Holz → Physikmaterial; Projektentscheidungen Voxelgröße (überstimmt), Fortpflanzung (nicht übernommen), Setzling-Ernährung (dokumentiert, nicht aktiviert). Ergebnis: 1 statt 4 abgewiesene Zeilen.
+  - Erfindungskatalog aus `design/Erfindungen_Echt_nach_Kategorien.xlsx` (`tools/import_inventions_real.py`): 5.862 Zeilen → 2.785 Einträge, nur gleicher Name + gleiche Kategorie zusammengefasst, Herkunft je Zeile, Stufe nur Metadatum, Effekte nie angewendet, kein Startwissen. Bericht `reports/inventions_real_import_report.md`.
+  - Strukturierte Definitionen der tatsächlich umgesetzten Verfahren: `data/config/inventions_activated.json` (8 Verfahren + 2 vorbereitete) mit Konsistenztest.
+  - Statusnotizen der Excel-Einträge neu importiert (sie stammten noch aus Prompt 5).
+- **Speicherformat 5** (Lager, Bauwerke, Arbeitsketten, Haltemodus); Migration 4→5 mit beiden echten v0.6.0-Prüflingen getestet; Stufe 3→4 prüft die aktuellen Definitionen nicht mehr; laufende Arbeitsketten werden nach dem Laden fortgesetzt.
+- **Tests:** `tests/test_work_chain.gd` (`tools/run_work_tests.gd`), Szenentest Testszene Werkzeugkette (`--nur-werkzeugkette-szene`), Python-Tests für Katalog und Importkonfiguration (`tools/tests/test_import_inventions_real.py`); Werkzeuge `tools/probe_work_chain.gd`, `tools/capture_work_chain.gd` (15 Bildschirmfotos der drei Ketten, 10 davon in `docs/screenshots/screenshot_werkzeugkette_*.png`).
+- **Geändert (Prüfungen, vom Versionsvergleich als „entfernt“ gemeldet, weil der Text sich ändert):**
+  - „Werkstatt-Szene: Verbund … in der Hand gehalten“ heißt jetzt „… am Griffpunkt der Hand gehalten“ und ist strenger: Das Modell muss am Griffrahmen der animierten Hand sitzen, nicht nur an der festen Simulationsposition.
+  - „Migrationsschnittstelle: … nur die tatsächlich vorhandenen Stufen 1→2→3→4“ heißt jetzt „… 1→2→3→4→5“ und erwartet die Stufen 1, 2, 3, 4 (neue Migration 4→5 für Format 5).
+- **Geändert (Prüfung mit gleichem Text, anderer Nachweis):** „Migration: ausgelieferte Definitionen v0.6.0 entsprechen dem eingetragenen Fingerabdruck“ vergleicht jetzt den Fingerabdruck im **echten v0.6.0-Spielstand** (`tests/fixtures/save_v4_prompt06.json`) mit `V4_SHIPPED_DEFINITIONS`, weil die aktuellen Definitionen seit dem Neuimport die von v0.6.1 sind. Neu dazu: „… v0.6.1 entsprechen dem eingetragenen Fingerabdruck“ (aktuelle Definitionen = `V5_SHIPPED_DEFINITIONS`).
+- **Geändert (sonst):**
+  - `WorkPose`-Kontaktposen suchen jetzt auch angehobene oder hängende Arme. Damit sind Ziele von Bodenhöhe bis 0,2 m erreichbar.
+  - Excel-Importbericht und erzeugte Definitionen neu geschrieben (neuer Fingerabdruck `V5_SHIPPED_DEFINITIONS`).
+  - Konfiguration (nur Ergänzungen): `data/config/technology.json` neue Abschnitte `motion` (u. a. Standtoleranz 0,02 m), `storage`, `structures`, `containers`, `work` (alle Werte als Spielparameter dokumentiert) und neuer Schlüssel `hands.carry_two_max_width_m` 0,4 m; `data/config/mind.json` neuer Schlüssel `ai_triggers.priority.work` 2.
+  - `tools/scene_smoke.gd` startet zusätzlich die Testszene Werkzeugkette (jetzt 8 Starts).
+- **Entfernt:** nichts.
 
 ## Repository-Umzug (keine neue Version, Stand 0.6.0)
 - Projekt ins neue Repository **Docbert12/Pflanzenwesen** übernommen (Zweige `main` und `version/v0.6.0`). Der ältere Verlauf bleibt im alten Repository `Robert-JosepSubiranaSlotos/pflanzenwesen`.

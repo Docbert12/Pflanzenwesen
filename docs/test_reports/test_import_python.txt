@@ -1,3 +1,23 @@
+test_nothing_removed (test_compare_versions.CompareVersionsTest.test_nothing_removed) ... ok
+test_removals_found (test_compare_versions.CompareVersionsTest.test_removals_found) ... # Versionsvergleich `/tmp/tmp_6u7frmi/alt` → `/tmp/tmp_6u7frmi/neu`
+
+Dateien: **0 neu**, **1 entfernt**, **3 geändert** · Testprüfungen (Texte): 2 → 1
+
+## Entfernt (bitte jede Zeile begründen)
+- Datei: `scripts/b.gd`
+- Klasse: `Beta (scripts/b.gd)`
+- Funktionen in `scripts/a.gd`: `zwei`
+- Testprüfung: „Prüfung B“
+- Konfiguration `data/config/x.json`: `a.c`
+
+## Neu
+
+## Geändert
+- `data/config/x.json`
+- `scripts/a.gd`
+- `tests/t.gd`
+
+ok
 test_dry_run_writes_nothing_but_reports_diff (test_import_definitions.ImportTests.test_dry_run_writes_nothing_but_reports_diff) ... ok
 test_duplicate_id_detected (test_import_definitions.ImportTests.test_duplicate_id_detected) ... ok
 test_generated_ids_stable_after_row_reorder (test_import_definitions.ImportTests.test_generated_ids_stable_after_row_reorder) ... ok
@@ -15,8 +35,15 @@ test_deterministic (test_import_inventions.TestImportInventions.test_determinist
 ok
 test_excel_unchanged_and_ok (test_import_inventions.TestImportInventions.test_excel_unchanged_and_ok) ... ok
 test_nothing_active (test_import_inventions.TestImportInventions.test_nothing_active) ... ok
+test_corrections_applied_and_marked (test_import_inventions_real.TestImportCorrections.test_corrections_applied_and_marked) ... ok
+5862 Quellenzeilen → 2785 Katalogeinträge (echt 85, Variante 92, erzeugt 2608), 0 Abweichungen; Katalog geschrieben.
+test_activated_refs_exist (test_import_inventions_real.TestImportInventionsReal.test_activated_refs_exist) ... ok
+test_excel_unchanged_and_all_rows_kept (test_import_inventions_real.TestImportInventionsReal.test_excel_unchanged_and_all_rows_kept) ... ok
+test_merge_only_same_name_and_category (test_import_inventions_real.TestImportInventionsReal.test_merge_only_same_name_and_category) ... ok
+test_name_kinds (test_import_inventions_real.TestImportInventionsReal.test_name_kinds) ... ok
+test_nothing_active_no_order_no_effects (test_import_inventions_real.TestImportInventionsReal.test_nothing_active_no_order_no_effects) ... ok
 
 ----------------------------------------------------------------------
-Ran 15 tests in 12.400s
+Ran 23 tests in 14.900s
 
 OK

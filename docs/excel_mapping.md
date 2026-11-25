@@ -12,6 +12,30 @@ python tools/import_definitions.py --write          # prüfen + schreiben
 ```
 Unter Windows kann statt `python` auch `py` stehen. Das Spiel selbst braucht weder Python noch Excel.
 
+## Importkonfiguration (Prompt 6B)
+
+Notwendige Zuordnungen und Korrekturen stehen dokumentiert in `design/import_config/datenbasis_korrekturen.json`; die
+Excel bleibt unverändert. Der Importer wendet eine Korrektur nur an, solange der Excel-Wert dem dokumentierten Wert
+entspricht, kennzeichnet sie am Eintrag (`import_corrections` bzw. `project_decision`) und listet sie im Importbericht
+(Abschnitt „Importkonfiguration“). Explizite Projektentscheidungen haben Vorrang vor widersprüchlichen Tabelleneinträgen.
+
+| ID | Blatt / Zeile | Befund | Behandlung |
+|---|---|---|---|
+| K1 | 17_Voxel_Typen V007 Kupfer | verweist auf MAT002 = Cellulose_rein | → MAT111 Kupfer_rein (Physikmaterial copper) |
+| K2 | 17_Voxel_Typen V004 Wasser | verweist auf MAT004 = Holz_gehärtet (bei der Prüfung gefunden) | → MAT206 Wasser_gebunden (water) |
+| K3–K5 | 17_Voxel_Typen V002/V003/V005 | MAT_Erde, MAT_Gras, MAT_Holz existieren nicht | direkt Physikmaterial soil / plant_tissue / wood; Zeilen werden nicht mehr abgewiesen |
+| P1 | 09_Generator_Parameter Voxel_Größe | 0,1 m für die ganze Welt | **überstimmt**: Gelände 0,5 m, Lebensbaum 0,2 m, Pflanzen 0,05 m, Wesen 0,02 m, Gegenstände 0,005 m – getrennt konfigurierbar |
+| P2 | 19_Zucht_Fortpflanzung Z001 | Zwei-Wesen-Regel, Verweis auf „12_Vererbung“ | **nicht übernommen** – Nachwuchs über den Lebensbaum (Prompt 7) |
+| P3 | 19_Zucht_Fortpflanzung Z002 | Nachkommen −1 (unklar) | Zeile bleibt abgewiesen, keine Regel |
+| P4 | 19_Zucht_Fortpflanzung Z003 | „Prothese nicht vererbt“ | erst in Prompt 7 als Regel prüfen |
+| P5 | 06_Kreaturen KR002 Ernährung | „Pflanzen“ widerspricht dem Spielkonzept | **dokumentiert, nicht aktiviert**: Licht über Blätter + Früchte/Pilze (N001/N002) |
+
+Weitere Prüfungen (unverändert gemeldet, siehe Bericht): eindeutige IDs (V001–V003 in zwei Blättern – im Spiel je
+Definitionsart getrennt), Einheiten in den Kopfzeilen, Körperteilverbindungen (Setzling listet nur linke Gliedmaßen;
+Grundkörper spiegelsymmetrisch), Animationszuordnungen (A001–A004 → `docs/animations.md`), physikalische Werte
+(Widersprüche zu `data/materials/` → im Spiel gelten die Referenzwerte). Ergebnis nach 6B: **1 Fehler** (Z002),
+319 Warnungen, 1 Hinweis.
+
 ## Allgemeine Befunde
 
 | Befund | Ergebnis |

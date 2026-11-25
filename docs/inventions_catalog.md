@@ -26,3 +26,55 @@ z. B. Werkzeug: Handwerkzeug, Herstellung, Mehrzwecktool, Montage, Schärfung, P
 - Mehrere Begriffe stehen in unpassend frühen Zeitaltern (z. B. Flug ab Frühe Steinzeit, Zug und Kraftwerk
   ab Altsteinzeit). Für eine echte Planung wäre eine bereinigte Liste mit konkreten Erfindungen, Materialien
   und Voraussetzungen nötig.
+
+---
+
+# Erfindungskatalog „echte Namen“ (Prompt 6B)
+
+Quelle: `design/Erfindungen_Echt_nach_Kategorien.xlsx` (Datei des Nutzers, nur gelesen, unverändert; MD5 `914666d6…`).
+Erzeugt mit `python tools/import_inventions_real.py --write` → `data/generated/ideas/inventions_real_catalog.json`,
+Bericht: `reports/inventions_real_import_report.md`. Der ältere Ideenkatalog oben bleibt unverändert erhalten.
+Leitlinie des Nutzers: Die Excel ist eine **Leitlinie** – die Wesen sollen sich selbst von der Steinzeit zur Zukunft
+entwickeln (Stein → Werkzeug → Schmelzen → Legierung → Abbauwerkzeuge), nicht über einen Technologiebaum.
+
+## Übernommen
+- Name, Kategorie, Quellenzeile(n) (Blatt, Zeile), Beschreibung, Effekttext je Quellenzeile (nur Text), Stufe als **Metadatum**.
+- 5.862 Quellenzeilen → **2.785 Katalogeinträge**: zusammengefasst wird nur bei **gleichem Namen UND gleicher Kategorie**
+  (dieselbe Erfindung, in mehreren Zeitaltern wiederholt, z. B. „Feuer“ in Wissenschaft 18-mal). Jede Quellenzeile bleibt
+  im Eintrag erhalten. Gleiche Namen in verschiedenen Kategorien (z. B. „Feuer“ in Wissenschaft und Energie, „Rad“ in
+  Mechanik und Transport) bleiben **getrennt** und verweisen nur aufeinander – ein gleicher Name beweist kein gleiches Verfahren.
+- Namensart: 85 echte Namen, 92 redaktionelle Varianten „… (verbessert)“, 2.608 erzeugte Fantasienamen
+  („Quanten- Feuer 16“ = Vorsilbe + Grundbegriff + Nummer); alle mit Grundbegriff gekennzeichnet.
+
+## Nicht übernommen / keine Wirkung
+- **Stufe = keine Reihenfolge**, keine Freischaltung, keine Voraussetzung. Mehrere Stufen sind historisch zu früh
+  (Dampfmaschine und Elektrizität ab Bronzezeit, Buchdruck ab Kupferzeit, Rad und Kalender ab Früher Steinzeit,
+  Bronzelegierung ab Mittelsteinzeit) – im Bericht gekennzeichnet.
+- **Effekte** (55 verschiedene Zufallsboni wie „+40 % Produktion“) werden nie angewendet.
+- **Kein Startwissen:** Alle Einträge haben `game_status: "catalog"`; neue Wesen haben keine Verfahren (Test
+  „Erfindungskatalog: … kein Startwissen“).
+- Beschreibungen sind zu 100 % derselbe Schablonensatz.
+
+## Fehlende Begriffe für die Werkzeug- und Materialkette
+Hammer, Töpferei/Keramik, Blasebalg, Seil/Schnur, Guss, Lager, Korb, Tiegel, Gussform fehlen im Katalog. Die in Prompt 6/6B
+umgesetzten Verfahren sind deshalb eigene Definitionen (siehe unten), mit dem Katalog nur als „verwandt“ oder „Vorstufe“ verknüpft.
+
+## Aktivierte Definitionen (`data/config/inventions_activated.json`)
+Strukturierte Beschreibung dessen, was **im Code tatsächlich existiert** – sie aktiviert nichts. Je Verfahren:
+benötigte Materialien und Mengen, Körperfähigkeiten (Hände, einarmige Variante), Werkzeuge, Handlungen
+(Verarbeitungsvorgänge), Arbeitsschritte, Zeit- und Energiebedarf (mit Verweis auf die Spielparameter in
+`technology.json`), Ergebnisgeometrie, messbare Funktion, erforderliche Animationen, Implementierungsstatus, Tests.
+
+| ID | Verfahren | Status | Katalogbezug |
+|---|---|---|---|
+| ACT_stone_strike | Stein als Schlagwerkzeug | umgesetzt | verwandt: Stein-Handaxt (Werkzeug) |
+| ACT_lashing | Umwickeln mit Pflanzenfasern | umgesetzt (auch einarmig) | – (Seil/Schnur fehlt im Katalog) |
+| ACT_hammer | Hammer aus Holzstiel, Steinkopf, Fasern | umgesetzt | Vorstufe/verwandt: Stein-Handaxt; verwandt: Keule (Militär) |
+| ACT_break_stone | Stein mit dem Hammer zerschlagen | umgesetzt | verwandt: Steinbruch (Bergbau) |
+| ACT_cold_work_copper | Kupfer kalt verformen | umgesetzt | Vorstufe: Kupferaxt (Werkzeug) |
+| ACT_melt_cast_copper | Kupfer im Tiegel schmelzen und gießen | nur Testausrüstung | verwandt: Kupferverhüttung (kein Erz!) |
+| ACT_storage | Lagerplatz nutzen | umgesetzt | – |
+| ACT_stone_row | Steinreihe (Einzelbauwerk) | teilweise (Prompt 9: gemeinsames Bauen) | Vorstufe: Steinmauer (Architektur) |
+
+Vorbereitet, nicht aktiv: Graben, Erde verdichten (keine Abbau-Mengenbilanz). Ein Konsistenztest prüft, dass alle
+genannten Handlungen, Materialien, aktiven Animationen, Spielparameter und Katalogverweise existieren.

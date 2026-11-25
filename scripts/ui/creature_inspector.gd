@@ -282,6 +282,26 @@ static func _obj_text(ctx: LifeContext, id: int) -> String:
 		return "#%d Portion %s %.3f kg%s" % [id, it.food_id, it.mass_kg, " (getragen)" if it.carrier_id != 0 else " (am Boden)"]
 	if ctx.creatures.has(id):
 		return "#%d %s" % [id, ctx.creatures[id].display_name]
+	# Prompt 6/6B: Gegenstände, Verbünde, Lager, Bauwerke, Testheizung
+	if ctx.material_pieces.has(id) or ctx.assemblies.has(id):
+		var top := ConstructionSystem.top_id(ctx, id)
+		var t := "%s, %.2f kg" % [ConstructionSystem.label_of(ctx, top), ConstructionSystem.mass_of(ctx, top)]
+		if top != id:
+			t = "#%d, Teil von %s" % [id, t]
+		var mp: MaterialPiece = ctx.material_pieces.get(id, null)
+		if mp != null and mp.storage_id != 0:
+			t += " (im Lager #%d)" % mp.storage_id
+		elif mp != null and mp.structure_id != 0:
+			t += " (verbaut in #%d)" % mp.structure_id
+		return t
+	if ctx.storages.has(id):
+		var sp: StoragePlace = ctx.storages[id]
+		return "#%d %s (%d Stücke)" % [id, sp.label, sp.contents.size()]
+	if ctx.structures.has(id):
+		var st: Structure = ctx.structures[id]
+		return "#%d %s (%d/%d, %s)" % [id, st.label, st.filled(), st.slots.size(), st.status]
+	if ctx.heaters.has(id):
+		return "#%d Testheizung" % id
 	return "#%d (nicht mehr vorhanden)" % id
 
 
