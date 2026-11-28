@@ -6,6 +6,7 @@
 - **Geändert (Leitlinien-Excel, mit Grund):** Im Blatt „Erfindungen“ rücken die Spalten ab „Heute im Testbereich vorführbar“ um eine Stelle nach rechts (neue Spalte O); alle Formeln wurden angepasst. Das ist eine erzeugte Datei, Quelle bleiben die Textdateien.
 - **Tests:** `tools/tests/test_leitlinie.py` + 1 Test „Alpha-Plan“ (alle Prompt-Codes eingeplant, nur Sprengen „nie“, Stichproben, Rang je Erfindung) und erweiterte Excel-Prüfung (neue Blätter und Spalten) – Python **39/39**.
 - **Geändert (Doku):** `CLAUDE.md` (Roadmap lesen), `docs/HANDOVER.md` (Roadmap-Hinweis, Stand-Tabelle mit Zuordnung Prompt → Alpha-Version, Versionsschema, Ablauf Schritte 4a/5/6, offene Punkte: nächster Schritt Alpha 1.1, Entscheidungen D1–D6), `README.md`, `docs/leitlinie.md`, `docs/test_results.md`, `design/leitlinie/README.md`. Am Spiel (Code, Daten, Szenen, Speicherformat) ist nichts geändert.
+- **Nachtrag 28.11.2026:** Neuer Chat etwa alle 3 Versionen (Entscheidung D7, Gruppen in Roadmap Abschnitt 4); Pflicht-Aufgabenliste mit Nachweis je Version in `docs/plan_alpha_1_N.md` (Roadmap Abschnitt 4, HANDOVER Abschnitt 5).
 - **Entfernt:** nichts.
 
 ## Leitlinien-Excel „Steinzeit → Zukunft“ (keine neue Version, Stand 0.6.1)

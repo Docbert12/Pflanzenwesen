@@ -27,7 +27,7 @@ Godot-4-Spiel „Pflanzenwesen“: 3D-Voxelwelt mit 50 individuellen Pflanzenwes
 
 **Arbeitszweige:** `wip/prompt-06b` = Arbeitsverlauf von Prompt 6B (Zwischenstände vom 24./25.11.2026); abgeschlossen und als v0.6.1 ausgeliefert. Der Zweig bleibt als Verlauf erhalten, weitergearbeitet wird auf `main`. Entscheidungen und Begründungen von 6B: `docs/plan_prompt_06b.md`.
 
-**Neuer Chat:** Der Nutzer schreibt „Pflanzenwesen, Repository Docbert12/Pflanzenwesen, weiter mit Alpha 1.N“ (früher: „hier ist Prompt N“). Dann: Repository anbinden, klonen, diese Datei und `docs/ROADMAP_ALPHA.md` lesen, den Abschnitt der Version und die dort genannten Prompt-Abschnitte lesen, `docs/plan_alpha_1_N.md` anlegen. Für den Versionsvergleich die letzte Version holen: `git fetch --depth=1 origin version/vX.Y.Z` und `python3 tools/compare_versions.py git:FETCH_HEAD .` (oder `git:origin/version/vX.Y.Z`).
+**Neuer Chat** (seit 28.11.2026 etwa alle 3 Versionen, Gruppen in `docs/ROADMAP_ALPHA.md` Abschnitt 4): Der Nutzer schreibt „Pflanzenwesen, Repository Docbert12/Pflanzenwesen, weiter mit Alpha 1.N“ (früher: „hier ist Prompt N“). Dann: Repository anbinden, klonen, diese Datei und `docs/ROADMAP_ALPHA.md` lesen, den Abschnitt der Version und die dort genannten Prompt-Abschnitte lesen, `docs/plan_alpha_1_N.md` anlegen. Für den Versionsvergleich die letzte Version holen: `git fetch --depth=1 origin version/vX.Y.Z` und `python3 tools/compare_versions.py git:FETCH_HEAD .` (oder `git:origin/version/vX.Y.Z`).
 
 ## 2. Stand
 | Prompt | Inhalt | Version | Status |
@@ -77,7 +77,7 @@ Alle Prompt-Texte werden in `design/prompts/prompt_NN_*.txt` abgelegt, sobald si
 **Beginn**
 1. Repository klonen/aktualisieren; `docs/HANDOVER.md` (dieses Dokument) lesen, danach die im Prompt genannten Dokumente.
 2. Prompt-Text nach `design/prompts/prompt_NN_*.txt` legen.
-3. Bestandsprüfung wie vom Prompt verlangt; bei Formatänderung **zuerst** Prüfling der Vorversion erzeugen.
+3. Bestandsprüfung wie vom Prompt verlangt; bei Formatänderung **zuerst** Prüfling der Vorversion erzeugen. Ab Alpha: `docs/plan_alpha_1_N.md` mit **Aufgabenliste mit Nachweis** (jeder Muss-Punkt und jeder Prompt-Abschnitt; offene Punkte der Vorversion übernehmen) – Roadmap Abschnitt 4. Nach einer automatischen Kürzung des Chats: HANDOVER, Roadmap und diese Liste neu lesen.
 4. Vor dem Bauen: `godot --headless --path . --import`, dann vollständige Tests laufen lassen (Ausgangsbasis bestätigen).
 
 **Ende**

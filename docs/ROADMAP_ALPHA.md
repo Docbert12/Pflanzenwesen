@@ -49,6 +49,7 @@ Wortlaut (Chat, 25.11.2026, 13:57) und Auslegung:
 | D4 | Leitlinie im Spiel als Ideenquelle: „was du sagst“ | ab **Alpha 1.8**: Erfindungs-Chronik und Ideenkatalog. Nur Information, keine Freischaltung (Abschnitt 9.4). |
 | D5 | „wir gehen jetzt in Alpha 1.1 … 1.16 … und so weiter“ | neues Versionsschema (Abschnitt 4) |
 | D6 | „hinterlege eine detaillierte ausführliche Datei auf GitHub, damit keine Infos verloren gehen“ | dieses Dokument; Verweise in `CLAUDE.md` und `docs/HANDOVER.md` |
+| D7 | (28.11.2026) „ich will nicht nach jeder Version [einen neuen Chat] … wenn wir alle 3 Versionen einen neuen bauen“ | **neuer Chat etwa alle 3 Versionen** (Gruppen in Abschnitt 4); innerhalb eines Chats werden mehrere Versionen nacheinander geliefert. Damit trotz Kürzungen nichts verloren geht, führt jede Version eine **Aufgabenliste mit Nachweis** (Abschnitt 4). |
 
 ## 2. Verbindliche Leitprinzipien
 Diese Regeln gelten für jede Alpha-Version. Sie stammen aus den Prompts 1–13, dem HANDOVER und den Entscheidungen des Nutzers.
@@ -100,13 +101,32 @@ Leitlinie (`design/Leitlinie_Steinzeit_bis_Zukunft.xlsx`, `docs/leitlinie.md`): 
 | CHANGELOG | Abschnitt `## Alpha 1.N – Titel` mit Neu / Geändert / Entfernt (begründet) |
 | Detailplanung | zu Beginn jeder Version `docs/plan_alpha_1_N.md`: Bestandsprüfung aus Code und Tests, Zuschnitt, Entscheidungen, Fortschritt. Vorbild: `docs/plan_prompt_06b.md` |
 | Arbeitszweig | bei mehrtägiger Arbeit `wip/alpha-1.N` mit Zwischenständen; abgeschlossen wird auf `main` |
-| Neuer Chat | Der Nutzer schreibt „Pflanzenwesen, Repository Docbert12/Pflanzenwesen, weiter mit Alpha 1.N“. Dann: Repository anbinden, klonen, HANDOVER und dieses Dokument lesen, die Prompt-Abschnitte der Version lesen. |
+| Neuer Chat | **etwa alle 3 Versionen** (D7, Gruppen unten). Der Nutzer schreibt „Pflanzenwesen, Repository Docbert12/Pflanzenwesen, weiter mit Alpha 1.N“. Dann: Repository anbinden, klonen, HANDOVER und dieses Dokument lesen, die Prompt-Abschnitte der Version lesen, offene Punkte aus `docs/plan_alpha_1_<N-1>.md` übernehmen. |
 | Windows-Build | ab Alpha 1.1 versucht (Exportprofil); falls Exportvorlagen in der Arbeitsumgebung nicht ladbar sind: Blocker dokumentieren, der Nutzer exportiert im Editor |
+
+**Chats und Versionen (D7):** ein Chat für etwa drei Versionen. Vorschlag, anpassbar nach Größe der Versionen:
+
+| Chat | Versionen | Thema |
+|---|---|---|
+| 1 | 1.1 – 1.3 | Fundament, große Welt, Zeit/Himmel/Klima |
+| 2 | 1.4 – 1.6 | Gelände und Geologie, Pflanzen, Nachwuchs |
+| 3 | 1.7 – 1.9 | Vererbung, Steinwerkzeuge, Tiere |
+| 4 | 1.10 – 1.12 | Feuer, Landwirtschaft, Siedlungen |
+| 5 | 1.13 – 1.15 | Keramik und Ofen, Gemeinschaften, Bronze |
+| 6 | 1.16 – 1.18 | Schrift, Weltkarte, Mechanik |
+| 7 | 1.19 – 1.21 | Eisen, Elektrik, Gesamtaudit und Export |
+
+Wird ein Chat während der Arbeit automatisch gekürzt, liest Claude HANDOVER, dieses Dokument und die Aufgabenliste der laufenden Version neu, bevor es weiterarbeitet. Zwischenstände werden mindestens nach jedem abgeschlossenen Abschnitt auf GitHub gespeichert (bei mehrtägiger Arbeit im Zweig `wip/alpha-1.N`).
+
+**Aufgabenliste mit Nachweis (Pflicht je Version):** `docs/plan_alpha_1_N.md` enthält eine Tabelle mit **jedem** Muss-Punkt dieser Version aus Abschnitt 6 und **jedem** genannten Prompt-Abschnitt. Spalten: Aufgabe | Status (erledigt / teilweise / offen) | Nachweis (Testname, Datei, Messwert) | Bemerkung. Am Ende der Version:
+- Jeder Punkt hat einen Status. „Erledigt“ gilt nur mit Nachweis.
+- Offene und teilweise erledigte Punkte stehen mit Grund in der Schlussnachricht und werden in die Aufgabenliste der nächsten Version übernommen. **Nichts fällt stillschweigend weg.**
+- Was in der Arbeitsumgebung nicht prüfbar ist (Grafikleistung, echtes Ollama, Spielgefühl), steht als „nicht verifiziert – Test beim Nutzer“ in der Liste.
 
 **Ablauf je Version (Checkliste):**
 1. **Beginn**
    - HANDOVER, dieses Dokument und die Prompt-Abschnitte lesen.
-   - `docs/plan_alpha_1_N.md` anlegen (Bestandsprüfung).
+   - `docs/plan_alpha_1_N.md` anlegen: Bestandsprüfung und **Aufgabenliste mit Nachweis**; offene Punkte der Vorversion übernehmen.
    - Prüfling der Vorversion erzeugen, falls sich das Speicherformat ändert.
    - Ausgangstests auf beiden Godot-Versionen laufen lassen.
 2. **Umsetzen** in überprüfbaren Abschnitten. Jeder Abschnitt funktioniert und ist getestet, bevor der nächste beginnt.
@@ -999,3 +1019,4 @@ Diese Punkte hat Claude nach D1 entschieden. Sie sind keine offenen Fragen; der 
 | Datum | Änderung | Grund |
 |---|---|---|
 | 25.11.2026 | Erste Fassung: Alpha 1.1–1.16 im Detail, 1.17–1.21 Ausblick, Alpha-Plan in der Leitlinien-Excel | Entscheidungen D1–D6 des Nutzers |
+| 28.11.2026 | Neuer Chat etwa alle 3 Versionen (Gruppen in Abschnitt 4); Pflicht-Aufgabenliste mit Nachweis je Version | Entscheidung D7 des Nutzers; Schutz gegen Verlust bei automatischer Kürzung |
