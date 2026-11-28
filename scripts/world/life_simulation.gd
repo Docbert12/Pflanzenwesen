@@ -4,13 +4,14 @@ extends RefCounted
 ## Tests gleichermaßen benutzt – es gibt keinen zweiten Simulationspfad.
 ##
 ## Ein Takt (fester Physikschritt, Standard 1/60 s), feste Reihenfolge:
-##   1 Simulation.step (Uhr, Wärme/Phasen der Weltmassen) – bei Pause 0 → nichts weiter
-##   2 Nachbarraster, Wegsuchbudget
-##   3 ActionExecutor.step (Bewegung, Aufnehmen, Essen …)
-##   4 je Wesen: Licht → Photosynthese, Stoffwechsel, Mangelschaden, Tod
-##   5 je Wesen versetzt: Wahrnehmung (perception.interval_s), Entscheidung (behavior.decision_interval_s)
-##   6 Testoption Nachfüllen (nur wenn sichtbar eingeschaltet)
-## Prüfungen (audit) laufen auf Anforderung (Tests, Beobachtungsfenster), nicht jeden Takt.
+##   1 Simulation.step (Uhr, Wärme/Phasen der Weltmassen) – bei Pause 0 → nur tick_paused der Module
+##   2 Module in der Reihenfolge des ModuleRegistry (Alpha 1.1, docs/architecture.md „Module“):
+##     core → time.sky → actors (Nachbarraster, Wegsuchbudget) → actions (ActionExecutor) → technology.tools
+##     → je Wesen: life (Licht, Photosynthese, Stoffwechsel, Tod) → mind.perception → technology.perception
+##       → settlement → mind.decision
+##     → social → god → technology (Versuche) → work → communication (KI) → ecology.food (Testoption Nachfüllen)
+## Die Reihenfolge entspricht genau der bis v0.6.1 fest verdrahteten; sie ergibt sich jetzt aus den
+## Abhängigkeiten der Module. Prüfungen (audit) laufen auf Anforderung, nicht jeden Takt.
 
 var ctx := LifeContext.new()
 var sim: Simulation
@@ -33,6 +34,8 @@ var errors: Array = []
 var game_ready: bool = false
 var workshop: Dictionary = {}        # Testwerkstatt (Prompt 6): Rollen → IDs; leer im normalen Spiel
 var perf := {"ticks": 0, "last_tick_us": 0, "sum_us": 0, "max_us": 0, "window": []}
+var modules := ModuleRegistry.new()  # Alpha 1.1: Simulationsmodule (Takt, Speicherabschnitte, Messwerte)
+var map: MapTemplate                 # Alpha 1.1: Kartenvorlage der aktuellen Welt
 
 
 ## ai_service: anwendungsweite Ollama-Anbindung (LivingWorld: AIService.shared()). Ohne Angabe ist die
@@ -76,17 +79,60 @@ func setup(p_sim: Simulation, p_db: DefinitionDB, p_world: VoxelWorld, p_objects
 	ctx.experiments = ExperimentSystem.new()
 	ctx.work = WorkSystem.new()
 	ctx.nav = NavigationService.new()
+	ctx.terrain = WorldAccess.new(world)
+	if not _register_modules():
+		return false
 	return true
 
 
-## Gelände, Baum, Pflanzen und Navigation aus dem Startwert aufbauen (für Neu UND Laden identisch).
-func build_world(world_seed: int) -> void:
+## Alpha 1.1: die vorhandenen Systeme als Module anmelden. Reihenfolge = Abhängigkeiten der Module.
+## Zusätzliche Module (Tests, spätere Versionen) über `extra`; sie werden mit angemeldet und geordnet.
+func _register_modules(extra: Array = []) -> bool:
+	modules = ModuleRegistry.new()
+	for m in [CoreModule.new(), TimeModule.new(), ActorsModule.new(), ActionsModule.new(), ToolUseModule.new(), LifeModule.new(),
+			PerceptionModule.new(), TechPerceptionModule.new(), SettlementModule.new(), DecisionModule.new(), SocialModule.new(),
+			GodModule.new(), TechnologyModule.new(), WorkModule.new(), CommunicationModule.new(), FoodModule.new()] + extra:
+		modules.register(m)
+	if not modules.errors.is_empty() or not modules.resolve():
+		errors.append_array(modules.errors)
+		return false
+	modules.setup_all(self, ctx)
+	return true
+
+
+## Meldet ein weiteres Modul an (vor new_game/Laden). false + errors bei Fehler in den Abhängigkeiten.
+func add_module(m: SimModule) -> bool:
+	if game_ready:
+		errors.append("Module können nur vor Spielbeginn angemeldet werden.")
+		return false
+	if not modules.register(m) or not modules.resolve():
+		errors.append_array(modules.errors)
+		return false
+	m.setup(self, ctx)
+	return true
+
+
+## Gelände, Baum, Pflanzen und Navigation aus Kartenvorlage + Startwert aufbauen (für Neu UND Laden
+## identisch). map_id "" = Standardvorlage („lichtung“ = Welt von v0.6.x). false + errors, wenn die
+## Vorlage fehlt oder ungültig ist – dann wird nichts erzeugt.
+func build_world(world_seed: int, map_id: String = "") -> bool:
+	var t := MapTemplate.load_id(map_id if map_id != "" else MapTemplate.DEFAULT_ID)
+	var mcfg := t.world_cfg(world_cfg) if t.errors.is_empty() else {}
+	var terr: Array = t.errors.duplicate()
+	if terr.is_empty():
+		terr.append_array(t.check_cfg(mcfg))
+	if not terr.is_empty():
+		errors.append_array(terr)
+		return false
+	map = t
+	world.apply_map_cfg(mcfg)
+	ctx.rng_streams.reset(world_seed)
 	world.generate(world_seed)
 	base_cells = world.data.cells.duplicate()
 	base_hash = world.data.hash_sha256()
 	for c in objects_root.get_children():
 		c.queue_free()
-	var r := WorldObjects.spawn(objects_root, sim, db, world, world_cfg, extra_food_spots(world_seed))
+	var r := WorldObjects.spawn(objects_root, sim, db, world, world.cfg, extra_food_spots(world_seed))
 	world_object_ids = r["entity_ids"]
 	_plants_cache = r["plants"]
 	plant_nodes.clear()
@@ -101,7 +147,7 @@ func build_world(world_seed: int) -> void:
 		world.terrain_changed.connect(_on_terrain_changed)
 	tree_info["footprint_cols"] = footprint.size()
 	tree_info["shade_cols"] = ctx.shade_cols.size()
-	return
+	return true
 
 
 func _on_terrain_changed(cell: Vector3i) -> void:
@@ -114,14 +160,13 @@ func extra_food_spots(world_seed: int) -> Array:
 	var fc: Dictionary = ctx.c("food")
 	var want := int(fc.get("extra_sources", 20))
 	var ring: Array = fc.get("extra_ring_m", [5.0, 13.0])
-	var g: Dictionary = world.generated
-	var tc: Vector3i = g["tree_cell"]
-	var cs := world.data.cell_size
-	var size := world.data.size
-	var heights: PackedInt32Array = g["heights"]
-	var grass := world.palette.id_of("grass")
+	var ter := ctx.terrain
+	var tc: Vector3i = world.generated["tree_cell"]
+	var cs := ter.cell_size()
+	var size := ter.size_cells()
+	var grass := ter.type_id("grass")
 	var used := {}
-	for s in g["plant_spots"]:
+	for s in world.generated["plant_spots"]:
 		used[Vector2i(s["cell"].x, s["cell"].z)] = true
 	var rng := RandomNumberGenerator.new()
 	rng.seed = world_seed + 9001
@@ -135,8 +180,8 @@ func extra_food_spots(world_seed: int) -> Array:
 		var z := int(tc.z + sin(a) * r)
 		if x < 1 or z < 1 or x >= size.x - 1 or z >= size.z - 1 or used.has(Vector2i(x, z)):
 			continue
-		var h := heights[x + size.x * z]
-		if world.data.get_cell(x, h - 1, z) != grass:
+		var h := ter.generated_height(x, z)
+		if ter.type_at(Vector3i(x, h - 1, z)) != grass:
 			continue
 		used[Vector2i(x, z)] = true
 		var kind := "bush" if spots.size() % 3 != 2 else ("mushroom_red" if spots.size() % 2 == 0 else "mushroom_brown")
@@ -145,8 +190,10 @@ func extra_food_spots(world_seed: int) -> Array:
 
 
 ## Neues Spiel: Welt bauen, Nahrung anlegen, genau initial_population Wesen erzeugen.
-func new_game(world_seed: int) -> Dictionary:
-	build_world(world_seed)
+## map_id: Kartenvorlage aus data/maps ("" = Standard).
+func new_game(world_seed: int, map_id: String = "") -> Dictionary:
+	if not build_world(world_seed, map_id):
+		return {"ok": false, "message": "Kartenvorlage nicht ladbar: " + "; ".join(errors)}
 	_create_food_sources(world_seed)
 	var count := int(sim.settings.get("initial_population", 50))
 	var center: Vector3 = tree_node.position
@@ -156,7 +203,7 @@ func new_game(world_seed: int) -> Dictionary:
 		return sr
 	next_refill_t = ctx.now() + float(ctx.c("food").get("refill_interval_s", 60.0))
 	game_ready = true
-	ctx.log_event("new_game", [], {"seed": world_seed, "creatures": count, "food_sources": ctx.foods.size(), "food_kg": ctx.ledger.initial_kg})
+	ctx.log_event("new_game", [], {"seed": world_seed, "map": map.id, "creatures": count, "food_sources": ctx.foods.size(), "food_kg": ctx.ledger.initial_kg})
 	return sr
 
 
@@ -244,6 +291,8 @@ func dispose() -> void:
 	workshop = {}
 	ctx.experiments = null
 	ctx.work = null
+	modules.dispose_all()
+	ctx.terrain = null
 	ctx._hash.clear()
 	plant_nodes.clear()
 	_plants_cache = []
@@ -257,66 +306,12 @@ func step(dt: float) -> void:
 	var t0 := Time.get_ticks_usec()
 	var sdt := sim.step(dt)
 	if sdt <= 0.0:
-		if ctx.ai != null:
-			ctx.ai.update(true)      # Pause: nur Netzwerk, keine neuen Anfragen, nichts anwenden
+		modules.tick_paused_all()   # Pause: nur Netzwerk der KI, keine neuen Anfragen, nichts anwenden
 		return
 	stepping = true
-	ctx.rebuild_spatial_hash()
-	ctx.nav.begin_tick()
 	var ids := ctx.creatures.keys()
 	ids.sort()
-	for id in ids:
-		ctx.creatures[id].tick_moved_m = 0.0
-	ctx.executor.step(sdt)
-	ToolUseSystem.tick(ctx, sdt)
-	var now := ctx.now()
-	var light := ctx.day_night.light(now)
-	var mcfg: Dictionary = ctx.c("metabolism")
-	var pi := float(ctx.c("perception").get("interval_s", 1.0))
-	var di := float(ctx.c("behavior").get("decision_interval_s", 0.5))
-	for id in ids:
-		var cr: Creature = ctx.creatures[id]
-		if not cr.alive:
-			continue
-		var shade := Photosynthesis.shade_at(ctx, cr.position)
-		var lw := Photosynthesis.power_w(float(cr.caps.get("leaf_area_m2", 0.0)), light, shade, ctx.cfg)
-		var aw := 0.0
-		if ctx.executor.running.has(id):
-			var a: GameAction = ctx.executor.running[id]
-			aw = (ctx.executor.impls[a.type] as ActionImpl).power_w(a, ctx)
-		var res := cr.metabolism.step(sdt, cr.mass_kg, int(cr.caps.get("leaf_count", 0)), cr.tick_moved_m, aw, lw, ctx.cfg)
-		cr.stats["light_j"] = float(cr.stats.get("light_j", 0.0)) + lw * sdt
-		if res["energy_empty"]:
-			cr.health.starvation = minf(1.0, cr.health.starvation + float(mcfg.get("starvation_damage_per_s", 0.004)) * sdt)
-		if res["nutrients_empty"]:
-			cr.health.starvation = minf(1.0, cr.health.starvation + float(mcfg.get("nutrient_starvation_damage_per_s", 0.002)) * sdt)
-		if cr.health.is_dead():
-			var cause := "Verhungert (Energie leer)" if cr.metabolism.energy_j <= 0.0 else "Mangel an Nährstoffen"
-			if cr.health.starvation < 1.0:
-				cause = "Lebenswichtiges Körperteil zerstört"
-			cr.die(cause, ctx)
-			continue
-		if now >= cr.next_perception_t:
-			Perception.scan(cr, ctx)
-			ClaimEvaluator.on_perception(cr, ctx)
-			LearningSystem.tick(cr, ctx)
-			ExperimentSystem.perceive_objects(cr, ctx)
-			if not ctx.storages.is_empty() or not ctx.structures.is_empty():
-				var prad := float(ctx.c("perception").get("radius_m", 10.0)) * float(cr.caps.get("perception", 1.0))
-				StorageSystem.perceive(cr, ctx, prad)
-				StructureSystem.perceive(cr, ctx, prad)
-			cr.next_perception_t = now + pi
-		if cr.behavior_enabled and now >= cr.next_decision_t:
-			cr.next_decision_t = now + di
-			DecisionSystem.decide(cr, ctx)
-	ctx.social.tick(now, float(ctx.m("social").get("request_expire_s", 10.0)))
-	ctx.interventions.tick()
-	ctx.experiments.tick(ctx)
-	ctx.work.tick(ctx)
-	ctx.ai.update(false)
-	if ctx.refill_enabled and now >= next_refill_t:
-		refill_test(float(ctx.c("food").get("test_refill_kg", 0.5)))
-		next_refill_t = now + float(ctx.c("food").get("refill_interval_s", 60.0))
+	modules.tick_all(sdt, ids, ctx.creatures)
 	stepping = false
 	var us := Time.get_ticks_usec() - t0
 	perf["ticks"] += 1
@@ -407,11 +402,7 @@ func audit() -> Array:
 		if cr.memory.entries.size() > int(ctx.m("memory").get("capacity", 64)) or cr.beliefs.items.size() > int(ctx.m("beliefs").get("capacity", 32)) + 1 \
 				or cr.relations.rel.size() > int(ctx.m("relationships").get("capacity", 24)):
 			p.append("Wesen #%d: Geistesspeicher über Kapazität" % id)
-	p.append_array(ConstructionSystem.audit(ctx))
-	p.append_array(StorageSystem.audit(ctx))
-	p.append_array(StructureSystem.audit(ctx))
-	if ctx.work != null:
-		p.append_array(ctx.work.audit(ctx))
+	p.append_array(modules.audit_all())   # Technik (Gegenstände), Lager/Bauwerke, Arbeitsketten
 	for iid in ctx.items:
 		var it: FoodItem = ctx.items[iid]
 		if it.reserved_by != 0 and not ctx.executor.reservations.has(it.reserved_by):

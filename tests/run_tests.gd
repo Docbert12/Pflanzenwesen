@@ -67,6 +67,10 @@ func _run() -> void:
 	var twc := TestWorkChain.new()
 	results.append_array(twc.run_all("--quick" in OS.get_cmdline_user_args()))
 	notes.append_array(twc.notes)
+	print("== Alpha 1.1: Module, Kartenvorlagen, Speicherformat 6, Migration 5 → 6 ==")
+	var tmo := TestModules.new()
+	results.append_array(tmo.run_all())
+	notes.append_array(tmo.notes)
 	print("== Szenentests (Physiklabor) ==")
 	await _scene_tests()
 	print("== Szenentests (Startbildschirm, Welt, Kreaturen) ==")
@@ -230,6 +234,26 @@ func _scene_tests_step2() -> void:
 	for b in buttons:
 		texts.append(b.text.get_slice("\n", 0))
 	_check("Startbildschirm: Neues Spiel, Fortsetzen/Laden, Vorschau-/Testbereiche (inkl. Geistlabor), Beenden", all_exist and "Neues Spiel" in texts and "Fortsetzen / Laden" in texts and "Physiklabor" in texts and "Weltvorschau" in texts and "Kreaturenvorschau" in texts and "Geistlabor (Testbereich)" in texts and "Beenden" in texts, str(texts))
+	# Alpha 1.1: Neues-Spiel-Dialog mit Kartenwahl und Startwert
+	var mm := menu as Control
+	mm.call("open_new_game_dialog")
+	await process_frame
+	var dlg: ConfirmationDialog = mm.get("new_game_dialog")
+	var sel: OptionButton = mm.get("map_select")
+	var seed_edit: LineEdit = mm.get("seed_edit")
+	var req0: Dictionary = mm.call("new_game_request")
+	seed_edit.text = "777"
+	var req1: Dictionary = mm.call("new_game_request")
+	seed_edit.text = "kein Startwert"
+	var req2: Dictionary = mm.call("new_game_request")
+	var subtitle := ""
+	for l in menu.find_children("*", "Label", true, false):
+		if str(l.text).begins_with("Alpha 1."):
+			subtitle = str(l.text)
+	_check("Startbildschirm (Alpha 1.1): zeigt „Alpha 1.N“; Neues-Spiel-Dialog mit Kartenwahl (Lichtung) und Startwert; ungültiger Startwert → Standardwert der Karte",
+		subtitle != "" and dlg != null and dlg.visible and sel.item_count >= 1 and sel.get_item_text(0) == "Lichtung (klein, wie v0.6)" and req0 == {"mode": "new", "map": "lichtung", "seed": 12345}
+		and int(req1["seed"]) == 777 and int(req2["seed"]) == 12345, "%s | %s" % [subtitle.substr(0, 30), str(req0)])
+	dlg.hide()
 	menu.queue_free()
 	await process_frame
 	# Weltvorschau: Bearbeitung aktualisiert Kollision (echte Physik-Strahlabfrage)
@@ -316,6 +340,8 @@ func _scene_tests_living() -> void:
 	var ctx := lw.life.ctx
 	_check("Lebenswelt: Neues Spiel startet ohne Fehler mit 50 Wesen und 50 Darstellungen", lw.start_ok and ctx.creatures.size() == 50 and lw.views.size() == 50 and PopulationSpawner.spawn_calls == calls0 + 1,
 		str(lw.errors))
+	_check("Lebenswelt (Alpha 1.1): Startmeldung nennt die Kartenvorlage; Leistungsanzeige kennt die Zeit je Modul", lw.start_message.find("Lichtung") >= 0 and lw.life.map.id == "lichtung"
+		and PerformanceMonitor.module_lines(lw.life).begins_with("Module (ms je Takt):"), lw.start_message)
 	if not lw.start_ok:
 		lw.queue_free()
 		return

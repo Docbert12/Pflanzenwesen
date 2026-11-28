@@ -13,6 +13,9 @@ var interventions: InterventionSystem
 var comm: CommunicationSystem         # Gespräche (Prompt 5)
 var ai: AISystem                      # Modellanbindung dieser Welt (Prompt 5); arbeitet auch ausgeschaltet
 var world: VoxelWorld
+var terrain: WorldAccess              # Alpha 1.1: einziger Geländezugriff außerhalb der Welt-Schicht
+var rng_streams := RngStreams.new()   # Alpha 1.1: Zufallsströme je Modul (neue Module)
+var perceived_actor_id: int = 0       # Wesen, das in diesem Simulationsbild gerade wahrgenommen hat (0 = keines)
 var nav: NavigationService
 var day_night: DayNightSystem
 var executor: ActionExecutor

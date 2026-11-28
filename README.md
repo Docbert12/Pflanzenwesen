@@ -1,6 +1,16 @@
 # Pflanzenwesen – 3D-Voxel-Zivilisationssimulation
 
-**Stand: 0.6.1-prototype – Prompt 1 (Physiklabor) + 2 (Voxelwelt, Modelle, Excel-Import) + 3 (Lebenssimulation) + 4 (Persönlichkeit, Erinnerung, Lernen, Beziehungen, Göttermenü) + 5 (Ollama-Anbindung, Pläne, Gespräche, Hörensagen) + 6 (Experimente, Werkzeuge, praktisches Wissen) + 6B (Excel-Abgleich, Arbeitsanimationen, Werkzeug- und Materialkette)**
+**Stand: Alpha 1.1 – Fundament** (28.11.2026). Enthält alles aus v0.6.1 (Prompts 1–6B) unverändert; neu sind die modulare Architektur, Kartenvorlagen und das Speicherformat 6. Plan aller Versionen: `docs/ROADMAP_ALPHA.md`. Nächste Version: **Alpha 1.2 – Große Welt I**.
+
+**Neu in Alpha 1.1:**
+- **Neues Spiel mit Kartenwahl:** Der Startbildschirm fragt nach Karte und Startwert. Vorhanden ist „Lichtung (klein, wie v0.6)“ – die bisherige Welt. Größere Karten kommen mit Alpha 1.2; die Technik dafür (Kartenvorlagen in `data/maps/`, keine feste Kartengröße im Code) steht.
+- **Module:** Jedes Teilsystem (Leben, Geist, Soziales, Technik, Arbeit, Göttermenü …) ist ein Modul mit eigener Zeitmessung und eigenem Speicherabschnitt. Neue Systeme (Klima, Ökologie, Feuer) werden künftig ergänzt, ohne bestehende umzubauen. Die Leistungsanzeige zeigt die Zeit je Modul.
+- **Speicherformat 6:** Spielstände aus v0.6.1 und älter werden beim Laden umgestellt, das Original wird vorher gesichert. Ab jetzt bleiben Spielstände über Alpha-Versionen hinweg ladbar (jedes Modul hebt seinen Abschnitt selbst an).
+- **Keine Verhaltensänderung:** Dieselbe Welt mit demselben Startwert läuft nach dem Umbau bitgleich wie in v0.6.1 (`docs/plan_alpha_1_1.md` Abschnitt 4).
+- **Vermessung:** `docs/world_expansion.md` – was die heutige Welt kostet und was daraus für große Karten folgt.
+- **Windows-Build** (experimentell): `Pflanzenwesen_alpha-1.1_windows.zip` – unter Windows noch **nicht verifiziert**.
+
+*Stand davor:* 0.6.1-prototype – Prompts 1 bis 6B.
 
 Spielbar ist eine **erste Lebenssimulation**: kleine Voxelwelt, Lebensbaum mit Wurzelbeet, genau 50 Pflanzenwesen, endliche Nahrung, Tag und Nacht. Die Wesen nehmen ihre Umgebung wahr, suchen Nahrung, gehen hin, greifen, essen, gewinnen Energie über ihre Blätter, verbrauchen Energie und Nährstoffe, reagieren auf Verletzungen und können sterben. Du kannst beobachten, einzelne Wesen untersuchen, pausieren, speichern und laden sowie im Entwicklermodus Körperveränderungen testen.
 
@@ -12,7 +22,7 @@ Spielbar ist eine **erste Lebenssimulation**: kleine Voxelwelt, Lebensbaum mit W
 - **Excel-Abgleich:** dokumentierte Importkonfiguration `design/import_config/datenbasis_korrekturen.json` (Kupfer-/Wasser-Verweis, MAT_Erde/Gras/Holz, Voxelgröße, Fortpflanzung, Setzling-Ernährung); Erfindungskatalog aus `Erfindungen_Echt_nach_Kategorien.xlsx` (5.862 Zeilen → 2.785 Einträge, Stufe nur Metadatum, Effekte nie angewendet, kein Startwissen); strukturierte Definitionen der tatsächlich umgesetzten Verfahren in `data/config/inventions_activated.json`. Berichte: `reports/import_report.md`, `reports/inventions_real_import_report.md`.
 - Speicherformat 5 (Lager, Bauwerke, Arbeitsketten, zweihändiges Halten) mit Migration aus v0.6.0 und älter.
 
-**Plan ab jetzt: Alpha 1.1, 1.2, … – `docs/ROADMAP_ALPHA.md`** (Entscheidungen des Nutzers vom 25.11.2026, Reihenfolge Alpha 1.1–1.21, Zielarchitektur für große Welten und Weltkarten, lebendige Welt). Nächste Version: **Alpha 1.1 – Fundament** (modulare Architektur, Speicherformat 6, Kartenvorlagen).
+**Plan: Alpha 1.1, 1.2, … – `docs/ROADMAP_ALPHA.md`** (Entscheidungen des Nutzers vom 25.11.2026, Reihenfolge Alpha 1.1–1.21, Zielarchitektur für große Welten und Weltkarten, lebendige Welt). Nächste Version: **Alpha 1.1 – Fundament** (modulare Architektur, Speicherformat 6, Kartenvorlagen).
 
 **Leitlinie „Steinzeit → Zukunft“ (Designdokument, kein Spielinhalt, 25.11.2026):** `design/Leitlinie_Steinzeit_bis_Zukunft.xlsx` – 24 Zeitalter, 2.680 Erfindungen mit physikalischer Kette (Material → Verfahren → Energie/Temperatur → Funktion), Vorläufern und Spielstand (heute / ab welchem Prompt / Lücke); kein Technologiebaum, keine Boni. Erzeugt aus `design/leitlinie/*.txt` mit `python3 tools/build_leitlinie.py`. Details und offene Entscheidungen: `docs/leitlinie.md`.
 
@@ -37,7 +47,7 @@ Noch **nicht** enthalten: freie Sprache (nur strukturierte Mitteilungen), strate
 
 | Bereich (Startbildschirm) | Inhalt |
 |---|---|
-| **Neues Spiel** | Lebenssimulation mit 50 Wesen (siehe unten) |
+| **Neues Spiel** | Dialog: Karte und Startwert wählen, dann Lebenssimulation mit 50 Wesen (siehe unten) |
 | **Fortsetzen / Laden** | letzten Spielstand laden (`user://saves/spielstand.json`) |
 | **Physiklabor** | Fall, Wärme, Schmelzen/Erstarren von Kupfer, Bruch, Teilen/Zusammenführen, Massen- und Energieerhaltung |
 | **Weltvorschau** | Bearbeitbare Voxelwelt 64×32×64 Zellen, Wasser, abbrechende Teile, Lebensbaum mit Wurzeln und Wurzelbeet, Pflanzen, Pilze |
@@ -125,7 +135,10 @@ godot --headless --path . -s res://tools/run_work_tests.gd -- [--quick] [--only=
 godot --headless --path . -s res://tests/run_tests.gd -- --nur-werkzeugkette-szene   # nur Szenentest der Testszene Werkzeugkette
 godot --headless --path . -s res://tools/probe_work_chain.gd -- --goal=lagern|bauen|schmelzen [--case=weg] [--auto]   # Kette mit Verlauf protokollieren
 godot --headless --path . -s res://tools/ollama_live_test.gd -- --model=NAME [--minutes=3] [--unterbrechung]   # ECHTER Ollama-Live-Test (eigener Rechner)
-python -m unittest discover -s tools/tests -v                         # 17 Python-Prüfungen (Importer, Erfindungskatalog, Versionsvergleich)
+godot --headless --path . -s res://tools/run_module_tests.gd -- [--only=_t09]   # nur Alpha 1.1: Module, Kartenvorlagen, Speicherformat 6, Migration 5 → 6
+godot --headless --path . -s res://tools/benchmark_world.gd -- [--map=lichtung] [--secs=120]   # Vermessung: Welt, Zeit je Modul, Speicher → user://benchmark_report.txt
+godot --headless --path . -s res://tools/state_hash.gd -- 120 [spiel|werkstatt|kette]   # Zustandsprüfsummen für Vorher-/Nachher-Vergleiche
+python -m unittest discover -s tools/tests -v                         # 39 Python-Prüfungen (Importer, Erfindungskataloge, Versionsvergleich, Leitlinie)
 godot --headless --path . -s res://tools/scene_smoke.gd              # alle 6 Szenen + Testwerkstatt je 240 Bilder starten
 godot --headless --path . -s res://tools/smoke_life.gd -- 120        # Lebenssimulation 120 s ohne Grafik, mit Zwischenständen
 ```
@@ -133,6 +146,9 @@ Ergebnisse und Messwerte: `docs/test_results.md`, Protokolle in `docs/test_repor
 
 ## Dokumentation
 - `docs/HANDOVER.md` – **zuerst lesen** bei Weiterentwicklung: Stand, feste Regeln, Ablauf je Prompt, Schutz vor Verlust (Git, `tools/compare_versions.py`)
+- `docs/ROADMAP_ALPHA.md` – Plan Alpha 1.1 – 1.21, Entscheidungen, Zielarchitektur, Status je Version
+- `docs/plan_alpha_1_1.md` – Alpha 1.1: Bestandsprüfung, Entscheidungen, Aufgabenliste mit Nachweis, offene Punkte
+- `docs/world_expansion.md` – Vermessung der Welt, Engpässe, Folgerungen für große Karten
 - `docs/progress_audit.md` – Bestandsprüfung vor Prompt 6 (Code und Tests, nicht Doku) und Stand danach
 - `docs/work_chains.md` – Arbeitsketten (Prompt 6B): Hammer → Schlag → Bruchstücke → Lager/Baustelle/Testofen, Hände, Autonomie, Modellvorschläge, Testszene, Fehlerfälle
 - `docs/animations.md` – vorhandene und fehlende Animationen, Arbeitsposen, Kontaktgeometrie

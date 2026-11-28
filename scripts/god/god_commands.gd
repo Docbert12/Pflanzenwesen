@@ -42,8 +42,7 @@ static func valid_drop_position(ctx: LifeContext, pos: Vector3) -> Dictionary:
 	if not ctx.nav.is_walkable(col):
 		return {"ok": false, "reason": "kein freier Boden (%s)" % ctx.nav.why_not_walkable(col)}
 	var p := Vector3(pos.x, ctx.nav.ground_y(col), pos.z)
-	var cell := ctx.world.data.world_to_cell(p + Vector3(0, 0.05, 0))
-	if ctx.world.palette.solid[ctx.world.data.get_cell(cell.x, cell.y, cell.z)] == 1:
+	if ctx.terrain.is_solid_at(p + Vector3(0, 0.05, 0)):
 		return {"ok": false, "reason": "Position liegt in festem Gelände"}
 	var clear := float(cfg(ctx).get("min_creature_clearance_m", 0.35))
 	for oid in ctx.nearby_creatures(p, clear + 1.0):

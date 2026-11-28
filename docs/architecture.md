@@ -327,3 +327,69 @@ Bedarf (`WorkSystem.needs`) → `DecisionSystem` wählt `work:start` → `WorkSy
 - `ContextBuilder`/`ResponseValidator`/`AISystem`/`MockOllama`: Art `work`.
 - `tools/import_definitions.py`: liest die Importkonfiguration.
 - Speichern: Format 5 (Lager, Bauwerke, Arbeitsketten, Haltemodus), Migration 4→5; Kette 1→2→3→4→5.
+
+
+# Ergänzungen aus Alpha 1.1 – Fundament (Module, Welt-Schicht, Speicherformat 6)
+
+Details: `docs/plan_alpha_1_1.md` (Entscheidungen, Aufgabenliste mit Nachweis), `docs/world_expansion.md` (Vermessung), `docs/save_format.md` (Format 6), `docs/ROADMAP_ALPHA.md` Abschnitt 8 (Zielarchitektur).
+
+## Module
+Jedes Teilsystem der Simulation ist ein `SimModule` (`scripts/core/sim_module.gd`). Das `ModuleRegistry` (`scripts/core/module_registry.gd`) ordnet die Module nach ihren Abhängigkeiten (`depends_on`), ruft sie in dieser Reihenfolge auf, misst die Zeit je Modul und verwaltet die Speicherabschnitte. `LifeSimulation.step` ist weiter der **einzige** Simulationspfad:
+
+```
+LifeSimulation.step(Δt)
+    Simulation.step ─► Pause → ModuleRegistry.tick_paused_all (nur Netzwerk der KI), Ende
+    ModuleRegistry.tick_all(Δt, Wesen-IDs aufsteigend)
+        core → time.sky → actors → actions → technology.tools
+        je lebendem Wesen:  life → mind.perception → technology.perception → settlement → mind.decision
+        social → god → technology → work → communication → ecology.food
+```
+
+| Modul-ID | Datei (`scripts/modules/`) | ruft auf | Abschnitt |
+|---|---|---|---|
+| `core` | `core_module.gd` | – (Uhr läuft in `Simulation.step`) | Zeit, Takte, nächste ID, Zufall, Zufallsströme |
+| `time.sky` | `time_module.gd` | `DayNightSystem` (wird in 1.3 Kalender und Himmel) | – |
+| `actors` | `actors_module.gd` | Nachbarraster, Wegsuchbudget | Wesen |
+| `actions` | `actions_module.gd` | `ActionExecutor.step` (einzige Handlungsausführung) | Handlungen |
+| `technology.tools` | `tool_use_module.gd` | `ToolUseSystem.tick` | – |
+| `life` (je Wesen) | `life_module.gd` | `Photosynthesis`, `Metabolism`, `Health`, `Creature.die` | – |
+| `mind.perception` (je Wesen) | `perception_module.gd` | `Perception.scan`, `ClaimEvaluator`, `LearningSystem` | – |
+| `technology.perception` (je Wesen) | `tech_perception_module.gd` | `ExperimentSystem.perceive_objects` | – |
+| `settlement` (je Wesen) | `settlement_module.gd` | `StorageSystem.perceive`, `StructureSystem.perceive` | Lager, Bauwerke |
+| `mind.decision` (je Wesen) | `decision_module.gd` | `DecisionSystem.decide` (einziger Entscheider) | – |
+| `social` | `social_module.gd` | `SocialInteractionSystem.tick` | Bitten |
+| `god` | `god_module.gd` | `InterventionSystem.tick` | Eingriffe |
+| `technology` | `technology_module.gd` | `ExperimentSystem.tick` | Gegenstände, Verbünde, Testheizungen, Versuche, Wärme |
+| `work` | `work_module.gd` | `WorkSystem.tick` | Arbeitsketten, Rollen der Testszenen |
+| `communication` | `communication_module.gd` | `AISystem.update` | Gespräche |
+| `ecology.food` | `food_module.gd` | Testoption Nachfüllen | Nahrung, Portionen, Bilanz |
+
+**Regeln:**
+- **Akteur-Module** (`per_actor`) bilden eine Gruppe und laufen je Wesen nacheinander. So bleibt die Reihenfolge je Wesen genau die von v0.6.1 (Nachweis: bitgleiche Zustandsprüfsummen, `docs/plan_alpha_1_1.md` Abschnitt 4). Ein totes Wesen wird von den folgenden Modulen übersprungen.
+- **Neues Modul:** Klasse von `SimModule` ableiten, `id`, `title`, `depends_on` setzen, in `LifeSimulation._register_modules` eintragen. Mit Zustand: `has_section = true`, `save_section`/`load_section`, bei einem Modul, das ältere Spielstände nicht kennen, `section_optional = true`. Zufall nur über `ctx.rng_streams.stream(id)`.
+- **Fehler** (Zyklus, unbekannte Abhängigkeit, doppelte ID) verhindern den Start (`LifeSimulation.setup` gibt `false` zurück).
+- Module greifen auf den `LifeContext` zu, nicht auf Felder anderer Module. Beispiel: Wer in diesem Simulationsbild wahrgenommen hat, steht in `ctx.perceived_actor_id`.
+- Die Systeme selbst (`scripts/actions`, `mind`, `social`, `technology`, `settlement`, `god`, `ai`) sind unverändert; die Module hüllen sie ein („erst einhüllen, dann umziehen“).
+
+## Welt-Schicht
+- `WorldAccess` (`scripts/world/world_access.gd`, im Kontext als `ctx.terrain`): einziger Geländezugriff außerhalb von `scripts/world`. Abfragen: Größe, Zellgröße, `is_loaded`, `type_at`, `material_at`, `is_solid`, `surface_height`, `generated_height`, `water_depth_m`, `raycast`. Schreiben nur über `set_material(cell, typ, ursache)`.
+- `MapTemplate` (`scripts/world/map_template.gd`): Kartenvorlagen aus `data/maps/`. `LifeSimulation.build_world(startwert, karten_id)` und `new_game(startwert, karten_id)`; ohne Angabe „lichtung“.
+- `RegionStore` (`scripts/world/region_store.gd`): Speicherabschnitt der Region mit Chunk-Deltas.
+- `VoxelWorld.apply_map_cfg`, `mark_all_dirty`, `restore_water`: neue, schmale Eingänge für Kartenvorlage und Laden.
+
+## Kern
+- `RngStreams` (`scripts/core/rng_streams.gd`): Zufallsstrom je Modul aus Weltstartwert + Strom-ID (SHA-256), im Abschnitt `core` gespeichert.
+- Zeitmessung: `ModuleRegistry.timing_report()`; Anzeige in `PerformanceMonitor.module_lines`; Bericht `tools/benchmark_world.gd`.
+
+## Änderungen an bestehendem Code (mit Grund)
+| Datei | Änderung | Grund |
+|---|---|---|
+| `scripts/world/life_simulation.gd` | `step` ruft das Register statt der fest verdrahteten Folge; `build_world`/`new_game` mit Kartenvorlage; `audit` sammelt die Prüfungen der Module ein | Modulvertrag, Kartenvorlagen |
+| `scripts/world/life_context.gd` | neu: `terrain`, `rng_streams`, `perceived_actor_id` | Welt-Schnittstelle, Zufallsströme, Austausch zwischen Modulen |
+| `scripts/persistence/save_manager.gd` | `document()` (Format 6), `flat()`, `apply()` über Region + Modulabschnitte; `snapshot()` liefert die flache Sicht | Speicherformat 6 |
+| `scripts/persistence/save_schema.gd` | `FORMAT_VERSION` 6, `validate_document`, `SHIPPED_DEFINITIONS`, `data/maps` im Fingerabdruck | Speicherformat 6 |
+| `scripts/persistence/save_migrations.gd` | Stufe 5 → 6; Stufe 4 → 5 setzt in einer längeren Kette den Fingerabdruck von v0.6.1 | Migration |
+| `scripts/world/voxel_world.gd` | `apply_map_cfg`, `mark_all_dirty`, `restore_water` | Kartenvorlage, Laden ohne Zugriff auf interne Felder |
+| `scripts/god/god_commands.gd`, `scripts/settlement/structure_system.gd`, `scripts/agents/perception.gd`, `scripts/lab/mind_scenarios.gd` | Geländezugriff über `ctx.terrain` | einzige Geländeschnittstelle |
+| `scripts/ui/main_menu.gd`, `scripts/world/living_world.gd` | Neues-Spiel-Dialog (Karte, Startwert), Anzeige „Alpha 1.N“, Startmeldung nennt die Karte | Kartenwahl, Versionsschema |
+| `scripts/debug/performance_monitor.gd` | Zeile „Module (ms je Takt)“ | Leistung je Modul |

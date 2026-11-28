@@ -24,13 +24,18 @@ func _ready() -> void:
 	title.modulate = Color(0.7, 0.95, 0.6)
 	box.add_child(title)
 	var sub := Label.new()
-	sub.text = "Entwicklungsstand %s – Lebenssimulation mit Persönlichkeit, Erinnerung, Lernen, Göttermenü, Gesprächen, ersten Werkzeugen und Arbeitsketten (Prototyp)" % ProjectSettings.get_setting("application/config/version", "?")
+	sub.text = "%s – Lebenssimulation mit Persönlichkeit, Erinnerung, Lernen, Göttermenü, Gesprächen, ersten Werkzeugen und Arbeitsketten" % version_text()
 	sub.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	sub.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	sub.modulate = Color(0.8, 0.85, 0.8)
 	box.add_child(sub)
-	var ng := _entry(box, "Neues Spiel", "Kleine Voxelwelt, Lebensbaum, 50 Pflanzenwesen, endliche Nahrung, Tag und Nacht", Nav.LIVING)
-	ng.pressed.connect(func(): LivingWorld.pending = {"mode": "new"}, CONNECT_ONE_SHOT)
+	var ng := Button.new()
+	ng.name = "NeuesSpiel"
+	ng.text = "Neues Spiel\nKarte und Startwert wählen – Voxelwelt, Lebensbaum, 50 Pflanzenwesen, endliche Nahrung, Tag und Nacht"
+	ng.custom_minimum_size = Vector2(560, 70)
+	ng.add_theme_font_size_override("font_size", 17)
+	ng.pressed.connect(open_new_game_dialog)
+	box.add_child(ng)
 	_load_entry(box)
 	var sep := HSeparator.new()
 	box.add_child(sep)
@@ -46,6 +51,76 @@ func _ready() -> void:
 	quit.text = "Beenden"
 	quit.pressed.connect(func(): get_tree().quit())
 	box.add_child(quit)
+
+
+static func version_text() -> String:
+	return MainMenuVersion.text()
+
+
+var new_game_dialog: ConfirmationDialog
+var map_select: OptionButton
+var seed_edit: LineEdit
+var map_info: Label
+var map_list: Array = []
+
+
+## Neues-Spiel-Dialog (Alpha 1.1): Kartenvorlage aus data/maps und Startwert.
+func open_new_game_dialog() -> void:
+	if new_game_dialog == null:
+		new_game_dialog = ConfirmationDialog.new()
+		new_game_dialog.title = "Neues Spiel"
+		new_game_dialog.ok_button_text = "Starten"
+		new_game_dialog.cancel_button_text = "Abbrechen"
+		var v := VBoxContainer.new()
+		v.custom_minimum_size = Vector2(520, 0)
+		v.add_theme_constant_override("separation", 8)
+		var l1 := Label.new()
+		l1.text = "Karte"
+		v.add_child(l1)
+		map_select = OptionButton.new()
+		map_list = MapTemplate.list_all()
+		for t in map_list:
+			map_select.add_item((t as MapTemplate).name)
+		map_select.item_selected.connect(func(_i): _refresh_map_info(true))
+		v.add_child(map_select)
+		map_info = Label.new()
+		map_info.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		map_info.modulate = Color(0.8, 0.85, 0.8)
+		v.add_child(map_info)
+		var l2 := Label.new()
+		l2.text = "Startwert (gleicher Startwert + gleiche Karte = gleiche Welt)"
+		v.add_child(l2)
+		seed_edit = LineEdit.new()
+		v.add_child(seed_edit)
+		new_game_dialog.add_child(v)
+		new_game_dialog.confirmed.connect(start_new_game)
+		add_child(new_game_dialog)
+		_refresh_map_info(true)
+	new_game_dialog.popup_centered()
+
+
+func _refresh_map_info(set_seed: bool) -> void:
+	if map_list.is_empty():
+		map_info.text = "Keine Kartenvorlage in data/maps gefunden."
+		return
+	var t: MapTemplate = map_list[maxi(0, map_select.selected)]
+	map_info.text = "%s\n%s" % [t.summary(), t.description]
+	if set_seed:
+		seed_edit.text = str(t.default_seed)
+
+
+## Auswahl des Dialogs als Startauftrag der Spielszene. Ungültiger Startwert → Standardwert der Karte.
+func new_game_request() -> Dictionary:
+	if map_list.is_empty():
+		return {"mode": "new"}
+	var t: MapTemplate = map_list[maxi(0, map_select.selected)]
+	var txt := seed_edit.text.strip_edges()
+	return {"mode": "new", "map": t.id, "seed": int(txt) if txt.is_valid_int() else t.default_seed}
+
+
+func start_new_game() -> void:
+	LivingWorld.pending = new_game_request()
+	Nav.go(get_tree(), Nav.LIVING)
 
 
 func _entry(box: VBoxContainer, title: String, desc: String, path: String) -> Button:

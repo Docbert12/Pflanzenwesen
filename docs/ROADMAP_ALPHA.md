@@ -1,6 +1,6 @@
 # Roadmap Alpha 1.x – Pflanzenwesen
 
-**Stand:** 25.11.2026 · Ausgangsversion **v0.6.1** (Prompt 6B) · nächste Version **Alpha 1.1**
+**Stand:** 28.11.2026 · Ausgangsversion **v0.6.1** (Prompt 6B) · geliefert **Alpha 1.1** · nächste Version **Alpha 1.2**
 **Status:** verbindlicher Plan; Reihenfolge und Zuschnitt dürfen sich nur mit Begründung ändern (Änderungsprotokoll am Ende).
 
 Dieses Dokument ist zusammen mit `docs/HANDOVER.md` das Gedächtnis des Projekts für alle weiteren Versionen. Wer an Pflanzenwesen weiterarbeitet, liest **zuerst HANDOVER, dann dieses Dokument**, dann den Abschnitt der anstehenden Version und die dort genannten Prompt-Texte. Kein Wissen darf nur im Chat stehen. Was hier fehlt, gilt als nicht beschlossen.
@@ -963,7 +963,7 @@ Die Schleife ist eine **Option im einzigen Entscheider** (`DecisionSystem`), kei
 
 | Version | Status | Datum | Commit | Bemerkung |
 |---|---|---|---|---|
-| 1.1 | geplant | – | – | – |
+| 1.1 | **geliefert** | 28.11.2026 | siehe HANDOVER 1a | 564/564 Tests auf 4.7.2 und 4.5; Verhalten bitgleich zu v0.6.1; offen → 1.2: Bildzeiten auf Grafikkarte, Wasser als Modul, Spielstand als Ordner, Windows-Build unter Windows prüfen (`docs/plan_alpha_1_1.md` Abschnitt 5) |
 | 1.2 | geplant | – | – | – |
 | 1.3 | geplant | – | – | – |
 | 1.4 | geplant | – | – | – |
@@ -1020,3 +1020,5 @@ Diese Punkte hat Claude nach D1 entschieden. Sie sind keine offenen Fragen; der 
 |---|---|---|
 | 25.11.2026 | Erste Fassung: Alpha 1.1–1.16 im Detail, 1.17–1.21 Ausblick, Alpha-Plan in der Leitlinien-Excel | Entscheidungen D1–D6 des Nutzers |
 | 28.11.2026 | Neuer Chat etwa alle 3 Versionen (Gruppen in Abschnitt 4); Pflicht-Aufgabenliste mit Nachweis je Version | Entscheidung D7 des Nutzers; Schutz gegen Verlust bei automatischer Kürzung |
+| 28.11.2026 | **Alpha 1.1 geliefert.** Abweichungen vom Entwurf: (a) Modulvertrag um `actor_tick` und Akteur-Gruppen erweitert (8.3 nannte nur `tick`); (b) Spielstand Format 6 als **eine** Datei mit `meta`/`modules`/`regions` statt Ordner (8.8) – Ordner folgt mit gestreamten Chunks in 1.2; (c) Wasser bleibt in der Welt-Schicht, noch kein eigenes Modul – folgt in 1.2; (d) vorhandene Zufallsströme unverändert, Ströme je Modul gelten für neue Module; (e) Definitionsprüfung kennt ausgelieferte Vorversionen (`SaveSchema.SHIPPED_DEFINITIONS`); (f) Bildzeiten nicht gemessen (keine Grafikkarte). | (a) Reihenfolge je Wesen muss erhalten bleiben; (b), (c) lohnen erst mit Streaming und hätten das Verhalten der Tests verändert; (d) bitgleicher Vergleich mit v0.6.1; (e) sonst wäre jeder Spielstand nach jeder Alpha-Version unladbar. Begründung im Einzelnen: `docs/plan_alpha_1_1.md` Abschnitt 2. |
+| 28.11.2026 | **Für Alpha 1.2 aus der Vermessung übernommen** (`docs/world_expansion.md` Abschnitt 4): Wasser nur über aktive Spalten rechnen (heute 2,5 ms je Schritt für 4.096 Spalten); Wegsuche hierarchisch, das feste Limit von 2.500 Knoten passt nur zur kleinen Karte (heute Ø 8,5 ms quer über die Karte); Netze und Kollision nach Bedarf und im Hintergrund (9,6 ms je Chunk). | Messwerte Alpha 1.1 |

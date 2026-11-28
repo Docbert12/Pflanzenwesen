@@ -133,12 +133,13 @@ func _ready() -> void:
 			return
 		start_message = "TESTSZENE WERKZEUGKETTE (Testausrüstung, nicht im normalen Spiel): %s Ketten unten links gezielt auslösen." % rk["message"]
 	else:
+		var map_id := str(pending.get("map", MapTemplate.DEFAULT_ID))
 		var seed_value := int(pending.get("seed", db.config("world").get("seed", 12345)))
-		var r2 := life.new_game(seed_value)
+		var r2 := life.new_game(seed_value, map_id)
 		if not r2["ok"]:
 			_fail("Neues Spiel konnte nicht erzeugt werden:\n" + str(r2["message"]))
 			return
-		start_message = "Neues Spiel: %s Startwert %d." % [r2["message"], seed_value]
+		start_message = "Neues Spiel: %s Karte „%s“, Startwert %d." % [r2["message"], life.map.name, seed_value]
 	pending = {"mode": "new"}
 	start_ok = true
 	loaded_time_s = life.ctx.now()

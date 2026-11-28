@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "id": "lichtung",
+  "name": "Lichtung (klein, wie v0.6)",
+  "description": "Die bisherige kleine Welt: flacher Startbereich mit Lebensbaum, Hügel, ein See. Unverändert gegenüber v0.6.1.",
+  "listed": true,
+  "order": 10,
+  "cell_size_m": 0.5,
+  "size_m": [32, 16, 32],
+  "seed": 12345,
+  "generator": "lichtung_v0",
+  "generator_version": 1,
+  "latitude_deg": 50,
+  "sea": false,
+  "biomes": {"Wiese": 1.0},
+  "start_area": {"biome": "Wiese", "near_water": true, "radius_m": 4.5},
+  "geology_profile": "keins",
+  "_note": "generator_params leer = alle Generatorwerte aus data/config/world.json (Stand v0.6.1). latitude_deg, sea, biomes, start_area und geology_profile werden ab Alpha 1.2–1.4 ausgewertet.",
+  "generator_params": {}
+}

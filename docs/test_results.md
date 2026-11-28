@@ -1,4 +1,4 @@
-# Testergebnisse (0.6.1-prototype – Prompt 6B)
+# Testergebnisse (Alpha 1.1; darunter 0.6.1-prototype – Prompt 6B und älter)
 
 Alle Angaben stammen aus tatsächlich ausgeführten Läufen. Prompt 6B: 25.11.2026; Prompt 6: 22.11.2026; die Abschnitte zu Prompt 5 und Prompt 4 weiter unten sind vom 21.11. bzw. 19.11.2026. Protokolle liegen in `docs/test_reports/`.
 
@@ -19,6 +19,48 @@ Alle Angaben stammen aus tatsächlich ausgeführten Läufen. Prompt 6B: 25.11.20
 - echte Grafikkarte;
 - Bedienung mit Maus und Tastatur von Hand. Die Szenentests rufen dieselben Funktionen auf, die auch die Knöpfe auslösen.
 - **echtes Ollama** (nicht erreichbar, kein Modell, keine GPU).
+
+## Gesamtergebnis (Alpha 1.1 – Fundament, 28.11.2026)
+| Lauf | Godot 4.7.2 | Godot 4.5 |
+|---|---|---|
+| Ausgangsbasis v0.6.1 vor jeder Änderung (`--quick`) | **491/491** (373 s) | – |
+| Projektimport | ohne Fehler | ohne Fehler |
+| `tests/run_tests.gd` vollständig (inkl. 10-Minuten-Dauerlauf und beiden 10-Minuten-Beobachtungsläufen) | **564/564** (597 s) | **564/564** (584 s) |
+| davon Alpha 1.1 (`tests/test_modules.gd`, neu) | **71/71** | **71/71** |
+| davon neue Szenenprüfungen (Neues-Spiel-Dialog, Startmeldung mit Karte) | 2/2 | 2/2 |
+| Start aller 6 Szenen + Testwerkstatt + Testszene Werkzeugkette, je 240 Bilder (`tools/scene_smoke.gd`) | 8/8 | 8/8 |
+| Python-Tests (`tools/tests`) | **39/39** | – |
+| Leitlinie prüfen (`tools/build_leitlinie.py --pruefen`) | bestanden (Alpha 1.1: +0 Erfindungen, nichts zu ändern) | – |
+| Versionsvergleich gegen v0.6.1 + Roadmap (`tools/compare_versions.py`) | 36 Dateien neu, 0 entfernt, 21 geändert; 3 private Hilfsfunktionen und 1 Testtext als entfernt gelistet und begründet (`reports/versionsvergleiche/README.md`) | – |
+| Windows-Export (`--export-release "Windows Desktop"`) | Build erzeugt (`Pflanzenwesen.exe` + `.pck`); das Spielpaket startet mit der Linux-Engine (neues Spiel, 10 s, Speichern, Prüfung ohne Befund) | – |
+
+Nach dem vollständigen Lauf wurde nur noch ein Messwert-Text in `tests/test_modules.gd` gekürzt (irreführende Angabe „bewegte Wesen“); danach liefen die 71 Modul-Prüfungen erneut auf beiden Versionen (71/71).
+
+**Nachweis „Umbau ohne Verhaltensänderung“** (`tools/state_hash.gd`, je 120 s, Startwert 12345): Zustandsprüfsummen vor der ersten Codeänderung und nach dem Umbau **identisch** – Spiel `8a47aa1594d43d4b77048e00`, Testwerkstatt `590346b6a35bfeae34110cce`, Testszene Werkzeugkette `dfcaaad48d16ffd95d1ff9b5`. Taktzeit 50 Wesen: 2,89 ms vorher, 2,95 ms nachher (Dauerlauf 600 s im Testlauf: 3,24 ms).
+
+**Neue Prüfungen (`[Module]`, gezielte Regeltests – keine Aussage über eigenständiges Verhalten):**
+1. Reihenfolge der 16 Module = Taktreihenfolge v0.6.1; Akteur-Gruppe; zusätzliche Module werden eingeordnet und laufen im selben Pfad; Pause.
+2. Registerfehler: Zyklus, unbekannte Abhängigkeit, doppelte ID, stabile Sortierung.
+3. Zufallsströme je Modul: reproduzierbar, unabhängig, gespeichert; ein neuer Strom verändert den Ablauf der 50 Wesen nicht.
+4. `WorldAccess`: 400 Stichproben gegen die Weltdaten, Oberflächenhöhe, Schreibweg mit Navigation und Protokoll, Ablehnungen, Strahl.
+5. Kartenvorlagen: Lichtung = Welt von v0.6.x (Gelände bitgleich), unbekannte und ungültige Vorlagen.
+6. Nicht-quadratische Karte 48 × 32 × 80: neues Spiel, 60 s mit 50 Wesen (289 Wegsuchen, 0 fehlgeschlagen), Speichern und Laden.
+7. Format 6 im Rundlauf: jeder Abschnitt nach dem Laden identisch, Region mit Chunk-Deltas, Zufallszustände; Abweisung ohne Teil-Laden (4 Fälle); Menü-Kurzinfo.
+8. Chunk-Deltas: 299 Zufallsänderungen, Kartenkante, Umrechnung der Format-5-Liste, beschädigte Daten.
+9. **Migration 5 → 6 mit drei echten v0.6.1-Spielständen** (normales Spiel, Testwerkstatt, Werkzeugkette mitten in einer Kette): Inhalt, Zeit, IDs, Zufall, Gelände, Wasser; die laufende Kette wird zu Ende geführt; danach Format 6 ohne Migration; veränderte Definitionen und unvollständige Stände abgewiesen.
+10. Determinismus: zwei Läufe à 30 s – Zustand und Messwerte je Modul gleich.
+11. Abschnittsversionen: Anheben durch das Modul, optionaler Abschnitt fehlt → Startzustand, ungültige Version abgewiesen.
+12. Kein Skript außerhalb `scripts/world` greift direkt auf die Zelldaten zu.
+13. Zeitmessung je Modul (Anteile = 100 %, abschaltbar), Messwerte je Modul.
+14. Definitionen und Version: Karten im Fingerabdruck, „Alpha 1.N“, ausgelieferte Fingerabdrücke v0.6.1 und alpha-1.1 eingetragen, unbekannte abgewiesen.
+
+**Messwerte Alpha 1.1** (headless, 2 Kerne; vollständig in `docs/world_expansion.md`): Simulationstakt Ø 2,95 ms (99 % unter 6,4 ms); größte Anteile Handlungen 41 %, Wahrnehmung 26 %, Leben 22 %; Netz + Kollision 9,6 ms je Chunk; Wegsuche quer über die Karte Ø 8,5 ms; Wasserschritt 2,5 ms; Arbeitsspeicher 111 MB; Spielstand 1,1 MB.
+
+**Nicht verifiziert (Alpha 1.1):**
+- **Bildzeiten und Darstellung auf einer Grafikkarte** (keine in der Arbeitsumgebung);
+- **Start des Windows-Builds unter Windows**;
+- **Neues-Spiel-Dialog von Hand** mit Maus und Tastatur (der Szenentest ruft dieselben Funktionen auf);
+- weiterhin: echtes Ollama, Animationen als bewegte Bilder.
 
 ## Gesamtergebnis (Prompt 6B)
 | Lauf | Godot 4.7.2 | Godot 4.5 |

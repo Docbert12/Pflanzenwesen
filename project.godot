@@ -1,13 +1,13 @@
 ; Engine configuration file.
-; Pflanzenwesen – Prompt 1 (Physiklabor) + Prompt 2 (Voxelwelt, Modelle, Excel-Import)
+; Pflanzenwesen – Alpha 1.x (Versionsschema: docs/ROADMAP_ALPHA.md Abschnitt 4)
 
 config_version=5
 
 [application]
 
 config/name="Pflanzenwesen"
-config/description="3D-Voxel-Zivilisationssimulation mit Pflanzenwesen – Prototyp: Physiklabor"
-config/version="0.6.1-prototype"
+config/description="3D-Voxel-Zivilisationssimulation mit Pflanzenwesen"
+config/version="alpha-1.1"
 run/main_scene="res://scenes/main.tscn"
 config/features=PackedStringArray("4.5", "Forward Plus")
 

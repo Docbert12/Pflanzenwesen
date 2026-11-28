@@ -37,8 +37,7 @@ func setup(p_sim: Simulation, p_cfg: Dictionary, palette_cfg: Dictionary) -> boo
 	if not palette.load_config(palette_cfg, sim.materials):
 		errors.append_array(palette.errors)
 		return false
-	var cd: Array = cfg["chunk_size_cells"]
-	chunk_dims = Vector3i(int(cd[0]), int(cd[1]), int(cd[2]))
+	_read_chunk_dims()
 	var sup: Dictionary = cfg.get("support", {})
 	support.max_fragment_cells = int(sup.get("max_fragment_cells", 256))
 	max_fragments = int(sup.get("max_dynamic_fragments", 6))
@@ -53,6 +52,29 @@ func setup(p_sim: Simulation, p_cfg: Dictionary, palette_cfg: Dictionary) -> boo
 	_fragment_root.name = "Bruchstücke"
 	add_child(_fragment_root)
 	return true
+
+
+func _read_chunk_dims() -> void:
+	var cd: Array = cfg["chunk_size_cells"]
+	chunk_dims = Vector3i(int(cd[0]), int(cd[1]), int(cd[2]))
+
+
+## Alpha 1.1: Weltkonfiguration einer Kartenvorlage übernehmen (MapTemplate.world_cfg). Wirkt beim
+## nächsten generate(); Palette, Wasser- und Abstützungsparameter bleiben wie in setup() gesetzt.
+func apply_map_cfg(p_cfg: Dictionary) -> void:
+	cfg = p_cfg
+	_read_chunk_dims()
+
+
+func mark_all_dirty() -> void:
+	for k in chunks:
+		dirty[k] = true
+
+
+## Wasserstand aus einem Spielstand übernehmen (gleiche Spaltenzahl vorausgesetzt).
+func restore_water(amount: PackedFloat64Array) -> void:
+	water.setup(data, palette, amount, water.flow_rate)
+	_water_dirty = true
 
 
 ## Erzeugt die Welt aus dem Startwert (auch zum Zurücksetzen).

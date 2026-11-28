@@ -114,7 +114,7 @@ func place_with_view(life: LifeSimulation, cr: Creature, p: Vector3, d: float) -
 				continue
 			var eye := gq + Vector3(0, eye_h, 0)
 			var tp := p + Vector3(0, 0.4, 0)
-			var h := life.ctx.world.raycast(eye, tp - eye, eye.distance_to(tp))
+			var h := life.ctx.terrain.raycast(eye, tp - eye, eye.distance_to(tp))
 			if not h["hit"] or float(h["distance"]) >= eye.distance_to(tp) - 0.35:
 				cr.position = gq
 				life.ctx.rebuild_spatial_hash()

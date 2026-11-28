@@ -36,7 +36,7 @@ extends RefCounted
 ##   macht die letzte Stufe – sonst wäre ein alter Stand nach jeder Definitionsänderung unladbar.
 ##   Vor dem Laden einer zu migrierenden Datei legt SaveManager eine Kopie „…vN.vor_migration“ an.
 
-const MIGRATIONS := {1: "_migrate_1_to_2", 2: "_migrate_2_to_3", 3: "_migrate_3_to_4", 4: "_migrate_4_to_5"}
+const MIGRATIONS := {1: "_migrate_1_to_2", 2: "_migrate_2_to_3", 3: "_migrate_3_to_4", 4: "_migrate_4_to_5", 5: "_migrate_5_to_6"}
 
 ## Fingerabdruck der Definitionsdateien von v0.3.0 (so ausgeliefert; gemessen beim Erstellen der Migration).
 const V1_KNOWN_DEFINITIONS := ["8a3b9a3f99b43ba042a505802a769f01b458cc648abf5aa8fe30a0d1af1063e1"]
@@ -209,6 +209,8 @@ static func _migrate_4_to_5(p: Dictionary) -> Dictionary:
 	if SaveSchema.FORMAT_VERSION == 5 and cur_fp["hash"] != V5_SHIPPED_DEFINITIONS:
 		return {"ok": false, "code": "definitions_changed",
 			"message": "Die aktuellen Definitionen weichen von den mit v0.6.1 ausgelieferten ab (Excel neu importiert oder Konfiguration geändert). Migration nur mit den ausgelieferten Definitionen."}
+	if SaveSchema.FORMAT_VERSION > 5:
+		cur_fp = {"hash": V5_SHIPPED_DEFINITIONS, "files": {}, "note": "per Migration 4→5 gesetzt (entspricht v0.6.1); Kette läuft weiter"}
 	var t := float(p["simulation"]["time_s"])
 	for mp in p.get("material_pieces", []):
 		mp["storage_id"] = 0
@@ -224,3 +226,76 @@ static func _migrate_4_to_5(p: Dictionary) -> Dictionary:
 	p["migration_4_5"] = {"from": 4, "to": 5, "at_time_s": t, "definitions_v4": old_fp.get("hash", ""),
 		"note": "Keine Lager, Baustellen oder Arbeitsketten vor t=%.1f s – nichts erfunden." % t}
 	return {"ok": true, "payload": p}
+
+
+## Format 5 → 6 (v0.6.1 → Alpha 1.1):
+##   - Voraussetzung: Spielstand mit den ausgelieferten Definitionen von v0.6.1 (V5_KNOWN_DEFINITIONS).
+##     Die AKTUELLEN Definitionen dürfen neuer sein, wenn sie zu einer ausgelieferten Alpha-Version gehören:
+##     ab Format 6 hebt jedes Modul seinen Abschnitt selbst an (SimModule.migrate_section).
+##   - Reine Umordnung, kein Inhalt wird erfunden oder verworfen: die Einzeldatei wird in Kopf (`meta`),
+##     Abschnitte je Modul (alle Version 1) und die Hauptregion zerlegt.
+##   - Welt: Karte „lichtung“ (die Welt von v0.6.x, Generator lichtung_v0 Version 1). Die Liste der
+##     Terrainänderungen [[Index, Typ], …] wird in Chunk-Deltas (Chunks 16 × 32 × 16) umgerechnet.
+##   - Zufallsströme je Modul: leer (bis v0.6.1 gab es keine).
+const V5_KNOWN_DEFINITIONS := [V5_SHIPPED_DEFINITIONS]
+const V5_CHUNK_SIZE := Vector3i(16, 32, 16)
+const V5_CELL_SIZE_M := 0.5
+const V5_MAP_ID := "lichtung"
+const V5_SECTION_KEYS := {
+	"actors": ["creatures", "observation_stats"],
+	"actions": ["actions"],
+	"ecology.food": ["foods", "items", "ledger"],
+	"technology": ["material_pieces", "assemblies", "heaters", "experiments", "thermal"],
+	"settlement": ["storages", "structures"],
+	"work": ["work", "workshop"],
+	"social": ["social"],
+	"god": ["interventions"],
+	"communication": ["communication", "ai_note"],
+}
+
+static func _migrate_5_to_6(p: Dictionary) -> Dictionary:
+	var errs := SaveSchema.validate(p)
+	if not errs.is_empty():
+		return {"ok": false, "code": "invalid", "message": "Spielstand unvollständig: " + "; ".join(errs)}
+	var old_fp: Dictionary = p.get("definitions", {})
+	if not str(old_fp.get("hash", "")) in V5_KNOWN_DEFINITIONS:
+		return {"ok": false, "code": "definitions_changed",
+			"message": "Der Spielstand (Format 5) wurde mit veränderten Definitionen gespeichert, nicht mit denen von v0.6.1. Eine Migration ist dafür nicht vorgesehen."}
+	var s: Dictionary = p["simulation"]
+	var t := float(s["time_s"])
+	var w: Dictionary = p["world"]
+	var sz: Array = w.get("size", [64, 32, 64])
+	var size := Vector3i(int(sz[0]), int(sz[1]), int(sz[2]))
+	var dl := RegionStore.deltas_from_global(w["terrain_diff"], size, V5_CHUNK_SIZE)
+	if not dl["ok"]:
+		return {"ok": false, "code": "invalid", "message": dl["message"]}
+	var mods := {}
+	mods["core"] = {"v": 1, "time_s": s["time_s"], "tick_count": s["tick_count"], "registry_next_id": s["registry_next_id"], "sim_rng": s["sim_rng"],
+		"dev_mode": s.get("dev_mode", false), "population_initial": s.get("population_initial", 50),
+		"rng_streams": {"world_seed": str(int(w["seed"])), "streams": {}}}
+	for mid in V5_SECTION_KEYS:
+		var sec := {"v": 1}
+		for k in V5_SECTION_KEYS[mid]:
+			if p.has(k):
+				sec[k] = p[k]
+		mods[mid] = sec
+	mods["ecology.food"]["food_rng"] = s["food_rng"]
+	mods["ecology.food"]["next_refill_t"] = s.get("next_refill_t", 0.0)
+	mods["ecology.food"]["refill_enabled"] = s.get("refill_enabled", false)
+	var region := {"v": 1, "map_id": V5_MAP_ID, "map_sha256": "", "seed": w["seed"], "generator": "lichtung_v0", "generator_version": 1,
+		"cell_size_m": V5_CELL_SIZE_M, "size": [size.x, size.y, size.z], "chunk_size": [V5_CHUNK_SIZE.x, V5_CHUNK_SIZE.y, V5_CHUNK_SIZE.z],
+		"base_hash": w["base_hash"], "current_hash": w.get("current_hash", w["base_hash"]), "delta_encoding": RegionStore.ENCODING,
+		"changed_cells": int(dl["changed"]), "chunks": dl["chunks"], "water_b64": w["water_b64"], "water_total_m3": w.get("water_total_m3", 0.0),
+		"fragments_not_saved": w.get("fragments_not_saved", 0), "world_objects": p["world_objects"]}
+	var migrations := {}
+	for k in p:
+		if str(k).begins_with("migration"):
+			migrations[k] = p[k]
+	migrations["migration_5_6"] = {"from": 5, "to": 6, "at_time_s": t, "definitions_v5": old_fp.get("hash", ""), "terrain_changes": int(dl["changed"]),
+		"note": "Reine Umordnung in Kopf, Modulabschnitte und Region; nichts erfunden, nichts verworfen."}
+	var doc := {"format_version": 6,
+		"meta": {"game_version": p.get("game_version", "?"), "definitions": {"hash": V5_SHIPPED_DEFINITIONS, "files": old_fp.get("files", {}), "note": "Definitionen von v0.6.1"},
+			"saved_at_real": p.get("saved_at_real", ""), "_note_time": p.get("_note_time", ""), "map_id": V5_MAP_ID, "seed": w["seed"],
+			"module_order": mods.keys(), "migrations": migrations},
+		"modules": mods, "regions": {RegionStore.MAIN: region}}
+	return {"ok": true, "payload": doc}

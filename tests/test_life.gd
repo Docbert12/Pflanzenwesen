@@ -652,7 +652,7 @@ func _test_save_load() -> void:
 			diffs.append_array(d.slice(0, 4))
 	_check("(13) Nahrung, Gegenstände, Körper, Verletzungen, Prothesen, Speicher, Positionen identisch nach Speichern/Laden", keys_eq, "abweichend: %s" % str(diffs))
 	notes.append("Speichern/Laden: Zustand %s" % ("bitgenau gleich" if exact else "gleich innerhalb 1e-12 relativ (einzelne Gleitkommawerte in der letzten Binärstelle verschieden)"))
-	_check("(13) Terrainänderung und Wasser überstehen den Zyklus", tr["ok"] and after["world"]["current_hash"] == before["world"]["current_hash"] and after["world"]["water_b64"] == before["world"]["water_b64"] and before["world"]["terrain_diff"].size() >= 1)
+	_check("(13) Terrainänderung und Wasser überstehen den Zyklus", tr["ok"] and after["world"]["current_hash"] == before["world"]["current_hash"] and after["world"]["water_b64"] == before["world"]["water_b64"] and int(before["world"]["changed_cells"]) >= 1)
 	_check("Keine Offline-Zeit: Simulationszeit exakt die gespeicherte", life2.ctx.now() == ctx.now() and life2.sim.clock.tick_count == life.sim.clock.tick_count)
 	_check("Zufallszustände wiederhergestellt", life2.sim.rng.state == life.sim.rng.state and life2.food_rng.state == life.food_rng.state)
 	_check("Reservierungen nach dem Laden konsistent (freigegeben), Prüfung ohne Befund", life2.ctx.executor.reservations.is_empty() and life2.audit().is_empty(), str(life2.audit()))
@@ -739,7 +739,7 @@ func _test_corrupt_saves() -> void:
 	_write("user://saves/_t_old.json", JSON.stringify(header) + "\n" + body)
 	cases["unbekannte alte Version"] = SaveManager.read_file("user://saves/_t_old.json")
 	var p: Dictionary = JSON.parse_string(body)
-	p.erase("creatures")
+	p["modules"]["actors"].erase("creatures")   # Alpha 1.1 (Format 6): die Wesen stehen im Abschnitt des Moduls „actors“
 	var b2 := JSON.stringify(p, "", true, true)
 	header["format_version"] = SaveSchema.FORMAT_VERSION
 	header["sha256"] = SaveSchema.sha256_text(b2)
@@ -753,18 +753,18 @@ func _test_corrupt_saves() -> void:
 	_check("(14) Beschädigte/inkompatible Dateien kontrolliert abgewiesen (abgeschnitten, verändert, fremd, neuer, alt, unvollständig)", bad.is_empty(), str(bad))
 	# Geänderte Definitionen
 	var p2: Dictionary = JSON.parse_string(body)
-	p2["definitions"]["hash"] = "0000"
-	p2["definitions"]["files"]["res://data/generated/excel/food.json"] = "geändert"
+	p2["meta"]["definitions"]["hash"] = "0000"   # Format 6: Definitionen im Kopf (meta)
+	p2["meta"]["definitions"]["files"]["res://data/generated/excel/food.json"] = "geändert"
 	var life2 := _env()
 	var ar := SaveManager.apply(life2, p2)
 	_check("(14) Geänderte Excel-Definitionen erkannt, Spielstand nicht still übernommen", not ar["ok"] and ar["code"] == "definitions_changed" and str(ar["message"]).find("food.json") >= 0 and life2.ctx.creatures.is_empty(), str(ar["message"]).substr(0, 160))
 	var p3: Dictionary = JSON.parse_string(body)
-	p3["world"]["base_hash"] = "abc"
+	p3["regions"]["main"]["base_hash"] = "abc"   # Format 6: Gelände in der Region
 	var life3 := _env()
 	var ar3 := SaveManager.apply(life3, p3)
 	_check("(14) Abweichendes Grundgelände (Generator geändert) erkannt", not ar3["ok"] and ar3["code"] == "world_mismatch")
 	var mig := SaveMigrations.migrate({}, SaveSchema.FORMAT_VERSION)
-	_check("Migrationsschnittstelle: aktuelles Format ohne Migration; nur die tatsächlich vorhandenen Stufen 1→2→3→4→5", mig["ok"] and mig["steps"].is_empty() and SaveMigrations.MIGRATIONS.keys() == [1, 2, 3, 4])
+	_check("Migrationsschnittstelle: aktuelles Format ohne Migration; nur die tatsächlich vorhandenen Stufen 1→2→3→4→5→6", mig["ok"] and mig["steps"].is_empty() and SaveMigrations.MIGRATIONS.keys() == [1, 2, 3, 4, 5])
 	var bl := _env()
 	var br := SaveManager.load_into(bl, TEST_SAVE + ".bak")
 	_check("Sicherung (.bak) ist ladbar", br["ok"], br["message"])

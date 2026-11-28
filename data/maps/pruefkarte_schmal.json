@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "id": "pruefkarte_schmal",
+  "name": "Prüfkarte schmal (Testbereich)",
+  "description": "Nicht-quadratische Karte 48 × 32 × 80 Zellen. Dient nur dem Nachweis, dass kein Teil des Spiels eine feste Kartengröße annimmt.",
+  "listed": false,
+  "order": 900,
+  "cell_size_m": 0.5,
+  "size_m": [24, 16, 40],
+  "seed": 4711,
+  "generator": "lichtung_v0",
+  "generator_version": 1,
+  "latitude_deg": 50,
+  "sea": false,
+  "biomes": {"Wiese": 1.0},
+  "start_area": {"biome": "Wiese", "near_water": true, "radius_m": 4.0},
+  "geology_profile": "keins",
+  "generator_params": {
+    "start_area": {"center": [20, 24], "radius_cells": 8},
+    "lake": {"center": [30, 60], "radius_cells": 8, "floor_cells": 6},
+    "plants": {"count": 40, "mushroom_share": 0.25}
+  }
+}

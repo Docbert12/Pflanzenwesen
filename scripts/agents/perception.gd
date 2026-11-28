@@ -65,7 +65,7 @@ static func scan(cr: Creature, ctx: LifeContext) -> void:
 
 
 static func _line_of_sight(ctx: LifeContext, from: Vector3, to: Vector3, dist: float) -> bool:
-	var hit := ctx.world.raycast(from, to - from, dist)
+	var hit := ctx.terrain.raycast(from, to - from, dist)
 	return not hit["hit"] or float(hit["distance"]) >= dist - 0.35
 
 

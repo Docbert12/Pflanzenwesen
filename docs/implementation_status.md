@@ -2,6 +2,31 @@
 
 Statuswerte: **fertig + getestet** · **fertig, Sichtprüfung** · **teilweise** · **nicht implementiert (bewusst)**
 
+## Alpha 1.1 – Fundament (28.11.2026)
+Aufgabenliste mit Nachweis: `docs/plan_alpha_1_1.md` Abschnitt 3. Kurzfassung:
+
+| Bereich | Stand |
+|---|---|
+| Modulvertrag, Register, 16 Module, Zeitmessung je Modul | umgesetzt und getestet |
+| `WorldAccess` als einzige Geländeschnittstelle | umgesetzt und getestet (statische Prüfung aller Skripte) |
+| Kartenvorlagen, Neues-Spiel-Dialog | umgesetzt; Dialog von Hand **nicht verifiziert** |
+| Speicherformat 6 (Abschnitte je Modul, Chunk-Deltas), Migration 5 → 6 | umgesetzt und mit echten v0.6.1-Spielständen getestet |
+| Zufallsströme je Modul | umgesetzt und getestet |
+| Vermessung der Welt | umgesetzt (ohne Grafikkarte); **Bildzeiten nicht verifiziert** |
+| Windows-Exportprofil und Build | Build erzeugt; **unter Windows nicht verifiziert** |
+| Wasser als eigenes Modul | **offen** → Alpha 1.2 |
+| Spielstand als Ordner je Region/Chunk | **offen** → Alpha 1.2 |
+| Größere Karten, Streaming, Biome | nicht Teil von 1.1 → Alpha 1.2 |
+
+### Manuelle Prüfschritte Alpha 1.1 auf deinem PC (ca. 10 Minuten)
+1. Projekt in Godot importieren, **F5**. Der Untertitel beginnt mit „Alpha 1.1“.
+2. **Neues Spiel** → Dialog: Karte „Lichtung (klein, wie v0.6)“, Startwert 12345 → **Starten**. Die Welt sieht aus wie in v0.6.1; die Startmeldung nennt die Karte.
+3. Leistungsanzeige einblenden: unterste Zeile „Module (ms je Takt): …“.
+4. **F5** im Spiel speichern, zurück ins Menü, **Fortsetzen / Laden**.
+5. Einen alten Spielstand aus v0.6.1 laden (falls vorhanden): Die Meldung nennt „Migriert: 5→6“ und die Sicherungsdatei `….v5.vor_migration`.
+6. Optional Windows-Build: `Pflanzenwesen_alpha-1.1_windows.zip` entpacken, `Pflanzenwesen.exe` starten, Schritte 2–4 wiederholen.
+7. Optional Messung mit Grafikkarte: `godot --path . -s res://tools/benchmark_world.gd` (ohne `--headless`), Bericht `%APPDATA%\Godot\app_userdata\Pflanzenwesen\benchmark_report.txt` schicken.
+
 ## Prompt 1 – Projektgrundlage und Physiklabor
 Unverändert **fertig + getestet** (Details in Version 0.1.0). Alle bisherigen Physiktests bestehen weiterhin.
 Änderungen: Labor hat einen Knopf zurück zum Startbildschirm; Materialanzahl jetzt 6 (neu: Erde); Wärme- und Phasensysteme überspringen nicht-physikalische Entitäten.

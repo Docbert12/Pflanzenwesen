@@ -1,6 +1,47 @@
-# Speicherformat (Formatversion 4, seit 0.6.0)
+# Speicherformat (Formatversion 6, seit Alpha 1.1)
 
 Dateien: `scripts/persistence/save_manager.gd`, `save_schema.gd`, `save_migrations.gd`.
+
+## Format 6 auf einen Blick (Alpha 1.1)
+Die Datei besteht weiter aus Kopfzeile + Nutzdaten (siehe „Dateiaufbau“). Neu ist der **Aufbau der Nutzdaten**:
+
+```
+{
+  "format_version": 6,
+  "meta":    { game_version, definitions (Fingerabdruck), saved_at_real, map_id, seed, module_order, migrations },
+  "modules": { "<modul-id>": { "v": <Abschnittsversion>, … }, … },
+  "regions": { "main": { "v": 1, map_id, seed, generator, generator_version, cell_size_m, size, chunk_size,
+                         base_hash, current_hash, changed_cells, chunks: { "cx,cy,cz": {n, bytes, data} },
+                         water_b64, water_total_m3, world_objects } }
+}
+```
+
+| Abschnitt (Modul) | Inhalt (Schlüssel wie bis Format 5) |
+|---|---|
+| `core` | `time_s`, `tick_count`, `registry_next_id`, `sim_rng`, `dev_mode`, `population_initial`, **`rng_streams`** (Zufallsströme je Modul, neu) |
+| `actors` | `creatures` (jedes Wesen als Ganzes: Körper, Stoffwechsel, Geist, Pläne, praktisches Wissen), `observation_stats` |
+| `actions` | `actions` (laufende Handlungen, Zähler, letzte 50 Ergebnisse) |
+| `ecology.food` | `foods`, `items`, `ledger`, `food_rng`, `next_refill_t`, `refill_enabled` |
+| `technology` | `material_pieces`, `assemblies`, `heaters`, `experiments`, `thermal` |
+| `settlement` | `storages`, `structures` |
+| `work` | `work`, `workshop` |
+| `social` | `social` |
+| `god` | `interventions` |
+| `communication` | `communication`, `ai_note` |
+
+Module ohne Zustand (`time.sky`, `technology.tools`, `life`, `mind.perception`, `technology.perception`, `mind.decision`) schreiben keinen Abschnitt.
+
+**Regeln:**
+- **Abschnittsversion je Modul** (`"v"`). Beim Laden hebt jedes Modul seinen Abschnitt selbst an (`SimModule.migrate_section`). Die Formatversion 6 bleibt, solange der Kopf sich nicht ändert.
+- **Neues Modul, alter Spielstand:** Fehlt der Abschnitt eines Moduls, das seinen Abschnitt als optional kennzeichnet (`section_optional`), lädt der Spielstand mit dem Startzustand dieses Moduls. Es wird nichts erfunden.
+- **Kein Teil-Laden:** Abschnitt eines unbekannten Moduls (`unknown_module`), neuere Abschnittsversion (`newer_format`), fehlender Pflichtabschnitt (`invalid`) → der Spielstand wird abgewiesen, bevor irgendetwas geladen ist. Abschnitte werden zuerst alle geprüft und angehoben, dann geladen.
+- **Chunk-Deltas:** In der Region stehen nur die gegenüber dem Generator geänderten Zellen, je Chunk als Paare (lokaler Index, Typ), 32-Bit, mit Deflate gepackt und als Base64 abgelegt. Das Grundgelände entsteht beim Laden aus Kartenvorlage + Startwert + Generatorversion; `base_hash` muss stimmen (sonst `world_mismatch`), nach dem Anwenden auch `current_hash`.
+- **Ladereihenfolge** (`SimModule.load_order`): Region → `core` → `ecology.food` → `actors` → `technology` → `settlement` → `work` → `social` → `communication` → `god` → `actions`; danach Nacharbeit (`after_load`): nächste freie ID, Pläne der KI, Wärmekontakte und laufende Versuche, Arbeitsketten, Gehaltenes und Positionen; zuletzt die Konsistenzprüfung.
+- **Flache Sicht:** `SaveManager.snapshot(life)` bzw. `SaveManager.flat(document)` liefert alle Abschnitte nebeneinander unter den alten Schlüsseln (`creatures`, `foods`, `simulation`, `world` …) – für Vergleiche, Tests und das Menü.
+- **Definitionen:** Der Fingerabdruck umfasst jetzt auch `data/maps/`. Ein Spielstand wird geladen, wenn sein Fingerabdruck dem aktuellen entspricht **oder** dem einer ausgelieferten Vorversion (`SaveSchema.SHIPPED_DEFINITIONS`: v0.6.1, alpha-1.1 …). Unbekannte Fingerabdrücke bedeuten veränderte Definitionen → abgewiesen (`definitions_changed`) wie bisher.
+- **Eine Datei:** Kopf, Abschnitte und Region liegen noch in einer Datei. Der in der Roadmap (8.8) skizzierte Ordner mit einer Datei je Region und Chunk kommt mit den gestreamten Chunks (Alpha 1.2).
+
+Die folgenden Abschnitte beschreiben Schreiben, Laden und Ladeverhalten; sie gelten unverändert. Wo dort von Feldern der Datei die Rede ist (`creatures`, `world` …), stehen diese seit Format 6 in den oben genannten Abschnitten.
 
 ## Ablage
 - Spielstand: `user://saves/spielstand.json`. Unter Windows liegt `user://` bei `%APPDATA%\Godot\app_userdata\Pflanzenwesen\`.
@@ -185,6 +226,14 @@ Seit 0.6.1 prüft die Stufe 3→4 die aktuellen Definitionen nicht mehr (sie set
 **Getestet** mit zwei echten v0.6.0-Spielständen, die vor jeder 6B-Codeänderung erzeugt wurden: `tests/fixtures/save_v4_prompt06.json` (normales Spiel, 50 Wesen, Göttermenü-Material) und `tests/fixtures/save_v4_prompt06_werkstatt.json` (Testwerkstatt mit Verbünden, Heizung, Versuchen; `tools/make_workshop_fixture.gd`). Beide laden, das Original ist gesichert (`.v4.vor_migration`), Stücke, Masse, Verbünde und Wesen sind unverändert, danach wird im Format 5 gespeichert und unverändert wieder geladen; Prüfung ohne Befund. v1-, v2- und v3-Prüflinge laufen durch die ganze Kette.
 
 **Für spätere Versionen:** `V5_SHIPPED_DEFINITIONS` bei Definitionsänderungen neu eintragen (`tools/print_definitions_fingerprint.gd`) und eine Stufe 5→6 ergänzen.
+
+### Format 5 (v0.6.1) → Format 6 (Alpha 1.1)
+- **Voraussetzung:** Spielstand mit den ausgelieferten Definitionen von v0.6.1. Die aktuellen Definitionen dürfen neuer sein (ab Format 6 heben die Module ihre Abschnitte selbst an).
+- **Reine Umordnung:** Die flache Datei wird in Kopf, Modulabschnitte (alle Version 1) und die Hauptregion zerlegt. Kein Inhalt wird erfunden oder verworfen; frühere Migrationsvermerke wandern nach `meta.migrations`.
+- **Welt:** Karte „lichtung“ (Generator `lichtung_v0`, Version 1). Die Liste der Terrainänderungen wird in Chunk-Deltas (Chunks 16 × 32 × 16) umgerechnet.
+- **Zufallsströme je Modul:** leer (gab es nicht).
+- **Getestet mit drei echten Spielständen aus v0.6.1**, erzeugt vor jeder Codeänderung von Alpha 1.1: normales Spiel (50 Wesen, mit Göttermaterial), Testwerkstatt (laufender Heizversuch), Testszene Werkzeugkette **mitten in einer Kette** (`tests/fixtures/save_v5_v061*.json`). Geprüft: Inhalt unverändert, Zeit, IDs, Zufallszustände, Gelände und Wasser erhalten, Original gesichert (`….v5.vor_migration`), die laufende Kette wird nach dem Laden zu Ende geführt, danach Speichern im Format 6 und erneutes Laden ohne Migration.
+- Das Ladeverhalten ist unverändert: laufende Handlungen werden fortgesetzt, neu geplant oder kontrolliert abgebrochen; laufende Versuche werden als „unterbrochen“ beendet.
 
 ## Bekannte Grenzen
 - **Bruchstücke** (abgelöste Terrainteile als Godot-Körper) werden nicht gespeichert. Ihre Anzahl steht in `fragments_not_saved`. In der Lebenssimulation gibt es keine Terrainbearbeitung durch den Spieler, daher entstehen dort keine.

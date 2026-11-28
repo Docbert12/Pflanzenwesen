@@ -121,7 +121,7 @@ static func evaluate(ctx: LifeContext, s: Structure) -> Dictionary:
 			parts.append(pid)
 	var b := bp(ctx, s.blueprint)
 	var length := float(b.get("spacing_m", 0.22)) * maxf(0.0, s.slots.size() - 1) if not parts.is_empty() else 0.0
-	var cell := ctx.world.data.cell_size if ctx.world != null and ctx.world.data != null else 0.5
+	var cell := ctx.terrain.cell_size() if ctx.terrain != null else 0.5
 	return {"teile": parts.size(), "plaetze": s.slots.size(), "masse_kg": mass, "hoehe_m": height, "laenge_m": length,
 		"zusammenhaengend": contiguous and parts.size() == s.slots.size(), "fertig": next_free_slot(s) == -1,
 		"hindernis_fuer_wegsuche": height >= cell,

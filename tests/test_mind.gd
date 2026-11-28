@@ -282,8 +282,13 @@ func _test_migration() -> void:
 	var v4_ver: String = str(v4.get("game_version", "")) if typeof(v4) == TYPE_DICTIONARY else ""
 	_check("Migration: ausgelieferte Definitionen v0.6.0 entsprechen dem eingetragenen Fingerabdruck", v4_hash == SaveMigrations.V4_SHIPPED_DEFINITIONS and v4_ver == "0.6.0-prototype",
 		"v0.6.0-Prüfling %s (%s)" % [v4_hash.substr(0, 16), v4_ver])
-	_check("Migration: ausgelieferte Definitionen v0.6.1 entsprechen dem eingetragenen Fingerabdruck", fp["hash"] == SaveMigrations.V5_SHIPPED_DEFINITIONS,
-		"aktuell %s" % fp["hash"])
+	# Seit Alpha 1.1 sind die aktuellen Definitionen neuer als v0.6.1 (Kartenvorlagen). Die von v0.6.1 ausgelieferten
+	# stehen im echten v0.6.1-Spielstand (Prüfling, vor jeder Änderung von Alpha 1.1 erzeugt) – dagegen wird geprüft.
+	var v5_text := FileAccess.get_file_as_string("res://tests/fixtures/save_v5_v061.json")
+	var v5 = JSON.parse_string(v5_text.substr(v5_text.find("\n") + 1))
+	var v5_hash: String = str(v5["definitions"]["hash"]) if typeof(v5) == TYPE_DICTIONARY and v5.has("definitions") else ""
+	_check("Migration: ausgelieferte Definitionen v0.6.1 entsprechen dem eingetragenen Fingerabdruck", v5_hash == SaveMigrations.V5_SHIPPED_DEFINITIONS and str(v5.get("game_version", "")) == "0.6.1-prototype" and fp["hash"] != v5_hash,
+		"v0.6.1-Prüfling %s" % v5_hash.substr(0, 16))
 	DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path("user://saves"))
 	for ext in ["", ".bak", ".v1.vor_migration"]:
 		if FileAccess.file_exists(MIG_PATH + ext):

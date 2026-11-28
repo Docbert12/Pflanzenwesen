@@ -2,6 +2,8 @@
 
 Dieses Dokument ist das **Gedächtnis des Projekts**. Es hängt nicht am Chatverlauf. Wer an Pflanzenwesen weiterarbeitet, liest es **vor** jeder Änderung und aktualisiert es **am Ende** jedes Prompts bzw. jeder Alpha-Version.
 
+**Stand 28.11.2026: Alpha 1.1 ist geliefert. Nächste Version: Alpha 1.2 – Große Welt I** (Abschnitt 10 nennt die ersten Schritte und die übernommenen offenen Punkte).
+
 **Ab 25.11.2026 gilt die Roadmap `docs/ROADMAP_ALPHA.md`:** Versionen heißen **Alpha 1.1, 1.2, …**; dort stehen die Entscheidungen des Nutzers (D1–D6), die Reihenfolge Alpha 1.1–1.21, der Zuschnitt jeder Version, die Zielarchitektur (Modularisierung, große Welten, Weltkarte) und das Versionsschema. Nach diesem Dokument **immer** die Roadmap lesen.
 
 ## 1. Projekt in einem Satz
@@ -24,12 +26,15 @@ Godot-4-Spiel „Pflanzenwesen“: 3D-Voxelwelt mit 50 individuellen Pflanzenwes
 | v0.6.0 | 50bc72c (+ Nachtrag Commit-Hash) – altes Repository |
 | v0.6.0 (Übernahme) | 2e60241 – neues Repository `Docbert12/Pflanzenwesen`, inhaltlich identisch |
 | v0.6.1 | 3a968e9 (+ Nachtrag Commit-Hash) – Prompt 6B |
+| alpha-1.1 | Zweig `version/alpha-1.1` (Commit-Nummer: `git log -1 origin/version/alpha-1.1`) – Fundament, 28.11.2026 |
 
-**Arbeitszweige:** `wip/prompt-06b` = Arbeitsverlauf von Prompt 6B (Zwischenstände vom 24./25.11.2026); abgeschlossen und als v0.6.1 ausgeliefert. Der Zweig bleibt als Verlauf erhalten, weitergearbeitet wird auf `main`. Entscheidungen und Begründungen von 6B: `docs/plan_prompt_06b.md`.
+**Arbeitszweige:** `wip/alpha-1.1` = Arbeitsverlauf von Alpha 1.1 (erster Commit: die Prüflinge Format 5 aus unverändertem v0.6.1-Code); abgeschlossen auf `main`. `wip/prompt-06b` = Arbeitsverlauf von Prompt 6B (Zwischenstände vom 24./25.11.2026); abgeschlossen und als v0.6.1 ausgeliefert. Der Zweig bleibt als Verlauf erhalten, weitergearbeitet wird auf `main`. Entscheidungen und Begründungen von 6B: `docs/plan_prompt_06b.md`.
 
 **Neuer Chat** (seit 28.11.2026 etwa alle 3 Versionen, Gruppen in `docs/ROADMAP_ALPHA.md` Abschnitt 4): Der Nutzer schreibt „Pflanzenwesen, Repository Docbert12/Pflanzenwesen, weiter mit Alpha 1.N“ (früher: „hier ist Prompt N“). Dann: Repository anbinden, klonen, diese Datei und `docs/ROADMAP_ALPHA.md` lesen, den Abschnitt der Version und die dort genannten Prompt-Abschnitte lesen, `docs/plan_alpha_1_N.md` anlegen. Für den Versionsvergleich die letzte Version holen: `git fetch --depth=1 origin version/vX.Y.Z` und `python3 tools/compare_versions.py git:FETCH_HEAD .` (oder `git:origin/version/vX.Y.Z`).
 
 ## 2. Stand
+Testzahlen: **564 Prüfungen** (Godot 4.7.2 und 4.5), 8 Szenenstarts, 39 Python-Tests – Stand Alpha 1.1 (`docs/test_results.md`).
+
 | Prompt | Inhalt | Version | Status |
 |---|---|---|---|
 | 1 | Physiklabor | v0.1.0 | fertig |
@@ -41,8 +46,9 @@ Godot-4-Spiel „Pflanzenwesen“: 3D-Voxelwelt mit 50 individuellen Pflanzenwes
 | 6 | Experimente, Werkzeugherstellung, praktisches Wissen, Testwerkstatt | v0.6.0 | fertig – Modellvorschläge für Versuche **mit echtem Ollama nicht verifiziert** |
 | 6B | Excel-Abgleich, Arbeitsanimationen, eigenständige Herstellung + verbindlicher Zusatz Werkzeug- und Materialkette (Hammer bauen → schlagen → Bruchstücke sammeln → lagern / verbauen / schmelzen) | v0.6.1 | fertig – Gegenstandsherstellung und **ein** einfaches Einzelbauwerk (Steinreihe); **Siedlungsbau nicht** (Prompt 9); Graben/Verdichten nur vorbereitet; Ollama-Anfrageart `work` **mit echtem Ollama nicht verifiziert**; Animationen nur als Standbilder geprüft. Texte: `design/prompts/prompt_06b_*.txt`, Doku: `docs/work_chains.md`, `docs/animations.md` |
 | Leitlinie | Leitlinien-Excel „Steinzeit → Zukunft“ (Designdokument, kein Spielinhalt): `design/Leitlinie_Steinzeit_bis_Zukunft.xlsx`, Quellen `design/leitlinie/`, Doku `docs/leitlinie.md`; mit **Alpha-Plan** (ab welcher Alpha-Version jede Erfindung physikalisch möglich sein soll) | – (Stand 0.6.1) | fertig (25.11.2026) |
-| Roadmap | **Plan Alpha 1.1 – 1.21** nach den Entscheidungen des Nutzers vom 25.11.2026 – `docs/ROADMAP_ALPHA.md` | – (Stand 0.6.1) | fertig (25.11.2026); **nächste Version: Alpha 1.1** |
-| Zusatz | Weltarchitektur: 20-fache Fläche, 0,25-m-Blöcke, Abbau und Bau mit Massenbilanz – `design/prompts/prompt_zusatz_weltarchitektur_abbau_bauen.txt` | → Alpha 1.1 (Vorbereitung), **1.2** (große Welt), **1.4** (Abbau, Bau, Geologie) | geplant (Einordnung entschieden 25.11.2026) |
+| Roadmap | **Plan Alpha 1.1 – 1.21** nach den Entscheidungen des Nutzers vom 25.11.2026 – `docs/ROADMAP_ALPHA.md` | – (Stand 0.6.1) | fertig (25.11.2026) |
+| **Alpha 1.1** | **Fundament:** 16 Simulationsmodule (`SimModule`, `ModuleRegistry`), `WorldAccess`, Kartenvorlagen `data/maps`, Neues-Spiel-Dialog, Speicherformat 6 (Abschnitte je Modul, Chunk-Deltas, Migration 5 → 6), Zufallsströme je Modul, Vermessung, Windows-Exportprofil. Keine neuen Spielinhalte, Verhalten bitgleich zu v0.6.1. Plan und Aufgabenliste: `docs/plan_alpha_1_1.md` | alpha-1.1 | **fertig (28.11.2026)**, 564/564 auf 4.7.2 und 4.5. Nicht verifiziert: Bildzeiten auf Grafikkarte, Windows-Build unter Windows, Dialog von Hand. **Nächste Version: Alpha 1.2** |
+| Zusatz | Weltarchitektur: 20-fache Fläche, 0,25-m-Blöcke, Abbau und Bau mit Massenbilanz – `design/prompts/prompt_zusatz_weltarchitektur_abbau_bauen.txt` | → Alpha 1.1 (Vorbereitung, **erledigt**), **1.2** (große Welt), **1.4** (Abbau, Bau, Geologie) | 1.1-Anteil fertig; 1.2 und 1.4 geplant |
 | 7 | Lebensbaum, Fortpflanzung, Vererbung, Mutationen, weitere Bäume – `prompt_07_…` | → Alpha **1.6** (Nachwuchs) und **1.7** (Vererbung) | geplant |
 | 8 | Ökosystem, Wildtiere, Zähmung, Zucht, Landwirtschaft – `prompt_08_…` | → Alpha **1.5** (Pflanzen), **1.9** (Tiere), **1.11** (Zähmung, Landwirtschaft) | geplant |
 | 9 | Siedlungen, gemeinsames Bauen, Vorräte, Arbeitsteilung, Besitz, Handel – `prompt_09_…` | → Alpha **1.12** | geplant |
@@ -83,7 +89,7 @@ Alle Prompt-Texte werden in `design/prompts/prompt_NN_*.txt` abgelegt, sobald si
 **Ende**
 1. Vollständige Tests auf 4.7.2 und 4.5, Szenenstart (`tools/scene_smoke.gd`), Python-Tests (`python3 -m unittest discover -s tools/tests`).
 2. `python3 tools/compare_versions.py git:origin/version/vX.Y.Z . --md reports/versionsvergleiche/versionsvergleich_vX.Y.Z_zu_vNEU.md` – jede Entfernung begründen (CHANGELOG und `reports/versionsvergleiche/README.md`) oder rückgängig machen.
-3. Definitionsfingerabdruck neu eintragen, falls `data/config/*.json` o. ä. geändert (`tools/print_definitions_fingerprint.gd`, Konstante in `save_migrations.gd`).
+3. Definitionsfingerabdruck neu eintragen, falls `data/config/*.json`, `data/materials`, `data/maps` o. ä. geändert: `tools/print_definitions_fingerprint.gd` ausführen und den Wert unter der neuen Version in **`SaveSchema.SHIPPED_DEFINITIONS`** (`scripts/persistence/save_schema.gd`) eintragen – die Einträge der Vorversionen bleiben stehen, damit deren Spielstände ladbar sind. Der Test „Ausgelieferte Definitionen dieser Version sind eingetragen“ schlägt fehl, solange der Eintrag fehlt. (Bis v0.6.1: Konstanten in `save_migrations.gd`.)
 4. Doku: README, CHANGELOG (mit „Entfernt/Geändert“), `docs/architecture.md`, `docs/implementation_status.md`, `docs/test_results.md`, betroffene Fachdokumente, **dieses HANDOVER** (Stand-Tabelle, neue Regeln, offene Punkte).
 4a. Leitlinie nachziehen: Verfahren und Materialien, die der Prompt bzw. die Alpha-Version tatsächlich spielbar macht, in `tools/leitlinie/vokabular.py` auf Spielstand `A` setzen (Texte in `STATUS_BESCHREIBUNG` anpassen), Abweichungen vom Alpha-Plan (`ALPHA_PLAN_*`) im Änderungsprotokoll der Roadmap festhalten, dann `python3 tools/build_leitlinie.py` und die Python-Tests (`docs/leitlinie.md`, Roadmap Abschnitt 10).
 5. Version in `project.godot` erhöhen (ab Alpha: `alpha-1.N`); Commit mit Nachricht „Alpha 1.N – Titel“ (früher „vX.Y.Z – Prompt N“); lokal Tag `alpha-1.N`; Push nach `main` **und** als Versionszweig: `git push origin HEAD:main` und `git push origin HEAD:refs/heads/version/alpha-1.N`; Commit-Tabelle in Abschnitt 1a und Statustabelle in `docs/ROADMAP_ALPHA.md` Abschnitt 11 ergänzen.
@@ -121,6 +127,11 @@ godot --headless --path . -s res://tools/make_save_fixture.gd -- user://saves/fi
 godot --headless --path . -s res://tools/print_definitions_fingerprint.gd
 xvfb-run -a -s "-screen 0 1600x900x24" godot --rendering-driver opengl3 --path . -s res://tools/capture_living.gd   # Bildschirmfotos
 python3 tools/compare_versions.py git:v0.5.1 .                     # oder git:origin/version/v0.5.1
+godot --headless --path . -s res://tools/run_module_tests.gd -- [--only=_t09]          # nur Alpha 1.1 (Module, Karten, Format 6, Migration 5→6), ca. 2 min
+godot --headless --path . -s res://tools/state_hash.gd -- 120 [spiel|werkstatt|kette]  # Zustandsprüfsummen: VOR und NACH einem Umbau vergleichen
+godot --headless --path . -s res://tools/benchmark_world.gd -- [--map=ID] [--secs=120] # Vermessung → user://benchmark_report.txt
+godot --headless --path . -s res://tools/make_work_chain_fixture.gd -- user://saves/fx.json bauen 40   # Prüfling: Testszene Werkzeugkette mitten in einer Kette
+godot --headless --path . --export-release "Windows Desktop" ../Pflanzenwesen_windows/Pflanzenwesen.exe   # Windows-Build (Exportvorlagen nötig, siehe Abschnitt 9)
 python3 tools/ollama_attrappe.py --port 11999                      # HTTP-ATTRAPPE (kein Ollama), nur für Transporttests
 ```
 Benutzerdaten von Godot (Linux): `~/.local/share/godot/app_userdata/Pflanzenwesen/` (Testbericht `test_report.txt`, `saves/`, Bilder). Windows: `%APPDATA%\Godot\app_userdata\Pflanzenwesen\`.
@@ -135,6 +146,9 @@ Benutzerdaten von Godot (Linux): `~/.local/share/godot/app_userdata/Pflanzenwese
 - `scripts/technology/` – Gegenstände, Verbünde, Werkzeuggebrauch, Bewertung, Versuche, Verfahrenswissen (Prompt 6); `scripts/social/teaching_system.gd`; `scripts/lab/test_workshop.gd`; `scripts/generation/object_generator.gd`; Parameter `data/config/technology.json`, Materialabschnitt `working`.
 - Prompt 6B: `scripts/technology/work_system.gd` + `work_chain.gd` (Arbeitsketten lagern/bauen/schmelzen; Optionen `work:start/continue/model` im `DecisionSystem`; ohne Verhalten treibt `WorkSystem.tick`), `scripts/settlement/` (Lager, Baustelle „Steinreihe“ – Namen wie in Prompt 9, dort erweitern statt ersetzen), `scripts/actions/work_motion.gd` (Phasen Anlauf→Ausgangspose→Arbeit/Kontakt→Rückkehr, `a.state.anim`), `scripts/animation/work_pose.gd` (Geometrie: Schulter, Handgelenk, Griffwinkel 45°, Kontaktposen-Suche) + `creature_animator.gd` (liest nur), `scripts/lab/work_chain_scene.gd` (Testszene). Details: `docs/work_chains.md`, `docs/animations.md`.
 - `scripts/persistence/` – Format 5, Migrationen 1→2→3→4→5 (nur die letzte Stufe vergleicht mit den aktuellen Definitionen, `V5_SHIPPED_DEFINITIONS`).
+- **Alpha 1.1 – Module:** `scripts/core/sim_module.gd` (Vertrag: `tick`, `actor_tick`, `save_section`, `load_section`, `migrate_section`, `after_load`, `metrics`, `audit`), `module_registry.gd` (Reihenfolge aus `depends_on`, Zeitmessung, Abschnitte), `rng_streams.gd`; 16 Module in `scripts/modules/`, angemeldet in `LifeSimulation._register_modules`. Die Module hüllen die Systeme oben nur ein. Tabelle Modul → System → Abschnitt: `docs/architecture.md` („Ergänzungen aus Alpha 1.1“).
+- **Alpha 1.1 – Welt-Schicht:** `scripts/world/world_access.gd` (`ctx.terrain`, einziger Geländezugriff außerhalb `scripts/world`; ein Test durchsucht die Skripte), `map_template.gd` + `data/maps/*.json` (Kartenvorlagen; „lichtung“ = Welt von v0.6.x), `region_store.gd` (Region im Spielstand mit Chunk-Deltas).
+- **Alpha 1.1 – Spielstand:** Format 6 = `meta` + `modules` (je Modul `"v"`) + `regions`; `SaveManager.document()` schreibt, `SaveManager.snapshot()`/`flat()` liefert die flache Sicht mit den alten Schlüsseln; Migrationen 1→…→6 (`docs/save_format.md`).
 - Konfiguration: `data/config/*.json` (Spieldefinitionen, Fingerabdruck), `data/settings/*.json` (Anwendungseinstellungen; `simulation.json` gehört zum Fingerabdruck, `ai.json` nicht).
 
 ## 9. Bekannte Stolperfallen (GDScript/Godot)
@@ -155,9 +169,33 @@ Benutzerdaten von Godot (Linux): `~/.local/share/godot/app_userdata/Pflanzenwese
 - Bildschirmfotos von Bewegungen: Simulation während der Aufnahme anhalten (`capture_work_chain.gd`), sonst liegt das Bild Bilder hinter dem Zustand.
 - Arbeitsposen: Winkel und Standpunkt kommen aus derselben `WorkPose`-Geometrie wie die Handlung – wer Körperproportionen, Griffwinkel oder Werkzeuglänge ändert, prüft `TestWorkChain._t01/_t09` (Kontaktabstand) und den Szenentest Werkzeugkette.
 
-## 10. Offene Punkte (Stand v0.6.1, 2026-11-25)
-- **Nächster Schritt: Alpha 1.1 – Fundament** (modulare Architektur, Speicherformat 6, Kartenvorlagen, Vermessung der Welt, Versionsumstellung, Windows-Exportprofil) nach `docs/ROADMAP_ALPHA.md` Abschnitt 6. Die frühere Frage „Prompt 7 oder Weltarchitektur zuerst“ ist **entschieden** (25.11.2026, D1/D3): Reihenfolge laut Roadmap. Vor der ersten Codeänderung in Alpha 1.1: Prüflinge Format 5 aus v0.6.1 erzeugen (`tools/make_save_fixture.gd`, `tools/make_workshop_fixture.gd`; zusätzlich ein Spielstand der Testszene Werkzeugkette mitten in einer Kette) – sie werden für die Migration 5→6 gebraucht.
-- **Entscheidungen des Nutzers vom 25.11.2026 (D1–D6):** Ökosystem und Entwicklung aus den Prompts umsetzen, lebendige Welt, Claude ordnet organisch, Excel nur zum Sortieren, eigene Erfindungen der Wesen erwünscht (D1); Jahreszeiten/Mond/Sterne ja (D2); Spiel modularisieren für größere Karten und Weltkarten (D3); Leitlinie im Spiel als Ideenquelle ohne Freischaltung (D4); Versionen Alpha 1.1 … (D5); ausführliche Plandatei auf GitHub (D6) – Wortlaut und Auslegung in `docs/ROADMAP_ALPHA.md` Abschnitt 1.
+- **Module (Alpha 1.1):** Wer die Reihenfolge der Module oder den Inhalt der Schleife je Wesen ändert, ändert das Verhalten. Vorher und nachher `tools/state_hash.gd` laufen lassen; ungewollte Abweichungen fallen dort sofort auf. Neue Module nur über `depends_on` einhängen und Zufall nur über `ctx.rng_streams.stream(id)` ziehen (nie `sim.rng`), dann bleiben die Prüfsummen der alten Systeme gleich.
+- **Neues Modul mit Zustand:** `has_section = true` und – weil ältere Spielstände den Abschnitt nicht haben – `section_optional = true`. Ohne das wird jeder ältere Spielstand als unvollständig abgewiesen.
+- **Untypisierte Schleifenvariablen** (`for m in _by(...)`, `for m in order`) liefern Variant: `var r := m.load_section(…)` ist dann ein Parse-Fehler. Vorher typisieren (`var m: SimModule = mm`).
+- **Tests und flache Sicht:** `SaveManager.snapshot()` hat die alten Schlüssel; die **Datei** hat sie nicht mehr (`modules.<id>.…`, `regions.main.…`, `meta.definitions`). Tests, die die Datei von Hand verändern, müssen den neuen Aufbau benutzen.
+- **Ladeverhalten ist nicht Migration:** Beim Laden werden laufende Handlungen ggf. abgebrochen und laufende Versuche als „unterbrochen“ beendet (seit v0.6.0). Vergleiche „Datei vor dem Laden ↔ Zustand danach“ müssen `last_result`, `next_decision_t`, `mind.tech.experiment_id` und laufende Versuche ausnehmen.
+- **JSON-Schlüsselreihenfolge:** Die Datei wird mit sortierten Schlüsseln geschrieben; Listen von Abschnitten vor dem Vergleich sortieren.
+- **Windows-Export in der Arbeitsumgebung:** Exportvorlagen von `github.com/godotengine/godot-builds/releases/download/4.7.2-stable/Godot_v4.7.2-stable_export_templates.tpz` (1,3 GB) laden und `windows_release_x86_64.exe`, `windows_debug_x86_64.exe` (+ `_console`) und `version.txt` nach `~/.local/share/godot/export_templates/4.7.2.stable/` legen. Das Paket lässt sich mit der Linux-Engine prüfen: `godot --headless --main-pack Pflanzenwesen.pck -s /pfad/pruefskript.gd`. Godot selbst: `…/download/4.7.2-stable/Godot_v4.7.2-stable_linux.x86_64.zip` und `…/4.5-stable/…` (die Arbeitsumgebung ist in jedem Chat neu und leer).
+- **Vollständiger Testlauf dauert jetzt etwa 10 Minuten je Godot-Version** (564 Prüfungen); `--quick` etwa 8 Minuten. Befehle mit langem Zeitlimit oder im Hintergrund starten und währenddessen keine Skripte ändern.
+
+## 10. Offene Punkte (Stand Alpha 1.1, 2026-11-28)
+- **Nächster Schritt: Alpha 1.2 – Große Welt I** (Chunk-Streaming, große Karte mit etwa 20-facher Fläche, Biome, Kartenvorlagen zur Wahl, hierarchische Navigation, Erkundungswissen, Simulationszonen A/B/C, Messszene) nach `docs/ROADMAP_ALPHA.md` Abschnitt 6. Der Nutzer schreibt „weiter mit Alpha 1.2“ (derselbe Chat wie 1.1, Gruppe 1.1–1.3 nach D7; nach einer Pause oder Kürzung zuerst dieses Dokument, die Roadmap und `docs/plan_alpha_1_1.md` neu lesen).
+  **Erste Schritte in 1.2:**
+  1. `docs/plan_alpha_1_2.md` mit Aufgabenliste anlegen (Muss 1–12 aus der Roadmap, Weltarchitektur §3–5, §12–13, §15–17) und die offenen Punkte unten übernehmen.
+  2. `docs/world_expansion.md` Abschnitt 4 lesen: die drei gemessenen Engpässe sind **Wasser über alle Spalten** (2,5 ms je Schritt bei 4.096 Spalten), **Wegsuche** (Ø 8,5 ms quer über die Karte, Knotenlimit 2.500) und **Netz + Kollision** (9,6 ms je Chunk).
+  3. Ausgangswerte sichern, bevor Code geändert wird: `tools/state_hash.gd` (Karte „lichtung“ muss nach 1.2 dieselben Prüfsummen liefern, solange die Vorlage `lichtung_v0` benutzt wird) und `tools/benchmark_world.gd`.
+  4. Prüflinge Format 6 aus Alpha 1.1 erzeugen (`make_save_fixture.gd`, `make_workshop_fixture.gd`, `make_work_chain_fixture.gd`), **bevor** sich Abschnitte oder die Region ändern.
+  5. Neuer Generator als eigene Generator-ID (z. B. `landschaft_v1`) neben `lichtung_v0` – alte Welten behalten ihren Generator (Weltarchitektur §15).
+- **Aus Alpha 1.1 übernommen (Aufgabenliste 1.2):**
+  - **Bildzeiten auf Grafikkarten nicht gemessen** – Messszene in 1.2, Messung beim Nutzer (GTX 1660 Ti, RTX 3080).
+  - **Wasser ist noch kein Modul** (läuft in `VoxelWorld._physics_process`, also nur in der Spielszene, nicht in den Tests) – in 1.2 in den Simulationspfad holen, mit aktiven Spalten.
+  - **Spielstand als Ordner** je Region und Chunk (Roadmap 8.8) – heute eine Datei mit demselben logischen Aufbau.
+  - **Windows-Build** `Pflanzenwesen_alpha-1.1_windows.zip` wurde dem Nutzer geschickt, **unter Windows nicht gestartet** – Rückmeldung abwarten und hier eintragen.
+  - **Neues-Spiel-Dialog von Hand** nicht geprüft.
+- **Entscheidungen des Nutzers:** D1–D6 vom 25.11.2026, **D7** vom 28.11.2026 (neuer Chat etwa alle 3 Versionen) – Wortlaut in der Roadmap Abschnitt 1. **28.11.2026, 19:10:** Nach Alpha 1.1 Pause; Alpha 1.2 am Folgetag im selben Chat.
+
+### Weiter offen aus v0.6.1 (unverändert)
+- **Entscheidungen des Nutzers vom 25.11.2026 (D1–D6), Kurzfassung:** Ökosystem und Entwicklung aus den Prompts umsetzen, lebendige Welt, Claude ordnet organisch, Excel nur zum Sortieren, eigene Erfindungen der Wesen erwünscht (D1); Jahreszeiten/Mond/Sterne ja (D2); Spiel modularisieren für größere Karten und Weltkarten (D3); Leitlinie im Spiel als Ideenquelle ohne Freischaltung (D4); Versionen Alpha 1.1 … (D5); ausführliche Plandatei auf GitHub (D6) – Wortlaut und Auslegung in `docs/ROADMAP_ALPHA.md` Abschnitt 1.
 - **Leitlinie Steinzeit → Zukunft (Wunsch des Nutzers):** Die Wesen sollen sich selbst entwickeln (Steinhammer → Schmelzen → Legieren → Abbauwerkzeuge). **Leitlinien-Excel gebaut (25.11.2026):** `design/Leitlinie_Steinzeit_bis_Zukunft.xlsx`, 24 Zeitalter, 2.680 Erfindungen (je 54–192) mit physikalischer Kette, Vorläufern, Spielstand und Lücke; Quellen `design/leitlinie/*.txt`, Werkzeug `tools/build_leitlinie.py`, Doku `docs/leitlinie.md`. Ergebnis: heute 95 möglich, bis Prompt 12 473 (17,6 %), Lücke 2.207. Die Zwischenschritte sind seit 25.11.2026 **in den Alpha-Plan eingeordnet** (Roadmap Abschnitt 5 und 10; Excel-Blätter „Alpha-Plan“ und „Alpha-Zeitalter“, Spalte „geplant möglich ab“): nach Alpha 1.16 wären 989 (36,9 %), nach 1.21 1.248 (46,6 %) physikalisch möglich – Möglichkeiten, keine Ziele. Die Excel ist nur Designdokument, nichts davon ist im Spiel aktiv; ab Alpha 1.8 dient sie im Spiel als Erfindungs-Chronik und Ideenkatalog ohne Freischaltung (D4).
 - Erfindungs-Excel `design/Erfindungen_Echt_nach_Kategorien.xlsx` ist seit v0.6.1 als **Katalog** importiert (`data/generated/ideas/inventions_real_catalog.json`, 2.785 Einträge, Stufe nur Metadatum, Effekte nie angewendet). Aktiv sind nur die 8 Verfahren in `data/config/inventions_activated.json`. Die alte Datei `Erfindungen_nach_Kategorien_und_Stufen.xlsx` und ihr Katalog bleiben erhalten.
 - Prompt 6B, Grenzen: Wesen schmelzen nur im **Testofen** der Testszene (eigener Ofen braucht Feuer/Ton); eigenständig beobachtet wurde bisher nur „bauen“ (nach einer gezielt ausgelösten Kette, siehe `docs/test_results.md`); eine Kette je Wesen; Lager/Baustelle nur durch Wesen oder Testaufbau; kein gemeinsames Bauen; Animationen headless und als Standbilder geprüft, **nicht** als bewegte Bilder auf einer Grafikkarte.
